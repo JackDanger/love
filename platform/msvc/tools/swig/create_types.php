@@ -19,7 +19,7 @@ $out .= "enum script_types\n";
 $out .= "{\n";
 
 // Get file contents
-$raw = file_get_contents("../src/love_lua_glue.cpp");
+$raw = file_get_contents("../../../../src/love_lua_glue.cpp");
 
 // Convert to lines
 $ar = explode("\n", $raw);
@@ -58,6 +58,6 @@ $out .= "};\n";
 
 $out .= "\n#endif\n";
 
-file_put_contents("../src/love_script_types.h", $out);
+file_put_contents("../../../../src/love_script_types.h", $out);
 
 ?>

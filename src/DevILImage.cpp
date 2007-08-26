@@ -37,7 +37,7 @@ namespace love
 
 		// Check for errors
 		if(!success)
-			printf(iluErrorString(ilGetError()));
+			printf((const char *)iluErrorString(ilGetError()));
 
 		this->width			= (float)ilGetInteger(IL_IMAGE_WIDTH);
 		this->height		= (float)ilGetInteger(IL_IMAGE_HEIGHT);

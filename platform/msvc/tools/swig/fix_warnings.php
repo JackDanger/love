@@ -1,6 +1,6 @@
 <?php
 
-$c = file_get_contents("../src/love_lua_glue.cpp");
+$c = file_get_contents("../../../../src/love_lua_glue.cpp");
 
 $t = "// Made by AutoLOVE\n// IGNORE WARNINGS PLZ\n"; 
 
@@ -19,7 +19,7 @@ $t .= "// Made by AutoLOVE\n// ENABLE WARNINGS PLZ\n";
 $t .= "#pragma warning( pop )";
 
 
-file_put_contents("../src/love_lua_glue.cpp", $t);
+file_put_contents("../../../../src/love_lua_glue.cpp", $t);
 
 
 ?>
