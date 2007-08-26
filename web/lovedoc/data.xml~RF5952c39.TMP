@@ -1,0 +1,229 @@
+<?xml version='1.0' ?>
+< [
+  <!ENTITY chap1 SYSTEM "mydocs/chapter1.xml">
+  <!ENTITY chap2 SYSTEM "mydocs/chapter2.xml">
+  <!ENTITY chap3 SYSTEM "mydocs/chapter3.xml">
+  <!ENTITY chap4 SYSTEM "mydocs/chapter4.xml">
+  <!ENTITY chap5 SYSTEM "mydocs/chapter5.xml">
+]>
+
+
+<documentation>
+
+
+  <globals>
+    <global name="Overview" url="index.html">
+
+      LOL Ö OMG
+
+      <code>
+doom = {
+  fetus:kill();
+}
+      </code>
+
+      [br /]
+
+      This is so über gay:
+
+      <code>
+main = {
+  init = function()
+    game:lol();
+  end
+}
+      </code>
+
+      DESTROY
+
+      中国で見つかったダブルエッグ。
+      タマゴinタマゴ。タマゴの殻の中にまずは白身があって、その１ステージ目の部分には黄身がなくてその代わりに殻ごともう一個タマゴがあって、それを割ると中からまたタマゴが出てきたらしい。
+      日本でも昔はタマゴとか買うとたまあに双子のヤツがあったけど、最近は全くないですよネ。あれってセンサー使って前持って双子のタマゴは別にしちゃってるからなんでしょ。双子のタマゴのパックってのも売ってるトコロには売ってますよネ。
+
+
+      [br /][br /]
+
+      Good thing we can haev japanese on this page, eh? Neee?
+      [br /]
+      [br /]
+
+      中国で見つかったダブルエッグ。
+      タマゴinタマゴ。タマゴの殻の中にまずは白身があって、その１ステージ目の部分には黄身がなくてその代わりに殻ごともう一個タマゴがあって、それを割ると中からまたタマゴが出てきたらしい。
+      日本でも昔はタマゴとか買うとたまあに双子のヤツがあったけど、最近は全くないですよネ。あれってセンサー使って前持って双子のタマゴは別にしちゃってるからなんでしょ。双子のタマゴのパックってのも売ってるトコロには売ってますよネ。
+
+
+
+    </global>
+    <global name="Licence" url="licence.html">
+      Licence, omg
+    </global>
+    <global name="Credits" url="credits.html">
+      Credits, omg
+    </global>
+    <global name="First LÖVE" url="firstLove.html">
+
+      I suppose some sort of tutorial goes here.
+
+      <code>
+main = {
+  init = function()
+    game:lol();
+  end
+}
+      </code>
+      
+    </global>
+  </globals>
+  
+  
+
+  <types>
+
+    <type name="Actor" brief="NGR!"></type>
+    
+    <type name="Universe" brief="Represents the physical universe.">
+
+      Represents the physical universe. [br /]
+      [br /]
+
+      Yeah, you can say that [b]again[/b].
+
+      [ul]
+      [li]LOL[/li]
+      [li]FAG[/li]
+      [li]NOOB[/li]
+      [li]ROFL[/li]
+      [/ul]
+
+      [code]
+
+      game:addImage("image-flower", "flower.gif");
+
+      [/code]
+
+
+      <function name="anvilOnFetus" brief="Destroys mankind.">
+
+        Multiline description goes here! This function will TOTALLY destroy mankind.
+
+        <param name="name">More elaborate description.</param>
+        <param name="x">More elaborate description.</param>
+        <param name="y">More elaborate description.</param>
+        <returns type="boolean">True if mankind was destroyed, false otherwise.</returns>
+
+        <example name="Adding a universe to the game.">
+          main = { LOL FUNCTIOn!
+          init = function()
+          {
+          -- Add a Universe to the game.
+          game:addUniverse("universe-kawaii");
+          }
+          }
+        fetuys
+        </example>
+
+        <see name="game" url="objectgame" />
+        <see name="fetus" url="objectgame" />
+        <see name="hest" url="objectgame" />
+        
+      </function>
+
+      <function name="phallae" brief="Destroys asdfasdfjkl."> asdfasdfjkl </function>
+      <function name="get" brief="Destroys asdfasdfjkl."> asdfasdfjkl </function>
+
+      <separator />
+
+      <function name="set" brief="Destroys asdfasdfjkl."> asdfasdfjkl </function>
+      <function name="kill" brief="Destroys asdfasdfjkl."> asdfasdfjkl </function>
+
+      <separator />
+
+      <function name="set" brief="Destroys asdfasdfjkl.">
+        <param name="x" brief="x-pos lol" />
+        <see name="game" url="objectgame" />
+       
+      </function>
+      
+      <function name="kill" brief="Destroys asdfasdfjkl.">
+        asdfasdfjkl
+        <param name="all" brief="True to kill all, false to just kill some." />
+      </function>
+
+      <see name="Image" url="typeImage" />
+      <see name="Image:getWidth()" url="functionImagegetWidth" />
+
+      <example name="Adding a universe to the game.">
+main = {
+  init = function()
+  {
+    -- Add a Universe to the game.
+    game:addUniverse("universe-kawaii");
+  }
+}
+      </example>
+
+      <example name="Adding a universe to the game, and using the returned pointer to destroy mankind.">
+main = {
+  init = function()
+  {
+    -- Create a new Universe
+    myuni = game:addUniverse("universe-kawaii");
+    
+    -- Destroy mankind
+    myuni:anivilOnFetus("joe", 13, 37);
+  }
+}
+      </example>
+
+    </type>
+
+    <type name="Image" brief="Contains image data. Typically loaded from an image file such as png, gif or jpg.">
+      <function name="getWidth" brief="Gets the width of the image.">
+        <returns type="number">The width of the Image in pixels.</returns>
+      </function>
+      <function name="getHeight" brief="Gets the height of the image.">
+        <returns type="number">The height of the Image in pixels.</returns>
+      </function>
+    </type>
+
+
+
+
+
+  </types>
+
+  <objects>
+    <object name="game" brief="Represents the game.">
+
+      Represents the game. Most of the interaction will be done via this object.
+
+
+      <function name="addImage" brief="Adds an image to the game.">
+        
+        Remember that the Image will not be loaded until [b]after[/b] init has completed.
+        
+        <param name="name" brief="The name of the Image." />
+        <param name="filename" brief="The file from which to load the Image." />
+        <returns type="image" brief="A pointer to the added Image." />
+        <example name="Adding an Image to the game.">
+main = {
+  init = function()
+    flower = game:addImage("image-flower", "flower.png");
+  end
+}
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="drawString" brief="Draws a string on teh screen."></function>
+      <function name="drawImage" brief="Draws an image on teh screen.">
+        <param name="imageName" brief="The name of the Image to be rendered." />
+        <param name="x" brief="xizzle" />
+        <param name="y" brief="yizzls" />
+      </function>
+    </object>
+  </objects>
+  
+
+</documentation>

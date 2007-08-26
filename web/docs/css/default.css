@@ -1,0 +1,295 @@
+
+
+a:link, a:active, a:visited 
+{
+	color: black;
+	text-decoration: none;
+}
+
+a:hover
+{
+	text-decoration: underline;
+	color: #555;
+}
+
+div, a
+{
+	font-family: Arial, Verdana, Sans-serif;
+	font-size: 12px;
+	color: #555;
+}
+
+.master-table
+{
+  width: 100%;
+}
+
+.master-table td
+{
+ padding: 5px;
+ vertical-align: top;
+}
+
+.master-table .right
+{
+
+}
+
+.master-table .left
+{
+ border-right: 1px solid #cfe3fd;
+  width: 187px;
+}
+
+.master-table .left .horizontal
+{
+  border-bottom: 1px dashed #cfe3fd;
+  margin: 2px 0px 3px 0px;
+  color: #4578ba;
+  font-weight: bold;
+  padding: 0px 0px 0px 0px;
+  height: 2px;
+}
+
+.master-table .left .element
+{
+  display: block;
+  color: #5384c3;
+  padding: 1px 2px 1px 2px;
+}
+
+.master-table .left .element:hover
+{
+  background-color: #5e9be5;
+  text-decoration: none;
+  color: white;
+}
+
+.header
+{
+	padding: 5px 5px 5px 0px;
+	font-size: 32px;
+	color: #ddd;
+}
+
+.left .logo
+{
+	background: url('../../gfx/love_logo_small.png') no-repeat;
+	width: 172px;
+	height: 57px;
+	float: left;
+	margin-bottom: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+.left .refman
+{
+	font-size: 32px;
+	color: #ddd;
+	padding: 18px 0px 0px 50px;
+}
+
+.left .version
+{
+	font-size: 10px;
+	color: #777;
+	padding: 7px 20px 0px 3px;
+	clear: both;
+	margin-bottom: 7px;
+	text-align: right;
+
+}
+
+.chapter
+{
+	margin-bottom: 20px;
+	clear:both;
+}
+
+.chapter .header
+{
+	padding: 5px;
+	border-bottom: 1px solid #cfe3fd;
+}
+
+.chapter .header .title
+{
+	font-size: 18px;
+	color: #1f6ed9;
+}
+
+.chapter .text
+{
+	padding: 10px;
+}
+
+.chapter .text .float_list
+{
+	float: left;
+	padding: 0px 10px 10px 10px;
+	margin-right: 20px;
+}
+
+
+.chapter .text .float_list .header
+{
+	padding: 0px;
+	font-size: 12px;
+	color: #1f6ed9;	
+	border: none;
+	margin-bottom: 5px;
+}
+
+.chapter .subchapter
+{
+	padding: 10px;
+	border-bottom: 1px solid #cfe3fd;
+	margin: 5px 0px 10px 0px;
+}
+
+.chapter .subchapter .title, .chapter .subchapter .title a
+{
+	font-size: 16px;
+	color: #3882e7;
+	font-weight: bold;
+}
+
+.chapter .subchapter .text
+{
+	padding-left: 0px;
+}
+
+.chapter .subchapter .section .title
+{
+	font-size: 14px;
+	color: #3882e7;
+	border: none;
+	background: none;
+	font-weight: normal;
+}
+
+.chapter .subchapter .section
+{
+	margin-bottom: 15px;
+}
+
+.chapter .subchapter .section .arguments .title
+{
+	margin-bottom: 6px;
+	border: none;
+}
+
+.chapter .subchapter .section .arguments .name
+{
+	font-style: italic;
+	margin-right: 10px;
+}
+
+
+/*******************************************************************************
+* TEXT MENU
+*******************************************************************************/
+.textmenu
+{
+	border: 1px solid #ddd;
+	margin: 5px 0px 5px 0px;
+}
+
+.textmenu .header
+{
+	font-size: 12px;
+	font-weight: bold;
+
+	padding: 5px;
+}
+
+.textmenu .items a:hover
+{
+	text-decoration: none;
+}
+
+.textmenu .items .item
+{
+	border-top: 1px solid #eee;
+	padding: 3px;
+}
+
+.textmenu .items a
+{
+	text-decoration: none;
+	font-size: 10px;
+}
+
+
+.textmenu .items .item:hover
+{
+	color: white;
+	background-color: #7eb853;
+}
+
+/*******************************************************************************
+* Function
+*******************************************************************************/
+
+.functions
+{
+ border: 0px solid black;
+ margin-top: 9px;
+}
+
+.functions .signature
+{
+ border: 0px solid black;
+ padding: 0px 0px 0px 0px;
+ vertical-align: middle;
+}
+
+.functions .signature a
+{
+ color: #335685;
+}
+
+.functions .brief
+{
+ border: 0px solid black;
+ vertical-align: center;
+ padding: 0px 0px 0px 20px;
+ font-style: italic;
+ color: #7294b7;
+}
+
+.functions .sep
+{
+ border: 0px solid black;
+ padding: 0px 0px 0px 20px;
+ height: 6px;
+}
+
+/*******************************************************************************
+* CODE
+*******************************************************************************/
+
+code
+{
+	border: 1px solid #ddd;
+	margin: 5px 0px 5px 0px;
+	background-color: #f7faff;
+	padding: 5px;
+	display: block;
+	font-size: 11px;
+}
+
+code a
+{
+	text-decoration: none;
+        color: black;
+        font-family: Monospace;
+        font-size: 11px;
+}
+
+code a:hover
+{
+	text-decoration: underline;
+	color: #3882e7;
+}

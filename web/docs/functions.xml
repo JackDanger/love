@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<functions version="0.1-pre-a">
+	<function name="addImage">
+		Blah blah blah. The love engine blah blah.
+	</function>
+	<function name="getImages">
+		Blah blah blah. The love engine blah blah.
+	</function>
+	<function name="deleteImages">
+		Blah blah blah. The love engine blah asdfblah.
+	</function>
+</functions>

@@ -1,0 +1,123 @@
+#wrap #head #body #left
+{
+ margin: 97px 0px 0px 16px;
+  width: 224px;
+}
+
+.ss_box
+{
+ width: 221px;
+ float: left;
+ background: url(../gfx/ss_box_bg.png) repeat-y;
+ margin: 0px 15px 15px 17px;
+}
+
+.ss_box .top
+{
+ height: 7px;
+ background: url(../gfx/ss_box_top.png) no-repeat;
+}
+
+.ss_box img
+{
+  margin: 0px 0px 0px 11px;
+  z-index: 1;
+}
+
+.ss_box .bot
+{
+ height: 8px;
+ background: url(../gfx/ss_box_bot.png) no-repeat;
+
+}
+
+.ss_box .caption
+{
+ font-size: 10px;
+ color: #a5a5a5;
+ margin: 3px 9px 3px 13px;
+ height: auto;
+}
+
+.ss_box .image_info_active, .ss_box .image_info_inactive
+{
+ width: 190px;
+ height: 140px;
+ background: #ffffff;
+ z-index: 0;
+ margin: 5px 0px -150px 11px;
+ position: relative;
+ font-size: 10px;
+ padding: 5px;
+}
+
+.ss_box .image_info_active
+{
+ filter: Alpha(opacity='80');
+}
+
+.ss_box .image_info_active .title
+{
+  opacity: 1.0;
+  color: #555 !important;
+  margin: 0px 0px 5px 0px !important;
+}
+
+.ss_box .image_info_active .date
+{
+  opacity: 1.0;
+}
+
+.ss_box .image_info_inactive
+{
+ filter: Alpha(opacity='0');
+}
+
+
+/*******************************************************************************
+* TEXT MENU
+*******************************************************************************/
+.textmenu .items a:hover
+{
+	color: white;
+	background-color: #7eb853;
+}
+
+/*******************************************************************************
+* PROJECT
+*******************************************************************************/
+
+.project
+{
+  clear: both;
+  border-top: 1px solid #ddd;
+  padding: 5px 0px 7px 0px;
+
+}
+
+.project .data
+{
+  width: 230px;
+  float: left;
+  padding: 7px 0px 0px 7px;
+}
+
+.project .data .header
+{
+  font-size: 14px;
+  font-weight: bold;
+  color: #818181;
+  margin-bottom: 5px;
+}
+
+.project .ss_box 
+{
+  float: right;
+  margin-bottom: 0px;
+}
+
+.project .textmenu
+{
+  margin-top: 10px;
+  border-top: none;
+}
