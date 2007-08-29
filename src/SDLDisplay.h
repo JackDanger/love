@@ -70,6 +70,24 @@ namespace love
 		virtual int tryChange(DisplayMode displayMode);
 
 		/**
+		* @brief Gets a graphics context that is compatible with the current display.
+		* @return A graphics context.
+		**/
+		AbstractGraphics * getGraphics() const;
+
+		/**
+		* @brief Gets the width of the current display mode.
+		* @return The width of the current display mode.
+		**/
+		int getWidth() const;
+
+		/**
+		* @brief Gets the height of the current display mode.
+		* @return The height of the current display mode.
+		**/
+		int getHeight() const;
+
+		/**
 		* @brief Generates a caption for the window.
 		* @return The caption for the window.
 		**/

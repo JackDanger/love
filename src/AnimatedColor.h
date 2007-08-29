@@ -19,7 +19,9 @@ namespace love
 	class AnimatedColor : public AbstractColor
 	{
 	protected:
-		vector<Color *> colors;
+
+		// Updated this to use pColor for great automatic cleanup pleasure.
+		vector<pColor> colors;
 		vector<float> times;
 		float total; //the maximum time requried to gradient through the colors
 		float elapsed; //the amount of time that has passed
@@ -68,7 +70,17 @@ namespace love
 		 * @param time The amount of time associated with the color.
 	 	 * @brief Adds a color to the color list. If this is the first color then it sets it as the current color.
 	 	 **/
-		void addColor(Color * color, float time);
+		void addColor(const pColor * color, float time);
+
+		/**
+		* @brief Adds a color directly.
+		* @param r The red color component.
+		* @param g The green color component.
+		* @param b The blue color component.
+		* @param a The alpha component.
+		* @param time The amount of time associated with the color.
+		**/
+		void addColor(int r, int g, int b, int a, float time);
 
 		/**
 		 * @return A Color object.

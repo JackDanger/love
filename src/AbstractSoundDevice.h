@@ -10,6 +10,8 @@
 
 // LOVE
 #include "AbstractDevice.h"
+#include "AbstractSound.h"
+#include "AbstractMusic.h"
 
 // STL
 
@@ -19,8 +21,6 @@
 namespace love
 {
 
-	class AbstractSound;
-	class AbstractMusic;
 	class AbstractFile;
 
 	/**
@@ -93,6 +93,18 @@ namespace love
 		* @param volume The volume from 0.0 - 1.0.
 		**/
 		virtual void setVolume(float volume) const = 0;
+
+		/**
+		// Coming soooon.
+		virtual void play(const pAbstractSound * sound, int loop = 1, int channel = -1) const = 0;
+		virtual void play(const pAbstract
+
+		virtual void play(const pAbstractMusic * music, int loop = 1) const = 0;
+		virtual void pause(const pAbstractMusic * music) const = 0;
+		virtual void resume(const pAbstractMusic * music) const = 0;
+		virtual void stop(const pAbstractMusic * music) const = 0;
+
+		**/
 
 		
 	}; // AbstractSoundDevice

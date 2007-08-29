@@ -124,9 +124,19 @@ namespace love
 		* @param x The x-coordinate of the position.
 		* @param y The y-coordinate of the position.
 		**/
-		virtual void drawString(const char * str, float x, float y);
-
+		virtual void drawString(const char * str, float x, float y) const;
 		
+		/**
+		* @brief Draws a formatted string. (Word wrap, line breaks, alignment)
+		* @param str The text to render.
+		* @param x The x-coordinate of the position of the first character.
+		* @param y The y-coordinate of the position of the first character.
+		* @param limit Size limit for word wrap.
+		* @param align How to align the text.
+		**/
+		virtual void drawText(const char * str, float x, float y, float limit = 0, int align = 1) const;
+
+
 	}; // OpenGLGraphics
 	
 	typedef boost::shared_ptr<OpenGLGraphics> pOpenGLGraphics;

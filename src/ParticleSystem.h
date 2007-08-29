@@ -217,8 +217,8 @@ namespace love
 		* @brief Sets color.
 		* @param color 
 		**/
-		void addColor(int r, int g, int b, int a);
-		void addColor(const pColor & color);
+		void addColor(int r, int g, int b, int a, float time = 1.0f);
+		void addColor(const pColor * color, float time = 1.0f);
 
 		// Note: using pointers so SWIG won't go anal.
 		void setSprite(const pSprite * sprite);

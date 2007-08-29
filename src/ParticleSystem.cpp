@@ -229,14 +229,14 @@ namespace love
 		this->spawnFreq = 1.0f/particlesPerSecond;
 	}
 
-	void ParticleSystem::addColor(int r, int g, int b, int a)
+	void ParticleSystem::addColor(int r, int g, int b, int a, float time)
 	{
-		color->addColor(new Color(r, g, b, a), 1.0);
+		color->addColor(r, g, b, a, time);
 	}
 
-	void ParticleSystem::addColor(const pColor & color)
+	void ParticleSystem::addColor(const pColor * color, float time)
 	{
-		this->color->addColor(new Color(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha()), 1.0);
+		this->color->addColor(color, time);
 	}
 
 	void ParticleSystem::setDirection(float min, float max, float var)
@@ -406,8 +406,8 @@ namespace love
 			float t = iter->age/iter->life;
 
 			// Set the color
-			color->setColor(t);
-			glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
+			Color c = color->getColor(t);
+			glColor4ub(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
 
 			// Set the size
 			float sd = iter->size.max - iter->size.min;

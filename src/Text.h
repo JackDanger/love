@@ -117,6 +117,9 @@ namespace love
 		void print(float x, float y, const string & text);
 		void print(float x, float y, const char * text);
 
+		// Sneaking in another method here .. (uses color/font directly) - rued
+		void print(float x, float y, const char * text, Font * font, AbstractColor * color);
+
 		void align(int alignment);
 		void align(const char * alignment);
 		void setLimit(float size);

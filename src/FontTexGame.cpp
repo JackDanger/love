@@ -177,9 +177,9 @@ int FontTexGame::load()
 	testfont->load();
 
 	shiny = new AnimatedColor();
-	shiny->addColor(new Color(0xFF7F96), 6.0);
-	shiny->addColor(new Color(0x817FFF), 6.0);
-	shiny->addColor(new Color(0x7FFF84), 6.0);
+	shiny->addColor(&pColor(new Color(0xFF7F96)), 6.0);
+	shiny->addColor(&pColor(new Color(0x817FFF)), 6.0);
+	shiny->addColor(&pColor(new Color(0x7FFF84)), 6.0);
 
 	menu = new Menu(Menu::LOVE_MENU_VERTICAL);
 	menu->setFont(testfont);
@@ -238,8 +238,8 @@ int FontTexGame::load()
 	testfield->setActiveBackgroundColor(new Color(255,255,255,200));
 
 	alsoshiny = new AnimatedColor();
-	alsoshiny->addColor(new Color(0xFFFFFF), 0.1f);
-	alsoshiny->addColor(new Color(0x000000), 0.1f);
+	alsoshiny->addColor(&pColor(new Color(0xFFFFFF)), 0.1f);
+	alsoshiny->addColor(&pColor(new Color(0x000000)), 0.1f);
 
 	DropDown * testdowns = menu->addDropDown(200);
 	testdowns->setButtonBackgroundColor(alsoshiny);

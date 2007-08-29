@@ -21,6 +21,7 @@ namespace love
 {
 
 	class DisplayModeListener;
+	class AbstractGraphics;
 
 	/**
 	* @class AbstractDisplay
@@ -94,6 +95,23 @@ namespace love
 		**/
 		int toggleFullscreen();
 
+		/**
+		* @brief Gets a graphics context that is compatible with the current display.
+		* @return A graphics context.
+		**/
+		virtual AbstractGraphics * getGraphics() const = 0;
+
+		/**
+		* @brief Gets the width of the current display mode.
+		* @return The width of the current display mode.
+		**/
+		virtual int getWidth() const = 0;
+
+		/**
+		* @brief Gets the height of the current display mode.
+		* @return The height of the current display mode.
+		**/
+		virtual int getHeight() const = 0;
 
 	};
 

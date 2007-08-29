@@ -166,17 +166,36 @@ namespace love
 		return t;
 	}
 
-	void AnimatedColor::addColor(Color * color, float time)
+	void AnimatedColor::addColor(const pColor * color, float time)
 	{
 		if(colors.size() == 0)
 		{
-			red = color->getRed();
-			green = color->getGreen();
-			blue = color->getBlue();
-			alpha = color->getAlpha();
+			red = (*color)->getRed();
+			green = (*color)->getGreen();
+			blue = (*color)->getBlue();
+			alpha = (*color)->getAlpha();
 		}
 
-		colors.push_back(color);
+		colors.push_back((*color));
+		times.push_back(time);
+
+		total = 0;
+		for(unsigned int i = 0; i < times.size(); i++)
+			total += times[i];
+	}
+
+	void AnimatedColor::addColor(int r, int g, int b, int a, float time)
+	{
+		if(colors.size() == 0)
+		{
+			red = r;
+			green = g;
+			blue = b;
+			alpha = a;
+		}
+
+		pColor clr(new Color(r, g, b, a));
+		colors.push_back(clr);
 		times.push_back(time);
 
 		total = 0;

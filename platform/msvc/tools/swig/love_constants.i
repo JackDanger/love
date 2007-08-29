@@ -154,3 +154,12 @@
 %constant const int mouse_right  = 4;
 %constant const int mouse_wheelup  = 8;
 %constant const int mouse_wheeldown  = 16;
+
+/**
+* Text constants.
+**/
+%constant const int align_left = 1;
+%constant const int align_right = 2;
+%constant const int align_center = 3;
+%constant const int align_top = 4;
+%constant const int align_bottom = 5;

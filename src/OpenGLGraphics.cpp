@@ -2,6 +2,7 @@
 #include "Core.h"
 #include "love.h"
 #include "Sprite.h"
+#include "Text.h"
 
 namespace love
 {
@@ -177,12 +178,28 @@ namespace love
 		glDisable(GL_LINE_SMOOTH);
 	}
 
-	void OpenGLGraphics::drawString(const char * str, float x, float y)
+	void OpenGLGraphics::drawString(const char * str, float x, float y) const
 	{
 		if(font!=0)
 		{
 			font->print(str, x, y);
 		}
+	}
+
+	void OpenGLGraphics::drawText(const char * str, float x, float y, float limit, int align) const
+	{
+		if(font!=0)
+		{
+			// Create new text object.
+			Text text(0, 0);
+
+			// Set some attributes.
+			text.align(align);
+			text.setLimit(limit);
+
+			// And print.
+			text.print(x, y, str, font.get(), color.get());
+		}	
 	}
 	
 } // love

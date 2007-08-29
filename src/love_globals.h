@@ -32,7 +32,6 @@ namespace love
 		LOVE_METHOD_ALL				= 0xFF
 	};
 	
-	
 
 } // love
 

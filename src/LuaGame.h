@@ -28,6 +28,8 @@
 
 #include "LuaGameState.h"
 
+#include "AbstractGraphics.h"
+
 // STL
 
 // Boost

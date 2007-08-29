@@ -1,6 +1,7 @@
 #include "SDLDisplay.h"
 #include "love.h"
 #include "DisplayModeListener.h"
+#include "OpenGLGraphics.h"
 
 #include "SDL/SDL.h"
 #include "GLee.h"
@@ -154,6 +155,22 @@ namespace love
 
 		return LOVE_OK;
 
+	}
+
+
+	AbstractGraphics * SDLDisplay::getGraphics() const
+	{
+		return new OpenGLGraphics();
+	}
+
+	int SDLDisplay::getWidth() const
+	{
+		return currentDisplayMode.getWidth();
+	}
+
+	int SDLDisplay::getHeight() const
+	{
+		return currentDisplayMode.getHeight();
 	}
 
 	std::string SDLDisplay::makeCaption() const

@@ -5143,10 +5143,42 @@ fail:
 }
 
 
+static int _wrap_Text_print__SWIG_10(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Text *arg1 = (love::Text *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  char *arg4 = (char *) 0 ;
+  love::Font *arg5 = (love::Font *) 0 ;
+  love::AbstractColor *arg6 = (love::AbstractColor *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isstring(L,4)) SWIG_fail_arg(4);
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg(5);
+  if(!lua_isuserdata(L,6)) SWIG_fail_arg(6);
+  arg1=(love::Text *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Text,0,1,"Text_print");
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (char*)lua_tostring(L, 4);
+  arg5=(love::Font *)SWIG_MustGetPtr(L,5,SWIGTYPE_p_love__Font,0,5,"Text_print");
+  arg6=(love::AbstractColor *)SWIG_MustGetPtr(L,6,SWIGTYPE_p_love__AbstractColor,0,6,"Text_print");
+  (arg1)->print(arg2,arg3,(char const *)arg4,arg5,arg6);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Text_print(lua_State* L) {
   int argc;
-  int argv[5]={
-    1,2,3,4,5
+  int argv[7]={
+    1,2,3,4,5,6,7
   };
   
   argc = lua_gettop(L);
@@ -5460,6 +5492,55 @@ static int _wrap_Text_print(lua_State* L) {
           }
           if (_v) {
             return _wrap_Text_print__SWIG_9(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Text, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              void *ptr;
+              if (lua_isuserdata(L,argv[4])==0 || SWIG_ConvertPtr(L,argv[4], (void **) &ptr, SWIGTYPE_p_love__Font, 0)) {
+                _v = 0;
+              } else {
+                _v = 1;
+              }
+            }
+            if (_v) {
+              {
+                void *ptr;
+                if (lua_isuserdata(L,argv[5])==0 || SWIG_ConvertPtr(L,argv[5], (void **) &ptr, SWIGTYPE_p_love__AbstractColor, 0)) {
+                  _v = 0;
+                } else {
+                  _v = 1;
+                }
+              }
+              if (_v) {
+                return _wrap_Text_print__SWIG_10(L);
+              }
+            }
           }
         }
       }
@@ -13375,6 +13456,38 @@ static int _wrap_ParticleSystem_addColor__SWIG_0(lua_State* L) {
   int arg3 ;
   int arg4 ;
   int arg5 ;
+  float arg6 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
+  if(!lua_isnumber(L,6)) SWIG_fail_arg(6);
+  arg1=(love::ParticleSystem *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ParticleSystem,0,1,"ParticleSystem_addColor");
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  arg5 = (int)lua_tonumber(L, 5);
+  arg6 = (float)lua_tonumber(L, 6);
+  (arg1)->addColor(arg2,arg3,arg4,arg5,arg6);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParticleSystem_addColor__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ParticleSystem *arg1 = (love::ParticleSystem *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
@@ -13397,16 +13510,39 @@ fail:
 }
 
 
-static int _wrap_ParticleSystem_addColor__SWIG_1(lua_State* L) {
+static int _wrap_ParticleSystem_addColor__SWIG_2(lua_State* L) {
   int SWIG_arg = -1;
   love::ParticleSystem *arg1 = (love::ParticleSystem *) 0 ;
-  love::pColor *arg2 = 0 ;
+  love::pColor *arg2 = (love::pColor *) 0 ;
+  float arg3 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(love::ParticleSystem *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ParticleSystem,0,1,"ParticleSystem_addColor");
+  arg2=(love::pColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,2,"ParticleSystem_addColor");
+  arg3 = (float)lua_tonumber(L, 3);
+  (arg1)->addColor((love::pColor const *)arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParticleSystem_addColor__SWIG_3(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ParticleSystem *arg1 = (love::ParticleSystem *) 0 ;
+  love::pColor *arg2 = (love::pColor *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::ParticleSystem *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ParticleSystem,0,1,"ParticleSystem_addColor");
   arg2=(love::pColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,2,"ParticleSystem_addColor");
-  (arg1)->addColor((love::pColor const &)*arg2);
+  (arg1)->addColor((love::pColor const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -13419,8 +13555,8 @@ fail:
 
 static int _wrap_ParticleSystem_addColor(lua_State* L) {
   int argc;
-  int argv[6]={
-    1,2,3,4,5,6
+  int argv[7]={
+    1,2,3,4,5,6,7
   };
   
   argc = lua_gettop(L);
@@ -13444,7 +13580,36 @@ static int _wrap_ParticleSystem_addColor(lua_State* L) {
         }
       }
       if (_v) {
-        return _wrap_ParticleSystem_addColor__SWIG_1(L);
+        return _wrap_ParticleSystem_addColor__SWIG_3(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__ParticleSystem, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_ParticleSystem_addColor__SWIG_2(L);
+        }
       }
     }
   }
@@ -13475,7 +13640,46 @@ static int _wrap_ParticleSystem_addColor(lua_State* L) {
               _v = lua_isnumber(L,argv[4]);
             }
             if (_v) {
-              return _wrap_ParticleSystem_addColor__SWIG_0(L);
+              return _wrap_ParticleSystem_addColor__SWIG_1(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__ParticleSystem, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              {
+                _v = lua_isnumber(L,argv[5]);
+              }
+              if (_v) {
+                return _wrap_ParticleSystem_addColor__SWIG_0(L);
+              }
             }
           }
         }
@@ -21170,7 +21374,7 @@ static int _wrap_AbstractGraphics_drawString(lua_State* L) {
   arg2 = (char*)lua_tostring(L, 2);
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
-  (arg1)->drawString((char const *)arg2,arg3,arg4);
+  ((love::AbstractGraphics const *)arg1)->drawString((char const *)arg2,arg3,arg4);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -21178,6 +21382,208 @@ static int _wrap_AbstractGraphics_drawString(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
+}
+
+
+static int _wrap_AbstractGraphics_drawText__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  love::AbstractGraphics *arg1 = (love::AbstractGraphics *) 0 ;
+  char *arg2 = (char *) 0 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  int arg6 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
+  if(!lua_isnumber(L,6)) SWIG_fail_arg(6);
+  arg1=(love::AbstractGraphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractGraphics,0,1,"AbstractGraphics_drawText");
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  arg6 = (int)lua_tonumber(L, 6);
+  ((love::AbstractGraphics const *)arg1)->drawText((char const *)arg2,arg3,arg4,arg5,arg6);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AbstractGraphics_drawText__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  love::AbstractGraphics *arg1 = (love::AbstractGraphics *) 0 ;
+  char *arg2 = (char *) 0 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
+  arg1=(love::AbstractGraphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractGraphics,0,1,"AbstractGraphics_drawText");
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  ((love::AbstractGraphics const *)arg1)->drawText((char const *)arg2,arg3,arg4,arg5);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AbstractGraphics_drawText__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  love::AbstractGraphics *arg1 = (love::AbstractGraphics *) 0 ;
+  char *arg2 = (char *) 0 ;
+  float arg3 ;
+  float arg4 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  arg1=(love::AbstractGraphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractGraphics,0,1,"AbstractGraphics_drawText");
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  ((love::AbstractGraphics const *)arg1)->drawText((char const *)arg2,arg3,arg4);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AbstractGraphics_drawText(lua_State* L) {
+  int argc;
+  int argv[7]={
+    1,2,3,4,5,6,7
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__AbstractGraphics, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_AbstractGraphics_drawText__SWIG_2(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__AbstractGraphics, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_AbstractGraphics_drawText__SWIG_1(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__AbstractGraphics, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              {
+                _v = lua_isnumber(L,argv[5]);
+              }
+              if (_v) {
+                return _wrap_AbstractGraphics_drawText__SWIG_0(L);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'AbstractGraphics_drawText'");
+  lua_error(L);return 0;
 }
 
 
@@ -21194,6 +21600,7 @@ static swig_lua_method swig_love_AbstractGraphics_methods[] = {
     {"drawParticleSystem", _wrap_AbstractGraphics_drawParticleSystem}, 
     {"drawBezier", _wrap_AbstractGraphics_drawBezier}, 
     {"drawString", _wrap_AbstractGraphics_drawString}, 
+    {"drawText", _wrap_AbstractGraphics_drawText}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_AbstractGraphics_attributes[] = {
@@ -27737,6 +28144,38 @@ static int _wrap_SmartParticleSystem_addColor__SWIG_0(lua_State* L) {
   int arg3 ;
   int arg4 ;
   int arg5 ;
+  float arg6 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
+  if(!lua_isnumber(L,6)) SWIG_fail_arg(6);
+  arg1=(boost::shared_ptr<love::ParticleSystem > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t,0,1,"SmartParticleSystem_addColor");
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  arg5 = (int)lua_tonumber(L, 5);
+  arg6 = (float)lua_tonumber(L, 6);
+  (*arg1)->addColor(arg2,arg3,arg4,arg5,arg6);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartParticleSystem_addColor__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::ParticleSystem > *arg1 = (boost::shared_ptr<love::ParticleSystem > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
@@ -27759,16 +28198,39 @@ fail:
 }
 
 
-static int _wrap_SmartParticleSystem_addColor__SWIG_1(lua_State* L) {
+static int _wrap_SmartParticleSystem_addColor__SWIG_2(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::ParticleSystem > *arg1 = (boost::shared_ptr<love::ParticleSystem > *) 0 ;
-  love::pColor *arg2 = 0 ;
+  love::pColor *arg2 = (love::pColor *) 0 ;
+  float arg3 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(boost::shared_ptr<love::ParticleSystem > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t,0,1,"SmartParticleSystem_addColor");
+  arg2=(love::pColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,2,"SmartParticleSystem_addColor");
+  arg3 = (float)lua_tonumber(L, 3);
+  (*arg1)->addColor((love::pColor const *)arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartParticleSystem_addColor__SWIG_3(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::ParticleSystem > *arg1 = (boost::shared_ptr<love::ParticleSystem > *) 0 ;
+  love::pColor *arg2 = (love::pColor *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::ParticleSystem > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t,0,1,"SmartParticleSystem_addColor");
   arg2=(love::pColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,2,"SmartParticleSystem_addColor");
-  (*arg1)->addColor((love::pColor const &)*arg2);
+  (*arg1)->addColor((love::pColor const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -27781,8 +28243,8 @@ fail:
 
 static int _wrap_SmartParticleSystem_addColor(lua_State* L) {
   int argc;
-  int argv[6]={
-    1,2,3,4,5,6
+  int argv[7]={
+    1,2,3,4,5,6,7
   };
   
   argc = lua_gettop(L);
@@ -27806,7 +28268,36 @@ static int _wrap_SmartParticleSystem_addColor(lua_State* L) {
         }
       }
       if (_v) {
-        return _wrap_SmartParticleSystem_addColor__SWIG_1(L);
+        return _wrap_SmartParticleSystem_addColor__SWIG_3(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_SmartParticleSystem_addColor__SWIG_2(L);
+        }
       }
     }
   }
@@ -27837,7 +28328,46 @@ static int _wrap_SmartParticleSystem_addColor(lua_State* L) {
               _v = lua_isnumber(L,argv[4]);
             }
             if (_v) {
-              return _wrap_SmartParticleSystem_addColor__SWIG_0(L);
+              return _wrap_SmartParticleSystem_addColor__SWIG_1(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              {
+                _v = lua_isnumber(L,argv[5]);
+              }
+              if (_v) {
+                return _wrap_SmartParticleSystem_addColor__SWIG_0(L);
+              }
             }
           }
         }
@@ -30359,6 +30889,7 @@ static const struct luaL_reg swig_commands[] = {
     { "AbstractGraphics_drawParticleSystem", _wrap_AbstractGraphics_drawParticleSystem},
     { "AbstractGraphics_drawBezier",_wrap_AbstractGraphics_drawBezier},
     { "AbstractGraphics_drawString", _wrap_AbstractGraphics_drawString},
+    { "AbstractGraphics_drawText",_wrap_AbstractGraphics_drawText},
     { "new_ObjectFactory", _wrap_new_ObjectFactory},
     { "delete_ObjectFactory", _wrap_delete_ObjectFactory},
     { "ObjectFactory_newImage", _wrap_ObjectFactory_newImage},
@@ -30762,6 +31293,11 @@ static swig_lua_const_info swig_constants[] = {
 { SWIG_LUA_INT,     (char *)"mouse_right", (long) 4, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"mouse_wheelup", (long) 8, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"mouse_wheeldown", (long) 16, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"align_left", (long) 1, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"align_right", (long) 2, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"align_center", (long) 3, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"align_top", (long) 4, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"align_bottom", (long) 5, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"LOVE_GL_VERSION_1_2", (long) love::LOVE_GL_VERSION_1_2, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"LOVE_GL_VERSION_1_3", (long) love::LOVE_GL_VERSION_1_3, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"LOVE_GL_VERSION_1_4", (long) love::LOVE_GL_VERSION_1_4, 0, 0, 0},

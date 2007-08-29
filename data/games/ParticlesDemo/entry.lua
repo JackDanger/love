@@ -7,18 +7,27 @@ main =
 {
 	init = function()
 	
+		local part1 = love.objects:newImage("part1.png");
+		local nyu = love.objects:newImage("nyu.png");
+		local cloud = love.objects:newImage("cloud.png");
+		local square = love.objects:newImage("square.png");
+		local c = love.objects:newImage("c.png");
+		local arrow = love.objects:newImage("arrow.png");
+		local thing = love.objects:newImage("thing.png");
+		
+	
+	
 		clr = game:addColor("clr", 80, 80, 80);
 		game:setColor(clr);
 	
 		-- System start
-		local sprite = game:addImage("part1", "part1.png");
-		local p = love.new_ParticleSystem();
-		p:setSprite(sprite);
+		local p = love.objects:newParticleSystem();
+		p:setSprite(part1);
 		p:setParticlesPerSecond(100);
 		p:setStartSpeed(300, 400);
 		p:setParticleSize(2, 1);
 		p:addColor(255, 255, 255, 255);
-		p:addColor(58, 128, 255, 0);
+		p:addColor(58, 128, 255, 0, 0);
 		p:setPosition(400, 300);
 		p:setLifetime(1);
 		p:setParticleLifetime(1);
@@ -30,14 +39,13 @@ main =
 		-- System end
 		
 		-- System start
-		sprite = game:addImage("nyu", "nyu.png");
-		p = love.new_ParticleSystem();
-		p:setSprite(sprite);
+		p = love.objects:newParticleSystem();
+		p:setSprite(nyu);
 		p:setParticlesPerSecond(300);
 		p:setStartSpeed(200, 300);
 		p:setParticleSize(1, 2);
 		p:addColor(255, 255, 255, 255);
-		p:addColor(255, 0, 126, 0);
+		p:addColor(255, 0, 126, 0, 0);
 		p:setPosition(400, 300);
 		p:setLifetime(1);
 		p:setParticleLifetime(3);
@@ -49,14 +57,13 @@ main =
 		-- System end
 		
 		-- System start
-		sprite = game:addImage("cloud", "cloud.png");
-		p = love.new_ParticleSystem();
-		p:setSprite(sprite);
+		p = love.objects:newParticleSystem();
+		p:setSprite(cloud);
 		p:setParticlesPerSecond(300);
 		p:setStartSpeed(200, 250);
 		p:setParticleSize(1, 1);
 		p:addColor(16, 81, 229, 255);
-		p:addColor(176, 16, 229, 0);
+		p:addColor(176, 16, 229, 0, 0);
 		p:setPosition(400, 300);
 		p:setLifetime(1);
 		p:setParticleLifetime(2);
@@ -68,14 +75,13 @@ main =
 		-- System end
 		
 		-- System start
-		sprite = game:addImage("square", "square.png");
-		p = love.new_ParticleSystem();
-		p:setSprite(sprite);
+		p = love.objects:newParticleSystem();
+		p:setSprite(square);
 		p:setParticlesPerSecond(300);
 		p:setStartSpeed(200, 350);
 		p:setParticleSize(1, 2);
 		p:addColor(240, 3, 176, 255);
-		p:addColor(204, 240, 3, 0);
+		p:addColor(204, 240, 3, 0, 0);
 		p:setPosition(400, 300);
 		p:setLifetime(1);
 		p:setParticleLifetime(2);
@@ -87,14 +93,13 @@ main =
 		-- System end
 		
 		-- System start
-		sprite = game:addImage("c", "c.png");
-		p = love.new_ParticleSystem();
-		p:setSprite(sprite);
+		p = love.objects:newParticleSystem();
+		p:setSprite(c);
 		p:setParticlesPerSecond(500);
 		p:setStartSpeed(200, 350);
 		p:setParticleSize(0.5, 2);
 		p:addColor(255, 255, 255, 255);
-		p:addColor(58, 128, 255, 0);
+		p:addColor(58, 128, 255, 0, 0);
 		p:setPosition(400, 300);
 		p:setLifetime(1);
 		p:setParticleLifetime(1);
@@ -107,14 +112,13 @@ main =
 		-- System end
 		
 		-- System start
-		sprite = game:getImage("part1");
-		p = love.new_ParticleSystem();
-		p:setSprite(sprite);
+		p = love.objects:newParticleSystem();
+		p:setSprite(part1);
 		p:setParticlesPerSecond(1000);
 		p:setStartSpeed(300, 400);
 		p:setParticleSize(2, 1);
 		p:addColor(220, 105, 20, 255);
-		p:addColor(194, 30, 18, 0);
+		p:addColor(194, 30, 18, 0, 0);
 		p:setPosition(400, 300);
 		p:setLifetime(0.1);
 		p:setParticleLifetime(0.2);
@@ -126,14 +130,13 @@ main =
 		-- System end
 		
 		-- System start
-		sprite = game:getImage("part1");
-		p = love.new_ParticleSystem();
-		p:setSprite(sprite);
+		p = love.objects:newParticleSystem();
+		p:setSprite(part1);
 		p:setParticlesPerSecond(1000);
 		p:setStartSpeed(100, 700);
 		p:setParticleSize(1, 2);
 		p:addColor(220, 105, 20, 255);
-		p:addColor(194, 30, 18, 0);
+		p:addColor(194, 30, 18, 0, 0);
 		p:setPosition(400, 300);
 		p:setLifetime(0.1);
 		p:setParticleLifetime(0.2);
@@ -145,14 +148,13 @@ main =
 		-- System end
 	
 		-- System start
-		sprite = game:getImage("part1");
-		p = love.new_ParticleSystem();
-		p:setSprite(sprite);
+		p = love.objects:newParticleSystem();
+		p:setSprite(part1);
 		p:setParticlesPerSecond(2000);
 		p:setStartSpeed(100, 700);
 		p:setParticleSize(1, 2);
 		p:addColor(220, 105, 20, 255);
-		p:addColor(194, 30, 18, 0);
+		p:addColor(194, 30, 18, 0, 0);
 		p:setPosition(400, 300);
 		p:setLifetime(0.5);
 		p:setParticleLifetime(0.5);
@@ -164,14 +166,13 @@ main =
 		-- System end
 		
 		-- System start
-		sprite = game:addImage("arrow", "arrow.png");
-		p = love.new_ParticleSystem();
-		p:setSprite(sprite);
+		p = love.objects:newParticleSystem();
+		p:setSprite(arrow);
 		p:setParticlesPerSecond(500);
 		p:setStartSpeed(200, 300);
 		p:setParticleSize(0.5, 2);
 		p:addColor(255, 255, 255, 255);
-		p:addColor(58, 128, 255, 0);
+		p:addColor(58, 128, 255, 0, 0);
 		p:setPosition(400, 300);
 		p:setLifetime(1);
 		p:setParticleLifetime(1);
@@ -184,14 +185,13 @@ main =
 		-- System end
 		
 		-- System start
-		sprite = game:getImage("arrow");
-		p = love.new_ParticleSystem();
-		p:setSprite(sprite);
+		p = love.objects:newParticleSystem();
+		p:setSprite(arrow);
 		p:setParticlesPerSecond(100);
 		p:setStartSpeed(200, 300);
 		p:setParticleSize(1, 2.0);
 		p:addColor(24, 19, 116, 255);
-		p:addColor(58, 128, 255, 0);
+		p:addColor(58, 128, 255, 0, 0);
 		p:setPosition(400, 300);
 		p:setLifetime(1);
 		p:setParticleLifetime(1.5);
@@ -204,14 +204,13 @@ main =
 		-- System end
 		
 		-- System start
-		sprite = game:getImage("part1");
-		p = love.new_ParticleSystem();
-		p:setSprite(sprite);
+		p = love.objects:newParticleSystem();
+		p:setSprite(part1);
 		p:setParticlesPerSecond(200);
 		p:setStartSpeed(300, 400);
 		p:setParticleSize(1, 2);
 		p:addColor(255, 255, 255, 255);
-		p:addColor(58, 128, 255, 0);
+		p:addColor(58, 128, 255, 0, 0);
 		p:setPosition(400, 300);
 		p:setLifetime(3);
 		p:setParticleLifetime(2);
@@ -223,14 +222,13 @@ main =
 		-- System end
 		
 		-- System start
-		sprite = game:addImage("thing.png", "thing.png");		
-		p = love.new_ParticleSystem();
-		p:setSprite(sprite);
+		p = love.objects:newParticleSystem();
+		p:setSprite(thing);
 		p:setParticlesPerSecond(20);
 		p:setStartSpeed(50, 100);
 		p:setParticleSize(1, 0);
 		p:addColor(255, 255, 255, 255);
-		p:addColor(58, 128, 255, 0);
+		p:addColor(58, 128, 255, 0, 0);
 		p:setPosition(400, 300);
 		p:setLifetime(5);
 		p:setParticleLifetime(4);
@@ -239,6 +237,109 @@ main =
 		p:setAutostart(false);
 		p:setParticleSpin(-1000, 1000);
 		--p:setRadialAcc(-5000);
+		table.insert(systems, p);
+		-- System end
+		
+		
+		-- System start
+		p = love.objects:newParticleSystem();
+		p:setSprite(part1);
+		p:setParticlesPerSecond(100);
+		p:setStartSpeed(50, 100);
+		p:setParticleSize(1, 1);
+		p:addColor(255, 255, 255, 255);
+		p:addColor(58, 128, 255, 255, 1);
+		p:addColor(194, 30, 18, 0, 0);
+		p:setPosition(400, 300);
+		p:setLifetime(5);
+		p:setParticleLifetime(4);
+		p:setDirection(0, 360);
+		--p:setTangentialAcc(2000);
+		p:setAutostart(false);
+		p:setParticleSpin(-1000, 1000);
+		p:setRadialAcc(-30);
+		table.insert(systems, p);
+		-- System end
+		
+		
+		-- System start
+		p = love.objects:newParticleSystem();
+		p:setSprite(part1);
+		p:setParticlesPerSecond(300);
+		p:setStartSpeed(300, 400);
+		p:setParticleSize(2, 1);
+		p:addColor(220, 105, 20, 0, 1);
+		p:addColor(58, 128, 255, 255, 1);
+		p:addColor(194, 30, 18, 0, 0);
+		p:setPosition(400, 300);
+		p:setLifetime(2);
+		p:setParticleLifetime(2);
+		p:setDirection(0, 360);
+		p:setTangentialAcc(1000);
+		p:setAutostart(false);
+		p:setRadialAcc(-2000);
+		table.insert(systems, p);
+		-- System end
+		
+		
+		-- System start
+		p = love.objects:newParticleSystem();
+		p:setSprite(part1);
+		p:setParticlesPerSecond(300);
+		p:setStartSpeed(300, 400);
+		p:setParticleSize(2, 1);
+		p:addColor(220, 105, 20, 0, 1);
+		p:addColor(58, 128, 255, 255, 1);
+		p:addColor(194, 30, 18, 0, 0);
+		p:setPosition(400, 300);
+		p:setLifetime(2);
+		p:setParticleLifetime(2);
+		p:setDirection(270);
+		p:setTangentialAcc(1000);
+		p:setAutostart(false);
+		p:setRadialAcc(-2000);
+		table.insert(systems, p);
+		-- System end
+		
+		-- System start
+		p = love.objects:newParticleSystem();
+		p:setSprite(part1);
+		p:setParticlesPerSecond(100);
+		p:setStartSpeed(30);
+		p:setParticleSize(2, 1);
+		p:addColor(220, 105, 20, 0, 1);
+		p:addColor(58, 128, 255, 255, 1);
+		p:addColor(194, 30, 18, 0, 1);
+		p:addColor(255, 255, 255, 255, 1)
+		p:addColor(207, 20, 108, 0, 0);	
+		p:setPosition(400, 300);
+		p:setLifetime(5);
+		p:setParticleLifetime(5);
+		p:setDirection(0, 360);
+		--p:setTangentialAcc(10);
+		p:setAutostart(false);
+		--p:setRadialAcc(-20);
+		table.insert(systems, p);
+		-- System end
+		
+		
+		-- System start
+		p = love.objects:newParticleSystem();
+		p:setSprite(part1);
+		p:setParticlesPerSecond(3000);
+		p:setStartSpeed(200);
+		p:setParticleSize(2, 1);
+		p:addColor(220, 105, 20, 0, 1);
+		p:addColor(58, 128, 255, 0, 1);
+		p:addColor(255, 255, 255, 255, 1)
+		p:addColor(207, 20, 108, 0, 0);	
+		p:setPosition(400, 300);
+		p:setLifetime(0.1);
+		p:setParticleLifetime(1);
+		p:setDirection(0, 360);
+		--p:setTangentialAcc(200);
+		p:setAutostart(false);
+		--p:setRadialAcc(-150);
 		table.insert(systems, p);
 		-- System end
 					
@@ -267,16 +368,16 @@ main =
 	
 	mousepressed = function(x, y, button)
 
-		if button == LOVE_MOUSE_LEFT then 
+		if button == love.mouse_left then 
 			systems[current]:reset();
 		end
 		
-		if button == LOVE_MOUSE_WHEELUP then
+		if button == love.mouse_wheelup then
 			current = current + 1;
 			if current > table.getn(systems) then current = table.getn(systems) end;
 		end
 		
-		if button == LOVE_MOUSE_WHEELDOWN then
+		if button == love.mouse_wheeldown then
 			current = current - 1;
 			if current < 1 then current = 1 end;
 		end

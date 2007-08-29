@@ -349,6 +349,14 @@ namespace love
 		glPopMatrix();
 	}
 
+	void Text::print(float x, float y, const char * text, Font * font, AbstractColor * color)
+	{
+		glPushMatrix();
+			glTranslatef(x, y, 0.0f);
+			print(font, color, string(text));
+		glPopMatrix();	
+	}
+
 	void Text::align(int alignment)
 	{
 		this->alignment = alignment;
