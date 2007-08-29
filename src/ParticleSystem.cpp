@@ -20,7 +20,7 @@ namespace love
 		fillInterval(particleLifetime, 1, 2);
 		fillInterval(particleSize, 1, 2);
 		fillInterval(particleSpin, 0, 0);
-		color.reset<AnimatedColor>(new AnimatedColor(0));
+		color.reset<AnimatedColor>(new AnimatedColor());
 
 	}
 

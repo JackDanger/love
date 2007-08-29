@@ -3,9 +3,8 @@
 
 namespace love
 {
-	AnimatedColor::AnimatedColor(Container<Color> * colors)
+	AnimatedColor::AnimatedColor()
 	{
-		this->globalColors = colors;
 		//current = Color(0xFFFFFF);
 		red = blue = green = alpha = 255;
 		total = 0;
@@ -185,31 +184,57 @@ namespace love
 			total += times[i];
 	}
 
-	void AnimatedColor::addColor(const char * color, float time)
-	{
-		if(globalColors == 0 || !globalColors->contains(color))
-			return;
-
-		if(colors.size() == 0)
-		{
-			red = (*globalColors)[color].get()->getRed();
-			green = (*globalColors)[color].get()->getGreen();
-			blue = (*globalColors)[color].get()->getBlue();
-			alpha = (*globalColors)[color].get()->getAlpha();
-		}
-
-		colors.push_back((*globalColors)[color].get());
-		times.push_back(time);
-
-		total = 0;
-		for(unsigned int i = 0; i < times.size(); i++)
-			total += times[i];
-	}
-
 	Color AnimatedColor::getColor()
 	{
 		Color temp = Color(red, green, blue, alpha);
 		return temp;
+	}
+
+	Color AnimatedColor::getColor(float time)
+	{
+		//clamp t
+		time = (time < 0) ? 0 : time;
+		time = (time > 1) ? 1 : time;
+
+		Color color = Color(0,0,0,0);
+		float temp = 0;
+		float elap = 0;
+		int cur = 0;
+		int next = 0;
+
+		for(unsigned int i = 0; i != times.size(); i++)
+		{
+			elap += times[i];
+		}
+		elap *= time; //this will get the emulated elapsed time
+
+		for(unsigned int i = 0; i != times.size(); i++)
+		{
+			temp += times[i];
+			if(temp >= elap)
+			{
+				cur = i;
+				break;
+			}
+		}
+
+		temp = (temp - elap) / times[cur];
+
+		temp = map(temp);
+
+		next = cur;
+		if(cur == (int)colors.size() - 1)
+			next = next;
+		else
+			next = next + 1;
+
+		//int red, green, blue, alpha;
+		color.setRed( (int)(colors[next]->getRed() + ((colors[cur]->getRed() - colors[next]->getRed()) * temp)) );
+		color.setGreen( (int)(colors[next]->getGreen() + ((colors[cur]->getGreen() - colors[next]->getGreen()) * temp)) );
+		color.setBlue( (int)(colors[next]->getBlue() + ((colors[cur]->getBlue() - colors[next]->getBlue()) * temp)) );
+		color.setAlpha( (int)(colors[next]->getAlpha() + ((colors[cur]->getAlpha() - colors[next]->getAlpha()) * temp)) );
+
+		return color;
 	}
 
 	void AnimatedColor::setMode(int mode)

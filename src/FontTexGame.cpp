@@ -118,7 +118,7 @@ int FontTexGame::load()
 
 	label = new gcn::Label("Label");
 
-    image = gcn::Image::load("data/gcn/gui-chan.bmp");
+    image = gcn::Image::load("../../data/gcn/gui-chan.bmp");
     icon = new gcn::Icon(image);
 
     button = new gcn::Button("Button");
@@ -151,7 +151,7 @@ int FontTexGame::load()
     window = new gcn::Window("I am a window  Drag me");
     window->setBaseColor(gcn::Color(255, 150, 200, 190));
 
-    darkbitsImage = gcn::Image::load("data/gcn/darkbitslogo_by_haiko.bmp");
+    darkbitsImage = gcn::Image::load("../../data/gcn/darkbitslogo_by_haiko.bmp");
     darkbitsIcon = new gcn::Icon(darkbitsImage);
     window->add(darkbitsIcon);
     window->resizeToContent();
@@ -176,7 +176,7 @@ int FontTexGame::load()
 	Font * testfont = new Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 12);
 	testfont->load();
 
-	shiny = new AnimatedColor(0);
+	shiny = new AnimatedColor();
 	shiny->addColor(new Color(0xFF7F96), 6.0);
 	shiny->addColor(new Color(0x817FFF), 6.0);
 	shiny->addColor(new Color(0x7FFF84), 6.0);
@@ -237,7 +237,7 @@ int FontTexGame::load()
 	testfield->setActiveColor(new Color(0,0,0,200));
 	testfield->setActiveBackgroundColor(new Color(255,255,255,200));
 
-	alsoshiny = new AnimatedColor(0);
+	alsoshiny = new AnimatedColor();
 	alsoshiny->addColor(new Color(0xFFFFFF), 0.1f);
 	alsoshiny->addColor(new Color(0x000000), 0.1f);
 
@@ -344,6 +344,16 @@ void FontTexGame::render()
 	glEnd();
 	
 	gui->draw();
+
+	Color tempc = shiny->getColor(0.8f);
+	glColor4ub(tempc.getRed(),tempc.getGreen(),tempc.getBlue(),tempc.getAlpha());
+	glDisable(GL_TEXTURE_2D);
+	glBegin(GL_QUADS);
+		glVertex2i(-200,-200);
+		glVertex2i(-200,200);
+		glVertex2i(200,200);
+		glVertex2i(200,-200);
+	glEnd();
 }
 
 void FontTexGame::update(float dt)

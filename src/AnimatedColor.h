@@ -19,7 +19,6 @@ namespace love
 	class AnimatedColor : public AbstractColor
 	{
 	protected:
-		Container<Color> * globalColors;
 		vector<Color *> colors;
 		vector<float> times;
 		float total; //the maximum time requried to gradient through the colors
@@ -57,7 +56,7 @@ namespace love
 		 * @param colors A pointer to a Container of colors.
 	 	 * @brief Prepares for color animation, sets the mode to LOOP current color to black.
 	 	 **/
-		AnimatedColor(Container<Color> * colors);
+		AnimatedColor();
 
 		/**
 	 	 * @brief Does nothing.
@@ -72,17 +71,17 @@ namespace love
 		void addColor(Color * color, float time);
 
 		/**
-		 * @param color The name of a color which is to be added.
-		 * @param time The amount of time associated with the color.
-	 	 * @brief Adds a color to the color list if it is found in the color Container.
-	 	 **/
-		void addColor(const char * color, float time);
-
-		/**
 		 * @return A Color object.
 		 * @brief Creates a Color object of the current color.
 		 **/
 		Color getColor();
+
+		/**
+		 * @param How much time to have passed (0 = no time, 1 = all time).
+		 * @return A Color object.
+		 * @brief Creates a Color object of the color.
+		 **/
+		Color getColor(float time);
 
 		/**
 		 * @param mode The desired mode.
@@ -111,6 +110,10 @@ namespace love
 	 	 **/
 		void update(float dt);
 
+		/**
+		 * @param t The time.
+	 	 * @brief Sets the current color as the color which would occur at the passed time.
+	 	 **/
 		virtual void setColor(float t);
 	};
 

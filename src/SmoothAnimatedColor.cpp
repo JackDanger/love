@@ -4,7 +4,7 @@
 namespace love
 {
 
-	SmoothAnimatedColor::SmoothAnimatedColor(Container<Color> * colors) : AnimatedColor(colors)
+	SmoothAnimatedColor::SmoothAnimatedColor(Container<Color> * colors) : AnimatedColor()
 	{
 	}
 
