@@ -1,12 +1,19 @@
 /* File : love.i */
 %module love
 
+// Include constants
+%include love_constants.i
+
 // Ignore different things here.
 %ignore love::Scriptable;
 
 %{
 
 #include "love.h"
+#include "lualove_globals.h"
+
+#include "ObjectFactory.h"
+#include "AbstractGraphics.h"
 
 #include "AbstractState.h"
 #include "ActorState.h"
@@ -26,7 +33,7 @@
 #include "love_globals.h"
 #include "Container.h"
 #include "Object.h"
-#include "Vextor.h"
+#include "Vector.h"
 #include "Listener.h"
 #include "MouseListener.h"
 #include "KeyListener.h"
@@ -52,14 +59,20 @@
 #include "AbstractImage.h"
 #include "FrameAnimation.h"
 
+#include "Bezier.h"
+
 using namespace love;
 
 
 %}
 
-
-
-
+namespace boost {
+  template<class T> class shared_ptr
+  {
+    public:
+      T * operator-> () const;
+  };
+}
 
 // Interfaces here plx.
 %include "Updateable.h"
@@ -72,11 +85,12 @@ using namespace love;
 %include "love_globals.h"
 %include "Container.h"
 %include "Object.h"
-%include "Vextor.h"
+%include "Vector.h"
 
 
 
 %include "AbstractColor.h"
+%include "Color.h"
 %include "Font.h"
 %include "Text.h"
 
@@ -86,10 +100,10 @@ using namespace love;
 
 %include "AbstractEntity.h"
 
-%include "Sprite.h"
+
 %include "Entity.h"
 %include "VisualEntity.h"
-%include "ParticleSystem.h"
+
 
 %include "AbstractSound.h"
 %include "AbstractMusic.h"
@@ -98,16 +112,37 @@ using namespace love;
 %include "ActorState.h"
 %include "Actor.h"
 
-%include "Particle.h"
-%include "ScriptableParticle.h"
-%include "ParticleEmitter.h"
 
-%include "ScriptableActorState.h"
 
+%include "Sprite.h"
 %include "AbstractImage.h"
 %include "FrameAnimation.h"
+%include "Bezier.h"
+
+%include "ParticleSystem.h"
 
 %include "Timer.h"
 %include "DisplayMode.h"
 %include "LuaGL.h"
+
 %include "LuaGame.h"
+
+%include "AbstractGraphics.h"
+
+%include "ObjectFactory.h"
+
+%include "lualove_globals.h"
+
+
+
+%ignore love::pAbstractImage;
+
+%template(SmartSprite) boost::shared_ptr<love::Sprite>;
+%template(SmartImage) boost::shared_ptr<love::AbstractImage>;
+%template(SmartAnimation) boost::shared_ptr<love::FrameAnimation>;
+%template(SmartMusic) boost::shared_ptr<love::AbstractMusic>;
+%template(SmartSound) boost::shared_ptr<love::AbstractSound>;
+%template(SmartColor) boost::shared_ptr<love::Color>;
+%template(SmartFont) boost::shared_ptr<love::Font>;
+%template(SmartParticleSystem) boost::shared_ptr<love::ParticleSystem>;
+%template(SmartBezier) boost::shared_ptr<love::Bezier>;

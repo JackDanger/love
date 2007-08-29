@@ -11,7 +11,7 @@
 // LOVE
 #include "AbstractEntity.h"
 #include "Color.h"
-#include "Vextor.h"
+#include "Vector.h"
 #include "SmoothAnimatedColor.h"
 
 // STL
@@ -48,13 +48,13 @@ namespace love
 		vector<pAbstractColor> colors;
 
 		
-		Vextor vel;
+		Vector vel;
 
 		bool line;
 
 	public:
 
-		Vextor center;
+		Vector center;
 
 		/**
 		* @brief Contructs an empty GUIDynamicBackground.
@@ -69,7 +69,7 @@ namespace love
 		void render();
 		void update(float dt);
 
-		Vextor getPosition(int i, int j);
+		Vector getPosition(int i, int j);
 		Color getColor(float x, float y);
 
 		void setLine(bool line);

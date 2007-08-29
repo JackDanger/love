@@ -10,7 +10,7 @@ namespace love
 		setType(LOVE_TYPE_FRAME_ANIMATION);
 	}
 
-	FrameAnimation::FrameAnimation(AbstractImage * image) : image(image), timeBuffer(0), cfi(0), running(false)
+	FrameAnimation::FrameAnimation(pAbstractImage image) : image(image), timeBuffer(0), cfi(0), running(false)
 	{
 		setType(LOVE_TYPE_FRAME_ANIMATION);
 	}
@@ -69,6 +69,7 @@ namespace love
 
 	void FrameAnimation::bind()
 	{
+		image->bind();
 	}
 
 	void FrameAnimation::beginRender()
@@ -197,15 +198,17 @@ namespace love
 
 	int FrameAnimation::load()
 	{
-		if(!image || !image->load())
-			return LOVE_ERROR;
+		// Disaster!
+		//	if(!image || !image->load())
+		//		return LOVE_ERROR;
 		return LOVE_OK;
 	}
 
 	void FrameAnimation::unload()
 	{
-		if(image != 0)
-			image->unload();
+		// What the?! FA should not load or unload the image!.
+		//if(image != 0)
+		//	image->unload();
 	}
 
 

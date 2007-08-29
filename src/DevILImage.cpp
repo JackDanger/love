@@ -11,10 +11,12 @@ namespace love
 	
 	DevILImage::DevILImage(AbstractFile * file) : Resource(file)
 	{
+
 	}
 	
 	DevILImage::~DevILImage()
 	{
+		printf("[-.-] - Destroyed! - [%s]\n", toString().c_str());
 		unload();
 	}
 
@@ -173,6 +175,11 @@ namespace love
 
 		// Cleanup
 		delete [] d;
+	}
+
+	string DevILImage::toString() const
+	{
+		return "DevILImage: " + file->getFilename();
 	}
 	
 } // love

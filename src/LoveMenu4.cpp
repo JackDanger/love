@@ -52,7 +52,7 @@ namespace love
 		const AbstractFileSystem & fs = core->getFilesystem();
 		const DisplayMode & dm = core->getDisplayMode();
 
-		configLoader = new ConfigLoader("data/love.conf");
+		configLoader = new ConfigLoader(fs.getBase() + "data/love.conf");
 
 		// Add images
 		images.create("default-thumb", core->imaging->getImage(fs.getBaseFile("data/sys/thumb-std.png")));

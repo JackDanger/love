@@ -22,19 +22,24 @@
 #include "PhysFSFileSystem.h"
 #include "SDLMixerSoundDevice.h"
 #include "DevILImageDevice.h"
-
+#include "OpenGLGraphics.h"
+#include "lualove_globals.h"
 #include "Parameters.h"
 
 #include <IL/il.h>
 
 #include <cmath>
 
+
 // Declare this external bastard here
 // @todo MAKE GENERIC
 gcn::SDLInput * gcn_input;
 
+
+
 namespace love
 {
+
 	int platform_init(int argc, char* argv[])
 	{
 
@@ -55,6 +60,7 @@ namespace love
 		core->filesystem = new PhysFSFileSystem(argc, argv);
 		core->audio = new SDLMixerSoundDevice();
 		core->imaging = new DevILImageDevice();
+		core->graphics = new OpenGLGraphics();
 		core->parameters = new Parameters(argc, argv);
 
 		// Init GuiChan here
@@ -106,9 +112,11 @@ namespace love
 						break;
 					case SDL_MOUSEBUTTONDOWN:
 						core->mousePressed(e.button.x, e.button.y, (int)pow(2, (float)(e.button.button-1)));
+						//printf("Pressed: %i\n", e.button.button);
 						break;
 					case SDL_MOUSEBUTTONUP:
 						core->mouseReleased(e.button.x, e.button.y, (int)pow(2, (float)(e.button.button-1)));
+						//printf("Released: %i\n", e.button.button);
 						break;
 					case SDL_MOUSEMOTION:
 						core->mouseMoved(e.motion.x, e.motion.y);
@@ -123,6 +131,9 @@ namespace love
 			// Show buffer on screen. 
 			SDL_GL_SwapBuffers();
 			
+			// Save some CPU
+			if(dt < 0.008f)
+				SDL_Delay((int)((0.008f - dt)*1000.0f));
 
 		}
 	}

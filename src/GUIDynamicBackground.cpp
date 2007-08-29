@@ -93,15 +93,15 @@ namespace love
 
 	}
 
-	Vextor GUIDynamicBackground::getPosition(int i, int j)
+	Vector GUIDynamicBackground::getPosition(int i, int j)
 	{
-		return Vextor((float)(i*precision), (float)(j*precision));
+		return Vector((float)(i*precision), (float)(j*precision));
 	}
 
 	Color GUIDynamicBackground::getColor(float x, float y)
 	{
 		// Distance to center
-		float d = (center - Vextor(x, y)).getLength();
+		float d = (center - Vector(x, y)).getLength();
 
 		// Zero color
 		Color clr0(colors[0]->getCode());

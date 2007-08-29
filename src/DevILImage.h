@@ -56,6 +56,8 @@ namespace love
 		* @brief Unloads the image.
 		**/
 		void unload();
+
+		virtual string toString() const;
 		
 	private:
 		

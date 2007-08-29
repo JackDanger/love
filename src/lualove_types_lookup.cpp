@@ -21,7 +21,7 @@ namespace love
 		lualove_lookup_types[LOVE_TYPE_TEXT]					= script_type_p_love__Text;
 		lualove_lookup_types[LOVE_TYPE_ACTOR]					= script_type_p_love__Actor;
 		lualove_lookup_types[LOVE_TYPE_ACTOR_STATE]				= script_type_p_love__ActorState;
-		lualove_lookup_types[LOVE_TYPE_SCRIPTABLE_ACTOR_STATE]	= script_type_p_love__ScriptableActorState;
+		//lualove_lookup_types[LOVE_TYPE_SCRIPTABLE_ACTOR_STATE]	= script_type_p_love__ScriptableActorState;
 		//lualove_lookup_types[LOVE_TYPE_PARTICLE]				= script_type_p_love__Particle;
 		//lualove_lookup_types[LOVE_TYPE_PARTICLE_EMITTER]		= script_type_p_love__ParticleEmitter;
 

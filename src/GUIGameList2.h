@@ -11,7 +11,7 @@
 // LOVE
 #include "GUIEntity.h"
 #include "GUIGameListElement.h"
-#include "Vextor.h"
+#include "Vector.h"
 
 
 // STL
@@ -50,7 +50,7 @@ namespace love
 		int viewport_size;
 
 		// Position function
-		Vextor position(float t);
+		Vector position(float t);
 
 		// Alpha function
 		float buttonalpha(float t);

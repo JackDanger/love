@@ -10,6 +10,7 @@
 #include "AbstractFileSystem.h"
 #include "AbstractSoundDevice.h"
 #include "AbstractImageDevice.h"
+#include "AbstractGraphics.h"
 #include "Parameters.h"
 #include "Console.h"
 #include "ConfigLoader.h"
@@ -73,6 +74,7 @@ namespace love
 		status &= parameters->init();
 		status &= audio->init();
 		status &= imaging->init();
+		status &= graphics->init();
 
 		if(status != LOVE_OK) 
 			printf("Could not init LOVE CORE.\n");
@@ -140,7 +142,7 @@ namespace love
 		string gamesdir = filesystem->getBase() + "data/games";
 
 		// Do we have a love.conf override?
-		ConfigLoader cfg("data/love.conf");
+		ConfigLoader cfg(filesystem->getBase() + "data/love.conf");
 		if(cfg.load())
 			gamesdir = cfg.isString("gamedir") ? cfg.getString("gamedir") : gamesdir;
 
@@ -368,6 +370,8 @@ namespace love
 
 		// Send input to game.
 		current->mousePressed(x, y, button);
+
+		
 	}
 
 	void Core::mouseReleased(float x, float y, int button)

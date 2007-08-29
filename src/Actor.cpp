@@ -81,26 +81,26 @@ namespace love
 	void Actor::setX(float x) { currentState->setX(x); }
 	void Actor::setY(float y) { currentState->setY(y); }
 	void Actor::setZ(float z) { currentState->setZ(z); }
-	Vextor* Actor::getPosition() { return currentState->getPosition(); }
+	Vector* Actor::getPosition() { return currentState->getPosition(); }
 	float Actor::getXPosition() { return currentState->getXPosition(); }
 	float Actor::getYPosition() { return currentState->getYPosition(); }
 	float Actor::getZPosition() { return currentState->getZPosition(); }
-	void Actor::setPosition(Vextor * newPosition) { currentState->setPosition(newPosition); }
+	void Actor::setPosition(Vector * newPosition) { currentState->setPosition(newPosition); }
 	void Actor::setPosition(float x, float y) { currentState->setPosition(x,y); }
 	void Actor::setXPosition(float x) { currentState->setXPosition(x); }
 	void Actor::setYPosition(float y) { currentState->setYPosition(y); }
 	void Actor::setZPosition(float z) { currentState->setZPosition(z); }
-	Vextor* Actor::getVelocity() { return currentState->getVelocity(); }
+	Vector* Actor::getVelocity() { return currentState->getVelocity(); }
 	float Actor::getXVelocity() { return currentState->getXVelocity(); }
 	float Actor::getYVelocity() { return currentState->getYVelocity(); }
-	void Actor::setVelocity(Vextor * newVelocity) { currentState->setVelocity(newVelocity); }
+	void Actor::setVelocity(Vector * newVelocity) { currentState->setVelocity(newVelocity); }
 	void Actor::setVelocity(float x, float y) { currentState->setVelocity(x,y); }
 	void Actor::setXVelocity(float x) { currentState->setXVelocity(x); }
 	void Actor::setYVelocity(float y) { currentState->setYVelocity(y); }
-	Vextor* Actor::getAcceleration() { return currentState->getAcceleration(); }
+	Vector* Actor::getAcceleration() { return currentState->getAcceleration(); }
 	float Actor::getXAcceleration() { return currentState->getXAcceleration(); }
 	float Actor::getYAcceleration() { return currentState->getYAcceleration(); }
-	void Actor::setAcceleration(Vextor * newAcceleration) { currentState->setAcceleration(newAcceleration); }
+	void Actor::setAcceleration(Vector * newAcceleration) { currentState->setAcceleration(newAcceleration); }
 	void Actor::setAcceleration(float x, float y) { currentState->setAcceleration(x,y); }
 	void Actor::setXAcceleration(float x) { currentState->setXAcceleration(x); }
 	void Actor::setYAcceleration(float y) { currentState->setYAcceleration(y); }

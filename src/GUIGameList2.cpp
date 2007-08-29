@@ -372,11 +372,11 @@ namespace love
 		return s;
 	}
 
-	Vextor GUIGameList2::position(float t)
+	Vector GUIGameList2::position(float t)
 	{
 
 		if( t < 0 || t > 1) 
-			return Vextor(-2000, -2000);
+			return Vector(-2000, -2000);
 
 		//float x = -cos(t * (float)TWOPI) * 100 + 270;
 		//float tyx = -1 + 2 * t;
@@ -387,7 +387,7 @@ namespace love
 		float ty = -2*pow(t, 3) + 3 * t * t;
 		float y = 0 + ( (this->height) * ty);
 
-		return Vextor(x, y);
+		return Vector(x, y);
 	}
 
 	float GUIGameList2::buttonalpha(float t)
@@ -440,7 +440,7 @@ namespace love
 
 			if(t < 0 || t > 1) continue;
 
-			Vextor pos = position(t);
+			Vector pos = position(t);
 			float s = scale(t);
 			float ba = buttonalpha(t);
 			float a = alpha(t);

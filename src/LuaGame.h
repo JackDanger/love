@@ -60,7 +60,7 @@ namespace love
 
 		lua_State * L;
 
-		pVextor pvex;
+		pVector pvex;
 
 
 		// GL Wrapper
@@ -77,10 +77,6 @@ namespace love
 		map<string, bool> included;
 
 		Container<GameState> gameStates;
-
-		// The game's source relative to execution directory.
-		// May be directory or archive file.
-		string source;
 
 		GameState * currentGameState;
 
@@ -156,7 +152,7 @@ namespace love
 
 		void eventFired(pEvent e);
 
-		Vextor * createVextor(const char * str, float x, float y);
+		Vector * createVector(const char * str, float x, float y);
 
 
 		bool luaIsFunction(const string & tablename, const string & functionname);
@@ -191,12 +187,17 @@ namespace love
 		bool isImage(const char * key);
 		void listImages();
 
-		// FrameAnimations
-		FrameAnimation * addFrameAnimation(const char * key, const char * image);
-		FrameAnimation * addFrameAnimation(const char * key, AbstractImage * image);
-		FrameAnimation * getFrameAnimation(const char * key);
-		void removeFrameAnimation(const char * key);
-		bool isFrameAnimation(const char * key);
+		void drawSprite(const pAbstractImage & sprite, float x, float y) const;
+		void drawSprite(const pAbstractImage & sprite) const;
+
+		//// Nope, sorry.
+		//FrameAnimation * addFrameAnimation(const char * key, const char * image);
+		//FrameAnimation * addFrameAnimation(const char * key, AbstractImage * image);
+		//FrameAnimation * getFrameAnimation(const char * key);
+		//void removeFrameAnimation(const char * key);
+		//bool isFrameAnimation(const char * key);
+
+		
 
 		//Actor * addActor(const char * key);
 		Actor * addActor(const char * key, const char * scriptname = "");

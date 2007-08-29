@@ -19,12 +19,14 @@
 #include "Updateable.h"
 #include "Renderable.h"
 #include "DisplayModeListener.h"
+#include "AbstractGraphics.h"
 
 // Other LOVE files
 #include "Game.h"
 
 // We want to be friends with some platform functions. (later)
 #include "platform.h"
+#include "lualove.h" // and some lualove functions.
 
 // Dirty, horrible, etc.
 #include <guichan.hpp>
@@ -50,6 +52,7 @@ namespace love
 	class AbstractFileSystem;
 	class AbstractSoundDevice;
 	class AbstractImageDevice;
+	class AbstractGraphics;
 	class Console;
 	class DisplayMode;
 
@@ -82,6 +85,7 @@ namespace love
 		AbstractFileSystem * filesystem;
 		AbstractSoundDevice * audio;
 		AbstractImageDevice * imaging;
+		AbstractGraphics * graphics;
 		Parameters * parameters;
 
 
@@ -102,12 +106,14 @@ namespace love
 		**/
 		friend extern int platform_init(int argc, char * argv[]);
 		friend extern int platform_loop();
+		friend extern void lualove_bind_globals();
 
 		// We also want to be friends with some classes
 		friend class LuaGame;
 		friend class LoveMenu4;
 		//friend class NeoFontTexGame;
 		friend class Console;
+		friend class ObjectFactory;
 
 		/**
 		* @brief Creates a new Core object. Remeber to always call init(). 

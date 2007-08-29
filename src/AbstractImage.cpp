@@ -97,7 +97,9 @@ namespace love
 		r.yTex = 0.0f;
 		r.wTex = 1.0f;
 		r.hTex = 1.0f;
-		r.width = actualWidth;
+		r.top = height/2.0f;
+		r.left = width/2.0f;
+		r.width = actualWidth;;
 		r.height = actualHeight;
 
 		return r;
@@ -111,6 +113,8 @@ namespace love
 		r.yTex = y/(float)this->actualHeight;
 		r.wTex = width/(float)this->actualWidth;
 		r.hTex = height/(float)this->actualHeight;
+		r.top = height/2.0f;
+		r.left = width/2.0f;
 		r.width = width;
 		r.height = height;
 

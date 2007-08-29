@@ -16,7 +16,7 @@
 #include "Text.h"
 #include "Container.h"
 #include "GUICircleButton.h"
-#include "Vextor.h"
+#include "Vector.h"
 
 #include "AbstractSound.h"
 #include "AbstractMusic.h"
@@ -85,7 +85,7 @@ namespace love
 
 	private:
 
-		//Vextor positionFunc(float t);
+		//Vector positionFunc(float t);
 
 	};
 

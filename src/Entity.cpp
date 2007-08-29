@@ -46,7 +46,7 @@ namespace love
 		this->z = z;
 	}
 
-	Vextor* Entity::getPosition()
+	Vector* Entity::getPosition()
 	{
 		return &position;
 	}
@@ -66,7 +66,7 @@ namespace love
 		return z;
 	}
 
-	void Entity::setPosition(Vextor * newPosition)
+	void Entity::setPosition(Vector * newPosition)
 	{
 		this->position = *newPosition;
 	}
@@ -92,7 +92,7 @@ namespace love
 		this->z = z;
 	}
 
-	Vextor* Entity::getVelocity()
+	Vector* Entity::getVelocity()
 	{
 		return &velocity;
 	}
@@ -107,7 +107,7 @@ namespace love
 		return velocity.getY();
 	}
 
-	void Entity::setVelocity(Vextor * newVelocity)
+	void Entity::setVelocity(Vector * newVelocity)
 	{
 		this->velocity = *newVelocity;
 	}
@@ -128,7 +128,7 @@ namespace love
 		velocity.setY(y);
 	}
 
-	Vextor* Entity::getAcceleration()
+	Vector* Entity::getAcceleration()
 	{
 		return &acceleration;
 	}
@@ -143,7 +143,7 @@ namespace love
 		return acceleration.getY();
 	}
 
-	void Entity::setAcceleration(Vextor * newAcceleration)
+	void Entity::setAcceleration(Vector * newAcceleration)
 	{
 		this->acceleration = *newAcceleration;
 	}

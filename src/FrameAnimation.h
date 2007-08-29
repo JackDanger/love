@@ -62,7 +62,7 @@ namespace love
 	private:
 
 		//
-		AbstractImage * image;
+		pAbstractImage image;
 
 		// Holds all the frames
 		vector<frame> frames;
@@ -87,7 +87,7 @@ namespace love
 		* @brief Creates a new FrameAnimation.
 		* @param t The source Texture.
 		**/
-		FrameAnimation(AbstractImage * image);
+		FrameAnimation(pAbstractImage image);
 
 		virtual ~FrameAnimation();
 

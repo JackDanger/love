@@ -35,11 +35,12 @@ namespace love
 
 
 
-	LuaGame::LuaGame(const string & source) : source(source)
+	LuaGame::LuaGame(const string & source)
 	{
 		setScript("main");
 		setType(LOVE_TYPE_LUA_GAME);
 
+		this->source = source;
 
 		// Init OpenGL wrapper
 		gl.reset<LuaGL>(new LuaGL());
@@ -108,14 +109,14 @@ namespace love
 		//pMessageEvent pme(new MessageEvent("Init started: " + getTitle() + "\n"));
 		//Core::eventFired(pme);
 
-		printf("Right before loading font ... ^-^\n");
+		//printf("Right before loading font ... ^-^\n");
 
 		addFont("love_system_font", 20);
 		setFont("love_system_font");	
 
 		text.reset<Text>(new Text(&obj.fonts, &obj.colors));
 		text->setFont("love_system_font");
-		//text->load();
+		text->load();
 
 		// Init lua
 		L = lua_open();
@@ -342,9 +343,9 @@ namespace love
 		printf(str);
 	}
 
-	Vextor * LuaGame::createVextor(const char * str, float x, float y)
+	Vector * LuaGame::createVector(const char * str, float x, float y)
 	{
-		pvex.reset<Vextor>(new Vextor(x, y));
+		pvex.reset<Vector>(new Vector(x, y));
 		printf("\nCreated vextor: %s(%f, %f)\n", str, x, y);
 		return pvex.get();
 	}
@@ -458,8 +459,6 @@ namespace love
 
 		// Create new image file
 		AbstractImage * img = core->imaging->getImage(file);
-
-		img->load();
 		pAbstractImage p(img);
 
 		return p;
@@ -495,9 +494,22 @@ namespace love
 		}
 	}
 
+	void LuaGame::drawSprite(const pAbstractImage & sprite, float x, float y) const
+	{
+		glPushMatrix();
+		glTranslatef(x, y, 0);
+		sprite->render();
+		glPopMatrix();
+	}
+
+	void LuaGame::drawSprite(const pAbstractImage & sprite) const
+	{
+		sprite->render();
+	}
+
 	/**
 	* Frame animation methods
-	**/
+	
 
 	FrameAnimation * LuaGame::addFrameAnimation(const char * key, const char * image)
 	{
@@ -539,6 +551,8 @@ namespace love
 	{
 		return obj.frameAnimations.contains(key);
 	}
+
+	**/
 
 	/*Actor * LuaGame::addActor(const char * key)
 	{

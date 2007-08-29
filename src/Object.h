@@ -62,7 +62,7 @@ namespace love
 		* @return A string describing the Object.
 		* This is very useful for debug purposes, etc.
 		**/
-		virtual const std::string toString() const;
+		virtual std::string toString() const;
 
 		/**
 		* @brief Gets the type identifier for this Object.

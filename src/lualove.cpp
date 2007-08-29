@@ -1,4 +1,10 @@
 #include "lualove.h"
+
+
+#include "lualove_globals.h"
+#include "ObjectFactory.h"
+
+
 #include "lualove_types_lookup.h"
 #include "love_keys.h"
 #include "love_mouse.h"
@@ -6,6 +12,7 @@
 #include "love.h"
 #include "Core.h"
 #include "AbstractFile.h"
+
 
 #ifdef __cplusplus
 extern "C" 
@@ -19,6 +26,17 @@ void extern luaPushPointer(lua_State * L, void * ptr, int type, int own);
 namespace love
 {
 
+
+	// From lualove_globals.
+	// These will eventually reside in the love module in Lua.
+	Keyboard * keyboard;
+	Mouse * mouse;
+	AbstractDisplay * display;
+	Timer * timer;
+	ObjectFactory * objects;
+	AbstractGraphics * graphics;
+
+
 	void lualove_init(lua_State * L)
 	{
 
@@ -27,6 +45,9 @@ namespace love
 
 		// Create lookup table
 		lualove_create_lookup();
+
+		// Bind global pointers.
+		lualove_bind_globals();
 	}
 
 	void lualove_close(lua_State * L)
@@ -35,6 +56,9 @@ namespace love
 		//
 		// DO NOT DO THIS. This must only happen once. Ever.
 		//lualove_clean_lookup();
+
+		// Delete allocated globals here. (from lualove_globals)
+		delete objects;
 	}
 
 	bool lualove_loaddir(lua_State * L, const string & path)
@@ -386,13 +410,6 @@ namespace love
 		lua_pop(L, 1);
 	}
 
-
-
-
-
-
-
-
 	void lualove_push_all_globals(lua_State *L)
 	{
 
@@ -506,6 +523,16 @@ namespace love
 		lualove_push_global_number(L,"LOVE_KEY_RALT",LOVE_KEY_RALT);
 		lualove_push_global_number(L,"LOVE_KEY_LALT",LOVE_KEY_LALT);
 
+	}
+
+	void lualove_bind_globals()
+	{
+		keyboard = core->keyboard;
+		mouse = core->mouse;
+		display = core->display;
+		timer = core->timer;
+		objects = new ObjectFactory();
+		graphics = core->graphics;
 	}
 
 }// love

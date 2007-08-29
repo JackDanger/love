@@ -16,7 +16,7 @@ namespace love
 		return name;
 	}
 
-	const std::string Object::toString() const
+	std::string Object::toString() const
 	{
 		return "Object";
 	}

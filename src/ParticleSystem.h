@@ -11,8 +11,10 @@
 // LOVE
 #include "AbstractEntity.h"
 #include "Sprite.h"
-#include "Vextor.h"
+#include "Vector.h"
 #include "Loadable.h"
+#include "FrameAnimation.h"
+#include "AnimatedColor.h"
 
 // STL
 #include <list>
@@ -24,7 +26,6 @@ using std::list;
 
 namespace love
 {
-	class AnimatedColor;
 	class AbstractColor;
 
 	typedef struct 
@@ -38,11 +39,11 @@ namespace love
 	typedef struct
 	{
 
-		Vextor pos;
-		Vextor speed;
+		Vector pos;
+		Vector speed;
 
-		//Vextor start_pos;
-		Vextor direction;
+		//Vector start_pos;
+		Vector direction;
 
 		// Time, Mr Freeman?
 		float life;
@@ -70,11 +71,11 @@ namespace love
 	**/
 	class ParticleSystem : public AbstractEntity, public Loadable
 	{
-	private:
+	protected:
 
 
 		// Position of Particle System
-		Vextor pos;
+		Vector pos;
 
 		// Contains all particles
 		list<particle> particles;
@@ -91,10 +92,10 @@ namespace love
 		float particlesPerSecond;
 
 		// sprite
-		Sprite * sprite;
+		pSprite sprite;
 
 		// color
-		AnimatedColor * color;
+		pAnimatedColor color;
 
 		// spread
 		interval direction;
@@ -125,7 +126,7 @@ namespace love
 
 
 		inline float getT(particle & p) const;
-		inline Vextor getPosition(particle & p) const;
+		inline Vector getPosition(particle & p) const;
 		inline void estimateStart(particle & p);
 		inline void displace(particle & p, float dt);
 		
@@ -133,7 +134,7 @@ namespace love
 		inline interval getInterval(interval & i) const;
 
 		inline void fillInterval(interval & i, float min, float max, float var = 0.0f);
-		inline Vextor getDirection(float angle) const;
+		inline Vector getDirection(float angle) const;
 		
 
 	public:
@@ -199,7 +200,7 @@ namespace love
 		* @brief Gets sprite.
 		* @return sprite.
 		**/
-		Sprite * getSprite();
+		//pSprite getSprite();
 
 		void setParticlesPerSecond(float particlesPerSecond);
 
@@ -208,7 +209,7 @@ namespace love
 		* @brief Gets color.
 		* @return color.
 		**/
-		AbstractColor * getColor();
+		//AbstractColor getColor();
 
 		
 
@@ -217,8 +218,12 @@ namespace love
 		* @param color 
 		**/
 		void addColor(int r, int g, int b, int a);
+		void addColor(const pColor & color);
 
-		void setSprite(Sprite * sprite);
+		// Note: using pointers so SWIG won't go anal.
+		void setSprite(const pSprite * sprite);
+		void setSprite(const pAbstractImage * image);
+		void setSprite(const pFrameAnimation * anim);
 
 		void setDirection(float min, float max, float var = 0.0f);
 		void setDirection(float m);
@@ -246,8 +251,8 @@ namespace love
 
 
 
-		void update(float dt);
-		void render();
+		virtual void update(float dt);
+		virtual void render();
 
 
 	};

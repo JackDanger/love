@@ -46,7 +46,7 @@ namespace love
 		bool lock;
 
 		float clampa(float angle);
-		float angle(const Vextor & v1, const Vextor & v2) const;
+		float angle(const Vector & v1, const Vector & v2) const;
 
 		GUIGameList2 * control;
 

@@ -205,6 +205,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\AbstractGraphics.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\AbstractImage.cpp"
 				>
 			</File>
@@ -242,6 +246,14 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Animation.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\Bezier.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\BezierParticleSystem.cpp"
 				>
 			</File>
 			<File
@@ -489,6 +501,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\ObjectFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\OpenGLGraphics.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Padded.cpp"
 				>
 			</File>
@@ -593,7 +613,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\Vextor.cpp"
+				RelativePath="..\..\src\Vector.cpp"
 				>
 			</File>
 			<File
@@ -632,6 +652,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\AbstractFileSystem.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\AbstractGraphics.h"
 				>
 			</File>
 			<File
@@ -676,6 +700,14 @@
 			</File>
 			<File
 				RelativePath="..\..\src\ArgumentConfigLoader.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\Bezier.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\BezierParticleSystem.h"
 				>
 			</File>
 			<File
@@ -939,6 +971,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\lualove_globals.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\lualove_types_lookup.h"
 				>
 			</File>
@@ -980,6 +1016,14 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Object.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\ObjectFactory.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\OpenGLGraphics.h"
 				>
 			</File>
 			<File
@@ -1091,7 +1135,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\Vextor.h"
+				RelativePath="..\..\src\Vector.h"
 				>
 			</File>
 			<File
@@ -1112,6 +1156,18 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+		</Filter>
+		<Filter
+			Name="swig"
+			>
+			<File
+				RelativePath=".\tools\swig\love.i"
+				>
+			</File>
+			<File
+				RelativePath=".\tools\swig\love_constants.i"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

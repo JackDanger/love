@@ -57,6 +57,9 @@ namespace love
 		// Used for loading of title, author, thumbnail, etc.
 		GameConfiguration * config;
 
+		// The base diretory for this game.
+		string source;
+
 	public:
 
 		/**
@@ -129,6 +132,12 @@ namespace love
 		* @brief Called from love::core when graphics needs to be reloaded.
 		**/ 
 		virtual void reloadGraphics() = 0;
+
+		/**
+		* @brief Returns the source of this game.
+		* @return The source for this game.
+		**/
+		const string & getSource() const;
 
 
 	};

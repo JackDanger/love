@@ -3,7 +3,7 @@
 
 #include "AbstractEntity.h"
 #include "Loadable.h"
-#include "Vextor.h"
+#include "Vector.h"
 #include <boost/shared_ptr.hpp>
 
 namespace love
@@ -19,9 +19,9 @@ namespace love
 	class Entity : public AbstractEntity, public Loadable
 	{
 	protected:
-		Vextor position;
-		Vextor velocity;
-		Vextor acceleration;
+		Vector position;
+		Vector velocity;
+		Vector acceleration;
 
 		float orientation;
 		float z;
@@ -75,7 +75,7 @@ namespace love
 		 * @return The position.
 		 * @brief Gets the position.
 		 **/
-		Vextor* getPosition();
+		Vector* getPosition();
 
 		/**
 		 * @return The X position.
@@ -99,7 +99,7 @@ namespace love
 		 * @param newPosition The new position.
 		 * @brief Sets the position.
 		 **/
-		void setPosition(Vextor * newPosition);
+		void setPosition(Vector * newPosition);
 
 		/**
 		 * @param x The new X postion.
@@ -130,7 +130,7 @@ namespace love
 		 * @return The velocity.
 		 * @brief Gets the velocity.
 		 **/
-		Vextor* getVelocity();
+		Vector* getVelocity();
 
 		/**
 		 * @return The X velocity.
@@ -148,7 +148,7 @@ namespace love
 		 * @param newVelocity The new velocity.
 		 * @brief Sets the velocity.
 		 **/
-		void setVelocity(Vextor * newVelocity);
+		void setVelocity(Vector * newVelocity);
 
 		/**
 		 * @param x The new X velocity.
@@ -173,7 +173,7 @@ namespace love
 		 * @return The acceleration.
 		 * @brief Gets the acceleration.
 		 **/
-		Vextor* getAcceleration();
+		Vector* getAcceleration();
 
 		/**
 		 * @return The X acceleration.
@@ -191,7 +191,7 @@ namespace love
 		 * @param newAcceleration The new acceleration.
 		 * @brief Sets the acceleration.
 		 **/
-		void setAcceleration(Vextor * newAcceleration);
+		void setAcceleration(Vector * newAcceleration);
 
 		/**
 		 * @param x The new X acceleration.

@@ -61,4 +61,9 @@ namespace love
 		loaded = false;
 	}
 
+	const string & Game::getSource() const
+	{
+		return source;
+	}
+
 }//love

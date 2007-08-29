@@ -142,7 +142,7 @@ namespace love
 		 * @return The position of the actor.
 		 * @brief Gets the position of the current state.
 		 **/
-		Vextor* getPosition();
+		Vector* getPosition();
 
 		/**
 		 * @return The X position of the actor.
@@ -166,7 +166,7 @@ namespace love
 		 * @param newPosition The new position of the actor.
 		 * @brief Sets the position of the current state.
 		 **/
-		void setPosition(Vextor * newPosition);
+		void setPosition(Vector * newPosition);
 
 		/**
 		 * @param x The new X postion.
@@ -197,7 +197,7 @@ namespace love
 		 * @return The velocity of the actor.
 		 * @brief Gets the velocity of the current state.
 		 **/
-		Vextor* getVelocity();
+		Vector* getVelocity();
 
 		/**
 		 * @return The X velocity of the actor.
@@ -215,7 +215,7 @@ namespace love
 		 * @param newVelocity The new velocity.
 		 * @brief Sets the velocity of the current state.
 		 **/
-		void setVelocity(Vextor * newVelocity);
+		void setVelocity(Vector * newVelocity);
 
 		/**
 		 * @param x The new X velocity.
@@ -240,7 +240,7 @@ namespace love
 		 * @return The acceleration of the actor.
 		 * @brief Gets the acceleration of the current state.
 		 **/
-		Vextor* getAcceleration();
+		Vector* getAcceleration();
 
 		/**
 		 * @return The X acceleration of the actor.
@@ -258,7 +258,7 @@ namespace love
 		 * @param newAcceleration The new acceleration.
 		 * @brief Sets the acceleration of the current state.
 		 **/
-		void setAcceleration(Vextor * newAcceleration);
+		void setAcceleration(Vector * newAcceleration);
 
 		/**
 		 * @param x The new X acceleration.

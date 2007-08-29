@@ -30,6 +30,10 @@ namespace love
 		float width;
 		float height;
 
+		// Distance to center of sprite.
+		float top;
+		float left;
+
 	} renderinfo;
 
 

@@ -1,7 +1,7 @@
 #include "GUIRadialKnob.h"
 
 
-#include "Vextor.h"
+#include "Vector.h"
 #include "GUIGameList2.h"
 
 #include "love.h"
@@ -30,7 +30,7 @@ namespace love
 	{
 	}
 
-	float GUIRadialKnob::angle(const Vextor & v1, const Vextor & v2) const
+	float GUIRadialKnob::angle(const Vector & v1, const Vector & v2) const
 	{
 		float cosine = (v1 * v2)/(v1.getLength() * v2.getLength());
 
@@ -59,11 +59,11 @@ namespace love
 		if(lock)
 		{
 
-			Vextor a(getX(), getY());
-			Vextor m(mouse.getX(), mouse.getY());
+			Vector a(getX(), getY());
+			Vector m(mouse.getX(), mouse.getY());
 
-			Vextor z(1, 0);
-			Vextor ma = a - m;
+			Vector z(1, 0);
+			Vector ma = a - m;
 
 			float next_angle = (float)(-angle(ma, z)) + (float)PI;
 
@@ -105,9 +105,9 @@ namespace love
 			float px = getX() + cos(orientation) * bigRadius;
 			float py = getY() + sin(orientation) * bigRadius;
 
-			Vextor a(px, py);
-			Vextor m(mouse.getX(), mouse.getY());
-			Vextor ma = a - m;
+			Vector a(px, py);
+			Vector m(mouse.getX(), mouse.getY());
+			Vector ma = a - m;
 
 			float dist = ma.getLength();
 

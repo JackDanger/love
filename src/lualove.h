@@ -70,6 +70,7 @@ namespace love
 	void lualove_create_table(lua_State * L, const string & name);
 	void lualove_push_chunk_number(lua_State * L, const string & name, lua_Number number);
 	void lualove_push_all_globals(lua_State *L);
+	void lualove_bind_globals();
 
 
 

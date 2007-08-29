@@ -20,13 +20,12 @@ namespace love
 		fillInterval(particleLifetime, 1, 2);
 		fillInterval(particleSize, 1, 2);
 		fillInterval(particleSpin, 0, 0);
-		color = new AnimatedColor(0);
+		color.reset<AnimatedColor>(new AnimatedColor(0));
 
 	}
 
 	ParticleSystem::~ParticleSystem()
 	{
-		delete color;
 	}
 
 	float ParticleSystem::getT(particle & p) const
@@ -34,20 +33,20 @@ namespace love
 		return p.age/p.life;
 	}
 
-	Vextor ParticleSystem::getPosition(particle & p) const
+	Vector ParticleSystem::getPosition(particle & p) const
 	{
 
 		// Get gravity.
-		Vextor gravity(0, p.gravity);
+		Vector gravity(0, p.gravity);
 
 		// Get radial acceleration.
-		Vextor radial;
+		Vector radial;
 
 		radial = p.pos - pos;
 		radial.normalize();
 		radial *= p.radialAcc;
 
-		Vextor acc = gravity + radial;
+		Vector acc = gravity + radial;
 
 		float t = p.age;
 
@@ -57,18 +56,16 @@ namespace love
 	void ParticleSystem::estimateStart(particle & p)
 	{
 		// Get gravity.
-		Vextor gravity(0, p.gravity);
+		Vector gravity(0, p.gravity);
 
 		// Get radial acceleration.
-		Vextor radial;
+		Vector radial;
 
 		radial = p.direction;
 		radial.normalize();
 		radial *= p.radialAcc;
 
-		Vextor acc = gravity + radial;
-
-
+		Vector acc = gravity + radial;
 
 		float t = p.age;
 
@@ -80,18 +77,18 @@ namespace love
 	void ParticleSystem::displace(particle & p, float dt)
 	{
 		// Get gravity.
-		Vextor gravity(0, p.gravity);
+		Vector gravity(0, p.gravity);
 
 		// Get radial acceleration.
-		Vextor radial = p.pos - pos;
+		Vector radial = p.pos - pos;
 		radial.normalize();
 
-		Vextor tangential(-radial.getY(), radial.getX());
+		Vector tangential(-radial.getY(), radial.getX());
 
 		radial *= p.radialAcc;
 		tangential *= p.tangentialAcc;
 
-		Vextor acc = gravity + radial + tangential;
+		Vector acc = gravity + radial + tangential;
 
 		p.speed += acc * dt;
 		p.pos += p.speed * dt;
@@ -122,9 +119,9 @@ namespace love
 		i.var = var;
 	}
 
-	Vextor ParticleSystem::getDirection(float angle) const
+	Vector ParticleSystem::getDirection(float angle) const
 	{
-		return Vextor(sin(angle * to_rad), cos(angle * to_rad));
+		return Vector(sin(angle * to_rad), cos(angle * to_rad));
 	}
 
 	int ParticleSystem::load()
@@ -209,21 +206,22 @@ namespace love
 	}
 
 
-	Sprite * ParticleSystem::getSprite()
+
+	void ParticleSystem::setSprite(const pSprite * sprite)
 	{
-		return sprite;
+		this->sprite = *sprite;
 	}
 
-	void ParticleSystem::setSprite(Sprite * sprite)
+	void ParticleSystem::setSprite(const pAbstractImage * sprite)
 	{
-		this->sprite = sprite;
+		this->sprite = (pSprite)(*sprite);
 	}
 
-
-	AbstractColor * ParticleSystem::getColor()
+	void ParticleSystem::setSprite(const pFrameAnimation * sprite)
 	{
-		return color;
+		this->sprite = (pSprite)(*sprite);
 	}
+
 
 	void ParticleSystem::setParticlesPerSecond(float particlesPerSecond)
 	{
@@ -234,6 +232,11 @@ namespace love
 	void ParticleSystem::addColor(int r, int g, int b, int a)
 	{
 		color->addColor(new Color(r, g, b, a), 1.0);
+	}
+
+	void ParticleSystem::addColor(const pColor & color)
+	{
+		this->color->addColor(new Color(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha()), 1.0);
 	}
 
 	void ParticleSystem::setDirection(float min, float max, float var)
