@@ -14,6 +14,8 @@ namespace love
 		color = 0;
 		backgroundColor = 0;
 		borderColor = 0;
+
+		background = 0;
 	}
 
 	Label::~Label()
@@ -24,6 +26,14 @@ namespace love
 	{
 		setWidth(getFont()->getWidth(getCaption()));
 		setHeight(getFont()->getHeight() + 2);
+
+		if(background != 0)
+		{
+			if(getWidth() < background->getWidth())
+				setWidth((int)background->getWidth());
+			if(getHeight() < background->getHeight())
+				setHeight((int)background->getHeight());
+		}
 	}
 
 	void Label::align(int alignment)
@@ -66,6 +76,11 @@ namespace love
 			borderColor = color;
 	}
 
+	void Label::setBackground(AbstractImage * image)
+	{
+		background = image;
+	}
+
 	AbstractColor * Label::getColor()
 	{
 		return color;
@@ -83,6 +98,9 @@ namespace love
 
 	void Label::draw(gcn::Graphics* graphics)
 	{
+		int x = 0;
+		int y = 0;
+
 		if(backgroundColor != 0)
 			graphics->setColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
 		else
@@ -90,8 +108,48 @@ namespace love
 
 		graphics->fillRectangle(gcn::Rectangle(0,0,getWidth(),getHeight()));
 
-		int x = 0;
-		int y = 0;
+		if(background != 0)
+		{
+			switch(getAlignment())
+			{
+			default:
+			case gcn::Graphics::CENTER:
+				x = (getWidth() / 2) - (background->getWidth() / 2);
+				break;
+			case gcn::Graphics::LEFT:
+				break;
+			case gcn::Graphics::RIGHT:
+				x = getWidth() - background->getWidth();
+				break;
+			}
+			switch(verticalAlignment)
+			{
+			default:
+			case Text::LOVE_ALIGN_CENTER:
+				y = (getHeight() / 2) - (background->getHeight() / 2);
+				break;
+			case Text::LOVE_ALIGN_TOP:
+				break;
+			case Text::LOVE_ALIGN_BOTTOM:
+				y = getHeight() - background->getHeight();
+				break;
+			}
+
+			glPushAttrib(GL_CURRENT_BIT);
+			graphics->setColor(gcn::Color(0xFFFFFF)); // to remove the effects of the background color
+			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+			glEnable(GL_TEXTURE_2D);
+			glEnable(GL_BLEND);
+
+			background->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
+				
+			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+			glDisable(GL_TEXTURE_2D);
+			glPopAttrib();
+		}
+
+		x = 0;
+		y = 0;
 
 		switch(getAlignment())
 		{

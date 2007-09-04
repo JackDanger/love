@@ -11,6 +11,7 @@ namespace love
 		text = new GUIText(0,0);
 		color = 0;
 		backgroundColor = 0;
+		background = 0;
 		this->type = type;
 		spacing = 0;
 		position = 0;
@@ -40,6 +41,12 @@ namespace love
 		gcn::Container::setOpaque(true);
 	}
 
+	void Menu::setBackground(AbstractImage * image)
+	{
+		background = image;
+		gcn::Container::setOpaque(true);
+	}
+
 	void Menu::align(int alignment)
 	{
 		this->alignment = alignment;
@@ -48,11 +55,6 @@ namespace love
 	void Menu::valign(int alignment)
 	{
 		verticalAlignment = alignment;
-	}
-
-	void Menu::setBackgroundColor(const char * name)
-	{
-		//not ready yet
 	}
 
 	void Menu::setSpacing(int spacing)
@@ -89,11 +91,19 @@ namespace love
 			setWidth(size + getPaddingRight() - spacing);
 			break;
 		}
+
+		//compensates for the background image
+		if(background != 0)
+		{
+			if(getWidth() < background->getWidth())
+				setWidth((int)background->getWidth());
+			if(getHeight() < background->getHeight())
+				setHeight((int)background->getHeight());
+		}
 	}
 
 	int Menu::adjustContent()
 	{
-		//THIS SHOULD BE CHANGED DEPENDING ON THE TYPE OF MENU (VERTICAL FOR NOW)
 		int size = 0;
 		std::list<Widget *>::iterator iter;
 
@@ -104,7 +114,7 @@ namespace love
 			size = getPaddingTop();
 			for(iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
 			{
-				if(stretch)
+				if(stretch && (*iter)->getWidth() <= 0)
 					(*iter)->setWidth(getWidth() - getPaddingRight() - getPaddingLeft() - (*iter)->getBorderSize());
 
 				switch(alignment)
@@ -128,7 +138,7 @@ namespace love
 			size = getPaddingLeft();
 			for(iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
 			{
-				if(stretch)
+				if(stretch && (*iter)->getHeight() <= 0)
 					(*iter)->setHeight(getHeight() - getPaddingTop() - getPaddingBottom() - (*iter)->getBorderSize());
 
 				switch(verticalAlignment)
@@ -223,8 +233,26 @@ namespace love
 
 		if (isOpaque())
 		{
-			graphics->setColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
-			graphics->fillRectangle(gcn::Rectangle(0, 0, getWidth(), getHeight()));
+			if(backgroundColor != 0)
+			{
+				graphics->setColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
+				graphics->fillRectangle(gcn::Rectangle(0, 0, getWidth(), getHeight()));
+			}
+
+			if(background != 0)
+			{
+				glPushAttrib(GL_CURRENT_BIT);
+				graphics->setColor(gcn::Color(0xFFFFFF)); // to remove the effects of the background color
+				glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+				glEnable(GL_TEXTURE_2D);
+				glEnable(GL_BLEND);
+
+				background->render((float)graphics->getCurrentClipArea().x, (float)graphics->getCurrentClipArea().y);
+				
+				glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+				glDisable(GL_TEXTURE_2D);
+				glPopAttrib();
+			}
 		}
 
 		drawChildren(graphics);
@@ -257,6 +285,18 @@ namespace love
 			temp->setHeight(height);
 		temp->align(alignment);
 		temp->valign(verticalAlignment);
+		positionItem(temp);
+
+		add(temp);
+		return temp;
+	}
+
+	Label * Menu::addImage(AbstractImage * image)
+	{
+		Label * temp = new Label();
+		temp->setBackground(image);
+
+		temp->adjustSize();
 		positionItem(temp);
 
 		add(temp);

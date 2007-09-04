@@ -2,6 +2,7 @@
 #define LOVE_LABEL_H
 
 #include "AbstractColor.h"
+#include "AbstractImage.h"
 #include "Font.h"
 #include "Text.h"
 
@@ -26,6 +27,7 @@ namespace love
 		AbstractColor * color;
 		AbstractColor * backgroundColor;
 		AbstractColor * borderColor;
+		AbstractImage * background;
 		int verticalAlignment;
 
 	public:
@@ -33,7 +35,7 @@ namespace love
 		 * @param caption The label's caption.
 		 * @brief Constructor. Initializes the variables and aligns the caption to the middle of the label.
 		 **/
-		Label(const string caption);
+		Label(const string caption = "");
 
 		/**
 		 * @brief Deconstructor. Does nothing.
@@ -83,6 +85,8 @@ namespace love
 		 * @brief Sets the border color.
 		 **/
 		void setBorderColor(AbstractColor * color);
+
+		void setBackground(AbstractImage * image);
 
 		/**
 		 * @return An AbstractColor object.

@@ -2,6 +2,7 @@
 #include "Core.h"
 #include "love.h"
 #include "AbstractFileSystem.h"
+#include "AbstractImageDevice.h"
 #include "DisplayMode.h"
 #include "GameConfiguration.h"
 
@@ -285,6 +286,36 @@ int FontTexGame::load()
 
 	top->add(nono);
 
+	// WONDERFUL ERROR MESSAGE LOL(I)
+	bgimage.reset<AbstractImage>(love::core->getImaging().getImage(fs.getBaseFile("data/background.png")));
+	bgimage->load();
+	errorimage.reset<AbstractImage>(love::core->getImaging().getImage(fs.getBaseFile("data/error.png")));
+	errorimage->load();
+
+	Menu * error = new Menu();
+	error->setSize(356,217); //this can be replaced with a error->adjustSize() which will adjust to the background image size
+	error->setPadding(28);
+	error->setFont(lovefont);
+	error->setColor(new Color(0x000000));
+	error->setPosition(334,275);
+	//error->setBackgroundColor(new love::Color(0xFF0000));
+	error->setBackground(bgimage.get());
+	error->stretchContent(true);
+
+	error->addImage(errorimage.get());
+	error->addLabel("This is an example of some error text. Unfortunately")->align(Menu::LOVE_ALIGN_LEFT);
+	error->addLabel("GUIchan doesn't handle '\\n' or automatic linebreaks,")->align(Menu::LOVE_ALIGN_LEFT);
+	error->addLabel("but that is vital so I'll add it (later).")->align(Menu::LOVE_ALIGN_LEFT);
+	error->addLabel("")->setHeight(40);
+	Button * errorb = error->addButton("OK");
+	errorb->setBorderColor(new Color(0xe9e9e9));
+	errorb->setWidth(70);
+	errorb->setBorderSize(1);
+
+	error->adjustContent();
+
+	top->add(error);
+
 
 	//menu->add(textBoxScrollArea, 200, 50);
 	
@@ -345,7 +376,7 @@ void FontTexGame::render()
 	
 	gui->draw();
 
-	Color tempc = shiny->getColor(0.8f);
+	/*Color tempc = shiny->getColor(0.8f);
 	glColor4ub(tempc.getRed(),tempc.getGreen(),tempc.getBlue(),tempc.getAlpha());
 	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
@@ -353,7 +384,7 @@ void FontTexGame::render()
 		glVertex2i(-200,200);
 		glVertex2i(200,200);
 		glVertex2i(200,-200);
-	glEnd();
+	glEnd();*/
 }
 
 void FontTexGame::update(float dt)

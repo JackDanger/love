@@ -67,6 +67,9 @@ gcn::SDLInput* input;
  * All of the default widgets
  */
 
+love::pAbstractImage bgimage;
+love::pAbstractImage errorimage;
+
 //Menu * top;
 Menu *menu;
 Label *lovelabel;

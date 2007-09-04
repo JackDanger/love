@@ -2,6 +2,7 @@
 #define LOVE_MENU_H
 
 #include "AbstractColor.h"
+#include "AbstractImage.h"
 #include "Button.h"
 #include "DropDown.h"
 #include "Label.h"
@@ -28,6 +29,7 @@ namespace love
 		GUIText * text;
 		AbstractColor * color;
 		AbstractColor * backgroundColor;
+		AbstractImage * background;
 		int width, height;
 		int type;
 		int spacing;
@@ -80,7 +82,7 @@ namespace love
 		void valign(int alignment);
 
 		void setBackgroundColor(AbstractColor * color);
-		void setBackgroundColor(const char * name);
+		void setBackground(AbstractImage * image);
 
 		void setSpacing(int spacing); //how much distance there is to be between the items
 		int getSpacing();
@@ -94,6 +96,7 @@ namespace love
 
 		Menu * addMenu(int type, int width = 0, int height = 0);
 		Label * addLabel(const char * caption, int width = 0, int height = 0);
+		Label * addImage(AbstractImage * image);
 		Button * addButton(const char * caption, int width = 0, int height = 0);
 		TextField * addTextField(const char * text, int width = 0, int height = 0);
 		DropDown * addDropDown(int width = 0, int height = 0);
