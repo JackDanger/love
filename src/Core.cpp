@@ -19,7 +19,7 @@
 #include "LoveMenu4.h"
 #include "LuaGame.h"
 #include "NeoFontTexGame.h"
-#include "FontTexGame.h"
+//#include "FontTexGame.h"
 
 #include <cstdarg>
 
@@ -94,7 +94,7 @@ namespace love
 
 
 		addGame("neoftg", new NeoFontTexGame());
-		addGame("ftg", new FontTexGame());
+		//addGame("ftg", new FontTexGame());
 
 		// Adds scripted games from the game directory.
 		addGames();
@@ -157,8 +157,10 @@ namespace love
 		vector<string> sources = filesystem->getList(gamesdir, "");
 
 		// Check if anything looks like a love game.
-		for each(string s in sources)
+		for(int i =0;i<(int)sources.size();i++)
 		{
+			string s = sources[i];
+		
 			// Create full source.
 			string source = gamesdir + "/" + s;
 

@@ -7,6 +7,11 @@ namespace love
 	{
 	}
 	
+	Initializable::~Initializable()
+	{
+	
+	}
+	
 	bool Initializable::isInited() const
 	{
 		return inited;

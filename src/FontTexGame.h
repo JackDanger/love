@@ -39,8 +39,6 @@ using std::map;
 using std::vector;
 using std::string;
 
-using namespace love;
-
 /**
 * @brief FontTexGame 
 * @version 1.0
@@ -71,10 +69,10 @@ love::pAbstractImage bgimage;
 love::pAbstractImage errorimage;
 
 //Menu * top;
-Menu *menu;
-Label *lovelabel;
-AnimatedColor * shiny;
-AnimatedColor * alsoshiny;
+love::Menu *menu;
+love::Label *lovelabel;
+love::AnimatedColor * shiny;
+love::AnimatedColor * alsoshiny;
 gcn::Container* top;                 // A top container
 gcn::Label* label;                   // A label
 gcn::Icon* icon;                     // An icon (image)
@@ -99,7 +97,7 @@ gcn::Container* nestedContainer;
 gcn::Slider* nestedSlider;
 
 love::Font * lovefont;
-Color * lovecolor;
+love::Color * lovecolor;
 
 //sounds shit
 public:

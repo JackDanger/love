@@ -17,6 +17,7 @@
 #include <boost/shared_ptr.hpp>
 
 // SDL_mixer
+#define USE_RWOPS
 #include "SDL_mixer.h"
 
 namespace love

@@ -6,8 +6,7 @@
 #include "DisplayMode.h"
 #include "GameConfiguration.h"
 
-using love::GameConfiguration;
-
+using love::GameConfiguration;
 FontTexGame::FontTexGame()
 {
 }
@@ -53,8 +52,8 @@ DemoListModel demoListModel;
 
 int FontTexGame::load()
 {
-	const AbstractFileSystem & fs = core->getFilesystem();
-	const DisplayMode & display = core->getDisplayMode();
+	const love::AbstractFileSystem & fs = love::core->getFilesystem();
+	const love::DisplayMode & display = love::core->getDisplayMode();
 
 
 	/**
@@ -89,9 +88,9 @@ int FontTexGame::load()
 	graphics->setTargetPlane(display.getWidth(), display.getHeight());
 	//input = new gcn::SDLInput();
 
-	lovefont = new Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 10);
+	lovefont = new love::Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 10);
 	lovefont->load();
-	lovecolor = new Color(0x000000);
+	lovecolor = new love::Color(0x000000);
 
     /*
      * Last but not least it's time to initialize and create the gui
@@ -112,7 +111,7 @@ int FontTexGame::load()
     gui->setTop(top);
     // Load the image font.
     //font = new gcn::ImageFont("data/gcn/fixedfont.bmp", " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
-	font = new GUIText(lovefont,lovecolor);
+	font = new love::GUIText(lovefont,lovecolor);
     // The global font is static and must be set.
     gcn::Widget::setGlobalFont(font);
 	graphics->setFont(font);
@@ -174,15 +173,15 @@ int FontTexGame::load()
 
 	top->setBaseColor(gcn::Color(0xFFFFFF));
 
-	Font * testfont = new Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 12);
+	Font * testfont = new love::Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 12);
 	testfont->load();
 
-	shiny = new AnimatedColor();
+	shiny = new love::AnimatedColor();
 	shiny->addColor(&pColor(new Color(0xFF7F96)), 6.0);
 	shiny->addColor(&pColor(new Color(0x817FFF)), 6.0);
 	shiny->addColor(&pColor(new Color(0x7FFF84)), 6.0);
 
-	menu = new Menu(Menu::LOVE_MENU_VERTICAL);
+	menu = new love::Menu(Menu::LOVE_MENU_VERTICAL);
 	menu->setFont(testfont);
 	menu->setSize(640,480);
 	menu->setPosition(10,10);
@@ -195,18 +194,18 @@ int FontTexGame::load()
 	top->add(menu);
 
 	Label * testlabel = menu->addLabel("THIS. IS. GUICHAN! (it's also fucking ugly)", 620);
-	testlabel->setColor(new Color(0xFFFFFF));
-	testlabel->setBackgroundColor(new Color(0xEE9DC8));
+	testlabel->setColor(new love::Color(0xFFFFFF));
+	testlabel->setBackgroundColor(new love::Color(0xEE9DC8));
 	testlabel->align(Text::LOVE_ALIGN_CENTER);
-	testlabel->setBorderColor(new Color(0xEF1D92));
+	testlabel->setBorderColor(new love::Color(0xEF1D92));
 	testlabel->setBorderSize(1);
 
 	menu->addButton("standard button");
 	menu->addButton("resized button", 300, 50)->setBorderSize(2);
 	menu->addButton("clipped button", 100, 12);
 	Button * testbutton = menu->addButton("colo(red) button");
-	testbutton->setColor(new Color(0xFFFFFF));
-	testbutton->setBackgroundColor(new Color(0xFF0000));
+	testbutton->setColor(new love::Color(0xFFFFFF));
+	testbutton->setBackgroundColor(new love::Color(0xFF0000));
 	/*testbutton->setBackgroundColor(new Color(0xFF0000));
 	testbutton->setHoverBackgroundColor(new Color(0xAA0000));
 	testbutton->setPressedBackgroundColor(new Color(0x550000));
@@ -233,14 +232,14 @@ int FontTexGame::load()
 	menu->adjustContent();
 
 	TextField * testfield = menu->addTextField("Enter your name here (textfield).", 200);
-	testfield->setColor(new Color(0,0,0,100));
-	testfield->setBackgroundColor(new Color(255,255,255,100));
-	testfield->setActiveColor(new Color(0,0,0,200));
-	testfield->setActiveBackgroundColor(new Color(255,255,255,200));
+	testfield->setColor(new love::Color(0,0,0,100));
+	testfield->setBackgroundColor(new love::Color(255,255,255,100));
+	testfield->setActiveColor(new love::Color(0,0,0,200));
+	testfield->setActiveBackgroundColor(new love::Color(255,255,255,200));
 
-	alsoshiny = new AnimatedColor();
-	alsoshiny->addColor(&pColor(new Color(0xFFFFFF)), 0.1f);
-	alsoshiny->addColor(&pColor(new Color(0x000000)), 0.1f);
+	alsoshiny = new love::AnimatedColor();
+	alsoshiny->addColor(&pColor(new love::Color(0xFFFFFF)), 0.1f);
+	alsoshiny->addColor(&pColor(new love::Color(0x000000)), 0.1f);
 
 	DropDown * testdowns = menu->addDropDown(200);
 	testdowns->setButtonBackgroundColor(alsoshiny);
@@ -254,11 +253,11 @@ int FontTexGame::load()
 
 	//menu->adjustSize();
 
-	Menu * nono = new Menu();
+	Menu * nono = new love::Menu();
 	nono->setSize(150,300);
 	nono->setPadding(10);
 	nono->setFont(lovefont);
-	nono->setColor(new Color(0xFFFFFF));
+	nono->setColor(new love::Color(0xFFFFFF));
 	nono->setPosition(820,10);
 	nono->setBackgroundColor(new love::Color(0x1a84d5));
 	nono->stretchContent(true);
@@ -292,11 +291,11 @@ int FontTexGame::load()
 	errorimage.reset<AbstractImage>(love::core->getImaging().getImage(fs.getBaseFile("data/error.png")));
 	errorimage->load();
 
-	Menu * error = new Menu();
+	Menu * error = new love::Menu();
 	error->setSize(356,217); //this can be replaced with a error->adjustSize() which will adjust to the background image size
 	error->setPadding(28);
 	error->setFont(lovefont);
-	error->setColor(new Color(0x000000));
+	error->setColor(new love::Color(0x000000));
 	error->setPosition(334,275);
 	//error->setBackgroundColor(new love::Color(0xFF0000));
 	error->setBackground(bgimage.get());
@@ -308,7 +307,7 @@ int FontTexGame::load()
 	error->addLabel("but that is vital so I'll add it (later).")->align(Menu::LOVE_ALIGN_LEFT);
 	error->addLabel("")->setHeight(40);
 	Button * errorb = error->addButton("OK");
-	errorb->setBorderColor(new Color(0xe9e9e9));
+	errorb->setBorderColor(new love::Color(0xe9e9e9));
 	errorb->setWidth(70);
 	errorb->setBorderSize(1);
 
@@ -353,7 +352,7 @@ void FontTexGame::unload()
 int FontTexGame::init()
 {
 	
-	config = new GameConfiguration();
+	config = new love::GameConfiguration();
 	config->setTitle("FontTexGame");
 	config->setAuthor("Grammaton Cleric Preston");
 	config->setDisplayMode(DisplayMode(1024, 768));

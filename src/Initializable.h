@@ -40,6 +40,8 @@ namespace love
 		**/
 		Initializable();
 		
+		virtual ~Initializable();
+		
 		/**
 		* @brief Method should contain statements that initialize the object.
 		* @return LOVE_OK if no errors. 

@@ -97,8 +97,9 @@ namespace love
 
 		glTranslatef(th, dh-th, 0);
 
-		for each(string s in messages)
+		for(int i =0;i<messages.size();i++)
 		{
+			string s = messages[i];
 			font->print(s);
 			glTranslatef(0, -th, 0);
 		}

@@ -31,7 +31,7 @@
 // Dirty, horrible, etc.
 #include <guichan.hpp>
 #include <guichan/sdl.hpp>
-extern gcn::SDLInput * gcn_input;
+//extern gcn::SDLInput * gcn_input;
 
 /**
 * @namespace love
@@ -104,9 +104,9 @@ namespace love
 		/**
 		* We want to be friends with platform code, so that it can configure core devices.
 		**/
-		friend extern int platform_init(int argc, char * argv[]);
-		friend extern int platform_loop();
-		friend extern void lualove_bind_globals();
+		friend int platform_init(int argc, char * argv[]);
+		friend int platform_loop();
+		friend void lualove_bind_globals();
 
 		// We also want to be friends with some classes
 		friend class LuaGame;
