@@ -39,6 +39,8 @@ using std::map;
 using std::vector;
 using std::string;
 
+namespace love {
+
 /**
 * @brief FontTexGame 
 * @version 1.0
@@ -139,4 +141,7 @@ public:
 
 };
 
+} // love
+
 #endif
+

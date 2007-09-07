@@ -33,7 +33,7 @@
 
 // Declare this external bastard here
 // @todo MAKE GENERIC
-//gcn::SDLInput * gcn_input;
+gcn::SDLInput * gcn_input;
 
 
 
@@ -65,7 +65,7 @@ namespace love
 
 		// Init GuiChan here
 		// @todo MAKE GENERIC
-		//gcn_input = new gcn::SDLInput();
+		gcn_input = new gcn::SDLInput();
 
 		return LOVE_OK;
 	}
@@ -99,7 +99,7 @@ namespace love
 
 				// Pass input to GuiChan
 				// @todo MAKE GENERIC
-				//gcn_input->pushInput(e);
+				gcn_input->pushInput(e);
 		
 				// Do events.
 				switch(e.type)

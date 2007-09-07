@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-c -Wall
-LDFLAGS=-lGL -lGLU -lIL -lILU -lILUT -lSDL -lSDL_mixer -llua5.1 -lphysfs -lfreetype
-DIR=src:/usr/local/lib
+LDFLAGS=-lGL -lGLU -lIL -lILU -lILUT -lSDL -lSDL_mixer -llua5.1 -lphysfs -lfreetype -lSDL_image -lguichan -lguichan_sdl -lguichan_opengl
+DIR=src
 SOURCES=AbstractColor.cpp \
 AbstractDevice.cpp \
 AbstractDisplay.cpp \
@@ -21,6 +21,7 @@ AnimatedColor.cpp \
 Animation.cpp \
 Bezier.cpp \
 BezierParticleSystem.cpp \
+Button.cpp \
 Color.cpp \
 ConfigLoader.cpp \
 Console.cpp \
@@ -31,11 +32,13 @@ DevILImageDevice.cpp \
 Display.cpp \
 DisplayMode.cpp \
 DisplayModeListener.cpp \
+DropDown.cpp \
 Entity.cpp \
 Event.cpp \
 EventListener.cpp \
 FileSystem.cpp \
 Font.cpp \
+FontTexGame.cpp \
 FrameAnimation.cpp \
 GameConfiguration.cpp \
 GameConfigurationLoader.cpp \
@@ -53,10 +56,12 @@ GUIGameList.cpp \
 GUIGameListElement.cpp \
 GUIList.cpp \
 GUIRadialKnob.cpp \
+GUIText.cpp \
 ImageFromFile.cpp \
 Initializable.cpp \
 Keyboard.cpp \
 KeyListener.cpp \
+Label.cpp \
 Listener.cpp \
 Loadable.cpp \
 Loader.cpp \
@@ -72,6 +77,7 @@ main.cpp \
 Matrix.cpp \
 MessageEvent.cpp \
 Mouse.cpp \
+Menu.cpp \
 MouseListener.cpp \
 MouseMotionListener.cpp \
 NeoFontTexGame.cpp \
@@ -100,6 +106,7 @@ SDLTimer.cpp \
 SmoothAnimatedColor.cpp \
 Sprite.cpp \
 Text.cpp \
+TextField.cpp \
 Timer.cpp \
 Updateable.cpp \
 Vector.cpp \

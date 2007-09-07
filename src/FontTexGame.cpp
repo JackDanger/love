@@ -6,7 +6,9 @@
 #include "DisplayMode.h"
 #include "GameConfiguration.h"
 
-using love::GameConfiguration;
+using love::GameConfiguration;
+
+namespace love {
 FontTexGame::FontTexGame()
 {
 }
@@ -402,3 +404,5 @@ void FontTexGame::reloadGraphics()
 {
 	inited = inited;
 }
+
+} // love

@@ -19,7 +19,7 @@
 #include "LoveMenu4.h"
 #include "LuaGame.h"
 #include "NeoFontTexGame.h"
-//#include "FontTexGame.h"
+#include "FontTexGame.h"
 
 #include <cstdarg>
 
@@ -94,7 +94,7 @@ namespace love
 
 
 		addGame("neoftg", new NeoFontTexGame());
-		//addGame("ftg", new FontTexGame());
+		addGame("ftg", new FontTexGame());
 
 		// Adds scripted games from the game directory.
 		addGames();

@@ -31,7 +31,7 @@
 // Dirty, horrible, etc.
 #include <guichan.hpp>
 #include <guichan/sdl.hpp>
-//extern gcn::SDLInput * gcn_input;
+extern gcn::SDLInput * gcn_input;
 
 /**
 * @namespace love
