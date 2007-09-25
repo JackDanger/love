@@ -5,70 +5,58 @@ main = {
 	
 	init = function()
 
-		game:addFont("big", 20);
-		game:addFont("small", 10);
+		-- variables
+		font = { big = love.objects:newDefaultFont(20), small = love.objects:newDefaultFont(7) };
+		color = { black = love.objects:newColor(0x000000), white = love.objects:newColor(0xFFFFFF), shiznet = love.objects:newColor(0xF60968) };
 		
-        game:addColor("black", 0, 0, 0);
-		game:addColor("shiznet", 0xF60968);
-	    game:setColor("shiznet");
-	    game:setBackground(game:addColor("white", 255, 255, 255));
-		text:setColor("black");
-
-		vec1 = love.new_Vextor(500, 600);
-		vec2 = love.new_Vextor(13, 37);
+		love.graphics:setBackground(color["white"]);
+		love.graphics:setColor(color["black"]);
 		
-		vec3 = vec1 + vec2;
-		dot = vec1 * vec2;
-		vec3:normalize();
-		
-		print("\nVec3: " .. vec3:getLength() .. "\n");
 		horseshit = 0;
 		
-
+		
+		-- music / sound
 		game:addSound("phaser", "phaser.wav");
 		phazr = game:getSound("phaser");
 		mus = game:addMusic("so cold", "test.mp3");
-
-		mus:play(1);
+		--mus:play(1);
 		
 	end,
 	update = function(dt)
 	
 		horseshit = horseshit + 5 * dt;
-	
-	    --local fag = game:getActor("test");
-	    --fag:setPosition(horseshit,100);
-	    --fag:setOrientation(horseshit);
-		
 		game:setRotation(horseshit);
 		
 	end,
 	render = function()
 
-
-	
-		text:setFont("big");
-        text:print(10,35, "Truly the best game ever. Because: it has a lot of shapes (loel)\nPress S to shoot and M to start/stop the music (arrow keys for valuum desu)!");
+		love.graphics:setColor(color["black"]);
+		love.graphics:setFont(font["big"]);
+		love.graphics:drawText("Truly the best game ever. Because: it has a lot of shapes (loel)\nPress S to shoot and M to start/stop the music\n(arrow keys for valuum desu)!", 10, 35);
 			  
-		gl:enable("MULTISAMPLE");
-		game:drawLine(50,200,150,200);
-		game:drawTriangle(260, 200, 100, 100, 5);
-		--game:drawRect(260,200,100,100,5);
-		game:fillTriangle(470,200,100,100);
-		--game:fillRect(470,200,100,100);
-		game:drawCircle(680,200,60);
-		game:fillCircle(890,200,60,36);
-		gl:disable("MULTISAMPLE");
-			   
-		game:setColor("shiznet");
-		text:setFont("small");
-        text:print(10,300, "drawLine(50,200,150,200)");
-		text:print(175,300, "drawTriangle(260,200,100,100,5)");
-		text:print(400,300, "fillTriangle(470,200,100,100)");
-		text:print(615,300, "drawCircle(680,200,60)");
-		text:print(820,300, "fillCircle(890,200,60,36)");
-               
-        --game:getImage("zero"):render(300,300);
+		love.graphics:setColor(color["shiznet"]);
+		--gl:enable("MULTISAMPLE");
+		
+		love.graphics:drawLine(50,200,150,200,horseshit);
+		love.graphics:drawTriangle(260, 200, 100, 100, horseshit, 5);
+		love.graphics:drawRectangle(470, 200, 100, 100, horseshit, 5);
+		love.graphics:drawCircle(680, 200, 60, 10, horseshit);
+		
+		love.graphics:fillTriangle(260, 400, 100, 100, horseshit);
+		love.graphics:fillRectangle(470, 400, 100, 100, horseshit);
+		love.graphics:fillCircle(680, 400, 60, 60);
+		--gl:disable("MULTISAMPLE");
+		
+		love.graphics:setColor(color["black"]);
+		love.graphics:setFont(font["small"]);
+		love.graphics:drawText("drawLine(50,200,150,200,horseshit)", 10, 300);
+		love.graphics:drawText("drawTriangle(260, 200, 100, 100, horseshit, 5)", 175, 300);
+		love.graphics:drawText("drawRect(470,200,100,100, horseshit, 5)", 400, 300);
+		love.graphics:drawText("drawCircle(680,200, 60, 10, horseshit)", 615, 300);
+		
+		love.graphics:drawText("drawTriangle(260, 200, 100, 100, horseshit, 5)", 175, 500);
+		love.graphics:drawText("drawRect(470,200,100,100, horseshit, 5)", 400, 500);
+		love.graphics:drawText("drawCircle(680,200, 60, 60)", 615, 500);
 	end,
 	
 	keypressed = function(key)

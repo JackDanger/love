@@ -141,8 +141,6 @@ namespace love
 		void resume();
 		void reloadGraphics();
 
-
-
 		bool fileExists(const string & file);
 
 		void keyPressed(int key);

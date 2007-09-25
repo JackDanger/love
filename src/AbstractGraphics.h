@@ -48,6 +48,9 @@ namespace love
 
 		// The current font used for rendering of text.
 		pFont font;
+
+		// A default font we can revert to in case there is no font selected.
+		pFont defaultFont;
 	
 	public:
 	
@@ -66,7 +69,7 @@ namespace love
 		* @param color The new color. 
 		* @note The color may or may not be shared with others. (Due to use of shared_ptr).
 		**/
-		void setColor(pColor color);
+		void setColor(const pColor * color);
 
 		/**
 		* @brief Sets the current (foreground) color directly.
@@ -82,7 +85,7 @@ namespace love
 		* @param color The new background color.
 		* @note The color may or may not be shared/used by others. ^-^ Using shared_ptr!
 		**/
-		void setBackground(pColor color);
+		void setBackground(const pColor * color);
 
 		/**
 		* @brief Sets the background color directly.
@@ -94,7 +97,14 @@ namespace love
 		void setBackground(int r, int g, int b);
 		
 		/**
-		* @brief The current Font used for rendering of text.
+		* @brief The current Font used for rendering of text. Used by Lua.
+		* @param font The new current Font.
+		* @note The Font object may or may not be shared with others.
+		**/
+		void setFont(const pFont * font);
+
+		/**
+		* @brief The current Font used for rendering of text. Used by LÖVE.
 		* @param font The new current Font.
 		* @note The Font object may or may not be shared with others.
 		**/
@@ -290,6 +300,80 @@ namespace love
 		* @param align How to align the text.
 		**/
 		virtual void drawText(const char * str, float x, float y, float limit = 0, int align = 1) const = 0;
+
+		/**
+		* @brief Draws a line from [x1,y1] to [x2,y2].
+		* @param x1 The first x-coordinate.
+		* @param y1 The first y-coordinate.
+		* @param x2 The second x-coordinate.
+		* @param y2 The second y-coordinate.
+		* @param rotation The rotation of the line.
+		* @param lineWidth The width of the line.
+		**/
+		virtual void drawLine(float x1, float y1, float x2, float y2, float rotation = 0, float lineWidth = 1) const = 0;
+
+		/**
+		* @brief Draws a triangle at the coordinate [x,y] with the specified width and height.
+		* @param x The x-coordinate.
+		* @param y The y-coordinate.
+		* @param width The width.
+		* @param height The height.
+		* @param rotation The rotation of the line.
+		* @param lineWidth The width of the line.
+		**/
+		virtual void drawTriangle(float x, float y, float width, float height, float rotation = 0, float lineWidth = 1) const = 0;
+
+		/**
+		* @brief Draws a filled triangle at the coordinate [x,y] with the specified width and height.
+		* @param x The x-coordinate.
+		* @param y The y-coordinate.
+		* @param width The width.
+		* @param height The height.
+		* @param rotation The rotation of the line.
+		**/
+		virtual void fillTriangle(float x, float y, float width, float height, float rotation = 0) const = 0;
+
+		/**
+		* @brief Draws a rectangle at the coordinate [x,y] with the specified width and height.
+		* @param x The x-coordinate.
+		* @param y The y-coordinate.
+		* @param width The width.
+		* @param height The height.
+		* @param rotation The rotation of the line.
+		* @param lineWidth The width of the line.
+		**/
+		virtual void drawRectangle(float x, float y, float width, float height, float rotation = 0, float lineWidth = 1) const = 0;
+
+		/**
+		* @brief Draws a filled rectangle at the coordinate [x,y] with the specified width and height.
+		* @param x The x-coordinate.
+		* @param y The y-coordinate.
+		* @param width The width.
+		* @param height The height.
+		* @param rotation The rotation of the line.
+		**/
+		virtual void fillRectangle(float x, float y, float width, float height, float rotation = 0) const = 0;
+
+		/**
+		* @brief Draws a circle at the coordinate [x,y] with the specified radius.
+		* @param x The x-coordinate.
+		* @param y The y-coordinate.
+		* @param radius The radius.
+		* @param points The amount of points that make up the circle.
+		* @param rotation The rotation of the line.
+		* @param lineWidth The width of the line.
+		**/
+		virtual void drawCircle(float x, float y, float radius, int points = 10, float rotation = 0, float lineWidth = 1) const = 0;
+
+		/**
+		* @brief Draws a circle at the coordinate [x,y] with the specified radius.
+		* @param x The x-coordinate.
+		* @param y The y-coordinate.
+		* @param radius The radius.
+		* @param points The amount of points that make up the circle.
+		* @param rotation The rotation of the line.
+		**/
+		virtual void fillCircle(float x, float y, float radius, int points = 10, float rotation = 0) const = 0;
 
 		
 	}; // AbstractGraphics

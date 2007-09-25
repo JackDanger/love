@@ -24,9 +24,9 @@ namespace love
 		if(font == 0)
 			return 0;
 
-		int fist = (int)font->getLineWidth(text.c_str());
+		int temp = (int)font->getLineWidth(text.c_str());
 
-		return fist;
+		return temp;
 	}
         
 	int GUIText::getHeight() const
@@ -73,6 +73,23 @@ namespace love
 			//should throw exception
 		}
 
+		/*gcn::Rectangle rect = glGraphics->getCurrentClipArea();
+
+		//glRasterPos2i(rect.x + x,  rect.y + y + (GLint)font->getLineHeight() - 2);
+		//glTranslatef((GLfloat)rect.x + x, rect.y + y + font->getLineHeight() - 2, 0.0f);
+		glTranslatef(x,y,0.0f);
+
+		int bgf = getWidth(text);
+		bgf = bgf;
+
+		glPushMatrix();
+		glBegin(GL_QUADS);
+			glVertex2f(0,0);
+			glVertex2f(font->getLineWidth(text.c_str()),0);
+			glVertex2f(font->getLineWidth(text.c_str()),font->getLineHeight());
+			glVertex2f(0,font->getLineHeight());
+		glEnd();
+		glPopMatrix();*/
 	
 		if(font != NULL)
 		{

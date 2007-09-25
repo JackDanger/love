@@ -119,6 +119,7 @@ namespace love
 		//friend class NeoFontTexGame;
 		friend class Console;
 		friend class ObjectFactory;
+		friend class OpenGLGUI;
 
 		/**
 		* @brief Creates a new Core object. Remeber to always call init(). 

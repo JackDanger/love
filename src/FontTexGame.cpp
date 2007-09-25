@@ -161,7 +161,7 @@ int FontTexGame::load()
 	Font * testfont = new love::Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 12);
 	testfont->load();
 
-	/*shiny = new love::AnimatedColor();
+	shiny = new love::AnimatedColor();
 	shiny->addColor(&pColor(new Color(0xFF7F96)), 6.0);
 	shiny->addColor(&pColor(new Color(0x817FFF)), 6.0);
 	shiny->addColor(&pColor(new Color(0x7FFF84)), 6.0);
@@ -259,7 +259,7 @@ int FontTexGame::load()
 	button->align(Text::LOVE_ALIGN_RIGHT); //buttons automatically align to center
 	button->setHeight(14);
 
-	top->add(nono);*/
+	top->add(nono);
 
 	// WONDERFUL ERROR MESSAGE LOL(I)
 	bgimage.reset<AbstractImage>(love::core->getImaging().getImage(fs.getBaseFile("data/background.png")));

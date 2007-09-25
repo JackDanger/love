@@ -71,9 +71,6 @@ namespace love
 		config = new GameConfigurationLoader(source);
 		config->load();
 
-
-
-
 		inited = true;
 
 		//pMessageEvent pme2(new MessageEvent("Init completed: " + getTitle() + "\n"));
@@ -93,10 +90,6 @@ namespace love
 
 	int LuaGame::load()
 	{
-	
-
-		
-
 		// Assign default obj.colors
 		backgroundColor = defaultBackgroundColor.get();
 		currentColor = defaultCurrentColor.get();
@@ -124,8 +117,6 @@ namespace love
 		Love_Init(L);
 
 		lualove_init(L); // @todo find out why this cannot init L.
-		
-
 
 		// Push game
 		lualove_push_global_pointer(L, (void*)this, "game", this->getType());
@@ -208,8 +199,15 @@ namespace love
 		included.clear();
 		gameStates.clear();
 
-		loaded = false;
+		// clear color data
+		core->graphics->setBackground(0,0,0);
+		core->graphics->setColor(255,255,255);
+		// set the font as default
+		pFont defaultFont(new Font(core->filesystem->getBaseFile("data/fonts/FreeSans.ttf"), 14));
+		defaultFont->load();
+		core->graphics->setFont(defaultFont);
 
+		loaded = false;
 	}
 
 	void LuaGame::render()
@@ -271,7 +269,8 @@ namespace love
 	void LuaGame::resume()
 	{
 		Game::resume();
-		glClearColor((float)backgroundColor->getRed()/255.0f, (float)backgroundColor->getGreen()/255.0f, (float)backgroundColor->getBlue()/255.0f, 1.0f);
+		// this is removed because it conflicts with the recent changes
+		//glClearColor((float)core->graphics->background->getRed()/255.0f, (float)core->graphics->background->getGreen()/255.0f, (float)core->graphics->background->getBlue()/255.0f, 1.0f);
 	}
 
 	void LuaGame::reloadGraphics()

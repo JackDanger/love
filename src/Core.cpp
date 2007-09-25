@@ -124,6 +124,12 @@ namespace love
 		// GUI stuffs (needs work lol)
 		gui = new OpenGLGUI();
 		gui->init();
+		gui->showError("hello");
+
+		// add a default default font
+		pFont defaultFont(new Font(filesystem->getBaseFile("data/fonts/FreeSans.ttf"), 14));
+		defaultFont->load();
+		graphics->setFont(defaultFont);
 
 		return status;		
 	}
@@ -265,7 +271,7 @@ namespace love
 
 		// Load game
 		if(!current->isLoaded())
-			current->load();		
+			current->load();
 
 		// Always resume
 		current->resume();

@@ -2,6 +2,7 @@
 #define LOVE_MENU_H
 
 #include "AbstractColor.h"
+#include "AbstractGraphics.h"
 #include "AbstractImage.h"
 #include "Button.h"
 #include "DropDown.h"
@@ -26,10 +27,11 @@ namespace love
 	class Menu : public gcn::Container, public Padded
 	{
 	private:
-		GUIText * text;
+		
 		AbstractColor * color;
 		AbstractColor * backgroundColor;
 		AbstractImage * background;
+		GUIText * text;
 		int width, height;
 		int type;
 		int spacing;
