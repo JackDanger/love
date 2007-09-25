@@ -1,3 +1,6 @@
+#ifndef LOVE_GUI_TEXT_H
+#define LOVE_GUI_TEXT_H
+
 #include "Font.h"
 #include "Color.h"
 
@@ -39,3 +42,5 @@ namespace love
         virtual void drawString(gcn::Graphics* graphics, const std::string& text, int x, int y);
 	};
 }
+
+#endif

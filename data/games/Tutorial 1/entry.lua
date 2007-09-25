@@ -5,7 +5,7 @@ main = {
 	
 	init = function()
 	
-		ham = game:addImage("image_hamster", "hamster.gif");
+		ham = love.objects:newImage("hamster.gif");
 		
 		x = 50;
 		y = 50;

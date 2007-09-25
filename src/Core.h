@@ -20,6 +20,7 @@
 #include "Renderable.h"
 #include "DisplayModeListener.h"
 #include "AbstractGraphics.h"
+#include "OpenGLGUI.h"
 
 // Other LOVE files
 #include "Game.h"
@@ -30,6 +31,7 @@
 
 // Dirty, horrible, etc.
 #include <guichan.hpp>
+#include <guichan/opengl.hpp>
 #include <guichan/sdl.hpp>
 extern gcn::SDLInput * gcn_input;
 
@@ -97,6 +99,9 @@ namespace love
 
 		// The current game 
 		Game * current;
+
+		// GUI
+		OpenGLGUI * gui;
 
 
 	public:

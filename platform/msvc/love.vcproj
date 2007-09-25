@@ -509,6 +509,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\OpenGLGUI.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Padded.cpp"
 				>
 			</File>
@@ -1024,6 +1028,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\OpenGLGraphics.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\OpenGLGUI.h"
 				>
 			</File>
 			<File

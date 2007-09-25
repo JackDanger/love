@@ -114,24 +114,24 @@ namespace love
 			{
 			default:
 			case gcn::Graphics::CENTER:
-				x = (getWidth() / 2) - (background->getWidth() / 2);
+				x = (int)((getWidth() / 2) - (background->getWidth() / 2));
 				break;
 			case gcn::Graphics::LEFT:
 				break;
 			case gcn::Graphics::RIGHT:
-				x = getWidth() - background->getWidth();
+				x = (int)(getWidth() - background->getWidth());
 				break;
 			}
 			switch(verticalAlignment)
 			{
 			default:
 			case Text::LOVE_ALIGN_CENTER:
-				y = (getHeight() / 2) - (background->getHeight() / 2);
+				y = (int)((getHeight() / 2) - (background->getHeight() / 2));
 				break;
 			case Text::LOVE_ALIGN_TOP:
 				break;
 			case Text::LOVE_ALIGN_BOTTOM:
-				y = getHeight() - background->getHeight();
+				y = (int)(getHeight() - background->getHeight());
 				break;
 			}
 
@@ -181,6 +181,7 @@ namespace love
 			graphics->setColor(gcn::Color(color->getRed(),color->getGreen(),color->getBlue(),color->getAlpha()));
 		else
 			graphics->setColor(gcn::Color(0,0,0,255));
+
 		graphics->drawText(getCaption(),x,y);
 	}
 

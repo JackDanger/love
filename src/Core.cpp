@@ -121,6 +121,9 @@ namespace love
 		if(current == 0)
 			return LOVE_ERROR;
 
+		// GUI stuffs (needs work lol)
+		gui = new OpenGLGUI();
+		gui->init();
 
 		return status;		
 	}
@@ -197,6 +200,7 @@ namespace love
 	void Core::update(float dt)
 	{
 		current->update(dt);
+		gui->update(dt);
 	}
 
 	void Core::render()
@@ -210,6 +214,9 @@ namespace love
 		// Render console
 		if(console->visible) 
 			console->render();
+
+		glLoadIdentity();
+		gui->render();
 	}
 
 	void Core::quit()

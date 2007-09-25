@@ -3072,30 +3072,6 @@ static int _wrap_new_Color__SWIG_2(lua_State* L) {
   int arg1 ;
   int arg2 ;
   int arg3 ;
-  love::Color *result = 0 ;
-  
-  if(!lua_isnumber(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  arg1 = (int)lua_tonumber(L, 1);
-  arg2 = (int)lua_tonumber(L, 2);
-  arg3 = (int)lua_tonumber(L, 3);
-  result = (love::Color *)new love::Color(arg1,arg2,arg3);
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__Color,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_Color__SWIG_3(lua_State* L) {
-  int SWIG_arg = -1;
-  int arg1 ;
-  int arg2 ;
-  int arg3 ;
   int arg4 ;
   love::Color *result = 0 ;
   
@@ -3118,19 +3094,19 @@ fail:
 }
 
 
-static int _wrap_new_Color__SWIG_4(lua_State* L) {
+static int _wrap_new_Color__SWIG_3(lua_State* L) {
   int SWIG_arg = -1;
-  float arg1 ;
-  float arg2 ;
-  float arg3 ;
+  int arg1 ;
+  int arg2 ;
+  int arg3 ;
   love::Color *result = 0 ;
   
   if(!lua_isnumber(L,1)) SWIG_fail_arg(1);
   if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
   if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  arg1 = (float)lua_tonumber(L, 1);
-  arg2 = (float)lua_tonumber(L, 2);
-  arg3 = (float)lua_tonumber(L, 3);
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
   result = (love::Color *)new love::Color(arg1,arg2,arg3);
   SWIG_arg=0;
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__Color,1); SWIG_arg++; 
@@ -3142,7 +3118,7 @@ fail:
 }
 
 
-static int _wrap_new_Color__SWIG_5(lua_State* L) {
+static int _wrap_new_Color__SWIG_4(lua_State* L) {
   int SWIG_arg = -1;
   float arg1 ;
   float arg2 ;
@@ -3159,6 +3135,30 @@ static int _wrap_new_Color__SWIG_5(lua_State* L) {
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
   result = (love::Color *)new love::Color(arg1,arg2,arg3,arg4);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__Color,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_Color__SWIG_5(lua_State* L) {
+  int SWIG_arg = -1;
+  float arg1 ;
+  float arg2 ;
+  float arg3 ;
+  love::Color *result = 0 ;
+  
+  if(!lua_isnumber(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1 = (float)lua_tonumber(L, 1);
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  result = (love::Color *)new love::Color(arg1,arg2,arg3);
   SWIG_arg=0;
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__Color,1); SWIG_arg++; 
   return SWIG_arg;
@@ -3202,7 +3202,7 @@ static int _wrap_new_Color(lua_State* L) {
           _v = lua_isnumber(L,argv[2]);
         }
         if (_v) {
-          return _wrap_new_Color__SWIG_2(L);
+          return _wrap_new_Color__SWIG_3(L);
         }
       }
     }
@@ -3221,7 +3221,7 @@ static int _wrap_new_Color(lua_State* L) {
           _v = lua_isnumber(L,argv[2]);
         }
         if (_v) {
-          return _wrap_new_Color__SWIG_4(L);
+          return _wrap_new_Color__SWIG_5(L);
         }
       }
     }
@@ -3244,7 +3244,7 @@ static int _wrap_new_Color(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_new_Color__SWIG_3(L);
+            return _wrap_new_Color__SWIG_4(L);
           }
         }
       }
@@ -3268,7 +3268,7 @@ static int _wrap_new_Color(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_new_Color__SWIG_5(L);
+            return _wrap_new_Color__SWIG_2(L);
           }
         }
       }
@@ -21933,6 +21933,59 @@ fail:
 }
 
 
+static int _wrap_ObjectFactory_newColor__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  love::pColor result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(love::ObjectFactory *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ObjectFactory,0,1,"ObjectFactory_newColor");
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  result = ((love::ObjectFactory const *)arg1)->newColor(arg2,arg3);
+  SWIG_arg=0;
+  {
+    love::pColor * resultptr;
+    resultptr = new love::pColor((love::pColor &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ObjectFactory_newColor__SWIG_3(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
+  int arg2 ;
+  love::pColor result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::ObjectFactory *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ObjectFactory,0,1,"ObjectFactory_newColor");
+  arg2 = (int)lua_tonumber(L, 2);
+  result = ((love::ObjectFactory const *)arg1)->newColor(arg2);
+  SWIG_arg=0;
+  {
+    love::pColor * resultptr;
+    resultptr = new love::pColor((love::pColor &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_ObjectFactory_newColor(lua_State* L) {
   int argc;
   int argv[6]={
@@ -21940,6 +21993,49 @@ static int _wrap_ObjectFactory_newColor(lua_State* L) {
   };
   
   argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__ObjectFactory, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_ObjectFactory_newColor__SWIG_3(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__ObjectFactory, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_ObjectFactory_newColor__SWIG_2(L);
+        }
+      }
+    }
+  }
   if (argc == 4) {
     int _v;
     {
@@ -22006,6 +22102,31 @@ static int _wrap_ObjectFactory_newColor(lua_State* L) {
   
   lua_pushstring(L,"No matching function for overloaded 'ObjectFactory_newColor'");
   lua_error(L);return 0;
+}
+
+
+static int _wrap_ObjectFactory_newDefaultFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
+  int arg2 ;
+  love::pFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::ObjectFactory *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ObjectFactory,0,1,"ObjectFactory_newDefaultFont");
+  arg2 = (int)lua_tonumber(L, 2);
+  result = ((love::ObjectFactory const *)arg1)->newDefaultFont(arg2);
+  SWIG_arg=0;
+  {
+    love::pFont * resultptr;
+    resultptr = new love::pFont((love::pFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__Font_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
 }
 
 
@@ -22218,6 +22339,7 @@ static swig_lua_method swig_love_ObjectFactory_methods[] = {
     {"newMusic", _wrap_ObjectFactory_newMusic}, 
     {"newSound", _wrap_ObjectFactory_newSound}, 
     {"newColor", _wrap_ObjectFactory_newColor}, 
+    {"newDefaultFont", _wrap_ObjectFactory_newDefaultFont}, 
     {"newFont", _wrap_ObjectFactory_newFont}, 
     {"newParticleSystem", _wrap_ObjectFactory_newParticleSystem}, 
     {"newBezier", _wrap_ObjectFactory_newBezier}, 
@@ -30897,6 +31019,7 @@ static const struct luaL_reg swig_commands[] = {
     { "ObjectFactory_newMusic", _wrap_ObjectFactory_newMusic},
     { "ObjectFactory_newSound", _wrap_ObjectFactory_newSound},
     { "ObjectFactory_newColor",_wrap_ObjectFactory_newColor},
+    { "ObjectFactory_newDefaultFont", _wrap_ObjectFactory_newDefaultFont},
     { "ObjectFactory_newFont", _wrap_ObjectFactory_newFont},
     { "ObjectFactory_newParticleSystem", _wrap_ObjectFactory_newParticleSystem},
     { "ObjectFactory_newBezier",_wrap_ObjectFactory_newBezier},

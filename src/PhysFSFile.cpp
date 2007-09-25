@@ -52,7 +52,7 @@ namespace love
 		this->data = new char[(size_t)size];
 
 		// Read file into memory
-		int read = PHYSFS_read (file, this->data, 1, ((PHYSFS_uint32)size));
+		int read = (int) PHYSFS_read (file, this->data, 1, ((PHYSFS_uint32)size));
 
 		// Check for failure
 		if(read == -1)

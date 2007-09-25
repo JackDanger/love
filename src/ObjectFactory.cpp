@@ -101,6 +101,29 @@ namespace love
 		return color;
 	}
 
+	pColor ObjectFactory::newColor(int code, int a) const
+	{
+		// Create the color
+		pColor color(new Color(code));
+		color->setAlpha(a);
+
+		return color;
+	}
+
+	pFont ObjectFactory::newDefaultFont(int size) const
+	{
+		// Get a file pointer
+		AbstractFile * file = core->filesystem->getBaseFile("data/fonts/FreeSans.ttf");
+
+		// Create the font
+		pFont font(new Font(file, size));
+
+		// Load it.
+		font->load();
+
+		return font;		
+	}
+
 	pFont ObjectFactory::newFont(const char * filename, int size) const
 	{
 		// Get the current source

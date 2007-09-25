@@ -31,26 +31,10 @@ namespace love
 		 * @param red The amount of red.
 		 * @param green The amount of green.
 		 * @param blue The amount of blue.
-		 * @brief Initializes all the variables with the appropriate values and with alpha being 255.
-		 **/
-		Color(int red, int green, int blue);
-
-		/**
-		 * @param red The amount of red.
-		 * @param green The amount of green.
-		 * @param blue The amount of blue.
 		 * @param alpah The amount of alpha.
 		 * @brief Initializes all the variables with the appropriate values.
 		 **/
-		Color(int red, int green, int blue, int alpha);
-
-		/**
-		 * @param red The amount of red (a value between 0 and 1).
-		 * @param green The amount of green (a value between 0 and 1).
-		 * @param blue The amount of blue (a value between 0 and 1).
-		 * @brief Initializes all the variables with the appropriate values and with alpha being 255.
-		 **/
-		Color(float red, float green, float blue);
+		Color(int red, int green, int blue, int alpha = 255);
 
 		/**
 		 * @param red The amount of red (a value between 0 and 1).
@@ -59,7 +43,7 @@ namespace love
 		 * @param alpha The amount of alpha (a value between 0 and 1).
 		 * @brief Initializes all the variables with the appropriate values.
 		 **/
-		Color(float red, float green, float blue, float alpha);
+		Color(float red, float green, float blue, float alpha = 1.0);
 
 		/**
 		 * @brief Does nothing.

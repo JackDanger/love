@@ -15,28 +15,12 @@ namespace love
 		alpha = 255;
 	}
 
-	Color::Color(int red, int green, int blue)
-	{
-		this->red = red;
-		this->green = green;
-		this->blue = blue;
-		alpha = 255;
-	}
-
 	Color::Color(int red, int green, int blue, int alpha)
 	{
 		this->red		= red;
 		this->green		= green;
 		this->blue		= blue;
 		this->alpha		= alpha;
-	}
-
-	Color::Color(float red, float green, float blue)
-	{
-		this->red = (int)(red * 255);
-		this->green = (int)(green * 255);
-		this->blue = (int)(blue * 255);
-		alpha = 255;
 	}
 
 	Color::Color(float red, float green, float blue, float alpha)

@@ -80,45 +80,28 @@ int FontTexGame::load()
 	 **/
 
 	imageLoader = new gcn::OpenGLSDLImageLoader();
-	
-
-    // The ImageLoader in use is static and must be set to be
-    // able to load images
     gcn::Image::setImageLoader(imageLoader);
+
     graphics = new gcn::OpenGLGraphics();
-    // We need to tell OpenGL graphics how big the screen is.
 	graphics->setTargetPlane(display.getWidth(), display.getHeight());
-	//input = new gcn::SDLInput();
 
 	lovefont = new love::Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 10);
 	lovefont->load();
 	lovecolor = new love::Color(0x000000);
 
-    /*
-     * Last but not least it's time to initialize and create the gui
-     * with Guichan stuff.
-     */
 	top = new gcn::Container();
-    // Set the dimension of the top container to match the screen.
     top->setDimension(gcn::Rectangle(0, 0, display.getWidth(), display.getHeight()));
 
 	//top->setOpaque(false);
     gui = new gcn::Gui();
-    // Set gui to use the SDLGraphics object.
     gui->setGraphics(graphics);
-    // Set gui to use the SDLInput object
 	gui->setInput(gcn_input); // Correct.
-	//gui->setInput(input); // WRAUNG
-    // Set the top container
     gui->setTop(top);
-    // Load the image font.
-    //font = new gcn::ImageFont("data/gcn/fixedfont.bmp", " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 	font = new love::GUIText(lovefont,lovecolor);
-    // The global font is static and must be set.
     gcn::Widget::setGlobalFont(font);
 	graphics->setFont(font);
 
-	label = new gcn::Label("Label");
+	/*label = new gcn::Label("Label");
 
     image = gcn::Image::load("../../data/gcn/gui-chan.bmp");
     icon = new gcn::Icon(image);
@@ -167,7 +150,7 @@ int FontTexGame::load()
 
     nestedScrollArea = new gcn::ScrollArea(nestedContainer);
     nestedScrollArea->setSize(180, 90);
-    nestedScrollArea->setBorderSize(1);
+    nestedScrollArea->setBorderSize(1);*/
 
     /*
      * Add them to the top container
@@ -178,7 +161,7 @@ int FontTexGame::load()
 	Font * testfont = new love::Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 12);
 	testfont->load();
 
-	shiny = new love::AnimatedColor();
+	/*shiny = new love::AnimatedColor();
 	shiny->addColor(&pColor(new Color(0xFF7F96)), 6.0);
 	shiny->addColor(&pColor(new Color(0x817FFF)), 6.0);
 	shiny->addColor(&pColor(new Color(0x7FFF84)), 6.0);
@@ -208,15 +191,6 @@ int FontTexGame::load()
 	Button * testbutton = menu->addButton("colo(red) button");
 	testbutton->setColor(new love::Color(0xFFFFFF));
 	testbutton->setBackgroundColor(new love::Color(0xFF0000));
-	/*testbutton->setBackgroundColor(new Color(0xFF0000));
-	testbutton->setHoverBackgroundColor(new Color(0xAA0000));
-	testbutton->setPressedBackgroundColor(new Color(0x550000));
-	testbutton->setActiveBackgroundColor(new Color(0xBB0000));
-	testbutton->setBorderColor(new Color(0xFF0000));
-	testbutton->setColor(new Color(0x0000FF));
-	testbutton->setHoverColor(new Color(0x0000AA));
-	testbutton->setPressedColor(new Color(0x000055));
-	testbutton->setActiveColor(new Color(0x0000BB));*/
 	menu->addLabel("", 50, 50); //this acts as a separator
 
 	Menu * godfist = menu->addMenu(Menu::LOVE_MENU_HORIZONTAL);
@@ -285,7 +259,7 @@ int FontTexGame::load()
 	button->align(Text::LOVE_ALIGN_RIGHT); //buttons automatically align to center
 	button->setHeight(14);
 
-	top->add(nono);
+	top->add(nono);*/
 
 	// WONDERFUL ERROR MESSAGE LOL(I)
 	bgimage.reset<AbstractImage>(love::core->getImaging().getImage(fs.getBaseFile("data/background.png")));
@@ -391,8 +365,8 @@ void FontTexGame::render()
 void FontTexGame::update(float dt)
 {
 	gui->logic();
-	shiny->update(dt);
-	alsoshiny->update(dt);
+	//shiny->update(dt);
+	//alsoshiny->update(dt);
 }
 
 void FontTexGame::keyPressed(int key)

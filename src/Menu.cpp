@@ -228,6 +228,8 @@ namespace love
 
 	void Menu::draw(gcn::Graphics* graphics)
 	{
+		glPushMatrix();
+
 		if(text != 0)
 			graphics->setFont(text);
 
@@ -256,6 +258,8 @@ namespace love
 		}
 
 		drawChildren(graphics);
+
+		glPopMatrix();
 	}
 
 	Menu * Menu::addMenu(int type, int width, int height)

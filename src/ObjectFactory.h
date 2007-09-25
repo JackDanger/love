@@ -60,6 +60,8 @@ namespace love
 		pAbstractSound newSound(const char * filename) const;
 
 		pColor newColor(int r, int g, int b, int a = 255) const;
+		pColor newColor(int code, int a = 255) const;
+		pFont newDefaultFont(int size) const;
 		pFont newFont(const char * filename, int size) const;
 
 		pParticleSystem newParticleSystem() const;
