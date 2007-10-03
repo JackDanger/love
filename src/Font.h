@@ -1,9 +1,7 @@
 #ifndef LOVE_FONT_H
 #define LOVE_FONT_H
 
-#include "Object.h"
-#include "Loadable.h"
-#include "Resource.h"
+#include "AbstractFont.h"
 
 #include "love_gl.h"
 #include <ft2build.h>
@@ -30,19 +28,12 @@ namespace love
 	* @date 2007-01-15
 	* @brief A class to handle fonts. Uses the library FreeType2 (available here: http://www.freetype.org/) and takes use of both their local documentation and Sven's experience.
 	**/
-	class Font : public Object, public Loadable, public Resource
+	class Font : public AbstractFont
 	{
-
-	public: 
-
-		static const int MAX_CHARS = 256;
-
 	protected:
 		
 		GLuint * textures;
 		GLuint list;
-
-		int size;
 
 		/**
 		 * @param num The number to be 2powered.
@@ -75,8 +66,6 @@ namespace love
 		void createList(FT_Face face, unsigned short character);
 
 	public:
-		int width[MAX_CHARS]; //to hold the width of every char
-
 		/**
 		 * @param file The file containing the font data.
 		 * @param size The size of the font.
@@ -132,7 +121,7 @@ namespace love
 		void print(char character, float x, float y);
 
 		/**
-		 * @return The height of the line of text.
+		 * @return The height of the font.
 		 * @brief Returns the size of the font multiplied by 1.5
 		 **/
 		float getLineHeight();

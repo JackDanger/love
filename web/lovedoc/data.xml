@@ -277,9 +277,9 @@ main = {
 	<!-- :::::::::::::::::::::::::: COLOR :::::::::::::::::::::::::: -->
 	
     <type name="Color" brief="An object containing color information.">
-	 A Color object is created by calling any of the [b]game:addColor()[/b] functions.
-	 <see name="game:addColor( name, red, green, blue, alpha )" url="TODO" />
-	 <see name="game:addColor( name, hex )" url="TODO" />
+	 A Color object is created by calling any of the [b]love.objects:newColor()[/b] functions.
+	 <see name="love.objects:newColor( red, green, blue, alpha )" url="TODO" />
+	 <see name="love.objects:newColor( hex, alpha )" url="TODO" />
 	 
 	 <function name="setColor" brief="Sets the current color.">
 	  <param name="red" brief="The amount of red." />
@@ -337,8 +337,8 @@ main = {
 	  <param name="amount" brief="How much to gradient (0 is this color, 1 is other color)." />
 	  <returns type="color">A pointer to the gradient color.</returns>
 	  <example>
-red = game:addColor("basic red", 255, 0, 0);
-blue = game:addColor("basic blue", 0, 0, 255);
+red = love.objects:newColor(255, 0, 0);
+blue = love.objects:newColor(0, 0, 255);
 
 purple = red:getGradient(blue, 0.5);
 veryred = red:getGradient(blue, 0.1);
@@ -351,9 +351,9 @@ veryblue = red:getGradient(blue, 0.9);
 	<!-- :::::::::::::::::::::::::: FONT :::::::::::::::::::::::::: -->
 	
     <type name="Font" brief="Represents a font.">
-	 A Font object is created by calling any of the [b]game:addFont()[/b] functions.
-	 <see name="game:addFont( name, size )" url="TODO" />
-	 <see name="game:addFont( name, filepath, size )" url="TODO" />
+	 A Font object is created by calling any of the [b]love.objects:newFont()[/b] functions.
+	 <see name="love.objects:newDefaultFont( size )" url="TODO" />
+	 <see name="love.objects:newFont( filename, size )" url="TODO" />
 	 
 	 <function name="print" brief="Prints some text at the current location.">
 	  Does not support line-breaks. It is suggested that you use [b]text:print()[/b] instead.
@@ -394,9 +394,9 @@ veryblue = red:getGradient(blue, 0.9);
 	<!-- :::::::::::::::::::::::::: FRAME ANIMATION :::::::::::::::::::::::::: -->
 	
 	<type name="FrameAnimation" brief="Contains the data for an animated image.">
-	 Created by calling any of the [b]game:addFrameAnimation()[/b] functions.
-	 <see name="game:addFrameAnimation( name, image_name )" url="TODO" />
-	 <see name="game:addFrameAnimation( name, image )" url="TODO" />
+	 Created by calling any of the [b]love.objects:newAnimation()[/b] functions.
+	 <see name="love.objects:newAnimation( image )" url="TODO" />
+	 <see name="love.objects:newAnimation( image, xFrames, yFrames, frameWidth, frameHeight, delay )" url="TODO" />
 	 
 	 <function name="addFrame" brief="Adds a frame by extracting a frame of the assigned image.">
 	  <param name="x" brief="x-coordinate within the image." />
@@ -407,7 +407,7 @@ veryblue = red:getGradient(blue, 0.9);
 	  <example>
 -- Loads a sprite sheet and designates it as the frame-animation's source image
 -- We'll assume that this image is 600x40 pixels
-sonicanimation = game:addFrameAnimation("sonic", game:addImage("sonic running", "sonic.png"));
+sonicanimation = love.objects:newAnimation(love.objects:newImage("sonic.png"));
 
 -- Creates the first animation frame by creating a sub-image of the source image
 -- In this case a 40x40 square starting from the top left corner
@@ -428,7 +428,7 @@ sonicanimation:addFrame(420,20,40,20,0.1);
 	  <param name="delay" brief="The delay after each frame (in seconds)." />
 	  <example>
 -- Takes an image of an explosion and creates a frame animation with that as its source
-explosion = game:addFrameAnimation("explosion", game:addImage("explosion_source", "explosion.png"));
+explosion = love.objects:newAnimation(love.objects:newImage("explosion.png"));
 
 -- Adds the frames by designating that each of them are 96x96 pixels in size and are arranged
 -- with 5 frames per rown in 3 rows, giving each frame a 0.17 seconds delay.
@@ -471,8 +471,8 @@ explosion:addFrames(5, 3, 96, 96, 0.17);
 	<!-- :::::::::::::::::::::::::: IMAGE :::::::::::::::::::::::::: -->
 	
 	<type name="Image" brief="Contains image data. Typically loaded from an image file such as png, gif or jpg.">
-	 An image is created with the [b]game:addImage()[/b] function.
-	 <see name="game:addImage( name, filepath )" url="TODO" />
+	 An image is created with the [b]love.objects:newImage()[/b] function.
+	 <see name="love.objects:newImage( filepath )" url="TODO" />
 	 
 	 <function name="render" brief="Renders the image at the current location."></function>
 	 
@@ -489,7 +489,7 @@ explosion:addFrames(5, 3, 96, 96, 0.17);
 	  <param name="height" brief="Height of the subimage." />
 	  <example>
 -- The size of this image is 64x64 pixles
-sixtyfour = game:addImage("64 by 64", "sixtyfour.png");
+sixtyfour = love.objects:newImage("sixtyfour.png");
 
 -- This renders a 32x32 square of the image, starting from the top left
 sixtyfour:render(0,0,32,32);
@@ -513,9 +513,9 @@ sixtyfour:render(22,26,20,12);
 	<!-- :::::::::::::::::::::::::: SOUND :::::::::::::::::::::::::: -->
 	
     <type name="Sound" brief="Contains sound data. Loaded from a sample file.">
-	 Can play the following types of files: WAVE, AIFF, RIFF, OGG and VOC. Created with [b]game:addSound()[/b].
+	 Can play the following types of files: WAVE, AIFF, RIFF, OGG and VOC. Created with [b]love.objects:newSound()[/b].
 	 
-	 <see name="game:addSound( name, filepath, volume )" url="TODO" />
+	 <see name="love.objects:newSound( filepath )" url="TODO" />
 	 
 	 <function name="play" brief="Plays the designated sound."></function>
 	 
@@ -537,6 +537,389 @@ sixtyfour:render(22,26,20,12);
   </types>
 
   <objects>
+  
+    <!-- :::::::::::::::::::::::::::::::: love.objects ::::::::::::::::::::::::::::: -->
+	<object name="objects" brief="Creates objects.">
+	
+	  <function name="newImage" brief="Loads an image.">
+	   <param name="filename" brief="The filepath to the image file. Relative to the game's folder or .love file." />
+	   <example name="Add an image.">
+picture = love.objects:newImage("picture.jpg");
+	   </example>
+	  </function>
+	  
+	  <separator />
+	  
+	  <function name="newAnimation" brief="Creates an animation from an image file.">
+	   <param name="image" brief="A loaded image file." />
+	   <example name="Add an animation.">
+picture = love.objects:newImage("animated_picture.jpg");
+animation = love.objects:newAnimation(picture);
+	   </example>
+	  </function>
+	  
+	  <function name="newAnimation" brief="Creates an animation from an image file.">
+	   Takes an image consisting of a grid of frames for the animation.
+	   <param name="image" brief="A loaded image file." />
+	   <param name="xFrames" brief="The amount of frames per row." />
+	   <param name="yFrames" brief="The amount of frames per column." />
+	   <param name="frameWidth" brief="The width of each frame." />
+	   <param name="frameHeight" brief="The height of each frame." />
+	   <param name="delay" brief="The amount of time between each frame (in seconds)." />
+	   <example name="Add an animation.">
+picture = love.objects:newImage("animated_picture.jpg");
+animation = love.objects:newAnimation(picture, 4, 3, 100, 75, 0.25);
+	   </example>
+	   <see name="Example Image" url="TODO" />
+	  </function>
+	  
+	  <separator />
+	  
+	  <function name="newMusic" brief="Loads a music file.">
+	   <param name="filename" brief="The filepath to the music file. Relative to the game's folder or .love file." />
+	   <example name="Add some music.">
+muzik = love.objects:newMusic("totally_awesome.mp3");
+	   </example>
+	  </function>
+	  
+	  <function name="newSound" brief="Loads a sound file.">
+	   <param name="filename" brief="The filepath to the sound file. Relative to the game's folder or .love file." />
+	   <example name="Add some sounds.">
+blaster = love.objects:newSound("blast.wav");
+explosion = love.objects:newSount("boom.wav");
+	   </example>
+	  </function>
+	  
+	  <separator />
+	  
+	  <function name="newColor" brief="Creates a color.">
+	   <param name="r" brief="The amount of red." />
+	   <param name="g" brief="The amount of green." />
+	   <param name="b" brief="The amount of blue." />
+	   <param name="a" brief="The amount of alpha (default: 255)." />
+	   <example name="Add some colors.">
+transparent_pink = love.objects:newColor(246, 9, 104, 150);
+opaque_pink = love.objects:newColor(246, 9, 104); -- the default alpha value (255) will be used
+	   </example>
+	  </function>
+	  
+	  <function name="newColor" brief="Creates a color.">
+	   <param name="code" brief="A 6-character hexadecimal color code." />
+	   <param name="a" brief="The amount of alpha (default: 255)." />
+	   <example name="Add some colors.">
+transparent_pink = love.objects:newColor(0xF60968, 150);
+opaque_pink = love.objects:newColor(0xF60968); -- the default alpha value (255) will be used
+	   </example>
+	  </function>
+	  
+	  <separator />
+	  
+	  <function name="newDefaultFont" brief="Creates a new font based on the default font.">
+	   The default font is FreeSans.
+	   <param name="size" brief="The size of the font." />
+	   <example name="Add some fonts.">
+big = love.objects:newDefaultFont(40);
+small = love.objects:newDefaultFont(8);
+	   </example>
+	  </function>
+	  
+	  <function name="newFont" brief="Creates a new font by loading the font file.">
+	   Fonts loaded with [url="http://freetype.sourceforge.net/"]FreeType[/url].
+	   <param name="filename" brief="The filepath to the font file. Relative to the game's folder or .love file." />
+	   <param name="size" brief="The size of the font." />
+	   <example name="Add some fonts.">
+big = love.objects:newFont("Arial.ttf", 40);
+small = love.objects:newFont("SomeAwesomeZeldaFont.ttf", 8);
+	   </example>
+	  </function>
+	  
+	  <separator />
+	  
+	  <function name="newParticleSystem" brief="Creates a new particle system.">
+	   This is currenly in BETA. Please do not kill.
+	  </function>
+	  
+	  <separator />
+	  
+	  <function name="newBezier" brief="Creates a Bézier curve.">
+	   This is currenly in BETA. Please do not kill.
+	  </function>
+	  
+	  <function name="newBezier" brief="Creates a Bézier curve.">
+	   This is currenly in BETA. Please do not kill.
+	   <param name="x1" brief="First x-coordinate." />
+	   <param name="y1" brief="First y-coordinate." />
+	   <param name="x2" brief="Second x-coordinate." />
+	   <param name="y2" brief="Second y-coordinate." />
+	   <param name="x3" brief="Third x-coordinate." />
+	   <param name="y3" brief="Third y-coordinate." />
+	   <param name="x4" brief="Fourth x-coordinate." />
+	   <param name="y4" brief="Fourth y-coordinate." />
+	  </function>
+	  
+	</object>
+	
+	 <!-- :::::::::::::::::::::::::::::::: love.graphics ::::::::::::::::::::::::::::: -->
+	<object name="graphics" brief="Deals with the rendering of graphics and text.">
+	
+	  <function name="setColor" brief="Sets the current color.">
+	   <param name="color" brief="A Color object." />
+	   <example name="Set the current color as red.">
+red = love.objects:newColor(0xFF1111);
+love.graphics:setColor(red);
+	   </example>
+	  </function>
+	  
+	  <function name="setColor" brief="Sets the current color.">
+	   <param name="r" brief="The amount of red." />
+	   <param name="g" brief="The amount of green." />
+	   <param name="b" brief="The amount of blue." />
+	   <param name="a" brief="The amount of alpha (default: 255)." />
+	   <example name="Set the current color as  transparent red and then blue.">
+love.graphics:setColor(255, 10, 10, 150);
+love.graphics:setColor(10, 10, 255); -- the default alpha value (255) will be used
+	   </example>
+	  </function>
+	  
+	  <function name="setBackground" brief="Sets the background color.">
+	   <param name="color" brief="A Color object." />
+	   <example name="Set the background color as red.">
+red = love.objects:newColor(0xFF1111);
+love.graphics:setBackground(red);
+	   </example>
+	  </function>
+	  
+	  <function name="setBackground" brief="Sets the background color.">
+	   <param name="r" brief="The amount of red." />
+	   <param name="g" brief="The amount of green." />
+	   <param name="b" brief="The amount of blue." />
+	   <example name="Set the current color as  transparent red and then blue.">
+love.graphics:setBackground(255, 10, 10);
+love.graphics:setBackground(10, 10, 255);
+	   </example>
+	  </function>
+	  
+	  <function name="setFont" brief="Sets the current font.">
+	   <param name="font" brief="A font object." />
+	   <example name="Create and set a large font.">
+big_text = love.objects:newDefaultFont(40);
+love.graphics:setFont(big_text);
+	   </example>
+	  </function>
+	  
+	  <separator />
+	  
+	  <function name="drawSprite" brief="Draws an image, sprite or animation on screen.">
+	   <param name="sprite" brief="An Image, Sprite or FrameAnimation object." />
+	   <example name="Draw an image and an animation.">
+picture = love.objects:newImage("picture.jpg");
+animation = love.objects:newAnimation(love.objects:newImage("animation.jpg"));
+
+love.graphics:drawSprite(picture);
+love.graphics:drawSprite(animation);
+	   </example>
+	  </function>
+	  
+	  <function name="drawSprite" brief="Draws an image, sprite or animation at the specified coordinates.">
+	   <param name="sprite" brief="An Image, Sprite or FrameAnimation object." />
+	   <param name="x" brief="The x-coordinate." />
+	   <param name="y" brief="The y-coordinate." />
+	   <example name="Draw an image and an animation.">
+picture = love.objects:newImage("picture.jpg");
+animation = love.objects:newAnimation(love.objects:newImage("animation.jpg"));
+
+love.graphics:drawSprite(picture, 100, 100);
+love.graphics:drawSprite(animation, 200, 100);
+	   </example>
+	  </function>
+	  
+	  <function name="drawSprite" brief="Draws a scaled image, sprite or animation at the specified coordinates.">
+	   <param name="sprite" brief="An Image, Sprite or FrameAnimation object." />
+	   <param name="x" brief="The x-coordinate." />
+	   <param name="y" brief="The y-coordinate." />
+	   <param name="width" brief="The amount to scale the width by." />
+	   <param name="height" brief="The amount to scale the height by." />
+	   <example name="Draw an image and an animation.">
+picture = love.objects:newImage("picture.jpg");
+animation = love.objects:newAnimation(love.objects:newImage("animation.jpg"));
+
+love.graphics:drawSprite(picture, 100, 100, 2.0, 2.0); -- twice as big
+love.graphics:drawSprite(animation, 200, 100, 0.5, 1.0); -- the width is half of the original size
+	   </example>
+	  </function>
+	  
+	  <function name="drawSprite" brief="Draws a piece of an image, sprite or animation at the specified coordinates.">
+	   <param name="sprite" brief="An Image, Sprite or FrameAnimation object." />
+	   <param name="x" brief="The x-coordinate of the position." />
+	   <param name="y" brief="The y-coordinate of the position." />
+	   <param name="x1" brief="The x-coordinate of the top left corner." />
+	   <param name="y1" brief="The y-coordinate of the top left corner." />
+	   <param name="x2" brief="The x-coordinate of the bottom left corner." />
+	   <param name="y2" brief="The y-coordinate of the bottom left corner." />
+	   <param name="x3" brief="The x-coordinate of the bottom right corner." />
+	   <param name="y3" brief="The y-coordinate of the bottom right corner." />
+	   <param name="x4" brief="The x-coordinate of the top right corner." />
+	   <param name="y4" brief="The y-coordinate of the top right corner." />
+	   <example name="Draw part of an image.">
+picture = love.objects:newImage("picture.jpg"); -- this image is 200x200 pixels in size
+
+-- this draws only a 100x100 pixels cut from the center of the image
+love.graphics:drawSprite(picture, 100, 100, 50, 50, 50, 150, 150, 150, 150, 50);
+	   </example>
+	  </function>
+	  
+	  <function name="drawSubSprite" brief="Draws a small portion of an image, sprite or animation.">
+	   <param name="sprite" brief="An Image, Sprite or FrameAnimation object." />
+	   <param name="x" brief="The x-coordinate of the subsprite." />
+	   <param name="y" brief="The y-coordinate of the subsprite." />
+	   <param name="width" brief="The width of the subsprite." />
+	   <param name="height" brief="The height of the subsprite." />
+	   <example name="Draw part of an image.">
+picture = love.objects:newImage("picture.jpg"); -- this image is 200x200 pixels in size
+
+-- this draws only a 100x100 pixels cut from the center of the image
+love.graphics:drawSprite(animation, 50, 50, 100, 100);
+	   </example>
+	  </function>
+	  
+	  <separator />
+	  
+	  <function name="drawParticleSystem" brief="Draws a particle system.">
+	   <param name="sprite" brief="A ParticleSystem object." />
+	  </function>
+	  
+	  <function name="drawBezier" brief="Draws a Bézier curve at the specified position.">
+	   <param name="bezier" brief="A Bezier object." />
+	   <param name="x" brief="The x-coordinate." />
+	   <param name="y" brief="The y-coordinate." />
+	   <param name="precision" brief="The amount of points to draw (default: 20)." />
+	   <param name="lineWidth" brief="The width of the line used to draw the Bezier (default: 2.0)." />
+	  </function>
+	  
+	  <separator />
+	  
+	  <function name="drawString" brief="Draws a string at the specified position.">
+	   <param name="str" brief="A string." />
+	   <param name="x" brief="The x-coordinate." />
+	   <param name="y" brief="The y-coordinate." />
+	   <example name="HelloWorld">
+	    love.graphics:drawString("Hello World!", 100, 100);
+	   </example>
+	  </function>
+	  
+	  <function name="drawText" brief="Draws a formatted string (including alignment, line-breaks and word wrap) at the specified position.">
+	   <param name="str" brief="A string." />
+	   <param name="x" brief="The x-coordinate." />
+	   <param name="y" brief="The y-coordinate." />
+	   <param name="limit" brief="The max length of each line (default: 0)." />
+	   <param name="align" brief="The text alignment (default: LOVE_ALIGN_LEFT)." />
+	   <example name="HelloWorld and Lorem Ipsum">
+	    love.graphics:drawText("Hello\nWorld!", 100, 100, 0, LOVE_ALIGN_CENTER);
+		
+		love.graphics:drawText("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi non augue vel lacus ornare vehicula. Proin aliquam.", 100, 100, 50);
+	   </example>
+	  </function>
+	  
+	  <separator />
+	  
+	  <function name="drawLine" brief="Draws a line from [x1,y1] to [x2,y2].">
+	   <param name="x1" brief="The first x-coordinate." />
+	   <param name="y1" brief="The first y-coordinate." />
+	   <param name="x2" brief="The second x-coordinate." />
+	   <param name="y2" brief="The second y-coordinate." />
+	   <param name="rotation" brief="The rotation of the line (default: 0)." />
+	   <param name="lineWidth" brief="The width of the line (default: 1)." />
+	   <example name="Draw some lines.">
+love.graphics:drawLine(100, 100, 200, 100);
+love.graphics:drawLine(200, 200, 200, 100, 0, 2);
+love.graphics:drawLine(200, 200, 100, 100, 45);
+	   </example>
+	  </function>
+	  
+	  <function name="drawTriangle" brief="Draws a triangle at the specified coordinates.">
+	   <param name="x" brief="The x-coordinate." />
+	   <param name="y" brief="The y-coordinate." />
+	   <param name="width" brief="The width of the triangle." />
+	   <param name="height" brief="The height of the triangle." />
+	   <param name="rotation" brief="The rotation of the triangle (default: 0)." />
+	   <param name="lineWidth" brief="The width of the lines (default: 1)." />
+	   <example name="Draw some triangles.">
+love.graphics:drawTriangle(100, 100, 200, 100);
+love.graphics:drawTriangle(200, 200, 200, 100, 0, 2);
+love.graphics:drawTriangle(200, 200, 100, 100, 45);
+	   </example>
+	  </function>
+	  
+	  <function name="drawRectangle" brief="Draws a rectangle at the specified coordinates.">
+	   <param name="x" brief="The x-coordinate." />
+	   <param name="y" brief="The y-coordinate." />
+	   <param name="width" brief="The width of the rectangle." />
+	   <param name="height" brief="The height of the rectangle." />
+	   <param name="rotation" brief="The rotation of the rectangle (default: 0)." />
+	   <param name="lineWidth" brief="The width of the lines (default: 1)." />
+	   <example name="Draw some rectangles.">
+love.graphics:drawRectangle(100, 100, 200, 100);
+love.graphics:drawRectangle(200, 200, 200, 100, 0, 2);
+love.graphics:drawRectangle(200, 200, 100, 100, 45);
+	   </example>
+	  </function>
+	  
+	  <function name="drawCircle" brief="Draws a circle at the specified coordinates.">
+	   <param name="x" brief="The x-coordinate." />
+	   <param name="y" brief="The y-coordinate." />
+	   <param name="radius" brief="The radius of the circle." />
+	   <param name="points" brief="The amount of points that make up the circle (default: 10)." />
+	   <param name="rotation" brief="The rotation of the circle (default: 0)." />
+	   <param name="lineWidth" brief="The width of the lines (default: 1)." />
+	   <example name="Draw some circles.">
+love.graphics:drawCircle(100, 100, 100);
+love.graphics:drawCircle(100, 300, 100, 60, 0, 2);
+love.graphics:drawCircle(100, 500, 100, 60, 45);
+	   </example>
+	  </function>
+	  
+	  <separator />
+	  
+	  <function name="fillTriangle" brief="Draws a filled triangle at the specified coordinates.">
+	   <param name="x" brief="The x-coordinate." />
+	   <param name="y" brief="The y-coordinate." />
+	   <param name="width" brief="The width of the triangle." />
+	   <param name="height" brief="The height of the triangle." />
+	   <param name="rotation" brief="The rotation of the triangle (default: 0)." />
+	   <example name="Draw some triangles.">
+love.graphics:fillTriangle(100, 100, 200, 100);
+love.graphics:fillTriangle(200, 200, 200, 100, 0, 2);
+love.graphics:fillTriangle(200, 200, 100, 100, 45);
+	   </example>
+	  </function>
+	  
+	  <function name="fillRectangle" brief="Draws a filled rectangle at the specified coordinates.">
+	   <param name="x" brief="The x-coordinate." />
+	   <param name="y" brief="The y-coordinate." />
+	   <param name="width" brief="The width of the rectangle." />
+	   <param name="height" brief="The height of the rectangle." />
+	   <param name="rotation" brief="The rotation of the rectangle (default: 0)." />
+	   <example name="Draw some rectangles.">
+love.graphics:fillRectangle(100, 100, 200, 100);
+love.graphics:fillRectangle(200, 200, 200, 100, 0, 2);
+love.graphics:fillRectangle(200, 200, 100, 100, 45);
+	   </example>
+	  </function>
+	  
+	  <function name="fillCircle" brief="Draws a filled circle at the specified coordinates.">
+	   <param name="x" brief="The x-coordinate." />
+	   <param name="y" brief="The y-coordinate." />
+	   <param name="radius" brief="The radius of the circle." />
+	   <param name="points" brief="The amount of points that make up the circle (default: 10)." />
+	   <param name="rotation" brief="The rotation of the circle (default: 0)." />
+	   <example name="Draw some circles.">
+love.graphics:fillCircle(100, 100, 100);
+love.graphics:fillCircle(100, 300, 100, 60, 0, 2);
+love.graphics:fillCircle(100, 500, 100, 60, 45);
+	   </example>
+	  </function>
+	  
+	</object>
     
 	<!-- :::::::::::::::::::::::::: GAME :::::::::::::::::::::::::: -->
   

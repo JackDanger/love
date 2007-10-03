@@ -67,11 +67,10 @@ namespace love
 		static const int LOVE_ALIGN_TOP = 4;
 		static const int LOVE_ALIGN_BOTTOM = 5;
 
-
 		/**
 		 * @brief The default constructor.
 		 **/
-		Text(Container<Font> * fonts = 0, Container<Color> * colors = 0);
+		Text::Text(Container<Font> * fonts, Container<Color> * colors);
 
 		/**
 		 * @brief De-CONSTRUCTOR. Fear it.

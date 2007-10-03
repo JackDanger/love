@@ -103,7 +103,7 @@ namespace love
 		FT_Done_Glyph(glyph);
 	}
 
-	Font::Font(AbstractFile * file, int size) : Resource(file), size(size)
+	Font::Font(AbstractFile * file, int size) : AbstractFont(file, size)
 	{
 	}	
 

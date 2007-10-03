@@ -1,2 +1,2 @@
-"../../tools/php/php" index.php
+"../../platform/msvc/tools/php/php" index.php
 pause

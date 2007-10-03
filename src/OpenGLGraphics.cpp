@@ -196,7 +196,7 @@ namespace love
 		if(font!=0)
 		{
 			// Create new text object.
-			Text text(0, 0);
+			Text text(0,0);
 
 			// Set some attributes.
 			text.align(align);

@@ -165,7 +165,6 @@ namespace love
 		glPopMatrix();
 	}
 
-
 	Text::Text(Container<Font> * fonts, Container<Color> * colors) //defaults are fun
 	{
 		setType(LOVE_TYPE_TEXT);

@@ -27,6 +27,7 @@
 #include "AbstractColor.h"
 #include "Color.h"
 #include "AnimatedColor.h"
+#include "AbstractFont.h"
 #include "Font.h"
 #include "Text.h"
 
@@ -91,6 +92,7 @@ namespace boost {
 
 %include "AbstractColor.h"
 %include "Color.h"
+%include "AbstractFont.h"
 %include "Font.h"
 %include "Text.h"
 

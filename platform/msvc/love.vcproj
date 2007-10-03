@@ -205,6 +205,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\AbstractFont.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\AbstractGraphics.cpp"
 				>
 			</File>
@@ -656,6 +660,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\AbstractFileSystem.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\AbstractFont.h"
 				>
 			</File>
 			<File
