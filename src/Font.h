@@ -80,23 +80,11 @@ namespace love
 
 		/**
 		 * @param text Some text.
-		 * @brief Prints the text.
-		 **/
-		void print(const char * text);
-
-		/**
-		 * @param text A string.
-		 * @brief Prints the text.
-		 **/
-		void print(string text);
-
-		/**
-		 * @param text Some text.
 		 * @param x The x-coordinate.
 		 * @param y The y-coordinate.
 		 * @brief Prints the text at the set position.
 		 **/
-		void print(const char * text, float x, float y);
+		void print(const char * text, float x = 0, float y = 0);
 
 		/**
 		 * @param text A string.
@@ -104,13 +92,7 @@ namespace love
 		 * @param y The y-coordinate.
 		 * @brief Prints the text at the set position.
 		 **/
-		void print(string text, float x, float y);
-
-		/**
-		 * @param character A character.
-		 * @brief Prints the character.
-		 **/
-		void print(char character);
+		void print(string text, float x = 0, float y = 0);
 
 		/**
 		 * @param character A character.
@@ -118,7 +100,7 @@ namespace love
 		 * @param y The y-coordinate.
 		 * @brief Prints the character at the set position.
 		 **/
-		void print(char character, float x, float y);
+		void print(char character, float x = 0, float y = 0);
 
 		/**
 		 * @return The height of the font.

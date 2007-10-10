@@ -24,7 +24,7 @@ namespace love
 	{
 	}
 
-	void Menu::setFont(Font * font)
+	void Menu::setFont(AbstractFont * font)
 	{
 		text->setFont(font);
 	}

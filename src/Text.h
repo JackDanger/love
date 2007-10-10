@@ -8,7 +8,6 @@
 #include "Font.h"
 #include "Color.h"
 #include "Updateable.h"
-#include "Container.h"
 
 using std::string;
 using std::vector;
@@ -31,14 +30,11 @@ namespace love
 
 		vector<string> lines; //the lines of text
 		AbstractColor * color; //the current color
-		Font * font; //the current font
+		AbstractFont * font; //the current font
 		pColor defaultColor;
 		pFont defaultFont;
 		int alignment; //which side the text is aligned to (LEFT, RIGHT or CENTER)
 		float wrapLimit; //what the limit of the text wrapping is
-
-		Container<Font> * fonts; //the containers
-		Container<Color> * colors;
 
 		/**
 		 * @param text A formatted text which will be split into lines.
@@ -53,12 +49,12 @@ namespace love
 		 * @brief Parses the passed text into lines by checking if the width of the text is too long and
 		 *        searching for '\n' characters.
 		 **/
-		void createLines(Font * font, float limit, const string & text);
+		void createLines(AbstractFont * font, float limit, const string & text);
 
 		/**
 		 * @brief Outputs the text by calling the Font class.
 		 **/
-		void printText(Font * font, AbstractColor * color);
+		void printText(AbstractFont * font, AbstractColor * color);
 
 	public:
 		static const int LOVE_ALIGN_LEFT = 1;
@@ -70,7 +66,8 @@ namespace love
 		/**
 		 * @brief The default constructor.
 		 **/
-		Text::Text(Container<Font> * fonts, Container<Color> * colors);
+		Text();
+		Text(AbstractFont * font, AbstractColor * color);
 
 		/**
 		 * @brief De-CONSTRUCTOR. Fear it.
@@ -83,26 +80,18 @@ namespace love
 		 * @param text An un-formatted text which will be outputted.
 		 * @brief Formats the text, splits it into lines and then outputs it to the screen.
 		 **/
-		void printf(Font * font, AbstractColor * color, const char * text, ...);
-		void printf(Font * font, const char * text, ...);
-		void printf(AbstractColor * color, const char * text, ...);
+		void printf(AbstractFont * font, AbstractColor * color, const char * text, ...);
 		void printf(const char * text, ...);
 
 		/**
 		 * @param text Text to be outputted.
 		 * @param font The desired font.
 		 * @param color The desired color.
-		 * @brief A quicker alternative to printf, has three other variations:
-		 *		  print(font, text)
-		 *	      print(color,text)
+		 * @brief A quicker alternative to printf, has one other variation:
 		 *        print(text)
 		 **/
-		void print(Font * font, AbstractColor * color, const string & text);
-		void print(Font * font, AbstractColor * color, const char * text);
-		void print(Font * font, const string & text);
-		void print(Font * font, const char * text);
-		void print(AbstractColor * color, const string & text);
-		void print(AbstractColor * color, const char * text);
+		void print(AbstractFont * font, AbstractColor * color, const string & text);
+		void print(AbstractFont * font, AbstractColor * color, const char * text);
 		void print(const string & text);
 		void print(const char * text);
 
@@ -114,18 +103,13 @@ namespace love
 		 *		  outputted and is the one used in LUA.
 		 **/
 		void print(float x, float y, const string & text);
-		void print(float x, float y, const char * text);
-
-		// Sneaking in another method here .. (uses color/font directly) - rued
-		void print(float x, float y, const char * text, Font * font, AbstractColor * color);
+		void print(float x, float y, const char * text, AbstractFont * font = 0, AbstractColor * color = 0);
 
 		void align(int alignment);
 		void align(const char * alignment);
 		void setLimit(float size);
-		void setFont(Font * font);
-		void setFont(const char * key);
+		void setFont(AbstractFont * font);
 		void setColor(AbstractColor * color);
-		void setColor(const char * key);
 
 		/**
 		 * @return The height.

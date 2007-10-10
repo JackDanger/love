@@ -112,24 +112,6 @@ namespace love
 		unload();
 	}
 
-	void Font::print(const char * text)
-	{
-		glPushMatrix();
-		GLuint font = list;
-		glListBase(font);
-		glCallLists((int)strlen(text), GL_UNSIGNED_BYTE, text);
-		glPopMatrix();
-	}
-
-	void Font::print(string text)
-	{
-		glPushMatrix();
-		GLuint font = list;
-		glListBase(font);
-		glCallLists((int)text.length(), GL_UNSIGNED_BYTE, text.c_str());
-		glPopMatrix();
-	}
-
 	void Font::print(const char * text, float x, float y)
 	{
 		glPushMatrix();
@@ -147,15 +129,6 @@ namespace love
 		GLuint font = list;
 		glListBase(font);
 		glCallLists((int)text.length(), GL_UNSIGNED_BYTE, text.c_str());
-		glPopMatrix();
-	}
-
-	void Font::print(char character)
-	{
-		glPushMatrix();
-		GLuint font = list;
-		glListBase(font);
-		glCallList(character);
 		glPopMatrix();
 	}
 

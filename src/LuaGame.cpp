@@ -107,8 +107,9 @@ namespace love
 		addFont("love_system_font", 20);
 		setFont("love_system_font");	
 
-		text.reset<Text>(new Text(&obj.fonts, &obj.colors));
-		text->setFont("love_system_font");
+		//text.reset<Text>(new Text(&obj.fonts, &obj.colors));
+		text.reset<Text>(new Text());
+		//text->setFont("love_system_font"); //no need
 		text->load();
 
 		// Init lua

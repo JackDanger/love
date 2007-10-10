@@ -2,7 +2,7 @@
 
 namespace love
 {
-	GUIText::GUIText(love::Font * font, AbstractColor * color)
+	GUIText::GUIText(love::AbstractFont * font, AbstractColor * color)
 	{
 		this->font = font;
 		this->color = color;
@@ -42,12 +42,12 @@ namespace love
 		this->color->setColor(color.r, color.g, color.b, color.a);
 	}
 
-	love::Font * GUIText::getFont()
+	love::AbstractFont * GUIText::getFont()
 	{
 		return font;
 	}
 
-	void GUIText::setFont(love::Font * font)
+	void GUIText::setFont(love::AbstractFont * font)
 	{
 		this->font = font;
 	}

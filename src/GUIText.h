@@ -1,7 +1,7 @@
 #ifndef LOVE_GUI_TEXT_H
 #define LOVE_GUI_TEXT_H
 
-#include "Font.h"
+#include "AbstractFont.h"
 #include "Color.h"
 
 
@@ -18,11 +18,11 @@ namespace love
 	class GUIText : public gcn::Font
 	{
 	private:
-		love::Font * font;
+		love::AbstractFont * font;
 		AbstractColor * color;
 
 	public:
-		GUIText(love::Font * font, AbstractColor * color);
+		GUIText(love::AbstractFont * font, AbstractColor * color);
        
 		virtual ~GUIText();
 
@@ -34,8 +34,8 @@ namespace love
 
 		virtual void setColor(gcn::Color color);
 		
-		virtual love::Font * getFont();
-		virtual void setFont(love::Font * font);
+		virtual love::AbstractFont * getFont();
+		virtual void setFont(love::AbstractFont * font);
 		virtual AbstractColor * getColor();
 		virtual void setColor(AbstractColor * color);
 

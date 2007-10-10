@@ -77,7 +77,7 @@ namespace love
 		 * getHeight()
 		 **/
 
-		void setFont(Font * font);
+		void setFont(AbstractFont * font);
 		void setColor(AbstractColor * color);
 
 		void align(int alignment);

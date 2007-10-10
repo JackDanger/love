@@ -25,7 +25,7 @@ namespace love
 		gcn::OpenGLSDLImageLoader* imageLoader;
 		gcn::Container * top;
 		AbstractColor * color;
-		Font * lovefont;
+		AbstractFont * lovefont;
 		AbstractColor * lovecolor;
 		GUIText * text;
 

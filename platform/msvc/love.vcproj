@@ -405,6 +405,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\ImageFont.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Initializable.cpp"
 				>
 			</File>
@@ -872,6 +876,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\GUIText.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\ImageFont.h"
 				>
 			</File>
 			<File

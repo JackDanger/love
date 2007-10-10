@@ -1,25 +1,23 @@
-#ifndef LOVE_ABSTRACT_FONT_H
-#define LOVE_ABSTRACT_FONT_H
+#ifndef LOVE_IMAGE_FONT_H
+#define LOVE_IMAGE_FONT_H
 
-#include "Object.h"
-#include "Loadable.h"
-#include "Resource.h"
+#include "AbstractFile.h"
+#include "AbstractImage.h"
+#include "AbstractFont.h"
 
 namespace love
 {
-	class AbstractFile;
-
-	class AbstractFont : public Object, public Loadable, public Resource
+	class ImageFont : public AbstractFont
 	{
 	protected:
-		int size;
+		pAbstractImage image;
+		int width;
+		char * charlist;
 
 	public:
-		static const int MAX_CHARS = 256;
-		int width[MAX_CHARS]; //to hold the width of every char
 
-		AbstractFont(AbstractFile * file, int size);
-		~AbstractFont();
+		ImageFont(pAbstractImage image, int width, int height, char * charlist);
+		~ImageFont();
 
 		/**
 		 * @param text Some text.
@@ -62,7 +60,7 @@ namespace love
 		virtual void unload() = 0;
 	};
 
-	typedef boost::shared_ptr<AbstractFont> pAbstractFont;
+	typedef boost::shared_ptr<ImageFont> pImageFont;
 }
 
 #endif
