@@ -29,6 +29,7 @@
 #include "AnimatedColor.h"
 #include "AbstractFont.h"
 #include "Font.h"
+#include "ImageFont.h"
 #include "Text.h"
 
 #include "love_globals.h"

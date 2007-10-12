@@ -168,103 +168,6 @@
   
 
   <types>
-
-
-
-  <!-- LEFT HERE FOR THE PURPOSE OF  GREAT ARCHIVING (AND TESTING, IF NEEDED) -->
-    <type name="Universe" brief="Represents the physical universe.">
-
-      [br /]
-      [br /]
-
-      Yeah, you can say that [b]again[/b].
-
-      [ul]
-      [li]LOL[/li]
-      [li]FAG[/li]
-      [li]NOOB[/li]
-      [li]ROFL[/li]
-      [/ul]
-
-      [code]
-
-      game:addImage("image-flower", "flower.gif");
-
-      [/code]
-
-
-      <function name="anvilOnFetus" brief="Destroys mankind.">
-
-        Multiline description goes here! This function will TOTALLY destroy mankind.
-
-        <param name="name" brief="Desc"/>
-        <param name="x"  brief="Desc"/>
-        <param name="y"  brief="Desc"/>
-        <returns type="boolean">True if mankind was destroyed, false otherwise.</returns>
-
-        <example name="Adding a universe to the game.">
-          main = { LOL FUNCTIOn!
-          init = function()
-          {
-          -- Add a Universe to the game.
-          game:addUniverse("universe-kawaii");
-          }
-          }
-          fetuys
-        </example>
-
-        <see name="game" url="objectgame" />
-        <see name="fetus" url="objectgame" />
-        <see name="hest" url="objectgame" />
-
-      </function>
-
-      <function name="phallae" brief="Destroys asdfasdfjkl."> asdfasdfjkl </function>
-      <function name="get" brief="Destroys asdfasdfjkl."> asdfasdfjkl </function>
-
-      <separator />
-
-      <function name="set" brief="Destroys asdfasdfjkl."> asdfasdfjkl </function>
-      <function name="kill" brief="Destroys asdfasdfjkl."> asdfasdfjkl </function>
-
-      <separator />
-
-      <function name="set" brief="Destroys asdfasdfjkl.">
-        <param name="x" brief="x-pos lol" />
-        <see name="game" url="objectgame" />
-
-      </function>
-
-      <function name="kill" brief="Destroys asdfasdfjkl.">
-        asdfasdfjkl
-        <param name="all" brief="True to kill all, false to just kill some." />
-      </function>
-
-      <see name="Image" url="typeImage" />
-      <see name="Image:getWidth()" url="functionImagegetWidth" />
-
-      <example name="Adding a universe to the game.">
-main = {
-  init = function()
-    -- Add a Universe to the game.
-    game:addUniverse("universe-kawaii");
-  end
-}
-      </example>
-
-      <example name="Adding a universe to the game, and using the returned pointer to destroy mankind.">
-main = {
-  init = function()
-    -- Create a new Universe
-    myuni = game:addUniverse("universe-kawaii");
-
-    -- Destroy mankind
-    myuni:anivilOnFetus("joe", 13, 37);
-  end
-}
-      </example>
-
-    </type>
 	
 	<!-- :::::::::::::::::::::::::: ACTOR :::::::::::::::::::::::::: -->
 
@@ -351,9 +254,11 @@ veryblue = red:getGradient(blue, 0.9);
 	<!-- :::::::::::::::::::::::::: FONT :::::::::::::::::::::::::: -->
 	
     <type name="Font" brief="Represents a font.">
-	 A Font object is created by calling any of the [b]love.objects:newFont()[/b] functions.
+	 A Font object is created by calling any of the [b]love.objects:newFont()[/b] functions.[br /]
+	 Note: Using the print methods in a font file directly is not recommended and the [b]love.graphics:drawText()[/b] function is the best solution for printing text.
 	 <see name="love.objects:newDefaultFont( size )" url="TODO" />
 	 <see name="love.objects:newFont( filename, size )" url="TODO" />
+	 <see name="love.graphics" url="TODO" />
 	 
 	 <function name="print" brief="Prints some text at the current location.">
 	  Does not support line-breaks. It is suggested that you use [b]text:print()[/b] instead.
@@ -922,7 +827,7 @@ love.graphics:fillCircle(100, 500, 100, 60, 45);
 	</object>
     
 	<!-- :::::::::::::::::::::::::: GAME :::::::::::::::::::::::::: -->
-  
+
     <object name="game" brief="Represents the game.">
 
       Most of the interaction will be done via this object.
@@ -1763,7 +1668,7 @@ gl:disable("TEXTURE_2D");
 	</object>
 	
 	<!-- :::::::::::::::::::::::::: TEXT :::::::::::::::::::::::::: -->
-	
+	<!--
     <object name="text" brief="Contains methods for displaying text.">
 	
 	 <function name="print" brief="Prints text onto the screen.">
@@ -1858,6 +1763,7 @@ text:print(100, 300, "Aligned to the what?");
 	 </function>
 	 
 	</object>
+	-->
 	
 	<!-- :::::::::::::::::::::::::: MOUSE :::::::::::::::::::::::::: -->
 	

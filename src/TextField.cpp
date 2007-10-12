@@ -5,7 +5,7 @@ namespace love
 	TextField::TextField(const char * text)
 	{
 		gcn::TextField();
-		setText(text);
+		gcn::TextField::setText(text);
 
 		color = 0;
 		backgroundColor = 0;
@@ -16,6 +16,11 @@ namespace love
 
 	TextField::~TextField()
 	{ }
+
+	void TextField::setText(const char * text)
+	{
+		gcn::TextField::setText(text);
+	}
 
 	void TextField::setColor(AbstractColor * color)
 	{

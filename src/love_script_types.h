@@ -12,8 +12,8 @@
 
 enum script_types
 {
-	script_type_boost__shared_ptrTlove__AbstractImage_t = 0,
-	script_type_boost__shared_ptrTlove__Font_t = 1,
+	script_type_boost__shared_ptrTlove__AbstractFont_t = 0,
+	script_type_boost__shared_ptrTlove__AbstractImage_t = 1,
 	script_type_pEvent = 2,
 	script_type_p_GLuint = 3,
 	script_type_p_ILuint = 4,

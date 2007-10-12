@@ -57,16 +57,24 @@ namespace love
 		void printText(AbstractFont * font, AbstractColor * color);
 
 	public:
+		// WARNING: CONSTANTS MUST CORRELATE WITH VALUES IN love_constants.i
 		static const int LOVE_ALIGN_LEFT = 1;
 		static const int LOVE_ALIGN_RIGHT = 2;
 		static const int LOVE_ALIGN_CENTER = 3;
 		static const int LOVE_ALIGN_TOP = 4;
 		static const int LOVE_ALIGN_BOTTOM = 5;
+		// END_WARNING
 
 		/**
 		 * @brief The default constructor.
 		 **/
 		Text();
+
+		/**
+		 * @param font The desired font.
+		 * @param color The desired color.
+		 * @brief The most commonly used constructor. Sets the desired font and color.
+		 **/
 		Text(AbstractFont * font, AbstractColor * color);
 
 		/**
@@ -87,8 +95,7 @@ namespace love
 		 * @param text Text to be outputted.
 		 * @param font The desired font.
 		 * @param color The desired color.
-		 * @brief A quicker alternative to printf, has one other variation:
-		 *        print(text)
+		 * @brief A quicker alternative to printf.
 		 **/
 		void print(AbstractFont * font, AbstractColor * color, const string & text);
 		void print(AbstractFont * font, AbstractColor * color, const char * text);
@@ -105,10 +112,28 @@ namespace love
 		void print(float x, float y, const string & text);
 		void print(float x, float y, const char * text, AbstractFont * font = 0, AbstractColor * color = 0);
 
+		/**
+		 * @param alignment The alignment of the text (left, right or center).
+		 * @brief Sets the alignment of the text (must be one of the defined constants).
+		 **/
 		void align(int alignment);
-		void align(const char * alignment);
+
+		/**
+		 * @param size The amount of pixels allowed per line.
+		 * @brief Sets the width for the word wrapping.
+		 **/
 		void setLimit(float size);
+
+		/**
+		 * @param font A font.
+		 * @brief Sets the font.
+		 **/
 		void setFont(AbstractFont * font);
+
+		/**
+		 * @param color A color.
+		 * @brief Sets the color.
+		 **/
 		void setColor(AbstractColor * color);
 
 		/**

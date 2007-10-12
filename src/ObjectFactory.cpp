@@ -110,21 +110,7 @@ namespace love
 		return color;
 	}
 
-	pFont ObjectFactory::newDefaultFont(int size) const
-	{
-		// Get a file pointer
-		AbstractFile * file = core->filesystem->getBaseFile("data/fonts/FreeSans.ttf");
-
-		// Create the font
-		pFont font(new Font(file, size));
-
-		// Load it.
-		font->load();
-
-		return font;		
-	}
-
-	pFont ObjectFactory::newFont(const char * filename, int size) const
+	pAbstractFont ObjectFactory::newFont(const char * filename, int size) const
 	{
 		// Get the current source
 		string source = core->current->getSource();
@@ -139,6 +125,27 @@ namespace love
 		font->load();
 
 		return font;		
+	}
+
+	pAbstractFont ObjectFactory::newDefaultFont(int size) const
+	{
+		// Get a file pointer
+		AbstractFile * file = core->filesystem->getBaseFile("data/fonts/FreeSans.ttf");
+
+		// Create the font
+		pFont font(new Font(file, size));
+
+		// Load it.
+		font->load();
+
+		return font;		
+	}
+
+	pAbstractFont ObjectFactory::newImageFont(const pAbstractImage * image, int width, int height, char * charlist) const
+	{
+		pImageFont font(new ImageFont(*image, width, height, charlist));
+		font->load();
+		return font;
 	}
 
 	pParticleSystem ObjectFactory::newParticleSystem() const

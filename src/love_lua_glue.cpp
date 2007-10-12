@@ -1330,8 +1330,8 @@ SWIG_Lua_SetModule(lua_State* L, swig_module_info *module) {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_boost__shared_ptrTlove__AbstractImage_t swig_types[0]
-#define SWIGTYPE_boost__shared_ptrTlove__Font_t swig_types[1]
+#define SWIGTYPE_boost__shared_ptrTlove__AbstractFont_t swig_types[0]
+#define SWIGTYPE_boost__shared_ptrTlove__AbstractImage_t swig_types[1]
 #define SWIGTYPE_pEvent swig_types[2]
 #define SWIGTYPE_p_GLuint swig_types[3]
 #define SWIGTYPE_p_ILuint swig_types[4]
@@ -1451,6 +1451,7 @@ static swig_module_info swig_module = {swig_types, 88, 0, 0, 0, 0};
 #include "AnimatedColor.h"
 #include "AbstractFont.h"
 #include "Font.h"
+#include "ImageFont.h"
 #include "Text.h"
 
 #include "love_globals.h"
@@ -4121,12 +4122,18 @@ static int _wrap_AbstractFont_print__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractFont *arg1 = (love::AbstractFont *) 0 ;
   char *arg2 = (char *) 0 ;
+  float arg3 ;
+  float arg4 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
   arg1=(love::AbstractFont *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractFont,0,1,"AbstractFont_print");
   arg2 = (char*)lua_tostring(L, 2);
-  (arg1)->print((char const *)arg2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  (arg1)->print((char const *)arg2,arg3,arg4);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -4140,17 +4147,16 @@ fail:
 static int _wrap_AbstractFont_print__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractFont *arg1 = (love::AbstractFont *) 0 ;
-  string arg2 ;
+  char *arg2 = (char *) 0 ;
+  float arg3 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
   arg1=(love::AbstractFont *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractFont,0,1,"AbstractFont_print");
-  {
-    string * argp;
-    if(SWIG_ConvertPtr(L,2,(void**)(&argp),SWIGTYPE_p_string,0)) SWIG_fail;
-    arg2 = *argp;
-  }
-  (arg1)->print(arg2);
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (arg1)->print((char const *)arg2,arg3);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -4165,18 +4171,12 @@ static int _wrap_AbstractFont_print__SWIG_2(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractFont *arg1 = (love::AbstractFont *) 0 ;
   char *arg2 = (char *) 0 ;
-  float arg3 ;
-  float arg4 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
   arg1=(love::AbstractFont *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractFont,0,1,"AbstractFont_print");
   arg2 = (char*)lua_tostring(L, 2);
-  arg3 = (float)lua_tonumber(L, 3);
-  arg4 = (float)lua_tonumber(L, 4);
-  (arg1)->print((char const *)arg2,arg3,arg4);
+  (arg1)->print((char const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -4220,13 +4220,20 @@ fail:
 static int _wrap_AbstractFont_print__SWIG_4(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractFont *arg1 = (love::AbstractFont *) 0 ;
-  char arg2 ;
+  string arg2 ;
+  float arg3 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
   arg1=(love::AbstractFont *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractFont,0,1,"AbstractFont_print");
-  arg2 = ((char*)lua_tostring(L, 2))[0];
-  (arg1)->print(arg2);
+  {
+    string * argp;
+    if(SWIG_ConvertPtr(L,2,(void**)(&argp),SWIGTYPE_p_string,0)) SWIG_fail;
+    arg2 = *argp;
+  }
+  arg3 = (float)lua_tonumber(L, 3);
+  (arg1)->print(arg2,arg3);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -4238,6 +4245,30 @@ fail:
 
 
 static int _wrap_AbstractFont_print__SWIG_5(lua_State* L) {
+  int SWIG_arg = -1;
+  love::AbstractFont *arg1 = (love::AbstractFont *) 0 ;
+  string arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::AbstractFont *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractFont,0,1,"AbstractFont_print");
+  {
+    string * argp;
+    if(SWIG_ConvertPtr(L,2,(void**)(&argp),SWIGTYPE_p_string,0)) SWIG_fail;
+    arg2 = *argp;
+  }
+  (arg1)->print(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AbstractFont_print__SWIG_6(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractFont *arg1 = (love::AbstractFont *) 0 ;
   char arg2 ;
@@ -4253,6 +4284,49 @@ static int _wrap_AbstractFont_print__SWIG_5(lua_State* L) {
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
   (arg1)->print(arg2,arg3,arg4);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AbstractFont_print__SWIG_7(lua_State* L) {
+  int SWIG_arg = -1;
+  love::AbstractFont *arg1 = (love::AbstractFont *) 0 ;
+  char arg2 ;
+  float arg3 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(love::AbstractFont *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractFont,0,1,"AbstractFont_print");
+  arg2 = ((char*)lua_tostring(L, 2))[0];
+  arg3 = (float)lua_tonumber(L, 3);
+  (arg1)->print(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AbstractFont_print__SWIG_8(lua_State* L) {
+  int SWIG_arg = -1;
+  love::AbstractFont *arg1 = (love::AbstractFont *) 0 ;
+  char arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(love::AbstractFont *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractFont,0,1,"AbstractFont_print");
+  arg2 = ((char*)lua_tostring(L, 2))[0];
+  (arg1)->print(arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -4290,7 +4364,7 @@ static int _wrap_AbstractFont_print(lua_State* L) {
         }
       }
       if (_v) {
-        return _wrap_AbstractFont_print__SWIG_1(L);
+        return _wrap_AbstractFont_print__SWIG_5(L);
       }
     }
   }
@@ -4309,7 +4383,7 @@ static int _wrap_AbstractFont_print(lua_State* L) {
         _v = lua_isstring(L,argv[1]) && (lua_strlen(L,argv[1])==1);
       }
       if (_v) {
-        return _wrap_AbstractFont_print__SWIG_4(L);
+        return _wrap_AbstractFont_print__SWIG_8(L);
       }
     }
   }
@@ -4328,7 +4402,84 @@ static int _wrap_AbstractFont_print(lua_State* L) {
         _v = lua_isstring(L,argv[1]);
       }
       if (_v) {
-        return _wrap_AbstractFont_print__SWIG_0(L);
+        return _wrap_AbstractFont_print__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__AbstractFont, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_string, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_AbstractFont_print__SWIG_4(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__AbstractFont, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]) && (lua_strlen(L,argv[1])==1);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_AbstractFont_print__SWIG_7(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__AbstractFont, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_AbstractFont_print__SWIG_1(L);
+        }
       }
     }
   }
@@ -4389,7 +4540,7 @@ static int _wrap_AbstractFont_print(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_AbstractFont_print__SWIG_5(L);
+            return _wrap_AbstractFont_print__SWIG_6(L);
           }
         }
       }
@@ -4418,7 +4569,7 @@ static int _wrap_AbstractFont_print(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_AbstractFont_print__SWIG_2(L);
+            return _wrap_AbstractFont_print__SWIG_0(L);
           }
         }
       }
@@ -4566,12 +4717,18 @@ static int _wrap_Font_print__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love::Font *arg1 = (love::Font *) 0 ;
   char *arg2 = (char *) 0 ;
+  float arg3 ;
+  float arg4 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
   arg1=(love::Font *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Font,0,1,"Font_print");
   arg2 = (char*)lua_tostring(L, 2);
-  (arg1)->print((char const *)arg2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  (arg1)->print((char const *)arg2,arg3,arg4);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -4585,17 +4742,16 @@ fail:
 static int _wrap_Font_print__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   love::Font *arg1 = (love::Font *) 0 ;
-  string arg2 ;
+  char *arg2 = (char *) 0 ;
+  float arg3 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
   arg1=(love::Font *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Font,0,1,"Font_print");
-  {
-    string * argp;
-    if(SWIG_ConvertPtr(L,2,(void**)(&argp),SWIGTYPE_p_string,0)) SWIG_fail;
-    arg2 = *argp;
-  }
-  (arg1)->print(arg2);
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (arg1)->print((char const *)arg2,arg3);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -4610,18 +4766,12 @@ static int _wrap_Font_print__SWIG_2(lua_State* L) {
   int SWIG_arg = -1;
   love::Font *arg1 = (love::Font *) 0 ;
   char *arg2 = (char *) 0 ;
-  float arg3 ;
-  float arg4 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
   arg1=(love::Font *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Font,0,1,"Font_print");
   arg2 = (char*)lua_tostring(L, 2);
-  arg3 = (float)lua_tonumber(L, 3);
-  arg4 = (float)lua_tonumber(L, 4);
-  (arg1)->print((char const *)arg2,arg3,arg4);
+  (arg1)->print((char const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -4665,13 +4815,20 @@ fail:
 static int _wrap_Font_print__SWIG_4(lua_State* L) {
   int SWIG_arg = -1;
   love::Font *arg1 = (love::Font *) 0 ;
-  char arg2 ;
+  string arg2 ;
+  float arg3 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
   arg1=(love::Font *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Font,0,1,"Font_print");
-  arg2 = ((char*)lua_tostring(L, 2))[0];
-  (arg1)->print(arg2);
+  {
+    string * argp;
+    if(SWIG_ConvertPtr(L,2,(void**)(&argp),SWIGTYPE_p_string,0)) SWIG_fail;
+    arg2 = *argp;
+  }
+  arg3 = (float)lua_tonumber(L, 3);
+  (arg1)->print(arg2,arg3);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -4683,6 +4840,30 @@ fail:
 
 
 static int _wrap_Font_print__SWIG_5(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Font *arg1 = (love::Font *) 0 ;
+  string arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Font *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Font,0,1,"Font_print");
+  {
+    string * argp;
+    if(SWIG_ConvertPtr(L,2,(void**)(&argp),SWIGTYPE_p_string,0)) SWIG_fail;
+    arg2 = *argp;
+  }
+  (arg1)->print(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Font_print__SWIG_6(lua_State* L) {
   int SWIG_arg = -1;
   love::Font *arg1 = (love::Font *) 0 ;
   char arg2 ;
@@ -4698,6 +4879,49 @@ static int _wrap_Font_print__SWIG_5(lua_State* L) {
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
   (arg1)->print(arg2,arg3,arg4);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Font_print__SWIG_7(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Font *arg1 = (love::Font *) 0 ;
+  char arg2 ;
+  float arg3 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(love::Font *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Font,0,1,"Font_print");
+  arg2 = ((char*)lua_tostring(L, 2))[0];
+  arg3 = (float)lua_tonumber(L, 3);
+  (arg1)->print(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Font_print__SWIG_8(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Font *arg1 = (love::Font *) 0 ;
+  char arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Font *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Font,0,1,"Font_print");
+  arg2 = ((char*)lua_tostring(L, 2))[0];
+  (arg1)->print(arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -4735,7 +4959,7 @@ static int _wrap_Font_print(lua_State* L) {
         }
       }
       if (_v) {
-        return _wrap_Font_print__SWIG_1(L);
+        return _wrap_Font_print__SWIG_5(L);
       }
     }
   }
@@ -4754,7 +4978,7 @@ static int _wrap_Font_print(lua_State* L) {
         _v = lua_isstring(L,argv[1]) && (lua_strlen(L,argv[1])==1);
       }
       if (_v) {
-        return _wrap_Font_print__SWIG_4(L);
+        return _wrap_Font_print__SWIG_8(L);
       }
     }
   }
@@ -4773,7 +4997,84 @@ static int _wrap_Font_print(lua_State* L) {
         _v = lua_isstring(L,argv[1]);
       }
       if (_v) {
-        return _wrap_Font_print__SWIG_0(L);
+        return _wrap_Font_print__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Font, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_string, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_Font_print__SWIG_4(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Font, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]) && (lua_strlen(L,argv[1])==1);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_Font_print__SWIG_7(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Font, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_Font_print__SWIG_1(L);
+        }
       }
     }
   }
@@ -4834,7 +5135,7 @@ static int _wrap_Font_print(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_Font_print__SWIG_5(L);
+            return _wrap_Font_print__SWIG_6(L);
           }
         }
       }
@@ -4863,7 +5164,7 @@ static int _wrap_Font_print(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_Font_print__SWIG_2(L);
+            return _wrap_Font_print__SWIG_0(L);
           }
         }
       }
@@ -4967,7 +5268,7 @@ static swig_lua_attribute swig_love_Font_attributes[] = {
 static swig_lua_class *swig_love_Font_bases[] = {&_wrap_class_love_AbstractFont,0};
 swig_lua_class _wrap_class_love_Font = { "Font", &SWIGTYPE_p_love__Font,_wrap_new_Font, swig_delete_Font, swig_love_Font_methods, swig_love_Font_attributes, swig_love_Font_bases };
 
-static int _wrap_new_Text(lua_State* L) {
+static int _wrap_new_Text__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love::Text *result = 0 ;
   
@@ -4979,6 +5280,67 @@ static int _wrap_new_Text(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
+}
+
+
+static int _wrap_new_Text__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  love::AbstractFont *arg1 = (love::AbstractFont *) 0 ;
+  love::AbstractColor *arg2 = (love::AbstractColor *) 0 ;
+  love::Text *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::AbstractFont *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractFont,0,1,"new_Text");
+  arg2=(love::AbstractColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_love__AbstractColor,0,2,"new_Text");
+  result = (love::Text *)new love::Text(arg1,arg2);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__Text,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_Text(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_Text__SWIG_0(L);
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__AbstractFont, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_love__AbstractColor, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_new_Text__SWIG_1(L);
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'new_Text'");
+  lua_error(L);return 0;
 }
 
 
@@ -5620,7 +5982,7 @@ static int _wrap_Text_print(lua_State* L) {
 }
 
 
-static int _wrap_Text_align__SWIG_0(lua_State* L) {
+static int _wrap_Text_align(lua_State* L) {
   int SWIG_arg = -1;
   love::Text *arg1 = (love::Text *) 0 ;
   int arg2 ;
@@ -5637,77 +5999,6 @@ static int _wrap_Text_align__SWIG_0(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
-}
-
-
-static int _wrap_Text_align__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Text *arg1 = (love::Text *) 0 ;
-  char *arg2 = (char *) 0 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  arg1=(love::Text *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Text,0,1,"Text_align");
-  arg2 = (char*)lua_tostring(L, 2);
-  (arg1)->align((char const *)arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Text_align(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Text, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_Text_align__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Text, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_Text_align__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'Text_align'");
-  lua_error(L);return 0;
 }
 
 
@@ -19843,13 +20134,13 @@ static int _wrap_AbstractGraphics_setBackground(lua_State* L) {
 static int _wrap_AbstractGraphics_setFont__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractGraphics *arg1 = (love::AbstractGraphics *) 0 ;
-  love::pFont *arg2 = (love::pFont *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::AbstractGraphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractGraphics,0,1,"AbstractGraphics_setFont");
-  arg2=(love::pFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__Font_t,0,2,"AbstractGraphics_setFont");
-  (arg1)->setFont((love::pFont const *)arg2);
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"AbstractGraphics_setFont");
+  (arg1)->setFont((love::pAbstractFont const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -19863,14 +20154,14 @@ fail:
 static int _wrap_AbstractGraphics_setFont__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractGraphics *arg1 = (love::AbstractGraphics *) 0 ;
-  love::pFont arg2 ;
+  SwigValueWrapper<boost::shared_ptr<love::AbstractFont > > arg2 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::AbstractGraphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractGraphics,0,1,"AbstractGraphics_setFont");
   {
-    love::pFont * argp;
-    if(SWIG_ConvertPtr(L,2,(void**)(&argp),SWIGTYPE_p_boost__shared_ptrTlove__Font_t,0)) SWIG_fail;
+    love::pAbstractFont * argp;
+    if(SWIG_ConvertPtr(L,2,(void**)(&argp),SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0)) SWIG_fail;
     arg2 = *argp;
   }
   (arg1)->setFont(arg2);
@@ -19904,7 +20195,7 @@ static int _wrap_AbstractGraphics_setFont(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Font_t, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -19928,7 +20219,7 @@ static int _wrap_AbstractGraphics_setFont(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_boost__shared_ptrTlove__Font_t, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_boost__shared_ptrTlove__AbstractFont_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -23556,37 +23847,12 @@ static int _wrap_ObjectFactory_newColor(lua_State* L) {
 }
 
 
-static int _wrap_ObjectFactory_newDefaultFont(lua_State* L) {
-  int SWIG_arg = -1;
-  love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
-  int arg2 ;
-  love::pFont result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(love::ObjectFactory *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ObjectFactory,0,1,"ObjectFactory_newDefaultFont");
-  arg2 = (int)lua_tonumber(L, 2);
-  result = ((love::ObjectFactory const *)arg1)->newDefaultFont(arg2);
-  SWIG_arg=0;
-  {
-    love::pFont * resultptr;
-    resultptr = new love::pFont((love::pFont &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__Font_t,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_ObjectFactory_newFont(lua_State* L) {
   int SWIG_arg = -1;
   love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
   char *arg2 = (char *) 0 ;
   int arg3 ;
-  love::pFont result;
+  SwigValueWrapper<boost::shared_ptr<love::AbstractFont > > result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
@@ -23597,9 +23863,68 @@ static int _wrap_ObjectFactory_newFont(lua_State* L) {
   result = ((love::ObjectFactory const *)arg1)->newFont((char const *)arg2,arg3);
   SWIG_arg=0;
   {
-    love::pFont * resultptr;
-    resultptr = new love::pFont((love::pFont &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__Font_t,1); SWIG_arg++;
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ObjectFactory_newDefaultFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
+  int arg2 ;
+  SwigValueWrapper<boost::shared_ptr<love::AbstractFont > > result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::ObjectFactory *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ObjectFactory,0,1,"ObjectFactory_newDefaultFont");
+  arg2 = (int)lua_tonumber(L, 2);
+  result = ((love::ObjectFactory const *)arg1)->newDefaultFont(arg2);
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ObjectFactory_newImageFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  char *arg5 = (char *) 0 ;
+  SwigValueWrapper<boost::shared_ptr<love::AbstractFont > > result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  if(!lua_isstring(L,5)) SWIG_fail_arg(5);
+  arg1=(love::ObjectFactory *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ObjectFactory,0,1,"ObjectFactory_newImageFont");
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"ObjectFactory_newImageFont");
+  arg3 = (int)lua_tonumber(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  arg5 = (char*)lua_tostring(L, 5);
+  result = ((love::ObjectFactory const *)arg1)->newImageFont((love::pAbstractImage const *)arg2,arg3,arg4,arg5);
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -23790,8 +24115,9 @@ static swig_lua_method swig_love_ObjectFactory_methods[] = {
     {"newMusic", _wrap_ObjectFactory_newMusic}, 
     {"newSound", _wrap_ObjectFactory_newSound}, 
     {"newColor", _wrap_ObjectFactory_newColor}, 
-    {"newDefaultFont", _wrap_ObjectFactory_newDefaultFont}, 
     {"newFont", _wrap_ObjectFactory_newFont}, 
+    {"newDefaultFont", _wrap_ObjectFactory_newDefaultFont}, 
+    {"newImageFont", _wrap_ObjectFactory_newImageFont}, 
     {"newParticleSystem", _wrap_ObjectFactory_newParticleSystem}, 
     {"newBezier", _wrap_ObjectFactory_newBezier}, 
     {0,0}
@@ -28714,12 +29040,18 @@ static int _wrap_SmartFont_print__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Font > *arg1 = (boost::shared_ptr<love::Font > *) 0 ;
   char *arg2 = (char *) 0 ;
+  float arg3 ;
+  float arg4 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
   arg1=(boost::shared_ptr<love::Font > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Font_t,0,1,"SmartFont_print");
   arg2 = (char*)lua_tostring(L, 2);
-  (*arg1)->print((char const *)arg2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  (*arg1)->print((char const *)arg2,arg3,arg4);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -28733,17 +29065,16 @@ fail:
 static int _wrap_SmartFont_print__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Font > *arg1 = (boost::shared_ptr<love::Font > *) 0 ;
-  string arg2 ;
+  char *arg2 = (char *) 0 ;
+  float arg3 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
   arg1=(boost::shared_ptr<love::Font > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Font_t,0,1,"SmartFont_print");
-  {
-    string * argp;
-    if(SWIG_ConvertPtr(L,2,(void**)(&argp),SWIGTYPE_p_string,0)) SWIG_fail;
-    arg2 = *argp;
-  }
-  (*arg1)->print(arg2);
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (*arg1)->print((char const *)arg2,arg3);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -28758,18 +29089,12 @@ static int _wrap_SmartFont_print__SWIG_2(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Font > *arg1 = (boost::shared_ptr<love::Font > *) 0 ;
   char *arg2 = (char *) 0 ;
-  float arg3 ;
-  float arg4 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
   arg1=(boost::shared_ptr<love::Font > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Font_t,0,1,"SmartFont_print");
   arg2 = (char*)lua_tostring(L, 2);
-  arg3 = (float)lua_tonumber(L, 3);
-  arg4 = (float)lua_tonumber(L, 4);
-  (*arg1)->print((char const *)arg2,arg3,arg4);
+  (*arg1)->print((char const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -28813,13 +29138,20 @@ fail:
 static int _wrap_SmartFont_print__SWIG_4(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Font > *arg1 = (boost::shared_ptr<love::Font > *) 0 ;
-  char arg2 ;
+  string arg2 ;
+  float arg3 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
   arg1=(boost::shared_ptr<love::Font > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Font_t,0,1,"SmartFont_print");
-  arg2 = ((char*)lua_tostring(L, 2))[0];
-  (*arg1)->print(arg2);
+  {
+    string * argp;
+    if(SWIG_ConvertPtr(L,2,(void**)(&argp),SWIGTYPE_p_string,0)) SWIG_fail;
+    arg2 = *argp;
+  }
+  arg3 = (float)lua_tonumber(L, 3);
+  (*arg1)->print(arg2,arg3);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -28831,6 +29163,30 @@ fail:
 
 
 static int _wrap_SmartFont_print__SWIG_5(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Font > *arg1 = (boost::shared_ptr<love::Font > *) 0 ;
+  string arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Font > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Font_t,0,1,"SmartFont_print");
+  {
+    string * argp;
+    if(SWIG_ConvertPtr(L,2,(void**)(&argp),SWIGTYPE_p_string,0)) SWIG_fail;
+    arg2 = *argp;
+  }
+  (*arg1)->print(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartFont_print__SWIG_6(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Font > *arg1 = (boost::shared_ptr<love::Font > *) 0 ;
   char arg2 ;
@@ -28846,6 +29202,49 @@ static int _wrap_SmartFont_print__SWIG_5(lua_State* L) {
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
   (*arg1)->print(arg2,arg3,arg4);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartFont_print__SWIG_7(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Font > *arg1 = (boost::shared_ptr<love::Font > *) 0 ;
+  char arg2 ;
+  float arg3 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(boost::shared_ptr<love::Font > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Font_t,0,1,"SmartFont_print");
+  arg2 = ((char*)lua_tostring(L, 2))[0];
+  arg3 = (float)lua_tonumber(L, 3);
+  (*arg1)->print(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartFont_print__SWIG_8(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Font > *arg1 = (boost::shared_ptr<love::Font > *) 0 ;
+  char arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Font > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Font_t,0,1,"SmartFont_print");
+  arg2 = ((char*)lua_tostring(L, 2))[0];
+  (*arg1)->print(arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -28883,7 +29282,7 @@ static int _wrap_SmartFont_print(lua_State* L) {
         }
       }
       if (_v) {
-        return _wrap_SmartFont_print__SWIG_1(L);
+        return _wrap_SmartFont_print__SWIG_5(L);
       }
     }
   }
@@ -28902,7 +29301,7 @@ static int _wrap_SmartFont_print(lua_State* L) {
         _v = lua_isstring(L,argv[1]) && (lua_strlen(L,argv[1])==1);
       }
       if (_v) {
-        return _wrap_SmartFont_print__SWIG_4(L);
+        return _wrap_SmartFont_print__SWIG_8(L);
       }
     }
   }
@@ -28921,7 +29320,84 @@ static int _wrap_SmartFont_print(lua_State* L) {
         _v = lua_isstring(L,argv[1]);
       }
       if (_v) {
-        return _wrap_SmartFont_print__SWIG_0(L);
+        return _wrap_SmartFont_print__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Font_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_string, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_SmartFont_print__SWIG_4(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Font_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]) && (lua_strlen(L,argv[1])==1);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_SmartFont_print__SWIG_7(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Font_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_SmartFont_print__SWIG_1(L);
+        }
       }
     }
   }
@@ -28982,7 +29458,7 @@ static int _wrap_SmartFont_print(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_SmartFont_print__SWIG_5(L);
+            return _wrap_SmartFont_print__SWIG_6(L);
           }
         }
       }
@@ -29011,7 +29487,7 @@ static int _wrap_SmartFont_print(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_SmartFont_print__SWIG_2(L);
+            return _wrap_SmartFont_print__SWIG_0(L);
           }
         }
       }
@@ -32065,11 +32541,11 @@ static const struct luaL_reg swig_commands[] = {
     { "Font_getLineWidth", _wrap_Font_getLineWidth},
     { "Font_load", _wrap_Font_load},
     { "Font_unload", _wrap_Font_unload},
-    { "new_Text", _wrap_new_Text},
+    { "new_Text",_wrap_new_Text},
     { "delete_Text", _wrap_delete_Text},
     { "Text_printf",_wrap_Text_printf},
     { "Text_print",_wrap_Text_print},
-    { "Text_align",_wrap_Text_align},
+    { "Text_align", _wrap_Text_align},
     { "Text_setLimit", _wrap_Text_setLimit},
     { "Text_setFont", _wrap_Text_setFont},
     { "Text_setColor", _wrap_Text_setColor},
@@ -32483,8 +32959,9 @@ static const struct luaL_reg swig_commands[] = {
     { "ObjectFactory_newMusic", _wrap_ObjectFactory_newMusic},
     { "ObjectFactory_newSound", _wrap_ObjectFactory_newSound},
     { "ObjectFactory_newColor",_wrap_ObjectFactory_newColor},
-    { "ObjectFactory_newDefaultFont", _wrap_ObjectFactory_newDefaultFont},
     { "ObjectFactory_newFont", _wrap_ObjectFactory_newFont},
+    { "ObjectFactory_newDefaultFont", _wrap_ObjectFactory_newDefaultFont},
+    { "ObjectFactory_newImageFont", _wrap_ObjectFactory_newImageFont},
     { "ObjectFactory_newParticleSystem", _wrap_ObjectFactory_newParticleSystem},
     { "ObjectFactory_newBezier",_wrap_ObjectFactory_newBezier},
     { "keyboard_set", _wrap_keyboard_set},
@@ -33139,8 +33616,8 @@ static void *_p_love__ColorTo_p_love__AbstractColor(void *x) {
 static void *_p_love__ActorStateTo_p_love__AbstractState(void *x) {
     return (void *)((love::AbstractState *)  ((love::ActorState *) x));
 }
+static swig_type_info _swigt__boost__shared_ptrTlove__AbstractFont_t = {"_boost__shared_ptrTlove__AbstractFont_t", "boost::shared_ptr<love::AbstractFont >|love::pAbstractFont", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__boost__shared_ptrTlove__AbstractImage_t = {"_boost__shared_ptrTlove__AbstractImage_t", "boost::shared_ptr<love::AbstractImage >|love::pAbstractImage", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__boost__shared_ptrTlove__Font_t = {"_boost__shared_ptrTlove__Font_t", "boost::shared_ptr<love::Font >|love::pFont", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__pEvent = {"_pEvent", "pEvent", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_GLuint = {"_p_GLuint", "GLuint *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ILuint = {"_p_ILuint", "ILuint *", 0, 0, (void*)0, 0};
@@ -33229,8 +33706,8 @@ static swig_type_info _swigt__p_vectorTlove__Vector_t = {"_p_vectorTlove__Vector
 static swig_type_info _swigt__string = {"_string", "string", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__boost__shared_ptrTlove__AbstractFont_t,
   &_swigt__boost__shared_ptrTlove__AbstractImage_t,
-  &_swigt__boost__shared_ptrTlove__Font_t,
   &_swigt__pEvent,
   &_swigt__p_GLuint,
   &_swigt__p_ILuint,
@@ -33319,8 +33796,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__string,
 };
 
+static swig_cast_info _swigc__boost__shared_ptrTlove__AbstractFont_t[] = {  {&_swigt__boost__shared_ptrTlove__AbstractFont_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__boost__shared_ptrTlove__AbstractImage_t[] = {  {&_swigt__boost__shared_ptrTlove__AbstractImage_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__boost__shared_ptrTlove__Font_t[] = {  {&_swigt__boost__shared_ptrTlove__Font_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__pEvent[] = {  {&_swigt__pEvent, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_GLuint[] = {  {&_swigt__p_GLuint, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ILuint[] = {  {&_swigt__p_ILuint, 0, 0, 0},{0, 0, 0, 0}};
@@ -33409,8 +33886,8 @@ static swig_cast_info _swigc__p_vectorTlove__Vector_t[] = {  {&_swigt__p_vectorT
 static swig_cast_info _swigc__string[] = {  {&_swigt__string, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__boost__shared_ptrTlove__AbstractFont_t,
   _swigc__boost__shared_ptrTlove__AbstractImage_t,
-  _swigc__boost__shared_ptrTlove__Font_t,
   _swigc__pEvent,
   _swigc__p_GLuint,
   _swigc__p_ILuint,

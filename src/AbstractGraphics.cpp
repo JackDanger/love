@@ -33,12 +33,12 @@ namespace love
 		glClearColor((float)r/255.0f, (float)g/255.0f, (float)b/255.0f, 1.0f);
 	}
 
-	void AbstractGraphics::setFont(const pFont * font)
+	void AbstractGraphics::setFont(const pAbstractFont * font)
 	{
 		this->font = *font;
 	}
 
-	void AbstractGraphics::setFont(pFont font)
+	void AbstractGraphics::setFont(pAbstractFont font)
 	{
 		this->font = font;
 	}

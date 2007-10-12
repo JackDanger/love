@@ -47,12 +47,17 @@ namespace love
 
 		/**
 		 * gcn::Button functions that should be documented:
-		 * setCaption(caption);
 		 * setSize(width, height);
 		 * setWidth(width);
 		 * setHeight(height);
 		 * setBorderSize(size);
 		 */
+
+		/**
+		 * @param caption The text in the button.
+		 * @brief Sets the caption of the button.
+		 **/
+		virtual void setCaption(const char * caption);
 
 		/**
 		 * @brief Adjusts the size of the button to the size of the caption.

@@ -6,7 +6,7 @@ main = {
 	init = function()
 
 		-- variables
-		font = { big = love.objects:newDefaultFont(20), small = love.objects:newDefaultFont(7) };
+		font = { big = love.objects:newDefaultFont(20), small = love.objects:newDefaultFont(7), image = love.objects:newImageFont(love.objects:newImage("letters.png"), 15, 15, "ABCDEFGHIJKLMNOPQRSTUVWXYZ.,!?") };
 		color = { black = love.objects:newColor(0x000000), white = love.objects:newColor(0xFFFFFF), shiznet = love.objects:newColor(0xF60968) };
 		
 		love.graphics:setBackground(color["white"]);
@@ -31,8 +31,11 @@ main = {
 	render = function()
 
 		love.graphics:setColor(color["black"]);
-		love.graphics:setFont(font["big"]);
-		love.graphics:drawText("Truly the best game ever. Because: it has a lot of shapes (loel)\nPress S to shoot and M to start/stop the music\n(arrow keys for valuum desu)!", 10, 35);
+		--love.graphics:setFont(font["big"]);
+		--love.graphics:drawText("Truly the best game ever. Because: it has a lot of shapes (loel)\nPress S to shoot and M to start/stop the music\n(arrow keys for valuum desu)!", 10, 35);
+		--love.graphics:setColor(color["white"]);
+		love.graphics:setFont(font["image"]);
+		love.graphics:drawText("TRULY THE BEST GAME EVER.\nBECAUSE: IT HAS A LOT OF SHAPES (LOEL)\nTHIS IS AN IMAGE FONT, BTW!", 10, 35);
 			  
 		love.graphics:setColor(color["shiznet"]);
 		--gl:enable("MULTISAMPLE");

@@ -6,7 +6,7 @@ namespace love
 	{
 		gcn::Label();
 
-		setCaption(caption);
+		gcn::Label::setCaption(caption);
 
 		align(Text::LOVE_ALIGN_CENTER);
 		valign(Text::LOVE_ALIGN_CENTER);
@@ -20,6 +20,11 @@ namespace love
 
 	Label::~Label()
 	{
+	}
+
+	void Label::setCaption(const char * caption)
+	{
+		gcn::Label::setCaption(string(caption));
 	}
 
 	void Label::adjustSize()

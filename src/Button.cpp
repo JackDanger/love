@@ -6,7 +6,7 @@ namespace love
 	{
 		gcn::Button();
 
-		setCaption(caption);
+		gcn::Button::setCaption(string(caption));
 		//setSize(getFont()->getWidth(caption),getFont()->getHeight());
 
 		setBaseColor(gcn::Color(0,0,0,255));
@@ -28,6 +28,11 @@ namespace love
 
 	Button::~Button()
 	{ }
+
+	void Button::setCaption(const char * caption)
+	{
+		gcn::Button::setCaption(string(caption));
+	}
 
 	void Button::adjustSize()
 	{

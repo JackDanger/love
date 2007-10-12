@@ -23,7 +23,7 @@ namespace love
 	 **/
 	class Label : public gcn::Label
 	{
-	private:
+	protected:
 		AbstractColor * color;
 		AbstractColor * backgroundColor;
 		AbstractColor * borderColor;
@@ -52,71 +52,77 @@ namespace love
 		 */
 
 		/**
+		 * @param caption The text in the label.
+		 * @brief Sets the caption of the label.
+		 **/
+		virtual void setCaption(const char * caption);
+
+		/**
 		 * @brief Adjusts the size of the label according to the size of the caption.
 		 **/
-		void adjustSize();
+		virtual void adjustSize();
 
 		/**
 		 * @param alignment The horizontal alignment (left, right, center).
 		 * @brief Sets the horizontal alignment of the caption.
 		 **/
-		void align(int alignment);
+		virtual void align(int alignment);
 
 		/**
 		 * @param alignment The vertical alignment (top, bottom, center).
 		 * @brief Sets the vertical alignment of the caption.
 		 **/
-		void valign(int alignment);
+		virtual void valign(int alignment);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color.
 		 **/
-		void setColor(AbstractColor * color);
+		virtual void setColor(AbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the background color.
 		 **/
-		void setBackgroundColor(AbstractColor * color);
+		virtual void setBackgroundColor(AbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the border color.
 		 **/
-		void setBorderColor(AbstractColor * color);
+		virtual void setBorderColor(AbstractColor * color);
 
-		void setBackground(AbstractImage * image);
+		virtual void setBackground(AbstractImage * image);
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Gets the text color.
 		 **/
-		AbstractColor * getColor();
+		virtual AbstractColor * getColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Gets the background color.
 		 **/
-		AbstractColor * getBackgroundColor();
+		virtual AbstractColor * getBackgroundColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Gets the border color.
 		 **/
-		AbstractColor * getBorderColor();
+		virtual AbstractColor * getBorderColor();
 
 		/**
 		 * @param graphics A GUIchan Graphics object.
 		 * @brief Draws the label background and text.
 		 **/
-		void draw(gcn::Graphics* graphics);
+		virtual void draw(gcn::Graphics* graphics);
 
 		/**
 		 * @param graphics A GUIchan Graphics object.
 		 * @brief Draws the label border.
 		 **/
-		void drawBorder(gcn::Graphics* graphics);
+		virtual void drawBorder(gcn::Graphics* graphics);
 	};
 
 	typedef boost::shared_ptr<Label> pLabel;

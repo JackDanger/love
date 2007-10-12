@@ -39,7 +39,6 @@ namespace love
 
 		/**
 		 * gcn::TextField functions that should be documented:
-		 * setCaption(caption)
 		 * adjustSize()
 		 * setSize(width, height)
 		 * setWidth(width)
@@ -48,6 +47,12 @@ namespace love
 		 * setText(text)
 		 * getText()
 		 */
+
+		/**
+		 * @param text The text in the text field.
+		 * @brief Sets the text of the text field.
+		 **/
+		virtual void setText(const char * text);
 
 		/**
 		 * @param color An AbstractColor object.

@@ -14,6 +14,7 @@
 #include "AbstractSound.h"
 #include "AbstractMusic.h"
 #include "Font.h"
+#include "ImageFont.h"
 #include "Color.h"
 #include "ParticleSystem.h"
 #include "Bezier.h"
@@ -61,8 +62,9 @@ namespace love
 
 		pColor newColor(int r, int g, int b, int a = 255) const;
 		pColor newColor(int code, int a = 255) const;
-		pFont newDefaultFont(int size) const;
-		pFont newFont(const char * filename, int size) const;
+		pAbstractFont newFont(const char * filename, int size) const;
+		pAbstractFont newDefaultFont(int size) const;
+		pAbstractFont newImageFont(const pAbstractImage * image, int width, int height, char * charlist) const;
 
 		pParticleSystem newParticleSystem() const;
 

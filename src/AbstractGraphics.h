@@ -15,6 +15,7 @@
 #include "ParticleSystem.h"
 #include "AbstractColor.h"
 #include "Color.h"
+#include "AbstractFont.h"
 #include "Font.h"
 #include "Bezier.h"
 
@@ -47,10 +48,10 @@ namespace love
 		pColor background;
 
 		// The current font used for rendering of text.
-		pFont font;
+		pAbstractFont font;
 
 		// A default font we can revert to in case there is no font selected.
-		pFont defaultFont;
+		pAbstractFont defaultFont;
 	
 	public:
 	
@@ -101,14 +102,14 @@ namespace love
 		* @param font The new current Font.
 		* @note The Font object may or may not be shared with others.
 		**/
-		void setFont(const pFont * font);
+		void setFont(const pAbstractFont * font);
 
 		/**
 		* @brief The current Font used for rendering of text. Used by LÖVE.
 		* @param font The new current Font.
 		* @note The Font object may or may not be shared with others.
 		**/
-		void setFont(pFont font);
+		void setFont(pAbstractFont font);
 
 		/**
 		* @brief Draws an AbstractImage at the current coordinates.

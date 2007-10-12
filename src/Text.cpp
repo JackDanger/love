@@ -291,19 +291,10 @@ namespace love
 
 	void Text::align(int alignment)
 	{
-		this->alignment = alignment;
-	}
-
-	void Text::align(const char * alignment)
-	{
-		this->alignment = 1;
-
-		if(strcmp(alignment, "left") == 0)
-			this->alignment = 1;
-		else if(strcmp(alignment, "right") == 0)
-			this->alignment = 2;
-		else if(strcmp(alignment, "center") == 0)
-			this->alignment = 3;
+		// so... bitwise operators, eh?
+		//makes sure the alignment is either 1, 2 or 3
+		if(alignment != 0 && (alignment | 3) == 3)
+			this->alignment = alignment;
 	}
 
 	void Text::setLimit(float size)

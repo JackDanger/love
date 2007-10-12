@@ -9,6 +9,14 @@ namespace love
 {
 	class AbstractFile;
 
+	/**
+	* @class AbstractFont
+	* @version 1.0
+	* @since 1.0
+	* @author Michael Enger
+	* @date 2007-10-03
+	* @brief The abstractionation of the Font class (to incorporate ImageFonts)
+	**/
 	class AbstractFont : public Object, public Loadable, public Resource
 	{
 	protected:

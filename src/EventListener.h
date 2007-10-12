@@ -29,6 +29,9 @@ namespace love
 
 	private:
 	public:
+		static const int LOVE_EVENT_ERROR = 0;
+		static const int LOVE_EVENT_SUCCESS = 1;
+		static const int LOVE_EVENT_GUI = 2;
 		
 		/**
 		* @brief This is called every time an Event "happens".
