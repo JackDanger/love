@@ -29,9 +29,7 @@ namespace love
 		error->setY( (core->display->getHeight() / 2) - (error->getHeight() / 2) );
 
 		error->addImage(errorError)->align(Menu::LOVE_ALIGN_LEFT);
-		error->addLabel("This is an example of some error text. Unfortunately")->align(Menu::LOVE_ALIGN_LEFT);
-		error->addLabel("GUIchan doesn't handle '\\n' or automatic linebreaks,")->align(Menu::LOVE_ALIGN_LEFT);
-		error->addLabel("but that is vital so I'll add it (later).")->align(Menu::LOVE_ALIGN_LEFT);
+		error->addMultilineLabel("This is a label which, even if it doesn't have word\nwrapping, at least allows for the '\\n' character to break\nlines. I are great.")->align(Menu::LOVE_ALIGN_LEFT);
 		error->addLabel("")->setHeight(40);
 		Button * errorButton = error->addButton("OK");
 		errorButton->setBorderColor(new Color(0xe9e9e9));

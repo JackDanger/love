@@ -7,6 +7,7 @@
 #include "Button.h"
 #include "DropDown.h"
 #include "Label.h"
+#include "MultilineLabel.h"
 #include "Padded.h"
 #include "TextField.h"
 
@@ -98,6 +99,7 @@ namespace love
 
 		Menu * addMenu(int type, int width = 0, int height = 0);
 		Label * addLabel(const char * caption, int width = 0, int height = 0);
+		MultilineLabel * addMultilineLabel(const char * caption, int width = 0, int height = 0);
 		Label * addImage(AbstractImage * image);
 		Button * addButton(const char * caption, int width = 0, int height = 0);
 		TextField * addTextField(const char * text, int width = 0, int height = 0);

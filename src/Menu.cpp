@@ -295,6 +295,25 @@ namespace love
 		return temp;
 	}
 
+	MultilineLabel * Menu::addMultilineLabel(const char * caption, int width, int height)
+	{
+		MultilineLabel * temp = new MultilineLabel(caption);
+		temp->setFont(text);
+		temp->setColor(text->getColor());
+
+		temp->adjustSize();
+		if(width != 0)
+			temp->setWidth(width);
+		if(height != 0)
+			temp->setHeight(height);
+		temp->align(alignment);
+		temp->valign(verticalAlignment);
+		positionItem(temp);
+
+		add(temp);
+		return temp;
+	}
+
 	Label * Menu::addImage(AbstractImage * image)
 	{
 		Label * temp = new Label();

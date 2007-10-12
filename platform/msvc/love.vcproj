@@ -497,6 +497,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\MultilineLabel.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Music.cpp"
 				>
 			</File>
@@ -1024,6 +1028,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\MouseMotionListener.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\MultilineLabel.h"
 				>
 			</File>
 			<File
