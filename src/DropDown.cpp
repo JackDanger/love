@@ -11,67 +11,58 @@ namespace love
 		gcn::DropDown::setForegroundColor(gcn::Color(0,0,0,255));
 		gcn::DropDown::setBackgroundColor(gcn::Color(255,255,255,255));
 		gcn::DropDown::setSelectionColor(gcn::Color(255,255,255,255));
-
-		color = 0;
-		backgroundColor = 0;
-		activeColor = 0;
-		activeBackgroundColor = 0;
-		selectionBackgroundColor = 0;
-		borderColor = 0;
-		buttonColor = 0;
-		buttonBackgroundColor = 0;
 	}
 
 	DropDown::~DropDown()
 	{
 	}
 
-	void DropDown::setColor(AbstractColor * color)
+	void DropDown::setColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			this->color = color;
+			this->color = *color;
 	}
 
-	void DropDown::setActiveColor(AbstractColor * color)
+	void DropDown::setActiveColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			activeColor = color;
+			activeColor = *color;
 	}
 
-	void DropDown::setBackgroundColor(AbstractColor * color)
+	void DropDown::setBackgroundColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			backgroundColor = color;
+			backgroundColor = *color;
 	}
 
-	void DropDown::setActiveBackgroundColor(AbstractColor * color)
+	void DropDown::setActiveBackgroundColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			activeBackgroundColor = color;
+			activeBackgroundColor = *color;
 	}
 
-	void DropDown::setSelectionBackgroundColor(AbstractColor * color)
+	void DropDown::setSelectionBackgroundColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			selectionBackgroundColor = color;
+			selectionBackgroundColor = *color;
 	}
 
-	void DropDown::setBorderColor(AbstractColor * color)
+	void DropDown::setBorderColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			borderColor = color;
+			borderColor = *color;
 	}
 
-	void DropDown::setButtonColor(AbstractColor * color)
+	void DropDown::setButtonColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			buttonColor = color;
+			buttonColor = *color;
 	}
 
-	void DropDown::setButtonBackgroundColor(AbstractColor * color)
+	void DropDown::setButtonBackgroundColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			buttonBackgroundColor = color;
+			buttonBackgroundColor = *color;
 	}
 
 	void DropDown::add(const char * text)
@@ -91,13 +82,13 @@ namespace love
 
 	void DropDown::draw(gcn::Graphics * graphics)
 	{
-		if(color != 0)
+		if(color.get() != 0)
 			gcn::DropDown::setForegroundColor(gcn::Color(color->getRed(),color->getGreen(),color->getBlue(),color->getAlpha()));
-		if(backgroundColor != 0)
+		if(backgroundColor.get() != 0)
 			gcn::DropDown::setBackgroundColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
-		if(activeBackgroundColor != 0)
+		if(activeBackgroundColor.get() != 0)
 			gcn::DropDown::setSelectionColor(gcn::Color(activeBackgroundColor->getRed(),activeBackgroundColor->getGreen(),activeBackgroundColor->getBlue(),activeBackgroundColor->getAlpha()));
-		if(selectionBackgroundColor != 0)
+		if(selectionBackgroundColor.get() != 0)
 		{
 			WidgetListIterator iter;
 			for (iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
@@ -112,7 +103,7 @@ namespace love
 		int width = getWidth() + getBorderSize() * 2 - 1;
 		int height = getHeight() + getBorderSize() * 2 - 1;
 		
-		if(borderColor != 0)
+		if(borderColor.get() != 0)
 			graphics->setColor(gcn::Color(borderColor->getRed(),borderColor->getGreen(),borderColor->getBlue(),borderColor->getAlpha()));
 		else
 			graphics->setColor(getForegroundColor());
@@ -127,7 +118,7 @@ namespace love
 
 	void DropDown::drawButton(gcn::Graphics *graphics)
 	{
-		if(buttonBackgroundColor != 0)
+		if(buttonBackgroundColor.get() != 0)
 			setBaseColor(gcn::Color(buttonBackgroundColor->getRed(),buttonBackgroundColor->getGreen(),buttonBackgroundColor->getBlue(),buttonBackgroundColor->getAlpha()));
 
 		gcn::Color faceColor, highlightColor, shadowColor;
@@ -170,7 +161,7 @@ namespace love
 		graphics->setColor(faceColor);
 		graphics->fillRectangle(gcn::Rectangle(x, y, h, h));
 		
-		if(borderColor != 0)
+		if(borderColor.get() != 0)
 			graphics->setColor(gcn::Color(borderColor->getRed(),borderColor->getGreen(),borderColor->getBlue(),borderColor->getAlpha()));
 		else
 			graphics->setColor(getForegroundColor());
@@ -181,7 +172,7 @@ namespace love
 		//graphics->drawLine(x+h-1, y+1, x+h-1, y+h-1);
 		//graphics->drawLine(x+1, y+h-1, x+h-2, y+h-1);
 		
-		if(buttonColor != 0)
+		if(buttonColor.get() != 0)
 			graphics->setColor(gcn::Color(buttonColor->getRed(),buttonColor->getGreen(),buttonColor->getBlue(),buttonColor->getAlpha()));
 		else
 			graphics->setColor(getForegroundColor());

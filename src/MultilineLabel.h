@@ -21,6 +21,7 @@ namespace love
 	protected:
 		vector<string> lines;
 
+
 	public:
 		/**
 		 * @param caption The label's caption.
@@ -42,8 +43,18 @@ namespace love
 		 * setBorderSize(size)
 		 */
 
+		/**
+		 * @param caption The text in the multiline label.
+		 * @brief Sets the caption.
+		 **/
 		virtual void setCaption(const string & caption);
 		virtual void setCaption(const char * caption);
+
+		/**
+		 * @return The new height.
+		 * @brief Adjusts the content in the label. Splitting the lines depending on the width of the label.
+		 **/
+		virtual int adjustContent();
 
 		/**
 		 * @brief Adjusts the size of the label according to the size of the caption. This also splits the lines and calculates the width and height.

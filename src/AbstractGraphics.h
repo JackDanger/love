@@ -42,10 +42,10 @@ namespace love
 	protected:
 
 		// The color used for rendering text, primitives, and anything that isn't the background.
-		pColor color;
+		pAbstractColor color;
 
 		// The background color.
-		pColor background;
+		pAbstractColor background;
 
 		// The current font used for rendering of text.
 		pAbstractFont font;
@@ -70,7 +70,7 @@ namespace love
 		* @param color The new color. 
 		* @note The color may or may not be shared with others. (Due to use of shared_ptr).
 		**/
-		void setColor(const pColor * color);
+		void setColor(const pAbstractColor * color);
 
 		/**
 		* @brief Sets the current (foreground) color directly.
@@ -86,7 +86,7 @@ namespace love
 		* @param color The new background color.
 		* @note The color may or may not be shared/used by others. ^-^ Using shared_ptr!
 		**/
-		void setBackground(const pColor * color);
+		void setBackground(const pAbstractColor * color);
 
 		/**
 		* @brief Sets the background color directly.
@@ -110,6 +110,24 @@ namespace love
 		* @note The Font object may or may not be shared with others.
 		**/
 		void setFont(pAbstractFont font);
+
+		/**
+		 * @return An AbstractColor object.
+		 * @brief Returns the current color.
+		 **/
+		pAbstractColor getColor();
+
+		/**
+		 * @return An AbstractColor object.
+		 * @brief Returns the current background color.
+		 **/
+		pAbstractColor getBackground();
+
+		/**
+		 * @return An AbstractFont object.
+		 * @brief Returns the current font.
+		 **/
+		pAbstractFont getFont();
 
 		/**
 		* @brief Draws an AbstractImage at the current coordinates.

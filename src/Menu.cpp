@@ -1,17 +1,19 @@
 #include "Menu.h"
 #include "GUIText.h"
+#include "Core.h"
+#include "love.h"
 
 namespace love
 {
-	Menu::Menu(int type)
+	Menu::Menu(pAbstractFont font, pAbstractColor color, int type)
 	{
 		gcn::Container();
 		gcn::Container::setOpaque(false); //makes the background invisible
 
-		text = new GUIText(0,0);
-		color = 0;
-		backgroundColor = 0;
-		background = 0;
+		text = new GUIText(font, color);
+		//color = 0;
+		//backgroundColor = 0;
+		//background = 0;
 		this->type = type;
 		spacing = 0;
 		position = 0;
@@ -22,6 +24,68 @@ namespace love
 
 	Menu::~Menu()
 	{
+		delete text;
+	}
+
+	int Menu::getWidth()
+	{
+		return gcn::Container::getWidth();
+	}
+
+	int Menu::getHeight()
+	{
+		return gcn::Container::getHeight();
+	}
+
+	int Menu::getX()
+	{
+		return gcn::Container::getX();
+	}
+
+	int Menu::getY()
+		
+	{
+		return gcn::Container::getY();
+	}
+
+	void Menu::setSize(int width, int height)
+	{
+		gcn::Container::setSize(width, height);
+	}
+
+	void Menu::setWidth(int width)
+	{
+		gcn::Container::setWidth(width);
+	}
+
+	void Menu::setHeight(int height)
+	{
+		gcn::Container::setHeight(height);
+	}
+
+	void Menu::setPosition(int x, int y)
+	{
+		gcn::Container::setPosition(x,y);
+	}
+
+	void Menu::setX(int x)
+	{
+		gcn::Container::setX(x);
+	}
+
+	void Menu::setY(int y)
+	{
+		gcn::Container::setY(y);
+	}
+
+	void Menu::show()
+	{
+		this->setOpaque(true);
+	}
+
+	void Menu::hide()
+	{
+		this->setOpaque(true);
 	}
 
 	void Menu::setFont(AbstractFont * font)
@@ -29,21 +93,26 @@ namespace love
 		text->setFont(font);
 	}
 
-	void Menu::setColor(AbstractColor * color)
+	void Menu::setFont(const pAbstractFont * font)
 	{
-		this->color = color;
-		text->setColor(color);
+		text->setFont(*font);
 	}
 
-	void Menu::setBackgroundColor(AbstractColor * color)
+	void Menu::setColor(const pAbstractColor * color)
 	{
-		backgroundColor = color;
+		this->color = *color;
+		text->setColor(*color);
+	}
+
+	void Menu::setBackgroundColor(const pAbstractColor * color)
+	{
+		backgroundColor = *color;
 		gcn::Container::setOpaque(true);
 	}
 
-	void Menu::setBackground(AbstractImage * image)
+	void Menu::setBackground(const pAbstractImage * image)
 	{
-		background = image;
+		background = *image;
 		gcn::Container::setOpaque(true);
 	}
 
@@ -264,9 +333,8 @@ namespace love
 
 	Menu * Menu::addMenu(int type, int width, int height)
 	{
-		Menu * temp = new Menu(type);
+		Menu * temp = new Menu(text->getFont(), color, type);
 
-		temp->setFont(text->getFont());
 		temp->setSize(width, height);
 		temp->align(alignment);
 		temp->valign(verticalAlignment);
@@ -280,7 +348,7 @@ namespace love
 	{
 		Label * temp = new Label(caption);
 		temp->setFont(text);
-		temp->setColor(text->getColor());
+		temp->setColor(&text->getColor());
 
 		temp->adjustSize();
 		if(width != 0)
@@ -299,13 +367,16 @@ namespace love
 	{
 		MultilineLabel * temp = new MultilineLabel(caption);
 		temp->setFont(text);
-		temp->setColor(text->getColor());
+		temp->setColor(&text->getColor());
 
-		temp->adjustSize();
 		if(width != 0)
 			temp->setWidth(width);
+		else
+			temp->setWidth(getWidth() - getPaddingLeft() - getPaddingRight());
 		if(height != 0)
 			temp->setHeight(height);
+		temp->adjustContent();
+		temp->adjustSize();
 		temp->align(alignment);
 		temp->valign(verticalAlignment);
 		positionItem(temp);
@@ -314,7 +385,7 @@ namespace love
 		return temp;
 	}
 
-	Label * Menu::addImage(AbstractImage * image)
+	Label * Menu::addImage(const pAbstractImage * image)
 	{
 		Label * temp = new Label();
 		temp->setBackground(image);
@@ -330,7 +401,7 @@ namespace love
 	{
 		Button * temp = new Button(caption);
 		temp->setFont(text);
-		temp->setColor(text->getColor());
+		temp->setColor(&text->getColor());
 
 		temp->adjustSize();
 		if(width != 0)
@@ -349,7 +420,7 @@ namespace love
 	{
 		TextField * temp = new TextField(text);
 		temp->setFont(this->text);
-		temp->setColor(this->text->getColor());
+		temp->setColor(&this->text->getColor());
 
 		temp->adjustSize();
 		if(width != 0)
@@ -367,7 +438,7 @@ namespace love
 		GUIList * tlist = new GUIList();
 		DropDown * temp = new DropDown(tlist);
 		temp->setFont(text);
-		temp->setColor(text->getColor());
+		temp->setColor(&text->getColor());
 
 		temp->adjustHeight();
 		if(width != 0)

@@ -21,6 +21,15 @@ main = {
 		mus = game:addMusic("so cold", "test.mp3");
 		--mus:play(1);
 		
+		menu = love.objects:newMenu();
+		menu:setSize(400,400);
+		menu:setPosition(50, 50);
+		--menu:setFont(font["small"]);
+		menu:setBackgroundColor(color["shiznet"]);
+		
+		menu:addMultilineLabel("ass\nTHIS IS SPARTA (again)");
+		menu:addImage(love.objects:newImage("letters.png"));
+		
 	end,
 	update = function(dt)
 	

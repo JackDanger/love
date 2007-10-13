@@ -8,6 +8,7 @@
 #include "Menu.h"
 #include "Renderable.h"
 #include "Updateable.h"
+#include "EventListener.h"
 
 #include <guichan.hpp>
 #include <guichan/opengl.hpp>
@@ -24,16 +25,17 @@ namespace love
 		gcn::OpenGLGraphics * graphics;
 		gcn::OpenGLSDLImageLoader* imageLoader;
 		gcn::Container * top;
-		AbstractColor * color;
-		AbstractFont * lovefont;
-		AbstractColor * lovecolor;
+
+		pAbstractColor color;
+		pAbstractFont lovefont;
+		pAbstractColor lovecolor;
 		GUIText * text;
 
 		// the default error/warning messages
-		Menu * error;
-		AbstractImage * errorBackground;
-		AbstractImage * errorWarning;
-		AbstractImage * errorError;
+		pMenu error;
+		pAbstractImage errorBackground;
+		pAbstractImage errorWarning;
+		pAbstractImage errorError;
 
 	public:
 		OpenGLGUI();
@@ -43,6 +45,8 @@ namespace love
 		void showWarning(const char * text);
 
 		void action(const gcn::ActionEvent& actionEvent);
+
+		void add(pMenu menu);
 
 		void init();
 		void render();

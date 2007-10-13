@@ -11,17 +11,17 @@ namespace love
 	{
 	}
 	
-	void AbstractGraphics::setColor(const pColor * color)
+	void AbstractGraphics::setColor(const pAbstractColor * color)
 	{
 		this->color = *color;
 	}
 
 	void AbstractGraphics::setColor(int r, int g, int b, int a)
 	{
-		this->color.reset<Color>(new Color(r, g, b, a));
+		this->color.reset<AbstractColor>(new Color(r, g, b, a));
 	}
 
-	void AbstractGraphics::setBackground(const pColor * color)
+	void AbstractGraphics::setBackground(const pAbstractColor * color)
 	{
 		this->background = *color;
 		glClearColor((float)background->getRed()/255.0f, (float)background->getGreen()/255.0f, (float)background->getBlue()/255.0f, 1.0f);
@@ -41,6 +41,21 @@ namespace love
 	void AbstractGraphics::setFont(pAbstractFont font)
 	{
 		this->font = font;
+	}
+
+	pAbstractColor AbstractGraphics::getColor()
+	{
+		return color;
+	}
+
+	pAbstractColor AbstractGraphics::getBackground()
+	{
+		return background;
+	}
+
+	pAbstractFont AbstractGraphics::getFont()
+	{
+		return font;
 	}
 
 	void AbstractGraphics::drawSprite(const pAbstractImage * sprite) const

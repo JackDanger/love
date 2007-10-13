@@ -79,6 +79,8 @@ int FontTexGame::load()
 
 	 **/
 
+	/*
+
 	imageLoader = new gcn::OpenGLSDLImageLoader();
     gcn::Image::setImageLoader(imageLoader);
 
@@ -155,6 +157,8 @@ int FontTexGame::load()
     /*
      * Add them to the top container
      */
+
+	/*
 
 	top->setBaseColor(gcn::Color(0xFFFFFF));
 

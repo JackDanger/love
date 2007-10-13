@@ -35,77 +35,77 @@ namespace love
 	{
 		if(font == 0) font = defaultFont.get();
 
-			if(limit <= 0)
+		if(limit <= 0)
+		{
+			createLines(text);
+			return;
+		}
+
+		vector<string> words;
+		vector<float> sizes;
+		float size = 0;
+		string temp;
+		lines.clear();
+		words.clear();
+		sizes.clear();
+
+		for(int i = 0; i != MAX_SIZE && text[i] != '\0'; i++)
+		{
+			if(text[i] == '\n')
 			{
-				createLines(text);
-				return;
+				words.push_back(temp);
+				sizes.push_back(size);
+				words.push_back("\n");
+				sizes.push_back(0.0f);
+				size = 0;
+				temp = "";
 			}
-
-			vector<string> words;
-			vector<float> sizes;
-			float size = 0;
-			string temp;
-			lines.clear();
-			words.clear();
-			sizes.clear();
-
-			for(int i = 0; i != MAX_SIZE && text[i] != '\0'; i++)
+			else if(text[i] == ' ')
 			{
-				if(text[i] == '\n')
-				{
-					words.push_back(temp);
-					sizes.push_back(size);
-					words.push_back("\n");
-					sizes.push_back(0.0f);
-					size = 0;
-					temp = "";
-				}
-				else if(text[i] == ' ')
-				{
-					temp += text[i];
-					size += font->width[(int)' '];
-					words.push_back(temp);
-					sizes.push_back(size);
-					size = 0;
-					temp = "";
-				}
-				else
-				{
-					temp += text[i];
-					size += font->width[(int)text[i]];
-				}
+				temp += text[i];
+				size += font->width[(int)' '];
+				words.push_back(temp);
+				sizes.push_back(size);
+				size = 0;
+				temp = "";
 			}
-			//takes the last one and pushes it
-			words.push_back(temp);
-			sizes.push_back(size);
-
-			temp = "";
-			size = 0;
-			for(int i = 0; i != words.size(); i++)
+			else
 			{
-				if(words.at(i) == "\n")
+				temp += text[i];
+				size += font->width[(int)text[i]];
+			}
+		}
+		//takes the last one and pushes it
+		words.push_back(temp);
+		sizes.push_back(size);
+
+		temp = "";
+		size = 0;
+		for(int i = 0; i != words.size(); i++)
+		{
+			if(words.at(i) == "\n")
+			{
+				lines.push_back(temp);
+				size = 0;
+				temp = "";
+			}
+			else
+			{
+				size += sizes.at(i);
+				
+				if(size > limit && size != sizes.at(i))
 				{
 					lines.push_back(temp);
-					size = 0;
-					temp = "";
+					size = sizes.at(i);
+					temp = words.at(i);
 				}
 				else
-				{
-					size += sizes.at(i);
-					
-					if(size > limit && size != sizes.at(i))
-					{
-						lines.push_back(temp);
-						size = sizes.at(i);
-						temp = words.at(i);
-					}
-					else
-						temp += words.at(i);
-				}
+					temp += words.at(i);
 			}
-			//push the last one
-			lines.push_back(temp);
 		}
+		//push the last one
+		lines.push_back(temp);
+	}
 
 	void Text::printText(AbstractFont * font, AbstractColor * color)
 	{
@@ -186,7 +186,9 @@ namespace love
 	}
 
 	Text::~Text()
-	{}
+	{
+		//unload(); // don't do this... this is bad
+	}
 
 	void Text::printf(AbstractFont * font, AbstractColor * color, const char * text, ...)
 	{

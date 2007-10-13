@@ -93,7 +93,7 @@ namespace love
 		return sound;
 	}
 
-	pColor ObjectFactory::newColor(int r, int g, int b, int a) const
+	pAbstractColor ObjectFactory::newColor(int r, int g, int b, int a) const
 	{
 		// Create the color
 		pColor color(new Color(r, g, b, a));
@@ -101,7 +101,7 @@ namespace love
 		return color;
 	}
 
-	pColor ObjectFactory::newColor(int code, int a) const
+	pAbstractColor ObjectFactory::newColor(int code, int a) const
 	{
 		// Create the color
 		pColor color(new Color(code));
@@ -166,6 +166,14 @@ namespace love
 		pBezier b(new Bezier());
 		b->first(x1, y1, x2, y2, x3, y3, x4, y4);
 		return b;
+	}
+
+	pMenu ObjectFactory::newMenu(int type)
+	{
+		pMenu m(new Menu(core->graphics->getFont(), core->graphics->getColor(), type));
+
+		core->gui->add(m);
+		return m;
 	}
 	
 

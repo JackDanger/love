@@ -10,12 +10,6 @@ namespace love
 
 		align(Text::LOVE_ALIGN_CENTER);
 		valign(Text::LOVE_ALIGN_CENTER);
-
-		color = 0;
-		backgroundColor = 0;
-		borderColor = 0;
-
-		background = 0;
 	}
 
 	Label::~Label()
@@ -63,42 +57,47 @@ namespace love
 		verticalAlignment = alignment;
 	}
 
-	void Label::setColor(AbstractColor * color)
+	void Label::setColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			this->color = color;
+			this->color = *color;
 	}
 
-	void Label::setBackgroundColor(AbstractColor * color)
+	void Label::setBackgroundColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			backgroundColor = color;
+			backgroundColor = *color;
 	}
 
-	void Label::setBorderColor(AbstractColor * color)
+	void Label::setBorderColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			borderColor = color;
+			borderColor = *color;
 	}
 
-	void Label::setBackground(AbstractImage * image)
+	void Label::setBackground(const pAbstractImage * image)
 	{
-		background = image;
+		background = *image;
 	}
 
-	AbstractColor * Label::getColor()
+	pAbstractColor Label::getColor()
 	{
 		return color;
 	}
 
-	AbstractColor * Label::getBackgroundColor()
+	pAbstractColor Label::getBackgroundColor()
 	{
 		return backgroundColor;
 	}
 
-	AbstractColor * Label::getBorderColor()
+	pAbstractColor Label::getBorderColor()
 	{
 		return borderColor;
+	}
+
+	pAbstractImage Label::getBackground()
+	{
+		return background;
 	}
 
 	void Label::draw(gcn::Graphics* graphics)
@@ -187,7 +186,8 @@ namespace love
 		else
 			graphics->setColor(gcn::Color(0,0,0,255));
 
-		graphics->drawText(getCaption(),x,y);
+		string temp = getCaption();
+		graphics->drawText(temp,x,y);
 	}
 
 	void Label::drawBorder(gcn::Graphics* graphics)

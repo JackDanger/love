@@ -18,6 +18,7 @@
 #include "Color.h"
 #include "ParticleSystem.h"
 #include "Bezier.h"
+#include "Menu.h"
 
 
 // STL
@@ -60,8 +61,8 @@ namespace love
 		pAbstractMusic newMusic(const char * filename) const;
 		pAbstractSound newSound(const char * filename) const;
 
-		pColor newColor(int r, int g, int b, int a = 255) const;
-		pColor newColor(int code, int a = 255) const;
+		pAbstractColor newColor(int r, int g, int b, int a = 255) const;
+		pAbstractColor newColor(int code, int a = 255) const;
 		pAbstractFont newFont(const char * filename, int size) const;
 		pAbstractFont newDefaultFont(int size) const;
 		pAbstractFont newImageFont(const pAbstractImage * image, int width, int height, char * charlist) const;
@@ -70,6 +71,8 @@ namespace love
 
 		pBezier newBezier() const;
 		pBezier newBezier(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const;
+
+		pMenu newMenu(int type = Menu::LOVE_MENU_VERTICAL);
 		
 	}; // ObjectFactory
 	

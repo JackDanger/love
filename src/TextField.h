@@ -19,11 +19,11 @@ namespace love
 	class TextField : public gcn::TextField
 	{
 	private:
-		AbstractColor * color;
-		AbstractColor * backgroundColor;
-		AbstractColor * borderColor;
-		AbstractColor * activeColor;
-		AbstractColor * activeBackgroundColor;
+		pAbstractColor color;
+		pAbstractColor backgroundColor;
+		pAbstractColor borderColor;
+		pAbstractColor activeColor;
+		pAbstractColor activeBackgroundColor;
 
 	public:
 		/**
@@ -58,61 +58,61 @@ namespace love
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color.
 		 **/
-		void setColor(AbstractColor * color);
+		void setColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color when the text field is active.
 		 **/
-		void setActiveColor(AbstractColor * color);
+		void setActiveColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the background color.
 		 **/
-		void setBackgroundColor(AbstractColor * color);
+		void setBackgroundColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the background color when the text field is active.
 		 **/
-		void setActiveBackgroundColor(AbstractColor * color);
+		void setActiveBackgroundColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the border color.
 		 **/
-		void setBorderColor(AbstractColor * color);
+		void setBorderColor(const pAbstractColor * color);
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the text color.
 		 **/
-		AbstractColor * getColor();
+		pAbstractColor getColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the background color.
 		 **/
-		AbstractColor * getBackgroundColor();
+		pAbstractColor getBackgroundColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the text color when the text label is active.
 		 **/
-		AbstractColor * getActiveColor();
+		pAbstractColor getActiveColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the background color when the text label is active.
 		 **/
-		AbstractColor * getActiveBackgroundColor();
+		pAbstractColor getActiveBackgroundColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the border color.
 		 **/
-		AbstractColor * getBorderColor();
+		pAbstractColor getBorderColor();
 
 		/**
 		 * @param graphics A GUIchan Graphics object.

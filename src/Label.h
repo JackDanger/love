@@ -24,10 +24,10 @@ namespace love
 	class Label : public gcn::Label
 	{
 	protected:
-		AbstractColor * color;
-		AbstractColor * backgroundColor;
-		AbstractColor * borderColor;
-		AbstractImage * background;
+		pAbstractColor color;
+		pAbstractColor backgroundColor;
+		pAbstractColor borderColor;
+		pAbstractImage background;
 		int verticalAlignment;
 
 	public:
@@ -78,39 +78,45 @@ namespace love
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color.
 		 **/
-		virtual void setColor(AbstractColor * color);
+		virtual void setColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the background color.
 		 **/
-		virtual void setBackgroundColor(AbstractColor * color);
+		virtual void setBackgroundColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the border color.
 		 **/
-		virtual void setBorderColor(AbstractColor * color);
+		virtual void setBorderColor(const pAbstractColor * color);
 
-		virtual void setBackground(AbstractImage * image);
+		virtual void setBackground(const pAbstractImage * image);
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Gets the text color.
 		 **/
-		virtual AbstractColor * getColor();
+		virtual pAbstractColor getColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Gets the background color.
 		 **/
-		virtual AbstractColor * getBackgroundColor();
+		virtual pAbstractColor getBackgroundColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Gets the border color.
 		 **/
-		virtual AbstractColor * getBorderColor();
+		virtual pAbstractColor getBorderColor();
+
+		/**
+		 * @return An AbstractImage object.
+		 * @brief Gets the background image.
+		 **/
+		virtual pAbstractImage getBackground();
 
 		/**
 		 * @param graphics A GUIchan Graphics object.

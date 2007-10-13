@@ -52,6 +52,13 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 
+#include "Button.h"
+#include "DropDown.h"
+#include "Label.h"
+#include "MultilineLabel.h"
+#include "TextField.h"
+#include "Menu.h"
+
 #include "Game.h"
 #include "LuaGame.h"
 #include "Timer.h"
@@ -115,7 +122,12 @@ namespace boost {
 %include "ActorState.h"
 %include "Actor.h"
 
-
+%include "Button.h"
+%include "DropDown.h"
+%include "Label.h"
+%include "MultilineLabel.h"
+%include "TextField.h"
+%include "Menu.h"
 
 %include "Sprite.h"
 %include "AbstractImage.h"
@@ -149,3 +161,4 @@ namespace boost {
 %template(SmartFont) boost::shared_ptr<love::Font>;
 %template(SmartParticleSystem) boost::shared_ptr<love::ParticleSystem>;
 %template(SmartBezier) boost::shared_ptr<love::Bezier>;
+%template(SmartMenu) boost::shared_ptr<love::Menu>;

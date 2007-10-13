@@ -6,12 +6,6 @@ namespace love
 	{
 		gcn::TextField();
 		gcn::TextField::setText(text);
-
-		color = 0;
-		backgroundColor = 0;
-		borderColor = 0;
-		activeColor = 0;
-		activeBackgroundColor = 0;
 	}
 
 	TextField::~TextField()
@@ -22,66 +16,66 @@ namespace love
 		gcn::TextField::setText(text);
 	}
 
-	void TextField::setColor(AbstractColor * color)
+	void TextField::setColor(const pAbstractColor * color)
 	{
-		this->color = color;
+		this->color = *color;
 	}
 
-	void TextField::setBackgroundColor(AbstractColor * color)
+	void TextField::setBackgroundColor(const pAbstractColor * color)
 	{
-		backgroundColor = color;
+		backgroundColor = *color;
 	}
 
-	void TextField::setBorderColor(AbstractColor * color)
+	void TextField::setBorderColor(const pAbstractColor * color)
 	{
-		borderColor = color;
+		borderColor = *color;
 	}
 
-	void TextField::setActiveColor(AbstractColor * color)
+	void TextField::setActiveColor(const pAbstractColor * color)
 	{
-		activeColor = color;
+		activeColor = *color;
 	}
 
-	void TextField::setActiveBackgroundColor(AbstractColor * color)
+	void TextField::setActiveBackgroundColor(const pAbstractColor * color)
 	{
-		activeBackgroundColor = color;
+		activeBackgroundColor = *color;
 	}
 
-	AbstractColor * TextField::getColor()
+	pAbstractColor TextField::getColor()
 	{
 		return color;
 	}
 
-	AbstractColor * TextField::getBackgroundColor()
+	pAbstractColor TextField::getBackgroundColor()
 	{
 		return backgroundColor;
 	}
 
-	AbstractColor * TextField::getActiveColor()
+	pAbstractColor TextField::getActiveColor()
 	{
 		return activeColor;
 	}
 
-	AbstractColor * TextField::getActiveBackgroundColor()
+	pAbstractColor TextField::getActiveBackgroundColor()
 	{
 		return activeBackgroundColor;
 	}
 
-	AbstractColor * TextField::getBorderColor()
+	pAbstractColor TextField::getBorderColor()
 	{
 		return borderColor;
 	}
 
 	void TextField::draw(gcn::Graphics* graphics)
 	{
-		if(isFocused() && activeColor != 0)
+		if(isFocused() && activeColor.get() != 0)
 			gcn::TextField::setForegroundColor(gcn::Color(activeColor->getRed(),activeColor->getGreen(),activeColor->getBlue(),activeColor->getAlpha()));
-		else if(color != 0)
+		else if(color.get() != 0)
 			gcn::TextField::setForegroundColor(gcn::Color(color->getRed(),color->getGreen(),color->getBlue(),color->getAlpha()));
 		
-		if(isFocused() && activeBackgroundColor != 0)
+		if(isFocused() && activeBackgroundColor.get() != 0)
 			gcn::TextField::setBackgroundColor(gcn::Color(activeBackgroundColor->getRed(),activeBackgroundColor->getGreen(),activeBackgroundColor->getBlue(),activeBackgroundColor->getAlpha()));
-		else if(backgroundColor != 0)
+		else if(backgroundColor.get() != 0)
 			gcn::TextField::setBackgroundColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
 		gcn::TextField::draw(graphics);
 	}
@@ -91,7 +85,7 @@ namespace love
 		int width = getWidth() + getBorderSize() * 2 - 1;
 		int height = getHeight() + getBorderSize() * 2 - 1;
 
-		if(borderColor != 0)
+		if(borderColor.get() != 0)
 			graphics->setColor(gcn::Color(borderColor->getRed(),borderColor->getGreen(),borderColor->getBlue(),borderColor->getAlpha()));
 		else
 			graphics->setColor(gcn::Color(0x000000));

@@ -124,7 +124,7 @@ namespace love
 		// GUI stuffs (needs work lol)
 		gui = new OpenGLGUI();
 		gui->init();
-		gui->showError("hello");
+		gui->showError("Something went wrong!\n(but you don't get to know what)");
 
 		// add a default default font
 		pFont defaultFont(new Font(filesystem->getBaseFile("data/fonts/FreeSans.ttf"), 14));

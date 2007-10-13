@@ -21,14 +21,14 @@ namespace love
 	{
 	private:
 		GUIList * list;
-		AbstractColor * color;
-		AbstractColor * activeColor;
-		AbstractColor * backgroundColor;
-		AbstractColor * activeBackgroundColor;
-		AbstractColor * selectionBackgroundColor;
-		AbstractColor * borderColor;
-		AbstractColor * buttonColor;
-		AbstractColor * buttonBackgroundColor;
+		pAbstractColor color;
+		pAbstractColor activeColor;
+		pAbstractColor backgroundColor;
+		pAbstractColor activeBackgroundColor;
+		pAbstractColor selectionBackgroundColor;
+		pAbstractColor borderColor;
+		pAbstractColor buttonColor;
+		pAbstractColor buttonBackgroundColor;
 
 	public:
 		DropDown(GUIList * list);
@@ -43,14 +43,14 @@ namespace love
 		 * adjustHeight()
 		 */
 
-		void setColor(AbstractColor * color);
-		void setActiveColor(AbstractColor * color);
-		void setBackgroundColor(AbstractColor * color);
-		void setActiveBackgroundColor(AbstractColor * color);
-		void setSelectionBackgroundColor(AbstractColor * color);
-		void setBorderColor(AbstractColor * color);
-		void setButtonColor(AbstractColor * color);
-		void setButtonBackgroundColor(AbstractColor * color);
+		void setColor(const pAbstractColor * color);
+		void setActiveColor(const pAbstractColor * color);
+		void setBackgroundColor(const pAbstractColor * color);
+		void setActiveBackgroundColor(const pAbstractColor * color);
+		void setSelectionBackgroundColor(const pAbstractColor * color);
+		void setBorderColor(const pAbstractColor * color);
+		void setButtonColor(const pAbstractColor * color);
+		void setButtonBackgroundColor(const pAbstractColor * color);
 
 		void add(const char * text);
 		void remove(int i);

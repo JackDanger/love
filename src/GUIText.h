@@ -18,11 +18,11 @@ namespace love
 	class GUIText : public gcn::Font
 	{
 	private:
-		love::AbstractFont * font;
-		AbstractColor * color;
+		pAbstractFont font;
+		pAbstractColor color;
 
 	public:
-		GUIText(love::AbstractFont * font, AbstractColor * color);
+		GUIText(pAbstractFont font, pAbstractColor color);
        
 		virtual ~GUIText();
 
@@ -34,10 +34,11 @@ namespace love
 
 		virtual void setColor(gcn::Color color);
 		
-		virtual love::AbstractFont * getFont();
-		virtual void setFont(love::AbstractFont * font);
-		virtual AbstractColor * getColor();
-		virtual void setColor(AbstractColor * color);
+		virtual pAbstractFont getFont();
+		virtual void setFont(AbstractFont * font);
+		virtual void setFont(pAbstractFont font);
+		virtual pAbstractColor getColor();
+		virtual void setColor(pAbstractColor color);
 
         virtual void drawString(gcn::Graphics* graphics, const std::string& text, int x, int y);
 	};

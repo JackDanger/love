@@ -11,16 +11,6 @@ namespace love
 
 		setBaseColor(gcn::Color(0,0,0,255));
 		setBorderSize(0);
-		
-		color = 0;
-		hoverColor = 0;
-		pressedColor = 0;
-		activeColor = 0;
-		backgroundColor = 0;
-		hoverBackgroundColor = 0;
-		pressedBackgroundColor = 0;
-		activeBackgroundColor = 0;
-		borderColor = 0;
 
 		align(Text::LOVE_ALIGN_CENTER);
 		valign(Text::LOVE_ALIGN_CENTER);
@@ -62,119 +52,119 @@ namespace love
 		verticalAlignment = alignment;
 	}
 
-	void Button::setColor(AbstractColor * color)
+	void Button::setColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			this->color = color;
+			this->color = *color;
 	}
 
-	void Button::setHoverColor(AbstractColor * color)
+	void Button::setHoverColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			hoverColor = color;
+			hoverColor = *color;
 	}
 
-	void Button::setPressedColor(AbstractColor * color)
+	void Button::setPressedColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			pressedColor = color;
+			pressedColor = *color;
 	}
 
-	void Button::setActiveColor(AbstractColor * color)
+	void Button::setActiveColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			activeColor = color;
+			activeColor = *color;
 	}
 
-	void Button::setAllColors(AbstractColor * color)
+	void Button::setAllColors(const pAbstractColor * color)
 	{
 		if(color == 0) return;
 
-		this->color = color;
-		hoverColor = color;
-		pressedColor = color;
-		activeColor = color;
+		this->color = *color;
+		hoverColor = *color;
+		pressedColor = *color;
+		activeColor = *color;
 	}
 
-	void Button::setBackgroundColor(AbstractColor * color)
+	void Button::setBackgroundColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			backgroundColor = color;
+			backgroundColor = *color;
 	}
 
-	void Button::setHoverBackgroundColor(AbstractColor * color)
+	void Button::setHoverBackgroundColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			hoverBackgroundColor = color;
+			hoverBackgroundColor = *color;
 	}
 
-	void Button::setPressedBackgroundColor(AbstractColor * color)
+	void Button::setPressedBackgroundColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			pressedBackgroundColor = color;
+			pressedBackgroundColor = *color;
 	}
 
-	void Button::setActiveBackgroundColor(AbstractColor * color)
+	void Button::setActiveBackgroundColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			activeBackgroundColor = color;
+			activeBackgroundColor = *color;
 	}
 
-	void Button::setAllBackgroundColors(AbstractColor * color)
+	void Button::setAllBackgroundColors(const pAbstractColor * color)
 	{
-		backgroundColor = color;
-		hoverBackgroundColor = color;
-		pressedBackgroundColor = color;
-		activeBackgroundColor = color;
+		backgroundColor = *color;
+		hoverBackgroundColor = *color;
+		pressedBackgroundColor = *color;
+		activeBackgroundColor = *color;
 	}
 
-	void Button::setBorderColor(AbstractColor * color)
+	void Button::setBorderColor(const pAbstractColor * color)
 	{
 		if(color != 0)
-			borderColor = color;
+			borderColor = *color;
 	}
 
-	AbstractColor * Button::getColor()
+	pAbstractColor Button::getColor()
 	{
 		return color;
 	}
 
-	AbstractColor * Button::getHoverColor()
+	pAbstractColor Button::getHoverColor()
 	{
 		return hoverColor;
 	}
 
-	AbstractColor * Button::getPressedColor()
+	pAbstractColor Button::getPressedColor()
 	{
 		return pressedColor;
 	}
 
-	AbstractColor * Button::getActiveColor()
+	pAbstractColor Button::getActiveColor()
 	{
 		return activeColor;
 	}
 
-	AbstractColor * Button::getBackgroundColor()
+	pAbstractColor Button::getBackgroundColor()
 	{
 		return backgroundColor;
 	}
 
-	AbstractColor * Button::getHoverBackgroundColor()
+	pAbstractColor Button::getHoverBackgroundColor()
 	{
 		return hoverBackgroundColor;
 	}
 
-	AbstractColor * Button::getPressedBackgroundColor()
+	pAbstractColor Button::getPressedBackgroundColor()
 	{
 		return pressedBackgroundColor;
 	}
 
-	AbstractColor * Button::getActiveBackgroundColor()
+	pAbstractColor Button::getActiveBackgroundColor()
 	{
 		return activeBackgroundColor;
 	}
 
-	AbstractColor * Button::getBorderColor()
+	pAbstractColor Button::getBorderColor()
 	{
 		return borderColor;
 	}
@@ -186,7 +176,7 @@ namespace love
 
 		gcn::Color backColor;
 
-		if(backgroundColor != 0)
+		if(backgroundColor.get() != 0)
 			backColor = gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha());
 		else
 			backColor = gcn::Color(0,0,0,0);
@@ -195,27 +185,27 @@ namespace love
 		{
 			y = 1; //awesome 3d effects, yo
 			x = 1;
-			if(pressedBackgroundColor != 0)
+			if(pressedBackgroundColor.get() != 0)
 				backColor = gcn::Color(pressedBackgroundColor->getRed(),pressedBackgroundColor->getGreen(),pressedBackgroundColor->getBlue(),pressedBackgroundColor->getAlpha());
-			else if(hoverBackgroundColor != 0)
+			else if(hoverBackgroundColor.get() != 0)
 				backColor = gcn::Color(hoverBackgroundColor->getRed(),hoverBackgroundColor->getGreen(),hoverBackgroundColor->getBlue(),hoverBackgroundColor->getAlpha()) + 0x303030;
-			else if(backgroundColor != 0)
+			else if(backgroundColor.get() != 0)
 				backColor = backColor - 0x606060;
 			else
 				backColor.a += 25;
 		}
 		else if(mHasMouse)
 		{
-			if(hoverBackgroundColor != 0)
+			if(hoverBackgroundColor.get() != 0)
 				backColor = gcn::Color(hoverBackgroundColor->getRed(),hoverBackgroundColor->getGreen(),hoverBackgroundColor->getBlue(),hoverBackgroundColor->getAlpha());
-			else if(backgroundColor != 0)
+			else if(backgroundColor.get() != 0)
 				backColor = backColor - 0x303030;
 			else
 				backColor.a += 12;
 		}
 		else if(isFocused())
 		{
-			if(activeBackgroundColor != 0)
+			if(activeBackgroundColor.get() != 0)
 				backColor = gcn::Color(activeBackgroundColor->getRed(), activeBackgroundColor->getGreen(), activeBackgroundColor->getBlue(), activeBackgroundColor->getAlpha());
 		}
 
@@ -269,7 +259,7 @@ namespace love
 		int width = getWidth() + getBorderSize() * 2 - 1;
 		int height = getHeight() + getBorderSize() * 2 - 1;
 
-		if(borderColor != 0)
+		if(borderColor.get() != 0)
 			graphics->setColor(gcn::Color(borderColor->getRed(),borderColor->getGreen(),borderColor->getBlue(),borderColor->getAlpha()));
 		else
 			graphics->setColor(gcn::Color(0,0,0,255));

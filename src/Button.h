@@ -23,15 +23,15 @@ namespace love
 	{
 	private:
 		int verticalAlignment;
-		AbstractColor * color;
-		AbstractColor * hoverColor;
-		AbstractColor * pressedColor;
-		AbstractColor * activeColor;
-		AbstractColor * backgroundColor;
-		AbstractColor * hoverBackgroundColor;
-		AbstractColor * pressedBackgroundColor;
-		AbstractColor * activeBackgroundColor;
-		AbstractColor * borderColor;
+		pAbstractColor color;
+		pAbstractColor hoverColor;
+		pAbstractColor pressedColor;
+		pAbstractColor activeColor;
+		pAbstractColor backgroundColor;
+		pAbstractColor hoverBackgroundColor;
+		pAbstractColor pressedBackgroundColor;
+		pAbstractColor activeBackgroundColor;
+		pAbstractColor borderColor;
 
 	public:
 		/**
@@ -80,121 +80,121 @@ namespace love
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color.
 		 **/
-		void setColor(AbstractColor * color);
+		void setColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color when the mouse is over the button.
 		 **/
-		void setHoverColor(AbstractColor * color);
+		void setHoverColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color when the button is pressed.
 		 **/
-		void setPressedColor(AbstractColor * color);
+		void setPressedColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color when the button has been pressed and is still active.
 		 **/
-		void setActiveColor(AbstractColor * color);
+		void setActiveColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets all the text colors.
 		 **/
-		void setAllColors(AbstractColor * color);
+		void setAllColors(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the background color.
 		 **/
-		void setBackgroundColor(AbstractColor * color);
+		void setBackgroundColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the background color when the mouse is over the button.
 		 **/
-		void setHoverBackgroundColor(AbstractColor * color);
+		void setHoverBackgroundColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the background color when the button is pressed.
 		 **/
-		void setPressedBackgroundColor(AbstractColor * color);
+		void setPressedBackgroundColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the background color when the button has been pressed and is still active.
 		 **/
-		void setActiveBackgroundColor(AbstractColor * color);
+		void setActiveBackgroundColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the all the background colors.
 		 **/
-		void setAllBackgroundColors(AbstractColor * color);
+		void setAllBackgroundColors(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the border color.
 		 **/
-		void setBorderColor(AbstractColor * color);
+		void setBorderColor(const pAbstractColor * color);
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the text color.
 		 **/
-		AbstractColor * getColor();
+		pAbstractColor getColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the text color when the mouse is over the button.
 		 **/
-		AbstractColor * getHoverColor();
+		pAbstractColor getHoverColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the text color when the button is pressed.
 		 **/
-		AbstractColor * getPressedColor();
+		pAbstractColor getPressedColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the text color when the button has been pressed and is still active.
 		 **/
-		AbstractColor * getActiveColor();
+		pAbstractColor getActiveColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the background color.
 		 **/
-		AbstractColor * getBackgroundColor();
+		pAbstractColor getBackgroundColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the background color when the mouse is over the button.
 		 **/
-		AbstractColor * getHoverBackgroundColor();
+		pAbstractColor getHoverBackgroundColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the background color when the button is pressed.
 		 **/
-		AbstractColor * getPressedBackgroundColor();
+		pAbstractColor getPressedBackgroundColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the background color when the button has been pressed and is still active.
 		 **/
-		AbstractColor * getActiveBackgroundColor();
+		pAbstractColor getActiveBackgroundColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the border color.
 		 **/
-		AbstractColor * getBorderColor();
+		pAbstractColor getBorderColor();
 
 		/**
 		 * @param graphics A GUIchan Graphics object.

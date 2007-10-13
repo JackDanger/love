@@ -10,6 +10,7 @@
 #include "MultilineLabel.h"
 #include "Padded.h"
 #include "TextField.h"
+#include "Text.h"
 
 #include <boost/shared_ptr.hpp>
 #include <guichan.hpp>
@@ -29,9 +30,9 @@ namespace love
 	{
 	private:
 		
-		AbstractColor * color;
-		AbstractColor * backgroundColor;
-		AbstractImage * background;
+		pAbstractColor color;
+		pAbstractColor backgroundColor;
+		pAbstractImage background;
 		GUIText * text;
 		int width, height;
 		int type;
@@ -56,36 +57,37 @@ namespace love
 		 * @param type The type of menu (vertical / horizontal).
 		 * @brief Calls the GUIchan constructor and sets the background as invisible.
 		 **/
-		Menu(int type = LOVE_MENU_VERTICAL);
+		Menu(pAbstractFont font, pAbstractColor color, int type = LOVE_MENU_VERTICAL);
 
 		/**
 		 * @brief Deconstructor. Does nothing.
 		 **/
 		virtual ~Menu();
 
-		/**
-		 * The following are Container functions, but should be documented:
-		 * setPosition(x,y)
-		 * setX(x)
-		 * setY(y)
-		 * setSize(width, height)
-		 * setWidth(width)
-		 * setHeight(height)
-		 *
-		 * getX()
-		 * getY()
-		 * getWidth()
-		 * getHeight()
-		 **/
+		int getWidth();
+		int getHeight();
+		int getX();
+		int getY();
+
+		void setSize(int width, int height);
+		void setWidth(int width);
+		void setHeight(int height);
+		void setPosition(int x, int y);
+		void setX(int x);
+		void setY(int y);
+
+		void show();
+		void hide();
 
 		void setFont(AbstractFont * font);
-		void setColor(AbstractColor * color);
+		void setFont(const pAbstractFont * font);
+		void setColor(const pAbstractColor * color);
 
 		void align(int alignment);
 		void valign(int alignment);
 
-		void setBackgroundColor(AbstractColor * color);
-		void setBackground(AbstractImage * image);
+		void setBackgroundColor(const pAbstractColor * color);
+		void setBackground(const pAbstractImage * image);
 
 		void setSpacing(int spacing); //how much distance there is to be between the items
 		int getSpacing();
@@ -100,7 +102,7 @@ namespace love
 		Menu * addMenu(int type, int width = 0, int height = 0);
 		Label * addLabel(const char * caption, int width = 0, int height = 0);
 		MultilineLabel * addMultilineLabel(const char * caption, int width = 0, int height = 0);
-		Label * addImage(AbstractImage * image);
+		Label * addImage(const pAbstractImage * image);
 		Button * addButton(const char * caption, int width = 0, int height = 0);
 		TextField * addTextField(const char * text, int width = 0, int height = 0);
 		DropDown * addDropDown(int width = 0, int height = 0);
