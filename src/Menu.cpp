@@ -11,15 +11,14 @@ namespace love
 		gcn::Container::setOpaque(false); //makes the background invisible
 
 		text = new GUIText(font, color);
-		//color = 0;
-		//backgroundColor = 0;
-		//background = 0;
 		this->type = type;
 		spacing = 0;
 		position = 0;
 		stretch = false;
+		visible = false;
 		align(LOVE_ALIGN_CENTER);
 		valign(LOVE_ALIGN_CENTER);
+		setOpaque(true); //we deal with the visibility ourselves
 	}
 
 	Menu::~Menu()
@@ -80,12 +79,12 @@ namespace love
 
 	void Menu::show()
 	{
-		this->setOpaque(true);
+		visible = true;
 	}
 
 	void Menu::hide()
 	{
-		this->setOpaque(true);
+		visible = false;
 	}
 
 	void Menu::setFont(AbstractFont * font)
@@ -107,13 +106,11 @@ namespace love
 	void Menu::setBackgroundColor(const pAbstractColor * color)
 	{
 		backgroundColor = *color;
-		gcn::Container::setOpaque(true);
 	}
 
 	void Menu::setBackground(const pAbstractImage * image)
 	{
 		background = *image;
-		gcn::Container::setOpaque(true);
 	}
 
 	void Menu::align(int alignment)
@@ -297,6 +294,8 @@ namespace love
 
 	void Menu::draw(gcn::Graphics* graphics)
 	{
+		if(!visible) return;
+
 		glPushMatrix();
 
 		if(text != 0)
@@ -329,6 +328,11 @@ namespace love
 		drawChildren(graphics);
 
 		glPopMatrix();
+	}
+
+	void Menu::drawBorder(gcn::Graphics* graphics)
+	{
+		if(!visible) return;
 	}
 
 	Menu * Menu::addMenu(int type, int width, int height)

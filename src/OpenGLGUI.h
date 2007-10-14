@@ -28,28 +28,57 @@ namespace love
 
 		pAbstractColor color;
 		pAbstractFont lovefont;
-		pAbstractColor lovecolor;
 		GUIText * text;
 
-		// the default error/warning messages
-		pMenu error;
-		pAbstractImage errorBackground;
-		pAbstractImage errorWarning;
-		pAbstractImage errorError;
-
 	public:
+		/**
+		 * @brief Default constructor.
+		 **/
 		OpenGLGUI();
+
+		/**
+		 * @brief Deconstructor. Deletes pointers.
+		 **/
 		~OpenGLGUI();
 
-		void showError(const char * text);
-		void showWarning(const char * text);
-
+		/**
+		 * @brief Called whenever an ActionEvent occurs (like when a button is pressed).
+		 * @param actionEvent A GUIChan ActionEvent object.
+		 **/
 		void action(const gcn::ActionEvent& actionEvent);
 
+		/**
+		 * @brief Adds a Menu to the gui.
+		 * @param menu The Menu in question.
+		 **/
 		void add(pMenu menu);
 
+		/**
+		 * @brief Returns the default font.
+		 * @return The default font used in the GUI system.
+		 **/
+		pAbstractFont getFont();
+
+		/**
+		 * @brief Returns the default color.
+		 * @return The default color used in the GUI system.
+		 **/
+		pAbstractColor getColor();
+
+		/**
+		 * @brief Creates and initializes the GUI system.
+		 **/
 		void init();
+
+		/**
+		 * @brief Renders the GUI system.
+		 **/
 		void render();
+
+		/**
+		 * @brief Updates the GUI system.
+		 * @param dt The time since last call (in seconds).
+		 **/
 		void update(float dt);
 	};
 }

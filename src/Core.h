@@ -74,7 +74,7 @@ namespace love
 	**/
 	class Core :	public AbstractDevice, public Updateable, public Renderable,
 					public MouseListener, public MouseMotionListener, public KeyListener, 
-					public DisplayModeListener
+					public DisplayModeListener, public EventListener
 	{
 
 	private:
@@ -102,6 +102,15 @@ namespace love
 
 		// GUI
 		OpenGLGUI * gui;
+		pAbstractImage errorWarning;
+		pAbstractImage errorError;
+		pMenu error;
+		pMenu warning;
+		pMenu pause;
+		pMultilineLabel errorText;
+		pMultilineLabel warningText;
+		pButton errorButton;
+		pButton warningButton;
 
 
 	public:
@@ -221,6 +230,20 @@ namespace love
 		int stopGame();
 
 		/**
+		 * @brief Shows an error dialog.
+		 * @param text The text to show in the dialog box.
+		 * @todo Pause the game until OK is clicked and add a sound. ^_^
+		 **/
+		void showError(const char * text);
+
+		/**
+		 * @brief Shows a warning dialog.
+		 * @param text The text to show in the dialog box.
+		 * @todo Add a sound. ^_^
+		 **/
+		void showWarning(const char * text);
+
+		/**
 		* @brief Prints a message to the internal LOVE console, and to stdout.
 		* @param msg The formatted message to print.
 		* @param ... A list of parameters.
@@ -266,6 +289,8 @@ namespace love
 		* @brief Called when the display mode changes.
 		**/
 		void displayModeChanged();
+
+		void eventFired(pEvent e);
 
 	private:
 

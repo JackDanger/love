@@ -19,62 +19,20 @@ namespace love
 
 	OpenGLGUI::~OpenGLGUI()
 	{
-	}
-
-	void OpenGLGUI::showError(const char * text)
-	{
-		error->clear(); // just to be sure
-
-		error->setX( (core->display->getWidth() / 2) - (error->getWidth() / 2) );
-		error->setY( (core->display->getHeight() / 2) - (error->getHeight() / 2) );
-
-		error->addImage(&errorError)->align(Menu::LOVE_ALIGN_LEFT);
-		error->addMultilineLabel(text);
-		error->addLabel("")->setHeight(20);
-
-		Button * errorButton = error->addButton("OK");
-		pAbstractColor borderColor(new Color(0xe9e9e9));
-		errorButton->setBorderColor(&borderColor);
-		errorButton->setWidth(70);
-		errorButton->setBorderSize(1);
-		errorButton->addActionListener(this);
-		errorButton->setActionEventId("ERRORBUTTON_OK");
-
-		error->adjustContent();
-		error->adjustSize();
-		top->add(error.get());
-	}
-
-	void OpenGLGUI::showWarning(const char * text)
-	{
-		error->clear(); // just to be sure
-
-		error->setX( (core->display->getWidth() / 2) - (error->getWidth() / 2) );
-		error->setX( (core->display->getHeight() / 2) - (error->getHeight() / 2) );
-
-		error->addImage(&errorWarning);
-		error->addMultilineLabel(text);
-		error->addLabel("")->setHeight(20);
-
-		Button * errorButton = error->addButton("OK");
-		pAbstractColor borderColor(new Color(0xe9e9e9));
-		errorButton->setBorderColor(&borderColor);
-		errorButton->setWidth(70);
-		errorButton->setBorderSize(1);
-		errorButton->addActionListener(this);
-		errorButton->setActionEventId("ERRORBUTTON_OK");
-
-		error->adjustContent();
-		error->adjustSize();
-		top->add(error.get());
+		if(gui != 0) delete gui;
+		if(guifont != 0) delete guifont;
+		if(graphics != 0) delete graphics;
+		if(top != 0) delete top;
 	}
 
 	void OpenGLGUI::action(const gcn::ActionEvent& actionEvent)
 	{
 		printf("ActionEvent: %s", actionEvent.getId().c_str());
 
-		if(strcmp(actionEvent.getId().c_str(), "ERRORBUTTON_OK") == 0)
-			top->remove(actionEvent.getSource()->getParent());
+		pEvent temp(new Event());
+		temp->setType(EventListener::LOVE_EVENT_GUI);
+		temp->setName(actionEvent.getId());
+		core->eventFired(temp);
 	}
 
 	void OpenGLGUI::add(pMenu menu)
@@ -82,11 +40,21 @@ namespace love
 		top->add(menu.get());
 	}
 
+	pAbstractFont OpenGLGUI::getFont()
+	{
+		return text->getFont();
+	}
+
+	pAbstractColor OpenGLGUI::getColor()
+	{
+		return text->getColor();
+	}
+
 	void OpenGLGUI::init()
 	{
 		const DisplayMode & display = core->getDisplayMode();
 		const AbstractFileSystem & fs = core->getFilesystem();
-		const AbstractImageDevice & imaging = core->getImaging();
+		//const AbstractImageDevice & imaging = core->getImaging();
 
 		// Initialize GUIchan
 		imageLoader = new gcn::OpenGLSDLImageLoader();
@@ -97,7 +65,6 @@ namespace love
 
 		lovefont.reset<AbstractFont>(new love::Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 10));
 		lovefont->load();
-		lovecolor.reset<AbstractColor>(new love::Color(0x000000));
 
 		top = new gcn::Container();
 	    top->setDimension(gcn::Rectangle(0, 0, display.getWidth(), display.getHeight()));
@@ -107,7 +74,7 @@ namespace love
 		gui->setGraphics(graphics);
 		gui->setInput(gcn_input); // correct.
 		gui->setTop(top);
-		text = new love::GUIText(lovefont,lovecolor);
+		text = new love::GUIText(lovefont,core->graphics->getColor());
 		gcn::Widget::setGlobalFont(text);
 		graphics->setFont(text);
 
@@ -118,24 +85,8 @@ namespace love
 		gcn::Widget::setGlobalFont(text); // the global font is static and must be set
 		graphics->setFont(text);
 
-		// load the default images
-		errorBackground.reset<AbstractImage>(imaging.getImage(fs.getBaseFile("data/background.png")));
-		errorBackground->load();
-		errorWarning.reset<AbstractImage>(imaging.getImage(fs.getBaseFile("data/warning.png")));
-		errorWarning->load();
-		errorError.reset<AbstractImage>(imaging.getImage(fs.getBaseFile("data/error.png")));
-		errorError->load();
-
-		error.reset<Menu>(new Menu(core->graphics->getFont(), core->graphics->getColor()));
-		error->setSize(356,217); // so that we have something to start with
-		error->setPadding(18);
-		//error->setFont(new Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 10)); // i hate you and what you've done to me
-		error->setFont(&lovefont);
-		error->setColor(new pAbstractColor(new Color(0x000000)));
-		//error->setPosition(50,50); // this is automatic now
-		error->setBackgroundColor(new pAbstractColor(new Color(255,255,255,225)));
-		//error->setBackground(errorBackground); // ugly and removed
-		error->stretchContent(true);
+		top->clear();
+		top->add(new Label("Worst. Bugfix. Ever."));
 	}
 
 	void OpenGLGUI::render()

@@ -17,9 +17,19 @@ namespace love
 		return type;
 	}
 
+	string Event::getName() const
+	{
+		return name;
+	}
+
 	void Event::setType(int type)
 	{
 		this->type = type;
+	}
+
+	void Event::setName(string name)
+	{
+		this->name = name;
 	}
 
 

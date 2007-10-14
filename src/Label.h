@@ -44,7 +44,6 @@ namespace love
 
 		/**
 		 * gcn::Label functions that should be documented:
-		 * setCaption(caption)
 		 * setSize(width, height)
 		 * setWidth(width)
 		 * setHeight(height)

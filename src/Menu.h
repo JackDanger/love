@@ -41,6 +41,7 @@ namespace love
 		int alignment;
 		int verticalAlignment;
 		bool stretch;
+		bool visible;
 
 		void positionItem(gcn::Widget * item);
 
@@ -98,6 +99,7 @@ namespace love
 		void stretchContent(bool stretch);
 
 		void draw(gcn::Graphics* graphics);
+		void drawBorder(gcn::Graphics* graphics);
 
 		Menu * addMenu(int type, int width = 0, int height = 0);
 		Label * addLabel(const char * caption, int width = 0, int height = 0);

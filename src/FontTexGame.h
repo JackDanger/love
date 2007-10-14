@@ -53,54 +53,6 @@ class FontTexGame : public love::Game
 {
 private:
 
-gcn::OpenGLGraphics* graphics;           // Graphics driver
-gcn::OpenGLSDLImageLoader* imageLoader;  // For loading images
-
-/*
- * Guichan stuff we need
- */
-gcn::Gui* gui;            // A Gui object - binds it all together
-gcn::Font* font;     // A font
-gcn::SDLInput* input;
-
-/*
- * All of the default widgets
- */
-
-love::pAbstractImage bgimage;
-love::pAbstractImage errorimage;
-
-//Menu * top;
-love::Menu *menu;
-love::Label *lovelabel;
-love::AnimatedColor * shiny;
-love::AnimatedColor * alsoshiny;
-gcn::Container* top;                 // A top container
-gcn::Label* label;                   // A label
-gcn::Icon* icon;                     // An icon (image)
-gcn::Button* button;                 // A button
-gcn::TextField* textField;           // One-line text field
-gcn::TextBox* textBox;               // Multi-line text box
-gcn::ScrollArea* textBoxScrollArea;  // Scroll area for the text box
-gcn::ListBox* listBox;               // A list box
-gcn::DropDown* dropDown;             // Drop down
-gcn::CheckBox* checkBox1;            // Two checkboxes
-gcn::CheckBox* checkBox2;
-gcn::RadioButton* radioButton1;      // Three radio buttons
-gcn::RadioButton* radioButton2;
-gcn::RadioButton* radioButton3;
-gcn::Slider* slider;                 // A slider
-gcn::Image *image;                   // An image for the icon
-gcn::Window *window;
-gcn::Image *darkbitsImage;
-gcn::Icon* darkbitsIcon;
-gcn::ScrollArea* nestedScrollArea;
-gcn::Container* nestedContainer;
-gcn::Slider* nestedSlider;
-
-love::Font * lovefont;
-love::Color * lovecolor;
-
 //sounds shit
 public:
 
