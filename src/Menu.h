@@ -48,11 +48,6 @@ namespace love
 	public:
 		static const int LOVE_MENU_VERTICAL = 1;
 		static const int LOVE_MENU_HORIZONTAL = 2;
-		static const int LOVE_ALIGN_LEFT = 1;
-		static const int LOVE_ALIGN_RIGHT = 2;
-		static const int LOVE_ALIGN_CENTER = 3;
-		static const int LOVE_ALIGN_TOP = 4;
-		static const int LOVE_ALIGN_BOTTOM = 5;
 
 		/**
 		 * @param type The type of menu (vertical / horizontal).
@@ -90,13 +85,13 @@ namespace love
 		void setBackgroundColor(const pAbstractColor * color);
 		void setBackground(const pAbstractImage * image);
 
+		void stretchContent(bool stretch);
+
 		void setSpacing(int spacing); //how much distance there is to be between the items
 		int getSpacing();
 
 		void adjustSize(); //resize to content
 		int adjustContent(); //aligns all the content to the new(?) alignment
-
-		void stretchContent(bool stretch);
 
 		void draw(gcn::Graphics* graphics);
 		void drawBorder(gcn::Graphics* graphics);
@@ -105,9 +100,9 @@ namespace love
 		Label * addLabel(const char * caption, int width = 0, int height = 0);
 		MultilineLabel * addMultilineLabel(const char * caption, int width = 0, int height = 0);
 		Label * addImage(const pAbstractImage * image);
-		Button * addButton(const char * caption, int width = 0, int height = 0);
-		TextField * addTextField(const char * text, int width = 0, int height = 0);
-		DropDown * addDropDown(int width = 0, int height = 0);
+		Button * addButton(const char * name, const char * caption, int width = 0, int height = 0);
+		TextField * addTextField(const char * name, const char * text = "", int width = 0, int height = 0);
+		DropDown * addDropDown(const char * name, int width = 0, int height = 0);
 	};
 
 	typedef boost::shared_ptr<Menu> pMenu;

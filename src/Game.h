@@ -22,6 +22,10 @@
 #include "AbstractImage.h"
 #include "GameConfiguration.h"
 #include "Initializable.h"
+#include "Menu.h"
+
+// GUIchan
+#include <guichan.hpp>
 
 // STL
 #include <string>
@@ -57,8 +61,13 @@ namespace love
 		// Used for loading of title, author, thumbnail, etc.
 		GameConfiguration * config;
 
+		// For holding all the gui items in the game
+		gcn::Container * gui;
+
 		// The base diretory for this game.
 		string source;
+
+		bool suspended;
 
 	public:
 
@@ -129,17 +138,27 @@ namespace love
 		virtual void stop();
 
 		/**
+		 * @brief Checks to see if the game has been suspended.
+		 * @return Whether the game is suspended or not.
+		 **/
+		virtual bool isSuspended();
+
+		/**
 		* @brief Called from love::core when graphics needs to be reloaded.
 		**/ 
 		virtual void reloadGraphics() = 0;
+
+		/**
+		 * @brief Returns the gui item so that it can be manipulated outside of the game istelf.
+		 * @return A GUIchan Container class.
+		 **/ 
+		virtual gcn::Container * getGUI();
 
 		/**
 		* @brief Returns the source of this game.
 		* @return The source for this game.
 		**/
 		const string & getSource() const;
-
-
 	};
 
 	typedef boost::shared_ptr<Game> pGame;

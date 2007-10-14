@@ -172,7 +172,8 @@ namespace love
 	{
 		pMenu m(new Menu(core->graphics->getFont(), core->graphics->getColor(), type));
 
-		core->gui->add(m);
+		if(core->current->getGUI() != 0)
+			core->current->getGUI()->add(m.get());
 		return m;
 	}
 	

@@ -21,6 +21,22 @@ main = {
 		mus = game:addMusic("so cold", "test.mp3");
 		--mus:play(1);
 		
+		menu = love.objects:newMenu();
+		menu:setBackgroundColor(color["shiznet"]);
+		menu:setFont(font["small"]);
+		menu:setSize(200,200);
+		menu:setPosition(200,200);
+		menu:addLabel("test");
+		menu:addImage(love.objects:newImage("letters.png"));
+		menu:addButton("BUNNY_BUTT", "assbunny");
+		menu:addTextField("TEXT_FILD", "shitcock");
+		drop = menu:addDropDown("DROP YOUR PANTS");
+		drop:add("one");
+		drop:add("two");
+		drop:add("four");
+		menu:adjustSize();
+		menu:show();
+		
 	end,
 	update = function(dt)
 	

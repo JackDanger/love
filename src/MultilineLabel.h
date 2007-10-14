@@ -21,7 +21,6 @@ namespace love
 	protected:
 		vector<string> lines;
 
-
 	public:
 		/**
 		 * @param caption The label's caption.

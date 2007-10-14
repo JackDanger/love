@@ -32,9 +32,6 @@ extern "C"
 
 namespace love
 {
-
-
-
 	LuaGame::LuaGame(const string & source)
 	{
 		setScript("main");
@@ -51,12 +48,14 @@ namespace love
 		//defaultFont.reset<Font>(new Font("FreeSans.ttf", 14));
 
 		rotation = 0.0f;
-
+		gui = 0;
+		suspended = false; //once a game is started it isn't in suspend mode
 	}
 
 	LuaGame::~LuaGame()
 	{
 		//unload();
+		if(gui != 0) delete gui;
 	}
 
 	string LuaGame::getPath(const char * s) const
@@ -83,6 +82,10 @@ namespace love
 		lua_settable(L, -3);
 		lua_pop(L, 1);
 		**/
+
+		gui = new gcn::Container();
+		gui->setDimension(gcn::Rectangle(0, 0, core->getDisplayMode().getWidth(), core->getDisplayMode().getHeight()));
+		gui->setOpaque(false);
 		
 		return LOVE_OK;
 
@@ -111,6 +114,9 @@ namespace love
 		text.reset<Text>(new Text());
 		//text->setFont("love_system_font"); //no need
 		text->load();
+
+		//init gui
+		core->gui->add(gui);
 
 		// Init lua
 		L = lua_open();
@@ -174,6 +180,7 @@ namespace love
 		for(obj.actors.begin(); !obj.actors.end(); obj.actors.next())
 			obj.actors.value()->init();
 
+		suspended = false;
 		loaded = true;
 
 
@@ -182,7 +189,6 @@ namespace love
 
 	void LuaGame::unload()
 	{
-
 		// End Lua-state
 		lua_close(L);
 		lualove_close(L);
@@ -207,6 +213,9 @@ namespace love
 		pFont defaultFont(new Font(core->filesystem->getBaseFile("data/fonts/FreeSans.ttf"), 14));
 		defaultFont->load();
 		core->graphics->setFont(defaultFont);
+
+		//remove gui items
+		core->gui->remove(gui);
 
 		loaded = false;
 	}
@@ -265,6 +274,7 @@ namespace love
 	{
 		// Stop all playing audio
 		core->audio->stop();
+		Game::suspend();
 	}
 
 	void LuaGame::resume()

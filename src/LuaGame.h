@@ -35,7 +35,6 @@
 // Boost
 #include <boost/shared_ptr.hpp>
 
-
 // Lua
 extern "C"
 {

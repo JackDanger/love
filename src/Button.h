@@ -21,7 +21,7 @@ namespace love
 	 **/
 	class Button : public gcn::Button
 	{
-	private:
+	protected:
 		int verticalAlignment;
 		pAbstractColor color;
 		pAbstractColor hoverColor;
@@ -46,12 +46,29 @@ namespace love
 		virtual ~Button();
 
 		/**
-		 * gcn::Button functions that should be documented:
-		 * setSize(width, height);
-		 * setWidth(width);
-		 * setHeight(height);
-		 * setBorderSize(size);
-		 */
+		 * @param width The new width.
+		 * @param height The new height.
+		 * @brief Sets the size of the Button.
+		 **/
+		virtual void setSize(int width, int height);
+
+		/**
+		 * @param width The new width.
+		 * @brief Sets the width of the Button.
+		 **/
+		virtual void setWidth(int width);
+
+		/**
+		 * @param height The new height.
+		 * @brief Sets the height of the Button.
+		 **/
+		virtual void setHeight(int height);
+
+		/**
+		 * @param size The new border size.
+		 * @brief Sets the size of the Button's border.
+		 **/
+		virtual void setBorderSize(unsigned int size);
 
 		/**
 		 * @param caption The text in the button.
@@ -60,153 +77,171 @@ namespace love
 		virtual void setCaption(const char * caption);
 
 		/**
-		 * @brief Adjusts the size of the button to the size of the caption.
-		 **/
-		void adjustSize();
-
-		/**
 		 * @param alignment The horizontal alignment (left, right, center).
 		 * @brief Sets the horizontal alignment of the caption.
 		 **/
-		void align(int alignment);
+		virtual void align(int alignment);
 
 		/**
 		 * @param alignment The vertical alignment (left, right, center).
 		 * @brief Sets the vertical alignment of the caption.
 		 **/
-		void valign(int alignment);
+		virtual void valign(int alignment);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color.
 		 **/
-		void setColor(const pAbstractColor * color);
+		virtual void setColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color when the mouse is over the button.
 		 **/
-		void setHoverColor(const pAbstractColor * color);
+		virtual void setHoverColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color when the button is pressed.
 		 **/
-		void setPressedColor(const pAbstractColor * color);
+		virtual void setPressedColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color when the button has been pressed and is still active.
 		 **/
-		void setActiveColor(const pAbstractColor * color);
+		virtual void setActiveColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets all the text colors.
 		 **/
-		void setAllColors(const pAbstractColor * color);
+		virtual void setAllColors(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the background color.
 		 **/
-		void setBackgroundColor(const pAbstractColor * color);
+		virtual void setBackgroundColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the background color when the mouse is over the button.
 		 **/
-		void setHoverBackgroundColor(const pAbstractColor * color);
+		virtual void setHoverBackgroundColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the background color when the button is pressed.
 		 **/
-		void setPressedBackgroundColor(const pAbstractColor * color);
+		virtual void setPressedBackgroundColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the background color when the button has been pressed and is still active.
 		 **/
-		void setActiveBackgroundColor(const pAbstractColor * color);
+		virtual void setActiveBackgroundColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the all the background colors.
 		 **/
-		void setAllBackgroundColors(const pAbstractColor * color);
+		virtual void setAllBackgroundColors(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the border color.
 		 **/
-		void setBorderColor(const pAbstractColor * color);
+		virtual void setBorderColor(const pAbstractColor * color);
+
+		/**
+		 * @return The width of the Button.
+		 * @brief Returns the width of the button.
+		 **/
+		virtual int getWidth();
+
+		/**
+		 * @return The height of the Button.
+		 * @brief Returns the height of the button.
+		 **/
+		virtual int getHeight();
+
+		/**
+		 * @return The size of the Button's border.
+		 * @brief Returns the size of the button's border.
+		 **/
+		virtual unsigned int getBorderSize();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the text color.
 		 **/
-		pAbstractColor getColor();
+		virtual pAbstractColor getColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the text color when the mouse is over the button.
 		 **/
-		pAbstractColor getHoverColor();
+		virtual pAbstractColor getHoverColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the text color when the button is pressed.
 		 **/
-		pAbstractColor getPressedColor();
+		virtual pAbstractColor getPressedColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the text color when the button has been pressed and is still active.
 		 **/
-		pAbstractColor getActiveColor();
+		virtual pAbstractColor getActiveColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the background color.
 		 **/
-		pAbstractColor getBackgroundColor();
+		virtual pAbstractColor getBackgroundColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the background color when the mouse is over the button.
 		 **/
-		pAbstractColor getHoverBackgroundColor();
+		virtual pAbstractColor getHoverBackgroundColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the background color when the button is pressed.
 		 **/
-		pAbstractColor getPressedBackgroundColor();
+		virtual pAbstractColor getPressedBackgroundColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the background color when the button has been pressed and is still active.
 		 **/
-		pAbstractColor getActiveBackgroundColor();
+		virtual pAbstractColor getActiveBackgroundColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the border color.
 		 **/
-		pAbstractColor getBorderColor();
+		virtual pAbstractColor getBorderColor();
+
+		/**
+		 * @brief Adjusts the size of the button to the size of the caption.
+		 **/
+		virtual void adjustSize();
 
 		/**
 		 * @param graphics A GUIchan Graphics object.
 		 * @brief Draws the button background and text.
 		 **/
-		void draw(gcn::Graphics* graphics);
+		virtual void draw(gcn::Graphics* graphics);
 
 		/**
 		 * @param graphics A GUIchan Graphics object.
 		 * @brief Draws the button border.
 		 **/
-		void drawBorder(gcn::Graphics* graphics);
+		virtual void drawBorder(gcn::Graphics* graphics);
 	};
 
 	typedef boost::shared_ptr<Button> pButton;

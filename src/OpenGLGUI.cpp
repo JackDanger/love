@@ -27,7 +27,7 @@ namespace love
 
 	void OpenGLGUI::action(const gcn::ActionEvent& actionEvent)
 	{
-		printf("ActionEvent: %s", actionEvent.getId().c_str());
+		printf("ActionEvent: %s\n", actionEvent.getId().c_str());
 
 		pEvent temp(new Event());
 		temp->setType(EventListener::LOVE_EVENT_GUI);
@@ -38,6 +38,22 @@ namespace love
 	void OpenGLGUI::add(pMenu menu)
 	{
 		top->add(menu.get());
+	}
+
+	void OpenGLGUI::add(gcn::Widget * widget)
+	{
+		top->add(widget);
+	}
+
+	void OpenGLGUI::remove(gcn::Widget * widget)
+	{
+		top->remove(widget);
+	}
+
+	void OpenGLGUI::clear()
+	{
+		top->clear();
+		top->add(new Label("Worst. Bugfix. Ever."));
 	}
 
 	pAbstractFont OpenGLGUI::getFont()
@@ -68,8 +84,8 @@ namespace love
 
 		top = new gcn::Container();
 	    top->setDimension(gcn::Rectangle(0, 0, display.getWidth(), display.getHeight()));
-
 		top->setOpaque(false);
+
 		gui = new gcn::Gui();
 		gui->setGraphics(graphics);
 		gui->setInput(gcn_input); // correct.
@@ -85,8 +101,7 @@ namespace love
 		gcn::Widget::setGlobalFont(text); // the global font is static and must be set
 		graphics->setFont(text);
 
-		top->clear();
-		top->add(new Label("Worst. Bugfix. Ever."));
+		clear();
 	}
 
 	void OpenGLGUI::render()
@@ -97,5 +112,12 @@ namespace love
 	void OpenGLGUI::update(float dt)
 	{
 		gui->logic();
+	}
+
+	void OpenGLGUI::displayModeChanged()
+	{
+		const DisplayMode & display = core->getDisplayMode();
+		graphics->setTargetPlane(display.getWidth(), display.getHeight());
+		top->setDimension(gcn::Rectangle(0, 0, display.getWidth(), display.getHeight()));
 	}
 }

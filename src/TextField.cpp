@@ -11,6 +11,26 @@ namespace love
 	TextField::~TextField()
 	{ }
 
+	void TextField::setSize(int width, int height)
+	{
+		gcn::TextField::setSize(width, height);
+	}
+
+	void TextField::setWidth(int width)
+	{
+		gcn::TextField::setWidth(width);
+	}
+
+	void TextField::setHeight(int height)
+	{
+		gcn::TextField::setHeight(height);
+	}
+
+	void TextField::setBorderSize(unsigned int size)
+	{
+		gcn::TextField::setBorderSize(size);
+	}
+
 	void TextField::setText(const char * text)
 	{
 		gcn::TextField::setText(text);
@@ -41,6 +61,26 @@ namespace love
 		activeBackgroundColor = *color;
 	}
 
+	int TextField::getWidth()
+	{
+		return gcn::TextField::getWidth();
+	}
+
+	int TextField::getHeight()
+	{
+		return gcn::TextField::getHeight();
+	}
+
+	unsigned int TextField::getBorderSize()
+	{
+		return gcn::TextField::getBorderSize();
+	}
+
+	const char * TextField::getText()
+	{
+		return gcn::TextField::getText().c_str();
+	}
+
 	pAbstractColor TextField::getColor()
 	{
 		return color;
@@ -64,6 +104,11 @@ namespace love
 	pAbstractColor TextField::getBorderColor()
 	{
 		return borderColor;
+	}
+
+	void TextField::adjustSize()
+	{
+		gcn::TextField::adjustSize();
 	}
 
 	void TextField::draw(gcn::Graphics* graphics)

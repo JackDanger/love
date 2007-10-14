@@ -43,23 +43,35 @@ namespace love
 		virtual ~Label();
 
 		/**
-		 * gcn::Label functions that should be documented:
-		 * setSize(width, height)
-		 * setWidth(width)
-		 * setHeight(height)
-		 * setBorderSize(size)
-		 */
+		 * @param width The new width.
+		 * @param height The new height.
+		 * @brief Sets the size of the Label.
+		 **/
+		virtual void setSize(int width, int height);
+
+		/**
+		 * @param width The new width.
+		 * @brief Sets the width of the Label.
+		 **/
+		virtual void setWidth(int width);
+
+		/**
+		 * @param height The new height.
+		 * @brief Sets the height of the Label.
+		 **/
+		virtual void setHeight(int height);
+
+		/**
+		 * @param size The new border size.
+		 * @brief Sets the size of the Label's border.
+		 **/
+		virtual void setBorderSize(unsigned int size);
 
 		/**
 		 * @param caption The text in the label.
 		 * @brief Sets the caption of the label.
 		 **/
 		virtual void setCaption(const char * caption);
-
-		/**
-		 * @brief Adjusts the size of the label according to the size of the caption.
-		 **/
-		virtual void adjustSize();
 
 		/**
 		 * @param alignment The horizontal alignment (left, right, center).
@@ -91,7 +103,35 @@ namespace love
 		 **/
 		virtual void setBorderColor(const pAbstractColor * color);
 
+		/**
+		 * @param color An AbstractImage object.
+		 * @brief Sets the background.
+		 **/
 		virtual void setBackground(const pAbstractImage * image);
+
+		/**
+		 * @return The width of the Label.
+		 * @brief Returns the width of the Label.
+		 **/
+		virtual int getWidth();
+
+		/**
+		 * @return The width of the Label.
+		 * @brief Returns the width of the Label.
+		 **/
+		virtual int getHeight();
+
+		/**
+		 * @return The border size.
+		 * @brief Returns the size of the border.
+		 **/
+		virtual unsigned int getBorderSize();
+
+		/**
+		 * @return The current caption.
+		 * @brief Returns the Label's caption.
+		 **/
+		virtual const char * getCaption();
 
 		/**
 		 * @return An AbstractColor object.
@@ -116,6 +156,11 @@ namespace love
 		 * @brief Gets the background image.
 		 **/
 		virtual pAbstractImage getBackground();
+
+		/**
+		 * @brief Adjusts the size of the label according to the size of the caption.
+		 **/
+		virtual void adjustSize();
 
 		/**
 		 * @param graphics A GUIchan Graphics object.

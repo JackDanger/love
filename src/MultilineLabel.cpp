@@ -27,7 +27,7 @@ namespace love
 	{
 		if(getWidth() == 0) return 0;
 
-		const char * text = getCaption().c_str();
+		const char * text = getCaption();
 		vector<string> words;
 		vector<float> sizes;
 		float size = 0;
@@ -156,17 +156,17 @@ namespace love
 				break;
 			}
 
-			glPushAttrib(GL_CURRENT_BIT);
+			//glPushAttrib(GL_CURRENT_BIT);
 			graphics->setColor(gcn::Color(0xFFFFFF)); // to remove the effects of the background color
-			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-			glEnable(GL_TEXTURE_2D);
-			glEnable(GL_BLEND);
+			//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+			//glEnable(GL_TEXTURE_2D);
+			//glEnable(GL_BLEND);
 
 			background->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
 				
-			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-			glDisable(GL_TEXTURE_2D);
-			glPopAttrib();
+			//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+			//glDisable(GL_TEXTURE_2D);
+			//glPopAttrib();
 		}
 
 		x = 0;

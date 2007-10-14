@@ -19,6 +19,26 @@ namespace love
 	Button::~Button()
 	{ }
 
+	void Button::setSize(int width, int height)
+	{
+		gcn::Button::setSize(width, height);
+	}
+
+	void Button::setWidth(int width)
+	{
+		gcn::Button::setWidth(width);
+	}
+
+	void Button::setHeight(int height)
+	{
+		gcn::Button::setHeight(height);
+	}
+
+	void Button::setBorderSize(unsigned int size)
+	{
+		gcn::Button::setBorderSize(size);
+	}
+
 	void Button::setCaption(const char * caption)
 	{
 		gcn::Button::setCaption(string(caption));
@@ -122,6 +142,23 @@ namespace love
 	{
 		if(color != 0)
 			borderColor = *color;
+	}
+
+	int Button::getWidth()
+	{
+		return gcn::Button::getWidth();
+	}
+
+
+	int Button::getHeight()
+	{
+		return gcn::Button::getHeight();
+	}
+
+
+	unsigned int Button::getBorderSize()
+	{
+		return gcn::Button::getBorderSize();
 	}
 
 	pAbstractColor Button::getColor()

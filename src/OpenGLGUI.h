@@ -9,6 +9,7 @@
 #include "Renderable.h"
 #include "Updateable.h"
 #include "EventListener.h"
+#include "DisplayModeListener.h"
 
 #include <guichan.hpp>
 #include <guichan/opengl.hpp>
@@ -17,7 +18,8 @@
 
 namespace love
 {
-	class OpenGLGUI : public gcn::ActionListener, public Renderable, public Updateable
+	class OpenGLGUI : public gcn::ActionListener, public Renderable, public Updateable,
+						public DisplayModeListener
 	{
 	private:
 		gcn::Gui * gui;
@@ -54,6 +56,23 @@ namespace love
 		void add(pMenu menu);
 
 		/**
+		 * @brief Adds a GUIchan Widget to the gui.
+		 * @param widget The Widget in question.
+		 **/
+		void add(gcn::Widget * widget);
+
+		/**
+		 * @brief Removes a GUIchan Widget from the gui.
+		 * @param widget The Widget in question.
+		 **/
+		void remove(gcn::Widget * widget);
+
+		/**
+		 * @brief Clears the GUI of any elements.
+		 **/
+		void clear();
+
+		/**
 		 * @brief Returns the default font.
 		 * @return The default font used in the GUI system.
 		 **/
@@ -80,6 +99,11 @@ namespace love
 		 * @param dt The time since last call (in seconds).
 		 **/
 		void update(float dt);
+
+		/**
+		* @brief Called when the display mode changes.
+		**/
+		void displayModeChanged();
 	};
 }
 

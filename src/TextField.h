@@ -18,7 +18,7 @@ namespace love
 	 **/
 	class TextField : public gcn::TextField
 	{
-	private:
+	protected:
 		pAbstractColor color;
 		pAbstractColor backgroundColor;
 		pAbstractColor borderColor;
@@ -38,15 +38,29 @@ namespace love
 		virtual ~TextField();
 
 		/**
-		 * gcn::TextField functions that should be documented:
-		 * adjustSize()
-		 * setSize(width, height)
-		 * setWidth(width)
-		 * setHeight(height)
-		 * setBorderSize(size)
-		 * setText(text)
-		 * getText()
-		 */
+		 * @param width The new width.
+		 * @param height The new height.
+		 * @brief Sets the size of the TextField.
+		 **/
+		virtual void setSize(int width, int height);
+
+		/**
+		 * @param width The new width.
+		 * @brief Sets the width of the TextField.
+		 **/
+		virtual void setWidth(int width);
+
+		/**
+		 * @param height The new height.
+		 * @brief Sets the height of the TextField.
+		 **/
+		virtual void setHeight(int height);
+
+		/**
+		 * @param size The new border size.
+		 * @brief Sets the size of the TextField's border.
+		 **/
+		virtual void setBorderSize(unsigned int size);
 
 		/**
 		 * @param text The text in the text field.
@@ -58,77 +72,105 @@ namespace love
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color.
 		 **/
-		void setColor(const pAbstractColor * color);
+		virtual void setColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color when the text field is active.
 		 **/
-		void setActiveColor(const pAbstractColor * color);
+		virtual void setActiveColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the background color.
 		 **/
-		void setBackgroundColor(const pAbstractColor * color);
+		virtual void setBackgroundColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the background color when the text field is active.
 		 **/
-		void setActiveBackgroundColor(const pAbstractColor * color);
+		virtual void setActiveBackgroundColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the border color.
 		 **/
-		void setBorderColor(const pAbstractColor * color);
+		virtual void setBorderColor(const pAbstractColor * color);
+
+		/**
+		 * @return The width of the TextField.
+		 * @brief Returns the width of the TextField.
+		 **/
+		virtual int getWidth();
+
+		/**
+		 * @return The height of the TextField.
+		 * @brief Returns the height of the TextField.
+		 **/
+		virtual int getHeight();
+
+		/**
+		 * @return The size of the TextField's border.
+		 * @brief Returns the size of the TextField's border.
+		 **/
+		virtual unsigned int getBorderSize();
+
+		/**
+		 * @return The text in the TextField.
+		 * @brief Returns the text in the TextField.
+		 **/
+		virtual const char * getText();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the text color.
 		 **/
-		pAbstractColor getColor();
+		virtual pAbstractColor getColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the background color.
 		 **/
-		pAbstractColor getBackgroundColor();
+		virtual pAbstractColor getBackgroundColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the text color when the text label is active.
 		 **/
-		pAbstractColor getActiveColor();
+		virtual pAbstractColor getActiveColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the background color when the text label is active.
 		 **/
-		pAbstractColor getActiveBackgroundColor();
+		virtual pAbstractColor getActiveBackgroundColor();
 
 		/**
 		 * @return An AbstractColor object.
 		 * @brief Returns the border color.
 		 **/
-		pAbstractColor getBorderColor();
+		virtual pAbstractColor getBorderColor();
+
+		/**
+		 * @brief Adjusts the size of the TextField depending on the content.
+		 **/
+		virtual void adjustSize();
 
 		/**
 		 * @param graphics A GUIchan Graphics object.
 		 * @brief Draws the text field background and text.
 		 **/
-		void draw(gcn::Graphics* graphics);
+		virtual void draw(gcn::Graphics* graphics);
 
 		/**
 		 * @param graphics A GUIchan Graphics object.
 		 * @brief Draws the text field border.
 		 **/
-		void drawBorder(gcn::Graphics* graphics);
+		virtual void drawBorder(gcn::Graphics* graphics);
 	};
 
 	typedef boost::shared_ptr<TextField> pTextField;
 }
 
 #endif
-

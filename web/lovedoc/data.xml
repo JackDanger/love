@@ -562,6 +562,12 @@ small = love.objects:newFont("SomeAwesomeZeldaFont.ttf", 8);
 	   <param name="y4" brief="Fourth y-coordinate." />
 	  </function>
 	  
+	  <separator />
+	  
+	  <function name="newMenu" breif="Creates a new GUI item.">
+	   <param name="type" brief="The type of menu setup (default: vertical)." />
+	  </function>
+	  
 	</object>
 	
 	 <!-- :::::::::::::::::::::::::::::::: love.graphics ::::::::::::::::::::::::::::: -->

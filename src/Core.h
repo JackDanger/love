@@ -102,11 +102,12 @@ namespace love
 
 		// GUI
 		OpenGLGUI * gui;
+		gcn::Container * top; //something that covers the entire area (so you can't interact with any other menus)
 		pAbstractImage errorWarning;
 		pAbstractImage errorError;
-		pMenu error;
-		pMenu warning;
-		pMenu pause;
+		Menu * error;
+		Menu * warning;
+		Menu * pause;
 		pMultilineLabel errorText;
 		pMultilineLabel warningText;
 		pButton errorButton;
@@ -158,6 +159,12 @@ namespace love
 		* @return The current display mode.
 		**/
 		const DisplayMode & getDisplayMode() const;
+
+		/**
+		* @brief Gets the current GUI system.
+		* @return The current GUI system.
+		**/
+		OpenGLGUI * getGUI() const;
 
 		/**
 		* @brief Destructor.

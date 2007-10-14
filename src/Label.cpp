@@ -16,23 +16,29 @@ namespace love
 	{
 	}
 
+	void Label::setSize(int width, int height)
+	{
+		gcn::Label::setSize(width, height);
+	}
+
+	void Label::setWidth(int width)
+	{
+		gcn::Label::setWidth(width);
+	}
+
+	void Label::setHeight(int height)
+	{
+		gcn::Label::setHeight(height);
+	}
+
+	void Label::setBorderSize(unsigned int size)
+	{
+		gcn::Label::setBorderSize(size);
+	}
+
 	void Label::setCaption(const char * caption)
 	{
 		gcn::Label::setCaption(string(caption));
-	}
-
-	void Label::adjustSize()
-	{
-		setWidth(getFont()->getWidth(getCaption()));
-		setHeight(getFont()->getHeight() + 2);
-
-		if(background != 0)
-		{
-			if(getWidth() < background->getWidth())
-				setWidth((int)background->getWidth());
-			if(getHeight() < background->getHeight())
-				setHeight((int)background->getHeight());
-		}
 	}
 
 	void Label::align(int alignment)
@@ -80,6 +86,26 @@ namespace love
 		background = *image;
 	}
 
+	int Label::getWidth()
+	{
+		return gcn::Label::getWidth();
+	}
+
+	int Label::getHeight()
+	{
+		return gcn::Label::getHeight();
+	}
+
+	unsigned int Label::getBorderSize()
+	{
+		return gcn::Label::getBorderSize();
+	}
+
+	const char * Label::getCaption()
+	{
+		return gcn::Label::getCaption().c_str();
+	}
+
 	pAbstractColor Label::getColor()
 	{
 		return color;
@@ -98,6 +124,20 @@ namespace love
 	pAbstractImage Label::getBackground()
 	{
 		return background;
+	}
+
+	void Label::adjustSize()
+	{
+		setWidth(getFont()->getWidth(getCaption()));
+		setHeight(getFont()->getHeight() + 2);
+
+		if(background != 0)
+		{
+			if(getWidth() < background->getWidth())
+				setWidth((int)background->getWidth());
+			if(getHeight() < background->getHeight())
+				setHeight((int)background->getHeight());
+		}
 	}
 
 	void Label::draw(gcn::Graphics* graphics)
@@ -139,17 +179,17 @@ namespace love
 				break;
 			}
 
-			glPushAttrib(GL_CURRENT_BIT);
+			//glPushAttrib(GL_CURRENT_BIT);
 			graphics->setColor(gcn::Color(0xFFFFFF)); // to remove the effects of the background color
-			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-			glEnable(GL_TEXTURE_2D);
-			glEnable(GL_BLEND);
+			//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+			//glEnable(GL_TEXTURE_2D);
+			//glEnable(GL_BLEND);
 
 			background->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
 				
-			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-			glDisable(GL_TEXTURE_2D);
-			glPopAttrib();
+			//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+			//glDisable(GL_TEXTURE_2D);
+			//glPopAttrib();
 		}
 
 		x = 0;
