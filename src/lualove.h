@@ -53,13 +53,13 @@ namespace love
 	void lualove_push_pointer(lua_State * L, void * ptr, int type);
 	void lualove_push_global_pointer(lua_State * L, void * ptr, const string & name, int type);
 
-	void lualove_call_init(lua_State * L, void * ptr, const string & chunk, int type);
+	void lualove_call_load(lua_State * L, void * ptr, const string & chunk, int type);
 
 
 	void lualove_call_update(lua_State * L, void * ptr, const string & chunk, int type, float dt);
 	void lualove_call_render(lua_State * L, void * ptr, const string & chunk, int type);
 
-	void lualove_call_init_noarg(lua_State * L, Scriptable * scriptable);
+	void lualove_call_load_noarg(lua_State * L, Scriptable * scriptable);
 	void lualove_call_update_noarg(lua_State *L, Scriptable * scriptable, float dt);
 	void lualove_call_render_noarg(lua_State *L, Scriptable * scriptable);
 	void lualove_call_keypressed_noarg(lua_State *L, Scriptable * scriptable, int key);

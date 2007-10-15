@@ -22,8 +22,8 @@ namespace love
 	{
 		lualove_check_functions(L, this, LOVE_METHOD_ALL);
 
-		if(isAvailable(LOVE_METHOD_INIT))
-			lualove_call_init(L, (void*)this, this->getScript(), this->getType());
+		if(isAvailable(LOVE_METHOD_LOAD))
+			lualove_call_load(L, (void*)this, this->getScript(), this->getType());
 	}
 
 	void ScriptableActorState::render()

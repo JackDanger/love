@@ -73,6 +73,8 @@ namespace love
 	{
 	protected:
 
+		// Additive blending.
+		bool additive;
 
 		// Position of Particle System
 		Vector pos;
@@ -166,6 +168,11 @@ namespace love
 
 		int getNumParticles() const;
 
+		const list<particle> & getParticles() const;
+		const pSprite & getSprite() const;
+		const pAnimatedColor & getColor() const;
+		bool isAdditive() const;
+
 		void reset();
 
 		/**
@@ -224,6 +231,8 @@ namespace love
 		void setSprite(const pSprite * sprite);
 		void setSprite(const pAbstractImage * image);
 		void setSprite(const pFrameAnimation * anim);
+
+		void setAdditiveBlending(bool additive);
 
 		void setDirection(float min, float max, float var = 0.0f);
 		void setDirection(float m);

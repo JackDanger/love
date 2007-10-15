@@ -109,6 +109,15 @@ namespace love
 		virtual void drawParticleSystem(const pParticleSystem * particleSystem) const;
 
 		/**
+		* @brief Renders a ParticleSystem at a given position. The position defined in the 
+		* object is ignored.
+		* @param particleSystem The ParticleSystem to render.
+		* @param x The x-coordinate of the position.
+		* @param y The y-coordinate of the position.
+		**/
+		virtual void drawParticleSystem(const pParticleSystem * particleSystem, float x, float y) const;
+
+		/**
 		* @brief Draws a Bezier curve. 
 		* @param bezier The Bezier to draw.
 		* @param x The x-coordinate of the position (first point).
@@ -135,6 +144,52 @@ namespace love
 		* @param align How to align the text.
 		**/
 		virtual void drawText(const char * str, float x, float y, float limit = 0, int align = 1) const;
+
+		/**
+		* @brief Combines a translation with the current matrix.
+		* @param x Translation along x-axis.
+		* @param y Translation along y-axis.
+		**/
+		virtual void translate(float x, float y) const;
+
+		/**
+		* @brief Combines a rotation with the current matrix.
+		* @param a Amount of rotation (deg).
+		**/
+		virtual void rotate(float a) const;
+
+		/**
+		* @brief Combines a scaling with the current matrix.
+		* @param s Scale factor.
+		**/
+		virtual void scale(float s) const;
+
+		/**
+		* @brief Combines a scaling with the current matrix.
+		* @param sx Scale factor on x-axis.
+		* @param sy Scale factor on y-axis.
+		**/
+		virtual void scale(float sx, float sy) const;
+		
+		/**
+		* @brief Loads the identity matrix.
+		**/
+		virtual void identity() const;
+
+		/**
+		* @brief Pushes the current matrix onto stack.
+		**/
+		virtual void push() const;
+
+		/**
+		* @brief Pops a matrix of the stack.
+		**/
+		virtual void pop() const; 
+
+		/**
+		* @brief Clears the screen using the background color.
+		**/
+		virtual void clear() const;
 
 		/**
 		* @brief Draws a line from [x1,y1] to [x2,y2].

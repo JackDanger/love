@@ -12,6 +12,7 @@ namespace love
 	{
 		// default color
 		color.reset<Color>(new Color(255, 255, 255, 255));
+		background.reset<Color>(new Color(0, 0, 0, 255));
 	}
 	
 	OpenGLGraphics::~OpenGLGraphics()
@@ -27,6 +28,8 @@ namespace love
 	{
 		// Get info of how to render the sprite.
 		renderinfo r = sprite->getRenderInfo();
+
+		glColor4ub(255, 255, 255, 255);
 
 		// Bind the texture.
 		sprite->bind();
@@ -53,6 +56,8 @@ namespace love
 		// Get info of how to render the sprite.
 		renderinfo r = sprite->getRenderInfo();
 
+		glColor4ub(255, 255, 255, 255);
+
 		// Bind the texture.
 		sprite->bind();
 
@@ -77,6 +82,8 @@ namespace love
 	{
 		// Get info of how to render the sprite.
 		renderinfo r = sprite->getRenderInfo();
+
+		glColor4ub(255, 255, 255, 255);
 
 		// Bind the texture.
 		sprite->bind();
@@ -103,6 +110,8 @@ namespace love
 		// Get info of how to render the sprite.
 		renderinfo r = sprite->getRenderInfo();
 
+		glColor4ub(255, 255, 255, 255);
+
 		// Bind the texture.
 		sprite->bind();
 
@@ -127,6 +136,8 @@ namespace love
 		// Get info of how to render the sprite.
 		renderinfo r = sprite->getRenderInfo(x, y, width, height);
 
+		glColor4ub(255, 255, 255, 255);
+
 		// Bind the texture.
 		sprite->bind();
 
@@ -149,7 +160,74 @@ namespace love
 
 	void OpenGLGraphics::drawParticleSystem(const pParticleSystem * particleSystem) const
 	{
+		// Additive blending
+		if((*particleSystem)->isAdditive()) 
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
+		glEnable(GL_TEXTURE_2D);
+
+		// Get list of particles.
+		const list<particle> & particles = (*particleSystem)->getParticles();
+
+		// Get sprite.
+		const pSprite & sprite = (*particleSystem)->getSprite();
+
+		// Get color.
+		const pAnimatedColor & color = (*particleSystem)->getColor();
+
+
+		// Iterate through particles and render
+		list<particle>::const_iterator iter;
+
+		sprite->bind();
+
+		for(iter = particles.begin(); iter != particles.end(); iter++ )
+		{
+			float t = iter->age/iter->life;
+
+			// Set the color
+			Color c = color->getColor(t);
+			glColor4ub(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
+
+			// Set the size
+			float sd = iter->size.max - iter->size.min;
+			float s = iter->size.min + sd * t;
+			
+			float x = iter->pos.getX();
+			float y = iter->pos.getY();
+
+			// Render
+			renderinfo r = sprite->getRenderInfo();
+			float xfac = r.width/2.0f;
+			float yfac = r.height/2.0f;
+
+			glPushMatrix();
+
+			glTranslatef(x, y, 0);
+			glScalef(s, s, 0);
+			glRotatef(iter->angle, 0, 0, 1);
+
+			glBegin(GL_QUADS);
+			glTexCoord2f(r.xTex,r.yTex);				glVertex2f(-xfac,-yfac);
+			glTexCoord2f(r.xTex,r.yTex+r.hTex);			glVertex2f(-xfac,yfac);
+			glTexCoord2f(r.xTex+r.wTex,r.yTex+r.hTex);	glVertex2f(xfac,yfac);
+			glTexCoord2f(r.xTex+r.wTex,r.yTex);			glVertex2f(xfac,-yfac);
+			glEnd();
+
+			glPopMatrix();
+
+		}
+
+		// Normal blending
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	}
+
+	void OpenGLGraphics::drawParticleSystem(const pParticleSystem * particleSystem, float x, float y) const
+	{
+		glPushMatrix();
+		glTranslatef(x, y, 0);
+		drawParticleSystem(particleSystem);
+		glPopMatrix();
 	}
 
 	void OpenGLGraphics::drawBezier(const pBezier * bezier, float x, float y, int precision, float lineWidth) const
@@ -186,6 +264,7 @@ namespace love
 		glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
 		if(font!=0)
 		{
+			glColor4ub(color->getRed(),color->getGreen(), color->getBlue(), color->getAlpha());
 			font->print(str, x, y);
 		}
 		glPopMatrix();
@@ -387,6 +466,49 @@ namespace love
 		//glEnable(GL_TEXTURE_2D); //enabled elsewhere
 		glPopAttrib();
 		glPopMatrix();
+	}
+
+	void OpenGLGraphics::translate(float x, float y) const
+	{
+		glTranslatef(x, y, 0);
+	}
+
+	void OpenGLGraphics::rotate(float a) const
+	{
+		glRotatef(a, 0, 0, 1);
+	}
+
+	void OpenGLGraphics::scale(float s) const
+	{
+		glScalef(s, s, 1);
+	}
+
+	void OpenGLGraphics::scale(float sx, float sy) const
+	{
+		glScalef(sx, sy, 1);
+	}
+	
+	void OpenGLGraphics::identity() const
+	{
+		glLoadIdentity();
+	}
+
+	void OpenGLGraphics::push() const
+	{
+		glPushMatrix();
+	}
+
+	void OpenGLGraphics::pop() const
+	{
+		glPopMatrix();
+	}
+
+	void OpenGLGraphics::clear() const
+	{
+		// Clear color bit, etc
+		glClearColor(background->getRed()/255.0f, background->getGreen()/255.0f, background->getBlue()/255.0f, 1); 
+		glClear(GL_COLOR_BUFFER_BIT);
+		glLoadIdentity();
 	}
 	
 } // love

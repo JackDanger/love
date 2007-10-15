@@ -6,6 +6,7 @@
 #include "SDL/SDL.h"
 #include "GLee.h"
 #include "SDL/SDL_opengl.h"
+#include "SDL_image.h"
 
 #include <sstream>
 #include <string>
@@ -45,6 +46,10 @@ namespace love
 
 		// Set caption
 		SDL_WM_SetCaption(makeCaption().c_str(), 0);
+
+		// Set window icon.
+		//SDL_Surface* icon = IMG_Load("love16x16.png");
+		//SDL_WM_SetIcon(icon, NULL);
 
 		return LOVE_OK;
 	}

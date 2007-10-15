@@ -17,7 +17,8 @@ namespace love
 	class ObjectFactory;
 	class KeyConstants;
 	class AbstractGraphics;
-	//class AbstractGUI;
+	class LuaGame;
+	class LuaGame;
 
 	extern Keyboard * keyboard;
 	extern Mouse * mouse;
@@ -25,6 +26,7 @@ namespace love
 	extern AbstractGraphics * graphics;
 	extern Timer * timer;
 	extern ObjectFactory * objects;
+	extern LuaGame * game;
 	//extern AbstractGUI * gui;
 	
 } // love

@@ -48,6 +48,7 @@
 
 #include "AbstractSound.h"
 #include "AbstractMusic.h"
+#include "AbstractDisplay.h"
 
 #include "Keyboard.h"
 #include "Mouse.h"
@@ -142,6 +143,7 @@ namespace boost {
 
 %include "LuaGame.h"
 
+%include "AbstractDisplay.h"
 %include "AbstractGraphics.h"
 
 %include "ObjectFactory.h"
@@ -157,6 +159,7 @@ namespace boost {
 %template(SmartAnimation) boost::shared_ptr<love::FrameAnimation>;
 %template(SmartMusic) boost::shared_ptr<love::AbstractMusic>;
 %template(SmartSound) boost::shared_ptr<love::AbstractSound>;
+%template(SmartDisplay) boost::shared_ptr<love::AbstractDisplay>;
 %template(SmartColor) boost::shared_ptr<love::Color>;
 %template(SmartFont) boost::shared_ptr<love::Font>;
 %template(SmartParticleSystem) boost::shared_ptr<love::ParticleSystem>;

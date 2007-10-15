@@ -333,10 +333,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\FontTexGame.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\FrameAnimation.cpp"
 				>
 			</File>
@@ -458,10 +454,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\LuaGame.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\LuaGameState.cpp"
 				>
 			</File>
 			<File

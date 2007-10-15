@@ -289,10 +289,19 @@ namespace love
 		virtual void drawSubSprite(const pSprite & sprite, float x, float y, float width, float height) const = 0;
 
 		/**
-		* @brief Renders a ParticleSystem.
+		* @brief Renders a ParticleSystem at the position defined in the object.
 		* @param particleSystem The ParticleSystem to render.
 		**/
 		virtual void drawParticleSystem(const pParticleSystem * particleSystem) const = 0;
+
+		/**
+		* @brief Renders a ParticleSystem at a given position. The position defined in the 
+		* object is ignored.
+		* @param particleSystem The ParticleSystem to render.
+		* @param x The x-coordinate of the position.
+		* @param y The y-coordinate of the position.
+		**/
+		virtual void drawParticleSystem(const pParticleSystem * particleSystem, float x, float y) const = 0;
 
 		/**
 		* @brief Draws a Bezier curve. 
@@ -320,6 +329,31 @@ namespace love
 		**/
 		virtual void drawText(const char * str, float x, float y, float limit = 0, int align = 1) const = 0;
 
+		/**
+		* @brief Combines a translation with the current matrix.
+		* @param x Translation along x-axis.
+		* @param y Translation along y-axis.
+		**/
+		virtual void translate(float x, float y) const = 0;
+
+		/**
+		* @brief Combines a rotation with the current matrix.
+		* @param a Amount of rotation (deg).
+		**/
+		virtual void rotate(float a) const = 0;
+
+		/**
+		* @brief Combines a scaling with the current matrix.
+		* @param s Scale factor.
+		**/
+		virtual void scale(float s) const = 0;
+
+		/**
+		* @brief Combines a scaling with the current matrix.
+		* @param sx Scale factor on x-axis.
+		* @param sy Scale factor on y-axis.
+		**/
+		virtual void scale(float sx, float sy) const = 0;
 		/**
 		* @brief Draws a line from [x1,y1] to [x2,y2].
 		* @param x1 The first x-coordinate.
@@ -395,6 +429,26 @@ namespace love
 		virtual void fillCircle(float x, float y, float radius, int points = 10, float rotation = 0) const = 0;
 
 		
+		/**
+		* @brief Loads the identity matrix.
+		**/
+		virtual void identity() const = 0;
+
+		/**
+		* @brief Pushes the current matrix onto stack.
+		**/
+		virtual void push() const = 0;
+
+		/**
+		* @brief Pops a matrix of the stack.
+		**/
+		virtual void pop() const = 0; 
+
+		/**
+		* @brief Clears the screen using the background color.
+		**/
+		virtual void clear() const = 0;
+				
 	}; // AbstractGraphics
 	
 	typedef boost::shared_ptr<AbstractGraphics> pAbstractGraphics;

@@ -22,7 +22,7 @@ namespace love
 
 	enum
 	{
-		LOVE_METHOD_INIT			= 0x1,
+		LOVE_METHOD_LOAD			= 0x1,
 		LOVE_METHOD_UPDATE			= 0x2, 
 		LOVE_METHOD_RENDER			= 0x4,
 		LOVE_METHOD_KEYPRESSED		= 0x8,

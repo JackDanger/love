@@ -99,7 +99,7 @@ namespace love
 
 
 		addGame("neoftg", new NeoFontTexGame());
-		addGame("ftg", new FontTexGame());
+		//addGame("ftg", new FontTexGame());
 
 		// Adds scripted games from the game directory.
 		addGames();
@@ -197,7 +197,7 @@ namespace love
 			// At this point, we know that the file or directory is valid, at least.
 
 			// Verify that entry.lua is present.
-			if(!filesystem->exists(source, "entry.lua"))
+			if(!filesystem->exists(source, "main.lua"))
 				continue;
 
 			// Okay, it's a game.
@@ -217,9 +217,8 @@ namespace love
 
 	void Core::render()
 	{	
-		// Clear color bit, etc
-		glClear(GL_COLOR_BUFFER_BIT);
-		glLoadIdentity();
+
+		graphics->clear();
 
 		current->render();
 

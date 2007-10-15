@@ -9,7 +9,7 @@ const float to_rad = (pi/180.0f);
 namespace love
 {
 
-	ParticleSystem::ParticleSystem() : spawnBuffer(0), lifetime(-1), age(0)
+	ParticleSystem::ParticleSystem() : spawnBuffer(0), lifetime(-1), age(0), additive(true)
 	{
 		// Init members
 		fillInterval(direction, 0, 360);
@@ -171,6 +171,26 @@ namespace love
 		return (int)particles.size();
 	}
 
+	const list<particle> & ParticleSystem::getParticles() const
+	{
+		return particles;
+	}
+
+	const pSprite & ParticleSystem::getSprite() const
+	{
+		return sprite;
+	}
+
+	const pAnimatedColor & ParticleSystem::getColor() const
+	{
+		return color;
+	}
+
+	bool ParticleSystem::isAdditive() const
+	{
+		return additive;
+	}
+
 	void ParticleSystem::reset()
 	{
 		age = 0;
@@ -222,6 +242,10 @@ namespace love
 		this->sprite = (pSprite)(*sprite);
 	}
 
+	void ParticleSystem::setAdditiveBlending(bool additive)
+	{
+		this->additive = additive;
+	}
 
 	void ParticleSystem::setParticlesPerSecond(float particlesPerSecond)
 	{
