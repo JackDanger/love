@@ -33,7 +33,7 @@ cloud =
 
 main = {
 	
-	init = function()
+	load = function()
 	
 		game:queueDisplayMode(640, 480, 32, false);
 	

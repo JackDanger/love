@@ -3,7 +3,7 @@
 
 main = {
 
-	init = function()
+	load = function()
 	
 		game:addColor("RED", 255, 0, 0);
 		game:addColor("BLUE", 0, 0, 255);

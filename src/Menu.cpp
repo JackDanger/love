@@ -296,7 +296,7 @@ namespace love
 	{
 		if(!visible) return;
 
-		glPushMatrix();
+		//glPushMatrix();
 
 		if(text != 0)
 			graphics->setFont(text);
@@ -311,28 +311,47 @@ namespace love
 
 			if(background != 0)
 			{
-				glPushAttrib(GL_CURRENT_BIT);
+				int x = 0;
+				int y = 0;
+				switch(alignment)
+				{
+				default:
+				case Text::LOVE_ALIGN_CENTER:
+					x = (int)((getWidth() / 2) - (background->getWidth() / 2));
+					break;
+				case Text::LOVE_ALIGN_LEFT:
+					//do nothing (leave the values as they are)
+					break;
+				case Text::LOVE_ALIGN_RIGHT:
+					x = (int)(getWidth() - background->getWidth());
+					break;
+				}
+				switch(verticalAlignment)
+				{
+				default:
+				case Text::LOVE_ALIGN_CENTER:
+					y = (int)((getHeight() / 2) - (background->getHeight() / 2));
+					break;
+				case Text::LOVE_ALIGN_TOP:
+					break;
+				case Text::LOVE_ALIGN_BOTTOM:
+					y = (int)(getHeight() - background->getHeight());
+					break;
+				}
 				graphics->setColor(gcn::Color(0xFFFFFF)); // to remove the effects of the background color
-				glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-				glEnable(GL_TEXTURE_2D);
-				glEnable(GL_BLEND);
-
-				background->render((float)graphics->getCurrentClipArea().x, (float)graphics->getCurrentClipArea().y);
-				
-				glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-				glDisable(GL_TEXTURE_2D);
-				glPopAttrib();
+				background->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
 			}
 		}
 
 		drawChildren(graphics);
 
-		glPopMatrix();
+		//glPopMatrix();
 	}
 
 	void Menu::drawBorder(gcn::Graphics* graphics)
 	{
 		if(!visible) return;
+		gcn::Container::drawBorder(graphics);
 	}
 
 	Menu * Menu::addMenu(int type, int width, int height)

@@ -120,6 +120,8 @@ namespace love
 	{
 		if(buttonBackgroundColor.get() != 0)
 			setBaseColor(gcn::Color(buttonBackgroundColor->getRed(),buttonBackgroundColor->getGreen(),buttonBackgroundColor->getBlue(),buttonBackgroundColor->getAlpha()));
+		else
+			setBaseColor(getBackgroundColor());
 
 		gcn::Color faceColor, highlightColor, shadowColor;
 		int offset;

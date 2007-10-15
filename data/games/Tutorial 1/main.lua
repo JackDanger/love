@@ -3,7 +3,7 @@
 
 main = {
 	
-	init = function()
+	load = function()
 	
 		ham = love.objects:newImage("hamster.gif");
 		

@@ -4,7 +4,7 @@ num = 8
 
 main = {
 
-	init = function()
+	load = function()
 	
 		-- Add the image used as the source for the animation.
 		game:addImage("image-explode", "Explosion_1.png");

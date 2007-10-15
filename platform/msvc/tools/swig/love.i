@@ -62,6 +62,7 @@
 #include "AbstractImage.h"
 #include "FrameAnimation.h"
 
+#include "Padded.h"
 #include "Button.h"
 #include "DropDown.h"
 #include "Label.h"
@@ -128,6 +129,7 @@ namespace boost {
 %include "FrameAnimation.h"
 %include "Bezier.h"
 
+%include "Padded.h"
 %include "Button.h"
 %include "DropDown.h"
 %include "Label.h"

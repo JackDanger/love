@@ -167,6 +167,8 @@ namespace love
 
 	void UIGame::showPause()
 	{
+		if(previous != 0) return; //if we are already paused
+
 		gui->clear();
 		gui->add(pause);
 		core->gui->add(gui);
@@ -229,5 +231,7 @@ namespace love
 	void UIGame::displayModeChanged()
 	{
 		gui->setSize(core->display->getCurrentDisplayMode().getWidth(),core->display->getCurrentDisplayMode().getHeight());
+		if(previous != 0)
+			previous->displayModeChanged();
 	}
 }

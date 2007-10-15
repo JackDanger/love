@@ -5,7 +5,7 @@
 
 main = {
      
-       init = function()
+       load = function()
 
             game:addFont("verdana", 12);
             game:addFont("lacuna", 40);

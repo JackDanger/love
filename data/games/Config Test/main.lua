@@ -25,7 +25,7 @@ max_time = 2;
 
 main = {
 	
-	init = function()
+	load = function()
 	
 	
 		-- Include section

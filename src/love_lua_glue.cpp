@@ -1413,30 +1413,31 @@ SWIG_Lua_SetModule(lua_State* L, swig_module_info *module) {
 #define SWIGTYPE_p_love__MultilineLabel swig_types[80]
 #define SWIGTYPE_p_love__Object swig_types[81]
 #define SWIGTYPE_p_love__ObjectFactory swig_types[82]
-#define SWIGTYPE_p_love__ParticleSystem swig_types[83]
-#define SWIGTYPE_p_love__Renderable swig_types[84]
-#define SWIGTYPE_p_love__Sprite swig_types[85]
-#define SWIGTYPE_p_love__Text swig_types[86]
-#define SWIGTYPE_p_love__TextField swig_types[87]
-#define SWIGTYPE_p_love__Timer swig_types[88]
-#define SWIGTYPE_p_love__Updateable swig_types[89]
-#define SWIGTYPE_p_love__Vector swig_types[90]
-#define SWIGTYPE_p_love__VisualEntity swig_types[91]
-#define SWIGTYPE_p_love__interval swig_types[92]
-#define SWIGTYPE_p_love__la swig_types[93]
-#define SWIGTYPE_p_love__particle swig_types[94]
-#define SWIGTYPE_p_love__renderinfo swig_types[95]
-#define SWIGTYPE_p_love__rgb swig_types[96]
-#define SWIGTYPE_p_love__rgba swig_types[97]
-#define SWIGTYPE_p_lua_State swig_types[98]
-#define SWIGTYPE_p_pAnimatedColor swig_types[99]
-#define SWIGTYPE_p_pEvent swig_types[100]
-#define SWIGTYPE_p_std__string swig_types[101]
-#define SWIGTYPE_p_string swig_types[102]
-#define SWIGTYPE_p_vectorTlove__Vector_t swig_types[103]
-#define SWIGTYPE_string swig_types[104]
-static swig_type_info *swig_types[106];
-static swig_module_info swig_module = {swig_types, 105, 0, 0, 0, 0};
+#define SWIGTYPE_p_love__Padded swig_types[83]
+#define SWIGTYPE_p_love__ParticleSystem swig_types[84]
+#define SWIGTYPE_p_love__Renderable swig_types[85]
+#define SWIGTYPE_p_love__Sprite swig_types[86]
+#define SWIGTYPE_p_love__Text swig_types[87]
+#define SWIGTYPE_p_love__TextField swig_types[88]
+#define SWIGTYPE_p_love__Timer swig_types[89]
+#define SWIGTYPE_p_love__Updateable swig_types[90]
+#define SWIGTYPE_p_love__Vector swig_types[91]
+#define SWIGTYPE_p_love__VisualEntity swig_types[92]
+#define SWIGTYPE_p_love__interval swig_types[93]
+#define SWIGTYPE_p_love__la swig_types[94]
+#define SWIGTYPE_p_love__particle swig_types[95]
+#define SWIGTYPE_p_love__renderinfo swig_types[96]
+#define SWIGTYPE_p_love__rgb swig_types[97]
+#define SWIGTYPE_p_love__rgba swig_types[98]
+#define SWIGTYPE_p_lua_State swig_types[99]
+#define SWIGTYPE_p_pAnimatedColor swig_types[100]
+#define SWIGTYPE_p_pEvent swig_types[101]
+#define SWIGTYPE_p_std__string swig_types[102]
+#define SWIGTYPE_p_string swig_types[103]
+#define SWIGTYPE_p_vectorTlove__Vector_t swig_types[104]
+#define SWIGTYPE_string swig_types[105]
+static swig_type_info *swig_types[107];
+static swig_module_info swig_module = {swig_types, 106, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1501,6 +1502,7 @@ static swig_module_info swig_module = {swig_types, 105, 0, 0, 0, 0};
 #include "AbstractImage.h"
 #include "FrameAnimation.h"
 
+#include "Padded.h"
 #include "Button.h"
 #include "DropDown.h"
 #include "Label.h"
@@ -12666,6 +12668,375 @@ static swig_lua_attribute swig_love_Bezier_attributes[] = {
 static swig_lua_class *swig_love_Bezier_bases[] = {&_wrap_class_love_Object,0};
 swig_lua_class _wrap_class_love_Bezier = { "Bezier", &SWIGTYPE_p_love__Bezier,_wrap_new_Bezier, swig_delete_Bezier, swig_love_Bezier_methods, swig_love_Bezier_attributes, swig_love_Bezier_bases };
 
+static int _wrap_new_Padded(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Padded *result = 0 ;
+  
+  result = (love::Padded *)new love::Padded();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__Padded,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_Padded(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Padded *arg1 = (love::Padded *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Padded *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Padded,0,1,"delete_Padded");
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Padded_setPadding__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Padded *arg1 = (love::Padded *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
+  arg1=(love::Padded *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Padded,0,1,"Padded_setPadding");
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  arg5 = (int)lua_tonumber(L, 5);
+  (arg1)->setPadding(arg2,arg3,arg4,arg5);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Padded_setPadding__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Padded *arg1 = (love::Padded *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(love::Padded *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Padded,0,1,"Padded_setPadding");
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  (arg1)->setPadding(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Padded_setPadding__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Padded *arg1 = (love::Padded *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Padded *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Padded,0,1,"Padded_setPadding");
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setPadding(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Padded_setPadding(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Padded, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Padded_setPadding__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Padded, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_Padded_setPadding__SWIG_1(L);
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Padded, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_Padded_setPadding__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'Padded_setPadding'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_Padded_setPaddingTop(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Padded *arg1 = (love::Padded *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Padded *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Padded,0,1,"Padded_setPaddingTop");
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setPaddingTop(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Padded_setPaddingRight(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Padded *arg1 = (love::Padded *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Padded *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Padded,0,1,"Padded_setPaddingRight");
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setPaddingRight(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Padded_setPaddingBottom(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Padded *arg1 = (love::Padded *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Padded *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Padded,0,1,"Padded_setPaddingBottom");
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setPaddingBottom(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Padded_setPaddingLeft(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Padded *arg1 = (love::Padded *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Padded *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Padded,0,1,"Padded_setPaddingLeft");
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setPaddingLeft(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Padded_getPaddingTop(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Padded *arg1 = (love::Padded *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Padded *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Padded,0,1,"Padded_getPaddingTop");
+  result = (int)(arg1)->getPaddingTop();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Padded_getPaddingRight(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Padded *arg1 = (love::Padded *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Padded *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Padded,0,1,"Padded_getPaddingRight");
+  result = (int)(arg1)->getPaddingRight();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Padded_getPaddingBottom(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Padded *arg1 = (love::Padded *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Padded *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Padded,0,1,"Padded_getPaddingBottom");
+  result = (int)(arg1)->getPaddingBottom();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Padded_getPaddingLeft(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Padded *arg1 = (love::Padded *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Padded *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Padded,0,1,"Padded_getPaddingLeft");
+  result = (int)(arg1)->getPaddingLeft();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_Padded(void *obj) {
+love::Padded *arg1 = (love::Padded *) obj;
+delete arg1;
+}
+static swig_lua_method swig_love_Padded_methods[] = {
+    {"setPadding", _wrap_Padded_setPadding}, 
+    {"setPaddingTop", _wrap_Padded_setPaddingTop}, 
+    {"setPaddingRight", _wrap_Padded_setPaddingRight}, 
+    {"setPaddingBottom", _wrap_Padded_setPaddingBottom}, 
+    {"setPaddingLeft", _wrap_Padded_setPaddingLeft}, 
+    {"getPaddingTop", _wrap_Padded_getPaddingTop}, 
+    {"getPaddingRight", _wrap_Padded_getPaddingRight}, 
+    {"getPaddingBottom", _wrap_Padded_getPaddingBottom}, 
+    {"getPaddingLeft", _wrap_Padded_getPaddingLeft}, 
+    {0,0}
+};
+static swig_lua_attribute swig_love_Padded_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_love_Padded_bases[] = {0};
+swig_lua_class _wrap_class_love_Padded = { "Padded", &SWIGTYPE_p_love__Padded,_wrap_new_Padded, swig_delete_Padded, swig_love_Padded_methods, swig_love_Padded_attributes, swig_love_Padded_bases };
+
 static int _wrap_new_Button(lua_State* L) {
   int SWIG_arg = -1;
   string arg1 ;
@@ -16934,7 +17305,7 @@ static swig_lua_method swig_love_Menu_methods[] = {
 static swig_lua_attribute swig_love_Menu_attributes[] = {
     {0,0,0}
 };
-static swig_lua_class *swig_love_Menu_bases[] = {0};
+static swig_lua_class *swig_love_Menu_bases[] = {&_wrap_class_love_Padded,0};
 swig_lua_class _wrap_class_love_Menu = { "Menu", &SWIGTYPE_p_love__Menu,_wrap_new_Menu, swig_delete_Menu, swig_love_Menu_methods, swig_love_Menu_attributes, swig_love_Menu_bases };
 
 static int _wrap_interval_min_set(lua_State* L) {
@@ -37032,6 +37403,320 @@ static int _wrap_SmartMenu_addDropDown(lua_State* L) {
 }
 
 
+static int _wrap_SmartMenu_setPadding__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_setPadding");
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  arg5 = (int)lua_tonumber(L, 5);
+  (*arg1)->setPadding(arg2,arg3,arg4,arg5);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_setPadding__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_setPadding");
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  (*arg1)->setPadding(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_setPadding__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_setPadding");
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setPadding(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_setPadding(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Menu_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_SmartMenu_setPadding__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Menu_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_SmartMenu_setPadding__SWIG_1(L);
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Menu_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_SmartMenu_setPadding__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'SmartMenu_setPadding'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_SmartMenu_setPaddingTop(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_setPaddingTop");
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setPaddingTop(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_setPaddingRight(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_setPaddingRight");
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setPaddingRight(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_setPaddingBottom(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_setPaddingBottom");
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setPaddingBottom(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_setPaddingLeft(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_setPaddingLeft");
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setPaddingLeft(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_getPaddingTop(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_getPaddingTop");
+  result = (int)(*arg1)->getPaddingTop();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_getPaddingRight(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_getPaddingRight");
+  result = (int)(*arg1)->getPaddingRight();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_getPaddingBottom(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_getPaddingBottom");
+  result = (int)(*arg1)->getPaddingBottom();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_getPaddingLeft(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_getPaddingLeft");
+  result = (int)(*arg1)->getPaddingLeft();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_SmartMenu(void *obj) {
 boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) obj;
 delete arg1;
@@ -37070,6 +37755,15 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_Menu_Sg__methods[] = {
     {"addButton", _wrap_SmartMenu_addButton}, 
     {"addTextField", _wrap_SmartMenu_addTextField}, 
     {"addDropDown", _wrap_SmartMenu_addDropDown}, 
+    {"setPadding", _wrap_SmartMenu_setPadding}, 
+    {"setPaddingTop", _wrap_SmartMenu_setPaddingTop}, 
+    {"setPaddingRight", _wrap_SmartMenu_setPaddingRight}, 
+    {"setPaddingBottom", _wrap_SmartMenu_setPaddingBottom}, 
+    {"setPaddingLeft", _wrap_SmartMenu_setPaddingLeft}, 
+    {"getPaddingTop", _wrap_SmartMenu_getPaddingTop}, 
+    {"getPaddingRight", _wrap_SmartMenu_getPaddingRight}, 
+    {"getPaddingBottom", _wrap_SmartMenu_getPaddingBottom}, 
+    {"getPaddingLeft", _wrap_SmartMenu_getPaddingLeft}, 
     {0,0}
 };
 static swig_lua_attribute swig_boost_shared_ptr_Sl_love_Menu_Sg__attributes[] = {
@@ -37392,6 +38086,17 @@ static const struct luaL_reg swig_commands[] = {
     { "Bezier_next", _wrap_Bezier_next},
     { "Bezier_getPoint", _wrap_Bezier_getPoint},
     { "Bezier_setPoint", _wrap_Bezier_setPoint},
+    { "new_Padded", _wrap_new_Padded},
+    { "delete_Padded", _wrap_delete_Padded},
+    { "Padded_setPadding",_wrap_Padded_setPadding},
+    { "Padded_setPaddingTop", _wrap_Padded_setPaddingTop},
+    { "Padded_setPaddingRight", _wrap_Padded_setPaddingRight},
+    { "Padded_setPaddingBottom", _wrap_Padded_setPaddingBottom},
+    { "Padded_setPaddingLeft", _wrap_Padded_setPaddingLeft},
+    { "Padded_getPaddingTop", _wrap_Padded_getPaddingTop},
+    { "Padded_getPaddingRight", _wrap_Padded_getPaddingRight},
+    { "Padded_getPaddingBottom", _wrap_Padded_getPaddingBottom},
+    { "Padded_getPaddingLeft", _wrap_Padded_getPaddingLeft},
     { "new_Button", _wrap_new_Button},
     { "delete_Button", _wrap_delete_Button},
     { "Button_setSize", _wrap_Button_setSize},
@@ -38002,6 +38707,15 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartMenu_addButton",_wrap_SmartMenu_addButton},
     { "SmartMenu_addTextField",_wrap_SmartMenu_addTextField},
     { "SmartMenu_addDropDown",_wrap_SmartMenu_addDropDown},
+    { "SmartMenu_setPadding",_wrap_SmartMenu_setPadding},
+    { "SmartMenu_setPaddingTop", _wrap_SmartMenu_setPaddingTop},
+    { "SmartMenu_setPaddingRight", _wrap_SmartMenu_setPaddingRight},
+    { "SmartMenu_setPaddingBottom", _wrap_SmartMenu_setPaddingBottom},
+    { "SmartMenu_setPaddingLeft", _wrap_SmartMenu_setPaddingLeft},
+    { "SmartMenu_getPaddingTop", _wrap_SmartMenu_getPaddingTop},
+    { "SmartMenu_getPaddingRight", _wrap_SmartMenu_getPaddingRight},
+    { "SmartMenu_getPaddingBottom", _wrap_SmartMenu_getPaddingBottom},
+    { "SmartMenu_getPaddingLeft", _wrap_SmartMenu_getPaddingLeft},
     {0,0}
 };
 
@@ -38198,6 +38912,9 @@ static swig_lua_const_info swig_constants[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_love__MenuTo_p_love__Padded(void *x) {
+    return (void *)((love::Padded *)  ((love::Menu *) x));
+}
 static void *_p_love__AbstractImageTo_p_love__Renderable(void *x) {
     return (void *)((love::Renderable *) (love::AbstractEntity *)(love::Sprite *) ((love::AbstractImage *) x));
 }
@@ -38506,6 +39223,7 @@ static swig_type_info _swigt__p_love__MouseListener = {"_p_love__MouseListener",
 static swig_type_info _swigt__p_love__MultilineLabel = {"_p_love__MultilineLabel", "love::MultilineLabel *", 0, 0, (void*)&_wrap_class_love_MultilineLabel, 0};
 static swig_type_info _swigt__p_love__Object = {"_p_love__Object", "love::Object *", 0, 0, (void*)&_wrap_class_love_Object, 0};
 static swig_type_info _swigt__p_love__ObjectFactory = {"_p_love__ObjectFactory", "love::ObjectFactory *", 0, 0, (void*)&_wrap_class_love_ObjectFactory, 0};
+static swig_type_info _swigt__p_love__Padded = {"_p_love__Padded", "love::Padded *", 0, 0, (void*)&_wrap_class_love_Padded, 0};
 static swig_type_info _swigt__p_love__ParticleSystem = {"_p_love__ParticleSystem", "love::ParticleSystem *", 0, 0, (void*)&_wrap_class_love_ParticleSystem, 0};
 static swig_type_info _swigt__p_love__Renderable = {"_p_love__Renderable", "love::Renderable *", 0, 0, (void*)&_wrap_class_love_Renderable, 0};
 static swig_type_info _swigt__p_love__Sprite = {"_p_love__Sprite", "love::Sprite *", 0, 0, (void*)&_wrap_class_love_Sprite, 0};
@@ -38613,6 +39331,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_love__MultilineLabel,
   &_swigt__p_love__Object,
   &_swigt__p_love__ObjectFactory,
+  &_swigt__p_love__Padded,
   &_swigt__p_love__ParticleSystem,
   &_swigt__p_love__Renderable,
   &_swigt__p_love__Sprite,
@@ -38720,6 +39439,7 @@ static swig_cast_info _swigc__p_love__MouseListener[] = {  {&_swigt__p_love__Mou
 static swig_cast_info _swigc__p_love__MultilineLabel[] = {  {&_swigt__p_love__MultilineLabel, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Object[] = {  {&_swigt__p_love__Bezier, _p_love__BezierTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractColor, _p_love__AbstractColorTo_p_love__Object, 0, 0},  {&_swigt__p_love__Text, _p_love__TextTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractMusic, _p_love__AbstractMusicTo_p_love__Object, 0, 0},  {&_swigt__p_love__LuaGL, _p_love__LuaGLTo_p_love__Object, 0, 0},  {&_swigt__p_love__FrameAnimation, _p_love__FrameAnimationTo_p_love__Object, 0, 0},  {&_swigt__p_love__Font, _p_love__FontTo_p_love__Object, 0, 0},  {&_swigt__p_love__Actor, _p_love__ActorTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractImage, _p_love__AbstractImageTo_p_love__Object, 0, 0},  {&_swigt__p_love__Entity, _p_love__EntityTo_p_love__Object, 0, 0},  {&_swigt__p_love__ParticleSystem, _p_love__ParticleSystemTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractFont, _p_love__AbstractFontTo_p_love__Object, 0, 0},  {&_swigt__p_love__VisualEntity, _p_love__VisualEntityTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractSound, _p_love__AbstractSoundTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractEntity, _p_love__AbstractEntityTo_p_love__Object, 0, 0},  {&_swigt__p_love__ActorState, _p_love__ActorStateTo_p_love__Object, 0, 0},  {&_swigt__p_love__Color, _p_love__ColorTo_p_love__Object, 0, 0},  {&_swigt__p_love__Sprite, _p_love__SpriteTo_p_love__Object, 0, 0},  {&_swigt__p_love__Object, 0, 0, 0},  {&_swigt__p_love__DisplayMode, _p_love__DisplayModeTo_p_love__Object, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__ObjectFactory[] = {  {&_swigt__p_love__ObjectFactory, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love__Padded[] = {  {&_swigt__p_love__Padded, 0, 0, 0},  {&_swigt__p_love__Menu, _p_love__MenuTo_p_love__Padded, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__ParticleSystem[] = {  {&_swigt__p_love__ParticleSystem, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Renderable[] = {  {&_swigt__p_love__AbstractImage, _p_love__AbstractImageTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__AbstractEntity, _p_love__AbstractEntityTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__VisualEntity, _p_love__VisualEntityTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__ActorState, _p_love__ActorStateTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__Entity, _p_love__EntityTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__Sprite, _p_love__SpriteTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__ParticleSystem, _p_love__ParticleSystemTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__Renderable, 0, 0, 0},  {&_swigt__p_love__FrameAnimation, _p_love__FrameAnimationTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__Actor, _p_love__ActorTo_p_love__Renderable, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Sprite[] = {  {&_swigt__p_love__AbstractImage, _p_love__AbstractImageTo_p_love__Sprite, 0, 0},  {&_swigt__p_love__Sprite, 0, 0, 0},  {&_swigt__p_love__FrameAnimation, _p_love__FrameAnimationTo_p_love__Sprite, 0, 0},{0, 0, 0, 0}};
@@ -38827,6 +39547,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_love__MultilineLabel,
   _swigc__p_love__Object,
   _swigc__p_love__ObjectFactory,
+  _swigc__p_love__Padded,
   _swigc__p_love__ParticleSystem,
   _swigc__p_love__Renderable,
   _swigc__p_love__Sprite,

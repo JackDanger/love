@@ -5,7 +5,7 @@ current = 1;
 
 main = 
 {
-	init = function()
+	load = function()
 	
 		local part1 = love.objects:newImage("part1.png");
 		local nyu = love.objects:newImage("nyu.png");

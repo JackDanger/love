@@ -49,7 +49,7 @@ num_enemies = 1000;
 
 main = {
 	
-	init = function()
+	load = function()
 	
 		-- Images
 		player.image = game:addImage('img_player', 'img/player.gif');

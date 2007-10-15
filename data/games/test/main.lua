@@ -14,7 +14,7 @@ lastmouse = "None";
 
 main = {
 	
-	init = function()
+	load = function()
 
 		--game:queueDisplayMode(1024,768,32,true);
 
