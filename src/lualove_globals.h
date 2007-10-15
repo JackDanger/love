@@ -18,7 +18,8 @@ namespace love
 	class KeyConstants;
 	class AbstractGraphics;
 	class LuaGame;
-	class LuaGame;
+	//class LuaGame; //an extra LuaGame? if removing this kills all, then forgive me
+	class AbstractGUI;
 
 	extern Keyboard * keyboard;
 	extern Mouse * mouse;
@@ -27,7 +28,7 @@ namespace love
 	extern Timer * timer;
 	extern ObjectFactory * objects;
 	extern LuaGame * game;
-	//extern AbstractGUI * gui;
+	extern AbstractGUI * gui;
 	
 } // love
 

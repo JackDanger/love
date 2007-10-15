@@ -69,6 +69,7 @@
 #include "MultilineLabel.h"
 #include "TextField.h"
 #include "Menu.h"
+#include "AbstractGUI.h"
 
 #include "Bezier.h"
 
@@ -136,6 +137,7 @@ namespace boost {
 %include "MultilineLabel.h"
 %include "TextField.h"
 %include "Menu.h"
+%include "AbstractGUI.h"
 
 %include "ParticleSystem.h"
 

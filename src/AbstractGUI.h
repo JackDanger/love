@@ -78,6 +78,11 @@ namespace love
 		virtual pAbstractColor getColor();
 
 		/**
+		 * @brief Does nothing.
+		 **/
+		int init();
+
+		/**
 		 * @brief Renders the GUI system.
 		 **/
 		void render();

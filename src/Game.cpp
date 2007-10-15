@@ -7,13 +7,13 @@ namespace love
 	Game::Game() : config(0)
 	{
 		setType(LOVE_TYPE_GAME);
-		gui = 0;
+		//gui = 0;
 	}
 
 	Game::~Game()
 	{
 		if(config != 0) delete config;
-		if(gui != 0) delete gui;
+		//if(gui != 0) delete gui;
 	}
 
 	void Game::mousePressed(float x, float y, int state)
@@ -62,10 +62,10 @@ namespace love
 		loaded = false;
 	}
 
-	gcn::Container * Game::getGUI()
+	/*gcn::Container * Game::getGUI()
 	{
 		return gui;
-	}
+	}*/
 
 	const string & Game::getSource() const
 	{

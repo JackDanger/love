@@ -132,7 +132,6 @@ namespace love
 		graphics->setFont(defaultFont);
 
 		// GUI
-		gui = new OpenGLGUI();
 		gui->init();
 		uigame = new UIGame();
 		uigame->init();

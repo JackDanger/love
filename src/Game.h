@@ -62,7 +62,7 @@ namespace love
 		GameConfiguration * config;
 
 		// For holding all the gui items in the game
-		gcn::Container * gui;
+		//gcn::Container * gui;
 
 		// The base diretory for this game.
 		string source;
@@ -144,7 +144,7 @@ namespace love
 		 * @brief Returns the gui item so that it can be manipulated outside of the game istelf.
 		 * @return A GUIchan Container class.
 		 **/ 
-		virtual gcn::Container * getGUI();
+		//virtual gcn::Container * getGUI();
 
 		/**
 		* @brief Returns the source of this game.

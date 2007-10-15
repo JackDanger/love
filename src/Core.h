@@ -90,6 +90,7 @@ namespace love
 		AbstractImageDevice * imaging;
 		AbstractGraphics * graphics;
 		Parameters * parameters;
+		AbstractGUI * gui;
 
 
 		// Console used for useful output
@@ -102,7 +103,6 @@ namespace love
 		Game * current;
 
 		// GUI
-		AbstractGUI * gui;
 		UIGame * uigame;
 
 

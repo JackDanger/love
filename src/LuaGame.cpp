@@ -65,10 +65,12 @@ namespace love
 
 		// Get a graphics context.
 		this->gfx = core->display->getGraphics();
+		this->temp_ui = new AbstractGUI();
 
 		// Change global values in lualove_globals here.
 		game = this;
 		graphics = gfx;
+		gui = temp_ui;
 
 		// Load entry.lua
 		lualove_load(L, core->filesystem->getFile(source, "main.lua"));

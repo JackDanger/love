@@ -16,7 +16,7 @@ namespace love
 		error = 0;
 		warning = 0;
 		pause = 0;
-		gui = 0;
+		top = 0;
 	}
 
 	UIGame::~UIGame()
@@ -24,14 +24,14 @@ namespace love
 		if(error != 0) delete error;
 		if(warning != 0) delete warning;
 		if(pause != 0) delete pause;
-		if(gui != 0) delete gui;
+		if(top != 0) delete top;
 	}
 
 	int UIGame::init()
 	{
-		gui = new gcn::Container();
-		gui->setDimension(gcn::Rectangle(0, 0, core->display->getCurrentDisplayMode().getWidth(), core->display->getCurrentDisplayMode().getHeight()));
-		gui->setOpaque(false);
+		top = new gcn::Container();
+		top->setDimension(gcn::Rectangle(0, 0, core->display->getCurrentDisplayMode().getWidth(), core->display->getCurrentDisplayMode().getHeight()));
+		top->setOpaque(false);
 
 		// resources
 		errorWarning.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/warning.png")));
@@ -135,9 +135,9 @@ namespace love
 		error->setX( (core->display->getWidth() / 2) - (error->getWidth() / 2) );
 		error->setY( (core->display->getHeight() / 2) - (error->getHeight() / 2) );
 
-		gui->clear();
-		gui->add(error);
-		core->gui->add(gui);
+		top->clear();
+		top->add(error);
+		core->gui->add(top);
 
 		core->current->suspend();
 		previous = core->current;
@@ -156,9 +156,9 @@ namespace love
 		warning->setX( (core->display->getWidth() / 2) - (warning->getWidth() / 2) );
 		warning->setY( (core->display->getHeight() / 2) - (warning->getHeight() / 2) );
 
-		gui->clear();
-		gui->add(warning);
-		core->gui->add(gui);
+		top->clear();
+		top->add(warning);
+		core->gui->add(top);
 
 		core->current->suspend();
 		previous = core->current;
@@ -169,9 +169,9 @@ namespace love
 	{
 		if(previous != 0) return; //if we are already paused
 
-		gui->clear();
-		gui->add(pause);
-		core->gui->add(gui);
+		top->clear();
+		top->add(pause);
+		core->gui->add(top);
 
 		core->current->suspend();
 		previous = core->current;
@@ -188,21 +188,21 @@ namespace love
 				core->current = previous;
 				previous = 0;
 				core->current->resume();
-				core->gui->remove(gui);
+				core->gui->remove(top);
 			}
 			else if(strcmp(pme->getName(), "CORE_WARNING_OK") == 0)
 			{
 				core->current = previous;
 				previous = 0;
 				core->current->resume();
-				core->gui->remove(gui);
+				core->gui->remove(top);
 			}
 			else if(strcmp(pme->getName(), "CORE_RESUME") == 0)
 			{
 				core->current = previous;
 				previous = 0;
 				core->current->resume();
-				core->gui->remove(gui);
+				core->gui->remove(top);
 			}	
 			else if(strcmp(pme->getName(), "CORE_SAVE") == 0)
 				printf("save");
@@ -215,7 +215,7 @@ namespace love
 				core->current = previous;
 				previous = 0;		
 				core->current->reload();
-				core->gui->remove(gui);
+				core->gui->remove(top);
 				printf("Reloaded: %s\n", core->current->getName().c_str());
 			}
 			else if(strcmp(pme->getName(), "CORE_QUIT") == 0)
@@ -223,14 +223,14 @@ namespace love
 				previous->stop();
 				previous = 0;
 				core->startGame("love-system-menu", false);
-				core->gui->remove(gui);
+				core->gui->remove(top);
 			}
 		}
 	}
 
 	void UIGame::displayModeChanged()
 	{
-		gui->setSize(core->display->getCurrentDisplayMode().getWidth(),core->display->getCurrentDisplayMode().getHeight());
+		top->setSize(core->display->getCurrentDisplayMode().getWidth(),core->display->getCurrentDisplayMode().getHeight());
 		if(previous != 0)
 			previous->displayModeChanged();
 	}

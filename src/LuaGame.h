@@ -12,6 +12,7 @@
 // LOVE
 #include "Game.h"
 #include "AbstractGraphics.h"
+#include "AbstractGUI.h"
 
 // STL
 #include <set>
@@ -49,6 +50,7 @@ namespace love
 
 		// The graphics contexct.
 		AbstractGraphics * gfx;
+		AbstractGUI * temp_ui;
 
 	public:
 

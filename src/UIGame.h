@@ -22,6 +22,7 @@ namespace love
 	{
 	protected:
 		// The suspeded game
+		gcn::Container * top;
 		Game * previous;
 		pAbstractImage errorWarning;
 		pAbstractImage errorError;

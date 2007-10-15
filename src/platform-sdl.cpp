@@ -62,6 +62,7 @@ namespace love
 		core->imaging = new DevILImageDevice();
 		core->graphics = new OpenGLGraphics();
 		core->parameters = new Parameters(argc, argv);
+		core->gui = new OpenGLGUI();
 
 		// Init GuiChan here
 		// @todo MAKE GENERIC

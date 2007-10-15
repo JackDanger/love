@@ -66,6 +66,11 @@ namespace love
 		return text->getColor();
 	}
 
+	int AbstractGUI::init()
+	{
+		return LOVE_OK;
+	}
+
 	void AbstractGUI::render()
 	{
 		gui->draw();
