@@ -27,7 +27,8 @@ main = {
 		menu:setSize(200,200);
 		menu:setPosition(200,200);
 		menu:addLabel("test");
-		menu:addImage(love.objects:newImage("letters.png"));
+		testim = love.objects:newImage("letters.png");
+		menu:addImage(testim);
 		menu:addButton("BUNNY_BUTT", "assbunny");
 		menu:addTextField("TEXT_FILD", "shitcock");
 		drop = menu:addDropDown("DROP YOUR PANTS");
@@ -76,6 +77,9 @@ main = {
 		love.graphics:drawText("drawTriangle(260, 200, 100, 100, horseshit, 5)", 175, 500);
 		love.graphics:drawText("drawRect(470,200,100,100, horseshit, 5)", 400, 500);
 		love.graphics:drawText("drawCircle(680,200, 60, 60)", 615, 500);
+		
+		
+		love.graphics:drawSprite(testim, 200, 200);
 	end,
 	
 	keypressed = function(key)

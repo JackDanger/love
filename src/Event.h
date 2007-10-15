@@ -37,7 +37,6 @@ namespace love
 
 		// type
 		int type;
-		string name;
 
 	public:
 
@@ -54,22 +53,10 @@ namespace love
 		int getType() const;
 
 		/**
-		 * @brief Gets the name.
-		 * @return Name.
-		 **/
-		string getName() const;
-
-		/**
 		* @brief Sets type.
 		* @param type 
 		**/
 		void setType(int type);
-
-		/**
-		 * @brief Sets the name.
-		 * @param name Name of the event.
-		 **/
-		void setName(string name);
 
 	};
 

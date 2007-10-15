@@ -1,21 +1,37 @@
+#wrap #head #rainbow #sun
+{
+  width: 155px;
+  height: 131px;
+  float: right;
+  background: url(../graphics/sun-ie.png) no-repeat;
+
+}
+
 #wrap #head #body #left
 {
  margin: 97px 0px 0px 16px;
   width: 224px;
 }
 
+#wrap #head #body #left .menu_item_large
+{
+ padding: 13px 25px 0px 25px;
+ border-bottom: 1px solid #e2e3e4;
+ height: 41px;
+}
+
 .ss_box
 {
  width: 221px;
  float: left;
- background: url(../gfx/ss_box_bg.png) repeat-y;
- margin: 0px 15px 15px 17px;
+ background: url(../graphics/ss_box_bg.png) repeat-y;
+ margin: 0px 15px 15px 10px;
 }
 
 .ss_box .top
 {
  height: 7px;
- background: url(../gfx/ss_box_top.png) no-repeat;
+ background: url(../graphics/ss_box_top.png) no-repeat;
 }
 
 .ss_box img
@@ -24,10 +40,16 @@
   z-index: 1;
 }
 
+.ss_box .kthumb
+{
+  width: 200px;
+  height: 150px;
+}
+
 .ss_box .bot
 {
  height: 8px;
- background: url(../gfx/ss_box_bot.png) no-repeat;
+ background: url(../graphics/ss_box_bot.png) no-repeat;
 
 }
 
@@ -54,6 +76,11 @@
 .ss_box .image_info_active
 {
  filter: Alpha(opacity='80');
+}
+
+.ss_box .image_info_active a:hover
+{
+  text-decoration: none;
 }
 
 .ss_box .image_info_active .title

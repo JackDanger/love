@@ -67,8 +67,6 @@ namespace love
 		// The base diretory for this game.
 		string source;
 
-		bool suspended;
-
 	public:
 
 		/**
@@ -136,12 +134,6 @@ namespace love
 		* @brief Called when the core stops the game.
 		**/
 		virtual void stop();
-
-		/**
-		 * @brief Checks to see if the game has been suspended.
-		 * @return Whether the game is suspended or not.
-		 **/
-		virtual bool isSuspended();
 
 		/**
 		* @brief Called from love::core when graphics needs to be reloaded.

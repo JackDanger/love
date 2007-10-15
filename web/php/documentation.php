@@ -5,17 +5,22 @@
      Documentation
 </div>
 <div class="text" style="margin-bottom: 10px;">
-	Some text right here.
+	<?php
+		$array = mysql_fetch_array(mysql_query("SELECT * FROM `content` WHERE `category` = 'documentation'"));
+		echo nl2br($array['text']);
+	?>
 </div>
+<?php /*
 <div class="textmenu">
 	<div class="header">
 		Documents
 	</div>
 	<div class="items">
-		<a href="./docs"><div class="item"> + LÖVE Reference Manual 0.1-pre-pre-a</div></a>
-		<a href="#"><div class="item"> + LÖVE Reference Manual 0.0.0.0.1</div></a>
+		<a href="./docs"><div class="item"> + Online Reference Manual</div></a>
+		<a href="#"><div class="item"> + Download Documentation</div></a>
 	</div>		
 </div>
+*/ ?>
 <div class="text">
 
 </div>
@@ -26,38 +31,46 @@
 
 <?php
 
-for($i=0;$i<11;$i++)
+$result = mysql_query("SELECT * FROM `tutorial` ORDER BY `position` ASC");
+while($array = mysql_fetch_array($result))
 {
-
-
 ?>
 
 <div class="project">
-     
+  
+  <?php
 
-  <div class="ss_box">
-       <div class="top"><!-- --></div>
-       <div class="image_info_inactive" onmouseover="ssOver(this)" onmouseout="ssOut(this)">
-            <div class="title">Mega Game <?php echo $i; ?></div>
-            <div class="date">2006-12-11 16:15:45</div> <br />
-       </div>
-       <img src="gfx/ss_particles.png" alt="Particles Screenshot" />
-       <div class="caption">
-            Particle system in full effect. Better check that
-            multi-lines work and all that.
-       </div>
-       <div class="bot"><!-- --></div>
-  </div>
+   if(trim($array['image']) != "" && trim($array['image']) != "0")
+   {
+     $image = mysql_fetch_array(mysql_query("SELECT * FROM `screenshot` WHERE `id` = '{$array['image']}'"));
+  ?>
+
+   <div class="ss_box">
+     <div class="top"><!-- --></div>
+     <a class="image_info_inactive" href="?page=tutorial&amp;id=<?php echo $array['id']; ?>" onmouseover="ssOver(this)" onmouseout="ssOut(this)">
+          <div class="title"><?php echo $image['title']; ?></div>
+          <div class="date"><?php echo date("Y-m-d G:i", $image['date']); ?></div>
+     </a>
+     <img src="php/phpThumb.php?src=../screenshot/<?php echo $image['image']; ?>&amp;w=200&amp;h=150" alt="<?php echo $image['title']; ?>" />
+     <div class="caption">
+          <?php echo $image['text']; ?>
+     </div>
+     <div class="bot"><!-- --></div>
+   </div>
+  
+  <?php
+   }
+  ?>
   
      <div class="data">
-          <div class="header">Tutorial <?php echo $i ?>: Mega Shit</div>
-          <div class="author"> User Level: n00b </div>
-          <div class="date"> Novermber 5th, 2007 </div>
+          <div class="header"><?php echo $array['title']; ?></div>
+          <div class="author"><?php echo nl2br($array['description']); ?></div>
+          <div class="date"><?php echo date("F jS, Y", $array['date']); ?></div>
 
      <div class="textmenu">
 	<div class="items">
-		<a href="#"><div class="item" style="border-color: #ddd;"> + Go To Tutorial</div></a>
-		<a href="#"><div class="item" style="border-color: #ddd;"> + Download source</div></a>
+		<a href="?page=tutorial&amp;id=<?php echo $array['id']; ?>"><div class="item" style="border-color: #ddd;"> + Go To Tutorial</div></a>
+		<a href="tutorial/<?php echo $array['file']; ?>"><div class="item" style="border-color: #ddd;"> + Download source</div></a>
 	</div>
      </div>
 

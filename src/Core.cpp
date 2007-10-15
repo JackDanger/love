@@ -57,7 +57,7 @@ namespace love
 		return display->getCurrentDisplayMode();
 	}
 
-	OpenGLGUI * Core::getGUI() const
+	AbstractGUI * Core::getGUI() const
 	{
 		return gui;
 	}
@@ -134,70 +134,8 @@ namespace love
 		// GUI
 		gui = new OpenGLGUI();
 		gui->init();
-		top = new gcn::Container();
-		top->setDimension(gcn::Rectangle(0, 0, display->getCurrentDisplayMode().getWidth(), display->getCurrentDisplayMode().getHeight()));
-		top->setOpaque(false);
-		// error/warning images
-		errorWarning.reset<AbstractImage>(imaging->getImage(filesystem->getBaseFile("data/warning.png")));
-		errorWarning->load();
-		errorError.reset<AbstractImage>(imaging->getImage(filesystem->getBaseFile("data/error.png")));
-		errorError->load();
-		pAbstractColor borderColor(new Color(0xe9e9e9));
-		pAbstractColor black(new Color(0x000000));
-		pAbstractColor slightlyWhite(new Color(255,255,255,200));
-		// error box
-		error = new Menu(gui->getFont(), gui->getColor());
-		error->setSize(356,217); // so that we have something to start with
-		error->setPadding(18);
-		error->setColor(&black);
-		error->setBackgroundColor(&slightlyWhite);
-		error->stretchContent(true);
-		error->addImage(&errorError)->align(Text::LOVE_ALIGN_LEFT);
-		errorText.reset<MultilineLabel>(error->addMultilineLabel(""));
-		error->addLabel("")->setHeight(20);
-		errorButton.reset<Button>(error->addButton("CORE_ERROR_OK", "OK"));
-		errorButton->setBorderColor(&borderColor);
-		errorButton->setWidth(70);
-		errorButton->setBorderSize(1);
-		error->show();
-		// warning box
-		warning = new Menu(gui->getFont(), gui->getColor());
-		warning->setSize(356,217); // so that we have something to start with
-		warning->setPadding(18);
-		warning->setColor(&black);
-		warning->setBackgroundColor(&slightlyWhite);
-		warning->stretchContent(true);
-		warning->addImage(&errorWarning)->align(Text::LOVE_ALIGN_LEFT);
-		warningText.reset<MultilineLabel>(warning->addMultilineLabel(""));
-		warning->addLabel("")->setHeight(20);
-		warningButton.reset<Button>(warning->addButton("CORE_WARNING_OK", "OK"));
-		warningButton->setBorderColor(&borderColor);
-		warningButton->setWidth(70);
-		warningButton->setBorderSize(1);
-		warning->show();
-		// pause menu
-		pause = new Menu(graphics->getFont(), gui->getColor());
-		pause->setSize(150,200); // so that we have something to start with
-		pause->setPadding(10);
-		pause->setColor(&black);
-		pause->setBackgroundColor(&slightlyWhite);
-		pause->stretchContent(true);
-		pause->addButton("CORE_RESUME", "Resume");
-		pause->addButton("CORE_SAVE", "Save");
-		pause->addButton("CORE_LOAD", "Load");
-		pause->addButton("CORE_OPTIONS", "Options");
-		pause->addButton("CORE_RELOAD", "Restart");
-		pause->addButton("CORE_QUIT", "Quit");
-		pause->adjustContent();
-		pause->adjustSize();
-		pause->setX( (display->getWidth() / 2) - (pause->getWidth() / 2) );
-		pause->setY( (display->getHeight() / 2) - (pause->getHeight() / 2) );
-		pause->show();
-
-		//gui->add(error);
-		//gui->add(warning);
-		//gui->add(pause);
-		showError("Something went wrong!\n(but you don't get to know what)");
+		uigame = new UIGame();
+		uigame->init();
 
 		return status;		
 	}
@@ -273,8 +211,7 @@ namespace love
 
 	void Core::update(float dt)
 	{
-		if(!current->isSuspended())
-			current->update(dt);
+		current->update(dt);
 		gui->update(dt);
 	}
 
@@ -360,42 +297,6 @@ namespace love
 		return LOVE_OK;
 	}
 
-	void Core::showError(const char * text)
-	{
-		errorText->setCaption(text);
-		//errorText->adjustContent();
-		errorText->adjustSize();
-
-		error->adjustContent();
-		error->adjustSize();
-
-		error->setX( (core->display->getWidth() / 2) - (error->getWidth() / 2) );
-		error->setY( (core->display->getHeight() / 2) - (error->getHeight() / 2) );
-
-		top->clear();
-		top->add(error);
-		gui->add(top);
-
-		current->suspend();
-	}
-
-	void Core::showWarning(const char * text)
-	{
-		warningText->setCaption(text);
-		//errorText->adjustContent();
-		warningText->adjustSize();
-
-		warning->adjustContent();
-		warning->adjustSize();
-
-		warning->setX( (core->display->getWidth() / 2) - (warning->getWidth() / 2) );
-		warning->setY( (core->display->getHeight() / 2) - (warning->getHeight() / 2) );
-
-		top->clear();
-		top->add(warning);
-		gui->add(top);
-	}
-
 	void Core::printf(const char * msg, ...)
 	{
 		char ftext[128];
@@ -428,12 +329,9 @@ namespace love
 			}
 			break;
 		case LOVE_KEY_ESCAPE:
-			if(strcmp(current->getName().c_str(),"love-system-menu") != 0 && !current->isSuspended())
+			if(strcmp(current->getName().c_str(),"love-system-menu") != 0)
 			{
-				current->suspend();
-				top->clear();
-				top->add(pause);
-				gui->add(top);
+				uigame->showPause();
 			}
 			//startGame("love-system-menu", false);
 			break;
@@ -466,8 +364,7 @@ namespace love
 		keyboard->keyPressed(key);
 
 		// Send key input to game.
-		if(!current->isSuspended())
-			current->keyPressed(key);
+		current->keyPressed(key);
 	}
 
 	void Core::keyReleased(int key)
@@ -476,8 +373,7 @@ namespace love
 		keyboard->keyReleased(key);
 
 		// Send key input to game.
-		if(!current->isSuspended())
-			current->keyReleased(key);
+		current->keyReleased(key);
 	}
 
 
@@ -487,8 +383,7 @@ namespace love
 		mouse->mouseMoved(x, y);
 
 		// Send input to game.
-		if(!current->isSuspended())
-			current->mouseMoved(x, y);
+		current->mouseMoved(x, y);
 	}
 
 	void Core::mousePressed(float x, float y, int button)
@@ -497,8 +392,7 @@ namespace love
 		mouse->mousePressed(x, y, button);
 
 		// Send input to game.
-		if(!current->isSuspended())
-			current->mousePressed(x, y, button);
+		current->mousePressed(x, y, button);
 	}
 
 	void Core::mouseReleased(float x, float y, int button)
@@ -507,8 +401,7 @@ namespace love
 		mouse->mouseReleased(x, y, button);
 
 		// Send input to game.
-		if(!current->isSuspended())
-			current->mouseReleased(x, y, button);
+		current->mouseReleased(x, y, button);
 	}
 
 	void Core::displayModeChanged()
@@ -526,46 +419,7 @@ namespace love
 
 	void Core::eventFired(pEvent e)
 	{
-		if(e->getType() == EventListener::LOVE_EVENT_GUI)
-		{
-			if(strcmp(e->getName().substr(0,5).c_str(), "CORE_") == 0) // core stuff
-			{
-				if(strcmp(e->getName().c_str(), "CORE_ERROR_OK") == 0)
-				{
-					current->resume();
-					gui->remove(top);
-				}
-				else if(strcmp(e->getName().c_str(), "CORE_WARNING_OK") == 0)
-				{
-					gui->remove(top);
-				}
-				else if(strcmp(e->getName().c_str(), "CORE_RESUME") == 0)
-				{
-					current->resume();
-					gui->remove(top);
-				}	
-				else if(strcmp(e->getName().c_str(), "CORE_SAVE") == 0)
-					printf("save");
-				else if(strcmp(e->getName().c_str(), "CORE_LOAD") == 0)
-					printf("load");
-				else if(strcmp(e->getName().c_str(), "CORE_OPTIONS") == 0)
-					printf("options");
-				else if(strcmp(e->getName().c_str(), "CORE_RELOAD") == 0)
-				{
-					current->reload();
-					gui->remove(top);
-					printf("Reloaded: %s\n", current->getName().c_str());
-				}
-				else if(strcmp(e->getName().c_str(), "CORE_QUIT") == 0)
-				{
-					current->stop();
-					startGame("love-system-menu", false);
-					gui->remove(top);
-				}
-			}
-			else
-				; // pass it to the current lua game
-		}
+		current->eventFired(e);
 	}
 
 

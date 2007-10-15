@@ -7,7 +7,6 @@ namespace love
 	Game::Game() : config(0)
 	{
 		setType(LOVE_TYPE_GAME);
-		suspended = false;
 		gui = 0;
 	}
 
@@ -43,7 +42,6 @@ namespace love
 
 	void Game::suspend()
 	{
-		suspended = true;
 	}
 
 	void Game::resume()
@@ -55,12 +53,6 @@ namespace love
 			reloadGraphics();
 			resetDisplayModeListener();
 		}
-		suspended = false;
-	}
-
-	bool Game::isSuspended()
-	{
-		return suspended;
 	}
 
 	void Game::stop()

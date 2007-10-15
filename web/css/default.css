@@ -5,7 +5,7 @@ img
 
 body
 {
-	background: #fff url(../gfx/bg.png) repeat-x;
+	background: #fff url(../graphics/bg.png) repeat-x;
 	margin: 0px 0px 5px 0px;
 }
 
@@ -30,12 +30,41 @@ div
   clear: both;
 }
 
+#imageview
+{
+	position: absolute;
+	z-index: 10;
+	top: 0px;
+	left: 0px;
+	width: auto;
+	height: auto;
+	padding: 10px;
+	background-color: #FFFFFF;
+	border: 1px solid #121212;
+	text-align: center;
+	color: #DDDDDD;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#imageview .close
+{
+	text-align: right;
+	font-family: 'Trebuchet MS', 'Gill Sans', Helvetica, sans-serif;
+	color: #e2e3e4;
+}
+
+#imageview .close a:hover
+{
+	text-decoration: none;
+}
+
 #wrap
 {
   width: 819px;
   margin-left: auto;
   margin-right: auto;
-  background: url(../gfx/mbg.png) repeat-y;
+  background: url(../graphics/mbg.png) repeat-y;
 }
 
 #wrap #head
@@ -46,7 +75,7 @@ div
 {
   width: 819px;
   height: 134px;
-  background: url(../gfx/head_rainbow.png) no-repeat;
+  background: url(../graphics/head_rainbow.png) no-repeat;
 }
 
 #wrap #head #rainbow #sun
@@ -54,7 +83,7 @@ div
   width: 155px;
   height: 131px;
   float: right;
-  background: url(../gfx/sun.gif) no-repeat;
+  background: url(../graphics/sun.gif) no-repeat;
 
 }
 
@@ -62,7 +91,7 @@ div
 {
   min-height: 600px;
   width: 819px;
-  background: url(../gfx/body.png) no-repeat;
+  background: url(../graphics/body.png) no-repeat;
 }
 
 #wrap #head #body #left
@@ -74,7 +103,7 @@ div
 }
 
 /** 
-** MENU! 
+** MENU!
 **/
 
 #wrap #head #body #left #menu a:hover
@@ -99,7 +128,7 @@ div
 {
   width: 19px;
   height: 28px;
-  background: url(../gfx/aroow3.png) no-repeat;
+  background: url(../graphics/aroow3.png) no-repeat;
   float: right;
   margin: 0px 0px 0px 10px;
 }
@@ -135,7 +164,7 @@ div
 
 #wrap #head #body #left #menu #download:hover .menu_item_large .image
 {
-	background: url(../gfx/aroow3_hover.png) no-repeat;
+	background: url(../graphics/aroow3_hover.png) no-repeat;
 }
 
 
@@ -148,7 +177,42 @@ div
  text-align: right;
  font-size: 14px;
  color: #86add1;
+ display: block;
 }
+
+
+
+#wrap #head #body #left #menu a
+{
+ padding: 8px 25px 5px 25px;
+ border-bottom: 1px solid #e2e3e4;
+ height: 22px;
+ font-weight: bold;
+ text-align: right;
+ font-size: 14px;
+ color: #86add1;
+  display: block;
+}
+
+#wrap #head #body #left #buttons a.home
+{
+ background-color: #f9f9f9;
+}
+
+#wrap #head #body #left #buttons a:hover
+{
+ color: white;
+}
+
+#wrap #head #body #left #menu #buttons a.home:hover { background-color: #ff3f19; }
+#wrap #head #body #left #menu #buttons a.red:hover { background-color: #ed1b23; }
+#wrap #head #body #left #menu #buttons a.purple:hover { background-color: #92278f; }
+#wrap #head #body #left #menu #buttons a.green:hover { background-color: #28903a; }
+#wrap #head #body #left #menu #buttons a.blue:hover { background-color: #4e85e0; }
+#wrap #head #body #left #menu #buttons a.apple:hover { background-color: #7abb25; }
+#wrap #head #body #left #menu #buttons a.ocean:hover { background-color: #0072bc; }
+
+
 
 #wrap #head #body #left .menu_item_medium .text
 {
@@ -189,7 +253,7 @@ div
 {
   width: 819px;
   height: 26px;
-  background: url(../gfx/bottom.png) no-repeat;
+  background: url(../graphics/bottom.png) no-repeat;
 }
 
 #subwrap
@@ -217,14 +281,14 @@ div
 {
  width: 221px;
  float: left;
- background: url(../gfx/ss_box_bg.png) repeat-y;
+ background: url(../graphics/ss_box_bg.png) repeat-y;
  margin: 0px 15px 15px 17px;
 }
 
 .ss_box .top
 {
  height: 7px;
- background: url(../gfx/ss_box_top.png) no-repeat;
+ background: url(../graphics/ss_box_top.png) no-repeat;
 }
 
 .ss_box img
@@ -236,7 +300,7 @@ div
 .ss_box .bot
 {
  height: 7px;
- background: url(../gfx/ss_box_bot.png) no-repeat;
+ background: url(../graphics/ss_box_bot.png) no-repeat;
 }
 
 .ss_box .caption
@@ -249,6 +313,7 @@ div
 
 .ss_box .image_info_active, .ss_box .image_info_inactive
 {
+ display: block;
  width: 190px;
  height: 140px;
  background: #ffffff;
@@ -259,9 +324,16 @@ div
  padding: 5px;
 }
 
+
+.ss_box .kthumb
+{
+  width: 200px;
+  height: 150px;
+}
 .ss_box .image_info_active
 {
- opacity: 0.8;
+ opacity: 0.8;          
+ text-decoration: none;
 }
 
 .ss_box .image_info_active .title
@@ -285,6 +357,7 @@ div
 {
   font-weight: bold;
   color: #757575;
+  margin-bottom: 5px;
 }
 
 
@@ -341,6 +414,13 @@ div
 	background-color: #b6b6b6;
 }
 
+.spacer
+{
+  width: 0px;
+  height: 0px;
+  clear: both;
+}
+
 /*******************************************************************************
 * CODE
 *******************************************************************************/
@@ -350,6 +430,7 @@ div
 	border: 1px solid #ddd;
 	margin: 5px 0px 5px 0px;
 	background-color: #f7faff;
+	clear: both;
 }
 
 .code .header
@@ -397,6 +478,7 @@ div
 {
 	border-top: 1px solid #eee;
 	padding: 3px;
+	display: block;
 }
 
 

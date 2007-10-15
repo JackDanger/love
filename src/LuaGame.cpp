@@ -49,7 +49,6 @@ namespace love
 
 		rotation = 0.0f;
 		gui = 0;
-		suspended = false; //once a game is started it isn't in suspend mode
 	}
 
 	LuaGame::~LuaGame()
@@ -180,9 +179,7 @@ namespace love
 		for(obj.actors.begin(); !obj.actors.end(); obj.actors.next())
 			obj.actors.value()->init();
 
-		suspended = false;
 		loaded = true;
-
 
 		return LOVE_OK;
 	}
@@ -339,9 +336,13 @@ namespace love
 
 	void LuaGame::eventFired(pEvent e)
 	{
-		pMessageEvent pme = dynamic_pointer_cast<MessageEvent, Event>(e);
-
-		printf("Event: %s\n", pme->getMessage().c_str());
+		switch(e->getType())
+		{
+		case EventListener::LOVE_EVENT_MESSAGE:
+			pMessageEvent pme = dynamic_pointer_cast<MessageEvent, Event>(e);
+			printf("Event: %s\n", pme->getMessage().c_str());
+			break;
+		}
 
 		// Must pass this on to Lua, like this:
 		// luaPushPointer(L, (void*)e.get(), script_types_lookup[e.getType()], 0);

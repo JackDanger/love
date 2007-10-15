@@ -52,13 +52,6 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 
-#include "Button.h"
-#include "DropDown.h"
-#include "Label.h"
-#include "MultilineLabel.h"
-#include "TextField.h"
-#include "Menu.h"
-
 #include "Game.h"
 #include "LuaGame.h"
 #include "Timer.h"
@@ -67,6 +60,13 @@
 
 #include "AbstractImage.h"
 #include "FrameAnimation.h"
+
+#include "Button.h"
+#include "DropDown.h"
+#include "Label.h"
+#include "MultilineLabel.h"
+#include "TextField.h"
+#include "Menu.h"
 
 #include "Bezier.h"
 
@@ -122,17 +122,17 @@ namespace boost {
 %include "ActorState.h"
 %include "Actor.h"
 
+%include "Sprite.h"
+%include "AbstractImage.h"
+%include "FrameAnimation.h"
+%include "Bezier.h"
+
 %include "Button.h"
 %include "DropDown.h"
 %include "Label.h"
 %include "MultilineLabel.h"
 %include "TextField.h"
 %include "Menu.h"
-
-%include "Sprite.h"
-%include "AbstractImage.h"
-%include "FrameAnimation.h"
-%include "Bezier.h"
 
 %include "ParticleSystem.h"
 

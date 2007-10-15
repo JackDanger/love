@@ -1,6 +1,6 @@
 <?php
 
-	include_once("tools/geshi/geshi.php");
+	include_once("geshi.php");
 
 	$geshi =& new GeSHI("main = {
 	

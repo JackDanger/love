@@ -17,6 +17,7 @@ namespace love
 	class ObjectFactory;
 	class KeyConstants;
 	class AbstractGraphics;
+	//class AbstractGUI;
 
 	extern Keyboard * keyboard;
 	extern Mouse * mouse;
@@ -24,6 +25,7 @@ namespace love
 	extern AbstractGraphics * graphics;
 	extern Timer * timer;
 	extern ObjectFactory * objects;
+	//extern AbstractGUI * gui;
 	
 } // love
 

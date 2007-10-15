@@ -25,48 +25,7 @@ namespace love
 		if(top != 0) delete top;
 	}
 
-	void OpenGLGUI::action(const gcn::ActionEvent& actionEvent)
-	{
-		printf("ActionEvent: %s\n", actionEvent.getId().c_str());
-
-		pEvent temp(new Event());
-		temp->setType(EventListener::LOVE_EVENT_GUI);
-		temp->setName(actionEvent.getId());
-		core->eventFired(temp);
-	}
-
-	void OpenGLGUI::add(pMenu menu)
-	{
-		top->add(menu.get());
-	}
-
-	void OpenGLGUI::add(gcn::Widget * widget)
-	{
-		top->add(widget);
-	}
-
-	void OpenGLGUI::remove(gcn::Widget * widget)
-	{
-		top->remove(widget);
-	}
-
-	void OpenGLGUI::clear()
-	{
-		top->clear();
-		top->add(new Label("Worst. Bugfix. Ever."));
-	}
-
-	pAbstractFont OpenGLGUI::getFont()
-	{
-		return text->getFont();
-	}
-
-	pAbstractColor OpenGLGUI::getColor()
-	{
-		return text->getColor();
-	}
-
-	void OpenGLGUI::init()
+	int OpenGLGUI::init()
 	{
 		const DisplayMode & display = core->getDisplayMode();
 		const AbstractFileSystem & fs = core->getFilesystem();
@@ -76,11 +35,12 @@ namespace love
 		imageLoader = new gcn::OpenGLSDLImageLoader();
 		gcn::Image::setImageLoader(imageLoader);
 
-	    graphics = new gcn::OpenGLGraphics();
+		graphics = new gcn::OpenGLGraphics();
 		graphics->setTargetPlane(display.getWidth(), display.getHeight());
 
-		lovefont.reset<AbstractFont>(new love::Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 10));
-		lovefont->load();
+		font.reset<AbstractFont>(new love::Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 10));
+		font->load();
+		pAbstractColor black(new Color(0x000000));
 
 		top = new gcn::Container();
 	    top->setDimension(gcn::Rectangle(0, 0, display.getWidth(), display.getHeight()));
@@ -90,28 +50,20 @@ namespace love
 		gui->setGraphics(graphics);
 		gui->setInput(gcn_input); // correct.
 		gui->setTop(top);
-		text = new love::GUIText(lovefont,core->graphics->getColor());
-		gcn::Widget::setGlobalFont(text);
-		graphics->setFont(text);
-
-		gui = new gcn::Gui();
-		gui->setGraphics(graphics);
-		gui->setInput(gcn_input);
-		gui->setTop(top);
+		text = new love::GUIText(font, black);
 		gcn::Widget::setGlobalFont(text); // the global font is static and must be set
 		graphics->setFont(text);
 
+		/*gui = new gcn::Gui();
+		gui->setGraphics(graphics);
+		gui->setInput(gcn_input);
+		gui->setTop(top);
+		gcn::Widget::setGlobalFont(text); 
+		graphics->setFont(text);*/
+
 		clear();
-	}
 
-	void OpenGLGUI::render()
-	{
-		gui->draw();
-	}
-
-	void OpenGLGUI::update(float dt)
-	{
-		gui->logic();
+		return LOVE_OK;
 	}
 
 	void OpenGLGUI::displayModeChanged()

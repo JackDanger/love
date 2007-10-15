@@ -110,12 +110,11 @@ enum script_types
 	script_type_p_love__rgb = 95,
 	script_type_p_love__rgba = 96,
 	script_type_p_lua_State = 97,
-	script_type_p_pAbstractImage = 98,
-	script_type_p_pEvent = 99,
-	script_type_p_std__string = 100,
-	script_type_p_string = 101,
-	script_type_p_vectorTlove__Vector_t = 102,
-	script_type_string = 103
+	script_type_p_pEvent = 98,
+	script_type_p_std__string = 99,
+	script_type_p_string = 100,
+	script_type_p_vectorTlove__Vector_t = 101,
+	script_type_string = 102
 };
 
 #endif

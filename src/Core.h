@@ -24,6 +24,7 @@
 
 // Other LOVE files
 #include "Game.h"
+#include "UIGame.h"
 
 // We want to be friends with some platform functions. (later)
 #include "platform.h"
@@ -101,17 +102,8 @@ namespace love
 		Game * current;
 
 		// GUI
-		OpenGLGUI * gui;
-		gcn::Container * top; //something that covers the entire area (so you can't interact with any other menus)
-		pAbstractImage errorWarning;
-		pAbstractImage errorError;
-		Menu * error;
-		Menu * warning;
-		Menu * pause;
-		pMultilineLabel errorText;
-		pMultilineLabel warningText;
-		pButton errorButton;
-		pButton warningButton;
+		AbstractGUI * gui;
+		UIGame * uigame;
 
 
 	public:
@@ -129,7 +121,8 @@ namespace love
 		//friend class NeoFontTexGame;
 		friend class Console;
 		friend class ObjectFactory;
-		friend class OpenGLGUI;
+		//friend class OpenGLGUI;
+		friend class UIGame;
 
 		/**
 		* @brief Creates a new Core object. Remeber to always call init(). 
@@ -164,7 +157,7 @@ namespace love
 		* @brief Gets the current GUI system.
 		* @return The current GUI system.
 		**/
-		OpenGLGUI * getGUI() const;
+		AbstractGUI * getGUI() const;
 
 		/**
 		* @brief Destructor.
@@ -235,20 +228,6 @@ namespace love
 		* @return LOVE_OK if no errors. 
 		**/
 		int stopGame();
-
-		/**
-		 * @brief Shows an error dialog.
-		 * @param text The text to show in the dialog box.
-		 * @todo Pause the game until OK is clicked and add a sound. ^_^
-		 **/
-		void showError(const char * text);
-
-		/**
-		 * @brief Shows a warning dialog.
-		 * @param text The text to show in the dialog box.
-		 * @todo Add a sound. ^_^
-		 **/
-		void showWarning(const char * text);
 
 		/**
 		* @brief Prints a message to the internal LOVE console, and to stdout.
