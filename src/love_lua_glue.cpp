@@ -1425,29 +1425,30 @@ SWIG_Lua_SetModule(lua_State* L, swig_module_info *module) {
 #define SWIGTYPE_p_love__ObjectFactory swig_types[92]
 #define SWIGTYPE_p_love__Padded swig_types[93]
 #define SWIGTYPE_p_love__ParticleSystem swig_types[94]
-#define SWIGTYPE_p_love__Renderable swig_types[95]
-#define SWIGTYPE_p_love__Sprite swig_types[96]
-#define SWIGTYPE_p_love__Text swig_types[97]
-#define SWIGTYPE_p_love__TextField swig_types[98]
-#define SWIGTYPE_p_love__Timer swig_types[99]
-#define SWIGTYPE_p_love__Updateable swig_types[100]
-#define SWIGTYPE_p_love__Vector swig_types[101]
-#define SWIGTYPE_p_love__VisualEntity swig_types[102]
-#define SWIGTYPE_p_love__interval swig_types[103]
-#define SWIGTYPE_p_love__la swig_types[104]
-#define SWIGTYPE_p_love__particle swig_types[105]
-#define SWIGTYPE_p_love__renderinfo swig_types[106]
-#define SWIGTYPE_p_love__rgb swig_types[107]
-#define SWIGTYPE_p_love__rgba swig_types[108]
-#define SWIGTYPE_p_lua_State swig_types[109]
-#define SWIGTYPE_p_pAnimatedColor swig_types[110]
-#define SWIGTYPE_p_pEvent swig_types[111]
-#define SWIGTYPE_p_std__string swig_types[112]
-#define SWIGTYPE_p_string swig_types[113]
-#define SWIGTYPE_p_vectorTlove__Vector_t swig_types[114]
-#define SWIGTYPE_string swig_types[115]
-static swig_type_info *swig_types[117];
-static swig_module_info swig_module = {swig_types, 116, 0, 0, 0, 0};
+#define SWIGTYPE_p_love__RadioButton swig_types[95]
+#define SWIGTYPE_p_love__Renderable swig_types[96]
+#define SWIGTYPE_p_love__Sprite swig_types[97]
+#define SWIGTYPE_p_love__Text swig_types[98]
+#define SWIGTYPE_p_love__TextField swig_types[99]
+#define SWIGTYPE_p_love__Timer swig_types[100]
+#define SWIGTYPE_p_love__Updateable swig_types[101]
+#define SWIGTYPE_p_love__Vector swig_types[102]
+#define SWIGTYPE_p_love__VisualEntity swig_types[103]
+#define SWIGTYPE_p_love__interval swig_types[104]
+#define SWIGTYPE_p_love__la swig_types[105]
+#define SWIGTYPE_p_love__particle swig_types[106]
+#define SWIGTYPE_p_love__renderinfo swig_types[107]
+#define SWIGTYPE_p_love__rgb swig_types[108]
+#define SWIGTYPE_p_love__rgba swig_types[109]
+#define SWIGTYPE_p_lua_State swig_types[110]
+#define SWIGTYPE_p_pAnimatedColor swig_types[111]
+#define SWIGTYPE_p_pEvent swig_types[112]
+#define SWIGTYPE_p_std__string swig_types[113]
+#define SWIGTYPE_p_string swig_types[114]
+#define SWIGTYPE_p_vectorTlove__Vector_t swig_types[115]
+#define SWIGTYPE_string swig_types[116]
+static swig_type_info *swig_types[118];
+static swig_module_info swig_module = {swig_types, 117, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1518,6 +1519,7 @@ static swig_module_info swig_module = {swig_types, 116, 0, 0, 0, 0};
 #include "Label.h"
 #include "MultilineLabel.h"
 #include "TextField.h"
+#include "RadioButton.h"
 #include "Menu.h"
 #include "GUIContainer.h"
 #include "AbstractGUI.h"
@@ -13195,6 +13197,26 @@ fail:
 }
 
 
+static int _wrap_Button_setName(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Button *arg1 = (love::Button *) 0 ;
+  char *arg2 = (char *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_setName");
+  arg2 = (char*)lua_tostring(L, 2);
+  (arg1)->setName((char const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Button_align(lua_State* L) {
   int SWIG_arg = -1;
   love::Button *arg1 = (love::Button *) 0 ;
@@ -13509,20 +13531,16 @@ fail:
 }
 
 
-static int _wrap_Button_getColor(lua_State* L) {
+static int _wrap_Button_getCaption(lua_State* L) {
   int SWIG_arg = -1;
   love::Button *arg1 = (love::Button *) 0 ;
-  love::pAbstractColor result;
+  char *result = 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_getColor");
-  result = (arg1)->getColor();
+  arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_getCaption");
+  result = (char *)(arg1)->getCaption();
   SWIG_arg=0;
-  {
-    love::pAbstractColor * resultptr;
-    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
-  }
+  lua_pushstring(L,result); SWIG_arg++;
   return SWIG_arg;
   
 fail:
@@ -13531,174 +13549,16 @@ fail:
 }
 
 
-static int _wrap_Button_getHoverColor(lua_State* L) {
+static int _wrap_Button_getName(lua_State* L) {
   int SWIG_arg = -1;
   love::Button *arg1 = (love::Button *) 0 ;
-  love::pAbstractColor result;
+  char *result = 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_getHoverColor");
-  result = (arg1)->getHoverColor();
+  arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_getName");
+  result = (char *)(arg1)->getName();
   SWIG_arg=0;
-  {
-    love::pAbstractColor * resultptr;
-    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Button_getPressedColor(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Button *arg1 = (love::Button *) 0 ;
-  love::pAbstractColor result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_getPressedColor");
-  result = (arg1)->getPressedColor();
-  SWIG_arg=0;
-  {
-    love::pAbstractColor * resultptr;
-    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Button_getActiveColor(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Button *arg1 = (love::Button *) 0 ;
-  love::pAbstractColor result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_getActiveColor");
-  result = (arg1)->getActiveColor();
-  SWIG_arg=0;
-  {
-    love::pAbstractColor * resultptr;
-    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Button_getBackgroundColor(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Button *arg1 = (love::Button *) 0 ;
-  love::pAbstractColor result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_getBackgroundColor");
-  result = (arg1)->getBackgroundColor();
-  SWIG_arg=0;
-  {
-    love::pAbstractColor * resultptr;
-    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Button_getHoverBackgroundColor(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Button *arg1 = (love::Button *) 0 ;
-  love::pAbstractColor result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_getHoverBackgroundColor");
-  result = (arg1)->getHoverBackgroundColor();
-  SWIG_arg=0;
-  {
-    love::pAbstractColor * resultptr;
-    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Button_getPressedBackgroundColor(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Button *arg1 = (love::Button *) 0 ;
-  love::pAbstractColor result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_getPressedBackgroundColor");
-  result = (arg1)->getPressedBackgroundColor();
-  SWIG_arg=0;
-  {
-    love::pAbstractColor * resultptr;
-    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Button_getActiveBackgroundColor(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Button *arg1 = (love::Button *) 0 ;
-  love::pAbstractColor result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_getActiveBackgroundColor");
-  result = (arg1)->getActiveBackgroundColor();
-  SWIG_arg=0;
-  {
-    love::pAbstractColor * resultptr;
-    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Button_getBorderColor(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Button *arg1 = (love::Button *) 0 ;
-  love::pAbstractColor result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_getBorderColor");
-  result = (arg1)->getBorderColor();
-  SWIG_arg=0;
-  {
-    love::pAbstractColor * resultptr;
-    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
-  }
+  lua_pushstring(L,result); SWIG_arg++;
   return SWIG_arg;
   
 fail:
@@ -13774,6 +13634,7 @@ static swig_lua_method swig_love_Button_methods[] = {
     {"setHeight", _wrap_Button_setHeight}, 
     {"setBorderSize", _wrap_Button_setBorderSize}, 
     {"setCaption", _wrap_Button_setCaption}, 
+    {"setName", _wrap_Button_setName}, 
     {"align", _wrap_Button_align}, 
     {"valign", _wrap_Button_valign}, 
     {"setColor", _wrap_Button_setColor}, 
@@ -13790,15 +13651,8 @@ static swig_lua_method swig_love_Button_methods[] = {
     {"getWidth", _wrap_Button_getWidth}, 
     {"getHeight", _wrap_Button_getHeight}, 
     {"getBorderSize", _wrap_Button_getBorderSize}, 
-    {"getColor", _wrap_Button_getColor}, 
-    {"getHoverColor", _wrap_Button_getHoverColor}, 
-    {"getPressedColor", _wrap_Button_getPressedColor}, 
-    {"getActiveColor", _wrap_Button_getActiveColor}, 
-    {"getBackgroundColor", _wrap_Button_getBackgroundColor}, 
-    {"getHoverBackgroundColor", _wrap_Button_getHoverBackgroundColor}, 
-    {"getPressedBackgroundColor", _wrap_Button_getPressedBackgroundColor}, 
-    {"getActiveBackgroundColor", _wrap_Button_getActiveBackgroundColor}, 
-    {"getBorderColor", _wrap_Button_getBorderColor}, 
+    {"getCaption", _wrap_Button_getCaption}, 
+    {"getName", _wrap_Button_getName}, 
     {"adjustSize", _wrap_Button_adjustSize}, 
     {"draw", _wrap_Button_draw}, 
     {"drawBorder", _wrap_Button_drawBorder}, 
@@ -13836,6 +13690,109 @@ static int _wrap_delete_DropDown(lua_State* L) {
   arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"delete_DropDown");
   delete arg1;
   
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DropDown_setSize(lua_State* L) {
+  int SWIG_arg = -1;
+  love::DropDown *arg1 = (love::DropDown *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_setSize");
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  (arg1)->setSize(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DropDown_setWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  love::DropDown *arg1 = (love::DropDown *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_setWidth");
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setWidth(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DropDown_setHeight(lua_State* L) {
+  int SWIG_arg = -1;
+  love::DropDown *arg1 = (love::DropDown *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_setHeight");
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setHeight(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DropDown_setBorderSize(lua_State* L) {
+  int SWIG_arg = -1;
+  love::DropDown *arg1 = (love::DropDown *) 0 ;
+  unsigned int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_setBorderSize");
+  arg2 = (unsigned int)lua_tonumber(L, 2);
+  (arg1)->setBorderSize(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DropDown_setName(lua_State* L) {
+  int SWIG_arg = -1;
+  love::DropDown *arg1 = (love::DropDown *) 0 ;
+  char *arg2 = (char *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_setName");
+  arg2 = (char*)lua_tostring(L, 2);
+  (arg1)->setName((char const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -14006,6 +13963,95 @@ fail:
 }
 
 
+static int _wrap_DropDown_getWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  love::DropDown *arg1 = (love::DropDown *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_getWidth");
+  result = (int)(arg1)->getWidth();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DropDown_getHeight(lua_State* L) {
+  int SWIG_arg = -1;
+  love::DropDown *arg1 = (love::DropDown *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_getHeight");
+  result = (int)(arg1)->getHeight();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DropDown_getBorderSize(lua_State* L) {
+  int SWIG_arg = -1;
+  love::DropDown *arg1 = (love::DropDown *) 0 ;
+  unsigned int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_getBorderSize");
+  result = (unsigned int)(arg1)->getBorderSize();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DropDown_getName(lua_State* L) {
+  int SWIG_arg = -1;
+  love::DropDown *arg1 = (love::DropDown *) 0 ;
+  char *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_getName");
+  result = (char *)(arg1)->getName();
+  SWIG_arg=0;
+  lua_pushstring(L,result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DropDown_adjustSize(lua_State* L) {
+  int SWIG_arg = -1;
+  love::DropDown *arg1 = (love::DropDown *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_adjustSize");
+  (arg1)->adjustSize();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_DropDown_add(lua_State* L) {
   int SWIG_arg = -1;
   love::DropDown *arg1 = (love::DropDown *) 0 ;
@@ -14128,6 +14174,11 @@ love::DropDown *arg1 = (love::DropDown *) obj;
 delete arg1;
 }
 static swig_lua_method swig_love_DropDown_methods[] = {
+    {"setSize", _wrap_DropDown_setSize}, 
+    {"setWidth", _wrap_DropDown_setWidth}, 
+    {"setHeight", _wrap_DropDown_setHeight}, 
+    {"setBorderSize", _wrap_DropDown_setBorderSize}, 
+    {"setName", _wrap_DropDown_setName}, 
     {"setColor", _wrap_DropDown_setColor}, 
     {"setActiveColor", _wrap_DropDown_setActiveColor}, 
     {"setBackgroundColor", _wrap_DropDown_setBackgroundColor}, 
@@ -14136,6 +14187,11 @@ static swig_lua_method swig_love_DropDown_methods[] = {
     {"setBorderColor", _wrap_DropDown_setBorderColor}, 
     {"setButtonColor", _wrap_DropDown_setButtonColor}, 
     {"setButtonBackgroundColor", _wrap_DropDown_setButtonBackgroundColor}, 
+    {"getWidth", _wrap_DropDown_getWidth}, 
+    {"getHeight", _wrap_DropDown_getHeight}, 
+    {"getBorderSize", _wrap_DropDown_getBorderSize}, 
+    {"getName", _wrap_DropDown_getName}, 
+    {"adjustSize", _wrap_DropDown_adjustSize}, 
     {"add", _wrap_DropDown_add}, 
     {"remove", _wrap_DropDown_remove}, 
     {"clear", _wrap_DropDown_clear}, 
@@ -14530,94 +14586,6 @@ fail:
 }
 
 
-static int _wrap_Label_getColor(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Label *arg1 = (love::Label *) 0 ;
-  love::pAbstractColor result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Label *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Label,0,1,"Label_getColor");
-  result = (arg1)->getColor();
-  SWIG_arg=0;
-  {
-    love::pAbstractColor * resultptr;
-    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Label_getBackgroundColor(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Label *arg1 = (love::Label *) 0 ;
-  love::pAbstractColor result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Label *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Label,0,1,"Label_getBackgroundColor");
-  result = (arg1)->getBackgroundColor();
-  SWIG_arg=0;
-  {
-    love::pAbstractColor * resultptr;
-    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Label_getBorderColor(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Label *arg1 = (love::Label *) 0 ;
-  love::pAbstractColor result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Label *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Label,0,1,"Label_getBorderColor");
-  result = (arg1)->getBorderColor();
-  SWIG_arg=0;
-  {
-    love::pAbstractColor * resultptr;
-    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Label_getBackground(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Label *arg1 = (love::Label *) 0 ;
-  love::pAbstractImage result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Label *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Label,0,1,"Label_getBackground");
-  result = (arg1)->getBackground();
-  SWIG_arg=0;
-  {
-    love::pAbstractImage * resultptr;
-    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_Label_adjustSize(lua_State* L) {
   int SWIG_arg = -1;
   love::Label *arg1 = (love::Label *) 0 ;
@@ -14695,10 +14663,6 @@ static swig_lua_method swig_love_Label_methods[] = {
     {"getHeight", _wrap_Label_getHeight}, 
     {"getBorderSize", _wrap_Label_getBorderSize}, 
     {"getCaption", _wrap_Label_getCaption}, 
-    {"getColor", _wrap_Label_getColor}, 
-    {"getBackgroundColor", _wrap_Label_getBackgroundColor}, 
-    {"getBorderColor", _wrap_Label_getBorderColor}, 
-    {"getBackground", _wrap_Label_getBackground}, 
     {"adjustSize", _wrap_Label_adjustSize}, 
     {"draw", _wrap_Label_draw}, 
     {"drawBorder", _wrap_Label_drawBorder}, 
@@ -15142,6 +15106,26 @@ fail:
 }
 
 
+static int _wrap_TextField_setName(lua_State* L) {
+  int SWIG_arg = -1;
+  love::TextField *arg1 = (love::TextField *) 0 ;
+  char *arg2 = (char *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(love::TextField *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__TextField,0,1,"TextField_setName");
+  arg2 = (char*)lua_tostring(L, 2);
+  (arg1)->setName((char const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_TextField_setColor(lua_State* L) {
   int SWIG_arg = -1;
   love::TextField *arg1 = (love::TextField *) 0 ;
@@ -15304,6 +15288,24 @@ static int _wrap_TextField_getText(lua_State* L) {
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::TextField *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__TextField,0,1,"TextField_getText");
   result = (char *)(arg1)->getText();
+  SWIG_arg=0;
+  lua_pushstring(L,result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_TextField_getName(lua_State* L) {
+  int SWIG_arg = -1;
+  love::TextField *arg1 = (love::TextField *) 0 ;
+  char *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::TextField *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__TextField,0,1,"TextField_getName");
+  result = (char *)(arg1)->getName();
   SWIG_arg=0;
   lua_pushstring(L,result); SWIG_arg++;
   return SWIG_arg;
@@ -15491,6 +15493,7 @@ static swig_lua_method swig_love_TextField_methods[] = {
     {"setHeight", _wrap_TextField_setHeight}, 
     {"setBorderSize", _wrap_TextField_setBorderSize}, 
     {"setText", _wrap_TextField_setText}, 
+    {"setName", _wrap_TextField_setName}, 
     {"setColor", _wrap_TextField_setColor}, 
     {"setActiveColor", _wrap_TextField_setActiveColor}, 
     {"setBackgroundColor", _wrap_TextField_setBackgroundColor}, 
@@ -15500,6 +15503,7 @@ static swig_lua_method swig_love_TextField_methods[] = {
     {"getHeight", _wrap_TextField_getHeight}, 
     {"getBorderSize", _wrap_TextField_getBorderSize}, 
     {"getText", _wrap_TextField_getText}, 
+    {"getName", _wrap_TextField_getName}, 
     {"getColor", _wrap_TextField_getColor}, 
     {"getBackgroundColor", _wrap_TextField_getBackgroundColor}, 
     {"getActiveColor", _wrap_TextField_getActiveColor}, 
@@ -15515,6 +15519,596 @@ static swig_lua_attribute swig_love_TextField_attributes[] = {
 };
 static swig_lua_class *swig_love_TextField_bases[] = {0};
 swig_lua_class _wrap_class_love_TextField = { "TextField", &SWIGTYPE_p_love__TextField,_wrap_new_TextField, swig_delete_TextField, swig_love_TextField_methods, swig_love_TextField_attributes, swig_love_TextField_bases };
+
+static int _wrap_new_RadioButton__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  string arg1 ;
+  love::RadioButton *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  {
+    string * argp;
+    if(SWIG_ConvertPtr(L,1,(void**)(&argp),SWIGTYPE_p_string,0)) SWIG_fail;
+    arg1 = *argp;
+  }
+  result = (love::RadioButton *)new love::RadioButton(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__RadioButton,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_RadioButton__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *result = 0 ;
+  
+  result = (love::RadioButton *)new love::RadioButton();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__RadioButton,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_RadioButton(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_RadioButton__SWIG_1(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_string, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_RadioButton__SWIG_0(L);
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'new_RadioButton'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_delete_RadioButton(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"delete_RadioButton");
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_setSize(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setSize");
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  (arg1)->setSize(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_setWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setWidth");
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setWidth(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_setHeight(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setHeight");
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setHeight(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_setBorderSize(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  unsigned int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setBorderSize");
+  arg2 = (unsigned int)lua_tonumber(L, 2);
+  (arg1)->setBorderSize(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_setCaption(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  char *arg2 = (char *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setCaption");
+  arg2 = (char*)lua_tostring(L, 2);
+  (arg1)->setCaption((char const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_setName(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  char *arg2 = (char *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setName");
+  arg2 = (char*)lua_tostring(L, 2);
+  (arg1)->setName((char const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_setMarked(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  bool arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isboolean(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setMarked");
+  arg2 = (bool)lua_toboolean(L, 2);
+  (arg1)->setMarked(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_align(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_align");
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->align(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_valign(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_valign");
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->valign(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_setColor(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  love::pAbstractColor *arg2 = (love::pAbstractColor *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setColor");
+  arg2=(love::pAbstractColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,2,"RadioButton_setColor");
+  (arg1)->setColor((love::pAbstractColor const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_setBackgroundColor(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  love::pAbstractColor *arg2 = (love::pAbstractColor *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setBackgroundColor");
+  arg2=(love::pAbstractColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,2,"RadioButton_setBackgroundColor");
+  (arg1)->setBackgroundColor((love::pAbstractColor const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_setBorderColor(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  love::pAbstractColor *arg2 = (love::pAbstractColor *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setBorderColor");
+  arg2=(love::pAbstractColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,2,"RadioButton_setBorderColor");
+  (arg1)->setBorderColor((love::pAbstractColor const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_setDefaultImage(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setDefaultImage");
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"RadioButton_setDefaultImage");
+  (arg1)->setDefaultImage((love::pAbstractImage const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_setMarkedImage(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setMarkedImage");
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"RadioButton_setMarkedImage");
+  (arg1)->setMarkedImage((love::pAbstractImage const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_getWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_getWidth");
+  result = (int)(arg1)->getWidth();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_getHeight(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_getHeight");
+  result = (int)(arg1)->getHeight();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_getBorderSize(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  unsigned int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_getBorderSize");
+  result = (unsigned int)(arg1)->getBorderSize();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_getCaption(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  char *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_getCaption");
+  result = (char *)(arg1)->getCaption();
+  SWIG_arg=0;
+  lua_pushstring(L,result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_getName(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  char *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_getName");
+  result = (char *)(arg1)->getName();
+  SWIG_arg=0;
+  lua_pushstring(L,result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_isMarked(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  bool result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_isMarked");
+  result = (bool)(arg1)->isMarked();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_adjustSize(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_adjustSize");
+  (arg1)->adjustSize();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_draw(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  gcn::Graphics *arg2 = (gcn::Graphics *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_draw");
+  arg2=(gcn::Graphics *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_gcn__Graphics,0,2,"RadioButton_draw");
+  (arg1)->draw(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_drawBorder(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  gcn::Graphics *arg2 = (gcn::Graphics *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_drawBorder");
+  arg2=(gcn::Graphics *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_gcn__Graphics,0,2,"RadioButton_drawBorder");
+  (arg1)->drawBorder(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RadioButton_drawBox(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  gcn::Graphics *arg2 = (gcn::Graphics *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_drawBox");
+  arg2=(gcn::Graphics *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_gcn__Graphics,0,2,"RadioButton_drawBox");
+  (arg1)->drawBox(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_RadioButton(void *obj) {
+love::RadioButton *arg1 = (love::RadioButton *) obj;
+delete arg1;
+}
+static swig_lua_method swig_love_RadioButton_methods[] = {
+    {"setSize", _wrap_RadioButton_setSize}, 
+    {"setWidth", _wrap_RadioButton_setWidth}, 
+    {"setHeight", _wrap_RadioButton_setHeight}, 
+    {"setBorderSize", _wrap_RadioButton_setBorderSize}, 
+    {"setCaption", _wrap_RadioButton_setCaption}, 
+    {"setName", _wrap_RadioButton_setName}, 
+    {"setMarked", _wrap_RadioButton_setMarked}, 
+    {"align", _wrap_RadioButton_align}, 
+    {"valign", _wrap_RadioButton_valign}, 
+    {"setColor", _wrap_RadioButton_setColor}, 
+    {"setBackgroundColor", _wrap_RadioButton_setBackgroundColor}, 
+    {"setBorderColor", _wrap_RadioButton_setBorderColor}, 
+    {"setDefaultImage", _wrap_RadioButton_setDefaultImage}, 
+    {"setMarkedImage", _wrap_RadioButton_setMarkedImage}, 
+    {"getWidth", _wrap_RadioButton_getWidth}, 
+    {"getHeight", _wrap_RadioButton_getHeight}, 
+    {"getBorderSize", _wrap_RadioButton_getBorderSize}, 
+    {"getCaption", _wrap_RadioButton_getCaption}, 
+    {"getName", _wrap_RadioButton_getName}, 
+    {"isMarked", _wrap_RadioButton_isMarked}, 
+    {"adjustSize", _wrap_RadioButton_adjustSize}, 
+    {"draw", _wrap_RadioButton_draw}, 
+    {"drawBorder", _wrap_RadioButton_drawBorder}, 
+    {"drawBox", _wrap_RadioButton_drawBox}, 
+    {0,0}
+};
+static swig_lua_attribute swig_love_RadioButton_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_love_RadioButton_bases[] = {0};
+swig_lua_class _wrap_class_love_RadioButton = { "RadioButton", &SWIGTYPE_p_love__RadioButton,_wrap_new_RadioButton, swig_delete_RadioButton, swig_love_RadioButton_methods, swig_love_RadioButton_attributes, swig_love_RadioButton_bases };
 
 static int _wrap_new_Menu__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
@@ -15661,78 +16255,6 @@ fail:
 }
 
 
-static int _wrap_Menu_getWidth(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Menu *arg1 = (love::Menu *) 0 ;
-  int result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_getWidth");
-  result = (int)(arg1)->getWidth();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Menu_getHeight(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Menu *arg1 = (love::Menu *) 0 ;
-  int result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_getHeight");
-  result = (int)(arg1)->getHeight();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Menu_getX(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Menu *arg1 = (love::Menu *) 0 ;
-  int result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_getX");
-  result = (int)(arg1)->getX();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Menu_getY(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Menu *arg1 = (love::Menu *) 0 ;
-  int result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_getY");
-  result = (int)(arg1)->getY();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_Menu_setSize(lua_State* L) {
   int SWIG_arg = -1;
   love::Menu *arg1 = (love::Menu *) 0 ;
@@ -15786,6 +16308,26 @@ static int _wrap_Menu_setHeight(lua_State* L) {
   arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_setHeight");
   arg2 = (int)lua_tonumber(L, 2);
   (arg1)->setHeight(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Menu_setBorderSize(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  unsigned int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_setBorderSize");
+  arg2 = (unsigned int)lua_tonumber(L, 2);
+  (arg1)->setBorderSize(arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -16014,46 +16556,6 @@ fail:
 }
 
 
-static int _wrap_Menu_align(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Menu *arg1 = (love::Menu *) 0 ;
-  int arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_align");
-  arg2 = (int)lua_tonumber(L, 2);
-  (arg1)->align(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Menu_valign(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Menu *arg1 = (love::Menu *) 0 ;
-  int arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_valign");
-  arg2 = (int)lua_tonumber(L, 2);
-  (arg1)->valign(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_Menu_setBackgroundColor(lua_State* L) {
   int SWIG_arg = -1;
   love::Menu *arg1 = (love::Menu *) 0 ;
@@ -16064,6 +16566,26 @@ static int _wrap_Menu_setBackgroundColor(lua_State* L) {
   arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_setBackgroundColor");
   arg2=(love::pAbstractColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,2,"Menu_setBackgroundColor");
   (arg1)->setBackgroundColor((love::pAbstractColor const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Menu_setBorderColor(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  love::pAbstractColor *arg2 = (love::pAbstractColor *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_setBorderColor");
+  arg2=(love::pAbstractColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,2,"Menu_setBorderColor");
+  (arg1)->setBorderColor((love::pAbstractColor const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -16114,6 +16636,46 @@ fail:
 }
 
 
+static int _wrap_Menu_align(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_align");
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->align(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Menu_valign(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_valign");
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->valign(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Menu_setSpacing(lua_State* L) {
   int SWIG_arg = -1;
   love::Menu *arg1 = (love::Menu *) 0 ;
@@ -16126,6 +16688,96 @@ static int _wrap_Menu_setSpacing(lua_State* L) {
   (arg1)->setSpacing(arg2);
   SWIG_arg=0;
   
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Menu_getWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_getWidth");
+  result = (int)(arg1)->getWidth();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Menu_getHeight(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_getHeight");
+  result = (int)(arg1)->getHeight();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Menu_getX(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_getX");
+  result = (int)(arg1)->getX();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Menu_getY(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_getY");
+  result = (int)(arg1)->getY();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Menu_getBorderSize(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  unsigned int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_getBorderSize");
+  result = (unsigned int)(arg1)->getBorderSize();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
 fail:
@@ -16159,6 +16811,40 @@ static int _wrap_Menu_adjustSize(lua_State* L) {
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_adjustSize");
   (arg1)->adjustSize();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Menu_adjustWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_adjustWidth");
+  (arg1)->adjustWidth();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Menu_adjustHeight(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_adjustHeight");
+  (arg1)->adjustHeight();
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -17278,18 +17964,236 @@ static int _wrap_Menu_addDropDown(lua_State* L) {
 }
 
 
+static int _wrap_Menu_addRadioButton__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  int arg4 ;
+  int arg5 ;
+  love::RadioButton *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isstring(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_addRadioButton");
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (char*)lua_tostring(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  arg5 = (int)lua_tonumber(L, 5);
+  result = (love::RadioButton *)(arg1)->addRadioButton((char const *)arg2,(char const *)arg3,arg4,arg5);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__RadioButton,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Menu_addRadioButton__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  int arg4 ;
+  love::RadioButton *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isstring(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_addRadioButton");
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (char*)lua_tostring(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  result = (love::RadioButton *)(arg1)->addRadioButton((char const *)arg2,(char const *)arg3,arg4);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__RadioButton,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Menu_addRadioButton__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  love::RadioButton *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isstring(L,3)) SWIG_fail_arg(3);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_addRadioButton");
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (char*)lua_tostring(L, 3);
+  result = (love::RadioButton *)(arg1)->addRadioButton((char const *)arg2,(char const *)arg3);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__RadioButton,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Menu_addRadioButton__SWIG_3(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  char *arg2 = (char *) 0 ;
+  love::RadioButton *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_addRadioButton");
+  arg2 = (char*)lua_tostring(L, 2);
+  result = (love::RadioButton *)(arg1)->addRadioButton((char const *)arg2);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__RadioButton,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Menu_addRadioButton(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Menu, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_Menu_addRadioButton__SWIG_3(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Menu, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_Menu_addRadioButton__SWIG_2(L);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Menu, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_Menu_addRadioButton__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Menu, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_Menu_addRadioButton__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'Menu_addRadioButton'");
+  lua_error(L);return 0;
+}
+
+
 static void swig_delete_Menu(void *obj) {
 love::Menu *arg1 = (love::Menu *) obj;
 delete arg1;
 }
 static swig_lua_method swig_love_Menu_methods[] = {
-    {"getWidth", _wrap_Menu_getWidth}, 
-    {"getHeight", _wrap_Menu_getHeight}, 
-    {"getX", _wrap_Menu_getX}, 
-    {"getY", _wrap_Menu_getY}, 
     {"setSize", _wrap_Menu_setSize}, 
     {"setWidth", _wrap_Menu_setWidth}, 
     {"setHeight", _wrap_Menu_setHeight}, 
+    {"setBorderSize", _wrap_Menu_setBorderSize}, 
     {"setPosition", _wrap_Menu_setPosition}, 
     {"setX", _wrap_Menu_setX}, 
     {"setY", _wrap_Menu_setY}, 
@@ -17297,14 +18201,22 @@ static swig_lua_method swig_love_Menu_methods[] = {
     {"hide", _wrap_Menu_hide}, 
     {"setFont", _wrap_Menu_setFont}, 
     {"setColor", _wrap_Menu_setColor}, 
-    {"align", _wrap_Menu_align}, 
-    {"valign", _wrap_Menu_valign}, 
     {"setBackgroundColor", _wrap_Menu_setBackgroundColor}, 
+    {"setBorderColor", _wrap_Menu_setBorderColor}, 
     {"setBackground", _wrap_Menu_setBackground}, 
     {"stretchContent", _wrap_Menu_stretchContent}, 
+    {"align", _wrap_Menu_align}, 
+    {"valign", _wrap_Menu_valign}, 
     {"setSpacing", _wrap_Menu_setSpacing}, 
+    {"getWidth", _wrap_Menu_getWidth}, 
+    {"getHeight", _wrap_Menu_getHeight}, 
+    {"getX", _wrap_Menu_getX}, 
+    {"getY", _wrap_Menu_getY}, 
+    {"getBorderSize", _wrap_Menu_getBorderSize}, 
     {"getSpacing", _wrap_Menu_getSpacing}, 
     {"adjustSize", _wrap_Menu_adjustSize}, 
+    {"adjustWidth", _wrap_Menu_adjustWidth}, 
+    {"adjustHeight", _wrap_Menu_adjustHeight}, 
     {"adjustContent", _wrap_Menu_adjustContent}, 
     {"draw", _wrap_Menu_draw}, 
     {"drawBorder", _wrap_Menu_drawBorder}, 
@@ -17315,6 +18227,7 @@ static swig_lua_method swig_love_Menu_methods[] = {
     {"addButton", _wrap_Menu_addButton}, 
     {"addTextField", _wrap_Menu_addTextField}, 
     {"addDropDown", _wrap_Menu_addDropDown}, 
+    {"addRadioButton", _wrap_Menu_addRadioButton}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_Menu_attributes[] = {
@@ -38090,78 +39003,6 @@ fail:
 }
 
 
-static int _wrap_SmartMenu_getWidth(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
-  int result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_getWidth");
-  result = (int)(*arg1)->getWidth();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartMenu_getHeight(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
-  int result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_getHeight");
-  result = (int)(*arg1)->getHeight();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartMenu_getX(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
-  int result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_getX");
-  result = (int)(*arg1)->getX();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartMenu_getY(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
-  int result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_getY");
-  result = (int)(*arg1)->getY();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_SmartMenu_setSize(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
@@ -38215,6 +39056,26 @@ static int _wrap_SmartMenu_setHeight(lua_State* L) {
   arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_setHeight");
   arg2 = (int)lua_tonumber(L, 2);
   (*arg1)->setHeight(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_setBorderSize(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  unsigned int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_setBorderSize");
+  arg2 = (unsigned int)lua_tonumber(L, 2);
+  (*arg1)->setBorderSize(arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -38443,46 +39304,6 @@ fail:
 }
 
 
-static int _wrap_SmartMenu_align(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
-  int arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_align");
-  arg2 = (int)lua_tonumber(L, 2);
-  (*arg1)->align(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartMenu_valign(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
-  int arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_valign");
-  arg2 = (int)lua_tonumber(L, 2);
-  (*arg1)->valign(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_SmartMenu_setBackgroundColor(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
@@ -38493,6 +39314,26 @@ static int _wrap_SmartMenu_setBackgroundColor(lua_State* L) {
   arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_setBackgroundColor");
   arg2=(love::pAbstractColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,2,"SmartMenu_setBackgroundColor");
   (*arg1)->setBackgroundColor((love::pAbstractColor const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_setBorderColor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  love::pAbstractColor *arg2 = (love::pAbstractColor *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_setBorderColor");
+  arg2=(love::pAbstractColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,2,"SmartMenu_setBorderColor");
+  (*arg1)->setBorderColor((love::pAbstractColor const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -38543,6 +39384,46 @@ fail:
 }
 
 
+static int _wrap_SmartMenu_align(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_align");
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->align(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_valign(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_valign");
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->valign(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartMenu_setSpacing(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
@@ -38555,6 +39436,96 @@ static int _wrap_SmartMenu_setSpacing(lua_State* L) {
   (*arg1)->setSpacing(arg2);
   SWIG_arg=0;
   
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_getWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_getWidth");
+  result = (int)(*arg1)->getWidth();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_getHeight(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_getHeight");
+  result = (int)(*arg1)->getHeight();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_getX(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_getX");
+  result = (int)(*arg1)->getX();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_getY(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_getY");
+  result = (int)(*arg1)->getY();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_getBorderSize(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  unsigned int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_getBorderSize");
+  result = (unsigned int)(*arg1)->getBorderSize();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
 fail:
@@ -38588,6 +39559,40 @@ static int _wrap_SmartMenu_adjustSize(lua_State* L) {
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_adjustSize");
   (*arg1)->adjustSize();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_adjustWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_adjustWidth");
+  (*arg1)->adjustWidth();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_adjustHeight(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_adjustHeight");
+  (*arg1)->adjustHeight();
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -39707,6 +40712,227 @@ static int _wrap_SmartMenu_addDropDown(lua_State* L) {
 }
 
 
+static int _wrap_SmartMenu_addRadioButton__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  int arg4 ;
+  int arg5 ;
+  love::RadioButton *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isstring(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_addRadioButton");
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (char*)lua_tostring(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  arg5 = (int)lua_tonumber(L, 5);
+  result = (love::RadioButton *)(*arg1)->addRadioButton((char const *)arg2,(char const *)arg3,arg4,arg5);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__RadioButton,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_addRadioButton__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  int arg4 ;
+  love::RadioButton *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isstring(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_addRadioButton");
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (char*)lua_tostring(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  result = (love::RadioButton *)(*arg1)->addRadioButton((char const *)arg2,(char const *)arg3,arg4);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__RadioButton,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_addRadioButton__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  love::RadioButton *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isstring(L,3)) SWIG_fail_arg(3);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_addRadioButton");
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (char*)lua_tostring(L, 3);
+  result = (love::RadioButton *)(*arg1)->addRadioButton((char const *)arg2,(char const *)arg3);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__RadioButton,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_addRadioButton__SWIG_3(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  char *arg2 = (char *) 0 ;
+  love::RadioButton *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_addRadioButton");
+  arg2 = (char*)lua_tostring(L, 2);
+  result = (love::RadioButton *)(*arg1)->addRadioButton((char const *)arg2);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__RadioButton,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_addRadioButton(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Menu_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_SmartMenu_addRadioButton__SWIG_3(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Menu_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_SmartMenu_addRadioButton__SWIG_2(L);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Menu_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_SmartMenu_addRadioButton__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Menu_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_SmartMenu_addRadioButton__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'SmartMenu_addRadioButton'");
+  lua_error(L);return 0;
+}
+
+
 static int _wrap_SmartMenu_setPadding__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
@@ -40027,13 +41253,10 @@ delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_Menu_Sg__methods[] = {
     {"__deref__", _wrap_SmartMenu___deref__}, 
-    {"getWidth", _wrap_SmartMenu_getWidth}, 
-    {"getHeight", _wrap_SmartMenu_getHeight}, 
-    {"getX", _wrap_SmartMenu_getX}, 
-    {"getY", _wrap_SmartMenu_getY}, 
     {"setSize", _wrap_SmartMenu_setSize}, 
     {"setWidth", _wrap_SmartMenu_setWidth}, 
     {"setHeight", _wrap_SmartMenu_setHeight}, 
+    {"setBorderSize", _wrap_SmartMenu_setBorderSize}, 
     {"setPosition", _wrap_SmartMenu_setPosition}, 
     {"setX", _wrap_SmartMenu_setX}, 
     {"setY", _wrap_SmartMenu_setY}, 
@@ -40041,14 +41264,22 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_Menu_Sg__methods[] = {
     {"hide", _wrap_SmartMenu_hide}, 
     {"setFont", _wrap_SmartMenu_setFont}, 
     {"setColor", _wrap_SmartMenu_setColor}, 
-    {"align", _wrap_SmartMenu_align}, 
-    {"valign", _wrap_SmartMenu_valign}, 
     {"setBackgroundColor", _wrap_SmartMenu_setBackgroundColor}, 
+    {"setBorderColor", _wrap_SmartMenu_setBorderColor}, 
     {"setBackground", _wrap_SmartMenu_setBackground}, 
     {"stretchContent", _wrap_SmartMenu_stretchContent}, 
+    {"align", _wrap_SmartMenu_align}, 
+    {"valign", _wrap_SmartMenu_valign}, 
     {"setSpacing", _wrap_SmartMenu_setSpacing}, 
+    {"getWidth", _wrap_SmartMenu_getWidth}, 
+    {"getHeight", _wrap_SmartMenu_getHeight}, 
+    {"getX", _wrap_SmartMenu_getX}, 
+    {"getY", _wrap_SmartMenu_getY}, 
+    {"getBorderSize", _wrap_SmartMenu_getBorderSize}, 
     {"getSpacing", _wrap_SmartMenu_getSpacing}, 
     {"adjustSize", _wrap_SmartMenu_adjustSize}, 
+    {"adjustWidth", _wrap_SmartMenu_adjustWidth}, 
+    {"adjustHeight", _wrap_SmartMenu_adjustHeight}, 
     {"adjustContent", _wrap_SmartMenu_adjustContent}, 
     {"draw", _wrap_SmartMenu_draw}, 
     {"drawBorder", _wrap_SmartMenu_drawBorder}, 
@@ -40059,6 +41290,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_Menu_Sg__methods[] = {
     {"addButton", _wrap_SmartMenu_addButton}, 
     {"addTextField", _wrap_SmartMenu_addTextField}, 
     {"addDropDown", _wrap_SmartMenu_addDropDown}, 
+    {"addRadioButton", _wrap_SmartMenu_addRadioButton}, 
     {"setPadding", _wrap_SmartMenu_setPadding}, 
     {"setPaddingTop", _wrap_SmartMenu_setPaddingTop}, 
     {"setPaddingRight", _wrap_SmartMenu_setPaddingRight}, 
@@ -40408,6 +41640,7 @@ static const struct luaL_reg swig_commands[] = {
     { "Button_setHeight", _wrap_Button_setHeight},
     { "Button_setBorderSize", _wrap_Button_setBorderSize},
     { "Button_setCaption", _wrap_Button_setCaption},
+    { "Button_setName", _wrap_Button_setName},
     { "Button_align", _wrap_Button_align},
     { "Button_valign", _wrap_Button_valign},
     { "Button_setColor", _wrap_Button_setColor},
@@ -40424,20 +41657,18 @@ static const struct luaL_reg swig_commands[] = {
     { "Button_getWidth", _wrap_Button_getWidth},
     { "Button_getHeight", _wrap_Button_getHeight},
     { "Button_getBorderSize", _wrap_Button_getBorderSize},
-    { "Button_getColor", _wrap_Button_getColor},
-    { "Button_getHoverColor", _wrap_Button_getHoverColor},
-    { "Button_getPressedColor", _wrap_Button_getPressedColor},
-    { "Button_getActiveColor", _wrap_Button_getActiveColor},
-    { "Button_getBackgroundColor", _wrap_Button_getBackgroundColor},
-    { "Button_getHoverBackgroundColor", _wrap_Button_getHoverBackgroundColor},
-    { "Button_getPressedBackgroundColor", _wrap_Button_getPressedBackgroundColor},
-    { "Button_getActiveBackgroundColor", _wrap_Button_getActiveBackgroundColor},
-    { "Button_getBorderColor", _wrap_Button_getBorderColor},
+    { "Button_getCaption", _wrap_Button_getCaption},
+    { "Button_getName", _wrap_Button_getName},
     { "Button_adjustSize", _wrap_Button_adjustSize},
     { "Button_draw", _wrap_Button_draw},
     { "Button_drawBorder", _wrap_Button_drawBorder},
     { "new_DropDown", _wrap_new_DropDown},
     { "delete_DropDown", _wrap_delete_DropDown},
+    { "DropDown_setSize", _wrap_DropDown_setSize},
+    { "DropDown_setWidth", _wrap_DropDown_setWidth},
+    { "DropDown_setHeight", _wrap_DropDown_setHeight},
+    { "DropDown_setBorderSize", _wrap_DropDown_setBorderSize},
+    { "DropDown_setName", _wrap_DropDown_setName},
     { "DropDown_setColor", _wrap_DropDown_setColor},
     { "DropDown_setActiveColor", _wrap_DropDown_setActiveColor},
     { "DropDown_setBackgroundColor", _wrap_DropDown_setBackgroundColor},
@@ -40446,6 +41677,11 @@ static const struct luaL_reg swig_commands[] = {
     { "DropDown_setBorderColor", _wrap_DropDown_setBorderColor},
     { "DropDown_setButtonColor", _wrap_DropDown_setButtonColor},
     { "DropDown_setButtonBackgroundColor", _wrap_DropDown_setButtonBackgroundColor},
+    { "DropDown_getWidth", _wrap_DropDown_getWidth},
+    { "DropDown_getHeight", _wrap_DropDown_getHeight},
+    { "DropDown_getBorderSize", _wrap_DropDown_getBorderSize},
+    { "DropDown_getName", _wrap_DropDown_getName},
+    { "DropDown_adjustSize", _wrap_DropDown_adjustSize},
     { "DropDown_add", _wrap_DropDown_add},
     { "DropDown_remove", _wrap_DropDown_remove},
     { "DropDown_clear", _wrap_DropDown_clear},
@@ -40469,10 +41705,6 @@ static const struct luaL_reg swig_commands[] = {
     { "Label_getHeight", _wrap_Label_getHeight},
     { "Label_getBorderSize", _wrap_Label_getBorderSize},
     { "Label_getCaption", _wrap_Label_getCaption},
-    { "Label_getColor", _wrap_Label_getColor},
-    { "Label_getBackgroundColor", _wrap_Label_getBackgroundColor},
-    { "Label_getBorderColor", _wrap_Label_getBorderColor},
-    { "Label_getBackground", _wrap_Label_getBackground},
     { "Label_adjustSize", _wrap_Label_adjustSize},
     { "Label_draw", _wrap_Label_draw},
     { "Label_drawBorder", _wrap_Label_drawBorder},
@@ -40489,6 +41721,7 @@ static const struct luaL_reg swig_commands[] = {
     { "TextField_setHeight", _wrap_TextField_setHeight},
     { "TextField_setBorderSize", _wrap_TextField_setBorderSize},
     { "TextField_setText", _wrap_TextField_setText},
+    { "TextField_setName", _wrap_TextField_setName},
     { "TextField_setColor", _wrap_TextField_setColor},
     { "TextField_setActiveColor", _wrap_TextField_setActiveColor},
     { "TextField_setBackgroundColor", _wrap_TextField_setBackgroundColor},
@@ -40498,6 +41731,7 @@ static const struct luaL_reg swig_commands[] = {
     { "TextField_getHeight", _wrap_TextField_getHeight},
     { "TextField_getBorderSize", _wrap_TextField_getBorderSize},
     { "TextField_getText", _wrap_TextField_getText},
+    { "TextField_getName", _wrap_TextField_getName},
     { "TextField_getColor", _wrap_TextField_getColor},
     { "TextField_getBackgroundColor", _wrap_TextField_getBackgroundColor},
     { "TextField_getActiveColor", _wrap_TextField_getActiveColor},
@@ -40506,15 +41740,38 @@ static const struct luaL_reg swig_commands[] = {
     { "TextField_adjustSize", _wrap_TextField_adjustSize},
     { "TextField_draw", _wrap_TextField_draw},
     { "TextField_drawBorder", _wrap_TextField_drawBorder},
+    { "new_RadioButton",_wrap_new_RadioButton},
+    { "delete_RadioButton", _wrap_delete_RadioButton},
+    { "RadioButton_setSize", _wrap_RadioButton_setSize},
+    { "RadioButton_setWidth", _wrap_RadioButton_setWidth},
+    { "RadioButton_setHeight", _wrap_RadioButton_setHeight},
+    { "RadioButton_setBorderSize", _wrap_RadioButton_setBorderSize},
+    { "RadioButton_setCaption", _wrap_RadioButton_setCaption},
+    { "RadioButton_setName", _wrap_RadioButton_setName},
+    { "RadioButton_setMarked", _wrap_RadioButton_setMarked},
+    { "RadioButton_align", _wrap_RadioButton_align},
+    { "RadioButton_valign", _wrap_RadioButton_valign},
+    { "RadioButton_setColor", _wrap_RadioButton_setColor},
+    { "RadioButton_setBackgroundColor", _wrap_RadioButton_setBackgroundColor},
+    { "RadioButton_setBorderColor", _wrap_RadioButton_setBorderColor},
+    { "RadioButton_setDefaultImage", _wrap_RadioButton_setDefaultImage},
+    { "RadioButton_setMarkedImage", _wrap_RadioButton_setMarkedImage},
+    { "RadioButton_getWidth", _wrap_RadioButton_getWidth},
+    { "RadioButton_getHeight", _wrap_RadioButton_getHeight},
+    { "RadioButton_getBorderSize", _wrap_RadioButton_getBorderSize},
+    { "RadioButton_getCaption", _wrap_RadioButton_getCaption},
+    { "RadioButton_getName", _wrap_RadioButton_getName},
+    { "RadioButton_isMarked", _wrap_RadioButton_isMarked},
+    { "RadioButton_adjustSize", _wrap_RadioButton_adjustSize},
+    { "RadioButton_draw", _wrap_RadioButton_draw},
+    { "RadioButton_drawBorder", _wrap_RadioButton_drawBorder},
+    { "RadioButton_drawBox", _wrap_RadioButton_drawBox},
     { "new_Menu",_wrap_new_Menu},
     { "delete_Menu", _wrap_delete_Menu},
-    { "Menu_getWidth", _wrap_Menu_getWidth},
-    { "Menu_getHeight", _wrap_Menu_getHeight},
-    { "Menu_getX", _wrap_Menu_getX},
-    { "Menu_getY", _wrap_Menu_getY},
     { "Menu_setSize", _wrap_Menu_setSize},
     { "Menu_setWidth", _wrap_Menu_setWidth},
     { "Menu_setHeight", _wrap_Menu_setHeight},
+    { "Menu_setBorderSize", _wrap_Menu_setBorderSize},
     { "Menu_setPosition", _wrap_Menu_setPosition},
     { "Menu_setX", _wrap_Menu_setX},
     { "Menu_setY", _wrap_Menu_setY},
@@ -40522,14 +41779,22 @@ static const struct luaL_reg swig_commands[] = {
     { "Menu_hide", _wrap_Menu_hide},
     { "Menu_setFont",_wrap_Menu_setFont},
     { "Menu_setColor", _wrap_Menu_setColor},
-    { "Menu_align", _wrap_Menu_align},
-    { "Menu_valign", _wrap_Menu_valign},
     { "Menu_setBackgroundColor", _wrap_Menu_setBackgroundColor},
+    { "Menu_setBorderColor", _wrap_Menu_setBorderColor},
     { "Menu_setBackground", _wrap_Menu_setBackground},
     { "Menu_stretchContent", _wrap_Menu_stretchContent},
+    { "Menu_align", _wrap_Menu_align},
+    { "Menu_valign", _wrap_Menu_valign},
     { "Menu_setSpacing", _wrap_Menu_setSpacing},
+    { "Menu_getWidth", _wrap_Menu_getWidth},
+    { "Menu_getHeight", _wrap_Menu_getHeight},
+    { "Menu_getX", _wrap_Menu_getX},
+    { "Menu_getY", _wrap_Menu_getY},
+    { "Menu_getBorderSize", _wrap_Menu_getBorderSize},
     { "Menu_getSpacing", _wrap_Menu_getSpacing},
     { "Menu_adjustSize", _wrap_Menu_adjustSize},
+    { "Menu_adjustWidth", _wrap_Menu_adjustWidth},
+    { "Menu_adjustHeight", _wrap_Menu_adjustHeight},
     { "Menu_adjustContent", _wrap_Menu_adjustContent},
     { "Menu_draw", _wrap_Menu_draw},
     { "Menu_drawBorder", _wrap_Menu_drawBorder},
@@ -40540,6 +41805,7 @@ static const struct luaL_reg swig_commands[] = {
     { "Menu_addButton",_wrap_Menu_addButton},
     { "Menu_addTextField",_wrap_Menu_addTextField},
     { "Menu_addDropDown",_wrap_Menu_addDropDown},
+    { "Menu_addRadioButton",_wrap_Menu_addRadioButton},
     { "new_GUIContainer", _wrap_new_GUIContainer},
     { "delete_GUIContainer", _wrap_delete_GUIContainer},
     { "GUIContainer_add", _wrap_GUIContainer_add},
@@ -41051,13 +42317,10 @@ static const struct luaL_reg swig_commands[] = {
     { "delete_SmartMenu", _wrap_delete_SmartMenu},
     { "SmartMenu_LOVE_MENU_VERTICAL_get", _wrap_SmartMenu_LOVE_MENU_VERTICAL_get},
     { "SmartMenu_LOVE_MENU_HORIZONTAL_get", _wrap_SmartMenu_LOVE_MENU_HORIZONTAL_get},
-    { "SmartMenu_getWidth", _wrap_SmartMenu_getWidth},
-    { "SmartMenu_getHeight", _wrap_SmartMenu_getHeight},
-    { "SmartMenu_getX", _wrap_SmartMenu_getX},
-    { "SmartMenu_getY", _wrap_SmartMenu_getY},
     { "SmartMenu_setSize", _wrap_SmartMenu_setSize},
     { "SmartMenu_setWidth", _wrap_SmartMenu_setWidth},
     { "SmartMenu_setHeight", _wrap_SmartMenu_setHeight},
+    { "SmartMenu_setBorderSize", _wrap_SmartMenu_setBorderSize},
     { "SmartMenu_setPosition", _wrap_SmartMenu_setPosition},
     { "SmartMenu_setX", _wrap_SmartMenu_setX},
     { "SmartMenu_setY", _wrap_SmartMenu_setY},
@@ -41065,14 +42328,22 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartMenu_hide", _wrap_SmartMenu_hide},
     { "SmartMenu_setFont",_wrap_SmartMenu_setFont},
     { "SmartMenu_setColor", _wrap_SmartMenu_setColor},
-    { "SmartMenu_align", _wrap_SmartMenu_align},
-    { "SmartMenu_valign", _wrap_SmartMenu_valign},
     { "SmartMenu_setBackgroundColor", _wrap_SmartMenu_setBackgroundColor},
+    { "SmartMenu_setBorderColor", _wrap_SmartMenu_setBorderColor},
     { "SmartMenu_setBackground", _wrap_SmartMenu_setBackground},
     { "SmartMenu_stretchContent", _wrap_SmartMenu_stretchContent},
+    { "SmartMenu_align", _wrap_SmartMenu_align},
+    { "SmartMenu_valign", _wrap_SmartMenu_valign},
     { "SmartMenu_setSpacing", _wrap_SmartMenu_setSpacing},
+    { "SmartMenu_getWidth", _wrap_SmartMenu_getWidth},
+    { "SmartMenu_getHeight", _wrap_SmartMenu_getHeight},
+    { "SmartMenu_getX", _wrap_SmartMenu_getX},
+    { "SmartMenu_getY", _wrap_SmartMenu_getY},
+    { "SmartMenu_getBorderSize", _wrap_SmartMenu_getBorderSize},
     { "SmartMenu_getSpacing", _wrap_SmartMenu_getSpacing},
     { "SmartMenu_adjustSize", _wrap_SmartMenu_adjustSize},
+    { "SmartMenu_adjustWidth", _wrap_SmartMenu_adjustWidth},
+    { "SmartMenu_adjustHeight", _wrap_SmartMenu_adjustHeight},
     { "SmartMenu_adjustContent", _wrap_SmartMenu_adjustContent},
     { "SmartMenu_draw", _wrap_SmartMenu_draw},
     { "SmartMenu_drawBorder", _wrap_SmartMenu_drawBorder},
@@ -41083,6 +42354,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartMenu_addButton",_wrap_SmartMenu_addButton},
     { "SmartMenu_addTextField",_wrap_SmartMenu_addTextField},
     { "SmartMenu_addDropDown",_wrap_SmartMenu_addDropDown},
+    { "SmartMenu_addRadioButton",_wrap_SmartMenu_addRadioButton},
     { "SmartMenu_setPadding",_wrap_SmartMenu_setPadding},
     { "SmartMenu_setPaddingTop", _wrap_SmartMenu_setPaddingTop},
     { "SmartMenu_setPaddingRight", _wrap_SmartMenu_setPaddingRight},
@@ -41255,6 +42527,8 @@ static swig_lua_const_info swig_constants[] = {
 { SWIG_LUA_INT,     (char *)"align_center", (long) 3, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"align_top", (long) 4, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"align_bottom", (long) 5, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"menu_vertical", (long) 1, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"menu_horizontal", (long) 2, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"event_message", (long) LOVE_TYPE_MESSAGE_EVENT, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"event_gui", (long) LOVE_TYPE_GUI_EVENT, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"LOVE_GL_VERSION_1_2", (long) love::LOVE_GL_VERSION_1_2, 0, 0, 0},
@@ -41636,6 +42910,7 @@ static swig_type_info _swigt__p_love__Object = {"_p_love__Object", "love::Object
 static swig_type_info _swigt__p_love__ObjectFactory = {"_p_love__ObjectFactory", "love::ObjectFactory *", 0, 0, (void*)&_wrap_class_love_ObjectFactory, 0};
 static swig_type_info _swigt__p_love__Padded = {"_p_love__Padded", "love::Padded *", 0, 0, (void*)&_wrap_class_love_Padded, 0};
 static swig_type_info _swigt__p_love__ParticleSystem = {"_p_love__ParticleSystem", "love::ParticleSystem *", 0, 0, (void*)&_wrap_class_love_ParticleSystem, 0};
+static swig_type_info _swigt__p_love__RadioButton = {"_p_love__RadioButton", "love::RadioButton *", 0, 0, (void*)&_wrap_class_love_RadioButton, 0};
 static swig_type_info _swigt__p_love__Renderable = {"_p_love__Renderable", "love::Renderable *", 0, 0, (void*)&_wrap_class_love_Renderable, 0};
 static swig_type_info _swigt__p_love__Sprite = {"_p_love__Sprite", "love::Sprite *", 0, 0, (void*)&_wrap_class_love_Sprite, 0};
 static swig_type_info _swigt__p_love__Text = {"_p_love__Text", "love::Text *", 0, 0, (void*)&_wrap_class_love_Text, 0};
@@ -41754,6 +43029,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_love__ObjectFactory,
   &_swigt__p_love__Padded,
   &_swigt__p_love__ParticleSystem,
+  &_swigt__p_love__RadioButton,
   &_swigt__p_love__Renderable,
   &_swigt__p_love__Sprite,
   &_swigt__p_love__Text,
@@ -41872,6 +43148,7 @@ static swig_cast_info _swigc__p_love__Object[] = {  {&_swigt__p_love__Bezier, _p
 static swig_cast_info _swigc__p_love__ObjectFactory[] = {  {&_swigt__p_love__ObjectFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Padded[] = {  {&_swigt__p_love__Padded, 0, 0, 0},  {&_swigt__p_love__Menu, _p_love__MenuTo_p_love__Padded, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__ParticleSystem[] = {  {&_swigt__p_love__ParticleSystem, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love__RadioButton[] = {  {&_swigt__p_love__RadioButton, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Renderable[] = {  {&_swigt__p_love__AbstractImage, _p_love__AbstractImageTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__AbstractEntity, _p_love__AbstractEntityTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__VisualEntity, _p_love__VisualEntityTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__ActorState, _p_love__ActorStateTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__Entity, _p_love__EntityTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__Sprite, _p_love__SpriteTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__ParticleSystem, _p_love__ParticleSystemTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__Renderable, 0, 0, 0},  {&_swigt__p_love__FrameAnimation, _p_love__FrameAnimationTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__Actor, _p_love__ActorTo_p_love__Renderable, 0, 0},  {&_swigt__p_love__AbstractGUI, _p_love__AbstractGUITo_p_love__Renderable, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Sprite[] = {  {&_swigt__p_love__AbstractImage, _p_love__AbstractImageTo_p_love__Sprite, 0, 0},  {&_swigt__p_love__Sprite, 0, 0, 0},  {&_swigt__p_love__FrameAnimation, _p_love__FrameAnimationTo_p_love__Sprite, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Text[] = {  {&_swigt__p_love__Text, 0, 0, 0},{0, 0, 0, 0}};
@@ -41990,6 +43267,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_love__ObjectFactory,
   _swigc__p_love__Padded,
   _swigc__p_love__ParticleSystem,
+  _swigc__p_love__RadioButton,
   _swigc__p_love__Renderable,
   _swigc__p_love__Sprite,
   _swigc__p_love__Text,

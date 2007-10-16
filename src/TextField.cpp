@@ -36,6 +36,11 @@ namespace love
 		gcn::TextField::setText(text);
 	}
 
+	void TextField::setName(const char * name)
+	{
+		gcn::TextField::setActionEventId(name);
+	}
+
 	void TextField::setColor(const pAbstractColor * color)
 	{
 		this->color = *color;
@@ -79,6 +84,11 @@ namespace love
 	const char * TextField::getText()
 	{
 		return gcn::TextField::getText().c_str();
+	}
+
+	const char * TextField::getName()
+	{
+		return gcn::TextField::getActionEventId().c_str();
 	}
 
 	pAbstractColor TextField::getColor()

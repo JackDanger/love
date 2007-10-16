@@ -69,6 +69,12 @@ namespace love
 		virtual void setText(const char * text);
 
 		/**
+		 * @param text The new name.
+		 * @brief Sets the name of the text field (for event handling).
+		 **/
+		virtual void setName(const char * name);
+
+		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color.
 		 **/
@@ -121,6 +127,12 @@ namespace love
 		 * @brief Returns the text in the TextField.
 		 **/
 		virtual const char * getText();
+
+		/**
+		 * @return The TextField's name.
+		 * @brief Returns the TextField's name.
+		 **/
+		virtual const char * getName();
 
 		/**
 		 * @return An AbstractColor object.

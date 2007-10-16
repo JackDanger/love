@@ -77,6 +77,12 @@ namespace love
 		virtual void setCaption(const char * caption);
 
 		/**
+		 * @param name The new name.
+		 * @brief Sets the name of the button (for event handling).
+		 **/
+		virtual void setName(const char * name);
+
+		/**
 		 * @param alignment The horizontal alignment (left, right, center).
 		 * @brief Sets the horizontal alignment of the caption.
 		 **/
@@ -173,58 +179,29 @@ namespace love
 		virtual unsigned int getBorderSize();
 
 		/**
-		 * @return An AbstractColor object.
-		 * @brief Returns the text color.
+		 * @return The caption in the button.
+		 * @brief Returns the button's caption.
 		 **/
+		virtual const char * getCaption();
+
+		/**
+		 * @return The button's name.
+		 * @brief Returns the button's name.
+		 **/
+		virtual const char * getName();
+
+		// THE FOLLOWING FUNCTIONS HAVE BEEN COMMENTED OUT BECAUSE THEY SEEMED USELESS
+		/*
 		virtual pAbstractColor getColor();
-
-		/**
-		 * @return An AbstractColor object.
-		 * @brief Returns the text color when the mouse is over the button.
-		 **/
 		virtual pAbstractColor getHoverColor();
-
-		/**
-		 * @return An AbstractColor object.
-		 * @brief Returns the text color when the button is pressed.
-		 **/
 		virtual pAbstractColor getPressedColor();
-
-		/**
-		 * @return An AbstractColor object.
-		 * @brief Returns the text color when the button has been pressed and is still active.
-		 **/
 		virtual pAbstractColor getActiveColor();
-
-		/**
-		 * @return An AbstractColor object.
-		 * @brief Returns the background color.
-		 **/
 		virtual pAbstractColor getBackgroundColor();
-
-		/**
-		 * @return An AbstractColor object.
-		 * @brief Returns the background color when the mouse is over the button.
-		 **/
 		virtual pAbstractColor getHoverBackgroundColor();
-
-		/**
-		 * @return An AbstractColor object.
-		 * @brief Returns the background color when the button is pressed.
-		 **/
 		virtual pAbstractColor getPressedBackgroundColor();
-
-		/**
-		 * @return An AbstractColor object.
-		 * @brief Returns the background color when the button has been pressed and is still active.
-		 **/
 		virtual pAbstractColor getActiveBackgroundColor();
-
-		/**
-		 * @return An AbstractColor object.
-		 * @brief Returns the border color.
-		 **/
 		virtual pAbstractColor getBorderColor();
+		*/
 
 		/**
 		 * @brief Adjusts the size of the button to the size of the caption.

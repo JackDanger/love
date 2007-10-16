@@ -6,7 +6,7 @@ main = {
 	load = function()
 
 		-- variables
-		font = { big = love.objects:newDefaultFont(20), small = love.objects:newDefaultFont(7), image = love.objects:newImageFont(love.objects:newImage("letters.png"), 15, 15, "ABCDEFGHIJKLMNOPQRSTUVWXYZ.,!?") };
+		font = { standard = love.objects:newDefaultFont(12), big = love.objects:newDefaultFont(20), small = love.objects:newDefaultFont(7), image = love.objects:newImageFont(love.objects:newImage("letters.png"), 15, 15, "ABCDEFGHIJKLMNOPQRSTUVWXYZ.,!?") };
 		color = { black = love.objects:newColor(0x000000), white = love.objects:newColor(0xFFFFFF), shiznet = love.objects:newColor(0xF60968) };
 		
 		love.graphics:setBackground(color["white"]);
@@ -15,21 +15,35 @@ main = {
 		horseshit = 0;
 		
 		menu = love.objects:newMenu();
-		menu:setFont(font["big"]);
-		--menu:align(love.align_right);
-		--menu:setColor(color["shiznet"]);
-		menu:setBackground(love.objects:newImage("zero.png"));
+		menu:setFont(font["standard"]);
+		menu:setColor(color["black"]);
+		menu:setBorderColor(color["black"]);
+		menu:setBorderSize(2);
+		menu:align(love.align_left);
+		menu:setBackgroundColor(color["shiznet"]);
+		--menu:setBackground(love.objects:newImage("zero.png"));
 		--menu:setFont(font["small"]);
-		menu:setSize(150,200);
+		menu:setSize(550,200);
 		menu:setPosition(200,200);
 		menu:setPadding(10);
-		menu:addLabel("test");		
-		menu:addButton("BUNNY_BUTT", "assbunny");
-		menu:addTextField("TEXT_FILD", "shitcock");
+		menu:setSpacing(3);
+		menu:addLabel("THIS IS A MENU");		
+		menu:addButton("BUNNY_BUTT", "Click Me!");
+		menu:addTextField("TEXT_FILD", "Edit this text, plx!", 200);
 		drop = menu:addDropDown("DROP YOUR PANTS");
 		drop:add("one");
 		drop:add("two");
 		drop:add("four");
+		nested = menu:addMenu(love.menu_horizontal);
+		nested:addLabel("Nested menu:  ");
+		rad_sparta = nested:addRadioButton("RAD_SPARTA", "Sparta (custom image)");
+		rad_sparta:setMarked(true);
+		rad_sparta:setDefaultImage(love.objects:newImage("default.png"));
+		rad_sparta:setMarkedImage(love.objects:newImage("marked.png"));
+		rad_not = nested:addRadioButton("RAD_NOT", "No Sparta (default ugly thing)");
+		nested:adjustSize();
+		nested:adjustContent();
+		menu:addMultilineLabel("Just wanted to let you know that the previous example (the one with the radio buttons) uses the event system. GUIchan has a built-in group-system for dealing with radio buttons (seeing as you are only supposed to be able to select one at a time), but I thought that it would just add one more value to keep track of and doing it manually yields more control. ^-^");
 		menu:adjustSize();
 		
 		love.gui:add(menu);
@@ -88,6 +102,10 @@ main = {
 		
 		if e:getType() == love.event_message then
 			print("This baby just recieved a MessageEvent (tm). Message reads: " .. e:getMessage() .. "\n")
+		elseif e:getType() == love.event_gui then
+			if e:getName() == "RAD_SPARTA" then rad_not:setMarked(false);
+			elseif e:getName() == "RAD_NOT" then rad_sparta:setMarked(false); end
+			--print("This baby just received a GUIEvent (bn). GUIname is: " .. e:getName() .. "\n")
 		end
 	end
 

@@ -10,6 +10,7 @@
 #include "MultilineLabel.h"
 #include "Padded.h"
 #include "TextField.h"
+#include "RadioButton.h"
 #include "Text.h"
 
 #include <boost/shared_ptr.hpp>
@@ -32,6 +33,7 @@ namespace love
 		
 		pAbstractColor color;
 		pAbstractColor backgroundColor;
+		pAbstractColor borderColor;
 		pAbstractImage background;
 		GUIText * text;
 		int width, height;
@@ -60,14 +62,10 @@ namespace love
 		 **/
 		virtual ~Menu();
 
-		int getWidth();
-		int getHeight();
-		int getX();
-		int getY();
-
 		void setSize(int width, int height);
 		void setWidth(int width);
 		void setHeight(int height);
+		void setBorderSize(unsigned int size);
 		void setPosition(int x, int y);
 		void setX(int x);
 		void setY(int y);
@@ -78,20 +76,28 @@ namespace love
 		void setFont(AbstractFont * font);
 		void setFont(const pAbstractFont * font);
 		void setColor(const pAbstractColor * color);
-
-		void align(int alignment);
-		void valign(int alignment);
-
 		void setBackgroundColor(const pAbstractColor * color);
+		void setBorderColor(const pAbstractColor * color);
 		void setBackground(const pAbstractImage * image);
 
 		void stretchContent(bool stretch);
+		void align(int alignment);
+		void valign(int alignment);
 
 		void setSpacing(int spacing); //how much distance there is to be between the items
+
+		int getWidth();
+		int getHeight();
+		int getX();
+		int getY();
+		unsigned int getBorderSize();
+
 		int getSpacing();
 
 		void adjustSize(); //resize to content
-		int adjustContent(); //aligns all the content to the new(?) alignment
+		void adjustWidth(); //adjust width only
+		void adjustHeight(); //adjust height only
+		int adjustContent(); //aligns all the content to the alignment
 
 		void draw(gcn::Graphics* graphics);
 		void drawBorder(gcn::Graphics* graphics);
@@ -103,6 +109,7 @@ namespace love
 		Button * addButton(const char * name, const char * caption, int width = 0, int height = 0);
 		TextField * addTextField(const char * name, const char * text = "", int width = 0, int height = 0);
 		DropDown * addDropDown(const char * name, int width = 0, int height = 0);
+		RadioButton * addRadioButton(const char * name, const char * caption = "", int width = 0, int height = 0);
 	};
 
 	typedef boost::shared_ptr<Menu> pMenu;

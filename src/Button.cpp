@@ -44,10 +44,9 @@ namespace love
 		gcn::Button::setCaption(string(caption));
 	}
 
-	void Button::adjustSize()
+	void Button::setName(const char * name)
 	{
-		setWidth(getFont()->getWidth(mCaption) + 8);
-		setHeight(getFont()->getHeight() + 4);
+		gcn::Button::setActionEventId(name);
 	}
 
 	void Button::align(int alignment)
@@ -149,18 +148,27 @@ namespace love
 		return gcn::Button::getWidth();
 	}
 
-
 	int Button::getHeight()
 	{
 		return gcn::Button::getHeight();
 	}
-
 
 	unsigned int Button::getBorderSize()
 	{
 		return gcn::Button::getBorderSize();
 	}
 
+	const char * Button::getCaption()
+	{
+		return gcn::Button::getCaption().c_str();
+	}
+
+	const char * Button::getName()
+	{
+		return gcn::Button::getActionEventId().c_str();
+	}
+
+	/*
 	pAbstractColor Button::getColor()
 	{
 		return color;
@@ -204,6 +212,13 @@ namespace love
 	pAbstractColor Button::getBorderColor()
 	{
 		return borderColor;
+	}
+	*/
+
+	void Button::adjustSize()
+	{
+		setWidth(getFont()->getWidth(mCaption) + 8);
+		setHeight(getFont()->getHeight() + 4);
 	}
 
 	void Button::draw(gcn::Graphics* graphics)

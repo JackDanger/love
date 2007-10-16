@@ -184,7 +184,7 @@ namespace love
 
 	void UIGame::eventFired(pEvent e)
 	{
-		if(e->getType() == EventListener::LOVE_EVENT_GUI)
+		if(e->getType() == LOVE_TYPE_GUI_EVENT)
 		{
 			pGUIEvent pme = dynamic_pointer_cast<GUIEvent, Event>(e);
 			if(strcmp(pme->getName(), "CORE_ERROR_OK") == 0)

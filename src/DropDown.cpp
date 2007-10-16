@@ -17,6 +17,31 @@ namespace love
 	{
 	}
 
+	void DropDown::setSize(int width, int height)
+	{
+		gcn::DropDown::setSize(width, height);
+	}
+
+	void DropDown::setWidth(int width)
+	{
+		gcn::DropDown::setWidth(width);
+	}
+	
+	void DropDown::setHeight(int height)
+	{
+		gcn::DropDown::setHeight(height);
+	}
+
+	void DropDown::setBorderSize(unsigned int size)
+	{
+		gcn::DropDown::setBorderSize(size);
+	}
+
+	void DropDown::setName(const char * name)
+	{
+		gcn::DropDown::setActionEventId(name);
+	}
+
 	void DropDown::setColor(const pAbstractColor * color)
 	{
 		if(color != 0)
@@ -63,6 +88,31 @@ namespace love
 	{
 		if(color != 0)
 			buttonBackgroundColor = *color;
+	}
+
+	int DropDown::getWidth()
+	{
+		return gcn::DropDown::getWidth();
+	}
+
+	int DropDown::getHeight()
+	{
+		return gcn::DropDown::getHeight();
+	}
+
+	unsigned int DropDown::getBorderSize()
+	{
+		return gcn::DropDown::getBorderSize();
+	}
+
+	const char * DropDown::getName()
+	{
+		return gcn::DropDown::getActionEventId().c_str();
+	}
+
+	void DropDown::adjustSize()
+	{
+		gcn::DropDown::adjustHeight();
 	}
 
 	void DropDown::add(const char * text)

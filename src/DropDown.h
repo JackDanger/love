@@ -19,7 +19,7 @@ namespace love
 	 **/
 	class DropDown : public gcn::DropDown
 	{
-	private:
+	protected:
 		GUIList * list;
 		pAbstractColor color;
 		pAbstractColor activeColor;
@@ -34,31 +34,35 @@ namespace love
 		DropDown(GUIList * list);
 		~DropDown();
 
-		/**
-		 * gcn::DropDown functions that should be documented:
-		 * setSize(width, height)
-		 * setWidth(width)
-		 * setHeight(height)
-		 * setBorderSize(size)
-		 * adjustHeight()
-		 */
+		virtual void setSize(int width, int height);
+		virtual void setWidth(int width);
+		virtual void setHeight(int height);
+		virtual void setBorderSize(unsigned int size);
+		virtual void setName(const char * name);
 
-		void setColor(const pAbstractColor * color);
-		void setActiveColor(const pAbstractColor * color);
-		void setBackgroundColor(const pAbstractColor * color);
-		void setActiveBackgroundColor(const pAbstractColor * color);
-		void setSelectionBackgroundColor(const pAbstractColor * color);
-		void setBorderColor(const pAbstractColor * color);
-		void setButtonColor(const pAbstractColor * color);
-		void setButtonBackgroundColor(const pAbstractColor * color);
+		virtual void setColor(const pAbstractColor * color);
+		virtual void setActiveColor(const pAbstractColor * color);
+		virtual void setBackgroundColor(const pAbstractColor * color);
+		virtual void setActiveBackgroundColor(const pAbstractColor * color);
+		virtual void setSelectionBackgroundColor(const pAbstractColor * color);
+		virtual void setBorderColor(const pAbstractColor * color);
+		virtual void setButtonColor(const pAbstractColor * color);
+		virtual void setButtonBackgroundColor(const pAbstractColor * color);
 
-		void add(const char * text);
-		void remove(int i);
-		void clear();
+		virtual int getWidth();
+		virtual int getHeight();
+		virtual unsigned int getBorderSize();
+		virtual const char * getName();
 
-		void draw(gcn::Graphics * graphics);
-		void drawBorder(gcn::Graphics * graphics);
-		void drawButton(gcn::Graphics * graphics);
+		virtual void adjustSize();
+
+		virtual void add(const char * text);
+		virtual void remove(int i);
+		virtual void clear();
+
+		virtual void draw(gcn::Graphics * graphics);
+		virtual void drawBorder(gcn::Graphics * graphics);
+		virtual void drawButton(gcn::Graphics * graphics);
 	};
 
 	typedef boost::shared_ptr<DropDown> pDropDown;

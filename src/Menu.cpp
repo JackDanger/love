@@ -23,28 +23,8 @@ namespace love
 
 	Menu::~Menu()
 	{
-		delete text;
-	}
-
-	int Menu::getWidth()
-	{
-		return gcn::Container::getWidth();
-	}
-
-	int Menu::getHeight()
-	{
-		return gcn::Container::getHeight();
-	}
-
-	int Menu::getX()
-	{
-		return gcn::Container::getX();
-	}
-
-	int Menu::getY()
-		
-	{
-		return gcn::Container::getY();
+		if(text != 0)
+			delete text;
 	}
 
 	void Menu::setSize(int width, int height)
@@ -60,6 +40,11 @@ namespace love
 	void Menu::setHeight(int height)
 	{
 		gcn::Container::setHeight(height);
+	}
+
+	void Menu::setBorderSize(unsigned int size)
+	{
+		gcn::Container::setBorderSize(size);
 	}
 
 	void Menu::setPosition(int x, int y)
@@ -108,6 +93,11 @@ namespace love
 		backgroundColor = *color;
 	}
 
+	void Menu::setBorderColor(const pAbstractColor * color)
+	{
+		borderColor = *color;
+	}
+
 	void Menu::setBackground(const pAbstractImage * image)
 	{
 		background = *image;
@@ -134,6 +124,31 @@ namespace love
 		adjustContent();
 	}
 
+	int Menu::getWidth()
+	{
+		return gcn::Container::getWidth();
+	}
+
+	int Menu::getHeight()
+	{
+		return gcn::Container::getHeight();
+	}
+
+	int Menu::getX()
+	{
+		return gcn::Container::getX();
+	}
+
+	int Menu::getY()
+	{
+		return gcn::Container::getY();
+	}
+
+	unsigned int Menu::getBorderSize()
+	{
+		return gcn::Container::getBorderSize();
+	}
+
 	int Menu::getSpacing()
 	{
 		return spacing;
@@ -141,25 +156,44 @@ namespace love
 
 	void Menu::adjustSize()
 	{
-		int size = 0;
+		int width = 0;
+		int height = 0;
 		std::list<Widget *>::iterator iter;
 
 		switch(type)
 		{
 		default:
 		case LOVE_MENU_VERTICAL:
-			size = getPaddingTop();
+			width = 0;
+			height = getPaddingTop();
 
 			for(iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
-				size += (*iter)->getHeight() + spacing + ((*iter)->getBorderSize());
-			setHeight(size + getPaddingBottom() - spacing);
+			{
+				if(width < (*iter)->getWidth())
+					width = (*iter)->getWidth();
+				height += (*iter)->getHeight() + spacing + ((*iter)->getBorderSize());
+			}
+
+			width += getPaddingLeft() + getPaddingRight();
+			height += getPaddingBottom() - spacing;
+			setSize(width, height);
+
 			break;
 		case LOVE_MENU_HORIZONTAL:
-			size = getPaddingLeft();
+			width = getPaddingLeft();
+			height = 0;
 
 			for(iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
-				size += (*iter)->getWidth() + spacing + ((*iter)->getBorderSize());
-			setWidth(size + getPaddingRight() - spacing);
+			{
+				if(height < (*iter)->getHeight())
+					height = (*iter)->getHeight();
+				width += (*iter)->getWidth() + spacing + ((*iter)->getBorderSize());
+			}
+			
+			width += getPaddingRight() - spacing;
+			height += getPaddingTop() + getPaddingBottom();
+			setSize(width, height);
+
 			break;
 		}
 
@@ -168,6 +202,92 @@ namespace love
 		{
 			if(getWidth() < background->getWidth())
 				setWidth((int)background->getWidth());
+			if(getHeight() < background->getHeight())
+				setHeight((int)background->getHeight());
+		}
+	}
+
+	void Menu::adjustWidth()
+	{
+		int width = 0;
+		std::list<Widget *>::iterator iter;
+
+		switch(type)
+		{
+		default:
+		case LOVE_MENU_VERTICAL:
+			width = 0;
+
+			for(iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
+			{
+				if(width < (*iter)->getWidth())
+					width = (*iter)->getWidth();
+			}
+
+			width += getPaddingLeft() + getPaddingRight();
+			setWidth(width);
+
+			break;
+		case LOVE_MENU_HORIZONTAL:
+			width = getPaddingLeft();
+
+			for(iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
+			{
+				width += (*iter)->getWidth() + spacing + ((*iter)->getBorderSize());
+			}
+			
+			width += getPaddingRight() - spacing;
+			setWidth(width);
+
+			break;
+		}
+
+		//compensates for the background image
+		if(background != 0)
+		{
+			if(getWidth() < background->getWidth())
+				setWidth((int)background->getWidth());
+		}
+	}
+
+	void Menu::adjustHeight()
+	{
+		int height = 0;
+		std::list<Widget *>::iterator iter;
+
+		switch(type)
+		{
+		default:
+		case LOVE_MENU_VERTICAL:
+			height = getPaddingTop();
+
+			for(iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
+			{
+				height += (*iter)->getHeight() + spacing + ((*iter)->getBorderSize());
+			}
+
+			height += getPaddingBottom() - spacing;
+			setHeight(height);
+
+			break;
+		case LOVE_MENU_HORIZONTAL:
+			height = 0;
+
+			for(iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
+			{
+				if(height < (*iter)->getHeight())
+					height = (*iter)->getHeight();
+			}
+			
+			height += getPaddingTop() + getPaddingBottom();
+			setHeight(height);
+
+			break;
+		}
+
+		//compensates for the background image
+		if(background != 0)
+		{
 			if(getHeight() < background->getHeight())
 				setHeight((int)background->getHeight());
 		}
@@ -351,7 +471,24 @@ namespace love
 	void Menu::drawBorder(gcn::Graphics* graphics)
 	{
 		if(!visible) return;
-		gcn::Container::drawBorder(graphics);
+
+		//gcn::Container::drawBorder(graphics);
+
+		if(borderColor.get() != 0)
+			graphics->setColor(gcn::Color(borderColor->getRed(),borderColor->getGreen(),borderColor->getBlue(),borderColor->getAlpha()));
+		else
+			graphics->setColor(getBaseColor());
+
+		int width = getWidth() + getBorderSize() * 2 - 1;
+		int height = getHeight() + getBorderSize() * 2 - 1;
+
+		for (unsigned int i = 0; i < getBorderSize(); ++i)
+		{
+			graphics->drawLine(i,i, width - i, i);
+			graphics->drawLine(i,i + 1, i, height - i - 1);
+			graphics->drawLine(width - i,i + 1, width - i, height - i);
+			graphics->drawLine(i,height - i, width - i - 1, height - i);
+		}
 	}
 
 	Menu * Menu::addMenu(int type, int width, int height)
@@ -361,6 +498,7 @@ namespace love
 		temp->setSize(width, height);
 		temp->align(alignment);
 		temp->valign(verticalAlignment);
+		temp->show();
 		positionItem(temp);
 
 		add(temp);
@@ -437,7 +575,7 @@ namespace love
 		//temp->align(alignment);
 		//temp->valign(verticalAlignment);
 		temp->addActionListener(core->getGUI());
-		temp->setActionEventId(name);
+		temp->setName(name);
 		positionItem(temp);
 
 		add(temp);
@@ -456,7 +594,7 @@ namespace love
 		if(height != 0)
 			temp->setHeight(height);
 		temp->addActionListener(core->getGUI());
-		temp->setActionEventId(name);
+		temp->setName(name);
 		positionItem(temp);
 
 		add(temp);
@@ -476,7 +614,26 @@ namespace love
 		if(height != 0)
 			temp->setHeight(height);
 		temp->addActionListener(core->getGUI());
-		temp->setActionEventId(name);
+		temp->setName(name);
+		positionItem(temp);
+
+		add(temp);
+		return temp;
+	}
+
+	RadioButton * Menu::addRadioButton(const char * name, const char * caption, int width, int height)
+	{
+		RadioButton * temp = new RadioButton(caption);
+		temp->setFont(text);
+		temp->setColor(&text->getColor());
+
+		temp->adjustSize();
+		if(width != 0)
+			temp->setWidth(width);
+		if(height != 0)
+			temp->setHeight(height);
+		temp->addActionListener(core->getGUI());
+		temp->setName(name);
 		positionItem(temp);
 
 		add(temp);

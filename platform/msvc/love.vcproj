@@ -561,6 +561,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\RadioButton.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Renderable.cpp"
 				>
 			</File>
@@ -1108,6 +1112,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\platform.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\RadioButton.h"
 				>
 			</File>
 			<File

@@ -133,29 +133,13 @@ namespace love
 		 **/
 		virtual const char * getCaption();
 
-		/**
-		 * @return An AbstractColor object.
-		 * @brief Gets the text color.
-		 **/
+		// THE FOLLOWING FUNCTIONS HAVE BEEN COMMENTED OUT BECAUSE THEY SEEM REDUNDANT
+		/*
 		virtual pAbstractColor getColor();
-
-		/**
-		 * @return An AbstractColor object.
-		 * @brief Gets the background color.
-		 **/
 		virtual pAbstractColor getBackgroundColor();
-
-		/**
-		 * @return An AbstractColor object.
-		 * @brief Gets the border color.
-		 **/
 		virtual pAbstractColor getBorderColor();
-
-		/**
-		 * @return An AbstractImage object.
-		 * @brief Gets the background image.
-		 **/
 		virtual pAbstractImage getBackground();
+		*/
 
 		/**
 		 * @brief Adjusts the size of the label according to the size of the caption.

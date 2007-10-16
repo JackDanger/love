@@ -167,6 +167,12 @@
 %constant const int align_top = 4;
 %constant const int align_bottom = 5;
 
+/**
+* Menu types.
+**/
+%constant const int menu_vertical = 1;
+%constant const int menu_horizontal = 2;
+
 
 /**
 * Event types.

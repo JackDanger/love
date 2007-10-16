@@ -54,13 +54,6 @@ namespace love
 		gcn::Widget::setGlobalFont(text); // the global font is static and must be set
 		graphics->setFont(text);
 
-		/*gui = new gcn::Gui();
-		gui->setGraphics(graphics);
-		gui->setInput(gcn_input);
-		gui->setTop(top);
-		gcn::Widget::setGlobalFont(text); 
-		graphics->setFont(text);*/
-
 		clear();
 
 		return LOVE_OK;

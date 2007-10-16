@@ -106,6 +106,7 @@ namespace love
 		return gcn::Label::getCaption().c_str();
 	}
 
+	/*
 	pAbstractColor Label::getColor()
 	{
 		return color;
@@ -125,6 +126,7 @@ namespace love
 	{
 		return background;
 	}
+	*/
 
 	void Label::adjustSize()
 	{

@@ -22,10 +22,9 @@ namespace love
 
 	void AbstractGUI::action(const gcn::ActionEvent& actionEvent)
 	{
-		printf("ActionEvent: %s\n", actionEvent.getId().c_str());
-
+		//printf("ActionEvent: %s\n", actionEvent.getId().c_str());
 		pGUIEvent temp(new GUIEvent(actionEvent.getSource()));
-		temp->setType(EventListener::LOVE_EVENT_GUI);
+		temp->setType(LOVE_TYPE_GUI_EVENT);
 		temp->setName(actionEvent.getId());
 		core->eventFired(temp);
 	}
