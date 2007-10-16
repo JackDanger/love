@@ -206,7 +206,7 @@ namespace love
 		{
 			pMessageEvent mge = dynamic_pointer_cast<MessageEvent, Event>(e);
 			
-			if(mge->getMessage() == "quit") core->quit();
+			if(strcmp(mge->getMessage(),"quit") == 0) core->quit();
 
 			//printf("Message: %s\n", mge->getMessage().c_str());
 		}

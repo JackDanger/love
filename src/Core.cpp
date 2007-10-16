@@ -23,7 +23,6 @@
 
 #include <cstdarg>
 
-
 namespace love 
 {
 
