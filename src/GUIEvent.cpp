@@ -6,6 +6,7 @@ namespace love
 	{
 		source = 0;
 		name = "";
+		setType(LOVE_TYPE_GUI_EVENT);
 	}
 
 	GUIEvent::GUIEvent(gcn::Widget * widget)

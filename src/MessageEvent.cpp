@@ -18,14 +18,9 @@ namespace love
 	{
 	}
 
-	const string & MessageEvent::getMessage() const
+	const char * MessageEvent::getMessage() const
 	{
-		return message;
-	}
-
-	void MessageEvent::setMessage(string message)
-	{
-		this->message = message;
+		return message.c_str();
 	}
 
 

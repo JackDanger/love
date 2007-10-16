@@ -185,6 +185,10 @@ namespace love
 		if(lualove_is_function(L, tab, "mousereleased"))
 			methods |= LOVE_METHOD_MOUSERELEASED;
 
+		// Mousepressed
+		if(lualove_is_function(L, tab, "event"))
+			methods |= LOVE_METHOD_EVENT;
+
 		int present_methods = methods;
 
 		// Only allow methods in mask
@@ -239,12 +243,12 @@ namespace love
 		// This code assumes the chunk and method is available.
 
 		lua_getglobal(L, chunk.c_str()); // Push table
-		lua_getfield(L, 1, "load");	// Push init
+		lua_getfield(L, 1, "load");	// Push load
 
 		lualove_push_pointer(L, ptr, type);
 
-		int status = lua_pcall(L, 1, 0, 0);			// Calls and pops init
-		lualove_check_error(L, status, "Could not call " + chunk + ":init");
+		int status = lua_pcall(L, 1, 0, 0);			// Calls and pops load
+		lualove_check_error(L, status, "Could not call " + chunk + ":load");
 
 		lua_pop(L, 1);				// Pops table	
 
@@ -255,13 +259,13 @@ namespace love
 		// This code assumes the chunk and method is available.
 
 		lua_getglobal(L, chunk.c_str()); // Push table
-		lua_getfield(L, 1, "update");	// Push init
+		lua_getfield(L, 1, "update");	// Push updaet
 
 		lualove_push_pointer(L, ptr, type);
 		lualove_push_number(L, dt);
 
 		int status = lua_pcall(L, 2, 0, 0);			// Calls and pops init
-		lualove_check_error(L, status, "Could not call " + chunk + ":init");
+		lualove_check_error(L, status, "Could not call " + chunk + ":update");
 
 		lua_pop(L, 1);				// Pops table		
 	}
@@ -269,26 +273,38 @@ namespace love
 	void lualove_call_render(lua_State * L, void * ptr, const string & chunk, int type)
 	{
 		lua_getglobal(L, chunk.c_str()); // Push table
-		lua_getfield(L, 1, "render");	// Push init
+		lua_getfield(L, 1, "render");	// Push render
 
 		lualove_push_pointer(L, ptr, type);
 
-		int status = lua_pcall(L, 1, 0, 0);			// Calls and pops init
-		lualove_check_error(L, status, "Could not call " + chunk + ":init");
+		int status = lua_pcall(L, 1, 0, 0);			// Calls and pops load
+		lualove_check_error(L, status, "Could not call " + chunk + ":render");
 
 		lua_pop(L, 1);				// Pops table	
 	}
 
+	void lualove_call_event(lua_State * L, Scriptable * scriptable, void * event_ptr, int type)
+	{
+		// This code assumes the chunk and method is available.
+		lua_getglobal(L, scriptable->getScript().c_str());	// Push table
+		lua_getfield(L, 1, "event");						// Push event
+
+		// Push the event.
+		lualove_push_pointer(L, event_ptr, type);
+		int status = lua_pcall(L, 1, 0, 0);			// Calls and pops event
+		lualove_check_error(L, status, "Could not call " + scriptable->getScript() + ":event");
+		lua_pop(L, 1);				// Pops table	
+	}
 
 	void lualove_call_load_noarg(lua_State * L, Scriptable * scriptable)
 	{
 		// This code assumes the chunk and method is available.
 
 		lua_getglobal(L, scriptable->getScript().c_str());	// Push table
-		lua_getfield(L, 1, "load");								// Push init
+		lua_getfield(L, 1, "load");								// Push load
 
-		int status = lua_pcall(L, 0, 0, 0);						// Calls and pops init
-		lualove_check_error(L, status, "Could not call " + scriptable->getScript() + ":init");
+		int status = lua_pcall(L, 0, 0, 0);						// Calls and pops load
+		lualove_check_error(L, status, "Could not call " + scriptable->getScript() + ":load");
 
 		lua_pop(L, 1);											// Pops table
 	}

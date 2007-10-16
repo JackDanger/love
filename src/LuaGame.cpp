@@ -11,6 +11,9 @@
 #include "Core.h"
 #include "love.h"
 
+// Temp.
+#include "MessageEvent.h"
+
 // Function created by SWIG.
 #ifdef __cplusplus
 extern "C" 
@@ -148,6 +151,11 @@ namespace love
 
 	void LuaGame::mousePressed(float x, float y, int button)
 	{
+		
+		// Fire a message event.
+		pEvent e(new MessageEvent("OMG! This is a MessageEvent (tm)!"));
+		eventFired(e);
+
 		if(isAvailable(LOVE_METHOD_MOUSEPRESSED))
 			lualove_call_mousepressed_noarg(L, this, x, y, button);
 	}
@@ -169,29 +177,23 @@ namespace love
 		// global_script->eventFired(L, (void*)e.get(), e.getType());
 
 
-		/**
-		// Writing down some "code" here:
+
 
 		// Convert generic event to specific event.
 
-		switch(e.getType())
+		switch(e->getType())
 		{
-			case LOVE_MESSAGE_EVENT:
-				pMessageEvent pme = dynamic_pointer_cast<MessageEvent, Event>(e);
-				luaPushPointer(L, (void*)e.get(), script_types_lookup[e.getType()], 0);
-				lualove_call_event(L, (void*)e.get(), script_types_lookup[e.getType()])
+			case LOVE_TYPE_GUI_EVENT:
+			case LOVE_TYPE_MESSAGE_EVENT:
+
+				if(isAvailable(LOVE_METHOD_EVENT))
+					lualove_call_event(L, this, (void*)e.get(), e->getType()); 
+
 				break;
-			case LOVE_GUI_EVENT:
-				pGUIEvent guie = dynamic_pointer_cast<GUIEvent, Event>(e);
-				luaPushPointer(L, (void*)e.get(), script_types_lookup[e.getType()], 0);
-				
+			
+			// We might not want to pass ALL events to Lua.
 		}
 
-
-
-
-
-		**/
 	}
 
 	void LuaGame::include(const char * filename)

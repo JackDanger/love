@@ -1,4 +1,7 @@
 
+#include "love_types.h"
+#include "love_mouse.h"
+
 /**
 * Keyboard constants.
 **/
@@ -149,11 +152,11 @@
 /**
 * Mouse button constants.
 **/
-%constant const int mouse_left  = 1;
-%constant const int mouse_middle  = 2;
-%constant const int mouse_right  = 4;
-%constant const int mouse_wheelup  = 8;
-%constant const int mouse_wheeldown  = 16;
+%constant const int mouse_left  = LOVE_MOUSE_LEFT;
+%constant const int mouse_middle  = LOVE_MOUSE_MIDDLE;
+%constant const int mouse_right  = LOVE_MOUSE_RIGHT;
+%constant const int mouse_wheelup  = LOVE_MOUSE_WHEELUP;
+%constant const int mouse_wheeldown  = LOVE_MOUSE_WHEELDOWN;
 
 /**
 * Text constants.
@@ -163,3 +166,10 @@
 %constant const int align_center = 3;
 %constant const int align_top = 4;
 %constant const int align_bottom = 5;
+
+
+/**
+* Event types.
+**/
+%constant const int event_message = LOVE_TYPE_MESSAGE_EVENT;
+%constant const int event_gui = LOVE_TYPE_GUI_EVENT;

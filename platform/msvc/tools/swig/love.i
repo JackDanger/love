@@ -74,6 +74,9 @@
 
 #include "Bezier.h"
 
+#include "GUIEvent.h"
+#include "MessageEvent.h"
+
 using namespace love;
 
 
@@ -104,6 +107,7 @@ namespace boost {
 
 %include "AbstractColor.h"
 %include "Color.h"
+
 %include "AbstractFont.h"
 %include "Font.h"
 %include "Text.h"
@@ -153,6 +157,10 @@ namespace boost {
 %include "AbstractGraphics.h"
 
 %include "ObjectFactory.h"
+
+%include "Event.h"
+%include "GUIEvent.h"
+%include "MessageEvent.h"
 
 %include "lualove_globals.h"
 

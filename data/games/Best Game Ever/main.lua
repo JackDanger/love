@@ -83,6 +83,13 @@ main = {
 	keypressed = function(key)
 		
 	end,
+	
+	event = function(e)
+		
+		if e:getType() == love.event_message then
+			print("This baby just recieved a MessageEvent (tm). Message reads: " .. e:getMessage() .. "\n")
+		end
+	end
 
 } -- main
 

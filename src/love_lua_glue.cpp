@@ -1358,90 +1358,96 @@ SWIG_Lua_SetModule(lua_State* L, swig_module_info *module) {
 #define SWIGTYPE_p_boost__shared_ptrTlove__DisplayMode_t swig_types[25]
 #define SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t swig_types[26]
 #define SWIGTYPE_p_boost__shared_ptrTlove__Entity_t swig_types[27]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Font_t swig_types[28]
-#define SWIGTYPE_p_boost__shared_ptrTlove__FrameAnimation_t swig_types[29]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Keyboard_t swig_types[30]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Label_t swig_types[31]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Loadable_t swig_types[32]
-#define SWIGTYPE_p_boost__shared_ptrTlove__LuaGL_t swig_types[33]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Menu_t swig_types[34]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Mouse_t swig_types[35]
-#define SWIGTYPE_p_boost__shared_ptrTlove__MultilineLabel_t swig_types[36]
-#define SWIGTYPE_p_boost__shared_ptrTlove__ObjectFactory_t swig_types[37]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Object_t swig_types[38]
-#define SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t swig_types[39]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t swig_types[40]
-#define SWIGTYPE_p_boost__shared_ptrTlove__TextField_t swig_types[41]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Text_t swig_types[42]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Timer_t swig_types[43]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Vector_t swig_types[44]
-#define SWIGTYPE_p_boost__shared_ptrTlove__VisualEntity_t swig_types[45]
-#define SWIGTYPE_p_gcn__ActionEvent swig_types[46]
-#define SWIGTYPE_p_gcn__Graphics swig_types[47]
-#define SWIGTYPE_p_gcn__Widget swig_types[48]
-#define SWIGTYPE_p_int swig_types[49]
-#define SWIGTYPE_p_listTlove__particle_t swig_types[50]
-#define SWIGTYPE_p_love__AbstractColor swig_types[51]
-#define SWIGTYPE_p_love__AbstractDisplay swig_types[52]
-#define SWIGTYPE_p_love__AbstractEntity swig_types[53]
-#define SWIGTYPE_p_love__AbstractFile swig_types[54]
-#define SWIGTYPE_p_love__AbstractFont swig_types[55]
-#define SWIGTYPE_p_love__AbstractGUI swig_types[56]
-#define SWIGTYPE_p_love__AbstractGraphics swig_types[57]
-#define SWIGTYPE_p_love__AbstractImage swig_types[58]
-#define SWIGTYPE_p_love__AbstractMusic swig_types[59]
-#define SWIGTYPE_p_love__AbstractSound swig_types[60]
-#define SWIGTYPE_p_love__AbstractState swig_types[61]
-#define SWIGTYPE_p_love__Actor swig_types[62]
-#define SWIGTYPE_p_love__ActorState swig_types[63]
-#define SWIGTYPE_p_love__Bezier swig_types[64]
-#define SWIGTYPE_p_love__Button swig_types[65]
-#define SWIGTYPE_p_love__Color swig_types[66]
-#define SWIGTYPE_p_love__ContainerTlove__Sprite_t swig_types[67]
-#define SWIGTYPE_p_love__DisplayMode swig_types[68]
-#define SWIGTYPE_p_love__DropDown swig_types[69]
-#define SWIGTYPE_p_love__Entity swig_types[70]
-#define SWIGTYPE_p_love__Font swig_types[71]
-#define SWIGTYPE_p_love__FrameAnimation swig_types[72]
-#define SWIGTYPE_p_love__GUIContainer swig_types[73]
-#define SWIGTYPE_p_love__KeyListener swig_types[74]
-#define SWIGTYPE_p_love__Keyboard swig_types[75]
-#define SWIGTYPE_p_love__Label swig_types[76]
-#define SWIGTYPE_p_love__Listener swig_types[77]
-#define SWIGTYPE_p_love__Loadable swig_types[78]
-#define SWIGTYPE_p_love__LuaGL swig_types[79]
-#define SWIGTYPE_p_love__LuaGame swig_types[80]
-#define SWIGTYPE_p_love__Menu swig_types[81]
-#define SWIGTYPE_p_love__Mouse swig_types[82]
-#define SWIGTYPE_p_love__MouseListener swig_types[83]
-#define SWIGTYPE_p_love__MultilineLabel swig_types[84]
-#define SWIGTYPE_p_love__Object swig_types[85]
-#define SWIGTYPE_p_love__ObjectFactory swig_types[86]
-#define SWIGTYPE_p_love__Padded swig_types[87]
-#define SWIGTYPE_p_love__ParticleSystem swig_types[88]
-#define SWIGTYPE_p_love__Renderable swig_types[89]
-#define SWIGTYPE_p_love__Sprite swig_types[90]
-#define SWIGTYPE_p_love__Text swig_types[91]
-#define SWIGTYPE_p_love__TextField swig_types[92]
-#define SWIGTYPE_p_love__Timer swig_types[93]
-#define SWIGTYPE_p_love__Updateable swig_types[94]
-#define SWIGTYPE_p_love__Vector swig_types[95]
-#define SWIGTYPE_p_love__VisualEntity swig_types[96]
-#define SWIGTYPE_p_love__interval swig_types[97]
-#define SWIGTYPE_p_love__la swig_types[98]
-#define SWIGTYPE_p_love__particle swig_types[99]
-#define SWIGTYPE_p_love__renderinfo swig_types[100]
-#define SWIGTYPE_p_love__rgb swig_types[101]
-#define SWIGTYPE_p_love__rgba swig_types[102]
-#define SWIGTYPE_p_lua_State swig_types[103]
-#define SWIGTYPE_p_pAnimatedColor swig_types[104]
-#define SWIGTYPE_p_pEvent swig_types[105]
-#define SWIGTYPE_p_std__string swig_types[106]
-#define SWIGTYPE_p_string swig_types[107]
-#define SWIGTYPE_p_vectorTlove__Vector_t swig_types[108]
-#define SWIGTYPE_string swig_types[109]
-static swig_type_info *swig_types[111];
-static swig_module_info swig_module = {swig_types, 110, 0, 0, 0, 0};
+#define SWIGTYPE_p_boost__shared_ptrTlove__Event_t swig_types[28]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Font_t swig_types[29]
+#define SWIGTYPE_p_boost__shared_ptrTlove__FrameAnimation_t swig_types[30]
+#define SWIGTYPE_p_boost__shared_ptrTlove__GUIEvent_t swig_types[31]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Keyboard_t swig_types[32]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Label_t swig_types[33]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Loadable_t swig_types[34]
+#define SWIGTYPE_p_boost__shared_ptrTlove__LuaGL_t swig_types[35]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Menu_t swig_types[36]
+#define SWIGTYPE_p_boost__shared_ptrTlove__MessageEvent_t swig_types[37]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Mouse_t swig_types[38]
+#define SWIGTYPE_p_boost__shared_ptrTlove__MultilineLabel_t swig_types[39]
+#define SWIGTYPE_p_boost__shared_ptrTlove__ObjectFactory_t swig_types[40]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Object_t swig_types[41]
+#define SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t swig_types[42]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t swig_types[43]
+#define SWIGTYPE_p_boost__shared_ptrTlove__TextField_t swig_types[44]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Text_t swig_types[45]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Timer_t swig_types[46]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Vector_t swig_types[47]
+#define SWIGTYPE_p_boost__shared_ptrTlove__VisualEntity_t swig_types[48]
+#define SWIGTYPE_p_gcn__ActionEvent swig_types[49]
+#define SWIGTYPE_p_gcn__Graphics swig_types[50]
+#define SWIGTYPE_p_gcn__Widget swig_types[51]
+#define SWIGTYPE_p_int swig_types[52]
+#define SWIGTYPE_p_listTlove__particle_t swig_types[53]
+#define SWIGTYPE_p_love__AbstractColor swig_types[54]
+#define SWIGTYPE_p_love__AbstractDisplay swig_types[55]
+#define SWIGTYPE_p_love__AbstractEntity swig_types[56]
+#define SWIGTYPE_p_love__AbstractFile swig_types[57]
+#define SWIGTYPE_p_love__AbstractFont swig_types[58]
+#define SWIGTYPE_p_love__AbstractGUI swig_types[59]
+#define SWIGTYPE_p_love__AbstractGraphics swig_types[60]
+#define SWIGTYPE_p_love__AbstractImage swig_types[61]
+#define SWIGTYPE_p_love__AbstractMusic swig_types[62]
+#define SWIGTYPE_p_love__AbstractSound swig_types[63]
+#define SWIGTYPE_p_love__AbstractState swig_types[64]
+#define SWIGTYPE_p_love__Actor swig_types[65]
+#define SWIGTYPE_p_love__ActorState swig_types[66]
+#define SWIGTYPE_p_love__Bezier swig_types[67]
+#define SWIGTYPE_p_love__Button swig_types[68]
+#define SWIGTYPE_p_love__Color swig_types[69]
+#define SWIGTYPE_p_love__ContainerTlove__Sprite_t swig_types[70]
+#define SWIGTYPE_p_love__DisplayMode swig_types[71]
+#define SWIGTYPE_p_love__DropDown swig_types[72]
+#define SWIGTYPE_p_love__Entity swig_types[73]
+#define SWIGTYPE_p_love__Event swig_types[74]
+#define SWIGTYPE_p_love__Font swig_types[75]
+#define SWIGTYPE_p_love__FrameAnimation swig_types[76]
+#define SWIGTYPE_p_love__GUIContainer swig_types[77]
+#define SWIGTYPE_p_love__GUIEvent swig_types[78]
+#define SWIGTYPE_p_love__KeyListener swig_types[79]
+#define SWIGTYPE_p_love__Keyboard swig_types[80]
+#define SWIGTYPE_p_love__Label swig_types[81]
+#define SWIGTYPE_p_love__Listener swig_types[82]
+#define SWIGTYPE_p_love__Loadable swig_types[83]
+#define SWIGTYPE_p_love__LuaGL swig_types[84]
+#define SWIGTYPE_p_love__LuaGame swig_types[85]
+#define SWIGTYPE_p_love__Menu swig_types[86]
+#define SWIGTYPE_p_love__MessageEvent swig_types[87]
+#define SWIGTYPE_p_love__Mouse swig_types[88]
+#define SWIGTYPE_p_love__MouseListener swig_types[89]
+#define SWIGTYPE_p_love__MultilineLabel swig_types[90]
+#define SWIGTYPE_p_love__Object swig_types[91]
+#define SWIGTYPE_p_love__ObjectFactory swig_types[92]
+#define SWIGTYPE_p_love__Padded swig_types[93]
+#define SWIGTYPE_p_love__ParticleSystem swig_types[94]
+#define SWIGTYPE_p_love__Renderable swig_types[95]
+#define SWIGTYPE_p_love__Sprite swig_types[96]
+#define SWIGTYPE_p_love__Text swig_types[97]
+#define SWIGTYPE_p_love__TextField swig_types[98]
+#define SWIGTYPE_p_love__Timer swig_types[99]
+#define SWIGTYPE_p_love__Updateable swig_types[100]
+#define SWIGTYPE_p_love__Vector swig_types[101]
+#define SWIGTYPE_p_love__VisualEntity swig_types[102]
+#define SWIGTYPE_p_love__interval swig_types[103]
+#define SWIGTYPE_p_love__la swig_types[104]
+#define SWIGTYPE_p_love__particle swig_types[105]
+#define SWIGTYPE_p_love__renderinfo swig_types[106]
+#define SWIGTYPE_p_love__rgb swig_types[107]
+#define SWIGTYPE_p_love__rgba swig_types[108]
+#define SWIGTYPE_p_lua_State swig_types[109]
+#define SWIGTYPE_p_pAnimatedColor swig_types[110]
+#define SWIGTYPE_p_pEvent swig_types[111]
+#define SWIGTYPE_p_std__string swig_types[112]
+#define SWIGTYPE_p_string swig_types[113]
+#define SWIGTYPE_p_vectorTlove__Vector_t swig_types[114]
+#define SWIGTYPE_string swig_types[115]
+static swig_type_info *swig_types[117];
+static swig_module_info swig_module = {swig_types, 116, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1517,6 +1523,9 @@ static swig_module_info swig_module = {swig_types, 110, 0, 0, 0, 0};
 #include "AbstractGUI.h"
 
 #include "Bezier.h"
+
+#include "GUIEvent.h"
+#include "MessageEvent.h"
 
 using namespace love;
 
@@ -27460,6 +27469,387 @@ static swig_lua_attribute swig_love_ObjectFactory_attributes[] = {
 static swig_lua_class *swig_love_ObjectFactory_bases[] = {0};
 swig_lua_class _wrap_class_love_ObjectFactory = { "ObjectFactory", &SWIGTYPE_p_love__ObjectFactory,_wrap_new_ObjectFactory, swig_delete_ObjectFactory, swig_love_ObjectFactory_methods, swig_love_ObjectFactory_attributes, swig_love_ObjectFactory_bases };
 
+static int _wrap_new_Event(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Event *result = 0 ;
+  
+  result = (love::Event *)new love::Event();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__Event,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_Event(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Event *arg1 = (love::Event *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Event *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Event,0,1,"delete_Event");
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Event_getType(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Event *arg1 = (love::Event *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Event *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Event,0,1,"Event_getType");
+  result = (int)((love::Event const *)arg1)->getType();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Event_setType(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Event *arg1 = (love::Event *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Event *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Event,0,1,"Event_setType");
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setType(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_Event(void *obj) {
+love::Event *arg1 = (love::Event *) obj;
+delete arg1;
+}
+static swig_lua_method swig_love_Event_methods[] = {
+    {"getType", _wrap_Event_getType}, 
+    {"setType", _wrap_Event_setType}, 
+    {0,0}
+};
+static swig_lua_attribute swig_love_Event_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_love_Event_bases[] = {&_wrap_class_love_Object,0};
+swig_lua_class _wrap_class_love_Event = { "Event", &SWIGTYPE_p_love__Event,_wrap_new_Event, swig_delete_Event, swig_love_Event_methods, swig_love_Event_attributes, swig_love_Event_bases };
+
+static int _wrap_new_GUIEvent__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  love::GUIEvent *result = 0 ;
+  
+  result = (love::GUIEvent *)new love::GUIEvent();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__GUIEvent,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_GUIEvent__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  gcn::Widget *arg1 = (gcn::Widget *) 0 ;
+  love::GUIEvent *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(gcn::Widget *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_gcn__Widget,0,1,"new_GUIEvent");
+  result = (love::GUIEvent *)new love::GUIEvent(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__GUIEvent,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_GUIEvent(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_GUIEvent__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_gcn__Widget, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_GUIEvent__SWIG_1(L);
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'new_GUIEvent'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_delete_GUIEvent(lua_State* L) {
+  int SWIG_arg = -1;
+  love::GUIEvent *arg1 = (love::GUIEvent *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::GUIEvent *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__GUIEvent,0,1,"delete_GUIEvent");
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GUIEvent_getSource(lua_State* L) {
+  int SWIG_arg = -1;
+  love::GUIEvent *arg1 = (love::GUIEvent *) 0 ;
+  gcn::Widget *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::GUIEvent *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__GUIEvent,0,1,"GUIEvent_getSource");
+  result = (gcn::Widget *)(arg1)->getSource();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_gcn__Widget,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GUIEvent_getName(lua_State* L) {
+  int SWIG_arg = -1;
+  love::GUIEvent *arg1 = (love::GUIEvent *) 0 ;
+  char *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::GUIEvent *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__GUIEvent,0,1,"GUIEvent_getName");
+  result = (char *)(arg1)->getName();
+  SWIG_arg=0;
+  lua_pushstring(L,result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GUIEvent_setSource(lua_State* L) {
+  int SWIG_arg = -1;
+  love::GUIEvent *arg1 = (love::GUIEvent *) 0 ;
+  gcn::Widget *arg2 = (gcn::Widget *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::GUIEvent *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__GUIEvent,0,1,"GUIEvent_setSource");
+  arg2=(gcn::Widget *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_gcn__Widget,0,2,"GUIEvent_setSource");
+  (arg1)->setSource(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GUIEvent_setName(lua_State* L) {
+  int SWIG_arg = -1;
+  love::GUIEvent *arg1 = (love::GUIEvent *) 0 ;
+  string arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::GUIEvent *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__GUIEvent,0,1,"GUIEvent_setName");
+  {
+    string * argp;
+    if(SWIG_ConvertPtr(L,2,(void**)(&argp),SWIGTYPE_p_string,0)) SWIG_fail;
+    arg2 = *argp;
+  }
+  (arg1)->setName(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_GUIEvent(void *obj) {
+love::GUIEvent *arg1 = (love::GUIEvent *) obj;
+delete arg1;
+}
+static swig_lua_method swig_love_GUIEvent_methods[] = {
+    {"getSource", _wrap_GUIEvent_getSource}, 
+    {"getName", _wrap_GUIEvent_getName}, 
+    {"setSource", _wrap_GUIEvent_setSource}, 
+    {"setName", _wrap_GUIEvent_setName}, 
+    {0,0}
+};
+static swig_lua_attribute swig_love_GUIEvent_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_love_GUIEvent_bases[] = {&_wrap_class_love_Event,0};
+swig_lua_class _wrap_class_love_GUIEvent = { "GUIEvent", &SWIGTYPE_p_love__GUIEvent,_wrap_new_GUIEvent, swig_delete_GUIEvent, swig_love_GUIEvent_methods, swig_love_GUIEvent_attributes, swig_love_GUIEvent_bases };
+
+static int _wrap_new_MessageEvent__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  love::MessageEvent *result = 0 ;
+  
+  result = (love::MessageEvent *)new love::MessageEvent();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__MessageEvent,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_MessageEvent__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  string arg1 ;
+  love::MessageEvent *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  {
+    string * argp;
+    if(SWIG_ConvertPtr(L,1,(void**)(&argp),SWIGTYPE_p_string,0)) SWIG_fail;
+    arg1 = *argp;
+  }
+  result = (love::MessageEvent *)new love::MessageEvent(arg1);
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__MessageEvent,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_MessageEvent(lua_State* L) {
+  int argc;
+  int argv[2]={
+    1,2
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_new_MessageEvent__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_string, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_new_MessageEvent__SWIG_1(L);
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'new_MessageEvent'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_delete_MessageEvent(lua_State* L) {
+  int SWIG_arg = -1;
+  love::MessageEvent *arg1 = (love::MessageEvent *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::MessageEvent *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__MessageEvent,0,1,"delete_MessageEvent");
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MessageEvent_getMessage(lua_State* L) {
+  int SWIG_arg = -1;
+  love::MessageEvent *arg1 = (love::MessageEvent *) 0 ;
+  char *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::MessageEvent *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__MessageEvent,0,1,"MessageEvent_getMessage");
+  result = (char *)((love::MessageEvent const *)arg1)->getMessage();
+  SWIG_arg=0;
+  lua_pushstring(L,result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_MessageEvent(void *obj) {
+love::MessageEvent *arg1 = (love::MessageEvent *) obj;
+delete arg1;
+}
+static swig_lua_method swig_love_MessageEvent_methods[] = {
+    {"getMessage", _wrap_MessageEvent_getMessage}, 
+    {0,0}
+};
+static swig_lua_attribute swig_love_MessageEvent_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_love_MessageEvent_bases[] = {&_wrap_class_love_Event,0};
+swig_lua_class _wrap_class_love_MessageEvent = { "MessageEvent", &SWIGTYPE_p_love__MessageEvent,_wrap_new_MessageEvent, swig_delete_MessageEvent, swig_love_MessageEvent_methods, swig_love_MessageEvent_attributes, swig_love_MessageEvent_bases };
+
 static int _wrap_keyboard_set(lua_State* L) {
   int SWIG_arg = -1;
   love::Keyboard *arg1 = (love::Keyboard *) 0 ;
@@ -40343,6 +40733,19 @@ static const struct luaL_reg swig_commands[] = {
     { "ObjectFactory_newParticleSystem", _wrap_ObjectFactory_newParticleSystem},
     { "ObjectFactory_newBezier",_wrap_ObjectFactory_newBezier},
     { "ObjectFactory_newMenu",_wrap_ObjectFactory_newMenu},
+    { "new_Event", _wrap_new_Event},
+    { "delete_Event", _wrap_delete_Event},
+    { "Event_getType", _wrap_Event_getType},
+    { "Event_setType", _wrap_Event_setType},
+    { "new_GUIEvent",_wrap_new_GUIEvent},
+    { "delete_GUIEvent", _wrap_delete_GUIEvent},
+    { "GUIEvent_getSource", _wrap_GUIEvent_getSource},
+    { "GUIEvent_getName", _wrap_GUIEvent_getName},
+    { "GUIEvent_setSource", _wrap_GUIEvent_setSource},
+    { "GUIEvent_setName", _wrap_GUIEvent_setName},
+    { "new_MessageEvent",_wrap_new_MessageEvent},
+    { "delete_MessageEvent", _wrap_delete_MessageEvent},
+    { "MessageEvent_getMessage", _wrap_MessageEvent_getMessage},
     { "keyboard_set", _wrap_keyboard_set},
     { "keyboard_get", _wrap_keyboard_get},
     { "mouse_set", _wrap_mouse_set},
@@ -40842,16 +41245,18 @@ static swig_lua_const_info swig_constants[] = {
 { SWIG_LUA_INT,     (char *)"key_power", (long) 320, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"key_euro", (long) 321, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"key_undo", (long) 322, 0, 0, 0},
-{ SWIG_LUA_INT,     (char *)"mouse_left", (long) 1, 0, 0, 0},
-{ SWIG_LUA_INT,     (char *)"mouse_middle", (long) 2, 0, 0, 0},
-{ SWIG_LUA_INT,     (char *)"mouse_right", (long) 4, 0, 0, 0},
-{ SWIG_LUA_INT,     (char *)"mouse_wheelup", (long) 8, 0, 0, 0},
-{ SWIG_LUA_INT,     (char *)"mouse_wheeldown", (long) 16, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"mouse_left", (long) LOVE_MOUSE_LEFT, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"mouse_middle", (long) LOVE_MOUSE_MIDDLE, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"mouse_right", (long) LOVE_MOUSE_RIGHT, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"mouse_wheelup", (long) LOVE_MOUSE_WHEELUP, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"mouse_wheeldown", (long) LOVE_MOUSE_WHEELDOWN, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"align_left", (long) 1, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"align_right", (long) 2, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"align_center", (long) 3, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"align_top", (long) 4, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"align_bottom", (long) 5, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"event_message", (long) LOVE_TYPE_MESSAGE_EVENT, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"event_gui", (long) LOVE_TYPE_GUI_EVENT, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"LOVE_GL_VERSION_1_2", (long) love::LOVE_GL_VERSION_1_2, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"LOVE_GL_VERSION_1_3", (long) love::LOVE_GL_VERSION_1_3, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"LOVE_GL_VERSION_1_4", (long) love::LOVE_GL_VERSION_1_4, 0, 0, 0},
@@ -40864,6 +41269,7 @@ static swig_lua_const_info swig_constants[] = {
 { SWIG_LUA_INT,     (char *)"LOVE_METHOD_KEYRELEASED", (long) love::LOVE_METHOD_KEYRELEASED, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"LOVE_METHOD_MOUSEPRESSED", (long) love::LOVE_METHOD_MOUSEPRESSED, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"LOVE_METHOD_MOUSERELEASED", (long) love::LOVE_METHOD_MOUSERELEASED, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"LOVE_METHOD_EVENT", (long) love::LOVE_METHOD_EVENT, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"LOVE_METHOD_ALL", (long) love::LOVE_METHOD_ALL, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"LOVE_COLOR_BLACK", (long) love::AbstractColor::LOVE_COLOR_BLACK, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"LOVE_COLOR_WHITE", (long) love::AbstractColor::LOVE_COLOR_WHITE, 0, 0, 0},
@@ -40886,6 +41292,12 @@ static swig_lua_const_info swig_constants[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_love__MessageEventTo_p_love__Event(void *x) {
+    return (void *)((love::Event *)  ((love::MessageEvent *) x));
+}
+static void *_p_love__GUIEventTo_p_love__Event(void *x) {
+    return (void *)((love::Event *)  ((love::GUIEvent *) x));
+}
 static void *_p_love__MenuTo_p_love__Padded(void *x) {
     return (void *)((love::Padded *)  ((love::Menu *) x));
 }
@@ -41024,6 +41436,9 @@ static void *_p_love__AbstractFontTo_p_love__Object(void *x) {
 static void *_p_love__ParticleSystemTo_p_love__Object(void *x) {
     return (void *)((love::Object *) (love::AbstractEntity *) ((love::ParticleSystem *) x));
 }
+static void *_p_love__MessageEventTo_p_love__Object(void *x) {
+    return (void *)((love::Object *) (love::Event *) ((love::MessageEvent *) x));
+}
 static void *_p_love__FontTo_p_love__Object(void *x) {
     return (void *)((love::Object *) (love::AbstractFont *) ((love::Font *) x));
 }
@@ -41047,6 +41462,12 @@ static void *_p_love__ActorStateTo_p_love__Object(void *x) {
 }
 static void *_p_love__DisplayModeTo_p_love__Object(void *x) {
     return (void *)((love::Object *)  ((love::DisplayMode *) x));
+}
+static void *_p_love__EventTo_p_love__Object(void *x) {
+    return (void *)((love::Object *)  ((love::Event *) x));
+}
+static void *_p_love__GUIEventTo_p_love__Object(void *x) {
+    return (void *)((love::Object *) (love::Event *) ((love::GUIEvent *) x));
 }
 static void *_p_love__AbstractImageTo_p_love__Sprite(void *x) {
     return (void *)((love::Sprite *)  ((love::AbstractImage *) x));
@@ -41148,13 +41569,16 @@ static swig_type_info _swigt__p_boost__shared_ptrTlove__Color_t = {"_p_boost__sh
 static swig_type_info _swigt__p_boost__shared_ptrTlove__DisplayMode_t = {"_p_boost__shared_ptrTlove__DisplayMode_t", "boost::shared_ptr<love::DisplayMode > *|love::pDisplayMode *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__DropDown_t = {"_p_boost__shared_ptrTlove__DropDown_t", "boost::shared_ptr<love::DropDown > *|love::pDropDown *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Entity_t = {"_p_boost__shared_ptrTlove__Entity_t", "boost::shared_ptr<love::Entity > *|love::pEntity *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_boost__shared_ptrTlove__Event_t = {"_p_boost__shared_ptrTlove__Event_t", "boost::shared_ptr<love::Event > *|love::pEvent *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Font_t = {"_p_boost__shared_ptrTlove__Font_t", "boost::shared_ptr<love::Font > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Font_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__FrameAnimation_t = {"_p_boost__shared_ptrTlove__FrameAnimation_t", "boost::shared_ptr<love::FrameAnimation > *|love::pFrameAnimation *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_FrameAnimation_Sg_, 0};
+static swig_type_info _swigt__p_boost__shared_ptrTlove__GUIEvent_t = {"_p_boost__shared_ptrTlove__GUIEvent_t", "boost::shared_ptr<love::GUIEvent > *|love::pGUIEvent *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Keyboard_t = {"_p_boost__shared_ptrTlove__Keyboard_t", "boost::shared_ptr<love::Keyboard > *|love::pKeyboard *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Label_t = {"_p_boost__shared_ptrTlove__Label_t", "boost::shared_ptr<love::Label > *|love::pLabel *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Loadable_t = {"_p_boost__shared_ptrTlove__Loadable_t", "boost::shared_ptr<love::Loadable > *|love::pLoadable *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__LuaGL_t = {"_p_boost__shared_ptrTlove__LuaGL_t", "boost::shared_ptr<love::LuaGL > *|love::pLuaGL *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Menu_t = {"_p_boost__shared_ptrTlove__Menu_t", "boost::shared_ptr<love::Menu > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Menu_Sg_, 0};
+static swig_type_info _swigt__p_boost__shared_ptrTlove__MessageEvent_t = {"_p_boost__shared_ptrTlove__MessageEvent_t", "boost::shared_ptr<love::MessageEvent > *|love::pMessageEvent *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Mouse_t = {"_p_boost__shared_ptrTlove__Mouse_t", "boost::shared_ptr<love::Mouse > *|love::pMouse *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__MultilineLabel_t = {"_p_boost__shared_ptrTlove__MultilineLabel_t", "boost::shared_ptr<love::MultilineLabel > *|love::pMultilineLabel *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__ObjectFactory_t = {"_p_boost__shared_ptrTlove__ObjectFactory_t", "boost::shared_ptr<love::ObjectFactory > *|love::pObjectFactory *", 0, 0, (void*)0, 0};
@@ -41191,9 +41615,11 @@ static swig_type_info _swigt__p_love__ContainerTlove__Sprite_t = {"_p_love__Cont
 static swig_type_info _swigt__p_love__DisplayMode = {"_p_love__DisplayMode", "love::DisplayMode *", 0, 0, (void*)&_wrap_class_love_DisplayMode, 0};
 static swig_type_info _swigt__p_love__DropDown = {"_p_love__DropDown", "love::DropDown *", 0, 0, (void*)&_wrap_class_love_DropDown, 0};
 static swig_type_info _swigt__p_love__Entity = {"_p_love__Entity", "love::Entity *", 0, 0, (void*)&_wrap_class_love_Entity, 0};
+static swig_type_info _swigt__p_love__Event = {"_p_love__Event", "love::Event *", 0, 0, (void*)&_wrap_class_love_Event, 0};
 static swig_type_info _swigt__p_love__Font = {"_p_love__Font", "love::Font *", 0, 0, (void*)&_wrap_class_love_Font, 0};
 static swig_type_info _swigt__p_love__FrameAnimation = {"_p_love__FrameAnimation", "love::FrameAnimation *", 0, 0, (void*)&_wrap_class_love_FrameAnimation, 0};
 static swig_type_info _swigt__p_love__GUIContainer = {"_p_love__GUIContainer", "love::GUIContainer *", 0, 0, (void*)&_wrap_class_love_GUIContainer, 0};
+static swig_type_info _swigt__p_love__GUIEvent = {"_p_love__GUIEvent", "love::GUIEvent *", 0, 0, (void*)&_wrap_class_love_GUIEvent, 0};
 static swig_type_info _swigt__p_love__KeyListener = {"_p_love__KeyListener", "love::KeyListener *", 0, 0, (void*)&_wrap_class_love_KeyListener, 0};
 static swig_type_info _swigt__p_love__Keyboard = {"_p_love__Keyboard", "love::Keyboard *", 0, 0, (void*)&_wrap_class_love_Keyboard, 0};
 static swig_type_info _swigt__p_love__Label = {"_p_love__Label", "love::Label *", 0, 0, (void*)&_wrap_class_love_Label, 0};
@@ -41202,6 +41628,7 @@ static swig_type_info _swigt__p_love__Loadable = {"_p_love__Loadable", "love::Lo
 static swig_type_info _swigt__p_love__LuaGL = {"_p_love__LuaGL", "love::LuaGL *", 0, 0, (void*)&_wrap_class_love_LuaGL, 0};
 static swig_type_info _swigt__p_love__LuaGame = {"_p_love__LuaGame", "love::LuaGame *", 0, 0, (void*)&_wrap_class_love_LuaGame, 0};
 static swig_type_info _swigt__p_love__Menu = {"_p_love__Menu", "love::Menu *", 0, 0, (void*)&_wrap_class_love_Menu, 0};
+static swig_type_info _swigt__p_love__MessageEvent = {"_p_love__MessageEvent", "love::MessageEvent *", 0, 0, (void*)&_wrap_class_love_MessageEvent, 0};
 static swig_type_info _swigt__p_love__Mouse = {"_p_love__Mouse", "love::Mouse *", 0, 0, (void*)&_wrap_class_love_Mouse, 0};
 static swig_type_info _swigt__p_love__MouseListener = {"_p_love__MouseListener", "love::MouseListener *", 0, 0, (void*)&_wrap_class_love_MouseListener, 0};
 static swig_type_info _swigt__p_love__MultilineLabel = {"_p_love__MultilineLabel", "love::MultilineLabel *", 0, 0, (void*)&_wrap_class_love_MultilineLabel, 0};
@@ -41260,13 +41687,16 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_boost__shared_ptrTlove__DisplayMode_t,
   &_swigt__p_boost__shared_ptrTlove__DropDown_t,
   &_swigt__p_boost__shared_ptrTlove__Entity_t,
+  &_swigt__p_boost__shared_ptrTlove__Event_t,
   &_swigt__p_boost__shared_ptrTlove__Font_t,
   &_swigt__p_boost__shared_ptrTlove__FrameAnimation_t,
+  &_swigt__p_boost__shared_ptrTlove__GUIEvent_t,
   &_swigt__p_boost__shared_ptrTlove__Keyboard_t,
   &_swigt__p_boost__shared_ptrTlove__Label_t,
   &_swigt__p_boost__shared_ptrTlove__Loadable_t,
   &_swigt__p_boost__shared_ptrTlove__LuaGL_t,
   &_swigt__p_boost__shared_ptrTlove__Menu_t,
+  &_swigt__p_boost__shared_ptrTlove__MessageEvent_t,
   &_swigt__p_boost__shared_ptrTlove__Mouse_t,
   &_swigt__p_boost__shared_ptrTlove__MultilineLabel_t,
   &_swigt__p_boost__shared_ptrTlove__ObjectFactory_t,
@@ -41303,9 +41733,11 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_love__DisplayMode,
   &_swigt__p_love__DropDown,
   &_swigt__p_love__Entity,
+  &_swigt__p_love__Event,
   &_swigt__p_love__Font,
   &_swigt__p_love__FrameAnimation,
   &_swigt__p_love__GUIContainer,
+  &_swigt__p_love__GUIEvent,
   &_swigt__p_love__KeyListener,
   &_swigt__p_love__Keyboard,
   &_swigt__p_love__Label,
@@ -41314,6 +41746,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_love__LuaGL,
   &_swigt__p_love__LuaGame,
   &_swigt__p_love__Menu,
+  &_swigt__p_love__MessageEvent,
   &_swigt__p_love__Mouse,
   &_swigt__p_love__MouseListener,
   &_swigt__p_love__MultilineLabel,
@@ -41372,13 +41805,16 @@ static swig_cast_info _swigc__p_boost__shared_ptrTlove__Color_t[] = {  {&_swigt_
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__DisplayMode_t[] = {  {&_swigt__p_boost__shared_ptrTlove__DisplayMode_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__DropDown_t[] = {  {&_swigt__p_boost__shared_ptrTlove__DropDown_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__Entity_t[] = {  {&_swigt__p_boost__shared_ptrTlove__Entity_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_boost__shared_ptrTlove__Event_t[] = {  {&_swigt__p_boost__shared_ptrTlove__Event_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__Font_t[] = {  {&_swigt__p_boost__shared_ptrTlove__Font_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__FrameAnimation_t[] = {  {&_swigt__p_boost__shared_ptrTlove__FrameAnimation_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_boost__shared_ptrTlove__GUIEvent_t[] = {  {&_swigt__p_boost__shared_ptrTlove__GUIEvent_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__Keyboard_t[] = {  {&_swigt__p_boost__shared_ptrTlove__Keyboard_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__Label_t[] = {  {&_swigt__p_boost__shared_ptrTlove__Label_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__Loadable_t[] = {  {&_swigt__p_boost__shared_ptrTlove__Loadable_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__LuaGL_t[] = {  {&_swigt__p_boost__shared_ptrTlove__LuaGL_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__Menu_t[] = {  {&_swigt__p_boost__shared_ptrTlove__Menu_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_boost__shared_ptrTlove__MessageEvent_t[] = {  {&_swigt__p_boost__shared_ptrTlove__MessageEvent_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__Mouse_t[] = {  {&_swigt__p_boost__shared_ptrTlove__Mouse_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__MultilineLabel_t[] = {  {&_swigt__p_boost__shared_ptrTlove__MultilineLabel_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__ObjectFactory_t[] = {  {&_swigt__p_boost__shared_ptrTlove__ObjectFactory_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -41415,9 +41851,11 @@ static swig_cast_info _swigc__p_love__ContainerTlove__Sprite_t[] = {  {&_swigt__
 static swig_cast_info _swigc__p_love__DisplayMode[] = {  {&_swigt__p_love__DisplayMode, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__DropDown[] = {  {&_swigt__p_love__DropDown, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Entity[] = {  {&_swigt__p_love__VisualEntity, _p_love__VisualEntityTo_p_love__Entity, 0, 0},  {&_swigt__p_love__Entity, 0, 0, 0},  {&_swigt__p_love__ActorState, _p_love__ActorStateTo_p_love__Entity, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love__Event[] = {  {&_swigt__p_love__MessageEvent, _p_love__MessageEventTo_p_love__Event, 0, 0},  {&_swigt__p_love__Event, 0, 0, 0},  {&_swigt__p_love__GUIEvent, _p_love__GUIEventTo_p_love__Event, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Font[] = {  {&_swigt__p_love__Font, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__FrameAnimation[] = {  {&_swigt__p_love__FrameAnimation, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__GUIContainer[] = {  {&_swigt__p_love__GUIContainer, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love__GUIEvent[] = {  {&_swigt__p_love__GUIEvent, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__KeyListener[] = {  {&_swigt__p_love__Keyboard, _p_love__KeyboardTo_p_love__KeyListener, 0, 0},  {&_swigt__p_love__KeyListener, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Keyboard[] = {  {&_swigt__p_love__Keyboard, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Label[] = {  {&_swigt__p_love__MultilineLabel, _p_love__MultilineLabelTo_p_love__Label, 0, 0},  {&_swigt__p_love__Label, 0, 0, 0},{0, 0, 0, 0}};
@@ -41426,10 +41864,11 @@ static swig_cast_info _swigc__p_love__Loadable[] = {  {&_swigt__p_love__Text, _p
 static swig_cast_info _swigc__p_love__LuaGL[] = {  {&_swigt__p_love__LuaGL, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__LuaGame[] = {  {&_swigt__p_love__LuaGame, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Menu[] = {  {&_swigt__p_love__Menu, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love__MessageEvent[] = {  {&_swigt__p_love__MessageEvent, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Mouse[] = {  {&_swigt__p_love__Mouse, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__MouseListener[] = {  {&_swigt__p_love__Mouse, _p_love__MouseTo_p_love__MouseListener, 0, 0},  {&_swigt__p_love__MouseListener, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__MultilineLabel[] = {  {&_swigt__p_love__MultilineLabel, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_love__Object[] = {  {&_swigt__p_love__Bezier, _p_love__BezierTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractColor, _p_love__AbstractColorTo_p_love__Object, 0, 0},  {&_swigt__p_love__Text, _p_love__TextTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractMusic, _p_love__AbstractMusicTo_p_love__Object, 0, 0},  {&_swigt__p_love__LuaGL, _p_love__LuaGLTo_p_love__Object, 0, 0},  {&_swigt__p_love__FrameAnimation, _p_love__FrameAnimationTo_p_love__Object, 0, 0},  {&_swigt__p_love__Font, _p_love__FontTo_p_love__Object, 0, 0},  {&_swigt__p_love__Actor, _p_love__ActorTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractImage, _p_love__AbstractImageTo_p_love__Object, 0, 0},  {&_swigt__p_love__Entity, _p_love__EntityTo_p_love__Object, 0, 0},  {&_swigt__p_love__ParticleSystem, _p_love__ParticleSystemTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractFont, _p_love__AbstractFontTo_p_love__Object, 0, 0},  {&_swigt__p_love__VisualEntity, _p_love__VisualEntityTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractSound, _p_love__AbstractSoundTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractEntity, _p_love__AbstractEntityTo_p_love__Object, 0, 0},  {&_swigt__p_love__ActorState, _p_love__ActorStateTo_p_love__Object, 0, 0},  {&_swigt__p_love__Color, _p_love__ColorTo_p_love__Object, 0, 0},  {&_swigt__p_love__Sprite, _p_love__SpriteTo_p_love__Object, 0, 0},  {&_swigt__p_love__Object, 0, 0, 0},  {&_swigt__p_love__DisplayMode, _p_love__DisplayModeTo_p_love__Object, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love__Object[] = {  {&_swigt__p_love__Bezier, _p_love__BezierTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractColor, _p_love__AbstractColorTo_p_love__Object, 0, 0},  {&_swigt__p_love__Text, _p_love__TextTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractMusic, _p_love__AbstractMusicTo_p_love__Object, 0, 0},  {&_swigt__p_love__LuaGL, _p_love__LuaGLTo_p_love__Object, 0, 0},  {&_swigt__p_love__FrameAnimation, _p_love__FrameAnimationTo_p_love__Object, 0, 0},  {&_swigt__p_love__Font, _p_love__FontTo_p_love__Object, 0, 0},  {&_swigt__p_love__Actor, _p_love__ActorTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractImage, _p_love__AbstractImageTo_p_love__Object, 0, 0},  {&_swigt__p_love__Entity, _p_love__EntityTo_p_love__Object, 0, 0},  {&_swigt__p_love__ParticleSystem, _p_love__ParticleSystemTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractFont, _p_love__AbstractFontTo_p_love__Object, 0, 0},  {&_swigt__p_love__MessageEvent, _p_love__MessageEventTo_p_love__Object, 0, 0},  {&_swigt__p_love__VisualEntity, _p_love__VisualEntityTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractSound, _p_love__AbstractSoundTo_p_love__Object, 0, 0},  {&_swigt__p_love__AbstractEntity, _p_love__AbstractEntityTo_p_love__Object, 0, 0},  {&_swigt__p_love__ActorState, _p_love__ActorStateTo_p_love__Object, 0, 0},  {&_swigt__p_love__Color, _p_love__ColorTo_p_love__Object, 0, 0},  {&_swigt__p_love__Sprite, _p_love__SpriteTo_p_love__Object, 0, 0},  {&_swigt__p_love__Object, 0, 0, 0},  {&_swigt__p_love__DisplayMode, _p_love__DisplayModeTo_p_love__Object, 0, 0},  {&_swigt__p_love__GUIEvent, _p_love__GUIEventTo_p_love__Object, 0, 0},  {&_swigt__p_love__Event, _p_love__EventTo_p_love__Object, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__ObjectFactory[] = {  {&_swigt__p_love__ObjectFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Padded[] = {  {&_swigt__p_love__Padded, 0, 0, 0},  {&_swigt__p_love__Menu, _p_love__MenuTo_p_love__Padded, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__ParticleSystem[] = {  {&_swigt__p_love__ParticleSystem, 0, 0, 0},{0, 0, 0, 0}};
@@ -41484,13 +41923,16 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_boost__shared_ptrTlove__DisplayMode_t,
   _swigc__p_boost__shared_ptrTlove__DropDown_t,
   _swigc__p_boost__shared_ptrTlove__Entity_t,
+  _swigc__p_boost__shared_ptrTlove__Event_t,
   _swigc__p_boost__shared_ptrTlove__Font_t,
   _swigc__p_boost__shared_ptrTlove__FrameAnimation_t,
+  _swigc__p_boost__shared_ptrTlove__GUIEvent_t,
   _swigc__p_boost__shared_ptrTlove__Keyboard_t,
   _swigc__p_boost__shared_ptrTlove__Label_t,
   _swigc__p_boost__shared_ptrTlove__Loadable_t,
   _swigc__p_boost__shared_ptrTlove__LuaGL_t,
   _swigc__p_boost__shared_ptrTlove__Menu_t,
+  _swigc__p_boost__shared_ptrTlove__MessageEvent_t,
   _swigc__p_boost__shared_ptrTlove__Mouse_t,
   _swigc__p_boost__shared_ptrTlove__MultilineLabel_t,
   _swigc__p_boost__shared_ptrTlove__ObjectFactory_t,
@@ -41527,9 +41969,11 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_love__DisplayMode,
   _swigc__p_love__DropDown,
   _swigc__p_love__Entity,
+  _swigc__p_love__Event,
   _swigc__p_love__Font,
   _swigc__p_love__FrameAnimation,
   _swigc__p_love__GUIContainer,
+  _swigc__p_love__GUIEvent,
   _swigc__p_love__KeyListener,
   _swigc__p_love__Keyboard,
   _swigc__p_love__Label,
@@ -41538,6 +41982,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_love__LuaGL,
   _swigc__p_love__LuaGame,
   _swigc__p_love__Menu,
+  _swigc__p_love__MessageEvent,
   _swigc__p_love__Mouse,
   _swigc__p_love__MouseListener,
   _swigc__p_love__MultilineLabel,

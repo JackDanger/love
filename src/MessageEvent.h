@@ -52,16 +52,7 @@ namespace love
 		* @brief Gets message.
 		* @return message.
 		**/
-		const string & getMessage() const;
-
-
-		/**
-		* @brief Sets message.
-		* @param message 
-		**/
-		void setMessage(string message);
-
-
+		const char * getMessage() const;
 	};
 
 	typedef boost::shared_ptr<MessageEvent> pMessageEvent;

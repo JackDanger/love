@@ -58,6 +58,7 @@ namespace love
 
 	void lualove_call_update(lua_State * L, void * ptr, const string & chunk, int type, float dt);
 	void lualove_call_render(lua_State * L, void * ptr, const string & chunk, int type);
+	void lualove_call_event(lua_State * L, Scriptable * scriptable, void * event_ptr, int type);
 
 	void lualove_call_load_noarg(lua_State * L, Scriptable * scriptable);
 	void lualove_call_update_noarg(lua_State *L, Scriptable * scriptable, float dt);
