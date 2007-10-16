@@ -57,6 +57,11 @@ namespace love
 		return display->getCurrentDisplayMode();
 	}
 
+	const AbstractGraphics & Core::getGraphics() const
+	{
+		return (*graphics);
+	}
+
 	AbstractGUI * Core::getGUI() const
 	{
 		return gui;
@@ -410,6 +415,7 @@ namespace love
 
 		// Tell the GUI
 		gui->displayModeChanged();
+		uigame->displayModeChanged();
 
 		// Reload console
 		console->reload();

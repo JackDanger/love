@@ -36,6 +36,7 @@ namespace love
 	ObjectFactory * objects;
 	AbstractGraphics * graphics;
 	LuaGame * game;
+	GUIContainer * gui;
 
 
 	void lualove_init(lua_State * L)
@@ -425,6 +426,7 @@ namespace love
 		objects = new ObjectFactory();
 		graphics = core->graphics;
 		game = 0;
+		gui = 0;
 	}
 
 }// love

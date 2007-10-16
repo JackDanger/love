@@ -19,7 +19,7 @@ namespace love
 	class AbstractGraphics;
 	class LuaGame;
 	//class LuaGame; //an extra LuaGame? if removing this kills all, then forgive me
-	class AbstractGUI;
+	class GUIContainer;
 
 	extern Keyboard * keyboard;
 	extern Mouse * mouse;
@@ -28,7 +28,7 @@ namespace love
 	extern Timer * timer;
 	extern ObjectFactory * objects;
 	extern LuaGame * game;
-	extern AbstractGUI * gui;
+	extern GUIContainer * gui;
 	
 } // love
 

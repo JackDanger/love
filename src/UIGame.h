@@ -26,6 +26,8 @@ namespace love
 		Game * previous;
 		pAbstractImage errorWarning;
 		pAbstractImage errorError;
+		pAbstractFont errorFont;
+		pAbstractFont pauseFont;
 		Menu * error;
 		Menu * warning;
 		Menu * pause;
@@ -71,7 +73,7 @@ namespace love
 		virtual void update(float dt);
 
 		/**
-		 * @brief Reloads the graphics of the previous game.
+		 * @brief Reloads the graphics of the previous game and all my fonts.
 		 **/
 		virtual void reloadGraphics();
 

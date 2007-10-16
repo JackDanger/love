@@ -69,6 +69,7 @@
 #include "MultilineLabel.h"
 #include "TextField.h"
 #include "Menu.h"
+#include "GUIContainer.h"
 #include "AbstractGUI.h"
 
 #include "Bezier.h"
@@ -137,6 +138,7 @@ namespace boost {
 %include "MultilineLabel.h"
 %include "TextField.h"
 %include "Menu.h"
+%include "GUIContainer.h"
 %include "AbstractGUI.h"
 
 %include "ParticleSystem.h"
@@ -164,7 +166,9 @@ namespace boost {
 %template(SmartMusic) boost::shared_ptr<love::AbstractMusic>;
 %template(SmartSound) boost::shared_ptr<love::AbstractSound>;
 %template(SmartDisplay) boost::shared_ptr<love::AbstractDisplay>;
+%template(SmartAbstractColor) boost::shared_ptr<love::AbstractColor>;
 %template(SmartColor) boost::shared_ptr<love::Color>;
+%template(SmartAbstractFont) boost::shared_ptr<love::AbstractFont>;
 %template(SmartFont) boost::shared_ptr<love::Font>;
 %template(SmartParticleSystem) boost::shared_ptr<love::ParticleSystem>;
 %template(SmartBezier) boost::shared_ptr<love::Bezier>;

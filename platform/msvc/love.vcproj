@@ -373,6 +373,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\GUIContainer.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\GUIDynamicBackground.cpp"
 				>
 			</File>
@@ -856,6 +860,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\GUICircleButton.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\GUIContainer.h"
 				>
 			</File>
 			<File

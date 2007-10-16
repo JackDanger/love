@@ -65,12 +65,14 @@ namespace love
 
 		// Get a graphics context.
 		this->gfx = core->display->getGraphics();
-		this->temp_ui = new AbstractGUI();
 
 		// Change global values in lualove_globals here.
 		game = this;
 		graphics = gfx;
-		gui = temp_ui;
+		gui = new GUIContainer();
+		gui->setDimension(gcn::Rectangle(0, 0, core->display->getCurrentDisplayMode().getWidth(), core->display->getCurrentDisplayMode().getHeight()));
+		gui->setOpaque(false);
+		core->gui->add(gui);
 
 		// Load entry.lua
 		lualove_load(L, core->filesystem->getFile(source, "main.lua"));
@@ -94,6 +96,11 @@ namespace love
 
 		// Clear included files.
 		included.clear();
+
+		// gui
+		//gui->clear();
+		core->gui->remove(gui);
+		delete gui;
 
 		loaded = false;
 	}

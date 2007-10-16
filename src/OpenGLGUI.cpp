@@ -71,5 +71,7 @@ namespace love
 		const DisplayMode & display = core->getDisplayMode();
 		graphics->setTargetPlane(display.getWidth(), display.getHeight());
 		top->setDimension(gcn::Rectangle(0, 0, display.getWidth(), display.getHeight()));
+
+		font->load();
 	}
 }

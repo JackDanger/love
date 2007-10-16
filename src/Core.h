@@ -31,9 +31,9 @@
 #include "lualove.h" // and some lualove functions.
 
 // Dirty, horrible, etc.
-#include <guichan.hpp>
-#include <guichan/opengl.hpp>
-#include <guichan/sdl.hpp>
+//#include <guichan.hpp>
+//#include <guichan/opengl.hpp>
+//#include <guichan/sdl.hpp>
 extern gcn::SDLInput * gcn_input;
 
 /**
@@ -152,6 +152,12 @@ namespace love
 		* @return The current display mode.
 		**/
 		const DisplayMode & getDisplayMode() const;
+
+		/**
+		* @brief Gets the current graphics device.
+		* @return The current graphics device.
+		**/
+		const AbstractGraphics & getGraphics() const;
 
 		/**
 		* @brief Gets the current GUI system.

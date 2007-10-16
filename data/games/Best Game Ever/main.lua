@@ -15,8 +15,9 @@ main = {
 		horseshit = 0;
 		
 		menu = love.objects:newMenu();
+		menu:setFont(font["big"]);
 		--menu:align(love.align_right);
-		menu:setBackgroundColor(color["shiznet"]);
+		--menu:setColor(color["shiznet"]);
 		menu:setBackground(love.objects:newImage("zero.png"));
 		--menu:setFont(font["small"]);
 		menu:setSize(150,200);
@@ -30,7 +31,8 @@ main = {
 		drop:add("two");
 		drop:add("four");
 		menu:adjustSize();
-		menu:show();
+		
+		love.gui:add(menu);
 		
 	end,
 	update = function(dt)
@@ -71,6 +73,11 @@ main = {
 		love.graphics:drawText("drawTriangle(260, 200, 100, 100, horseshit, 5)", 175, 500);
 		love.graphics:drawText("drawRect(470,200,100,100, horseshit, 5)", 400, 500);
 		love.graphics:drawText("drawCircle(680,200, 60, 60)", 615, 500);
+		
+		love.graphics:setFont(font["big"]);
+		love.graphics:setColor(color["shiznet"]);
+		test = love.graphics:getColor();
+		love.graphics:drawText("THIS IS TEST: " .. test:getRed() .. "." .. test:getGreen() .. "." .. test:getBlue(), 10, 500);
 	end,
 	
 	keypressed = function(key)

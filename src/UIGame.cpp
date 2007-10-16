@@ -38,9 +38,9 @@ namespace love
 		errorWarning->load();
 		errorError.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/error.png")));
 		errorError->load();
-		pAbstractFont errorFont(new Font(core->filesystem->getBaseFile("data/fonts/FreeSans.ttf"), 10));
+		errorFont.reset<AbstractFont>(new Font(core->filesystem->getBaseFile("data/fonts/FreeSans.ttf"), 10));
 		errorFont->load();
-		pAbstractFont pauseFont(new Font(core->filesystem->getBaseFile("data/fonts/FreeSans.ttf"), 14));
+		pauseFont.reset<AbstractFont>(new Font(core->filesystem->getBaseFile("data/fonts/FreeSans.ttf"), 14));
 		pauseFont->load();
 		pAbstractColor borderColor(new Color(0xe9e9e9));
 		pAbstractColor black(new Color(0x000000));
@@ -119,6 +119,10 @@ namespace love
 
 	void UIGame::reloadGraphics()
 	{
+		errorWarning->load();
+		errorError->load();
+		errorFont->load();
+		pauseFont->load();
 		if(previous != 0)
 			previous->reloadGraphics();
 	}
@@ -221,6 +225,7 @@ namespace love
 			else if(strcmp(pme->getName(), "CORE_QUIT") == 0)
 			{
 				previous->stop();
+				previous->unload();
 				previous = 0;
 				core->startGame("love-system-menu", false);
 				core->gui->remove(top);
@@ -231,7 +236,18 @@ namespace love
 	void UIGame::displayModeChanged()
 	{
 		top->setSize(core->display->getCurrentDisplayMode().getWidth(),core->display->getCurrentDisplayMode().getHeight());
+
+		pause->setX( (core->display->getWidth() / 2) - (pause->getWidth() / 2) );
+		pause->setY( (core->display->getHeight() / 2) - (pause->getHeight() / 2) );
+
+		error->setX( (core->display->getWidth() / 2) - (pause->getWidth() / 2) );
+		error->setY( (core->display->getHeight() / 2) - (pause->getHeight() / 2) );
+
+		warning->setX( (core->display->getWidth() / 2) - (pause->getWidth() / 2) );
+		warning->setY( (core->display->getHeight() / 2) - (pause->getHeight() / 2) );
+
 		if(previous != 0)
 			previous->displayModeChanged();
+		reloadGraphics();
 	}
 }
