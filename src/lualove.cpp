@@ -89,11 +89,6 @@ namespace love
 
 		file->load();
 
-		/* stack the debug.traceback function */
-		//lua_getglobal(L, "love_error");
-		//lua_getfield(L, -1, "traceback");
-		//lua_remove(L, -2);
-
 		int result = luaL_loadbuffer (	L,
 										(const char *)file->getData(), 
 										file->getSize(),
@@ -101,18 +96,18 @@ namespace love
 
 		if(result != 0)
 		{
-			if(result == LUA_ERRSYNTAX)
-				printf("Syntax error in %s.\n", file->getFilename().c_str());
-			else if(result == LUA_ERRMEM)
-				printf("Memory allocation error in %s.\n", file->getFilename());
 			
+			const char * msg = lua_tostring(L, -1);
+			lua_pop(L, 1);
+
+			printf("%s\n", msg);
+			lualove_gui_error(msg);
+
 			return false;
 		}
 
-		int status = lualove_call(L, 0); //lua_pcall(L, 0, 0, -2); // Call file.
-
-
-		lualove_check_error(L, status, "Could not load file \"" + file->getFilename() + "\""); // Check for any errors.
+		int status = lualove_call(L, 0);
+		lualove_handle_error(L, status);
 
 		delete file;
 
@@ -276,6 +271,8 @@ namespace love
 		// This is actually all the error codes, but
 		// writing them here anyway for eventual specialization.
 		case LUA_YIELD:
+		// In case of run-time errors, lualove_runtime_error is also called by Lua. 
+		// (Most of the errors in Lua are run-time errors)
 		case LUA_ERRRUN:
 		case LUA_ERRSYNTAX:
 		case LUA_ERRMEM:
@@ -289,10 +286,6 @@ namespace love
 
 			// Print error message.
 			printf("%s\n", msg);
-
-			// @todo Call traceback.
-			// @todo Call debug.debug()
-
 			break;
 		}
 	}
@@ -340,8 +333,8 @@ namespace love
 
 		lualove_push_pointer(L, ptr, type);
 
-		int status = lualove_call(L, 0);  //lua_pcall(L, 1, 0, 0);			// Calls and pops load
-		lualove_check_error(L, status, "Could not call " + chunk + ":load");
+		int status = lualove_call(L, 1);
+		lualove_handle_error(L, status);
 
 		lua_pop(L, 1);				// Pops table	
 
@@ -357,8 +350,8 @@ namespace love
 		lualove_push_pointer(L, ptr, type);
 		lualove_push_number(L, dt);
 
-		int status = lua_pcall(L, 2, 0, 0);			// Calls and pops init
-		lualove_check_error(L, status, "Could not call " + chunk + ":update");
+		int status = lualove_call(L, 2);
+		lualove_handle_error(L, status);
 
 		lua_pop(L, 1);				// Pops table		
 	}
@@ -370,8 +363,8 @@ namespace love
 
 		lualove_push_pointer(L, ptr, type);
 
-		int status = lua_pcall(L, 1, 0, 0);			// Calls and pops load
-		lualove_check_error(L, status, "Could not call " + chunk + ":render");
+		int status = lualove_call(L, 1);
+		lualove_handle_error(L, status);
 
 		lua_pop(L, 1);				// Pops table	
 	}
@@ -384,8 +377,8 @@ namespace love
 
 		// Push the event.
 		lualove_push_pointer(L, event_ptr, type);
-		int status = lua_pcall(L, 1, 0, 0);			// Calls and pops event
-		lualove_check_error(L, status, "Could not call " + scriptable->getScript() + ":event");
+		int status = lualove_call(L, 1);
+		lualove_handle_error(L, status);
 		lua_pop(L, 1);				// Pops table	
 	}
 
@@ -397,8 +390,7 @@ namespace love
 		lua_getfield(L, 1, "load");								// Push load
 
 		int status = lualove_call(L, 0);
-
-		lualove_check_error(L, status, "Could not call " + scriptable->getScript() + ":load");
+		lualove_handle_error(L, status);
 
 		lua_pop(L, 1);											// Pops table
 	}
@@ -412,8 +404,8 @@ namespace love
 
 		lua_pushnumber(L, dt);		// Push dt to stack.
 
-		int status = lua_pcall(L, 1, 0, 0);			// Calls and pops update
-		lualove_check_error(L, status, "Could not call " + scriptable->getScript() + ":update");
+		int status = lualove_call(L, 1);
+		lualove_handle_error(L, status);
 
 		lua_pop(L, 1);				// Pops table
 	}
@@ -425,8 +417,8 @@ namespace love
 		lua_getglobal(L, scriptable->getScript().c_str()); // Push table
 		lua_getfield(L, 1, "render");	// Push render
 
-		int status = lua_pcall(L, 0, 0, 0);			// Calls and pops render
-		lualove_check_error(L, status, "Could not call " + scriptable->getScript() + ":render");
+		int status = lualove_call(L, 0);
+		lualove_handle_error(L, status);
 
 		lua_pop(L, 1);				// Pops table
 	}
@@ -440,8 +432,8 @@ namespace love
 
 		lua_pushnumber(L, key);		// Push dt to stack.
 
-		int status = lua_pcall(L, 1, 0, 0);			// Calls and pops update
-		lualove_check_error(L, status, "Could not call " + scriptable->getScript() + ":keypressed");
+		int status = lualove_call(L, 1);
+		lualove_handle_error(L, status);
 
 		lua_pop(L, 1);				// Pops table
 	}
@@ -455,8 +447,8 @@ namespace love
 
 		lua_pushnumber(L, key);		
 
-		int status = lua_pcall(L, 1, 0, 0);			
-		lualove_check_error(L, status, "Could not call " + scriptable->getScript() + ":keypressed");
+		int status = lualove_call(L, 1);
+		lualove_handle_error(L, status);
 
 		lua_pop(L, 1);				// Pops table
 	}	
@@ -472,8 +464,8 @@ namespace love
 		lua_pushnumber(L, y);
 		lua_pushnumber(L, state);
 
-		int status = lua_pcall(L, 3, 0, 0);		
-		lualove_check_error(L, status, "Could not call " + scriptable->getScript() + ":mousepressed");
+		int status = lualove_call(L, 3);
+		lualove_handle_error(L, status);
 
 		lua_pop(L, 1);				// Pops table
 	}	
@@ -489,8 +481,8 @@ namespace love
 		lua_pushnumber(L, y);
 		lua_pushnumber(L, state);
 
-		int status = lua_pcall(L, 3, 0, 0);		
-		lualove_check_error(L, status, "Could not call " + scriptable->getScript() + ":mousereleased");
+		int status = lualove_call(L, 3);
+		lualove_handle_error(L, status);
 
 		lua_pop(L, 1);				// Pops table
 	}	

@@ -61,6 +61,7 @@ namespace love
 
 	void lualove_gui_error(const char * message);
 
+	const char * lualove_get_error(lua_State * L);
 	void lualove_handle_error(lua_State * L, int state);
 	void lualove_check_error(lua_State * L, int status, const string & info);
 

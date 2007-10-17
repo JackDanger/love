@@ -20,13 +20,15 @@ end
 
 
 main.load = function()
-	bazzle();
+	-- This causes C++ error when the game is restarted after clicking "OK".
+	-- bazzle();
 end
 
 main.update = function(dt)
-
+	
 end
 
 main.render = function()
-
+	-- This causes C++ errlol.
+	-- bazzle();
 end
