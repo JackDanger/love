@@ -37,7 +37,7 @@ namespace love
 		static const int OMG_FIRE_EVERYBODY_RUN = 42;
 		
 		/**
-		* @brief This is called every time an Event "happens".
+		* @brief This is called every time an Event is fired.
 		* @param e The Event that was just fired.
 		**/
 		virtual void eventFired(pEvent e) = 0;

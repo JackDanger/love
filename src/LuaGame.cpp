@@ -153,9 +153,6 @@ namespace love
 	{
 		
 		// Fire a message event.
-		pEvent e(new MessageEvent("OMG! This is a MessageEvent (tm)!"));
-		eventFired(e);
-
 		if(isAvailable(LOVE_METHOD_MOUSEPRESSED))
 			lualove_call_mousepressed_noarg(L, this, x, y, button);
 	}

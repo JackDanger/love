@@ -114,6 +114,7 @@ namespace love
 		friend int platform_init(int argc, char * argv[]);
 		friend int platform_loop();
 		friend void lualove_bind_globals();
+		friend void lualove_gui_error(const char * message);
 
 		// We also want to be friends with some classes
 		friend class LuaGame;
@@ -282,6 +283,10 @@ namespace love
 		**/
 		void displayModeChanged();
 
+		/**
+		* @brief This is called every time an Event is fired.
+		* @param e The Event that was just fired.
+		**/
 		void eventFired(pEvent e);
 
 	private:

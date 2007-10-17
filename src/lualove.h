@@ -29,6 +29,7 @@ extern "C"
 
 #include "lua_glue.h"
 
+
 namespace love
 {
 
@@ -46,6 +47,21 @@ namespace love
 
 	void lualove_check_functions(lua_State * L, Scriptable * scriptable, int mask = 0);
 
+	/**
+	* @brief Calls a Lua function with proper error reporting.
+	* @param L The Lua state.
+	* @param narg The number of arguments to pass to the function.
+	* @note The function assumes that the function and its arguments is
+	* pushed onto the stack.
+	**/
+	int lualove_call(lua_State *L, int narg);
+
+	// Called by Lua when an runtime error occurs.
+	int lualove_runtime_error(lua_State * L);
+
+	void lualove_gui_error(const char * message);
+
+	void lualove_handle_error(lua_State * L, int state);
 	void lualove_check_error(lua_State * L, int status, const string & info);
 
 	void lualove_push_number(lua_State * L, lua_Number number);

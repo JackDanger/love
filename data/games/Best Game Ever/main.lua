@@ -105,7 +105,7 @@ main = {
 		elseif e:getType() == love.event_gui then
 			if e:getName() == "RAD_SPARTA" then rad_not:setMarked(false);
 			elseif e:getName() == "RAD_NOT" then rad_sparta:setMarked(false); end
-			--print("This baby just received a GUIEvent (bn). GUIname is: " .. e:getName() .. "\n")
+			print("This baby just received a GUIEvent (bn). GUIname is: " .. e:getName() .. "\n")
 		end
 	end
 

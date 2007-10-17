@@ -38,7 +38,7 @@ namespace love
 		errorWarning->load();
 		errorError.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/error.png")));
 		errorError->load();
-		errorFont.reset<AbstractFont>(new Font(core->filesystem->getBaseFile("data/fonts/FreeSans.ttf"), 10));
+		errorFont.reset<AbstractFont>(new Font(core->filesystem->getBaseFile("data/fonts/FreeSans.ttf"), 8));
 		errorFont->load();
 		pauseFont.reset<AbstractFont>(new Font(core->filesystem->getBaseFile("data/fonts/FreeSans.ttf"), 14));
 		pauseFont->load();
@@ -48,13 +48,14 @@ namespace love
 
 		// error box
 		error = new Menu(errorFont, black);
-		error->setSize(356,217); // so that we have something to start with
+		error->setSize(500,217); // so that we have something to start with
 		error->setPadding(18);
 		error->setColor(&black);
 		error->setBackgroundColor(&slightlyWhite);
 		error->stretchContent(true);
 		error->addImage(&errorError)->align(Text::LOVE_ALIGN_LEFT);
 		errorText.reset<MultilineLabel>(error->addMultilineLabel(""));
+		errorText->align(Text::LOVE_ALIGN_LEFT);
 		error->addLabel("")->setHeight(20);
 		errorButton.reset<Button>(error->addButton("CORE_ERROR_OK", "OK"));
 		errorButton->setBorderColor(&borderColor);

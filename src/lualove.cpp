@@ -12,6 +12,7 @@
 #include "love.h"
 #include "Core.h"
 #include "AbstractFile.h"
+#include "UIGame.h"
 
 
 #ifdef __cplusplus
@@ -50,6 +51,7 @@ namespace love
 
 		// Bind global pointers.
 		lualove_bind_globals();
+
 	}
 
 	void lualove_close(lua_State * L)
@@ -77,7 +79,7 @@ namespace love
 		// Open file
 		luaL_loadfile(L, filename.c_str());
 		int status = lua_pcall(L, 0, LUA_MULTRET, 0); // Do file
-		lualove_check_error(L, status, "Could not load file \"" + filename + "\""); // Check for any errors.
+		lualove_check_error(L, status, ""); // Check for any errors.
 
 		return true;
 	}
@@ -86,7 +88,12 @@ namespace love
 	{
 
 		file->load();
-		
+
+		/* stack the debug.traceback function */
+		//lua_getglobal(L, "love_error");
+		//lua_getfield(L, -1, "traceback");
+		//lua_remove(L, -2);
+
 		int result = luaL_loadbuffer (	L,
 										(const char *)file->getData(), 
 										file->getSize(),
@@ -95,14 +102,15 @@ namespace love
 		if(result != 0)
 		{
 			if(result == LUA_ERRSYNTAX)
-				printf("Syntax error in %s.\n", file->getFilename());
+				printf("Syntax error in %s.\n", file->getFilename().c_str());
 			else if(result == LUA_ERRMEM)
 				printf("Memory allocation error in %s.\n", file->getFilename());
 			
 			return false;
 		}
 
-		int status = lua_pcall(L, 0, LUA_MULTRET, 0); // Do file
+		int status = lualove_call(L, 0); //lua_pcall(L, 0, 0, -2); // Call file.
+
 
 		lualove_check_error(L, status, "Could not load file \"" + file->getFilename() + "\""); // Check for any errors.
 
@@ -204,11 +212,96 @@ namespace love
 
 	}
 
+	int lualove_call(lua_State *L, int narg)
+	{
+		int status;
+		int base = lua_gettop(L) - narg;  /* function index */
+		lua_pushcfunction(L, lualove_runtime_error);  /* push traceback function */
+		lua_insert(L, base);  /* put it under chunk and args */
+		status = lua_pcall(L, narg, 0, base);
+		lua_remove(L, base);  /* remove traceback function */
+		/* force a complete garbage collection in case of errors */
+		if (status != 0) lua_gc(L, LUA_GCCOLLECT, 0);
+		return status;
+	}
+
+	int lualove_runtime_error(lua_State * L)
+	{
+		lua_getfield(L, LUA_GLOBALSINDEX, "debug");
+		if (!lua_istable(L, -1)) {
+			lua_pop(L, 1);
+			return 1;
+		}
+		lua_getfield(L, -1, "traceback");
+		if (!lua_isfunction(L, -1)) {
+			lua_pop(L, 2);
+			return 1;
+		}
+		lua_pushvalue(L, 1);  /* pass error message */
+		lua_pushinteger(L, 2);  /* skip this function and traceback */
+		lua_call(L, 2, 1);  /* call debug.traceback */
+
+		// Extract message.
+
+		if(lua_isstring(L, -1))
+		{
+			// For future reference. msg now hold the complete error message (with stack trace).
+			const char * msg = lua_tostring(L, -1);
+			lualove_gui_error(msg);
+		}
+
+		return 1;
+	}
+
+	void lualove_gui_error(const char * message)
+	{
+
+		// Convert tabs to spaces.
+		std::string str(message);
+
+
+		// Replace tabs.
+		for(int i = 0;i<(int)str.length();i++)
+			if(str.substr(i, 1) == "\t")
+				str.replace(i, 1, "    * ");
+
+
+		love::core->uigame->showError(str.c_str());
+	}
+
+	void lualove_handle_error(lua_State * L, int state)
+	{
+		switch (state)
+		{
+		// This is actually all the error codes, but
+		// writing them here anyway for eventual specialization.
+		case LUA_YIELD:
+		case LUA_ERRRUN:
+		case LUA_ERRSYNTAX:
+		case LUA_ERRMEM:
+		case LUA_ERRERR:
+			
+			// This is the human readable error message.
+			const char * msg = lua_tostring(L, -1);
+
+			// Remove error message.
+			lua_pop(L, 1);
+
+			// Print error message.
+			printf("%s\n", msg);
+
+			// @todo Call traceback.
+			// @todo Call debug.debug()
+
+			break;
+		}
+	}
+
 	void lualove_check_error(lua_State * L, int status, const string & info)
 	{
 		if(status != 0)
 		{
-			printf("\nLua error: %s: %s\n", info.c_str(), lua_tostring(L, -1));
+			printf("Error: %s\n", lua_tostring(L, -1));
 			lua_pop(L, 1); // remove error message
 		}
 	}
@@ -247,7 +340,7 @@ namespace love
 
 		lualove_push_pointer(L, ptr, type);
 
-		int status = lua_pcall(L, 1, 0, 0);			// Calls and pops load
+		int status = lualove_call(L, 0);  //lua_pcall(L, 1, 0, 0);			// Calls and pops load
 		lualove_check_error(L, status, "Could not call " + chunk + ":load");
 
 		lua_pop(L, 1);				// Pops table	
@@ -303,7 +396,8 @@ namespace love
 		lua_getglobal(L, scriptable->getScript().c_str());	// Push table
 		lua_getfield(L, 1, "load");								// Push load
 
-		int status = lua_pcall(L, 0, 0, 0);						// Calls and pops load
+		int status = lualove_call(L, 0);
+
 		lualove_check_error(L, status, "Could not call " + scriptable->getScript() + ":load");
 
 		lua_pop(L, 1);											// Pops table
