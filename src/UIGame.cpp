@@ -10,6 +10,33 @@ using boost::dynamic_pointer_cast;
 
 namespace love
 {
+	void UIGame::resumeGame()
+	{
+		core->current = previous;
+		previous = 0;
+		core->gui->remove(top);
+		core->current->resume();
+	}
+
+	void UIGame::reloadGame()
+	{
+		core->current = previous;
+		previous = 0;		
+		core->gui->remove(top);
+		core->gui->displayModeChanged(); // to reset the gui
+		core->current->reload();
+		printf("Reloaded: %s\n", core->current->getName().c_str());
+	}
+
+	void UIGame::quitGame()
+	{
+		previous->stop();
+		previous->unload();
+		previous = 0;
+		core->gui->remove(top);
+		core->startGame("love-system-menu", false);
+	}
+
 	UIGame::UIGame()
 	{
 		previous = 0;
@@ -57,10 +84,22 @@ namespace love
 		errorText.reset<MultilineLabel>(error->addMultilineLabel(""));
 		errorText->align(Text::LOVE_ALIGN_LEFT);
 		error->addLabel("")->setHeight(20);
-		errorButton.reset<Button>(error->addButton("CORE_ERROR_OK", "OK"));
+		Menu * nested = error->addMenu(Menu::LOVE_MENU_HORIZONTAL, 0, 40);
+		nested->setSpacing(10);
+		errorButton.reset<Button>(nested->addButton("CORE_ERROR_CONTINUE", "Coninue"));
 		errorButton->setBorderColor(&borderColor);
 		errorButton->setWidth(70);
 		errorButton->setBorderSize(1);
+		Button * tempb = nested->addButton("CORE_ERROR_RESTART", "Restart");
+		tempb->setBorderColor(&borderColor);
+		tempb->setWidth(70);
+		tempb->setBorderSize(1);
+		tempb = nested->addButton("CORE_ERROR_QUIT", "Quit");
+		tempb->setBorderColor(&borderColor);
+		tempb->setWidth(70);
+		tempb->setBorderSize(1);
+		nested->adjustWidth();
+		nested->adjustContent();
 		error->show();
 		// warning box
 		warning = new Menu(errorFont, black);
@@ -188,27 +227,16 @@ namespace love
 		if(e->getType() == LOVE_TYPE_GUI_EVENT)
 		{
 			pGUIEvent pme = dynamic_pointer_cast<GUIEvent, Event>(e);
-			if(strcmp(pme->getName(), "CORE_ERROR_OK") == 0)
-			{
-				core->current = previous;
-				previous = 0;
-				core->current->resume();
-				core->gui->remove(top);
-			}
+			if(strcmp(pme->getName(), "CORE_ERROR_CONTINUE") == 0)
+				resumeGame();
+			if(strcmp(pme->getName(), "CORE_ERROR_RESTART") == 0)
+				reloadGame();
+			if(strcmp(pme->getName(), "CORE_ERROR_QUIT") == 0)
+				quitGame();
 			else if(strcmp(pme->getName(), "CORE_WARNING_OK") == 0)
-			{
-				core->current = previous;
-				previous = 0;
-				core->current->resume();
-				core->gui->remove(top);
-			}
+				resumeGame();
 			else if(strcmp(pme->getName(), "CORE_RESUME") == 0)
-			{
-				core->current = previous;
-				previous = 0;
-				core->current->resume();
-				core->gui->remove(top);
-			}	
+				resumeGame();
 			else if(strcmp(pme->getName(), "CORE_SAVE") == 0)
 				printf("save");
 			else if(strcmp(pme->getName(), "CORE_LOAD") == 0)
@@ -216,21 +244,9 @@ namespace love
 			else if(strcmp(pme->getName(), "CORE_OPTIONS") == 0)
 				printf("options");
 			else if(strcmp(pme->getName(), "CORE_RELOAD") == 0)
-			{
-				core->current = previous;
-				previous = 0;		
-				core->current->reload();
-				core->gui->remove(top);
-				printf("Reloaded: %s\n", core->current->getName().c_str());
-			}
+				reloadGame();
 			else if(strcmp(pme->getName(), "CORE_QUIT") == 0)
-			{
-				previous->stop();
-				previous->unload();
-				previous = 0;
-				core->startGame("love-system-menu", false);
-				core->gui->remove(top);
-			}
+				quitGame();
 		}
 	}
 

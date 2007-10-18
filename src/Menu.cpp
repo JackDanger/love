@@ -491,6 +491,39 @@ namespace love
 		}
 	}
 
+	void Menu::drawChildren(gcn::Graphics* graphics)
+	{
+		graphics->pushClipArea(getChildrenArea());
+		
+		WidgetListIterator iter;
+		for (iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
+		{
+			// Compensates for the children having their own fonts
+			graphics->setFont(text);
+			if ((*iter)->isVisible())
+			{
+				// If the widget has a border,
+				// draw it before drawing the widget
+				if ((*iter)->getBorderSize() > 0)
+				{
+					gcn::Rectangle rec = (*iter)->getDimension();
+					rec.x -= (*iter)->getBorderSize();
+					rec.y -= (*iter)->getBorderSize();
+					rec.width += 2 * (*iter)->getBorderSize();
+					rec.height += 2 * (*iter)->getBorderSize();
+					graphics->pushClipArea(rec);
+					(*iter)->drawBorder(graphics);
+					graphics->popClipArea();
+				}
+				
+				graphics->pushClipArea((*iter)->getDimension());
+				(*iter)->draw(graphics);
+				graphics->popClipArea();
+			}
+		}
+		graphics->popClipArea();
+	}
+
 	Menu * Menu::addMenu(int type, int width, int height)
 	{
 		Menu * temp = new Menu(text->getFont(), color, type);

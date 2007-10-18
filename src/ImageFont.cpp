@@ -26,7 +26,7 @@ namespace love
 	void ImageFont::print(const char * text, float x, float y)
 	{
 		glPushMatrix();
-		glTranslatef(x,y,0.0f);
+		glTranslatef(x,y - getLineHeight(),0.0f);
 		//glColor4ub(255,255,255,255); //might want to remove this?
 		for(unsigned int i = 0; i < strlen(text); i++)
 		{

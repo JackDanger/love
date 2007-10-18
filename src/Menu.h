@@ -101,6 +101,7 @@ namespace love
 
 		void draw(gcn::Graphics* graphics);
 		void drawBorder(gcn::Graphics* graphics);
+		void drawChildren(gcn::Graphics* graphics);
 
 		Menu * addMenu(int type, int width = 0, int height = 0);
 		Label * addLabel(const char * caption, int width = 0, int height = 0);

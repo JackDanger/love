@@ -16913,6 +16913,26 @@ fail:
 }
 
 
+static int _wrap_Menu_drawChildren(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Menu *arg1 = (love::Menu *) 0 ;
+  gcn::Graphics *arg2 = (gcn::Graphics *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Menu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Menu,0,1,"Menu_drawChildren");
+  arg2=(gcn::Graphics *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_gcn__Graphics,0,2,"Menu_drawChildren");
+  (arg1)->drawChildren(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Menu_addMenu__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love::Menu *arg1 = (love::Menu *) 0 ;
@@ -18220,6 +18240,7 @@ static swig_lua_method swig_love_Menu_methods[] = {
     {"adjustContent", _wrap_Menu_adjustContent}, 
     {"draw", _wrap_Menu_draw}, 
     {"drawBorder", _wrap_Menu_drawBorder}, 
+    {"drawChildren", _wrap_Menu_drawChildren}, 
     {"addMenu", _wrap_Menu_addMenu}, 
     {"addLabel", _wrap_Menu_addLabel}, 
     {"addMultilineLabel", _wrap_Menu_addMultilineLabel}, 
@@ -39661,6 +39682,26 @@ fail:
 }
 
 
+static int _wrap_SmartMenu_drawChildren(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
+  gcn::Graphics *arg2 = (gcn::Graphics *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Menu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Menu_t,0,1,"SmartMenu_drawChildren");
+  arg2=(gcn::Graphics *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_gcn__Graphics,0,2,"SmartMenu_drawChildren");
+  (*arg1)->drawChildren(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartMenu_addMenu__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Menu > *arg1 = (boost::shared_ptr<love::Menu > *) 0 ;
@@ -41283,6 +41324,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_Menu_Sg__methods[] = {
     {"adjustContent", _wrap_SmartMenu_adjustContent}, 
     {"draw", _wrap_SmartMenu_draw}, 
     {"drawBorder", _wrap_SmartMenu_drawBorder}, 
+    {"drawChildren", _wrap_SmartMenu_drawChildren}, 
     {"addMenu", _wrap_SmartMenu_addMenu}, 
     {"addLabel", _wrap_SmartMenu_addLabel}, 
     {"addMultilineLabel", _wrap_SmartMenu_addMultilineLabel}, 
@@ -41798,6 +41840,7 @@ static const struct luaL_reg swig_commands[] = {
     { "Menu_adjustContent", _wrap_Menu_adjustContent},
     { "Menu_draw", _wrap_Menu_draw},
     { "Menu_drawBorder", _wrap_Menu_drawBorder},
+    { "Menu_drawChildren", _wrap_Menu_drawChildren},
     { "Menu_addMenu",_wrap_Menu_addMenu},
     { "Menu_addLabel",_wrap_Menu_addLabel},
     { "Menu_addMultilineLabel",_wrap_Menu_addMultilineLabel},
@@ -42347,6 +42390,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartMenu_adjustContent", _wrap_SmartMenu_adjustContent},
     { "SmartMenu_draw", _wrap_SmartMenu_draw},
     { "SmartMenu_drawBorder", _wrap_SmartMenu_drawBorder},
+    { "SmartMenu_drawChildren", _wrap_SmartMenu_drawChildren},
     { "SmartMenu_addMenu",_wrap_SmartMenu_addMenu},
     { "SmartMenu_addLabel",_wrap_SmartMenu_addLabel},
     { "SmartMenu_addMultilineLabel",_wrap_SmartMenu_addMultilineLabel},

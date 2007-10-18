@@ -12,6 +12,9 @@ main = {
 		love.graphics:setBackground(color["white"]);
 		love.graphics:setColor(color["black"]);
 		
+		menux = -1;
+		menuy = -1;
+		
 		horseshit = 0;
 		
 		menu = love.objects:newMenu();
@@ -27,23 +30,25 @@ main = {
 		menu:setPosition(200,200);
 		menu:setPadding(10);
 		menu:setSpacing(3);
-		menu:addLabel("THIS IS A MENU");		
-		menu:addButton("BUNNY_BUTT", "Click Me!");
-		menu:addTextField("TEXT_FILD", "Edit this text, plx!", 200);
+		label = menu:addLabel("THIS IS A MENU");		
+		button = menu:addButton("BUTTON", "Click me to change the menu label!");
+		button:setBorderSize(1);
+		textfield = menu:addTextField("TEXT_FIELD", "Or press <enter> here.", 200);
 		drop = menu:addDropDown("DROP YOUR PANTS");
 		drop:add("one");
 		drop:add("two");
 		drop:add("four");
 		nested = menu:addMenu(love.menu_horizontal);
-		nested:addLabel("Nested menu:  ");
-		rad_sparta = nested:addRadioButton("RAD_SPARTA", "Sparta (custom image)");
+		--nested:setFont(font["image"]);
+		nested:addLabel("NESTED MENU:  ");
+		rad_sparta = nested:addRadioButton("RAD_SPARTA", "SPARTA");
 		rad_sparta:setMarked(true);
 		rad_sparta:setDefaultImage(love.objects:newImage("default.png"));
 		rad_sparta:setMarkedImage(love.objects:newImage("marked.png"));
-		rad_not = nested:addRadioButton("RAD_NOT", "No Sparta (default ugly thing)");
+		rad_not = nested:addRadioButton("RAD_NOT", "NOT SPARTA");
 		nested:adjustSize();
 		nested:adjustContent();
-		menu:addMultilineLabel("Just wanted to let you know that the previous example (the one with the radio buttons) uses the event system. GUIchan has a built-in group-system for dealing with radio buttons (seeing as you are only supposed to be able to select one at a time), but I thought that it would just add one more value to keep track of and doing it manually yields more control. ^-^");
+		menu:addMultilineLabel("Just wanted to let you know that the previous example (the one with the radio buttons) uses the event system. GUIchan has a built-in group-system for dealing with radio buttons (seeing as you are only supposed to be able to select one at a time), but I thought that it would just add one more value to keep track of and doing it manually yields more control. ^-^\n(ps: you can click and drag this menu around)");
 		menu:adjustSize();
 		
 		love.gui:add(menu);
@@ -53,6 +58,14 @@ main = {
 	
 		horseshit = horseshit + 5 * dt;
 		--game:setRotation(horseshit);
+		
+		if love.mouse:isDown(love.mouse_left) and menux ~= -1 and menuy ~= -1 then
+			menu:setX(menu:getX() - (menux - love.mouse:getX()));
+			menux = love.mouse:getX();
+			
+			menu:setY(menu:getY() - (menuy - love.mouse:getY()));
+			menuy = love.mouse:getY();
+		end
 		
 	end,
 	render = function()
@@ -98,13 +111,35 @@ main = {
 		
 	end,
 	
+	mousepressed = function(x, y, button)
+		
+		if button == love.mouse_left and x > menu:getX() and x < menu:getX() + menu:getWidth() and y > menu:getY() and y < menu:getY() + menu:getHeight() then
+			menux = x;
+			menuy = y;
+		end
+		
+	end,
+	
+	mousereleased = function(x, y, button)
+	
+		if button == love.mouse_left then
+			menux = -1;
+			menuy = -1;
+		end
+	
+	end,
+	
 	event = function(e)
 		
 		if e:getType() == love.event_message then
-			print("This baby just recieved a MessageEvent (tm). Message reads: " .. e:getMessage() .. "\n")
+			--print("This baby just recieved a MessageEvent (tm). Message reads: " .. e:getMessage() .. "\n")
 		elseif e:getType() == love.event_gui then
 			if e:getName() == "RAD_SPARTA" then rad_not:setMarked(false);
-			elseif e:getName() == "RAD_NOT" then rad_sparta:setMarked(false); end
+			elseif e:getName() == "RAD_NOT" then rad_sparta:setMarked(false);
+			elseif e:getName() == "BUTTON" or e:getName() == "TEXT_FIELD" then
+				label:setCaption(textfield:getText());
+				label:adjustSize();
+			end
 			print("This baby just received a GUIEvent (bn). GUIname is: " .. e:getName() .. "\n")
 		end
 	end

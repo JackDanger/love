@@ -36,6 +36,10 @@ namespace love
 		pButton errorButton;
 		pButton warningButton;
 
+		virtual void resumeGame();
+		virtual void reloadGame();
+		virtual void quitGame();
+
 	public:
 		/**
 		 * @brief Default constructor.
