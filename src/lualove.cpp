@@ -242,7 +242,7 @@ namespace love
 		{
 			// For future reference. msg now hold the complete error message (with stack trace).
 			const char * msg = lua_tostring(L, -1);
-			lualove_gui_error(msg);
+			//lualove_gui_error(msg);
 		}
 
 		return 1;

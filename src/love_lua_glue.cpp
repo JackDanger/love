@@ -19796,6 +19796,44 @@ fail:
 }
 
 
+static int _wrap_ParticleSystem_setLinger(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ParticleSystem *arg1 = (love::ParticleSystem *) 0 ;
+  float arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::ParticleSystem *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ParticleSystem,0,1,"ParticleSystem_setLinger");
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setLinger(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParticleSystem_getLinger(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ParticleSystem *arg1 = (love::ParticleSystem *) 0 ;
+  float result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::ParticleSystem *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ParticleSystem,0,1,"ParticleSystem_getLinger");
+  result = (float)(arg1)->getLinger();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_ParticleSystem_isDead(lua_State* L) {
   int SWIG_arg = -1;
   love::ParticleSystem *arg1 = (love::ParticleSystem *) 0 ;
@@ -19804,6 +19842,24 @@ static int _wrap_ParticleSystem_isDead(lua_State* L) {
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::ParticleSystem *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ParticleSystem,0,1,"ParticleSystem_isDead");
   result = (bool)((love::ParticleSystem const *)arg1)->isDead();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParticleSystem_isActive(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ParticleSystem *arg1 = (love::ParticleSystem *) 0 ;
+  bool result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::ParticleSystem *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ParticleSystem,0,1,"ParticleSystem_isActive");
+  result = (bool)((love::ParticleSystem const *)arg1)->isActive();
   SWIG_arg=0;
   lua_pushboolean(L,(int)result); SWIG_arg++;
   return SWIG_arg;
@@ -21530,7 +21586,10 @@ static swig_lua_method swig_love_ParticleSystem_methods[] = {
     {"getLifetime", _wrap_ParticleSystem_getLifetime}, 
     {"setLifetime", _wrap_ParticleSystem_setLifetime}, 
     {"getAge", _wrap_ParticleSystem_getAge}, 
+    {"setLinger", _wrap_ParticleSystem_setLinger}, 
+    {"getLinger", _wrap_ParticleSystem_getLinger}, 
     {"isDead", _wrap_ParticleSystem_isDead}, 
+    {"isActive", _wrap_ParticleSystem_isActive}, 
     {"setParticlesPerSecond", _wrap_ParticleSystem_setParticlesPerSecond}, 
     {"addColor", _wrap_ParticleSystem_addColor}, 
     {"setSprite", _wrap_ParticleSystem_setSprite}, 
@@ -36605,6 +36664,44 @@ fail:
 }
 
 
+static int _wrap_SmartParticleSystem_setLinger(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::ParticleSystem > *arg1 = (boost::shared_ptr<love::ParticleSystem > *) 0 ;
+  float arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::ParticleSystem > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t,0,1,"SmartParticleSystem_setLinger");
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setLinger(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartParticleSystem_getLinger(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::ParticleSystem > *arg1 = (boost::shared_ptr<love::ParticleSystem > *) 0 ;
+  float result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::ParticleSystem > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t,0,1,"SmartParticleSystem_getLinger");
+  result = (float)(*arg1)->getLinger();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartParticleSystem_isDead(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::ParticleSystem > *arg1 = (boost::shared_ptr<love::ParticleSystem > *) 0 ;
@@ -36613,6 +36710,24 @@ static int _wrap_SmartParticleSystem_isDead(lua_State* L) {
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::ParticleSystem > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t,0,1,"SmartParticleSystem_isDead");
   result = (bool)(*arg1)->isDead();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartParticleSystem_isActive(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::ParticleSystem > *arg1 = (boost::shared_ptr<love::ParticleSystem > *) 0 ;
+  bool result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::ParticleSystem > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t,0,1,"SmartParticleSystem_isActive");
+  result = (bool)(*arg1)->isActive();
   SWIG_arg=0;
   lua_pushboolean(L,(int)result); SWIG_arg++;
   return SWIG_arg;
@@ -38598,7 +38713,10 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_ParticleSystem_Sg__methods[
     {"getLifetime", _wrap_SmartParticleSystem_getLifetime}, 
     {"setLifetime", _wrap_SmartParticleSystem_setLifetime}, 
     {"getAge", _wrap_SmartParticleSystem_getAge}, 
+    {"setLinger", _wrap_SmartParticleSystem_setLinger}, 
+    {"getLinger", _wrap_SmartParticleSystem_getLinger}, 
     {"isDead", _wrap_SmartParticleSystem_isDead}, 
+    {"isActive", _wrap_SmartParticleSystem_isActive}, 
     {"setParticlesPerSecond", _wrap_SmartParticleSystem_setParticlesPerSecond}, 
     {"addColor", _wrap_SmartParticleSystem_addColor}, 
     {"setSprite", _wrap_SmartParticleSystem_setSprite}, 
@@ -41914,7 +42032,10 @@ static const struct luaL_reg swig_commands[] = {
     { "ParticleSystem_getLifetime", _wrap_ParticleSystem_getLifetime},
     { "ParticleSystem_setLifetime", _wrap_ParticleSystem_setLifetime},
     { "ParticleSystem_getAge", _wrap_ParticleSystem_getAge},
+    { "ParticleSystem_setLinger", _wrap_ParticleSystem_setLinger},
+    { "ParticleSystem_getLinger", _wrap_ParticleSystem_getLinger},
     { "ParticleSystem_isDead", _wrap_ParticleSystem_isDead},
+    { "ParticleSystem_isActive", _wrap_ParticleSystem_isActive},
     { "ParticleSystem_setParticlesPerSecond", _wrap_ParticleSystem_setParticlesPerSecond},
     { "ParticleSystem_addColor",_wrap_ParticleSystem_addColor},
     { "ParticleSystem_setSprite",_wrap_ParticleSystem_setSprite},
@@ -42315,7 +42436,10 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartParticleSystem_getLifetime", _wrap_SmartParticleSystem_getLifetime},
     { "SmartParticleSystem_setLifetime", _wrap_SmartParticleSystem_setLifetime},
     { "SmartParticleSystem_getAge", _wrap_SmartParticleSystem_getAge},
+    { "SmartParticleSystem_setLinger", _wrap_SmartParticleSystem_setLinger},
+    { "SmartParticleSystem_getLinger", _wrap_SmartParticleSystem_getLinger},
     { "SmartParticleSystem_isDead", _wrap_SmartParticleSystem_isDead},
+    { "SmartParticleSystem_isActive", _wrap_SmartParticleSystem_isActive},
     { "SmartParticleSystem_setParticlesPerSecond", _wrap_SmartParticleSystem_setParticlesPerSecond},
     { "SmartParticleSystem_addColor",_wrap_SmartParticleSystem_addColor},
     { "SmartParticleSystem_setSprite",_wrap_SmartParticleSystem_setSprite},

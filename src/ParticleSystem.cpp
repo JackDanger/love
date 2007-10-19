@@ -9,7 +9,7 @@ const float to_rad = (pi/180.0f);
 namespace love
 {
 
-	ParticleSystem::ParticleSystem() : spawnBuffer(0), lifetime(-1), age(0), additive(true)
+	ParticleSystem::ParticleSystem() : spawnBuffer(0), lifetime(-1), age(0), linger(0), additive(true)
 	{
 		// Init members
 		fillInterval(direction, 0, 360);
@@ -213,6 +213,16 @@ namespace love
 		this->lifetime = lifetime;
 	}
 
+	void ParticleSystem::setLinger(float linger)
+	{
+		this->linger = linger;
+	}
+
+	float ParticleSystem::getLinger()
+	{
+		return linger;
+	}
+
 	float ParticleSystem::getAge() const
 	{
 		return age;
@@ -222,10 +232,15 @@ namespace love
 	{
 		if(lifetime == -1) return false;
 
-		return age >= lifetime;
+		return age >= lifetime + linger;
 	}
 
+	bool ParticleSystem::isActive() const
+	{
+		if(lifetime == -1) return false;
 
+		return age >= lifetime;
+	}
 
 	void ParticleSystem::setSprite(const pSprite * sprite)
 	{
@@ -349,7 +364,7 @@ namespace love
 		spawnBuffer += dt;
 		
 		// Spawn correct amount of particles
-		while(!isDead() && spawnBuffer >= spawnFreq)
+		while(!isActive() && spawnBuffer >= spawnFreq)
 		{
 			spawnBuffer -= spawnFreq;
 			spawn(spawnBuffer);
@@ -379,7 +394,6 @@ namespace love
 
 		// Update particle system age.
 		age += dt;
-
 	}
 
 	void ParticleSystem::render()

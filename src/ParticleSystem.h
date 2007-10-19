@@ -87,6 +87,7 @@ namespace love
 
 		// elapsedTime
 		float age;
+		float linger;
 
 		float spawnBuffer;
 		float spawnFreq;
@@ -201,7 +202,29 @@ namespace love
 		**/
 		float getAge() const;
 
+		/**
+		* @brief Sets how long the system should be alive after age > life.
+		* @param linger The new linger value.
+		**/ 
+		void setLinger(float linger);
+
+		/**
+		* @brief Gets the amount of time this system stays alive after age > life.
+		* @return The amount of time to linger after age > life.
+		**/
+		float getLinger();
+
+		/**
+		* @brief Checks whether a system is dead or not.
+		* @return True if age >= life + linger (or life = -1),  false otherwise.
+		**/
 		bool isDead() const;
+
+		/**
+		* @brief Checks whether the system is active or not.
+		* @return True if age >= life (or life = -1), false otherwise.
+		**/
+		bool isActive() const;
 
 		/**
 		* @brief Gets sprite.
