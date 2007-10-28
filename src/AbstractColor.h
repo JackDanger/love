@@ -44,63 +44,84 @@ namespace love
 		 * @return The amount of red.
 		 * @brief Returns the amount of red is in the color.
 		 **/
-		int getRed() const;
+		virtual int getRed() const;
 
 		/**
 		 * @return The amount of green.
 		 * @brief Returns the amount of green is in the color.
 		 **/
-		int getGreen() const;
+		virtual int getGreen() const;
 
 		/**
 		 * @return The amount of blue.
 		 * @brief Returns the amount of blue is in the color.
 		 **/
-		int getBlue() const;
+		virtual int getBlue() const;
 
 		/**
 		 * @return The amount of alpha.
 		 * @brief Returns the amount of alpha.
 		 **/
-		int getAlpha() const;
+		virtual int getAlpha() const;
 
 		/**
 		 * @return The color code.
 		 * @brief Formats the color values into a color code (syntax: 0xRRGGBB).
 		 **/
-		int getCode() const;
+		virtual int getCode() const;
 
 		/**
 		 * @param red The amount of red.
 		 * @brief Sets the amount of red.
 		 **/
-		void setRed(int red);
+		virtual void setRed(int red);
 
 		/**
 		 * @param green The amount of green.
 		 * @brief Sets the amount of green.
 		 **/
-		void setGreen(int green);
+		virtual void setGreen(int green);
 
 		/**
 		 * @param blue The amount of blue.
 		 * @brief Sets the amount of blue.
 		 **/
-		void setBlue(int blue);
+		virtual void setBlue(int blue);
 
 		/**
 		 * @param alpha The amount of alpha.
 		 * @brief Sets the amount of alpha.
 		 **/
-		void setAlpha(int alpha);
+		virtual void setAlpha(int alpha);
 
 		/**
-		* @brief Sets the color using function value t.
-		* @param t A value of 0 to 1 representing the start and the end of the dynamic color.
-		**/
-		virtual void setColor(float t) = 0;
+		 * @param code The color code (in the syntax: 0xRRGGBB).
+		 * @brief Sets the variables with the values derived from the color code.
+		 **/
+		virtual void setColor(int code);
 
+		/**
+		 * @param red The amount of red.
+		 * @param green The amount of green.
+		 * @param blue The amount of blue.
+		 * @brief Sets the variables to the approriate new values.
+		 **/
+		virtual void setColor(int r, int g, int b);
+
+		/**
+		 * @param red The amount of red.
+		 * @param green The amount of green.
+		 * @param blue The amount of blue.
+		 * @param alpha The amount of alpha.
+		 * @brief Sets the variables to the approriate new values.
+		 **/
 		virtual void setColor(int r, int g, int b, int a);
+
+		/**
+		 * @brief Sets the color using function value t.
+		 * @param t A value of 0 to 1 representing the start and the end of the dynamic color.
+		 **/
+		virtual void setColor(float t) = 0;
 
 		virtual void update(float dt) = 0;
 	};

@@ -3017,12 +3017,12 @@ fail:
 static int _wrap_AbstractColor_setColor__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractColor *arg1 = (love::AbstractColor *) 0 ;
-  float arg2 ;
+  int arg2 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
   arg1=(love::AbstractColor *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractColor,0,1,"AbstractColor_setColor");
-  arg2 = (float)lua_tonumber(L, 2);
+  arg2 = (int)lua_tonumber(L, 2);
   (arg1)->setColor(arg2);
   SWIG_arg=0;
   
@@ -3035,6 +3035,32 @@ fail:
 
 
 static int _wrap_AbstractColor_setColor__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  love::AbstractColor *arg1 = (love::AbstractColor *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  arg1=(love::AbstractColor *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractColor,0,1,"AbstractColor_setColor");
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  (arg1)->setColor(arg2,arg3,arg4);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AbstractColor_setColor__SWIG_2(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractColor *arg1 = (love::AbstractColor *) 0 ;
   int arg2 ;
@@ -3053,6 +3079,26 @@ static int _wrap_AbstractColor_setColor__SWIG_1(lua_State* L) {
   arg4 = (int)lua_tonumber(L, 4);
   arg5 = (int)lua_tonumber(L, 5);
   (arg1)->setColor(arg2,arg3,arg4,arg5);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AbstractColor_setColor__SWIG_3(lua_State* L) {
+  int SWIG_arg = -1;
+  love::AbstractColor *arg1 = (love::AbstractColor *) 0 ;
+  float arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::AbstractColor *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractColor,0,1,"AbstractColor_setColor");
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setColor(arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -3089,6 +3135,54 @@ static int _wrap_AbstractColor_setColor(lua_State* L) {
       }
     }
   }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__AbstractColor, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_AbstractColor_setColor__SWIG_3(L);
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__AbstractColor, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_AbstractColor_setColor__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
   if (argc == 5) {
     int _v;
     {
@@ -3116,7 +3210,7 @@ static int _wrap_AbstractColor_setColor(lua_State* L) {
               _v = lua_isnumber(L,argv[4]);
             }
             if (_v) {
-              return _wrap_AbstractColor_setColor__SWIG_1(L);
+              return _wrap_AbstractColor_setColor__SWIG_2(L);
             }
           }
         }
@@ -3257,57 +3351,6 @@ fail:
 }
 
 
-static int _wrap_new_Color__SWIG_4(lua_State* L) {
-  int SWIG_arg = -1;
-  float arg1 ;
-  float arg2 ;
-  float arg3 ;
-  float arg4 ;
-  love::Color *result = 0 ;
-  
-  if(!lua_isnumber(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
-  arg1 = (float)lua_tonumber(L, 1);
-  arg2 = (float)lua_tonumber(L, 2);
-  arg3 = (float)lua_tonumber(L, 3);
-  arg4 = (float)lua_tonumber(L, 4);
-  result = (love::Color *)new love::Color(arg1,arg2,arg3,arg4);
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__Color,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_Color__SWIG_5(lua_State* L) {
-  int SWIG_arg = -1;
-  float arg1 ;
-  float arg2 ;
-  float arg3 ;
-  love::Color *result = 0 ;
-  
-  if(!lua_isnumber(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  arg1 = (float)lua_tonumber(L, 1);
-  arg2 = (float)lua_tonumber(L, 2);
-  arg3 = (float)lua_tonumber(L, 3);
-  result = (love::Color *)new love::Color(arg1,arg2,arg3);
-  SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__Color,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_new_Color(lua_State* L) {
   int argc;
   int argv[5]={
@@ -3342,49 +3385,6 @@ static int _wrap_new_Color(lua_State* L) {
         }
         if (_v) {
           return _wrap_new_Color__SWIG_3(L);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      _v = lua_isnumber(L,argv[0]);
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          return _wrap_new_Color__SWIG_5(L);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      _v = lua_isnumber(L,argv[0]);
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            return _wrap_new_Color__SWIG_4(L);
-          }
         }
       }
     }
@@ -3427,500 +3427,6 @@ static int _wrap_delete_Color(lua_State* L) {
   arg1=(love::Color *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Color,0,1,"delete_Color");
   delete arg1;
   
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Color_setRed__SWIG_0(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Color *arg1 = (love::Color *) 0 ;
-  int arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(love::Color *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Color,0,1,"Color_setRed");
-  arg2 = (int)lua_tonumber(L, 2);
-  (arg1)->setRed(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Color_setRed__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Color *arg1 = (love::Color *) 0 ;
-  float arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(love::Color *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Color,0,1,"Color_setRed");
-  arg2 = (float)lua_tonumber(L, 2);
-  (arg1)->setRed(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Color_setRed(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Color, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_Color_setRed__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Color, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_Color_setRed__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'Color_setRed'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_Color_setBlue__SWIG_0(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Color *arg1 = (love::Color *) 0 ;
-  int arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(love::Color *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Color,0,1,"Color_setBlue");
-  arg2 = (int)lua_tonumber(L, 2);
-  (arg1)->setBlue(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Color_setBlue__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Color *arg1 = (love::Color *) 0 ;
-  float arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(love::Color *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Color,0,1,"Color_setBlue");
-  arg2 = (float)lua_tonumber(L, 2);
-  (arg1)->setBlue(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Color_setBlue(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Color, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_Color_setBlue__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Color, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_Color_setBlue__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'Color_setBlue'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_Color_setGreen__SWIG_0(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Color *arg1 = (love::Color *) 0 ;
-  int arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(love::Color *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Color,0,1,"Color_setGreen");
-  arg2 = (int)lua_tonumber(L, 2);
-  (arg1)->setGreen(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Color_setGreen__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Color *arg1 = (love::Color *) 0 ;
-  float arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(love::Color *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Color,0,1,"Color_setGreen");
-  arg2 = (float)lua_tonumber(L, 2);
-  (arg1)->setGreen(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Color_setGreen(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Color, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_Color_setGreen__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Color, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_Color_setGreen__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'Color_setGreen'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_Color_setAlpha__SWIG_0(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Color *arg1 = (love::Color *) 0 ;
-  int arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(love::Color *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Color,0,1,"Color_setAlpha");
-  arg2 = (int)lua_tonumber(L, 2);
-  (arg1)->setAlpha(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Color_setAlpha__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Color *arg1 = (love::Color *) 0 ;
-  float arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(love::Color *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Color,0,1,"Color_setAlpha");
-  arg2 = (float)lua_tonumber(L, 2);
-  (arg1)->setAlpha(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Color_setAlpha(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Color, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_Color_setAlpha__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Color, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_Color_setAlpha__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'Color_setAlpha'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_Color_setColor__SWIG_0(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Color *arg1 = (love::Color *) 0 ;
-  int arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(love::Color *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Color,0,1,"Color_setColor");
-  arg2 = (int)lua_tonumber(L, 2);
-  (arg1)->setColor(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Color_setColor__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Color *arg1 = (love::Color *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  int arg4 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
-  arg1=(love::Color *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Color,0,1,"Color_setColor");
-  arg2 = (int)lua_tonumber(L, 2);
-  arg3 = (int)lua_tonumber(L, 3);
-  arg4 = (int)lua_tonumber(L, 4);
-  (arg1)->setColor(arg2,arg3,arg4);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Color_setColor__SWIG_2(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Color *arg1 = (love::Color *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  int arg4 ;
-  int arg5 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
-  if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
-  arg1=(love::Color *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Color,0,1,"Color_setColor");
-  arg2 = (int)lua_tonumber(L, 2);
-  arg3 = (int)lua_tonumber(L, 3);
-  arg4 = (int)lua_tonumber(L, 4);
-  arg5 = (int)lua_tonumber(L, 5);
-  (arg1)->setColor(arg2,arg3,arg4,arg5);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Color_setColor__SWIG_3(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Color *arg1 = (love::Color *) 0 ;
-  float arg2 ;
-  float arg3 ;
-  float arg4 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
-  arg1=(love::Color *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Color,0,1,"Color_setColor");
-  arg2 = (float)lua_tonumber(L, 2);
-  arg3 = (float)lua_tonumber(L, 3);
-  arg4 = (float)lua_tonumber(L, 4);
-  (arg1)->setColor(arg2,arg3,arg4);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_Color_setColor__SWIG_4(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Color *arg1 = (love::Color *) 0 ;
-  float arg2 ;
-  float arg3 ;
-  float arg4 ;
-  float arg5 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
-  if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
-  arg1=(love::Color *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Color,0,1,"Color_setColor");
-  arg2 = (float)lua_tonumber(L, 2);
-  arg3 = (float)lua_tonumber(L, 3);
-  arg4 = (float)lua_tonumber(L, 4);
-  arg5 = (float)lua_tonumber(L, 5);
-  (arg1)->setColor(arg2,arg3,arg4,arg5);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -3979,7 +3485,7 @@ fail:
 }
 
 
-static int _wrap_Color_setColor__SWIG_5(lua_State* L) {
+static int _wrap_Color_setColor(lua_State* L) {
   int SWIG_arg = -1;
   love::Color *arg1 = (love::Color *) 0 ;
   float arg2 ;
@@ -3999,192 +3505,11 @@ fail:
 }
 
 
-static int _wrap_Color_setColor(lua_State* L) {
-  int argc;
-  int argv[6]={
-    1,2,3,4,5,6
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Color, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_Color_setColor__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Color, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_Color_setColor__SWIG_5(L);
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Color, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            return _wrap_Color_setColor__SWIG_3(L);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Color, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            return _wrap_Color_setColor__SWIG_1(L);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Color, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            {
-              _v = lua_isnumber(L,argv[4]);
-            }
-            if (_v) {
-              return _wrap_Color_setColor__SWIG_4(L);
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Color, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            {
-              _v = lua_isnumber(L,argv[4]);
-            }
-            if (_v) {
-              return _wrap_Color_setColor__SWIG_2(L);
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'Color_setColor'");
-  lua_error(L);return 0;
-}
-
-
 static void swig_delete_Color(void *obj) {
 love::Color *arg1 = (love::Color *) obj;
 delete arg1;
 }
 static swig_lua_method swig_love_Color_methods[] = {
-    {"setRed", _wrap_Color_setRed}, 
-    {"setBlue", _wrap_Color_setBlue}, 
-    {"setGreen", _wrap_Color_setGreen}, 
-    {"setAlpha", _wrap_Color_setAlpha}, 
     {"getGradient", _wrap_Color_getGradient}, 
     {"update", _wrap_Color_update}, 
     {"setColor", _wrap_Color_setColor}, 
@@ -35884,12 +35209,12 @@ fail:
 static int _wrap_SmartAbstractColor_setColor__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::AbstractColor > *arg1 = (boost::shared_ptr<love::AbstractColor > *) 0 ;
-  float arg2 ;
+  int arg2 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::AbstractColor > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,1,"SmartAbstractColor_setColor");
-  arg2 = (float)lua_tonumber(L, 2);
+  arg2 = (int)lua_tonumber(L, 2);
   (*arg1)->setColor(arg2);
   SWIG_arg=0;
   
@@ -35902,6 +35227,32 @@ fail:
 
 
 static int _wrap_SmartAbstractColor_setColor__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::AbstractColor > *arg1 = (boost::shared_ptr<love::AbstractColor > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  arg1=(boost::shared_ptr<love::AbstractColor > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,1,"SmartAbstractColor_setColor");
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  (*arg1)->setColor(arg2,arg3,arg4);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAbstractColor_setColor__SWIG_2(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::AbstractColor > *arg1 = (boost::shared_ptr<love::AbstractColor > *) 0 ;
   int arg2 ;
@@ -35920,6 +35271,26 @@ static int _wrap_SmartAbstractColor_setColor__SWIG_1(lua_State* L) {
   arg4 = (int)lua_tonumber(L, 4);
   arg5 = (int)lua_tonumber(L, 5);
   (*arg1)->setColor(arg2,arg3,arg4,arg5);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAbstractColor_setColor__SWIG_3(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::AbstractColor > *arg1 = (boost::shared_ptr<love::AbstractColor > *) 0 ;
+  float arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::AbstractColor > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,1,"SmartAbstractColor_setColor");
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setColor(arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -35956,6 +35327,54 @@ static int _wrap_SmartAbstractColor_setColor(lua_State* L) {
       }
     }
   }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_SmartAbstractColor_setColor__SWIG_3(L);
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_SmartAbstractColor_setColor__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
   if (argc == 5) {
     int _v;
     {
@@ -35983,7 +35402,7 @@ static int _wrap_SmartAbstractColor_setColor(lua_State* L) {
               _v = lua_isnumber(L,argv[4]);
             }
             if (_v) {
-              return _wrap_SmartAbstractColor_setColor__SWIG_1(L);
+              return _wrap_SmartAbstractColor_setColor__SWIG_2(L);
             }
           }
         }
@@ -36185,697 +35604,6 @@ fail:
 }
 
 
-static int _wrap_SmartColor_setRed__SWIG_0(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
-  int arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setRed");
-  arg2 = (int)lua_tonumber(L, 2);
-  (*arg1)->setRed(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartColor_setRed__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
-  float arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setRed");
-  arg2 = (float)lua_tonumber(L, 2);
-  (*arg1)->setRed(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartColor_setRed(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_SmartColor_setRed__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_SmartColor_setRed__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'SmartColor_setRed'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_SmartColor_setBlue__SWIG_0(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
-  int arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setBlue");
-  arg2 = (int)lua_tonumber(L, 2);
-  (*arg1)->setBlue(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartColor_setBlue__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
-  float arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setBlue");
-  arg2 = (float)lua_tonumber(L, 2);
-  (*arg1)->setBlue(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartColor_setBlue(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_SmartColor_setBlue__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_SmartColor_setBlue__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'SmartColor_setBlue'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_SmartColor_setGreen__SWIG_0(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
-  int arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setGreen");
-  arg2 = (int)lua_tonumber(L, 2);
-  (*arg1)->setGreen(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartColor_setGreen__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
-  float arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setGreen");
-  arg2 = (float)lua_tonumber(L, 2);
-  (*arg1)->setGreen(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartColor_setGreen(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_SmartColor_setGreen__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_SmartColor_setGreen__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'SmartColor_setGreen'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_SmartColor_setAlpha__SWIG_0(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
-  int arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setAlpha");
-  arg2 = (int)lua_tonumber(L, 2);
-  (*arg1)->setAlpha(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartColor_setAlpha__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
-  float arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setAlpha");
-  arg2 = (float)lua_tonumber(L, 2);
-  (*arg1)->setAlpha(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartColor_setAlpha(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_SmartColor_setAlpha__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_SmartColor_setAlpha__SWIG_1(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'SmartColor_setAlpha'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_SmartColor_setColor__SWIG_0(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
-  int arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setColor");
-  arg2 = (int)lua_tonumber(L, 2);
-  (*arg1)->setColor(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartColor_setColor__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  int arg4 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
-  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setColor");
-  arg2 = (int)lua_tonumber(L, 2);
-  arg3 = (int)lua_tonumber(L, 3);
-  arg4 = (int)lua_tonumber(L, 4);
-  (*arg1)->setColor(arg2,arg3,arg4);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartColor_setColor__SWIG_2(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  int arg4 ;
-  int arg5 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
-  if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
-  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setColor");
-  arg2 = (int)lua_tonumber(L, 2);
-  arg3 = (int)lua_tonumber(L, 3);
-  arg4 = (int)lua_tonumber(L, 4);
-  arg5 = (int)lua_tonumber(L, 5);
-  (*arg1)->setColor(arg2,arg3,arg4,arg5);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartColor_setColor__SWIG_3(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
-  float arg2 ;
-  float arg3 ;
-  float arg4 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
-  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setColor");
-  arg2 = (float)lua_tonumber(L, 2);
-  arg3 = (float)lua_tonumber(L, 3);
-  arg4 = (float)lua_tonumber(L, 4);
-  (*arg1)->setColor(arg2,arg3,arg4);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartColor_setColor__SWIG_4(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
-  float arg2 ;
-  float arg3 ;
-  float arg4 ;
-  float arg5 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
-  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
-  if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
-  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setColor");
-  arg2 = (float)lua_tonumber(L, 2);
-  arg3 = (float)lua_tonumber(L, 3);
-  arg4 = (float)lua_tonumber(L, 4);
-  arg5 = (float)lua_tonumber(L, 5);
-  (*arg1)->setColor(arg2,arg3,arg4,arg5);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartColor_setColor__SWIG_5(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
-  float arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setColor");
-  arg2 = (float)lua_tonumber(L, 2);
-  (*arg1)->setColor(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartColor_setColor(lua_State* L) {
-  int argc;
-  int argv[6]={
-    1,2,3,4,5,6
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_SmartColor_setColor__SWIG_0(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_SmartColor_setColor__SWIG_5(L);
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            return _wrap_SmartColor_setColor__SWIG_3(L);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            return _wrap_SmartColor_setColor__SWIG_1(L);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            {
-              _v = lua_isnumber(L,argv[4]);
-            }
-            if (_v) {
-              return _wrap_SmartColor_setColor__SWIG_4(L);
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Color_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            {
-              _v = lua_isnumber(L,argv[4]);
-            }
-            if (_v) {
-              return _wrap_SmartColor_setColor__SWIG_2(L);
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'SmartColor_setColor'");
-  lua_error(L);return 0;
-}
-
-
 static int _wrap_SmartColor_getGradient(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
@@ -36914,6 +35642,26 @@ static int _wrap_SmartColor_update(lua_State* L) {
   arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_update");
   arg2 = (float)lua_tonumber(L, 2);
   (*arg1)->update(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartColor_setColor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
+  float arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setColor");
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setColor(arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -37158,6 +35906,86 @@ fail:
 }
 
 
+static int _wrap_SmartColor_setRed(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setRed");
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setRed(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartColor_setGreen(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setGreen");
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setGreen(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartColor_setBlue(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setBlue");
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setBlue(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartColor_setAlpha(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Color > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Color_t,0,1,"SmartColor_setAlpha");
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setAlpha(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartColor_getName(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Color > *arg1 = (boost::shared_ptr<love::Color > *) 0 ;
@@ -37245,18 +36073,18 @@ delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_Color_Sg__methods[] = {
     {"__deref__", _wrap_SmartColor___deref__}, 
-    {"setRed", _wrap_SmartColor_setRed}, 
-    {"setBlue", _wrap_SmartColor_setBlue}, 
-    {"setGreen", _wrap_SmartColor_setGreen}, 
-    {"setAlpha", _wrap_SmartColor_setAlpha}, 
-    {"setColor", _wrap_SmartColor_setColor}, 
     {"getGradient", _wrap_SmartColor_getGradient}, 
     {"update", _wrap_SmartColor_update}, 
+    {"setColor", _wrap_SmartColor_setColor}, 
     {"getRed", _wrap_SmartColor_getRed}, 
     {"getGreen", _wrap_SmartColor_getGreen}, 
     {"getBlue", _wrap_SmartColor_getBlue}, 
     {"getAlpha", _wrap_SmartColor_getAlpha}, 
     {"getCode", _wrap_SmartColor_getCode}, 
+    {"setRed", _wrap_SmartColor_setRed}, 
+    {"setGreen", _wrap_SmartColor_setGreen}, 
+    {"setBlue", _wrap_SmartColor_setBlue}, 
+    {"setAlpha", _wrap_SmartColor_setAlpha}, 
     {"getName", _wrap_SmartColor_getName}, 
     {"toString", _wrap_SmartColor_toString}, 
     {"getType", _wrap_SmartColor_getType}, 
@@ -45009,13 +43837,9 @@ static const struct luaL_reg swig_commands[] = {
     { "AbstractColor_update", _wrap_AbstractColor_update},
     { "new_Color",_wrap_new_Color},
     { "delete_Color", _wrap_delete_Color},
-    { "Color_setRed",_wrap_Color_setRed},
-    { "Color_setBlue",_wrap_Color_setBlue},
-    { "Color_setGreen",_wrap_Color_setGreen},
-    { "Color_setAlpha",_wrap_Color_setAlpha},
     { "Color_getGradient", _wrap_Color_getGradient},
     { "Color_update", _wrap_Color_update},
-    { "Color_setColor",_wrap_Color_setColor},
+    { "Color_setColor", _wrap_Color_setColor},
     { "AbstractFont_width_set", _wrap_AbstractFont_width_set},
     { "AbstractFont_width_get", _wrap_AbstractFont_width_get},
     { "delete_AbstractFont", _wrap_delete_AbstractFont},
@@ -45917,13 +44741,9 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartColor___deref__", _wrap_SmartColor___deref__},
     { "new_SmartColor", _wrap_new_SmartColor},
     { "delete_SmartColor", _wrap_delete_SmartColor},
-    { "SmartColor_setRed",_wrap_SmartColor_setRed},
-    { "SmartColor_setBlue",_wrap_SmartColor_setBlue},
-    { "SmartColor_setGreen",_wrap_SmartColor_setGreen},
-    { "SmartColor_setAlpha",_wrap_SmartColor_setAlpha},
-    { "SmartColor_setColor",_wrap_SmartColor_setColor},
     { "SmartColor_getGradient", _wrap_SmartColor_getGradient},
     { "SmartColor_update", _wrap_SmartColor_update},
+    { "SmartColor_setColor", _wrap_SmartColor_setColor},
     { "SmartColor_LOVE_COLOR_BLACK_get", _wrap_SmartColor_LOVE_COLOR_BLACK_get},
     { "SmartColor_LOVE_COLOR_WHITE_get", _wrap_SmartColor_LOVE_COLOR_WHITE_get},
     { "SmartColor_LOVE_COLOR_RED_get", _wrap_SmartColor_LOVE_COLOR_RED_get},
@@ -45937,6 +44757,10 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartColor_getBlue", _wrap_SmartColor_getBlue},
     { "SmartColor_getAlpha", _wrap_SmartColor_getAlpha},
     { "SmartColor_getCode", _wrap_SmartColor_getCode},
+    { "SmartColor_setRed", _wrap_SmartColor_setRed},
+    { "SmartColor_setGreen", _wrap_SmartColor_setGreen},
+    { "SmartColor_setBlue", _wrap_SmartColor_setBlue},
+    { "SmartColor_setAlpha", _wrap_SmartColor_setAlpha},
     { "SmartColor_getName", _wrap_SmartColor_getName},
     { "SmartColor_toString", _wrap_SmartColor_toString},
     { "SmartColor_getType", _wrap_SmartColor_getType},

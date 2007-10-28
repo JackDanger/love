@@ -43,7 +43,7 @@ namespace love
 		 * @param alpha The amount of alpha (a value between 0 and 1).
 		 * @brief Initializes all the variables with the appropriate values.
 		 **/
-		Color(float red, float green, float blue, float alpha = 1.0);
+		//Color(float red, float green, float blue, float alpha = 1.0);
 
 		/**
 		 * @brief Does nothing.
@@ -51,75 +51,28 @@ namespace love
 		~Color();
 
 		/**
-		 * @param value The amount of red.
-		 * @brief Sets the amount of red to the new value.
-		 **/
-		void setRed(int value);
-
-		/**
 		 * @param value The amount of red (a value between 0 and 1).
 		 * @brief Sets the amount of red to the new value.
 		 **/
-		void setRed(float value);
-
-		/**
-		 * @param value The amount of blue.
-		 * @brief Sets the amount of blue to the new value.
-		 **/
-		void setBlue(int value);
+		//void setRed(float value);
 
 		/**
 		 * @param value The amount of blue (a value between 0 and 1).
 		 * @brief Sets the amount of blue to the new value.
 		 **/
-		void setBlue(float value);
-
-		/**
-		 * @param value The amount of green.
-		 * @brief Sets the amount of green to the new value.
-		 **/
-		void setGreen(int value);
+		//void setBlue(float value);
 
 		/**
 		 * @param value The amount of green (a value between 0 and 1).
 		 * @brief Sets the amount of green to the new value.
 		 **/
-		void setGreen(float value);
-
-		/**
-		 * @param value The amount of alpha.
-		 * @brief Sets the amount of alpha to the new value.
-		 **/
-		void setAlpha(int value);
+		//void setGreen(float value);
 
 		/**
 		 * @param value The amount of alpha (a value between 0 and 1).
 		 * @brief Sets the amount of alpha to the new value.
 		 **/
-		void setAlpha(float value);
-
-		/**
-		 * @param code The color code (in the syntax: 0xRRGGBB).
-		 * @brief Sets the variables with the values derived from the color code.
-		 **/
-		void setColor(int code);
-
-		/**
-		 * @param red The amount of red.
-		 * @param green The amount of green.
-		 * @param blue The amount of blue.
-		 * @brief Sets the variables to the approriate new values.
-		 **/
-		void setColor(int red, int green, int blue);
-
-		/**
-		 * @param red The amount of red.
-		 * @param green The amount of green.
-		 * @param blue The amount of blue.
-		 * @param alpha The amount of alpha.
-		 * @brief Sets the variables to the approriate new values.
-		 **/
-		void setColor(int red, int green, int blue, int alpha);
+		//void setAlpha(float value);
 
 		/**
 		 * @param red The amount of red (a value between 0 and 1).
@@ -127,7 +80,7 @@ namespace love
 		 * @param blue The amount of blue (a value between 0 and 1).
 		 * @brief Sets the variables to the approriate new values.
 		 **/
-		void setColor(float red, float green, float blue);
+		//void setColor(float red, float green, float blue);
 
 		/**
 		 * @param red The amount of red (a value between 0 and 1).
@@ -136,7 +89,7 @@ namespace love
 		 * @param alpha The amount of alpha (a value between 0 and 1).
 		 * @brief Sets the variables to the approriate new values.
 		 **/
-		void setColor(float red, float green, float blue, float alpha);
+		//void setColor(float red, float green, float blue, float alpha);
 
 
 		/**

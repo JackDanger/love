@@ -56,6 +56,20 @@ namespace love
 		this->alpha = alpha;
 	}
 
+	void AbstractColor::setColor(int code)
+	{
+		red = (code & 0xFF0000) >> 16;
+		green = (code & 0x00FF00) >> 8;
+		blue = code & 0x0000FF;
+	}
+
+	void AbstractColor::setColor(int red, int green, int blue)
+	{
+		this->red = red;
+		this->green = green;
+		this->blue = blue;
+	}
+
 	void AbstractColor::setColor(int red, int green, int blue, int alpha)
 	{
 		this->red = red;

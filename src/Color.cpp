@@ -23,30 +23,20 @@ namespace love
 		this->alpha		= alpha;
 	}
 
-	Color::Color(float red, float green, float blue, float alpha)
+	/*Color::Color(float red, float green, float blue, float alpha)
 	{
 		this->red = (int)(red * 255);
 		this->green = (int)(green * 255);
 		this->blue = (int)(blue * 255);
 		this->alpha = (int)(alpha * 255);
-	}
+	}*/
 
 	Color::~Color()
 	{}
 
-	void Color::setRed(int value)
-	{
-		red = value;
-	}
-
-	void Color::setRed(float value)
+	/*void Color::setRed(float value)
 	{
 		red = (int)(value * 255);
-	}
-
-	void Color::setGreen(int value)
-	{
-		green = value;
 	}
 
 	void Color::setGreen(float value)
@@ -54,46 +44,14 @@ namespace love
 		green = (int)(value * 255);
 	}
 
-	void Color::setBlue(int value)
-	{
-		blue = value;
-	}
-
 	void Color::setBlue(float value)
 	{
 		blue = (int)(value * 255);
 	}
 
-	void Color::setAlpha(int value)
-	{
-		alpha = value;
-	}
-
 	void Color::setAlpha(float value)
 	{
 		alpha = (int)(value * 255);
-	}
-
-	void Color::setColor(int code)
-	{
-		red = (code & 0xFF0000) >> 16;
-		green = (code & 0x00FF00) >> 8;
-		blue = code & 0x0000FF;
-	}
-
-	void Color::setColor(int red, int green, int blue)
-	{
-		this->red = red;
-		this->green = green;
-		this->blue = blue;
-	}
-
-	void Color::setColor(int red, int green, int blue, int alpha)
-	{
-		this->red = red;
-		this->green = green;
-		this->blue = blue;
-		this->alpha = alpha;
 	}
 
 	void Color::setColor(float red, float green, float blue)
@@ -109,7 +67,7 @@ namespace love
 		this->green = (int)(green * 255);
 		this->blue = (int)(blue * 255);
 		this->alpha = (int)(alpha * 255);
-	}
+	}*/
 
 	Color Color::getGradient(Color * other, float amount)
 	{
