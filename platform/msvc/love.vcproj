@@ -269,6 +269,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\CheckBox.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Color.cpp"
 				>
 			</File>
@@ -430,6 +434,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Label.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\ListBox.cpp"
 				>
 			</File>
 			<File
@@ -609,6 +617,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\Slider.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\SmoothAnimatedColor.cpp"
 				>
 			</File>
@@ -748,6 +760,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Button.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\CheckBox.h"
 				>
 			</File>
 			<File
@@ -928,6 +944,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Label.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\ListBox.h"
 				>
 			</File>
 			<File
@@ -1160,6 +1180,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\SDLTimer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\Slider.h"
 				>
 			</File>
 			<File

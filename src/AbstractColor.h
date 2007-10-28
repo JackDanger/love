@@ -71,6 +71,30 @@ namespace love
 		int getCode() const;
 
 		/**
+		 * @param red The amount of red.
+		 * @brief Sets the amount of red.
+		 **/
+		void setRed(int red);
+
+		/**
+		 * @param green The amount of green.
+		 * @brief Sets the amount of green.
+		 **/
+		void setGreen(int green);
+
+		/**
+		 * @param blue The amount of blue.
+		 * @brief Sets the amount of blue.
+		 **/
+		void setBlue(int blue);
+
+		/**
+		 * @param alpha The amount of alpha.
+		 * @brief Sets the amount of alpha.
+		 **/
+		void setAlpha(int alpha);
+
+		/**
 		* @brief Sets the color using function value t.
 		* @param t A value of 0 to 1 representing the start and the end of the dynamic color.
 		**/

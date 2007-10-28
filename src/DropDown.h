@@ -28,7 +28,6 @@ namespace love
 		pAbstractColor selectionBackgroundColor;
 		pAbstractColor borderColor;
 		pAbstractColor buttonColor;
-		pAbstractColor buttonBackgroundColor;
 
 	public:
 		DropDown(GUIList * list);
@@ -47,7 +46,6 @@ namespace love
 		virtual void setSelectionBackgroundColor(const pAbstractColor * color);
 		virtual void setBorderColor(const pAbstractColor * color);
 		virtual void setButtonColor(const pAbstractColor * color);
-		virtual void setButtonBackgroundColor(const pAbstractColor * color);
 
 		virtual int getWidth();
 		virtual int getHeight();
@@ -69,4 +67,3 @@ namespace love
 }
 
 #endif
-

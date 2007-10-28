@@ -172,7 +172,11 @@
 **/
 %constant const int menu_vertical = 1;
 %constant const int menu_horizontal = 2;
-
+/**
+* Slider types.
+**/
+%constant const int slider_vertical = 1;
+%constant const int slider_horizontal = 0;
 
 /**
 * Event types.

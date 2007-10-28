@@ -7,7 +7,8 @@ main = {
 
 		-- variables
 		font = { standard = love.objects:newDefaultFont(12), big = love.objects:newDefaultFont(20), small = love.objects:newDefaultFont(7), image = love.objects:newImageFont(love.objects:newImage("letters.png"), 15, 15, "ABCDEFGHIJKLMNOPQRSTUVWXYZ.,!?") };
-		color = { black = love.objects:newColor(0x000000), white = love.objects:newColor(0xFFFFFF), shiznet = love.objects:newColor(0xF60968) };
+		color = { black = love.objects:newColor(0x000000), white = love.objects:newColor(0xFFFFFF), shiznet = love.objects:newColor(0xF60968), halfshiz = love.objects:newColor(0xF60968) };
+		color["halfshiz"]:setAlpha(200);
 		
 		love.graphics:setBackground(color["white"]);
 		love.graphics:setColor(color["black"]);
@@ -23,11 +24,11 @@ main = {
 		menu:setBorderColor(color["black"]);
 		menu:setBorderSize(2);
 		menu:align(love.align_left);
-		menu:setBackgroundColor(color["shiznet"]);
+		menu:setBackgroundColor(color["halfshiz"]);
 		--menu:setBackground(love.objects:newImage("zero.png"));
 		--menu:setFont(font["small"]);
-		menu:setSize(550,200);
-		menu:setPosition(200,200);
+		menu:setSize(650,200);
+		menu:setPosition(100,80);
 		menu:setPadding(10);
 		menu:setSpacing(3);
 		label = menu:addLabel("THIS IS A MENU");		
@@ -38,6 +39,7 @@ main = {
 		drop:add("one");
 		drop:add("two");
 		drop:add("four");
+		drop:setBackgroundColor(color["shiznet"]);
 		nested = menu:addMenu(love.menu_horizontal);
 		--nested:setFont(font["image"]);
 		nested:addLabel("NESTED MENU:  ");
@@ -48,7 +50,53 @@ main = {
 		rad_not = nested:addRadioButton("RAD_NOT", "NOT SPARTA");
 		nested:adjustSize();
 		nested:adjustContent();
+		
+		nested = menu:addMenu(love.menu_horizontal);
+		--nested:setFont(font["image"]);
+		nested:addLabel("ANOTHER NESTED MENU:  ");
+		check_sparta = nested:addCheckBox("CHECK_SPARTA", "SPARTA");
+		check_sparta:setMarked(true);
+		check_sparta:setDefaultImage(love.objects:newImage("unchecked.png"));
+		check_sparta:setMarkedImage(love.objects:newImage("checked.png"));
+		check_not = nested:addCheckBox("CHECK_NOT", "NOT SPARTA");
+		nested:adjustSize();
+		nested:adjustContent();
+		
 		menu:addMultilineLabel("Just wanted to let you know that the previous example (the one with the radio buttons) uses the event system. GUIchan has a built-in group-system for dealing with radio buttons (seeing as you are only supposed to be able to select one at a time), but I thought that it would just add one more value to keep track of and doing it manually yields more control. ^-^\n(ps: you can click and drag this menu around)");
+		
+		nested = menu:addMenu(love.menu_horizontal);
+		nested:setSpacing(5);
+		nested:addLabel("Sparta:");
+		slider_sparta = nested:addSlider("SLIDER_SPARTA", love.slider_horizontal, 0, 10);
+		slider_sparta:setMarkerImage(love.objects:newImage("slider_marker.png"));
+		slider_sparta:setBackgroundImage(love.objects:newImage("slider_back.png"));
+		slider_sparta:setBorderSize(0);
+		slider_sparta:adjustSize();
+		slider_sparta_label = nested:addLabel(slider_sparta:getValue(), 20);
+		nested:adjustSize();
+		nested:adjustContent();
+		
+		nested = menu:addMenu(love.menu_horizontal);
+		nested:setSpacing(5);
+		nested:addLabel("Non-Sparta:");
+		slider_notsparta = nested:addSlider("SLIDER_NOTSPARTA", love.slider_horizontal, 0, 10, 200, 15);
+		--slider_notsparta:setBackgroundColor(color["white"]);
+		slider_notsparta:setColor(color["shiznet"]);
+		slider_notsparta_label = nested:addLabel(slider_sparta:getValue(), 50);
+		nested:adjustSize();
+		nested:adjustContent();
+		
+		list = menu:addListBox("THEY SEE ME LISTING!");
+		list:add("this");
+		list:add("is");
+		list:add("a");
+		list:add("list");
+		list:add("(also: sparta)");
+		list:adjustSize();
+		list:setBackgroundColor(color["shiznet"]);
+		list:setSelectionColor(color["white"]);
+		
+		
 		menu:adjustSize();
 		
 		love.gui:add(menu);
@@ -59,7 +107,7 @@ main = {
 		horseshit = horseshit + 5 * dt;
 		--game:setRotation(horseshit);
 		
-		if love.mouse:isDown(love.mouse_left) and menux ~= -1 and menuy ~= -1 then
+		if love.mouse:isDown(love.mouse_left) and menux ~= -1 and menuy ~= -1 and false then
 			menu:setX(menu:getX() - (menux - love.mouse:getX()));
 			menux = love.mouse:getX();
 			
@@ -104,7 +152,7 @@ main = {
 		love.graphics:setFont(font["big"]);
 		love.graphics:setColor(color["shiznet"]);
 		test = love.graphics:getColor();
-		love.graphics:drawText("THIS IS TEST: " .. test:getRed() .. "." .. test:getGreen() .. "." .. test:getBlue(), 10, 500);
+		--love.graphics:drawText("THIS IS TEST: " .. test:getRed() .. "." .. test:getGreen() .. "." .. test:getBlue(), 10, 500);
 	end,
 	
 	keypressed = function(key)
@@ -139,8 +187,12 @@ main = {
 			elseif e:getName() == "BUTTON" or e:getName() == "TEXT_FIELD" then
 				label:setCaption(textfield:getText());
 				label:adjustSize();
+			elseif e:getName() == "SLIDER_SPARTA" then
+				slider_sparta_label:setCaption(math.floor(slider_sparta:getValue()));
+			elseif e:getName() == "SLIDER_NOTSPARTA" then
+				slider_notsparta_label:setCaption(slider_notsparta:getValue());
 			end
-			print("This baby just received a GUIEvent (bn). GUIname is: " .. e:getName() .. "\n")
+			--print("This baby just received a GUIEvent (bn). GUIname is: " .. e:getName())
 		end
 	end
 

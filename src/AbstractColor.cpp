@@ -36,6 +36,26 @@ namespace love
 		return (blue | (green << 8) | (red << 16));
 	}
 
+	void AbstractColor::setRed(int red)
+	{
+		this->red = red;
+	}
+
+	void AbstractColor::setGreen(int green)
+	{
+		this->green = green;
+	}
+
+	void AbstractColor::setBlue(int blue)
+	{
+		this->blue = blue;
+	}
+
+	void AbstractColor::setAlpha(int alpha)
+	{
+		this->alpha = alpha;
+	}
+
 	void AbstractColor::setColor(int red, int green, int blue, int alpha)
 	{
 		this->red = red;

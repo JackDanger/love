@@ -220,18 +220,18 @@ namespace love
 	}
 
 	void Core::render()
-	{	
-
+	{
 		graphics->clear();
 
 		current->render();
+
+		gui->render();
 
 		// Render console
 		if(console->visible) 
 			console->render();
 
 		glLoadIdentity();
-		gui->render();
 	}
 
 	void Core::quit()

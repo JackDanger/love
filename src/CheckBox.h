@@ -1,5 +1,5 @@
-#ifndef LOVE_RADIO_BUTTON_H
-#define LOVE_RADIO_BUTTON_H
+#ifndef LOVE_CHECK_BOX_H
+#define LOVE_CHECK_BOX_H
 
 #include "AbstractColor.h"
 #include "AbstractImage.h"
@@ -11,7 +11,7 @@
 
 namespace love
 {
-	class RadioButton : public gcn::RadioButton
+	class CheckBox : public gcn::CheckBox
 	{
 	protected:
 		pAbstractColor color;
@@ -23,8 +23,8 @@ namespace love
 		int verticalAlignment;
 
 	public:
-		RadioButton(const string caption = "");
-		~RadioButton();
+		CheckBox(const string caption = "");
+		~CheckBox();
 
 		virtual void setSize(int width, int height);
 		virtual void setWidth(int width);
@@ -59,7 +59,7 @@ namespace love
 		virtual void drawBox(gcn::Graphics * graphics);
 	};
 
-	typedef boost::shared_ptr<RadioButton> pRadioButton;
+	typedef boost::shared_ptr<CheckBox> pCheckBox;
 }
 
 #endif

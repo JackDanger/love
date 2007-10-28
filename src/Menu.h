@@ -11,6 +11,9 @@
 #include "Padded.h"
 #include "TextField.h"
 #include "RadioButton.h"
+#include "CheckBox.h"
+#include "Slider.h"
+#include "ListBox.h"
 #include "Text.h"
 
 #include <boost/shared_ptr.hpp>
@@ -111,6 +114,9 @@ namespace love
 		TextField * addTextField(const char * name, const char * text = "", int width = 0, int height = 0);
 		DropDown * addDropDown(const char * name, int width = 0, int height = 0);
 		RadioButton * addRadioButton(const char * name, const char * caption = "", int width = 0, int height = 0);
+		CheckBox * addCheckBox(const char * name, const char * caption = "", int width = 0, int height = 0);
+		Slider * addSlider(const char * name, unsigned int orientation = Slider::LOVE_SLIDER_HORIZONTAL, double scaleStart = 0, double scaleEnd = 1, int width = 0, int height = 0);
+		ListBox * addListBox(const char * name, int width = 0, int height = 0);
 	};
 
 	typedef boost::shared_ptr<Menu> pMenu;

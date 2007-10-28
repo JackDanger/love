@@ -672,4 +672,63 @@ namespace love
 		add(temp);
 		return temp;
 	}
+
+	CheckBox * Menu::addCheckBox(const char * name, const char * caption, int width, int height)
+	{
+		CheckBox * temp = new CheckBox(caption);
+		temp->setFont(text);
+		temp->setColor(&text->getColor());
+
+		temp->adjustSize();
+		if(width != 0)
+			temp->setWidth(width);
+		if(height != 0)
+			temp->setHeight(height);
+		temp->addActionListener(core->getGUI());
+		temp->setName(name);
+		positionItem(temp);
+
+		add(temp);
+		return temp;
+	}
+
+	Slider * Menu::addSlider(const char * name, unsigned int orientation, double scaleStart, double scaleEnd, int width, int height)
+	{
+		Slider * temp = new Slider(scaleStart, scaleEnd);
+		temp->setOrientation(orientation);
+		temp->setFont(text);
+		//temp->setColor(&text->getColor());
+
+		temp->adjustSize();
+		if(width != 0)
+			temp->setWidth(width);
+		if(height != 0)
+			temp->setHeight(height);
+		temp->addActionListener(core->getGUI());
+		temp->setName(name);
+		positionItem(temp);
+
+		add(temp);
+		return temp;
+	}
+
+	ListBox * Menu::addListBox(const char * name, int width, int height)
+	{
+		GUIList * tlist = new GUIList();
+		ListBox * temp = new ListBox(tlist);
+		temp->setFont(text);
+		temp->setColor(&text->getColor());
+
+		temp->adjustSize();
+		if(width != 0)
+			temp->setWidth(width);
+		if(height != 0)
+			temp->setHeight(height);
+		temp->addActionListener(core->getGUI());
+		temp->setName(name);
+		positionItem(temp);
+
+		add(temp);
+		return temp;
+	}
 }

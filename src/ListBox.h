@@ -1,65 +1,64 @@
-#ifndef LOVE_RADIO_BUTTON_H
-#define LOVE_RADIO_BUTTON_H
+#ifndef LOVE_LIST_BOX_H
+#define LOVE_LIST_BOX_H
 
 #include "AbstractColor.h"
-#include "AbstractImage.h"
-#include "Font.h"
-#include "Text.h"
+#include "GUIList.h"
 
 #include <boost/shared_ptr.hpp>
 #include <guichan.hpp>
 
 namespace love
 {
-	class RadioButton : public gcn::RadioButton
+	/**
+	 * @class ListBox
+	 * @version 1.0
+	 * @since 1.0
+	 * @author Michael Enger
+	 * @date 2007-10-28
+	 * @brief A list box used by the Menu.
+	 **/
+	class ListBox : public gcn::ListBox
 	{
 	protected:
+		GUIList * list;
 		pAbstractColor color;
+		pAbstractColor activeColor;
 		pAbstractColor backgroundColor;
+		pAbstractColor selectionColor;
 		pAbstractColor borderColor;
-		pAbstractImage defaultImage; // "off"
-		pAbstractImage markedImage; // "on"
-		int alignment;
-		int verticalAlignment;
 
 	public:
-		RadioButton(const string caption = "");
-		~RadioButton();
+		ListBox(GUIList * list);
+		~ListBox();
 
 		virtual void setSize(int width, int height);
 		virtual void setWidth(int width);
 		virtual void setHeight(int height);
 		virtual void setBorderSize(unsigned int size);
-
-		virtual void setCaption(const char * caption);
 		virtual void setName(const char * name);
-		virtual void setMarked(bool marked);
-
-		virtual void align(int alignment);
-		virtual void valign(int alignment);
 
 		virtual void setColor(const pAbstractColor * color);
+		virtual void setActiveColor(const pAbstractColor * color);
 		virtual void setBackgroundColor(const pAbstractColor * color);
+		virtual void setSelectionColor(const pAbstractColor * color);
 		virtual void setBorderColor(const pAbstractColor * color);
-		virtual void setDefaultImage(const pAbstractImage * image);
-		virtual void setMarkedImage(const pAbstractImage * image);
 
 		virtual int getWidth();
 		virtual int getHeight();
 		virtual unsigned int getBorderSize();
-
-		virtual const char * getCaption();
 		virtual const char * getName();
-		virtual bool isMarked();
 
 		virtual void adjustSize();
 
+		virtual void add(const char * text);
+		virtual void remove(int i);
+		virtual void clear();
+
 		virtual void draw(gcn::Graphics * graphics);
 		virtual void drawBorder(gcn::Graphics * graphics);
-		virtual void drawBox(gcn::Graphics * graphics);
 	};
 
-	typedef boost::shared_ptr<RadioButton> pRadioButton;
+	typedef boost::shared_ptr<ListBox> pListBox;
 }
 
 #endif
