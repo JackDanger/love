@@ -16,6 +16,9 @@ namespace love
 		previous = 0;
 		core->gui->remove(top);
 		core->current->resume();
+
+		// Exits error mode.
+		errorMode = false;
 	}
 
 	void UIGame::reloadGame()
@@ -26,6 +29,9 @@ namespace love
 		core->gui->displayModeChanged(); // to reset the gui
 		core->current->reload();
 		printf("Reloaded: %s\n", core->current->getName().c_str());
+
+		// Exits error mode.
+		errorMode = false;
 	}
 
 	void UIGame::quitGame()
@@ -35,9 +41,12 @@ namespace love
 		previous = 0;
 		core->gui->remove(top);
 		core->startGame("love-system-menu", false);
+
+		// Exits error mode.
+		errorMode = false;
 	}
 
-	UIGame::UIGame()
+	UIGame::UIGame() : errorMode(false)
 	{
 		previous = 0;
 		error = 0;
@@ -76,7 +85,7 @@ namespace love
 		// error box
 		error = new Menu(errorFont, black);
 		error->setSize(500,217); // so that we have something to start with
-		error->setPadding(18);
+		error->setPadding(12);
 		error->setColor(&black);
 		error->setBackgroundColor(&slightlyWhite);
 		error->stretchContent(true);
@@ -86,7 +95,7 @@ namespace love
 		error->addLabel("")->setHeight(20);
 		Menu * nested = error->addMenu(Menu::LOVE_MENU_HORIZONTAL, 0, 40);
 		nested->setSpacing(10);
-		errorButton.reset<Button>(nested->addButton("CORE_ERROR_CONTINUE", "Coninue"));
+		errorButton.reset<Button>(nested->addButton("CORE_ERROR_CONTINUE", "Continue"));
 		errorButton->setBorderColor(&borderColor);
 		errorButton->setWidth(70);
 		errorButton->setBorderSize(1);
@@ -124,9 +133,9 @@ namespace love
 		pause->setBackgroundColor(&slightlyWhite);
 		pause->stretchContent(true);
 		pause->addButton("CORE_RESUME", "Resume");
-		pause->addButton("CORE_SAVE", "Save");
-		pause->addButton("CORE_LOAD", "Load");
-		pause->addButton("CORE_OPTIONS", "Options");
+		//pause->addButton("CORE_SAVE", "Save");
+		//pause->addButton("CORE_LOAD", "Load");
+		//pause->addButton("CORE_OPTIONS", "Options");
 		pause->addButton("CORE_RELOAD", "Restart");
 		pause->addButton("CORE_QUIT", "Quit");
 		pause->adjustContent();
@@ -148,7 +157,7 @@ namespace love
 
 	void UIGame::render()
 	{
-		if(previous != 0)
+		if(!errorMode && previous != 0)
 			previous->render();
 	}
 
@@ -163,12 +172,15 @@ namespace love
 		errorError->load();
 		errorFont->load();
 		pauseFont->load();
-		if(previous != 0)
+		if(!errorMode && previous != 0)
 			previous->reloadGraphics();
 	}
 
 	void UIGame::showError(const char * text)
 	{
+		// Entering error mode ...
+		errorMode = true;
+
 		errorText->setCaption(text);
 		//errorText->adjustContent();
 		errorText->adjustSize();
@@ -263,7 +275,7 @@ namespace love
 		warning->setX( (core->display->getWidth() / 2) - (pause->getWidth() / 2) );
 		warning->setY( (core->display->getHeight() / 2) - (pause->getHeight() / 2) );
 
-		if(previous != 0)
+		if(!errorMode && previous != 0)
 			previous->displayModeChanged();
 		reloadGraphics();
 	}

@@ -12,9 +12,12 @@
 #include "AbstractDevice.h"
 
 // STL
+#include <deque>
 
 // Boost
 #include <boost/shared_ptr.hpp>
+
+using std::deque;
 
 namespace love
 {
@@ -45,6 +48,13 @@ namespace love
 
 		// minFps
 		float minFps;
+
+		// The number of previous time deltas to take
+		// the average of.
+		int numAverage;
+
+		// Vector with the last numAverage elements
+		deque<float> lastValues;
 
 	protected:
 
@@ -152,6 +162,18 @@ namespace love
 		* @param minFps 
 		**/
 		void setMinFps(float minFps);
+
+		/**
+		* @brief Adds a new value to the previous values vector.
+		* @param dt The new value to add.
+		**/
+		void addValue(float dt);
+
+		/**
+		* @brief Calculates average of the numAverage last values. 
+		* @return The average of the numAverage last values.
+		**/
+		float getAverage() const;
 
 
 	};

@@ -103,7 +103,7 @@ namespace love
 		console->load();
 
 
-		addGame("neoftg", new NeoFontTexGame());
+		//addGame("neoftg", new NeoFontTexGame());
 		//addGame("ftg", new FontTexGame());
 
 		// Adds scripted games from the game directory.

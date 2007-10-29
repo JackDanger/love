@@ -84,8 +84,8 @@ namespace love
 		SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 0);
 		SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 0);
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-		SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, (displayMode.isVsync() ? 1 : 0));
-		//SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
+		//SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, (displayMode.isVsync() ? 1 : 0));
+		SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
 
 		// FSAA
 		if(displayMode.getFSAA() > 0)

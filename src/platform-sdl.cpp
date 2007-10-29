@@ -88,8 +88,14 @@ namespace love
 			// Get the time since last time.
 			float dt = core->timer->getDelta();
 
+			// Add it to the timer.
+			core->timer->addValue(dt);
+
+			// Get the average.
+			float avg = core->timer->getAverage();
+
 			// Tell core to update.
-			core->update(dt);
+			core->update(avg);
 
 			// Tell core to render
 			core->render();
@@ -133,8 +139,9 @@ namespace love
 			SDL_GL_SwapBuffers();
 			
 			// Save some CPU
-			if(dt < 0.008f)
-				SDL_Delay((int)((0.008f - dt)*1000.0f));
+			//if(dt < 0.008f)
+			//	SDL_Delay((int)((0.008f - dt)*1000.0f));
+			//SDL_Delay(1);
 
 		}
 	}

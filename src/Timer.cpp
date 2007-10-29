@@ -5,7 +5,7 @@
 namespace love
 {
 
-	Timer::Timer() : frames(0), fpsUpdateFrequency(1.0f), fps(0), lockedFps(0), maxFps(0), minFps(0)
+	Timer::Timer() : frames(0), fpsUpdateFrequency(1.0f), fps(0), lockedFps(0), maxFps(0), minFps(0), numAverage(10)
 	{
 		setType(LOVE_TYPE_TIMER);
 	}
@@ -78,6 +78,33 @@ namespace love
 	void Timer::setMinFps(float minFps)
 	{
 		this->minFps = minFps;
+	}
+
+	void Timer::addValue(float dt)
+	{
+		// Add the value.
+		lastValues.push_back(dt);
+
+		// Remove old, if above limit.
+		while((int)lastValues.size() > numAverage)
+			lastValues.pop_front();
+	}
+
+
+	float Timer::getAverage() const
+	{
+		float total = 0;
+
+		// Collect total.
+		for(deque<float>::const_iterator i = lastValues.begin(); i != lastValues.end(); i++)
+		{
+			total += *i;
+		}
+
+
+		float avg = total / lastValues.size();
+
+		return avg;
 	}
 
 

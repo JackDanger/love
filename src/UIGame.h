@@ -36,6 +36,10 @@ namespace love
 		pButton errorButton;
 		pButton warningButton;
 
+		// If the UI is in error mode, the previous
+		// game will not rendered.
+		bool errorMode;
+
 		virtual void resumeGame();
 		virtual void reloadGame();
 		virtual void quitGame();
