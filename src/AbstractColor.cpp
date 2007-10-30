@@ -1,4 +1,5 @@
 #include "AbstractColor.h"
+#include "Color.h"
 
 namespace love
 {
@@ -78,4 +79,13 @@ namespace love
 		this->alpha = alpha;
 	}
 
+	boost::shared_ptr<AbstractColor> AbstractColor::getGradient(const boost::shared_ptr<AbstractColor> * other, float amount)
+	{
+		boost::shared_ptr<AbstractColor> temp (new Color());
+		temp->setRed((int)((*other)->getRed() + ((this->red - (*other)->getRed()) * amount)));
+		temp->setGreen((int)((*other)->getGreen() + ((this->green - (*other)->getGreen()) * amount)));
+		temp->setBlue((int)((*other)->getBlue() + ((this->blue - (*other)->getBlue()) * amount)));
+		temp->setAlpha((int)((*other)->getAlpha() + ((this->alpha - (*other)->getAlpha()) * amount)));
+		return temp;
+	}
 }

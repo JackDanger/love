@@ -1,6 +1,7 @@
 #ifndef LOVE_MENU_H
 #define LOVE_MENU_H
 
+#include "GUIElement.h"
 #include "AbstractColor.h"
 #include "AbstractGraphics.h"
 #include "AbstractImage.h"
@@ -30,15 +31,12 @@ namespace love
 	 * @date 2007-08-11
 	 * @brief Holds the graphical information and the items that make up a menu.
 	 **/
-	class Menu : public gcn::Container, public Padded
+	class Menu : public gcn::Container, public GUIElement, public Padded
 	{
 	private:
 		
-		pAbstractColor color;
-		pAbstractColor backgroundColor;
-		pAbstractColor borderColor;
 		pAbstractImage background;
-		GUIText * text;
+		pGUIText text;
 		int width, height;
 		int type;
 		int spacing;
@@ -94,6 +92,11 @@ namespace love
 		int getX();
 		int getY();
 		unsigned int getBorderSize();
+
+		pAbstractFont getFont();
+		pAbstractColor getColor();
+		pAbstractColor getBackgroundColor();
+		pAbstractColor getBorderColor();
 
 		int getSpacing();
 

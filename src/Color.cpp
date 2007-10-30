@@ -69,16 +69,6 @@ namespace love
 		this->alpha = (int)(alpha * 255);
 	}*/
 
-	Color Color::getGradient(Color * other, float amount)
-	{
-		Color temp;
-		temp.setRed((int)(other->getRed() + ((this->red - other->getRed()) * amount)));
-		temp.setGreen((int)(other->getGreen() + ((this->green - other->getGreen()) * amount)));
-		temp.setBlue((int)(other->getBlue() + ((this->blue - other->getBlue()) * amount)));
-		temp.setAlpha((int)(other->getAlpha() + ((this->alpha - other->getAlpha()) * amount)));
-		return temp;
-	}
-
 	void Color::update(float dt)
 	{
 	}

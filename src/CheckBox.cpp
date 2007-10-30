@@ -56,21 +56,6 @@ namespace love
 		this->verticalAlignment = alignment;
 	}
 
-	void CheckBox::setColor(const pAbstractColor * color)
-	{
-		this->color = *color;
-	}
-
-	void CheckBox::setBackgroundColor(const pAbstractColor * color)
-	{
-		this->backgroundColor = *color;
-	}
-
-	void CheckBox::setBorderColor(const pAbstractColor * color)
-	{
-		this->borderColor = *color;
-	}
-
 	void CheckBox::setDefaultImage(const pAbstractImage * image)
 	{
 		this->defaultImage = *image;

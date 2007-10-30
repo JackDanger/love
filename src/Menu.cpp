@@ -10,7 +10,7 @@ namespace love
 		gcn::Container();
 		gcn::Container::setOpaque(false); //makes the background invisible
 
-		text = new GUIText(font, color);
+		text.reset<GUIText>(new GUIText(font, color));
 		this->type = type;
 		spacing = 0;
 		position = 0;
@@ -23,8 +23,6 @@ namespace love
 
 	Menu::~Menu()
 	{
-		if(text != 0)
-			delete text;
 	}
 
 	void Menu::setSize(int width, int height)
@@ -84,18 +82,18 @@ namespace love
 
 	void Menu::setColor(const pAbstractColor * color)
 	{
-		this->color = *color;
+		GUIElement::setColor(color);
 		text->setColor(*color);
 	}
 
 	void Menu::setBackgroundColor(const pAbstractColor * color)
 	{
-		backgroundColor = *color;
+		GUIElement::setBackgroundColor(color);
 	}
 
 	void Menu::setBorderColor(const pAbstractColor * color)
 	{
-		borderColor = *color;
+		GUIElement::setBorderColor(color);
 	}
 
 	void Menu::setBackground(const pAbstractImage * image)
@@ -152,6 +150,26 @@ namespace love
 	int Menu::getSpacing()
 	{
 		return spacing;
+	}
+
+	pAbstractFont Menu::getFont()
+	{
+		return text->getFont();
+	}
+
+	pAbstractColor Menu::getColor()
+	{
+		return GUIElement::getColor();
+	}
+
+	pAbstractColor Menu::getBackgroundColor()
+	{
+		return GUIElement::getBackgroundColor();
+	}
+
+	pAbstractColor Menu::getBorderColor()
+	{
+		return GUIElement::getBorderColor();
 	}
 
 	void Menu::adjustSize()
@@ -419,7 +437,7 @@ namespace love
 		//glPushMatrix();
 
 		if(text != 0)
-			graphics->setFont(text);
+			graphics->setFont(text.get());
 
 		if (isOpaque())
 		{
@@ -499,7 +517,7 @@ namespace love
 		for (iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
 		{
 			// Compensates for the children having their own fonts
-			graphics->setFont(text);
+			graphics->setFont(text.get());
 			if ((*iter)->isVisible())
 			{
 				// If the widget has a border,
@@ -541,7 +559,7 @@ namespace love
 	Label * Menu::addLabel(const char * caption, int width, int height)
 	{
 		Label * temp = new Label(caption);
-		temp->setFont(text);
+		temp->setFont(text.get());
 		temp->setColor(&text->getColor());
 
 		temp->adjustSize();
@@ -561,7 +579,7 @@ namespace love
 	MultilineLabel * Menu::addMultilineLabel(const char * caption, int width, int height)
 	{
 		MultilineLabel * temp = new MultilineLabel(caption);
-		temp->setFont(text);
+		temp->setFont(text.get());
 		temp->setColor(&text->getColor());
 
 		if(width != 0)
@@ -597,7 +615,7 @@ namespace love
 	Button * Menu::addButton(const char * name, const char * caption, int width, int height)
 	{
 		Button * temp = new Button(caption);
-		temp->setFont(text);
+		temp->setFont(text.get());
 		temp->setColor(&text->getColor());
 
 		temp->adjustSize();
@@ -618,7 +636,7 @@ namespace love
 	TextField * Menu::addTextField(const char * name, const char * text, int width, int height)
 	{
 		TextField * temp = new TextField(text);
-		temp->setFont(this->text);
+		temp->setFont(this->text.get());
 		temp->setColor(&this->text->getColor());
 
 		temp->adjustSize();
@@ -638,7 +656,7 @@ namespace love
 	{
 		GUIList * tlist = new GUIList();
 		DropDown * temp = new DropDown(tlist);
-		temp->setFont(text);
+		temp->setFont(text.get());
 		temp->setColor(&text->getColor());
 
 		temp->adjustHeight();
@@ -657,7 +675,7 @@ namespace love
 	RadioButton * Menu::addRadioButton(const char * name, const char * caption, int width, int height)
 	{
 		RadioButton * temp = new RadioButton(caption);
-		temp->setFont(text);
+		temp->setFont(text.get());
 		temp->setColor(&text->getColor());
 
 		temp->adjustSize();
@@ -676,7 +694,7 @@ namespace love
 	CheckBox * Menu::addCheckBox(const char * name, const char * caption, int width, int height)
 	{
 		CheckBox * temp = new CheckBox(caption);
-		temp->setFont(text);
+		temp->setFont(text.get());
 		temp->setColor(&text->getColor());
 
 		temp->adjustSize();
@@ -696,7 +714,7 @@ namespace love
 	{
 		Slider * temp = new Slider(scaleStart, scaleEnd);
 		temp->setOrientation(orientation);
-		temp->setFont(text);
+		//temp->setFont(text);
 		//temp->setColor(&text->getColor());
 
 		temp->adjustSize();
@@ -716,7 +734,7 @@ namespace love
 	{
 		GUIList * tlist = new GUIList();
 		ListBox * temp = new ListBox(tlist);
-		temp->setFont(text);
+		temp->setFont(text.get());
 		temp->setColor(&text->getColor());
 
 		temp->adjustSize();

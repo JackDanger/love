@@ -23,10 +23,13 @@ namespace love
 
 	void UIGame::reloadGame()
 	{
-		core->current = previous;
-		previous = 0;		
+		top->clear();
 		core->gui->remove(top);
 		core->gui->displayModeChanged(); // to reset the gui
+
+		core->current = previous;
+		previous = 0;
+
 		core->current->reload();
 		printf("Reloaded: %s\n", core->current->getName().c_str());
 
@@ -129,6 +132,7 @@ namespace love
 		pause = new Menu(pauseFont, black);
 		pause->setSize(150,200); // so that we have something to start with
 		pause->setPadding(10);
+		pause->setSpacing(1);
 		pause->setColor(&black);
 		pause->setBackgroundColor(&slightlyWhite);
 		pause->stretchContent(true);
@@ -178,6 +182,9 @@ namespace love
 
 	void UIGame::showError(const char * text)
 	{
+		// Why are you re-erroring yourself? Tsk tsk, little one.
+		if(errorMode) return;
+
 		// Entering error mode ...
 		errorMode = true;
 

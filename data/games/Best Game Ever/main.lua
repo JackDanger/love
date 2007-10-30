@@ -30,16 +30,36 @@ main = {
 		menu:setSize(650,200);
 		menu:setPosition(100,80);
 		menu:setPadding(10);
-		menu:setSpacing(3);
-		label = menu:addLabel("THIS IS A MENU");		
+		menu:setSpacing(5);
+		
+		label = menu:addLabel("THIS IS A MENU");
+		label:setColor(color["white"]);
+		
 		button = menu:addButton("BUTTON", "Click me to change the menu label!");
 		button:setBorderSize(1);
+		button:setBackgroundColor(color["halfshiz"]);
+		button:setHoverBackgroundColor(color["shiznet"]);
+		
+		nested = menu:addMenu(love.menu_horizontal);
+		nested:setFont(font["small"]);
+		spartbutton =nested:addButton("SPAR_BUTTON", "Sparta!");
+		-- spartbutton:setFont(font["small"]) -- TODO
+		spartbutton:setDefaultImage(love.objects:newImage("button_default.png"));
+		spartbutton:setHoverImage(love.objects:newImage("button_hover.png"));
+		spartbutton:setPressedImage(love.objects:newImage("button_press.png"));
+		spartbutton:adjustSize();
+		nested:adjustSize();
+		
 		textfield = menu:addTextField("TEXT_FIELD", "Or press <enter> here.", 200);
+		
 		drop = menu:addDropDown("DROP YOUR PANTS");
+		--drop:setButton(love.objects:newImage("dropdown.png"));
+		--drop:setButtonPressed(love.objects:newImage("dropdown_pressed.png"));
 		drop:add("one");
 		drop:add("two");
 		drop:add("four");
 		drop:setBackgroundColor(color["shiznet"]);
+		
 		nested = menu:addMenu(love.menu_horizontal);
 		--nested:setFont(font["image"]);
 		nested:addLabel("NESTED MENU:  ");
@@ -62,7 +82,7 @@ main = {
 		nested:adjustSize();
 		nested:adjustContent();
 		
-		menu:addMultilineLabel("Just wanted to let you know that the previous example (the one with the radio buttons) uses the event system. GUIchan has a built-in group-system for dealing with radio buttons (seeing as you are only supposed to be able to select one at a time), but I thought that it would just add one more value to keep track of and doing it manually yields more control. ^-^\n(ps: you can click and drag this menu around)");
+		menu:addMultilineLabel("Just wanted to let you know that the previous example (the one with the radio buttons) uses the event system. GUIchan has a built-in group-system for dealing with radio buttons (seeing as you are only supposed to be able to select one at a time), but I thought that it would just add one more value to keep track of and doing it manually yields more control. ^-^\n(ps: you can click and drag this menu around [REMOVED])");
 		
 		nested = menu:addMenu(love.menu_horizontal);
 		nested:setSpacing(5);

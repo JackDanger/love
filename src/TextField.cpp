@@ -41,29 +41,14 @@ namespace love
 		gcn::TextField::setActionEventId(name);
 	}
 
-	void TextField::setColor(const pAbstractColor * color)
-	{
-		this->color = *color;
-	}
-
-	void TextField::setBackgroundColor(const pAbstractColor * color)
-	{
-		backgroundColor = *color;
-	}
-
-	void TextField::setBorderColor(const pAbstractColor * color)
-	{
-		borderColor = *color;
-	}
-
 	void TextField::setActiveColor(const pAbstractColor * color)
 	{
-		activeColor = *color;
+		activeColor = (*color);
 	}
 
 	void TextField::setActiveBackgroundColor(const pAbstractColor * color)
 	{
-		activeBackgroundColor = *color;
+		activeBackgroundColor = (*color);
 	}
 
 	int TextField::getWidth()
@@ -91,16 +76,6 @@ namespace love
 		return gcn::TextField::getActionEventId().c_str();
 	}
 
-	pAbstractColor TextField::getColor()
-	{
-		return color;
-	}
-
-	pAbstractColor TextField::getBackgroundColor()
-	{
-		return backgroundColor;
-	}
-
 	pAbstractColor TextField::getActiveColor()
 	{
 		return activeColor;
@@ -109,11 +84,6 @@ namespace love
 	pAbstractColor TextField::getActiveBackgroundColor()
 	{
 		return activeBackgroundColor;
-	}
-
-	pAbstractColor TextField::getBorderColor()
-	{
-		return borderColor;
 	}
 
 	void TextField::adjustSize()

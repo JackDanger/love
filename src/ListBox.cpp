@@ -39,19 +39,19 @@ namespace love
 		gcn::ListBox::setActionEventId(name);
 	}
 
-	void ListBox::setColor(const pAbstractColor * color)
-	{
-		this->color = (*color);
-	}
-
 	void ListBox::setActiveColor(const pAbstractColor * color)
 	{
 		this->activeColor = (*color);
 	}
 
-	void ListBox::setBackgroundColor(const pAbstractColor * color)
+	void ListBox::setActiveColor(const pColor * color)
 	{
-		this->backgroundColor = (*color);
+		this->activeColor = (*color);
+	}
+
+	void ListBox::setActiveColor(const pAnimatedColor * color)
+	{
+		this->activeColor = (*color);
 	}
 
 	void ListBox::setSelectionColor(const pAbstractColor * color)
@@ -59,9 +59,24 @@ namespace love
 		this->selectionColor = (*color);
 	}
 
-	void ListBox::setBorderColor(const pAbstractColor * color)
+	void ListBox::setSelectionColor(const pColor * color)
 	{
-		this->borderColor = (*color);
+		this->selectionColor = (*color);
+	}
+
+	void ListBox::setSelectionColor(const pAnimatedColor * color)
+	{
+		this->selectionColor = (*color);
+	}
+
+	const pAbstractColor * ListBox::getActiveColor()
+	{
+		return &activeColor;
+	}
+
+	const pAbstractColor * ListBox::getSeclectionColor()
+	{
+		return &selectionColor;
 	}
 
 	int ListBox::getWidth()

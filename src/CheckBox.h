@@ -1,22 +1,13 @@
 #ifndef LOVE_CHECK_BOX_H
 #define LOVE_CHECK_BOX_H
 
-#include "AbstractColor.h"
-#include "AbstractImage.h"
-#include "Font.h"
-#include "Text.h"
-
-#include <boost/shared_ptr.hpp>
-#include <guichan.hpp>
+#include "GUIElement.h"
 
 namespace love
 {
-	class CheckBox : public gcn::CheckBox
+	class CheckBox : public gcn::CheckBox, public GUIElement
 	{
 	protected:
-		pAbstractColor color;
-		pAbstractColor backgroundColor;
-		pAbstractColor borderColor;
 		pAbstractImage defaultImage; // "off"
 		pAbstractImage markedImage; // "on"
 		int alignment;
@@ -38,9 +29,6 @@ namespace love
 		virtual void align(int alignment);
 		virtual void valign(int alignment);
 
-		virtual void setColor(const pAbstractColor * color);
-		virtual void setBackgroundColor(const pAbstractColor * color);
-		virtual void setBorderColor(const pAbstractColor * color);
 		virtual void setDefaultImage(const pAbstractImage * image);
 		virtual void setMarkedImage(const pAbstractImage * image);
 

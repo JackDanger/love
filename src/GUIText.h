@@ -4,12 +4,12 @@
 #include "AbstractFont.h"
 #include "Color.h"
 
-
 #include "guichan/font.hpp"
 #include "guichan/opengl.hpp"
 #include "guichan/platform.hpp"
 #include "guichan/rectangle.hpp"
 
+#include <boost/shared_ptr.hpp>
 
 using std::string;
 
@@ -42,6 +42,8 @@ namespace love
 
         virtual void drawString(gcn::Graphics* graphics, const std::string& text, int x, int y);
 	};
+
+	typedef boost::shared_ptr<GUIText> pGUIText;
 }
 
 #endif

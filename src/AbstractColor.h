@@ -123,6 +123,13 @@ namespace love
 		 **/
 		virtual void setColor(float t) = 0;
 
+		/**
+		 * @param other The other color.
+		 * @param amount The amount of gradient (a value between 0 and 1).
+		 * @brief Gets a gradient between this color and the other color determined by the amount.
+		 **/
+		virtual boost::shared_ptr<AbstractColor> getGradient(const boost::shared_ptr<AbstractColor> * other, float amount);
+
 		virtual void update(float dt) = 0;
 	};
 

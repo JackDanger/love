@@ -385,6 +385,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\GUIElement.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\GUIEntity.cpp"
 				>
 			</File>
@@ -888,6 +892,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\GUIDynamicBackground.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\GUIElement.h"
 				>
 			</File>
 			<File

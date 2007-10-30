@@ -63,24 +63,6 @@ namespace love
 		verticalAlignment = alignment;
 	}
 
-	void Label::setColor(const pAbstractColor * color)
-	{
-		if(color != 0)
-			this->color = *color;
-	}
-
-	void Label::setBackgroundColor(const pAbstractColor * color)
-	{
-		if(color != 0)
-			backgroundColor = *color;
-	}
-
-	void Label::setBorderColor(const pAbstractColor * color)
-	{
-		if(color != 0)
-			borderColor = *color;
-	}
-
 	void Label::setBackground(const pAbstractImage * image)
 	{
 		background = *image;
@@ -105,28 +87,6 @@ namespace love
 	{
 		return gcn::Label::getCaption().c_str();
 	}
-
-	/*
-	pAbstractColor Label::getColor()
-	{
-		return color;
-	}
-
-	pAbstractColor Label::getBackgroundColor()
-	{
-		return backgroundColor;
-	}
-
-	pAbstractColor Label::getBorderColor()
-	{
-		return borderColor;
-	}
-
-	pAbstractImage Label::getBackground()
-	{
-		return background;
-	}
-	*/
 
 	void Label::adjustSize()
 	{
@@ -181,17 +141,8 @@ namespace love
 				break;
 			}
 
-			//glPushAttrib(GL_CURRENT_BIT);
 			graphics->setColor(gcn::Color(0xFFFFFF)); // to remove the effects of the background color
-			//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-			//glEnable(GL_TEXTURE_2D);
-			//glEnable(GL_BLEND);
-
 			background->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
-				
-			//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-			//glDisable(GL_TEXTURE_2D);
-			//glPopAttrib();
 		}
 
 		x = 0;

@@ -91,14 +91,6 @@ namespace love
 		 **/
 		//void setColor(float red, float green, float blue, float alpha);
 
-
-		/**
-		 * @param other The other color.
-		 * @param amount The amount of gradient (a value between 0 and 1).
-		 * @brief Gets a gradient between this color and the other color determined by the amount.
-		 **/
-		Color getGradient(Color * other, float amount);
-
 		/**
 		 * @param dt The elapsed time (in milliseconds).
 	 	 * @brief Does nothing.

@@ -74,21 +74,6 @@ namespace love
 		gcn::Slider::setActionEventId(name);
 	}
 
-	void Slider::setColor(const pAbstractColor * color)
-	{
-		this->color = (*color);
-	}
-
-	void Slider::setBackgroundColor(const pAbstractColor * color)
-	{
-		this->backgroundColor = (*color);
-	}
-
-	void Slider::setBorderColor(const pAbstractColor * color)
-	{
-		this->borderColor = (*color);
-	}
-
 	void Slider::setMarkerImage(const pAbstractImage * image)
 	{
 		markerImage = (*image);
@@ -165,7 +150,10 @@ namespace love
 	{
 		if(backgroundImage.get() != 0)
 		{
-			backgroundImage->render((float)graphics->getCurrentClipArea().x, (float)graphics->getCurrentClipArea().y);
+			int x = (int)((getWidth() / 2) - (backgroundImage->getWidth() / 2));
+			int y = (int)((getHeight() / 2) - (backgroundImage->getHeight() / 2));
+
+			backgroundImage->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
 			drawMarker(graphics);
 		}
 		else
@@ -196,7 +184,21 @@ namespace love
 	{
 		if(markerImage.get() != 0)
 		{
-			markerImage->render((float)graphics->getCurrentClipArea().x + getMarkerPosition(), (float)graphics->getCurrentClipArea().y);
+			int x = 0;
+			int y = 0;
+			switch(getOrientation())
+			{
+			default:
+			case LOVE_SLIDER_HORIZONTAL:
+				x = getMarkerPosition();
+				y = (int)((getHeight() / 2) - (markerImage->getHeight() / 2));
+				break;
+			case LOVE_SLIDER_VERTICAL:
+				x = (int)((getWidth() / 2) - (markerImage->getWidth() / 2));
+				y = getMarkerPosition();
+				break;
+			}
+			markerImage->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
 		}
 		else
 		{

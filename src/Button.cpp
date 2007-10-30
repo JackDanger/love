@@ -71,12 +71,6 @@ namespace love
 		verticalAlignment = alignment;
 	}
 
-	void Button::setColor(const pAbstractColor * color)
-	{
-		if(color != 0)
-			this->color = *color;
-	}
-
 	void Button::setHoverColor(const pAbstractColor * color)
 	{
 		if(color != 0)
@@ -89,12 +83,6 @@ namespace love
 			pressedColor = *color;
 	}
 
-	void Button::setActiveColor(const pAbstractColor * color)
-	{
-		if(color != 0)
-			activeColor = *color;
-	}
-
 	void Button::setAllColors(const pAbstractColor * color)
 	{
 		if(color == 0) return;
@@ -102,13 +90,6 @@ namespace love
 		this->color = *color;
 		hoverColor = *color;
 		pressedColor = *color;
-		activeColor = *color;
-	}
-
-	void Button::setBackgroundColor(const pAbstractColor * color)
-	{
-		if(color != 0)
-			backgroundColor = *color;
 	}
 
 	void Button::setHoverBackgroundColor(const pAbstractColor * color)
@@ -123,24 +104,26 @@ namespace love
 			pressedBackgroundColor = *color;
 	}
 
-	void Button::setActiveBackgroundColor(const pAbstractColor * color)
-	{
-		if(color != 0)
-			activeBackgroundColor = *color;
-	}
-
 	void Button::setAllBackgroundColors(const pAbstractColor * color)
 	{
 		backgroundColor = *color;
 		hoverBackgroundColor = *color;
 		pressedBackgroundColor = *color;
-		activeBackgroundColor = *color;
 	}
 
-	void Button::setBorderColor(const pAbstractColor * color)
+	void Button::setDefaultImage(const pAbstractImage * image)
 	{
-		if(color != 0)
-			borderColor = *color;
+		defaultImage = (*image);
+	}
+
+	void Button::setHoverImage(const pAbstractImage * image)
+	{
+		hoverImage = (*image);
+	}
+
+	void Button::setPressedImage(const pAbstractImage * image)
+	{
+		pressedImage = (*image);
 	}
 
 	int Button::getWidth()
@@ -168,12 +151,6 @@ namespace love
 		return gcn::Button::getActionEventId().c_str();
 	}
 
-	/*
-	pAbstractColor Button::getColor()
-	{
-		return color;
-	}
-
 	pAbstractColor Button::getHoverColor()
 	{
 		return hoverColor;
@@ -182,16 +159,6 @@ namespace love
 	pAbstractColor Button::getPressedColor()
 	{
 		return pressedColor;
-	}
-
-	pAbstractColor Button::getActiveColor()
-	{
-		return activeColor;
-	}
-
-	pAbstractColor Button::getBackgroundColor()
-	{
-		return backgroundColor;
 	}
 
 	pAbstractColor Button::getHoverBackgroundColor()
@@ -204,21 +171,35 @@ namespace love
 		return pressedBackgroundColor;
 	}
 
-	pAbstractColor Button::getActiveBackgroundColor()
-	{
-		return activeBackgroundColor;
-	}
-
-	pAbstractColor Button::getBorderColor()
-	{
-		return borderColor;
-	}
-	*/
-
 	void Button::adjustSize()
 	{
-		setWidth(getFont()->getWidth(mCaption) + 8);
-		setHeight(getFont()->getHeight() + 4);
+		setWidth(gcn::Button::getFont()->getWidth(mCaption) + 8);
+		setHeight(gcn::Button::getFont()->getHeight() + 4);
+
+		int size = 0;
+
+		size = gcn::Button::getFont()->getWidth(mCaption) + 8;
+		if(defaultImage.get() != 0 && size < defaultImage->getWidth())
+			size = (int)defaultImage->getWidth();
+		if(hoverImage.get() != 0 && size < hoverImage->getWidth())
+			size = (int)hoverImage->getWidth();
+		if(pressedImage.get() != 0 && size < pressedImage->getWidth())
+			size = (int)pressedImage->getWidth();
+		setWidth(size);
+
+		size = gcn::Button::getFont()->getHeight() + 4;
+		if(defaultImage.get() != 0 && size < defaultImage->getHeight())
+			size = (int)defaultImage->getHeight();
+		if(hoverImage.get() != 0 && size < hoverImage->getHeight())
+			size = (int)hoverImage->getHeight();
+		if(pressedImage.get() != 0 && size < pressedImage->getHeight())
+			size = (int)pressedImage->getHeight();
+		setHeight(size);
+	}
+
+	bool Button::isFocused() const
+	{
+		return false;
 	}
 
 	void Button::draw(gcn::Graphics* graphics)
@@ -226,55 +207,108 @@ namespace love
 		int y = 0;
 		int x = 0;
 
-		gcn::Color backColor;
+		if(defaultImage.get() != 0)
+		{
+			switch(getAlignment())
+			{
+			default:
+			case gcn::Graphics::CENTER:
+				x = (int)((getWidth() / 2) - (defaultImage->getWidth() / 2));
+				break;
+			case gcn::Graphics::LEFT:
+				break;
+			case gcn::Graphics::RIGHT:
+				x = (int)(getWidth() - defaultImage->getWidth());
+				break;
+			}
+			switch(verticalAlignment)
+			{
+			default:
+			case Text::LOVE_ALIGN_CENTER:
+				y = (int)((getHeight() / 2) - (defaultImage->getHeight() / 2));
+				break;
+			case Text::LOVE_ALIGN_TOP:
+				break;
+			case Text::LOVE_ALIGN_BOTTOM:
+				y = (int)(getHeight() - defaultImage->getHeight());
+				break;
+			}
 
-		if(backgroundColor.get() != 0)
-			backColor = gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha());
+			if(isPressed() && pressedImage.get() != 0)
+				pressedImage->render((float)graphics->getCurrentClipArea().x, (float)graphics->getCurrentClipArea().y);
+			else if(mHasMouse && hoverImage.get() != 0)
+				hoverImage->render((float)graphics->getCurrentClipArea().x, (float)graphics->getCurrentClipArea().y);
+			else
+				defaultImage->render((float)graphics->getCurrentClipArea().x, (float)graphics->getCurrentClipArea().y);
+		}
 		else
-			backColor = gcn::Color(0,0,0,0);
-
-		if(isPressed())
 		{
-			y = 1; //awesome 3d effects, yo
-			x = 1;
-			if(pressedBackgroundColor.get() != 0)
-				backColor = gcn::Color(pressedBackgroundColor->getRed(),pressedBackgroundColor->getGreen(),pressedBackgroundColor->getBlue(),pressedBackgroundColor->getAlpha());
-			else if(hoverBackgroundColor.get() != 0)
-				backColor = gcn::Color(hoverBackgroundColor->getRed(),hoverBackgroundColor->getGreen(),hoverBackgroundColor->getBlue(),hoverBackgroundColor->getAlpha()) + 0x303030;
-			else if(backgroundColor.get() != 0)
-				backColor = backColor - 0x606060;
+			if(isPressed() && pressedColor != 0)
+				gcn::Button::setForegroundColor(gcn::Color(pressedColor->getRed(), pressedColor->getGreen(), pressedColor->getBlue(), pressedColor->getAlpha()));
+			else if(mHasMouse && hoverColor != 0)
+				gcn::Button::setForegroundColor(gcn::Color(hoverColor->getRed(), hoverColor->getGreen(), hoverColor->getBlue(), hoverColor->getAlpha()));
+			else if(color != 0)
+				gcn::Button::setForegroundColor(gcn::Color(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha()));
 			else
-				backColor.a += 25;
-		}
-		else if(mHasMouse)
-		{
-			if(hoverBackgroundColor.get() != 0)
-				backColor = gcn::Color(hoverBackgroundColor->getRed(),hoverBackgroundColor->getGreen(),hoverBackgroundColor->getBlue(),hoverBackgroundColor->getAlpha());
-			else if(backgroundColor.get() != 0)
-				backColor = backColor - 0x303030;
+				gcn::Button::setForegroundColor(gcn::Color(0,0,0,255));
+
+			if(isPressed() && pressedBackgroundColor != 0)
+				gcn::Button::setBaseColor(gcn::Color(pressedBackgroundColor->getRed(), pressedBackgroundColor->getGreen(), pressedBackgroundColor->getBlue(), pressedBackgroundColor->getAlpha()));
+			else if(mHasMouse && hoverBackgroundColor != 0)
+				gcn::Button::setBaseColor(gcn::Color(hoverBackgroundColor->getRed(), hoverBackgroundColor->getGreen(), hoverBackgroundColor->getBlue(), hoverBackgroundColor->getAlpha()));
+			else if(backgroundColor != 0)
+				gcn::Button::setBaseColor(gcn::Color(backgroundColor->getRed(), backgroundColor->getGreen(), backgroundColor->getBlue(), backgroundColor->getAlpha()));
 			else
-				backColor.a += 12;
-		}
-		else if(isFocused())
-		{
-			if(activeBackgroundColor.get() != 0)
-				backColor = gcn::Color(activeBackgroundColor->getRed(), activeBackgroundColor->getGreen(), activeBackgroundColor->getBlue(), activeBackgroundColor->getAlpha());
-		}
+				gcn::Button::setBaseColor(gcn::Color(255,255,255,150));
 
-		graphics->setColor(backColor);
+			gcn::Button::draw(graphics);
+			return;
 
-		graphics->fillRectangle(gcn::Rectangle(0,0,getWidth(),getHeight()));
+			gcn::Color backColor;
+
+			if(backgroundColor.get() != 0)
+				backColor = gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha());
+			else
+				backColor = gcn::Color(0,0,0,0);
+	
+			if(isPressed())
+			{
+				y = 1; //awesome 3d effects, yo
+				x = 1;
+				if(pressedBackgroundColor.get() != 0)
+					backColor = gcn::Color(pressedBackgroundColor->getRed(),pressedBackgroundColor->getGreen(),pressedBackgroundColor->getBlue(),pressedBackgroundColor->getAlpha());
+				else if(hoverBackgroundColor.get() != 0)
+					backColor = gcn::Color(hoverBackgroundColor->getRed(),hoverBackgroundColor->getGreen(),hoverBackgroundColor->getBlue(),hoverBackgroundColor->getAlpha()) + 0x303030;
+				else if(backgroundColor.get() != 0)
+					backColor = backColor - 0x606060;
+				else
+					backColor.a += 25;
+			}
+			else if(mHasMouse)
+			{
+				if(hoverBackgroundColor.get() != 0)
+					backColor = gcn::Color(hoverBackgroundColor->getRed(),hoverBackgroundColor->getGreen(),hoverBackgroundColor->getBlue(),hoverBackgroundColor->getAlpha());
+				else if(backgroundColor.get() != 0)
+					backColor = backColor - 0x303030;
+				else
+					backColor.a += 12;
+			}
+
+			graphics->setColor(backColor);
+
+			graphics->fillRectangle(gcn::Rectangle(0,0,getWidth(),getHeight()));
+		}
 
 		switch(getAlignment())
 		{
 		default:
 		case gcn::Graphics::CENTER:
-			x += (getWidth() / 2) - (getFont()->getWidth(getCaption()) / 2);
+			x += (getWidth() / 2) - (gcn::Button::getFont()->getWidth(getCaption()) / 2);
 			break;
 		case gcn::Graphics::LEFT:
 			break;
 		case gcn::Graphics::RIGHT:
-			x += getWidth() - getFont()->getWidth(getCaption());
+			x += getWidth() - gcn::Button::getFont()->getWidth(getCaption());
 			break;
 		}
 
@@ -282,12 +316,12 @@ namespace love
 		{
 		default:
 		case Text::LOVE_ALIGN_CENTER:
-			y += (getHeight() / 2) - (getFont()->getHeight() / 2);
+			y += (getHeight() / 2) - (gcn::Button::getFont()->getHeight() / 2);
 			break;
 		case Text::LOVE_ALIGN_TOP:
 			break;
 		case Text::LOVE_ALIGN_BOTTOM:
-			y += getHeight() - getFont()->getHeight();
+			y += getHeight() - gcn::Button::getFont()->getHeight();
 			break;
 		}
 
@@ -300,8 +334,6 @@ namespace love
 			graphics->setColor(gcn::Color(pressedColor->getRed(),pressedColor->getGreen(),pressedColor->getBlue(),pressedColor->getAlpha()));
 		else if(mHasMouse && hoverColor != 0)
 			graphics->setColor(gcn::Color(hoverColor->getRed(),hoverColor->getGreen(),hoverColor->getBlue(),hoverColor->getAlpha()));
-		else if(isFocused() && activeColor != 0)
-			graphics->setColor(gcn::Color(activeColor->getRed(), activeColor->getGreen(), activeColor->getBlue(), activeColor->getAlpha()));
 
 		graphics->drawText(getCaption(),x,y);
 	}
@@ -315,6 +347,10 @@ namespace love
 			graphics->setColor(gcn::Color(borderColor->getRed(),borderColor->getGreen(),borderColor->getBlue(),borderColor->getAlpha()));
 		else
 			graphics->setColor(gcn::Color(0,0,0,255));
+
+		gcn::Button::drawBorder(graphics);
+		return;
+
 		for (unsigned int i = 0; i < getBorderSize(); ++i)
 		{
 			graphics->drawLine(i,i, width - i, i);

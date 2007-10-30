@@ -1,7 +1,7 @@
 #ifndef LOVE_LIST_BOX_H
 #define LOVE_LIST_BOX_H
 
-#include "AbstractColor.h"
+#include "GUIElement.h"
 #include "GUIList.h"
 
 #include <boost/shared_ptr.hpp>
@@ -17,15 +17,12 @@ namespace love
 	 * @date 2007-10-28
 	 * @brief A list box used by the Menu.
 	 **/
-	class ListBox : public gcn::ListBox
+	class ListBox : public gcn::ListBox, public GUIElement
 	{
 	protected:
 		GUIList * list;
-		pAbstractColor color;
 		pAbstractColor activeColor;
-		pAbstractColor backgroundColor;
 		pAbstractColor selectionColor;
-		pAbstractColor borderColor;
 
 	public:
 		ListBox(GUIList * list);
@@ -37,11 +34,15 @@ namespace love
 		virtual void setBorderSize(unsigned int size);
 		virtual void setName(const char * name);
 
-		virtual void setColor(const pAbstractColor * color);
 		virtual void setActiveColor(const pAbstractColor * color);
-		virtual void setBackgroundColor(const pAbstractColor * color);
+		virtual void setActiveColor(const pColor * color);
+		virtual void setActiveColor(const pAnimatedColor * color);
 		virtual void setSelectionColor(const pAbstractColor * color);
-		virtual void setBorderColor(const pAbstractColor * color);
+		virtual void setSelectionColor(const pColor * color);
+		virtual void setSelectionColor(const pAnimatedColor * color);
+
+		virtual const pAbstractColor * getActiveColor();
+		virtual const pAbstractColor * getSeclectionColor();
 
 		virtual int getWidth();
 		virtual int getHeight();

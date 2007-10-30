@@ -56,21 +56,6 @@ namespace love
 		this->verticalAlignment = alignment;
 	}
 
-	void RadioButton::setColor(const pAbstractColor * color)
-	{
-		this->color = *color;
-	}
-
-	void RadioButton::setBackgroundColor(const pAbstractColor * color)
-	{
-		this->backgroundColor = *color;
-	}
-
-	void RadioButton::setBorderColor(const pAbstractColor * color)
-	{
-		this->borderColor = *color;
-	}
-
 	void RadioButton::setDefaultImage(const pAbstractImage * image)
 	{
 		this->defaultImage = *image;

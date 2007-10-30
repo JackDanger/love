@@ -1,13 +1,7 @@
 #ifndef LOVE_SLIDER_H
 #define LOVE_SLIDER_H
 
-#include "AbstractColor.h"
-#include "AbstractImage.h"
-#include "Font.h"
-#include "Text.h"
-
-#include <boost/shared_ptr.hpp>
-#include <guichan.hpp>
+#include "GUIElement.h"
 
 namespace love
 {
@@ -19,18 +13,15 @@ namespace love
 	 * @date 2007-10-28
 	 * @brief A slider used by the Menu.
 	 **/
-	class Slider : public gcn::Slider
+	class Slider : public gcn::Slider, public GUIElement
 	{
 	protected:
-		pAbstractColor color;
-		pAbstractColor backgroundColor;
-		pAbstractColor borderColor;
 		pAbstractImage markerImage;
 		pAbstractImage backgroundImage;
 
 	public:
-		static const int LOVE_SLIDER_VERTICAL = gcn::Slider::VERTICAL;
 		static const int LOVE_SLIDER_HORIZONTAL = gcn::Slider::HORIZONTAL;
+		static const int LOVE_SLIDER_VERTICAL = gcn::Slider::VERTICAL;
 
 		Slider(double scaleEnd = 1);
 		Slider(double scaleStart, double scaleEnd);
@@ -51,9 +42,6 @@ namespace love
 		virtual void setValue(double value);
 		virtual void setName(const char * name);
 
-		virtual void setColor(const pAbstractColor * color);
-		virtual void setBackgroundColor(const pAbstractColor * color);
-		virtual void setBorderColor(const pAbstractColor * color);
 		virtual void setMarkerImage(const pAbstractImage * image);
 		virtual void setBackgroundImage(const pAbstractImage * image);
 

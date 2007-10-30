@@ -106,7 +106,7 @@ namespace love
 		}
 		setWidth(temp);
 
-		setHeight((getFont()->getHeight() + 2) * (int)lines.size());
+		setHeight((getFont()->getHeight()) * (int)lines.size());
 
 		if(background != 0)
 		{
@@ -156,17 +156,9 @@ namespace love
 				break;
 			}
 
-			//glPushAttrib(GL_CURRENT_BIT);
 			graphics->setColor(gcn::Color(0xFFFFFF)); // to remove the effects of the background color
-			//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-			//glEnable(GL_TEXTURE_2D);
-			//glEnable(GL_BLEND);
 
 			background->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
-				
-			//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-			//glDisable(GL_TEXTURE_2D);
-			//glPopAttrib();
 		}
 
 		x = 0;
@@ -201,7 +193,7 @@ namespace love
 			case gcn::Graphics::LEFT:
 				break;
 			case gcn::Graphics::RIGHT:
-				x = getWidth() - getFont()->getWidth(lines[i]);
+				x = getWidth() - gcn::Label::getFont()->getWidth(lines[i]);
 				break;
 			}
 			graphics->drawText(lines[i], x, y + (i * getFont()->getHeight()));

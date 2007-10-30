@@ -1,15 +1,7 @@
 #ifndef LOVE_LABEL_H
 #define LOVE_LABEL_H
 
-#include "AbstractColor.h"
-#include "AbstractImage.h"
-#include "Font.h"
-#include "Text.h"
-
-#include <boost/shared_ptr.hpp>
-#include <guichan.hpp>
-
-using std::string;
+#include "GUIElement.h"
 
 namespace love
 {
@@ -21,12 +13,9 @@ namespace love
 	 * @date 2007-08-13
 	 * @brief A label to be used by the Menu.
 	 **/
-	class Label : public gcn::Label
+	class Label : public gcn::Label, public GUIElement
 	{
 	protected:
-		pAbstractColor color;
-		pAbstractColor backgroundColor;
-		pAbstractColor borderColor;
 		pAbstractImage background;
 		int verticalAlignment;
 
@@ -86,24 +75,6 @@ namespace love
 		virtual void valign(int alignment);
 
 		/**
-		 * @param color An AbstractColor object.
-		 * @brief Sets the text color.
-		 **/
-		virtual void setColor(const pAbstractColor * color);
-
-		/**
-		 * @param color An AbstractColor object.
-		 * @brief Sets the background color.
-		 **/
-		virtual void setBackgroundColor(const pAbstractColor * color);
-
-		/**
-		 * @param color An AbstractColor object.
-		 * @brief Sets the border color.
-		 **/
-		virtual void setBorderColor(const pAbstractColor * color);
-
-		/**
 		 * @param color An AbstractImage object.
 		 * @brief Sets the background.
 		 **/
@@ -132,14 +103,6 @@ namespace love
 		 * @brief Returns the Label's caption.
 		 **/
 		virtual const char * getCaption();
-
-		// THE FOLLOWING FUNCTIONS HAVE BEEN COMMENTED OUT BECAUSE THEY SEEM REDUNDANT
-		/*
-		virtual pAbstractColor getColor();
-		virtual pAbstractColor getBackgroundColor();
-		virtual pAbstractColor getBorderColor();
-		virtual pAbstractImage getBackground();
-		*/
 
 		/**
 		 * @brief Adjusts the size of the label according to the size of the caption.

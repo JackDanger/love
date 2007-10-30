@@ -1,10 +1,7 @@
 #ifndef LOVE_TEXT_FIELD_H
 #define LOVE_TEXT_FIELD_H
 
-#include "AbstractColor.h"
-
-#include <boost/shared_ptr.hpp>
-#include <guichan.hpp>
+#include "GUIElement.h"
 
 namespace love
 {
@@ -16,12 +13,9 @@ namespace love
 	 * @date 2007-08-16
 	 * @brief A text field to be used by the Menu.
 	 **/
-	class TextField : public gcn::TextField
+	class TextField : public gcn::TextField, public GUIElement
 	{
 	protected:
-		pAbstractColor color;
-		pAbstractColor backgroundColor;
-		pAbstractColor borderColor;
 		pAbstractColor activeColor;
 		pAbstractColor activeBackgroundColor;
 
@@ -76,33 +70,15 @@ namespace love
 
 		/**
 		 * @param color An AbstractColor object.
-		 * @brief Sets the text color.
-		 **/
-		virtual void setColor(const pAbstractColor * color);
-
-		/**
-		 * @param color An AbstractColor object.
 		 * @brief Sets the text color when the text field is active.
 		 **/
 		virtual void setActiveColor(const pAbstractColor * color);
 
 		/**
 		 * @param color An AbstractColor object.
-		 * @brief Sets the background color.
-		 **/
-		virtual void setBackgroundColor(const pAbstractColor * color);
-
-		/**
-		 * @param color An AbstractColor object.
 		 * @brief Sets the background color when the text field is active.
 		 **/
 		virtual void setActiveBackgroundColor(const pAbstractColor * color);
-
-		/**
-		 * @param color An AbstractColor object.
-		 * @brief Sets the border color.
-		 **/
-		virtual void setBorderColor(const pAbstractColor * color);
 
 		/**
 		 * @return The width of the TextField.
@@ -136,18 +112,6 @@ namespace love
 
 		/**
 		 * @return An AbstractColor object.
-		 * @brief Returns the text color.
-		 **/
-		virtual pAbstractColor getColor();
-
-		/**
-		 * @return An AbstractColor object.
-		 * @brief Returns the background color.
-		 **/
-		virtual pAbstractColor getBackgroundColor();
-
-		/**
-		 * @return An AbstractColor object.
 		 * @brief Returns the text color when the text label is active.
 		 **/
 		virtual pAbstractColor getActiveColor();
@@ -157,12 +121,6 @@ namespace love
 		 * @brief Returns the background color when the text label is active.
 		 **/
 		virtual pAbstractColor getActiveBackgroundColor();
-
-		/**
-		 * @return An AbstractColor object.
-		 * @brief Returns the border color.
-		 **/
-		virtual pAbstractColor getBorderColor();
 
 		/**
 		 * @brief Adjusts the size of the TextField depending on the content.

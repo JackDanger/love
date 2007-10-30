@@ -1,11 +1,8 @@
 #ifndef LOVE_DROP_DOWN_H
 #define LOVE_DROP_DOWN_H
 
-#include "AbstractColor.h"
+#include "GUIElement.h"
 #include "GUIList.h"
-
-#include <boost/shared_ptr.hpp>
-#include <guichan.hpp>
 
 namespace love
 {
@@ -17,17 +14,16 @@ namespace love
 	 * @date 2007-08-17
 	 * @brief A drop-down list to be used by the Menu.
 	 **/
-	class DropDown : public gcn::DropDown
+	class DropDown : public gcn::DropDown, public GUIElement
 	{
 	protected:
 		GUIList * list;
-		pAbstractColor color;
 		pAbstractColor activeColor;
-		pAbstractColor backgroundColor;
 		pAbstractColor activeBackgroundColor;
 		pAbstractColor selectionBackgroundColor;
-		pAbstractColor borderColor;
 		pAbstractColor buttonColor;
+		pAbstractImage button;
+		pAbstractImage buttonPressed;
 
 	public:
 		DropDown(GUIList * list);
@@ -39,13 +35,13 @@ namespace love
 		virtual void setBorderSize(unsigned int size);
 		virtual void setName(const char * name);
 
-		virtual void setColor(const pAbstractColor * color);
 		virtual void setActiveColor(const pAbstractColor * color);
-		virtual void setBackgroundColor(const pAbstractColor * color);
 		virtual void setActiveBackgroundColor(const pAbstractColor * color);
 		virtual void setSelectionBackgroundColor(const pAbstractColor * color);
-		virtual void setBorderColor(const pAbstractColor * color);
 		virtual void setButtonColor(const pAbstractColor * color);
+
+		virtual void setButton(const pAbstractImage * image);
+		virtual void setButtonPressed(const pAbstractImage * image);
 
 		virtual int getWidth();
 		virtual int getHeight();
