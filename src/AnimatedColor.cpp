@@ -3,13 +3,13 @@
 
 namespace love
 {
-	AnimatedColor::AnimatedColor()
+	AnimatedColor::AnimatedColor(int mode)
 	{
 		//current = Color(0xFFFFFF);
 		red = blue = green = alpha = 255;
 		total = 0;
 		elapsed = 0;
-		mode = LOVE_ANIMATED_COLOR_LOOP;
+		this->mode = mode;
 		active = false;
 		direction = true;
 	}
@@ -166,7 +166,7 @@ namespace love
 		return t;
 	}
 
-	void AnimatedColor::addColor(const pColor * color, float time)
+	void AnimatedColor::addColor(const pAbstractColor * color, float time)
 	{
 		if(colors.size() == 0)
 		{
@@ -203,19 +203,19 @@ namespace love
 			total += times[i];
 	}
 
-	Color AnimatedColor::getColor()
+	pAbstractColor AnimatedColor::getColor()
 	{
-		Color temp = Color(red, green, blue, alpha);
+		pColor temp(new Color(red, green, blue, alpha));
 		return temp;
 	}
 
-	Color AnimatedColor::getColor(float time)
+	pAbstractColor AnimatedColor::getColor(float time)
 	{
 		//clamp t
 		time = (time < 0) ? 0 : time;
 		time = (time > 1) ? 1 : time;
 
-		Color color = Color(0,0,0,0);
+		pColor color(new Color(0,0,0,0));
 		float temp = 0;
 		float elap = 0;
 		int cur = 0;
@@ -248,10 +248,10 @@ namespace love
 			next = next + 1;
 
 		//int red, green, blue, alpha;
-		color.setRed( (int)(colors[next]->getRed() + ((colors[cur]->getRed() - colors[next]->getRed()) * temp)) );
-		color.setGreen( (int)(colors[next]->getGreen() + ((colors[cur]->getGreen() - colors[next]->getGreen()) * temp)) );
-		color.setBlue( (int)(colors[next]->getBlue() + ((colors[cur]->getBlue() - colors[next]->getBlue()) * temp)) );
-		color.setAlpha( (int)(colors[next]->getAlpha() + ((colors[cur]->getAlpha() - colors[next]->getAlpha()) * temp)) );
+		color->setRed( (int)(colors[next]->getRed() + ((colors[cur]->getRed() - colors[next]->getRed()) * temp)) );
+		color->setGreen( (int)(colors[next]->getGreen() + ((colors[cur]->getGreen() - colors[next]->getGreen()) * temp)) );
+		color->setBlue( (int)(colors[next]->getBlue() + ((colors[cur]->getBlue() - colors[next]->getBlue()) * temp)) );
+		color->setAlpha( (int)(colors[next]->getAlpha() + ((colors[cur]->getAlpha() - colors[next]->getAlpha()) * temp)) );
 
 		return color;
 	}

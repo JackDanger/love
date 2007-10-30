@@ -82,6 +82,13 @@ namespace love
 		void setColor(int r, int g, int b, int a = 255);
 
 		/**
+		* @brief Sets the current (foreground) color directly.
+		* @param code The hexadecimal color code.
+		* @param a The alpha component, 0-255. (Default 255).
+		**/
+		void setColor(int code, int a = 255);
+
+		/**
 		* @brief Sets the background color.
 		* @param color The new background color.
 		* @note The color may or may not be shared/used by others. ^-^ Using shared_ptr!
@@ -96,6 +103,13 @@ namespace love
 		* @note That's right, no alpha. This is the absolute background color.
 		**/
 		void setBackground(int r, int g, int b);
+
+		/**
+		* @brief Sets the background color directly.
+		* @param code The hexadecimal color code.
+		* @note That's right, no alpha. This is the absolute background color.
+		**/
+		void setBackground(int code);
 		
 		/**
 		* @brief The current Font used for rendering of text. Used by Lua.

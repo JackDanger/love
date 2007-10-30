@@ -186,8 +186,8 @@ namespace love
 			float t = iter->age/iter->life;
 
 			// Set the color
-			Color c = color->getColor(t);
-			glColor4ub(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
+			pAbstractColor c = color->getColor(t);
+			glColor4ub(c->getRed(), c->getGreen(), c->getBlue(), c->getAlpha());
 
 			// Set the size
 			float sd = iter->size.max - iter->size.min;

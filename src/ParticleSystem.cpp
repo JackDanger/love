@@ -273,7 +273,7 @@ namespace love
 		color->addColor(r, g, b, a, time);
 	}
 
-	void ParticleSystem::addColor(const pColor * color, float time)
+	void ParticleSystem::addColor(const pAbstractColor * color, float time)
 	{
 		this->color->addColor(color, time);
 	}
@@ -444,8 +444,8 @@ namespace love
 			float t = iter->age/iter->life;
 
 			// Set the color
-			Color c = color->getColor(t);
-			glColor4ub(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
+			pAbstractColor c = color->getColor(t);
+			glColor4ub(c->getRed(), c->getGreen(), c->getBlue(), c->getAlpha());
 
 			// Set the size
 			float sd = iter->size.max - iter->size.min;

@@ -63,6 +63,8 @@ namespace love
 
 		pAbstractColor newColor(int r, int g, int b, int a = 255) const;
 		pAbstractColor newColor(int code, int a = 255) const;
+		pAbstractColor newAnimatedColor(int mode = AnimatedColor::LOVE_ANIMATED_COLOR_LOOP) const;
+
 		pAbstractFont newFont(const char * filename, int size) const;
 		pAbstractFont newDefaultFont(int size) const;
 		pAbstractFont newImageFont(const pAbstractImage * image, int width, int height, char * charlist) const;

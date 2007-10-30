@@ -241,6 +241,19 @@ namespace love
 		core->current = this;
 	}
 
+	void UIGame::hidePause()
+	{
+		resumeGame();
+	}
+
+	bool UIGame::isPaused()
+	{
+		if(previous != 0) //this means that it is paused
+			return true;
+		else
+			return false;
+	}
+
 	void UIGame::eventFired(pEvent e)
 	{
 		if(e->getType() == LOVE_TYPE_GUI_EVENT)

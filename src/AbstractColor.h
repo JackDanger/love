@@ -124,13 +124,69 @@ namespace love
 		virtual void setColor(float t) = 0;
 
 		/**
+		 * @return An AbstractColor.
+		 * @brief Returns a pointer to the current object.
+		 **/
+		virtual boost::shared_ptr<AbstractColor> getColor();
+
+		/**
+		 * @param time Used in the AnimatedColor.
+		 * @return An AbstractColor.
+		 * @brief Returns a pointer to the current object.
+		 **/
+		virtual boost::shared_ptr<AbstractColor> getColor(float time);
+
+		/**
 		 * @param other The other color.
 		 * @param amount The amount of gradient (a value between 0 and 1).
+		 * @return An AbstractColor.
 		 * @brief Gets a gradient between this color and the other color determined by the amount.
 		 **/
 		virtual boost::shared_ptr<AbstractColor> getGradient(const boost::shared_ptr<AbstractColor> * other, float amount);
 
+		/**
+		 * @param color A pointer to a Color object.
+		 * @param time The amount of time associated with the color.
+	 	 * @brief Does nothing.
+	 	 **/
+		virtual void addColor(const boost::shared_ptr<AbstractColor> * color, float time);
+
+		/**
+		* @brief Does nothing.
+		* @param r The red color component.
+		* @param g The green color component.
+		* @param b The blue color component.
+		* @param a The alpha component.
+		* @param time The amount of time associated with the color.
+		**/
+		virtual void addColor(int r, int g, int b, int a, float time);
+
+		/**
+		 * @param dt The elapsed time (in milliseconds).
+	 	 * @brief Updates the color.
+	 	 **/
 		virtual void update(float dt) = 0;
+
+		/**
+		 * @param mode The desired mode.
+	 	 * @brief Does nothing.
+	 	 **/
+		virtual void setMode(int mode);
+
+		/**
+	 	 * @brief Does nothing.
+	 	 **/
+		virtual void play();
+
+		/**
+	 	 * @brief Does nothing.
+	 	 **/
+		virtual void stop();
+
+		/**
+	 	 * @brief Does nothing.
+	 	 **/
+		virtual void reset();
 	};
 
 	typedef boost::shared_ptr<AbstractColor> pAbstractColor;

@@ -37,67 +37,21 @@ namespace love
 		Color(int red, int green, int blue, int alpha = 255);
 
 		/**
-		 * @param red The amount of red (a value between 0 and 1).
-		 * @param green The amount of green (a value between 0 and 1).
-		 * @param blue The amount of blue (a value between 0 and 1).
-		 * @param alpha The amount of alpha (a value between 0 and 1).
-		 * @brief Initializes all the variables with the appropriate values.
-		 **/
-		//Color(float red, float green, float blue, float alpha = 1.0);
-
-		/**
 		 * @brief Does nothing.
 		 **/
 		~Color();
 
 		/**
-		 * @param value The amount of red (a value between 0 and 1).
-		 * @brief Sets the amount of red to the new value.
+		 * @brief Sets the color using function value t.
+		 * @param t A value of 0 to 1 representing the start and the end of the dynamic color.
 		 **/
-		//void setRed(float value);
-
-		/**
-		 * @param value The amount of blue (a value between 0 and 1).
-		 * @brief Sets the amount of blue to the new value.
-		 **/
-		//void setBlue(float value);
-
-		/**
-		 * @param value The amount of green (a value between 0 and 1).
-		 * @brief Sets the amount of green to the new value.
-		 **/
-		//void setGreen(float value);
-
-		/**
-		 * @param value The amount of alpha (a value between 0 and 1).
-		 * @brief Sets the amount of alpha to the new value.
-		 **/
-		//void setAlpha(float value);
-
-		/**
-		 * @param red The amount of red (a value between 0 and 1).
-		 * @param green The amount of green (a value between 0 and 1).
-		 * @param blue The amount of blue (a value between 0 and 1).
-		 * @brief Sets the variables to the approriate new values.
-		 **/
-		//void setColor(float red, float green, float blue);
-
-		/**
-		 * @param red The amount of red (a value between 0 and 1).
-		 * @param green The amount of green (a value between 0 and 1).
-		 * @param blue The amount of blue (a value between 0 and 1).
-		 * @param alpha The amount of alpha (a value between 0 and 1).
-		 * @brief Sets the variables to the approriate new values.
-		 **/
-		//void setColor(float red, float green, float blue, float alpha);
+		virtual void setColor(float t);
 
 		/**
 		 * @param dt The elapsed time (in milliseconds).
 	 	 * @brief Does nothing.
 	 	 **/
-		void update(float dt);
-
-		virtual void setColor(float t);
+		virtual void update(float dt);
 	};
 
 	typedef boost::shared_ptr<Color> pColor;

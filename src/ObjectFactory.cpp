@@ -110,6 +110,14 @@ namespace love
 		return color;
 	}
 
+	pAbstractColor ObjectFactory::newAnimatedColor(int mode) const
+	{
+		// Create the color
+		pAnimatedColor color(new AnimatedColor(mode));
+
+		return color;
+	}
+
 	pAbstractFont ObjectFactory::newFont(const char * filename, int size) const
 	{
 		// Get the current source

@@ -175,8 +175,15 @@
 /**
 * Slider types.
 **/
-%constant const int slider_vertical = 1;
 %constant const int slider_horizontal = 0;
+%constant const int slider_vertical = 1;
+
+/**
+* Animated color modes.
+**/
+%constant const int mode_loop = 1;
+%constant const int mode_once = 2;
+%constant const int mode_bounce = 3;
 
 /**
 * Event types.

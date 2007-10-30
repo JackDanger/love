@@ -17,12 +17,13 @@ main = {
 	load = function()
 
 		--game:queueDisplayMode(1024,768,32,true);
+		love.graphics:setFont(love.objects:newDefaultFont(20));
 
 		-- Images
-		game:addImage('image01', 'pig.gif');
-		game:addImage('eiffel', 'img/eiffel.jpg');
-		game:addImage('hamster', 'hamster.gif');
-		game:addImage('mortis', 'mortis.gif');
+		img = love.objects:newImage('pig.gif');
+		eiffel = love.objects:newImage('img/eiffel.jpg');
+		hamster = love.objects:newImage('hamster.gif');
+		mortis = love.objects:newImage('mortis.gif');
 			
 		-- Sound
 		-- This works, but is annoying when restarting all the time.
@@ -35,19 +36,19 @@ main = {
 
 		local thrust = 500;
 
-		if keyboard:isDown(LOVE_KEY_RIGHT) then
+		if love.keyboard:isDown(love.key_right) then
 			player.xspeed = player.xspeed + (thrust * dt);
 		end
 		
-		if keyboard:isDown(LOVE_KEY_LEFT) then		
+		if love.keyboard:isDown(love.key_left) then		
 			player.xspeed = player.xspeed - (thrust * dt);
 		end
 		
-		if keyboard:isDown(LOVE_KEY_UP) then		
+		if love.keyboard:isDown(love.key_up) then		
 			player.yspeed = player.yspeed - (thrust * dt);
 		end
 		
-		if keyboard:isDown(LOVE_KEY_DOWN) then		
+		if love.keyboard:isDown(love.key_down) then		
 			player.yspeed = player.yspeed + (thrust * dt);
 		end
 		
@@ -62,25 +63,23 @@ main = {
 	
 	render = function()
 
-		local eiffel = game:getImage('eiffel');
 		eiffel:render(0,0);
 
-		local img = game:getImage('image01');
 		img:render(math.floor(player.x), math.floor(player.y));
 		
-		game:getImage('mortis'):render(mouse:getX(), mouse:getY());
+		mortis:render(love.mouse:getX(), love.mouse:getY());
 		
-		--game:setColor(0xff0668);
-		game:print(20, 40, "Lua makes french pig fly @ (" .. math.floor(player.x) .. "," .. math.floor(player.y) .. ")");
+		love.graphics:setColor(0xff0668);
+		love.graphics:drawText("Lua makes french pig fly @ (" .. math.floor(player.x) .. "," .. math.floor(player.y) .. ")", 20, 40);
 				
-		--game:setColor(255,255,0);
-		game:print(20,70, "Last keypress: " .. lastkey);
+		love.graphics:setColor(255,255,0);
+		love.graphics:drawText("Last keypress: " .. lastkey, 20, 70);
 		
-		--game:setColor(255,0,0);
-		game:print(20,100, "Mouse @ (" .. mouse:getX() .. "," .. mouse:getY() .. ")");
+		love.graphics:setColor(255,0,0);
+		love.graphics:drawText("Mouse @ (" .. love.mouse:getX() .. "," .. love.mouse:getY() .. ")", 20, 100);
 		
-		--game:setColor(255,0,255);
-		game:print(20,130, "Last mousepress: " .. lastmouse);
+		love.graphics:setColor(255,0,255);
+		love.graphics:drawText("Last mousepress: " .. lastmouse, 20, 130);
 		
 	end, 
 	
@@ -88,10 +87,10 @@ main = {
 		
 		lastkey = "some key with code " .. key;
 		
-		if key == LOVE_KEY_LEFT then lastkey = "left" end
-		if key == LOVE_KEY_RIGHT then lastkey = "right" end
-		if key == LOVE_KEY_UP then lastkey = "up" end
-		if key == LOVE_KEY_DOWN then lastkey = "down" end
+		if key == love.key_left then lastkey = "left" end
+		if key == love.key_right then lastkey = "right" end
+		if key == love.key_up then lastkey = "up" end
+		if key == love.key_down then lastkey = "down" end
 		
 			
 	end,
@@ -104,15 +103,15 @@ main = {
 		lastmouse = "("..x..","..y..")";
 		
 		
-		if button == LOVE_MOUSE_LEFT then
+		if button == love.mouse_left then
 			lastmouse = lastmouse .. " LEFT";
-		elseif button == LOVE_MOUSE_MIDDLE then 
+		elseif button == love.mouse_middle then 
 			lastmouse = lastmouse .. " MIDDLE";
-		elseif button == LOVE_MOUSE_RIGHT then 
+		elseif button == love.mouse_right then 
 			lastmouse = lastmouse .. " RIGHT";
-		elseif button == LOVE_MOUSE_WHEELUP then 
+		elseif button == love.mouse_wheelup then 
 			lastmouse = lastmouse .. " WHEELUP";
-		elseif button == LOVE_MOUSE_WHEELDOWN then 
+		elseif button == love.mouse_wheeldown then 
 			lastmouse = lastmouse .. " WHEELDOWN";
 		end
 		

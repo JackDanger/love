@@ -36,7 +36,7 @@ namespace love
 		/**
 		* @brief Contructs an empty SmoothAnimatedColor.
 		**/
-		SmoothAnimatedColor(Container<Color> * colors);
+		SmoothAnimatedColor(Container<AbstractColor> * colors);
 		virtual ~SmoothAnimatedColor();
 
 		virtual float map(float t);

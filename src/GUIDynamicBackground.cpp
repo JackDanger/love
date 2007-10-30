@@ -166,7 +166,7 @@ namespace love
 
 		// Main bgcolor
 		pSmoothAnimatedColor c(new SmoothAnimatedColor(0));
-		c->addColor(&pColor(new Color(0x3b90c8)), 5);
+		c->addColor(&pAbstractColor(new Color(0x3b90c8)), 5);
 		//c->addColor(new Color(0x2facfd), 5);
 		//c->addColor(new Color(0xf24023), 5);
 		//c->play();
@@ -175,7 +175,7 @@ namespace love
 
 		// Specular
 		pSmoothAnimatedColor c1(new SmoothAnimatedColor(0));
-		c1->addColor(&pColor(new Color(0xa6d5f3)), 2);
+		c1->addColor(&pAbstractColor(new Color(0xa6d5f3)), 2);
 		//c1->addColor(new Color(0x2ca9fa), 2);
 		//c1->play();
 		c1->setMode(AnimatedColor::LOVE_ANIMATED_COLOR_LOOP);

@@ -34,46 +34,9 @@ namespace love
 	Color::~Color()
 	{}
 
-	/*void Color::setRed(float value)
-	{
-		red = (int)(value * 255);
-	}
-
-	void Color::setGreen(float value)
-	{
-		green = (int)(value * 255);
-	}
-
-	void Color::setBlue(float value)
-	{
-		blue = (int)(value * 255);
-	}
-
-	void Color::setAlpha(float value)
-	{
-		alpha = (int)(value * 255);
-	}
-
-	void Color::setColor(float red, float green, float blue)
-	{
-		this->red = (int)(red * 255);
-		this->green = (int)(green * 255);
-		this->blue = (int)(blue * 255);
-	}
-
-	void Color::setColor(float red, float green, float blue, float alpha)
-	{
-		this->red = (int)(red * 255);
-		this->green = (int)(green * 255);
-		this->blue = (int)(blue * 255);
-		this->alpha = (int)(alpha * 255);
-	}*/
-
 	void Color::update(float dt)
-	{
-	}
+	{}
 
 	void Color::setColor(float t)
-	{
-	}
+	{}
 }

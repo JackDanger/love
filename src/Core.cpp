@@ -334,7 +334,10 @@ namespace love
 		case LOVE_KEY_ESCAPE:
 			if(strcmp(current->getName().c_str(),"love-system-menu") != 0)
 			{
-				uigame->showPause();
+				if(uigame->isPaused())
+					uigame->hidePause();
+				else
+					uigame->showPause();
 			}
 			//startGame("love-system-menu", false);
 			break;

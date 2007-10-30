@@ -10,6 +10,11 @@ main = {
 		color = { black = love.objects:newColor(0x000000), white = love.objects:newColor(0xFFFFFF), shiznet = love.objects:newColor(0xF60968), halfshiz = love.objects:newColor(0xF60968) };
 		color["halfshiz"]:setAlpha(200);
 		
+		anim = love.objects:newAnimatedColor();
+		anim:addColor(color["white"], 0.1);
+		anim:addColor(color["black"], 0.1);
+		anim:play();
+		
 		love.graphics:setBackground(color["white"]);
 		love.graphics:setColor(color["black"]);
 		
@@ -24,7 +29,8 @@ main = {
 		menu:setBorderColor(color["black"]);
 		menu:setBorderSize(2);
 		menu:align(love.align_left);
-		menu:setBackgroundColor(color["halfshiz"]);
+		--menu:setBackgroundColor(color["halfshiz"]);
+		menu:setBackgroundColor(anim);
 		--menu:setBackground(love.objects:newImage("zero.png"));
 		--menu:setFont(font["small"]);
 		menu:setSize(650,200);
@@ -32,8 +38,8 @@ main = {
 		menu:setPadding(10);
 		menu:setSpacing(5);
 		
-		label = menu:addLabel("THIS IS A MENU");
-		label:setColor(color["white"]);
+		label = menu:addLabel("THIS IS A MENU (SIEZURE ED.)");
+		label:setColor(color["shiznet"]);
 		
 		button = menu:addButton("BUTTON", "Click me to change the menu label!");
 		button:setBorderSize(1);
@@ -123,7 +129,10 @@ main = {
 		
 	end,
 	update = function(dt)
-	
+		
+		-- update animated colors
+		anim:update(dt);
+		
 		horseshit = horseshit + 5 * dt;
 		--game:setRotation(horseshit);
 		

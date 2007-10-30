@@ -103,6 +103,17 @@ namespace love
 		virtual void showPause();
 
 		/**
+		 * @brief Unpauses.
+		 **/
+		virtual void hidePause();
+
+		/**
+		 * @return True if paused. False if not paused.
+		 * @brief Checks if the system is paused.
+		 **/
+		virtual bool isPaused();
+
+		/**
 		 * @param e The event in question.
 		 * @brief Handles events, like the clicking of buttons.
 		 **/

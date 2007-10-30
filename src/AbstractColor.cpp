@@ -79,6 +79,17 @@ namespace love
 		this->alpha = alpha;
 	}
 
+	boost::shared_ptr<AbstractColor> AbstractColor::getColor()
+	{
+		boost::shared_ptr<AbstractColor> temp (this);
+		return temp;
+	}
+
+	boost::shared_ptr<AbstractColor> AbstractColor::getColor(float time)
+	{
+		return getColor();
+	}
+
 	boost::shared_ptr<AbstractColor> AbstractColor::getGradient(const boost::shared_ptr<AbstractColor> * other, float amount)
 	{
 		boost::shared_ptr<AbstractColor> temp (new Color());
@@ -88,4 +99,22 @@ namespace love
 		temp->setAlpha((int)((*other)->getAlpha() + ((this->alpha - (*other)->getAlpha()) * amount)));
 		return temp;
 	}
+
+	void AbstractColor::addColor(const pAbstractColor * color, float time)
+	{}
+
+	void AbstractColor::addColor(int r, int g, int b, int a, float time)
+	{}
+
+	void AbstractColor::setMode(int mode)
+	{}
+
+	void AbstractColor::play()
+	{}
+
+	void AbstractColor::stop()
+	{}
+	
+	void AbstractColor::reset()
+	{}
 }

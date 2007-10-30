@@ -1,7 +1,7 @@
 #ifndef LOVE_ANIMATE_COLOR_H
 #define LOVE_ANIMATE_COLOR_H
 
-#include "Color.h"
+#include "AbstractColor.h"
 #include "Container.h"
 
 using std::vector;
@@ -21,7 +21,7 @@ namespace love
 	protected:
 
 		// Updated this to use pColor for great automatic cleanup pleasure.
-		vector<pColor> colors;
+		vector<pAbstractColor> colors;
 		vector<float> times;
 		float total; //the maximum time requried to gradient through the colors
 		float elapsed; //the amount of time that has passed
@@ -58,7 +58,7 @@ namespace love
 		 * @param colors A pointer to a Container of colors.
 	 	 * @brief Prepares for color animation, sets the mode to LOOP current color to black.
 	 	 **/
-		AnimatedColor();
+		AnimatedColor(int mode = LOVE_ANIMATED_COLOR_LOOP);
 
 		/**
 	 	 * @brief Does nothing.
@@ -70,7 +70,7 @@ namespace love
 		 * @param time The amount of time associated with the color.
 	 	 * @brief Adds a color to the color list. If this is the first color then it sets it as the current color.
 	 	 **/
-		void addColor(const pColor * color, float time);
+		void addColor(const pAbstractColor * color, float time);
 
 		/**
 		* @brief Adds a color directly.
@@ -86,14 +86,14 @@ namespace love
 		 * @return A Color object.
 		 * @brief Creates a Color object of the current color.
 		 **/
-		Color getColor();
+		pAbstractColor getColor();
 
 		/**
 		 * @param How much time to have passed (0 = no time, 1 = all time).
 		 * @return A Color object.
 		 * @brief Creates a Color object of the color.
 		 **/
-		Color getColor(float time);
+		pAbstractColor getColor(float time);
 
 		/**
 		 * @param mode The desired mode.
