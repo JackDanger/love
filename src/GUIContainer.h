@@ -1,9 +1,11 @@
 #ifndef LOVE_GUI_CONTAINER_H
 #define LOVE_GUI_CONTAINER_H
 
+#include "AbstractMenu.h"
 #include "Menu.h"
 
 #include <guichan.hpp>
+#include <boost/shared_ptr.hpp>
 
 namespace love
 {
@@ -22,8 +24,8 @@ namespace love
 		GUIContainer();
 		~GUIContainer();
 
-		void add(const pMenu * menu);
-		void remove(const pMenu * menu);
+		void add(const pAbstractMenu * menu);
+		void remove(const pAbstractMenu * menu);
 	};
 }
 

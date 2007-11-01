@@ -73,6 +73,8 @@
 #include "CheckBox.h"
 #include "Slider.h"
 #include "ListBox.h"
+#include "TextBox.h"
+#include "AbstractMenu.h"
 #include "Menu.h"
 #include "GUIContainer.h"
 #include "AbstractGUI.h"
@@ -151,6 +153,8 @@ namespace boost {
 %include "CheckBox.h"
 %include "Slider.h"
 %include "ListBox.h"
+%include "TextBox.h"
+%include "AbstractMenu.h"
 %include "Menu.h"
 %include "GUIContainer.h"
 %include "AbstractGUI.h"
@@ -185,9 +189,19 @@ namespace boost {
 %template(SmartSound) boost::shared_ptr<love::AbstractSound>;
 %template(SmartDisplay) boost::shared_ptr<love::AbstractDisplay>;
 %template(SmartAbstractColor) boost::shared_ptr<love::AbstractColor>;
-%template(SmartColor) boost::shared_ptr<love::Color>;
+// %template(SmartColor) boost::shared_ptr<love::Color>;
 %template(SmartAbstractFont) boost::shared_ptr<love::AbstractFont>;
-%template(SmartFont) boost::shared_ptr<love::Font>;
+// %template(SmartFont) boost::shared_ptr<love::Font>;
 %template(SmartParticleSystem) boost::shared_ptr<love::ParticleSystem>;
 %template(SmartBezier) boost::shared_ptr<love::Bezier>;
-%template(SmartMenu) boost::shared_ptr<love::Menu>;
+// GUI stuff
+%template(SmartMenu) boost::shared_ptr<love::AbstractMenu>;
+%template(SmartLabel) boost::shared_ptr<love::Label>;
+%template(SmartMultilineLabel) boost::shared_ptr<love::MultilineLabel>;
+%template(SmartButton) boost::shared_ptr<love::Button>;
+%template(SmartTextField) boost::shared_ptr<love::TextField>;
+%template(SmartDropDown) boost::shared_ptr<love::DropDown>;
+%template(SmartRadioButton) boost::shared_ptr<love::RadioButton>;
+%template(SmartCheckBox) boost::shared_ptr<love::CheckBox>;
+%template(SmartSlider) boost::shared_ptr<love::Slider>;
+%template(SmartListBox) boost::shared_ptr<love::ListBox>;

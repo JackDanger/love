@@ -42,6 +42,7 @@ namespace love
 		virtual void setValue(double value);
 		virtual void setName(const char * name);
 
+		virtual void setBackgroundColor(const pAbstractColor * color);
 		virtual void setMarkerImage(const pAbstractImage * image);
 		virtual void setBackgroundImage(const pAbstractImage * image);
 
@@ -57,6 +58,10 @@ namespace love
 
 		virtual double getValue();
 		virtual const char * getName();
+
+		virtual pAbstractColor getBackgroundColor();
+		virtual pAbstractImage getMarkerImage();
+		virtual pAbstractImage getBackgroundImage();
 
 		virtual void adjustSize();
 

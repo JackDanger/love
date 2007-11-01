@@ -140,6 +140,7 @@ namespace love
 			glTexCoord2f(1.0,0.0); glVertex2f(actualWidth,0);
 		glEnd();
 
+		glDisable(GL_TEXTURE_2D);
 	}
 
 	void AbstractImage::render(float x, float y, float width, float height)
@@ -159,8 +160,9 @@ namespace love
 			glTexCoord2f(xTex,yTex+hTex);			glVertex2i(0,(int)height);
 			glTexCoord2f(xTex+wTex,yTex+hTex);		glVertex2i((int)width,(int)height);
 			glTexCoord2f(xTex+wTex,yTex);			glVertex2i((int)width,0);
-		glEnd();	
+		glEnd();
 
+		glDisable(GL_TEXTURE_2D);
 	}
 
 	void AbstractImage::renderQuad(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4)
@@ -168,6 +170,7 @@ namespace love
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,texture);	
 
+		// what is this?
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,texture);
 

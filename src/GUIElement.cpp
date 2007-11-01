@@ -25,38 +25,6 @@ namespace love
 		this->borderColor = (*color);
 	}
 
-	/*
-	void GUIElement::setColor(const pColor * color)
-	{
-		this->color = (*color);
-	}
-
-	void GUIElement::setBackgroundColor(const pColor * color)
-	{
-		this->backgroundColor = (*color);
-	}
-
-	void GUIElement::setBorderColor(const pColor * color)
-	{
-		this->borderColor = (*color);
-	}
-
-	void GUIElement::setColor(const pAnimatedColor * color)
-	{
-		this->color = (*color);
-	}
-
-	void GUIElement::setBackgroundColor(const pAnimatedColor * color)
-	{
-		this->backgroundColor = (*color);
-	}
-
-	void GUIElement::setBorderColor(const pAnimatedColor * color)
-	{
-		this->borderColor = (*color);
-	}
-	*/
-
 	pAbstractColor GUIElement::getColor()
 	{
 		return color;
@@ -64,11 +32,11 @@ namespace love
 
 	pAbstractColor GUIElement::getBackgroundColor()
 	{
-		return color;
+		return backgroundColor;
 	}
 
 	pAbstractColor GUIElement::getBorderColor()
 	{
-		return color;
+		return borderColor;
 	}
 }

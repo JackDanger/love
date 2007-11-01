@@ -21,8 +21,8 @@ namespace love
 	{
 	protected:
 		GUIList * list;
-		pAbstractColor activeColor;
 		pAbstractColor selectionColor;
+		pAbstractColor selectionBackgroundColor;
 
 	public:
 		ListBox(GUIList * list);
@@ -34,26 +34,28 @@ namespace love
 		virtual void setBorderSize(unsigned int size);
 		virtual void setName(const char * name);
 
-		virtual void setActiveColor(const pAbstractColor * color);
-		virtual void setActiveColor(const pColor * color);
-		virtual void setActiveColor(const pAnimatedColor * color);
+		virtual void setBackgroundColor(const pAbstractColor * color);
 		virtual void setSelectionColor(const pAbstractColor * color);
-		virtual void setSelectionColor(const pColor * color);
-		virtual void setSelectionColor(const pAnimatedColor * color);
-
-		virtual const pAbstractColor * getActiveColor();
-		virtual const pAbstractColor * getSeclectionColor();
+		virtual void setSelectionBackgroundColor(const pAbstractColor * color);
 
 		virtual int getWidth();
 		virtual int getHeight();
 		virtual unsigned int getBorderSize();
 		virtual const char * getName();
 
+		virtual pAbstractColor getBackgroundColor();
+		virtual pAbstractColor getSeclectionColor();
+		virtual pAbstractColor getSeclectionBackgroundColor();
+
 		virtual void adjustSize();
 
 		virtual void add(const char * text);
 		virtual void remove(int i);
 		virtual void clear();
+		virtual const char * getElementAt(int i);
+		virtual int getSelected();
+		virtual const char * getSelectedElement();
+		virtual int getNumberOfElements();
 
 		virtual void draw(gcn::Graphics * graphics);
 		virtual void drawBorder(gcn::Graphics * graphics);

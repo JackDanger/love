@@ -56,6 +56,11 @@ namespace love
 		this->verticalAlignment = alignment;
 	}
 
+	void RadioButton::setBackgroundColor(const pAbstractColor * color)
+	{
+		GUIElement::setBackgroundColor(color);
+	}
+
 	void RadioButton::setDefaultImage(const pAbstractImage * image)
 	{
 		this->defaultImage = *image;
@@ -96,6 +101,21 @@ namespace love
 		return gcn::RadioButton::isMarked();
 	}
 
+	pAbstractColor RadioButton::getBackgroundColor()
+	{
+		return GUIElement::getBackgroundColor();
+	}
+
+	pAbstractImage RadioButton::getDefaultImage()
+	{
+		return defaultImage;
+	}
+
+	pAbstractImage RadioButton::getMarkedImage()
+	{
+		return markedImage;
+	}
+
 	void RadioButton::adjustSize()
 	{
 		gcn::RadioButton::adjustSize();
@@ -103,15 +123,24 @@ namespace love
 
 	void RadioButton::draw(gcn::Graphics * graphics)
 	{
-		if(color.get() != 0)
+		if(color != 0)
 		{
 			setBaseColor(gcn::Color(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha()));
 			setForegroundColor(gcn::Color(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha()));
 		}
-		if(backgroundColor.get() != 0)
+		if(backgroundColor != 0)
 			gcn::RadioButton::setBackgroundColor(gcn::Color(backgroundColor->getRed(), backgroundColor->getGreen(), backgroundColor->getBlue(), backgroundColor->getAlpha()));
 
-		gcn::RadioButton::draw(graphics);
+		// (almost) direct rip from gcn::RadioButton::draw()
+		graphics->pushClipArea(gcn::Rectangle(1, 1, getWidth() - 1, getHeight() - 1));
+		drawBox(graphics);
+		graphics->popClipArea();
+		
+		graphics->setFont(getFont());
+		graphics->setColor(getForegroundColor());
+		
+		int h = getHeight() + getHeight() / 2;
+		graphics->drawText(getCaption(), h - 2, 0);
 	}
 
 	void RadioButton::drawBorder(gcn::Graphics * graphics)
@@ -124,10 +153,10 @@ namespace love
 
 	void RadioButton::drawBox(gcn::Graphics * graphics)
 	{
-		if(defaultImage.get() != 0)
+		if(defaultImage != 0)
 		{
 			int pad = 0; // the padding around the image depending on the size
-			if(isMarked() && markedImage.get() != 0)
+			if(isMarked() && markedImage != 0)
 			{
 				pad = (graphics->getCurrentClipArea().height / 2) - (int)(markedImage->getHeight() / 2);
 				markedImage->render((float)graphics->getCurrentClipArea().x + pad, (float)graphics->getCurrentClipArea().y + pad);

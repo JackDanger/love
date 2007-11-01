@@ -41,6 +41,11 @@ namespace love
 		gcn::Label::setCaption(string(caption));
 	}
 
+	void Label::setBackgroundColor(const pAbstractColor * color)
+	{
+		GUIElement::setBackgroundColor(color);
+	}
+
 	void Label::align(int alignment)
 	{
 		switch(alignment)
@@ -86,6 +91,11 @@ namespace love
 	const char * Label::getCaption()
 	{
 		return gcn::Label::getCaption().c_str();
+	}
+
+	pAbstractColor Label::getBackgroundColor()
+	{
+		return GUIElement::getBackgroundColor();
 	}
 
 	void Label::adjustSize()

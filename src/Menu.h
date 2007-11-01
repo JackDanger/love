@@ -1,24 +1,7 @@
 #ifndef LOVE_MENU_H
 #define LOVE_MENU_H
 
-#include "GUIElement.h"
-#include "AbstractColor.h"
-#include "AbstractGraphics.h"
-#include "AbstractImage.h"
-#include "Button.h"
-#include "DropDown.h"
-#include "Label.h"
-#include "MultilineLabel.h"
-#include "Padded.h"
-#include "TextField.h"
-#include "RadioButton.h"
-#include "CheckBox.h"
-#include "Slider.h"
-#include "ListBox.h"
-#include "Text.h"
-
-#include <boost/shared_ptr.hpp>
-#include <guichan.hpp>
+#include "AbstractMenu.h"
 
 namespace love
 {
@@ -31,27 +14,12 @@ namespace love
 	 * @date 2007-08-11
 	 * @brief Holds the graphical information and the items that make up a menu.
 	 **/
-	class Menu : public gcn::Container, public GUIElement, public Padded
+	class Menu : public gcn::Container, public AbstractMenu
 	{
-	private:
-		
-		pAbstractImage background;
-		pGUIText text;
-		int width, height;
-		int type;
-		int spacing;
-		int position;
-		int alignment;
-		int verticalAlignment;
-		bool stretch;
-		bool visible;
-
-		void positionItem(gcn::Widget * item);
+	protected:
+		virtual void positionItem(gcn::Widget * item);
 
 	public:
-		static const int LOVE_MENU_VERTICAL = 1;
-		static const int LOVE_MENU_HORIZONTAL = 2;
-
 		/**
 		 * @param type The type of menu (vertical / horizontal).
 		 * @brief Calls the GUIchan constructor and sets the background as invisible.
@@ -61,65 +29,42 @@ namespace love
 		/**
 		 * @brief Deconstructor. Does nothing.
 		 **/
-		virtual ~Menu();
+		~Menu();
 
-		void setSize(int width, int height);
-		void setWidth(int width);
-		void setHeight(int height);
-		void setBorderSize(unsigned int size);
-		void setPosition(int x, int y);
-		void setX(int x);
-		void setY(int y);
+		virtual void setSize(int width, int height);
+		virtual void setWidth(int width);
+		virtual void setHeight(int height);
+		virtual void setBorderSize(unsigned int size);
+		virtual void setPosition(int x, int y);
+		virtual void setX(int x);
+		virtual void setY(int y);
 
-		void show();
-		void hide();
+		virtual void setFont(const pAbstractFont * font);
+		//virtual void setColor(const pAbstractColor * color);
+		virtual void setBackgroundColor(const pAbstractColor * color);
+		//virtual void setBorderColor(const pAbstractColor * color);
 
-		void setFont(AbstractFont * font);
-		void setFont(const pAbstractFont * font);
-		void setColor(const pAbstractColor * color);
-		void setBackgroundColor(const pAbstractColor * color);
-		void setBorderColor(const pAbstractColor * color);
-		void setBackground(const pAbstractImage * image);
+		virtual int getWidth();
+		virtual int getHeight();
+		virtual int getX();
+		virtual int getY();
+		virtual unsigned int getBorderSize();
 
-		void stretchContent(bool stretch);
-		void align(int alignment);
-		void valign(int alignment);
+		virtual pAbstractFont getFont();
+		//virtual pAbstractColor getColor();
+		virtual pAbstractColor getBackgroundColor();
+		//virtual pAbstractColor getBorderColor();
 
-		void setSpacing(int spacing); //how much distance there is to be between the items
+		virtual void adjustSize(); //resize to content
+		virtual void adjustWidth(); //adjust width only
+		virtual void adjustHeight(); //adjust height only
+		virtual int adjustContent(); //aligns all the content to the alignment
 
-		int getWidth();
-		int getHeight();
-		int getX();
-		int getY();
-		unsigned int getBorderSize();
+		virtual void draw(gcn::Graphics* graphics);
+		virtual void drawBorder(gcn::Graphics* graphics);
+		virtual void drawChildren(gcn::Graphics* graphics);
 
-		pAbstractFont getFont();
-		pAbstractColor getColor();
-		pAbstractColor getBackgroundColor();
-		pAbstractColor getBorderColor();
-
-		int getSpacing();
-
-		void adjustSize(); //resize to content
-		void adjustWidth(); //adjust width only
-		void adjustHeight(); //adjust height only
-		int adjustContent(); //aligns all the content to the alignment
-
-		void draw(gcn::Graphics* graphics);
-		void drawBorder(gcn::Graphics* graphics);
-		void drawChildren(gcn::Graphics* graphics);
-
-		Menu * addMenu(int type, int width = 0, int height = 0);
-		Label * addLabel(const char * caption, int width = 0, int height = 0);
-		MultilineLabel * addMultilineLabel(const char * caption, int width = 0, int height = 0);
-		Label * addImage(const pAbstractImage * image);
-		Button * addButton(const char * name, const char * caption, int width = 0, int height = 0);
-		TextField * addTextField(const char * name, const char * text = "", int width = 0, int height = 0);
-		DropDown * addDropDown(const char * name, int width = 0, int height = 0);
-		RadioButton * addRadioButton(const char * name, const char * caption = "", int width = 0, int height = 0);
-		CheckBox * addCheckBox(const char * name, const char * caption = "", int width = 0, int height = 0);
-		Slider * addSlider(const char * name, unsigned int orientation = Slider::LOVE_SLIDER_HORIZONTAL, double scaleStart = 0, double scaleEnd = 1, int width = 0, int height = 0);
-		ListBox * addListBox(const char * name, int width = 0, int height = 0);
+		virtual void add(gcn::Widget * widget);
 	};
 
 	typedef boost::shared_ptr<Menu> pMenu;

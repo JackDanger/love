@@ -115,21 +115,20 @@ namespace love
 	void Font::print(const char * text, float x, float y)
 	{
 		glPushMatrix();
+		glEnable(GL_TEXTURE_2D);
+
 		glTranslatef(x, y, 0.0f);
 		GLuint font = list;
 		glListBase(font);
 		glCallLists((int)strlen(text), GL_UNSIGNED_BYTE, text);
+
+		glDisable(GL_TEXTURE_2D);
 		glPopMatrix();
 	}
 
 	void Font::print(string text, float x, float y)
 	{
-		glPushMatrix();
-		glTranslatef(x, y, 0.0f);
-		GLuint font = list;
-		glListBase(font);
-		glCallLists((int)text.length(), GL_UNSIGNED_BYTE, text.c_str());
-		glPopMatrix();
+		print(text.c_str(), x, y);
 	}
 
 	void Font::print(char character, float x, float y)

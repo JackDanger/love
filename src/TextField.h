@@ -69,6 +69,18 @@ namespace love
 		virtual void setName(const char * name);
 
 		/**
+		 * @param text The new position.
+		 * @brief Sets the position of the caret.
+		 **/
+		virtual void setCaretPosition(unsigned int position);
+
+		/**
+		 * @param color An AbstractColor.
+		 * @brief Sets the current background color.
+		 **/
+		virtual void setBackgroundColor(const pAbstractColor * color);
+
+		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color when the text field is active.
 		 **/
@@ -109,6 +121,18 @@ namespace love
 		 * @brief Returns the TextField's name.
 		 **/
 		virtual const char * getName();
+
+		/**
+		 * @return The position.
+		 * @breif Returns the position of the caret.
+		 **/
+		virtual unsigned int getCaretPosition();
+
+		/**
+		 * @return An AbstractColor.
+		 * @brief Gets the current background color.
+		 **/
+		virtual pAbstractColor getBackgroundColor();
 
 		/**
 		 * @return An AbstractColor object.

@@ -56,6 +56,11 @@ namespace love
 		this->verticalAlignment = alignment;
 	}
 
+	void CheckBox::setBackgroundColor(const pAbstractColor * color)
+	{
+		GUIElement::setBackgroundColor(color);
+	}
+
 	void CheckBox::setDefaultImage(const pAbstractImage * image)
 	{
 		this->defaultImage = *image;
@@ -94,6 +99,21 @@ namespace love
 	bool CheckBox::isMarked()
 	{
 		return gcn::CheckBox::isMarked();
+	}
+
+	pAbstractColor CheckBox::getBackgroundColor()
+	{
+		return GUIElement::getBackgroundColor();
+	}
+
+	pAbstractImage CheckBox::getDefaultImage()
+	{
+		return defaultImage;
+	}
+
+	pAbstractImage CheckBox::getMarkedImage()
+	{
+		return markedImage;
 	}
 
 	void CheckBox::adjustSize()

@@ -90,6 +90,12 @@ namespace love
 		virtual void valign(int alignment);
 
 		/**
+		 * @param color An AbstractColor.
+		 * @brief Sets the current background color.
+		 **/
+		virtual void setBackgroundColor(const pAbstractColor * color);
+
+		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color when the mouse is over the button.
 		 **/
@@ -175,27 +181,33 @@ namespace love
 
 		/**
 		 * @return An AbstractColor.
-		 * @brief Returns the color of the text in the button when the mouse hovers over it.
+		 * @brief Gets the current background color.
 		 **/
-		pAbstractColor getHoverColor();
+		virtual pAbstractColor getBackgroundColor();
 
 		/**
 		 * @return An AbstractColor.
 		 * @brief Returns the color of the text in the button when the mouse hovers over it.
 		 **/
-		pAbstractColor getPressedColor();
+		virtual pAbstractColor getHoverColor();
 
 		/**
 		 * @return An AbstractColor.
 		 * @brief Returns the color of the text in the button when the mouse hovers over it.
 		 **/
-		pAbstractColor getHoverBackgroundColor();
+		virtual pAbstractColor getPressedColor();
 
 		/**
 		 * @return An AbstractColor.
 		 * @brief Returns the color of the text in the button when the mouse hovers over it.
 		 **/
-		pAbstractColor getPressedBackgroundColor();
+		virtual pAbstractColor getHoverBackgroundColor();
+
+		/**
+		 * @return An AbstractColor.
+		 * @brief Returns the color of the text in the button when the mouse hovers over it.
+		 **/
+		virtual pAbstractColor getPressedBackgroundColor();
 
 		/**
 		 * @brief Adjusts the size of the button to the size of the caption.

@@ -45,6 +45,11 @@ namespace love
 		gcn::DropDown::setActionEventId(name);
 	}
 
+	void DropDown::setBackgroundColor(const pAbstractColor * color)
+	{
+		GUIElement::setBackgroundColor(color);
+	}
+
 	void DropDown::setActiveColor(const pAbstractColor * color)
 	{
 		if(color != 0)
@@ -57,6 +62,12 @@ namespace love
 			activeBackgroundColor = *color;
 	}
 
+	void DropDown::setSelectionColor(const pAbstractColor * color)
+	{
+		if(color != 0)
+			selectionColor = *color;
+	}
+
 	void DropDown::setSelectionBackgroundColor(const pAbstractColor * color)
 	{
 		if(color != 0)
@@ -67,6 +78,12 @@ namespace love
 	{
 		if(color != 0)
 			buttonColor = *color;
+	}
+
+	void DropDown::setButtonBackgroundColor(const pAbstractColor * color)
+	{
+		if(color != 0)
+			buttonBackgroundColor = *color;
 	}
 
 	void DropDown::setButton(const pAbstractImage * image)
@@ -106,6 +123,41 @@ namespace love
 			setHeight((int)button->getHeight());
 	}
 
+	pAbstractColor DropDown::getBackgroundColor()
+	{
+		return GUIElement::getBackgroundColor();
+	}
+
+	pAbstractColor DropDown::getActiveColor()
+	{
+		return activeColor;
+	}
+
+	pAbstractColor DropDown::getActiveBackgroundColor()
+	{
+		return activeBackgroundColor;
+	}
+
+	pAbstractColor DropDown::getSelectionColor()
+	{
+		return selectionColor;
+	}
+
+	pAbstractColor DropDown::getSelectionBackgroundColor()
+	{
+		return selectionBackgroundColor;
+	}
+
+	pAbstractColor DropDown::getButtonColor()
+	{
+		return buttonColor;
+	}
+
+	pAbstractColor DropDown::getButtonBackgroundColor()
+	{
+		return buttonBackgroundColor;
+	}
+
 	void DropDown::add(const char * text)
 	{
 		list->add(text);
@@ -121,23 +173,44 @@ namespace love
 		list->clear();
 	}
 
+	const char * DropDown::getElementAt(int i)
+	{
+		return list->getElementAt(i).c_str();
+	}
+	
+	int DropDown::getSelected()
+	{
+		return gcn::DropDown::getSelected();
+	}
+
+	const char * DropDown::getSelectedElement()
+	{
+		return list->getElementAt(getSelected()).c_str();
+	}
+
+	int DropDown::getNumberOfElements()
+	{
+		return list->getNumberOfElements();
+	}
+
 	void DropDown::draw(gcn::Graphics * graphics)
 	{
-		if(color.get() != 0)
-		{
+		if(color != 0)
 			gcn::DropDown::setForegroundColor(gcn::Color(color->getRed(),color->getGreen(),color->getBlue(),color->getAlpha()));
-		}
-		if(backgroundColor.get() != 0)
-		{
+		if(backgroundColor != 0)
 			gcn::DropDown::setBackgroundColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
-		}
-		if(activeBackgroundColor.get() != 0)
+		if(activeBackgroundColor != 0)
 			gcn::DropDown::setSelectionColor(gcn::Color(activeBackgroundColor->getRed(),activeBackgroundColor->getGreen(),activeBackgroundColor->getBlue(),activeBackgroundColor->getAlpha()));
-		if(selectionBackgroundColor.get() != 0)
+		if(selectionColor != 0 || selectionBackgroundColor != 0)
 		{
 			WidgetListIterator iter;
 			for (iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
-				(*iter)->setSelectionColor(gcn::Color(selectionBackgroundColor->getRed(),selectionBackgroundColor->getGreen(),selectionBackgroundColor->getBlue(),selectionBackgroundColor->getAlpha()));
+			{
+				if(selectionColor != 0)
+					(*iter)->setForegroundColor(gcn::Color(selectionColor->getRed(),selectionColor->getGreen(),selectionColor->getBlue(),selectionColor->getAlpha()));
+				if(selectionBackgroundColor != 0)
+					(*iter)->setSelectionColor(gcn::Color(selectionBackgroundColor->getRed(),selectionBackgroundColor->getGreen(),selectionBackgroundColor->getBlue(),selectionBackgroundColor->getAlpha()));
+			}
 		}
 		gcn::DropDown::setBaseColor(gcn::DropDown::getBackgroundColor());
 
@@ -146,11 +219,11 @@ namespace love
 
 	void DropDown::drawBorder(gcn::Graphics * graphics)
 	{
-		if(borderColor.get() != 0)
+		if(borderColor != 0)
 			gcn::DropDown::setBaseColor(gcn::Color(borderColor->getRed(),borderColor->getGreen(),borderColor->getBlue(),borderColor->getAlpha()));
-		else if(backgroundColor.get() != 0)
+		else if(backgroundColor != 0)
 			gcn::DropDown::setBaseColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
-		/*else if(color.get() != 0)
+		/*else if(color != 0)
 			gcn::DropDown::setBaseColor(gcn::Color(color->getRed(),color->getGreen(),color->getBlue(),color->getAlpha()));*/
 
 		gcn::DropDown::drawBorder(graphics);
@@ -160,22 +233,23 @@ namespace love
 	{
 		if(button != 0)
 		{
-			int x;
+			int x = getWidth();
 			if (mDroppedDown)
-				x = getWidth() - mOldH;
+				x -= mOldH;
 			else
-				x = getWidth() - getHeight();
-
+				x -= getHeight();
+			int y = 0;
 			if(mPushed && buttonPressed != 0)
-				buttonPressed->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y);
+				buttonPressed->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
 			else
-				button->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y);
-			graphics->setColor(getBaseColor());
+				button->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
 		}
 		else
 		{
-			if(buttonColor.get() != 0)
-				gcn::DropDown::setBaseColor(gcn::Color(buttonColor->getRed(),buttonColor->getGreen(),buttonColor->getBlue(),buttonColor->getAlpha()));
+			if(buttonColor != 0)
+				gcn::DropDown::setForegroundColor(gcn::Color(buttonColor->getRed(),buttonColor->getGreen(),buttonColor->getBlue(),buttonColor->getAlpha()));
+			if(buttonBackgroundColor != 0)
+				gcn::DropDown::setBaseColor(gcn::Color(buttonBackgroundColor->getRed(),buttonBackgroundColor->getGreen(),buttonBackgroundColor->getBlue(),buttonBackgroundColor->getAlpha()));
 			else
 				setBaseColor(gcn::DropDown::getBackgroundColor());
 

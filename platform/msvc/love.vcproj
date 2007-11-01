@@ -225,6 +225,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\AbstractMenu.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\AbstractMusic.cpp"
 				>
 			</File>
@@ -641,6 +645,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\TextBox.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\TextField.cpp"
 				>
 			</File>
@@ -716,6 +724,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\AbstractImageDevice.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\AbstractMenu.h"
 				>
 			</File>
 			<File
@@ -1212,6 +1224,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Text.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\TextBox.h"
 				>
 			</File>
 			<File

@@ -5,19 +5,11 @@
 
 namespace love
 {
-	Menu::Menu(pAbstractFont font, pAbstractColor color, int type)
+	Menu::Menu(pAbstractFont font, pAbstractColor color, int type) : AbstractMenu(font, color, type)
 	{
 		gcn::Container();
 		gcn::Container::setOpaque(false); //makes the background invisible
 
-		text.reset<GUIText>(new GUIText(font, color));
-		this->type = type;
-		spacing = 0;
-		position = 0;
-		stretch = false;
-		visible = false;
-		align(Text::LOVE_ALIGN_CENTER);
-		valign(Text::LOVE_ALIGN_CENTER);
 		setOpaque(true); //we deal with the visibility ourselves
 	}
 
@@ -60,67 +52,26 @@ namespace love
 		gcn::Container::setY(y);
 	}
 
-	void Menu::show()
-	{
-		visible = true;
-	}
-
-	void Menu::hide()
-	{
-		visible = false;
-	}
-
-	void Menu::setFont(AbstractFont * font)
-	{
-		text->setFont(font);
-	}
-
 	void Menu::setFont(const pAbstractFont * font)
 	{
 		text->setFont(*font);
 	}
 
-	void Menu::setColor(const pAbstractColor * color)
+	/*void Menu::setColor(const pAbstractColor * color)
 	{
 		GUIElement::setColor(color);
 		text->setColor(*color);
-	}
+	}*/
 
 	void Menu::setBackgroundColor(const pAbstractColor * color)
 	{
 		GUIElement::setBackgroundColor(color);
 	}
 
-	void Menu::setBorderColor(const pAbstractColor * color)
+	/*void Menu::setBorderColor(const pAbstractColor * color)
 	{
 		GUIElement::setBorderColor(color);
-	}
-
-	void Menu::setBackground(const pAbstractImage * image)
-	{
-		background = *image;
-	}
-
-	void Menu::stretchContent(bool stretch)
-	{
-		this->stretch = stretch;
-	}
-
-	void Menu::align(int alignment)
-	{
-		this->alignment = alignment;
-	}
-
-	void Menu::valign(int alignment)
-	{
-		verticalAlignment = alignment;
-	}
-
-	void Menu::setSpacing(int spacing)
-	{
-		this->spacing = spacing;
-		adjustContent();
-	}
+	}*/
 
 	int Menu::getWidth()
 	{
@@ -147,30 +98,25 @@ namespace love
 		return gcn::Container::getBorderSize();
 	}
 
-	int Menu::getSpacing()
-	{
-		return spacing;
-	}
-
 	pAbstractFont Menu::getFont()
 	{
 		return text->getFont();
 	}
 
-	pAbstractColor Menu::getColor()
+	/*pAbstractColor Menu::getColor()
 	{
 		return GUIElement::getColor();
-	}
+	}*/
 
 	pAbstractColor Menu::getBackgroundColor()
 	{
 		return GUIElement::getBackgroundColor();
 	}
 
-	pAbstractColor Menu::getBorderColor()
+	/*pAbstractColor Menu::getBorderColor()
 	{
 		return GUIElement::getBorderColor();
-	}
+	}*/
 
 	void Menu::adjustSize()
 	{
@@ -542,211 +488,8 @@ namespace love
 		graphics->popClipArea();
 	}
 
-	Menu * Menu::addMenu(int type, int width, int height)
+	void Menu::add(gcn::Widget * widget)
 	{
-		Menu * temp = new Menu(text->getFont(), color, type);
-
-		temp->setSize(width, height);
-		temp->align(alignment);
-		temp->valign(verticalAlignment);
-		temp->show();
-		positionItem(temp);
-
-		add(temp);
-		return temp;
-	}
-
-	Label * Menu::addLabel(const char * caption, int width, int height)
-	{
-		Label * temp = new Label(caption);
-		temp->setFont(text.get());
-		temp->setColor(&text->getColor());
-
-		temp->adjustSize();
-		if(width != 0)
-			temp->setWidth(width);
-		if(height != 0)
-			temp->setHeight(height);
-		temp->align(alignment);
-		temp->valign(verticalAlignment);
-		//temp->addActionListener(core->getGUI()); //not needed here
-		positionItem(temp);
-
-		add(temp);
-		return temp;
-	}
-
-	MultilineLabel * Menu::addMultilineLabel(const char * caption, int width, int height)
-	{
-		MultilineLabel * temp = new MultilineLabel(caption);
-		temp->setFont(text.get());
-		temp->setColor(&text->getColor());
-
-		if(width != 0)
-			temp->setWidth(width);
-		else
-			temp->setWidth(getWidth() - getPaddingLeft() - getPaddingRight());
-		if(height != 0)
-			temp->setHeight(height);
-		temp->adjustContent();
-		temp->adjustSize();
-		temp->align(alignment);
-		temp->valign(verticalAlignment);
-		//temp->addActionListener(core->getGUI()); //not needed here
-		positionItem(temp);
-
-		add(temp);
-		return temp;
-	}
-
-	Label * Menu::addImage(const pAbstractImage * image)
-	{
-		Label * temp = new Label();
-		temp->setBackground(image);
-
-		temp->adjustSize();
-		//temp->addActionListener(core->getGUI()); //not needed here
-		positionItem(temp);
-
-		add(temp);
-		return temp;
-	}
-
-	Button * Menu::addButton(const char * name, const char * caption, int width, int height)
-	{
-		Button * temp = new Button(caption);
-		temp->setFont(text.get());
-		temp->setColor(&text->getColor());
-
-		temp->adjustSize();
-		if(width != 0)
-			temp->setWidth(width);
-		if(height != 0)
-			temp->setHeight(height);
-		//temp->align(alignment);
-		//temp->valign(verticalAlignment);
-		temp->addActionListener(core->getGUI());
-		temp->setName(name);
-		positionItem(temp);
-
-		add(temp);
-		return temp;
-	}
-
-	TextField * Menu::addTextField(const char * name, const char * text, int width, int height)
-	{
-		TextField * temp = new TextField(text);
-		temp->setFont(this->text.get());
-		temp->setColor(&this->text->getColor());
-
-		temp->adjustSize();
-		if(width != 0)
-			temp->setWidth(width);
-		if(height != 0)
-			temp->setHeight(height);
-		temp->addActionListener(core->getGUI());
-		temp->setName(name);
-		positionItem(temp);
-
-		add(temp);
-		return temp;
-	}
-
-	DropDown * Menu::addDropDown(const char * name, int width, int height)
-	{
-		GUIList * tlist = new GUIList();
-		DropDown * temp = new DropDown(tlist);
-		temp->setFont(text.get());
-		temp->setColor(&text->getColor());
-
-		temp->adjustHeight();
-		if(width != 0)
-			temp->setWidth(width);
-		if(height != 0)
-			temp->setHeight(height);
-		temp->addActionListener(core->getGUI());
-		temp->setName(name);
-		positionItem(temp);
-
-		add(temp);
-		return temp;
-	}
-
-	RadioButton * Menu::addRadioButton(const char * name, const char * caption, int width, int height)
-	{
-		RadioButton * temp = new RadioButton(caption);
-		temp->setFont(text.get());
-		temp->setColor(&text->getColor());
-
-		temp->adjustSize();
-		if(width != 0)
-			temp->setWidth(width);
-		if(height != 0)
-			temp->setHeight(height);
-		temp->addActionListener(core->getGUI());
-		temp->setName(name);
-		positionItem(temp);
-
-		add(temp);
-		return temp;
-	}
-
-	CheckBox * Menu::addCheckBox(const char * name, const char * caption, int width, int height)
-	{
-		CheckBox * temp = new CheckBox(caption);
-		temp->setFont(text.get());
-		temp->setColor(&text->getColor());
-
-		temp->adjustSize();
-		if(width != 0)
-			temp->setWidth(width);
-		if(height != 0)
-			temp->setHeight(height);
-		temp->addActionListener(core->getGUI());
-		temp->setName(name);
-		positionItem(temp);
-
-		add(temp);
-		return temp;
-	}
-
-	Slider * Menu::addSlider(const char * name, unsigned int orientation, double scaleStart, double scaleEnd, int width, int height)
-	{
-		Slider * temp = new Slider(scaleStart, scaleEnd);
-		temp->setOrientation(orientation);
-		//temp->setFont(text);
-		//temp->setColor(&text->getColor());
-
-		temp->adjustSize();
-		if(width != 0)
-			temp->setWidth(width);
-		if(height != 0)
-			temp->setHeight(height);
-		temp->addActionListener(core->getGUI());
-		temp->setName(name);
-		positionItem(temp);
-
-		add(temp);
-		return temp;
-	}
-
-	ListBox * Menu::addListBox(const char * name, int width, int height)
-	{
-		GUIList * tlist = new GUIList();
-		ListBox * temp = new ListBox(tlist);
-		temp->setFont(text.get());
-		temp->setColor(&text->getColor());
-
-		temp->adjustSize();
-		if(width != 0)
-			temp->setWidth(width);
-		if(height != 0)
-			temp->setHeight(height);
-		temp->addActionListener(core->getGUI());
-		temp->setName(name);
-		positionItem(temp);
-
-		add(temp);
-		return temp;
+		gcn::Container::add(widget);
 	}
 }

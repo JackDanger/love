@@ -176,7 +176,7 @@ namespace love
 		return b;
 	}
 
-	pMenu ObjectFactory::newMenu(int type)
+	pAbstractMenu ObjectFactory::newMenu(int type)
 	{
 		pMenu m(new Menu(core->gui->getFont(), core->gui->getColor(), type));
 		//pMenu m(new Menu(core->graphics->getFont(), core->graphics->getColor(), type));

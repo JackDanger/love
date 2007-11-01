@@ -63,6 +63,12 @@ namespace love
 		virtual void setCaption(const char * caption);
 
 		/**
+		 * @param color An AbstractColor.
+		 * @brief Sets the current background color.
+		 **/
+		virtual void setBackgroundColor(const pAbstractColor * color);
+
+		/**
 		 * @param alignment The horizontal alignment (left, right, center).
 		 * @brief Sets the horizontal alignment of the caption.
 		 **/
@@ -103,6 +109,12 @@ namespace love
 		 * @brief Returns the Label's caption.
 		 **/
 		virtual const char * getCaption();
+
+		/**
+		 * @return An AbstractColor.
+		 * @brief Gets the current background color.
+		 **/
+		virtual pAbstractColor getBackgroundColor();
 
 		/**
 		 * @brief Adjusts the size of the label according to the size of the caption.

@@ -74,6 +74,11 @@ namespace love
 		gcn::Slider::setActionEventId(name);
 	}
 
+	void Slider::setBackgroundColor(const pAbstractColor * color)
+	{
+		GUIElement::setBackgroundColor(color);
+	}
+
 	void Slider::setMarkerImage(const pAbstractImage * image)
 	{
 		markerImage = (*image);
@@ -133,6 +138,21 @@ namespace love
 	const char * Slider::getName()
 	{
 		return gcn::Slider::getActionEventId().c_str();
+	}
+
+	pAbstractColor Slider::getBackgroundColor()
+	{
+		return GUIElement::getBackgroundColor();
+	}
+
+	pAbstractImage Slider::getMarkerImage()
+	{
+		return markerImage;
+	}
+
+	pAbstractImage Slider::getBackgroundImage()
+	{
+		return backgroundImage;
 	}
 
 	void Slider::adjustSize()

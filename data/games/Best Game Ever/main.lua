@@ -10,9 +10,9 @@ main = {
 		color = { black = love.objects:newColor(0x000000), white = love.objects:newColor(0xFFFFFF), shiznet = love.objects:newColor(0xF60968), halfshiz = love.objects:newColor(0xF60968) };
 		color["halfshiz"]:setAlpha(200);
 		
-		anim = love.objects:newAnimatedColor();
-		anim:addColor(color["white"], 0.1);
+		anim = love.objects:newAnimatedColor(love.mode_loop);
 		anim:addColor(color["black"], 0.1);
+		anim:addColor(color["white"], 0.1);
 		anim:play();
 		
 		love.graphics:setBackground(color["white"]);
@@ -38,15 +38,16 @@ main = {
 		menu:setPadding(10);
 		menu:setSpacing(5);
 		
-		label = menu:addLabel("THIS IS A MENU (SIEZURE ED.)");
+		local label = menu:addLabel("THIS IS A MENU (SIEZURE ED.)");
 		label:setColor(color["shiznet"]);
 		
 		button = menu:addButton("BUTTON", "Click me to change the menu label!");
 		button:setBorderSize(1);
 		button:setBackgroundColor(color["halfshiz"]);
 		button:setHoverBackgroundColor(color["shiznet"]);
+		--button:setPressedBackgroundColor(color["white"]);
 		
-		nested = menu:addMenu(love.menu_horizontal);
+		local nested = menu:addMenu(love.menu_horizontal);
 		nested:setFont(font["small"]);
 		spartbutton =nested:addButton("SPAR_BUTTON", "Sparta!");
 		-- spartbutton:setFont(font["small"]) -- TODO
@@ -121,6 +122,7 @@ main = {
 		list:adjustSize();
 		list:setBackgroundColor(color["shiznet"]);
 		list:setSelectionColor(color["white"]);
+		list:setSelectionBackgroundColor(list:getBackgroundColor());
 		
 		
 		menu:adjustSize();

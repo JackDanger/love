@@ -12,13 +12,31 @@ namespace love
 		clear();
 	}
 
-	void GUIContainer::add(const pMenu * menu)
+	void GUIContainer::add(const pAbstractMenu * menu)
 	{
-		gcn::Container::add(menu->get());
+		switch(menu->get()->getMenuType())
+		{
+		case AbstractMenu::LOVE_MENU_DEFAULT:
+			gcn::Container::add(boost::dynamic_pointer_cast<Menu, AbstractMenu>(*menu).get());
+			break;
+		case AbstractMenu::LOVE_MENU_WINDOW:
+			break;
+		case AbstractMenu::LOVE_MENU_SCROLLING:
+			break;
+		}
 	}
 
-	void GUIContainer::remove(const pMenu * menu)
+	void GUIContainer::remove(const pAbstractMenu * menu)
 	{
-		gcn::Container::remove(menu->get());
+		switch(menu->get()->getMenuType())
+		{
+		case AbstractMenu::LOVE_MENU_DEFAULT:
+			gcn::Container::remove(boost::dynamic_pointer_cast<Menu, AbstractMenu>(*menu).get());
+			break;
+		case AbstractMenu::LOVE_MENU_WINDOW:
+			break;
+		case AbstractMenu::LOVE_MENU_SCROLLING:
+			break;
+		}
 	}
 }

@@ -43,19 +43,20 @@ namespace love
 		virtual void setBackgroundColor(const pAbstractColor * color);
 		virtual void setBorderColor(const pAbstractColor * color);
 
-		/*
-		virtual void setColor(const pColor * color);
-		virtual void setBackgroundColor(const pColor * color);
-		virtual void setBorderColor(const pColor * color);
-
-		virtual void setColor(const pAnimatedColor * color);
-		virtual void setBackgroundColor(const pAnimatedColor * color);
-		virtual void setBorderColor(const pAnimatedColor * color);
-		*/
-
 		virtual pAbstractColor getColor();
 		virtual pAbstractColor getBackgroundColor();
 		virtual pAbstractColor getBorderColor();
+
+		virtual void setSize(int width, int height) = 0;
+		virtual void setWidth(int width) = 0;
+		virtual void setHeight(int height) = 0;
+		virtual void setBorderSize(unsigned int size) = 0;
+
+		virtual int getWidth() = 0;
+		virtual int getHeight() = 0;
+		virtual unsigned int getBorderSize() = 0;
+
+		virtual void adjustSize() = 0;
 	};
 
 	typedef boost::shared_ptr<GUIElement> pGUIElement;

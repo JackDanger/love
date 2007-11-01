@@ -41,6 +41,16 @@ namespace love
 		gcn::TextField::setActionEventId(name);
 	}
 
+	void TextField::setCaretPosition(unsigned int position)
+	{
+		gcn::TextField::setCaretPosition(position);
+	}
+
+	void TextField::setBackgroundColor(const pAbstractColor * color)
+	{
+		GUIElement::setBackgroundColor(color);
+	}
+
 	void TextField::setActiveColor(const pAbstractColor * color)
 	{
 		activeColor = (*color);
@@ -74,6 +84,16 @@ namespace love
 	const char * TextField::getName()
 	{
 		return gcn::TextField::getActionEventId().c_str();
+	}
+
+	unsigned int TextField::getCaretPosition()
+	{
+		return gcn::TextField::getCaretPosition();
+	}
+
+	pAbstractColor TextField::getBackgroundColor()
+	{
+		return GUIElement::getBackgroundColor();
 	}
 
 	pAbstractColor TextField::getActiveColor()

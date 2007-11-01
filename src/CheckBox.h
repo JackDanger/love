@@ -29,6 +29,7 @@ namespace love
 		virtual void align(int alignment);
 		virtual void valign(int alignment);
 
+		virtual void setBackgroundColor(const pAbstractColor * color);
 		virtual void setDefaultImage(const pAbstractImage * image);
 		virtual void setMarkedImage(const pAbstractImage * image);
 
@@ -39,6 +40,10 @@ namespace love
 		virtual const char * getCaption();
 		virtual const char * getName();
 		virtual bool isMarked();
+
+		virtual pAbstractColor getBackgroundColor();
+		virtual pAbstractImage getDefaultImage();
+		virtual pAbstractImage getMarkedImage();
 
 		virtual void adjustSize();
 

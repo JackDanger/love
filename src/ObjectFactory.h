@@ -74,7 +74,7 @@ namespace love
 		pBezier newBezier() const;
 		pBezier newBezier(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const;
 
-		pMenu newMenu(int type = Menu::LOVE_MENU_VERTICAL);
+		pAbstractMenu newMenu(int type = Menu::LOVE_MENU_VERTICAL);
 		
 	}; // ObjectFactory
 	
