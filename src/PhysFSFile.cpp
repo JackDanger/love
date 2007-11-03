@@ -84,7 +84,7 @@ namespace love
 
 	void PhysFSFile::fail()
 	{
-		printf("PhysFS fail while loading \"%s\\%s\": \n", source.c_str(), filename.c_str(), PHYSFS_getLastError());
+		printf("PhysFS fail while loading \"%s\\%s\": \n", filename.c_str(), PHYSFS_getLastError());
 	}
 
 	void PhysFSFile::removeSource()

@@ -81,7 +81,7 @@ namespace love
 
 		temp = "";
 		size = 0;
-		for(int i = 0; i != words.size(); i++)
+		for(int i = 0; i != (int)words.size(); i++)
 		{
 			if(words.at(i) == "\n")
 			{
@@ -117,7 +117,7 @@ namespace love
 		glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
 
 		int length = 0;
-		int lineCount = 0;
+		// (unused) int lineCount = 0;
 
 		float h = font->getLineHeight();//font->size / 0.63f; //we make the height about 1.5* that of
 
@@ -127,12 +127,12 @@ namespace love
 			font->print(lines[i].c_str());
 		}*/
 
-		for(int i = 0; i != lines.size(); i++)
+		for(int i = 0; i != (int)lines.size(); i++)
 		{
 			glPushMatrix();
 			length = 0;
-			for(int j = 0; j != lines[i].length(); j++)
-				length += font->width[lines[i].c_str()[j]];
+			for(int j = 0; j != (int)lines[i].length(); j++)
+				length += font->width[(int)lines[i].c_str()[j]];
 
 			if(length % 2 != 0) //removes a strange error
 				length++;

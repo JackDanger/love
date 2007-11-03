@@ -38,3 +38,4 @@ namespace love
 }
 
 #endif
+

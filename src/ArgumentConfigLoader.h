@@ -34,7 +34,7 @@ namespace love
 
 		int init();
 
-		void load();
+		int load();
 		void unload();
 
 	};

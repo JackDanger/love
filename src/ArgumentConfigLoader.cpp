@@ -16,7 +16,7 @@ namespace love
 		return LOVE_OK;
 	}
 
-	void ArgumentConfigLoader::load()
+	int ArgumentConfigLoader::load()
 	{
 	
 		int i = 0;
@@ -50,7 +50,7 @@ namespace love
 
 		//std::string str(argv[1]);
 
-
+		return LOVE_OK;
 	}
 
 }

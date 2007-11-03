@@ -192,7 +192,7 @@ namespace love
 		if(lualove_is_function(L, tab, "event"))
 			methods |= LOVE_METHOD_EVENT;
 
-		int present_methods = methods;
+		// (unused) int present_methods = methods;
 
 		// Only allow methods in mask
 		methods &= mask;

@@ -1,6 +1,6 @@
 CC=g++
-CFLAGS=-c -Wall
-LDFLAGS=-lGL -lGLU -lIL -lILU -lILUT -lSDL -lSDL_mixer -llua5.1 -lphysfs -lfreetype
+CFLAGS=-c -Wall -Wno-unused-label
+LDFLAGS=-lGL -lGLU -lIL -lILU -lILUT -lSDL -lSDL_mixer -lSDL_image -llua5.1 -lphysfs -lfreetype -lguichan -lguichan_opengl -lguichan_sdl
 DIR=src
 SOURCES=AbstractColor.cpp \
 AbstractDevice.cpp \
@@ -8,29 +8,35 @@ AbstractDisplay.cpp \
 AbstractEntity.cpp \
 AbstractFile.cpp \
 AbstractFileSystem.cpp \
+AbstractFont.cpp \
 AbstractGraphics.cpp \
+AbstractGUI.cpp \
 AbstractImage.cpp \
 AbstractImageDevice.cpp \
 AbstractMusic.cpp \
+AbstractMenu.cpp \
 AbstractSound.cpp \
 AbstractSoundDevice.cpp \
 AbstractState.cpp \
-Actor.cpp \
-ActorState.cpp \
 AnimatedColor.cpp \
 Animation.cpp \
+Actor.cpp \
+ActorState.cpp \
 Bezier.cpp \
 BezierParticleSystem.cpp \
+Button.cpp \
 Color.cpp \
 ConfigLoader.cpp \
 Console.cpp \
 Container.cpp \
 Core.cpp \
+CheckBox.cpp \
 DevILImage.cpp \
 DevILImageDevice.cpp \
 Display.cpp \
 DisplayMode.cpp \
 DisplayModeListener.cpp \
+DropDown.cpp \
 Entity.cpp \
 Event.cpp \
 EventListener.cpp \
@@ -43,6 +49,7 @@ GameControlEvent.cpp \
 Game.cpp \
 GameObjectContainer.cpp \
 GameState.cpp \
+GUIElement.cpp \
 Globals.cpp \
 GradientColor.cpp \
 GUICircleButton.cpp \
@@ -52,8 +59,13 @@ GUIGameList2.cpp \
 GUIGameList.cpp \
 GUIGameListElement.cpp \
 GUIRadialKnob.cpp \
+GUIEvent.cpp \
+GUIContainer.cpp \
+GUIList.cpp \
+GUIText.cpp \
 ImageFromFile.cpp \
 Initializable.cpp \
+ImageFont.cpp \
 Keyboard.cpp \
 KeyListener.cpp \
 Listener.cpp \
@@ -66,17 +78,23 @@ LuaGame.cpp \
 LuaGL.cpp \
 lualove.cpp \
 lualove_types_lookup.cpp \
+ListBox.cpp \
+Label.cpp \
 main.cpp \
 Matrix.cpp \
+Menu.cpp \
 MessageEvent.cpp \
 Mouse.cpp \
 MouseListener.cpp \
 MouseMotionListener.cpp \
+MultilineLabel.cpp \
 NeoFontTexGame.cpp \
 Object.cpp \
 ObjectFactory.cpp \
 OpenGLGraphics.cpp \
+OpenGLGUI.cpp \
 Parameters.cpp \
+Padded.cpp \
 Particle.cpp \
 ParticleEmitter.cpp \
 ParticleSystem.cpp \
@@ -86,7 +104,7 @@ platform-sdl.cpp \
 Renderable.cpp \
 Resource.cpp \
 Resumable.cpp \
-ScriptableActorState.cpp \
+RadioButton.cpp \
 Scriptable.cpp \
 ScriptableParticle.cpp \
 SDLDisplay.cpp \
@@ -95,10 +113,15 @@ SDLMixerSound.cpp \
 SDLMixerSoundDevice.cpp \
 SDLTimer.cpp \
 SmoothAnimatedColor.cpp \
+ScriptableActorState.cpp \
 Sprite.cpp \
+Slider.cpp \
 Text.cpp \
 Timer.cpp \
+TextBox.cpp \
+TextField.cpp \
 Updateable.cpp \
+UIGame.cpp \
 Vector.cpp \
 Vextor.cpp \
 VisualEntity.cpp

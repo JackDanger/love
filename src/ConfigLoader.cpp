@@ -53,9 +53,9 @@ namespace love
 		{
 			line++;
 			index = (int)temp.find_first_of('=', 0);
-			if(index == string::npos)
+			if(index == (int)string::npos)
 				printf("Config Loader (Line %d): Unrecognized command: \"%s\"\n", line, temp.c_str());
-			if(index != string::npos && temp.find_first_of('#', 0) != 0 && trim(temp).size() != 0)
+			if(index != (int)string::npos && temp.find_first_of('#', 0) != 0 && trim(temp).size() != 0)
 			{
 				key = trim(temp.substr(0, index));
 				value = trim(temp.substr(index + 1));
@@ -82,7 +82,7 @@ namespace love
 							boolean[key] = false;
 					}
 				}
-				else if((int)value.find_first_of('"', 0) == 0 && (int)value.find_last_of('"', value.size() - 1) == value.size() - 1)
+				else if((int)value.find_first_of('"', 0) == 0 && value.find_last_of('"', value.size() - 1) == value.size() - 1)
 				{
 					if(text.count(key) != 0)
 						printf("Config Loader (Line %d): The key '%s' already exists.\n", line, key.c_str());

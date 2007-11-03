@@ -98,8 +98,6 @@ void NeoFontTexGame::reloadGraphics()
 int NeoFontTexGame::init()
 {
 
-	const love::AbstractFileSystem & fs = love::core->getFilesystem();
-	const love::AbstractImageDevice & imaging = love::core->getImaging();
 
 	// Create game configuration
 	config = new love::GameConfiguration();
@@ -161,8 +159,8 @@ void NeoFontTexGame::update(float dt)
 	r += 60 * dt;
 
 	
-	float x = cos(r) * 100;
-	float y = sin(r) * 100;
+	//float x = cos(r) * 100;
+	//float y = sin(r) * 100;
 
 	const love::Mouse & mouse = love::core->getMouse();
 

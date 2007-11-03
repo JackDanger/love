@@ -5,7 +5,7 @@
 namespace love
 {
 
-	Timer::Timer() : frames(0), fpsUpdateFrequency(1.0f), fps(0), lockedFps(0), maxFps(0), minFps(0), numAverage(10)
+	Timer::Timer() : fps(0), fpsUpdateFrequency(1.0f), lockedFps(0), maxFps(0), minFps(0), numAverage(10)
 	{
 		setType(LOVE_TYPE_TIMER);
 	}

@@ -21,7 +21,7 @@ namespace love
 
 	int SDLMixerSoundDevice::init()
 	{
-		int len=4096, done=0, need_refresh=0, bits=0, which=0;
+		int bits=0;
 		int audio_rate,audio_channels,
 		// set this to any of 512,1024,2048,4096
 		// the higher it is, the more FPS shown and CPU needed

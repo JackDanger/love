@@ -36,7 +36,7 @@ namespace love
 		words.clear();
 		sizes.clear();
 
-		for(int i = 0; i != strlen(text) && text[i] != '\0'; i++)
+		for(int i = 0; i != (int)strlen(text) && text[i] != '\0'; i++)
 		{
 			if(text[i] == '\n')
 			{
@@ -68,7 +68,7 @@ namespace love
 
 		temp = "";
 		size = 0;
-		for(int i = 0; i != words.size(); i++)
+		for(int i = 0; i != (int)words.size(); i++)
 		{
 			if(words.at(i) == "\n")
 			{
@@ -99,7 +99,7 @@ namespace love
 	void MultilineLabel::adjustSize()
 	{
 		int length, temp = 0;
-		for(int i = 0; i != lines.size(); i++)
+		for(int i = 0; i != (int)lines.size(); i++)
 		{
 			length = getFont()->getWidth(lines[i]);
 			temp = (temp > length) ? temp : length;

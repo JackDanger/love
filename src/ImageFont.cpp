@@ -6,9 +6,18 @@ namespace love
 {
 	void ImageFont::renderChar(char character)
 	{
-		if(character > MAX_CHARS || width[character] == -1)
+		// To Mike: g++ warns about this always being false. (MAX_CHARS = 256, 
+		// and since character is a char, it can't go higher than 255. 
+		// int c, the casting, etc is just circumvent this.
+		//
+		// FYI, g++ also complains about using char as an array index. Thus
+		// the constant (int)-ing.
+
+		int c = (int) character;
+
+		if(c > MAX_CHARS || width[(int)character] == -1)
 			return;
-		image->render((float)(width[character] % columns) * charwidth, floor((float)(width[character] / columns)) * size, (float)charwidth, (float)size);
+		image->render((float)(width[(int)character] % columns) * charwidth, floor((float)(width[(int)character] / columns)) * size, (float)charwidth, (float)size);
 	}
 
 	ImageFont::ImageFont(pAbstractImage image, int width, int height, char * charlist) : AbstractFont(0, height)
@@ -75,8 +84,12 @@ namespace love
 
 		for(unsigned int i = 0; i < strlen(charlist); i++)
 		{
-			if(charlist[i] > 0 && charlist[i] < MAX_CHARS)
-				width[charlist[i]] = i;
+			// To Mike: ... same as the comment in renderChar.
+			
+			int c = (int) charlist[i];
+			
+			if(c > 0 && c < MAX_CHARS)
+				width[(int)charlist[i]] = i;
 		}
 
 		columns = (int)(image->getWidth() / charwidth);

@@ -6,6 +6,8 @@
 namespace love
 {
 	
+	static int * lualove_lookup_types;
+	
 	void lualove_create_lookup()
 	{
 		lualove_lookup_types = new int[LOVE_NUM_TYPES];

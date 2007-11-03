@@ -19,7 +19,7 @@ namespace love
 	**/
 
 	GUIGameListElement::GUIGameListElement(AbstractImage * defaultThumb, AbstractImage * defaultThumbDither, Font * font, Font * smallFont, AbstractImage * playImage, AbstractImage * stopImage, AbstractImage * restartImage) 
-		: defaultThumb(defaultThumb), defaultThumbDither(defaultThumbDither), font(font), smallFont(smallFont), playImage(playImage), stopImage(stopImage), restartImage(restartImage)
+		: defaultThumb(defaultThumb), defaultThumbDither(defaultThumbDither), playImage(playImage), stopImage(stopImage), restartImage(restartImage), font(font), smallFont(smallFont)
 	{
 
 		buttonsAlpha = 1.0f;

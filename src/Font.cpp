@@ -152,7 +152,7 @@ namespace love
 
 		for(unsigned int i = 0; i < strlen(line); i++)
 		{
-			temp += width[line[i]];
+			temp += width[(int)line[i]];
 		}
 
 		return temp;

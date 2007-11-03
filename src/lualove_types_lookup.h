@@ -10,8 +10,6 @@
 
 namespace love
 {
-	
-	static int * lualove_lookup_types;
 
 	void lualove_create_lookup();
 	void lualove_clean_lookup();

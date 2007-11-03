@@ -9,7 +9,7 @@ const float to_rad = (pi/180.0f);
 namespace love
 {
 
-	ParticleSystem::ParticleSystem() : spawnBuffer(0), lifetime(-1), age(0), linger(0), additive(true)
+	ParticleSystem::ParticleSystem() : additive(true), lifetime(-1), age(0), linger(0), spawnBuffer(0)
 	{
 		// Init members
 		fillInterval(direction, 0, 360);

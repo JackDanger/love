@@ -53,7 +53,7 @@ namespace love
 
 			int index = (int)(gameListElements.size() - (int)floor(orientation/step + 0.5f));
 			
-			if(index == gameListElements.size()) index = 0;
+			if(index == (int)gameListElements.size()) index = 0;
 
 			printf("Starting game (%p), (%s)", gameListElements[index].getGame(), gameListElements[index].getGame()->getName().c_str());
 			pMessageEvent e(new MessageEvent(gameListElements[index].getGame()->getName()));
@@ -178,9 +178,6 @@ namespace love
 
 		float raw = viewport_max + ((viewport_min - viewport_max) * t);
 
-		float rounded = floor(raw / (space_t));
-
-
 		viewport = raw;
 		//printf("Setting viewport: %f\n", viewport);
 	}
@@ -219,8 +216,8 @@ namespace love
 		//float d1 = abs(a2 - a1);
 		//float d2 = d1 - TWOPI;
 		float d1 = a1 - a2;
-		float d2 = (float)(TWOPI - abs(d1));
-		return abs(d1) < abs(d2) ? d1 : d2;
+		float d2 = (float)(TWOPI - fabs(d1));
+		return fabs(d1) < fabs(d2) ? d1 : d2;
 	}
 
 

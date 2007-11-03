@@ -12,7 +12,7 @@
 namespace love
 {
 	
-	Console::Console(int size) : size(size), font(0), visible(false), compact(true)
+	Console::Console(int size) : compact(true), visible(false), font(0), size(size)
 	{
 	}
 	

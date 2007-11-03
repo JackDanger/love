@@ -1,7 +1,10 @@
 #ifndef LOVE_MUSIC_H
 #define LOVE_MUSIC_H
 
+
+#define USE_RWOPS // Needs to be here for great Ubuntuness.
 #include <SDL_mixer.h>
+
 #include "Loadable.h"
 #include "Updateable.h"
 #include "Resource.h"

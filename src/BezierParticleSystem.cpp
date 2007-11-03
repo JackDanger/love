@@ -3,7 +3,7 @@
 namespace love
 {
 	
-	BezierParticleSystem::BezierParticleSystem() : current(0), precision(200)
+	BezierParticleSystem::BezierParticleSystem() : precision(200), current(0)
 	{
 	}
 	

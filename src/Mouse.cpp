@@ -4,7 +4,7 @@
 namespace love
 {
 
-	Mouse::Mouse() : x(0), y(0), buttons(0)
+	Mouse::Mouse() : buttons(0), x(0), y(0)
 	{
 		setType(LOVE_TYPE_MOUSE);
 	}

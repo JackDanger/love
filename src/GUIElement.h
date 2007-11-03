@@ -37,7 +37,7 @@ namespace love
 
 	public:
 		GUIElement();
-		~GUIElement();
+		virtual ~GUIElement();
 
 		virtual void setColor(const pAbstractColor * color);
 		virtual void setBackgroundColor(const pAbstractColor * color);

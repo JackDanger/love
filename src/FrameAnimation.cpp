@@ -5,12 +5,12 @@ namespace love
 {
 
 
-	FrameAnimation::FrameAnimation() : timeBuffer(0), cfi(0), running(false)
+	FrameAnimation::FrameAnimation() : running(false), cfi(0), timeBuffer(0)
 	{
 		setType(LOVE_TYPE_FRAME_ANIMATION);
 	}
 
-	FrameAnimation::FrameAnimation(pAbstractImage image) : image(image), timeBuffer(0), cfi(0), running(false)
+	FrameAnimation::FrameAnimation(pAbstractImage image) : image(image), running(false), cfi(0), timeBuffer(0)
 	{
 		setType(LOVE_TYPE_FRAME_ANIMATION);
 	}

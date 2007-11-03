@@ -46,7 +46,7 @@ namespace love
 
 			int index = (int)(gameListElements.size() - (int)floor(orientation/step + 0.5f));
 			
-			if(index == gameListElements.size()) index = 0;
+			if(index == (int)gameListElements.size()) index = 0;
 
 			printf("Starting game (%p), (%s)", gameListElements[index].getGame(), gameListElements[index].getGame()->getName().c_str());
 			pMessageEvent e(new MessageEvent(gameListElements[index].getGame()->getName()));
@@ -170,8 +170,8 @@ namespace love
 		//float d1 = abs(a2 - a1);
 		//float d2 = d1 - TWOPI;
 		float d1 = a1 - a2;
-		float d2 = (float)(TWOPI - abs(d1));
-		return abs(d1) < abs(d2) ? d1 : d2;
+		float d2 = TWOPI - fabs(d1);
+		return fabs(d1) < fabs(d2) ? d1 : d2;
 	}
 
 	void GUIGameList::seek(float angle, float seekMax)
@@ -228,12 +228,12 @@ namespace love
 		}
 		else
 		{
-			if(abs(acceleration.getX()) > 0.001)
+			if(fabs(acceleration.getX()) > 0.001)
 			{
 				acceleration.setX(acceleration.getX() * (1 - 2 * dt));
 			}else setAcceleration(0, 0);
 
-			if(abs(velocity.getX()) > 0.001)
+			if(fabs(velocity.getX()) > 0.001)
 			{
 				velocity.setX(velocity.getX() * (1 - 4 * dt));
 			}else setVelocity(0, 0);
@@ -248,7 +248,7 @@ namespace love
 
 			for(int i=0;i<size;i++)
 			{
-				float dist = abs(shortest(clampa(i * step), clampa(orientation)));
+				float dist = fabs(shortest(clampa(i * step), clampa(orientation)));
 				if(dist < closest)
 				{
 					ci = i;
@@ -257,7 +257,7 @@ namespace love
 				a+=step;
 			}
 
-			if(abs(velocity.getX()) < 0.1)
+			if(fabs(velocity.getX()) < 0.1)
 			{
 				seek(ci * step, 0.5);
 			}
@@ -277,7 +277,7 @@ namespace love
 
 	float GUIGameList::scale(float angle)
 	{
-		float s = abs(sin(angle));
+		float s = fabs(sin(angle));
 
 		return 1 - s/2;
 	}
@@ -293,7 +293,6 @@ namespace love
 		this->radius = size * 26;
 
 		float xamp = size / 16;
-		float yamp = 1.0f;
 
 		this->setX(370 - radius * xamp);
 		this->setY(768/2);
@@ -330,7 +329,7 @@ namespace love
 			float t = s * s;
 
 			// Get button alpha
-			float dist = abs((height/2.0f) - (getY() + y));
+			float dist = fabs((height/2.0f) - (getY() + y));
 			float ba = 1.0f - dist/70.0f;
 
 			if(ba < 0) ba = 0;

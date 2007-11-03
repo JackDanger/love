@@ -5,7 +5,7 @@
 namespace love
 {
 
-	Sound::Sound(AbstractFile * file) : Resource(file), filename(""), sound(0), channel(-1), volume(MIX_MAX_VOLUME)
+	Sound::Sound(AbstractFile * file) : Resource(file), sound(0), filename(""), channel(-1), volume(MIX_MAX_VOLUME)
 	{
 
 	}
