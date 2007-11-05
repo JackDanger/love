@@ -69,7 +69,7 @@ namespace love
 		AbstractMenu(pAbstractFont font, pAbstractColor color, int type = LOVE_MENU_VERTICAL);
 
 		/**
-		 * @brief Deconstructor. Does nothing.
+		 * @brief Deconstructor. Clears the list of children.
 		 **/
 		~AbstractMenu();
 
@@ -77,9 +77,7 @@ namespace love
 		virtual void hide();
 
 		virtual void setFont(const pAbstractFont * font);
-		//virtual void setColor(const pAbstractColor * color);
 		virtual void setBackgroundColor(const pAbstractColor * color);
-		//virtual void setBorderColor(const pAbstractColor * color);
 		virtual void setBackground(const pAbstractImage * image);
 
 		virtual void setSpacing(int spacing); //how much distance there is to be between the items
@@ -89,9 +87,7 @@ namespace love
 		virtual void valign(int alignment);
 
 		virtual pAbstractFont getFont();
-		//virtual pAbstractColor getColor();
 		virtual pAbstractColor getBackgroundColor();
-		//virtual pAbstractColor getBorderColor();
 
 		virtual int getSpacing();
 
@@ -134,8 +130,7 @@ namespace love
 		virtual pCheckBox addCheckBox(const char * name, const char * caption = "", int width = 0, int height = 0);
 		virtual pSlider addSlider(const char * name, unsigned int orientation = Slider::LOVE_SLIDER_HORIZONTAL, double scaleStart = 0, double scaleEnd = 1, int width = 0, int height = 0);
 		virtual pListBox addListBox(const char * name, int width = 0, int height = 0);
-		//This is very buggy. I'll look at it later.
-		//virtual TextBox * addTextBox(const char * name, int width = 0, int height = 0);
+		virtual pTextBox addTextBox(const char * name, int width = 0, int height = 0);
 	};
 
 	typedef boost::shared_ptr<AbstractMenu> pAbstractMenu;

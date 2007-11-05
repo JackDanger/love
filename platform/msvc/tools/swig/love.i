@@ -205,3 +205,4 @@ namespace boost {
 %template(SmartCheckBox) boost::shared_ptr<love::CheckBox>;
 %template(SmartSlider) boost::shared_ptr<love::Slider>;
 %template(SmartListBox) boost::shared_ptr<love::ListBox>;
+%template(SmartTextBox) boost::shared_ptr<love::TexBtzox>;

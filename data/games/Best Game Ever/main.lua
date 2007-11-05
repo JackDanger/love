@@ -60,8 +60,8 @@ main = {
 		textfield = menu:addTextField("TEXT_FIELD", "Or press <enter> here.", 200);
 		
 		drop = menu:addDropDown("DROP YOUR PANTS");
-		--drop:setButton(love.objects:newImage("dropdown.png"));
-		--drop:setButtonPressed(love.objects:newImage("dropdown_pressed.png"));
+		drop:setButton(love.objects:newImage("dropdown.png"));
+		drop:setButtonPressed(love.objects:newImage("dropdown_pressed.png"));
 		drop:add("one");
 		drop:add("two");
 		drop:add("four");
@@ -113,16 +113,17 @@ main = {
 		nested:adjustSize();
 		nested:adjustContent();
 		
-		list = menu:addListBox("THEY SEE ME LISTING!");
-		list:add("this");
-		list:add("is");
-		list:add("a");
-		list:add("list");
-		list:add("(also: sparta)");
-		list:adjustSize();
-		list:setBackgroundColor(color["shiznet"]);
-		list:setSelectionColor(color["white"]);
-		list:setSelectionBackgroundColor(list:getBackgroundColor());
+		--list = menu:addListBox("THEY SEE ME LISTING!");
+		--list:add("this");
+		--list:add("is");
+		--list:add("a");
+		--list:add("list");
+		--list:add("(also: sparta)");
+		--list:adjustSize();
+		--list:setBackgroundColor(color["shiznet"]);
+		--list:setSelectionColor(color["white"]);
+		--list:setSelectionBackgroundColor(list:getBackgroundColor());
+		box = menu:addTextBox("BAWKZ", 100, 100);
 		
 		
 		menu:adjustSize();

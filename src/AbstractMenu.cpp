@@ -22,6 +22,7 @@ namespace love
 
 	AbstractMenu::~AbstractMenu()
 	{
+		children.clear();
 	}
 
 	void AbstractMenu::show()
@@ -39,21 +40,10 @@ namespace love
 		text->setFont(*font);
 	}
 
-	/*void AbstractMenu::setColor(const pAbstractColor * color)
-	{
-		GUIElement::setColor(color);
-		text->setColor(*color);
-	}*/
-
 	void AbstractMenu::setBackgroundColor(const pAbstractColor * color)
 	{
 		GUIElement::setBackgroundColor(color);
 	}
-
-	/*void AbstractMenu::setBorderColor(const pAbstractColor * color)
-	{
-		GUIElement::setBorderColor(color);
-	}*/
 
 	void AbstractMenu::setBackground(const pAbstractImage * image)
 	{
@@ -85,20 +75,10 @@ namespace love
 		return text->getFont();
 	}
 
-	/*pAbstractColor AbstractMenu::getColor()
-	{
-		return GUIElement::getColor();
-	}*/
-
 	pAbstractColor AbstractMenu::getBackgroundColor()
 	{
 		return GUIElement::getBackgroundColor();
 	}
-
-	/*pAbstractColor AbstractMenu::getBorderColor()
-	{
-		return GUIElement::getBorderColor();
-	}*/
 
 	int AbstractMenu::getSpacing()
 	{
@@ -329,10 +309,9 @@ namespace love
 		return temp;
 	}
 
-	/*
-	TextBox * AbstractMenu::addTextBox(const char * name, int width, int height)
+	pTextBox AbstractMenu::addTextBox(const char * name, int width, int height)
 	{
-		TextBox * temp = new TextBox();
+		pTextBox temp(new TextBox());
 		temp->setFont(this->text.get());
 		temp->setColor(&this->text->getColor());
 
@@ -343,11 +322,10 @@ namespace love
 			temp->setHeight(height);
 		temp->addActionListener(core->getGUI());
 		temp->setName(name);
-		positionItem(temp);
+		positionItem(temp.get());
 
-		//add(temp);
-		add(textBoxScrollArea);
+		add(temp.get());
+		children.push_back(temp);
 		return temp;
 	}
-	*/
 }

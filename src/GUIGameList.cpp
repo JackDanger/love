@@ -170,7 +170,7 @@ namespace love
 		//float d1 = abs(a2 - a1);
 		//float d2 = d1 - TWOPI;
 		float d1 = a1 - a2;
-		float d2 = TWOPI - fabs(d1);
+		float d2 = (float)(TWOPI - fabs(d1)); //ah, removing warnings is fun
 		return fabs(d1) < fabs(d2) ? d1 : d2;
 	}
 

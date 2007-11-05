@@ -15,6 +15,8 @@ namespace love
 
 	Menu::~Menu()
 	{
+		gcn::Container::clear();
+		children.clear();
 	}
 
 	void Menu::setSize(int width, int height)

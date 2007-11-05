@@ -42,6 +42,7 @@ namespace love
 		previous->stop();
 		previous->unload();
 		previous = 0;
+		top->clear();
 		core->gui->remove(top);
 		core->startGame("love-system-menu", false);
 

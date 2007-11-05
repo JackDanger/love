@@ -18795,6 +18795,26 @@ fail:
 }
 
 
+static int _wrap_TextBox_setBackgroundColor(lua_State* L) {
+  int SWIG_arg = -1;
+  love::TextBox *arg1 = (love::TextBox *) 0 ;
+  love::pAbstractColor *arg2 = (love::pAbstractColor *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::TextBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__TextBox,0,1,"TextBox_setBackgroundColor");
+  arg2=(love::pAbstractColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,2,"TextBox_setBackgroundColor");
+  (arg1)->setBackgroundColor((love::pAbstractColor const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_TextBox_setActiveColor(lua_State* L) {
   int SWIG_arg = -1;
   love::TextBox *arg1 = (love::TextBox *) 0 ;
@@ -19036,6 +19056,28 @@ fail:
 }
 
 
+static int _wrap_TextBox_getBackgroundColor(lua_State* L) {
+  int SWIG_arg = -1;
+  love::TextBox *arg1 = (love::TextBox *) 0 ;
+  love::pAbstractColor result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::TextBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__TextBox,0,1,"TextBox_getBackgroundColor");
+  result = (arg1)->getBackgroundColor();
+  SWIG_arg=0;
+  {
+    love::pAbstractColor * resultptr;
+    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_TextBox_getActiveColor(lua_State* L) {
   int SWIG_arg = -1;
   love::TextBox *arg1 = (love::TextBox *) 0 ;
@@ -19154,6 +19196,7 @@ static swig_lua_method swig_love_TextBox_methods[] = {
     {"setCaretRowColumn", _wrap_TextBox_setCaretRowColumn}, 
     {"setEditable", _wrap_TextBox_setEditable}, 
     {"setTextRow", _wrap_TextBox_setTextRow}, 
+    {"setBackgroundColor", _wrap_TextBox_setBackgroundColor}, 
     {"setActiveColor", _wrap_TextBox_setActiveColor}, 
     {"setActiveBackgroundColor", _wrap_TextBox_setActiveBackgroundColor}, 
     {"getWidth", _wrap_TextBox_getWidth}, 
@@ -19167,6 +19210,7 @@ static swig_lua_method swig_love_TextBox_methods[] = {
     {"getNumberOfRows", _wrap_TextBox_getNumberOfRows}, 
     {"getRow", _wrap_TextBox_getRow}, 
     {"isEditable", _wrap_TextBox_isEditable}, 
+    {"getBackgroundColor", _wrap_TextBox_getBackgroundColor}, 
     {"getActiveColor", _wrap_TextBox_getActiveColor}, 
     {"getActiveBackgroundColor", _wrap_TextBox_getActiveBackgroundColor}, 
     {"adjustSize", _wrap_TextBox_adjustSize}, 
@@ -22008,6 +22052,175 @@ static int _wrap_AbstractMenu_addListBox(lua_State* L) {
 }
 
 
+static int _wrap_AbstractMenu_addTextBox__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  love::AbstractMenu *arg1 = (love::AbstractMenu *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  love::pTextBox result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  arg1=(love::AbstractMenu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractMenu,0,1,"AbstractMenu_addTextBox");
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  result = (arg1)->addTextBox((char const *)arg2,arg3,arg4);
+  SWIG_arg=0;
+  {
+    love::pTextBox * resultptr;
+    resultptr = new love::pTextBox((love::pTextBox &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AbstractMenu_addTextBox__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  love::AbstractMenu *arg1 = (love::AbstractMenu *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  love::pTextBox result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(love::AbstractMenu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractMenu,0,1,"AbstractMenu_addTextBox");
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  result = (arg1)->addTextBox((char const *)arg2,arg3);
+  SWIG_arg=0;
+  {
+    love::pTextBox * resultptr;
+    resultptr = new love::pTextBox((love::pTextBox &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AbstractMenu_addTextBox__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  love::AbstractMenu *arg1 = (love::AbstractMenu *) 0 ;
+  char *arg2 = (char *) 0 ;
+  love::pTextBox result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(love::AbstractMenu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractMenu,0,1,"AbstractMenu_addTextBox");
+  arg2 = (char*)lua_tostring(L, 2);
+  result = (arg1)->addTextBox((char const *)arg2);
+  SWIG_arg=0;
+  {
+    love::pTextBox * resultptr;
+    resultptr = new love::pTextBox((love::pTextBox &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AbstractMenu_addTextBox(lua_State* L) {
+  int argc;
+  int argv[5]={
+    1,2,3,4,5
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__AbstractMenu, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_AbstractMenu_addTextBox__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__AbstractMenu, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_AbstractMenu_addTextBox__SWIG_1(L);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__AbstractMenu, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_AbstractMenu_addTextBox__SWIG_0(L);
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'AbstractMenu_addTextBox'");
+  lua_error(L);return 0;
+}
+
+
 static void swig_delete_AbstractMenu(void *obj) {
 love::AbstractMenu *arg1 = (love::AbstractMenu *) obj;
 delete arg1;
@@ -22057,6 +22270,7 @@ static swig_lua_method swig_love_AbstractMenu_methods[] = {
     {"addCheckBox", _wrap_AbstractMenu_addCheckBox}, 
     {"addSlider", _wrap_AbstractMenu_addSlider}, 
     {"addListBox", _wrap_AbstractMenu_addListBox}, 
+    {"addTextBox", _wrap_AbstractMenu_addTextBox}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_AbstractMenu_attributes[] = {
@@ -45234,6 +45448,175 @@ static int _wrap_SmartMenu_addListBox(lua_State* L) {
 }
 
 
+static int _wrap_SmartMenu_addTextBox__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::AbstractMenu > *arg1 = (boost::shared_ptr<love::AbstractMenu > *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  love::pTextBox result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  arg1=(boost::shared_ptr<love::AbstractMenu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractMenu_t,0,1,"SmartMenu_addTextBox");
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  arg4 = (int)lua_tonumber(L, 4);
+  result = (*arg1)->addTextBox((char const *)arg2,arg3,arg4);
+  SWIG_arg=0;
+  {
+    love::pTextBox * resultptr;
+    resultptr = new love::pTextBox((love::pTextBox &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_addTextBox__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::AbstractMenu > *arg1 = (boost::shared_ptr<love::AbstractMenu > *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  love::pTextBox result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(boost::shared_ptr<love::AbstractMenu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractMenu_t,0,1,"SmartMenu_addTextBox");
+  arg2 = (char*)lua_tostring(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  result = (*arg1)->addTextBox((char const *)arg2,arg3);
+  SWIG_arg=0;
+  {
+    love::pTextBox * resultptr;
+    resultptr = new love::pTextBox((love::pTextBox &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_addTextBox__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::AbstractMenu > *arg1 = (boost::shared_ptr<love::AbstractMenu > *) 0 ;
+  char *arg2 = (char *) 0 ;
+  love::pTextBox result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::AbstractMenu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractMenu_t,0,1,"SmartMenu_addTextBox");
+  arg2 = (char*)lua_tostring(L, 2);
+  result = (*arg1)->addTextBox((char const *)arg2);
+  SWIG_arg=0;
+  {
+    love::pTextBox * resultptr;
+    resultptr = new love::pTextBox((love::pTextBox &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMenu_addTextBox(lua_State* L) {
+  int argc;
+  int argv[5]={
+    1,2,3,4,5
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractMenu_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_SmartMenu_addTextBox__SWIG_2(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractMenu_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_SmartMenu_addTextBox__SWIG_1(L);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractMenu_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_SmartMenu_addTextBox__SWIG_0(L);
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'SmartMenu_addTextBox'");
+  lua_error(L);return 0;
+}
+
+
 static int _wrap_SmartMenu_setColor(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::AbstractMenu > *arg1 = (boost::shared_ptr<love::AbstractMenu > *) 0 ;
@@ -45682,6 +46065,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_AbstractMenu_Sg__methods[] 
     {"addCheckBox", _wrap_SmartMenu_addCheckBox}, 
     {"addSlider", _wrap_SmartMenu_addSlider}, 
     {"addListBox", _wrap_SmartMenu_addListBox}, 
+    {"addTextBox", _wrap_SmartMenu_addTextBox}, 
     {"setColor", _wrap_SmartMenu_setColor}, 
     {"setBorderColor", _wrap_SmartMenu_setBorderColor}, 
     {"getColor", _wrap_SmartMenu_getColor}, 
@@ -52014,6 +52398,824 @@ static swig_lua_attribute swig_boost_shared_ptr_Sl_love_ListBox_Sg__attributes[]
 static swig_lua_class *swig_boost_shared_ptr_Sl_love_ListBox_Sg__bases[] = {0};
 swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_ListBox_Sg_ = { "SmartListBox", &SWIGTYPE_p_boost__shared_ptrTlove__ListBox_t,_wrap_new_SmartListBox, swig_delete_SmartListBox, swig_boost_shared_ptr_Sl_love_ListBox_Sg__methods, swig_boost_shared_ptr_Sl_love_ListBox_Sg__attributes, swig_boost_shared_ptr_Sl_love_ListBox_Sg__bases };
 
+static int _wrap_SmartTextBox___deref__(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  love::TextBox *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox___deref__");
+  result = (love::TextBox *)((boost::shared_ptr<love::TextBox > const *)arg1)->operator ->();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__TextBox,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_SmartTextBox(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *result = 0 ;
+  
+  result = (boost::shared_ptr<love::TextBox > *)new boost::shared_ptr<love::TextBox >();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_SmartTextBox(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"delete_SmartTextBox");
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setSize(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setSize");
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  (*arg1)->setSize(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setWidth");
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setWidth(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setHeight(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setHeight");
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setHeight(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setBorderSize(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  unsigned int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setBorderSize");
+  arg2 = (unsigned int)lua_tonumber(L, 2);
+  (*arg1)->setBorderSize(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setText(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  char *arg2 = (char *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setText");
+  arg2 = (char*)lua_tostring(L, 2);
+  (*arg1)->setText((char const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setName(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  char *arg2 = (char *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setName");
+  arg2 = (char*)lua_tostring(L, 2);
+  (*arg1)->setName((char const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setCaretColumn(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setCaretColumn");
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setCaretColumn(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setCaretPosition(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  unsigned int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setCaretPosition");
+  arg2 = (unsigned int)lua_tonumber(L, 2);
+  (*arg1)->setCaretPosition(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setCaretRow(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  int arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setCaretRow");
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setCaretRow(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setCaretRowColumn(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setCaretRowColumn");
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  (*arg1)->setCaretRowColumn(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setEditable(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  bool arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isboolean(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setEditable");
+  arg2 = (bool)lua_toboolean(L, 2);
+  (*arg1)->setEditable(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setTextRow(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  int arg2 ;
+  char *arg3 = (char *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isstring(L,3)) SWIG_fail_arg(3);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setTextRow");
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (char*)lua_tostring(L, 3);
+  (*arg1)->setTextRow(arg2,(char const *)arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setBackgroundColor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  love::pAbstractColor *arg2 = (love::pAbstractColor *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setBackgroundColor");
+  arg2=(love::pAbstractColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,2,"SmartTextBox_setBackgroundColor");
+  (*arg1)->setBackgroundColor((love::pAbstractColor const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setActiveColor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  love::pAbstractColor *arg2 = (love::pAbstractColor *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setActiveColor");
+  arg2=(love::pAbstractColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,2,"SmartTextBox_setActiveColor");
+  (*arg1)->setActiveColor((love::pAbstractColor const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setActiveBackgroundColor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  love::pAbstractColor *arg2 = (love::pAbstractColor *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setActiveBackgroundColor");
+  arg2=(love::pAbstractColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,2,"SmartTextBox_setActiveBackgroundColor");
+  (*arg1)->setActiveBackgroundColor((love::pAbstractColor const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_getWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getWidth");
+  result = (int)(*arg1)->getWidth();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_getHeight(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getHeight");
+  result = (int)(*arg1)->getHeight();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_getBorderSize(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  unsigned int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getBorderSize");
+  result = (unsigned int)(*arg1)->getBorderSize();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_getText(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  char *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getText");
+  result = (char *)(*arg1)->getText();
+  SWIG_arg=0;
+  lua_pushstring(L,result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_getName(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  char *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getName");
+  result = (char *)(*arg1)->getName();
+  SWIG_arg=0;
+  lua_pushstring(L,result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_getCaretColumn(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  unsigned int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getCaretColumn");
+  result = (unsigned int)(*arg1)->getCaretColumn();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_getCaretPosition(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  unsigned int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getCaretPosition");
+  result = (unsigned int)(*arg1)->getCaretPosition();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_getCaretRow(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  unsigned int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getCaretRow");
+  result = (unsigned int)(*arg1)->getCaretRow();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_getNumberOfRows(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  unsigned int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getNumberOfRows");
+  result = (unsigned int)(*arg1)->getNumberOfRows();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_getRow(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  int arg2 ;
+  char *result = 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getRow");
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (char *)(*arg1)->getRow(arg2);
+  SWIG_arg=0;
+  lua_pushstring(L,result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_isEditable(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  bool result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_isEditable");
+  result = (bool)(*arg1)->isEditable();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_getBackgroundColor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  love::pAbstractColor result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getBackgroundColor");
+  result = (*arg1)->getBackgroundColor();
+  SWIG_arg=0;
+  {
+    love::pAbstractColor * resultptr;
+    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_getActiveColor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  love::pAbstractColor result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getActiveColor");
+  result = (*arg1)->getActiveColor();
+  SWIG_arg=0;
+  {
+    love::pAbstractColor * resultptr;
+    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_getActiveBackgroundColor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  love::pAbstractColor result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getActiveBackgroundColor");
+  result = (*arg1)->getActiveBackgroundColor();
+  SWIG_arg=0;
+  {
+    love::pAbstractColor * resultptr;
+    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_adjustSize(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_adjustSize");
+  (*arg1)->adjustSize();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_draw(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  gcn::Graphics *arg2 = (gcn::Graphics *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_draw");
+  arg2=(gcn::Graphics *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_gcn__Graphics,0,2,"SmartTextBox_draw");
+  (*arg1)->draw(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_drawBorder(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  gcn::Graphics *arg2 = (gcn::Graphics *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_drawBorder");
+  arg2=(gcn::Graphics *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_gcn__Graphics,0,2,"SmartTextBox_drawBorder");
+  (*arg1)->drawBorder(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setColor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  love::pAbstractColor *arg2 = (love::pAbstractColor *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setColor");
+  arg2=(love::pAbstractColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,2,"SmartTextBox_setColor");
+  (*arg1)->setColor((love::pAbstractColor const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_setBorderColor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  love::pAbstractColor *arg2 = (love::pAbstractColor *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setBorderColor");
+  arg2=(love::pAbstractColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,2,"SmartTextBox_setBorderColor");
+  (*arg1)->setBorderColor((love::pAbstractColor const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_getColor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  love::pAbstractColor result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getColor");
+  result = (*arg1)->getColor();
+  SWIG_arg=0;
+  {
+    love::pAbstractColor * resultptr;
+    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartTextBox_getBorderColor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  love::pAbstractColor result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getBorderColor");
+  result = (*arg1)->getBorderColor();
+  SWIG_arg=0;
+  {
+    love::pAbstractColor * resultptr;
+    resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_SmartTextBox(void *obj) {
+boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_boost_shared_ptr_Sl_love_TextBox_Sg__methods[] = {
+    {"__deref__", _wrap_SmartTextBox___deref__}, 
+    {"setSize", _wrap_SmartTextBox_setSize}, 
+    {"setWidth", _wrap_SmartTextBox_setWidth}, 
+    {"setHeight", _wrap_SmartTextBox_setHeight}, 
+    {"setBorderSize", _wrap_SmartTextBox_setBorderSize}, 
+    {"setText", _wrap_SmartTextBox_setText}, 
+    {"setName", _wrap_SmartTextBox_setName}, 
+    {"setCaretColumn", _wrap_SmartTextBox_setCaretColumn}, 
+    {"setCaretPosition", _wrap_SmartTextBox_setCaretPosition}, 
+    {"setCaretRow", _wrap_SmartTextBox_setCaretRow}, 
+    {"setCaretRowColumn", _wrap_SmartTextBox_setCaretRowColumn}, 
+    {"setEditable", _wrap_SmartTextBox_setEditable}, 
+    {"setTextRow", _wrap_SmartTextBox_setTextRow}, 
+    {"setBackgroundColor", _wrap_SmartTextBox_setBackgroundColor}, 
+    {"setActiveColor", _wrap_SmartTextBox_setActiveColor}, 
+    {"setActiveBackgroundColor", _wrap_SmartTextBox_setActiveBackgroundColor}, 
+    {"getWidth", _wrap_SmartTextBox_getWidth}, 
+    {"getHeight", _wrap_SmartTextBox_getHeight}, 
+    {"getBorderSize", _wrap_SmartTextBox_getBorderSize}, 
+    {"getText", _wrap_SmartTextBox_getText}, 
+    {"getName", _wrap_SmartTextBox_getName}, 
+    {"getCaretColumn", _wrap_SmartTextBox_getCaretColumn}, 
+    {"getCaretPosition", _wrap_SmartTextBox_getCaretPosition}, 
+    {"getCaretRow", _wrap_SmartTextBox_getCaretRow}, 
+    {"getNumberOfRows", _wrap_SmartTextBox_getNumberOfRows}, 
+    {"getRow", _wrap_SmartTextBox_getRow}, 
+    {"isEditable", _wrap_SmartTextBox_isEditable}, 
+    {"getBackgroundColor", _wrap_SmartTextBox_getBackgroundColor}, 
+    {"getActiveColor", _wrap_SmartTextBox_getActiveColor}, 
+    {"getActiveBackgroundColor", _wrap_SmartTextBox_getActiveBackgroundColor}, 
+    {"adjustSize", _wrap_SmartTextBox_adjustSize}, 
+    {"draw", _wrap_SmartTextBox_draw}, 
+    {"drawBorder", _wrap_SmartTextBox_drawBorder}, 
+    {"setColor", _wrap_SmartTextBox_setColor}, 
+    {"setBorderColor", _wrap_SmartTextBox_setBorderColor}, 
+    {"getColor", _wrap_SmartTextBox_getColor}, 
+    {"getBorderColor", _wrap_SmartTextBox_getBorderColor}, 
+    {0,0}
+};
+static swig_lua_attribute swig_boost_shared_ptr_Sl_love_TextBox_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_boost_shared_ptr_Sl_love_TextBox_Sg__bases[] = {0};
+swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_TextBox_Sg_ = { "SmartTextBox", &SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,_wrap_new_SmartTextBox, swig_delete_SmartTextBox, swig_boost_shared_ptr_Sl_love_TextBox_Sg__methods, swig_boost_shared_ptr_Sl_love_TextBox_Sg__attributes, swig_boost_shared_ptr_Sl_love_TextBox_Sg__bases };
+
 #ifdef __cplusplus
 }
 #endif
@@ -52608,6 +53810,7 @@ static const struct luaL_reg swig_commands[] = {
     { "TextBox_setCaretRowColumn", _wrap_TextBox_setCaretRowColumn},
     { "TextBox_setEditable", _wrap_TextBox_setEditable},
     { "TextBox_setTextRow", _wrap_TextBox_setTextRow},
+    { "TextBox_setBackgroundColor", _wrap_TextBox_setBackgroundColor},
     { "TextBox_setActiveColor", _wrap_TextBox_setActiveColor},
     { "TextBox_setActiveBackgroundColor", _wrap_TextBox_setActiveBackgroundColor},
     { "TextBox_getWidth", _wrap_TextBox_getWidth},
@@ -52621,6 +53824,7 @@ static const struct luaL_reg swig_commands[] = {
     { "TextBox_getNumberOfRows", _wrap_TextBox_getNumberOfRows},
     { "TextBox_getRow", _wrap_TextBox_getRow},
     { "TextBox_isEditable", _wrap_TextBox_isEditable},
+    { "TextBox_getBackgroundColor", _wrap_TextBox_getBackgroundColor},
     { "TextBox_getActiveColor", _wrap_TextBox_getActiveColor},
     { "TextBox_getActiveBackgroundColor", _wrap_TextBox_getActiveBackgroundColor},
     { "TextBox_adjustSize", _wrap_TextBox_adjustSize},
@@ -52671,6 +53875,7 @@ static const struct luaL_reg swig_commands[] = {
     { "AbstractMenu_addCheckBox",_wrap_AbstractMenu_addCheckBox},
     { "AbstractMenu_addSlider",_wrap_AbstractMenu_addSlider},
     { "AbstractMenu_addListBox",_wrap_AbstractMenu_addListBox},
+    { "AbstractMenu_addTextBox",_wrap_AbstractMenu_addTextBox},
     { "new_Menu",_wrap_new_Menu},
     { "delete_Menu", _wrap_delete_Menu},
     { "Menu_setSize", _wrap_Menu_setSize},
@@ -53228,6 +54433,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartMenu_addCheckBox",_wrap_SmartMenu_addCheckBox},
     { "SmartMenu_addSlider",_wrap_SmartMenu_addSlider},
     { "SmartMenu_addListBox",_wrap_SmartMenu_addListBox},
+    { "SmartMenu_addTextBox",_wrap_SmartMenu_addTextBox},
     { "SmartMenu_setColor", _wrap_SmartMenu_setColor},
     { "SmartMenu_setBorderColor", _wrap_SmartMenu_setBorderColor},
     { "SmartMenu_getColor", _wrap_SmartMenu_getColor},
@@ -53538,6 +54744,45 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartListBox_setBorderColor", _wrap_SmartListBox_setBorderColor},
     { "SmartListBox_getColor", _wrap_SmartListBox_getColor},
     { "SmartListBox_getBorderColor", _wrap_SmartListBox_getBorderColor},
+    { "SmartTextBox___deref__", _wrap_SmartTextBox___deref__},
+    { "new_SmartTextBox", _wrap_new_SmartTextBox},
+    { "delete_SmartTextBox", _wrap_delete_SmartTextBox},
+    { "SmartTextBox_setSize", _wrap_SmartTextBox_setSize},
+    { "SmartTextBox_setWidth", _wrap_SmartTextBox_setWidth},
+    { "SmartTextBox_setHeight", _wrap_SmartTextBox_setHeight},
+    { "SmartTextBox_setBorderSize", _wrap_SmartTextBox_setBorderSize},
+    { "SmartTextBox_setText", _wrap_SmartTextBox_setText},
+    { "SmartTextBox_setName", _wrap_SmartTextBox_setName},
+    { "SmartTextBox_setCaretColumn", _wrap_SmartTextBox_setCaretColumn},
+    { "SmartTextBox_setCaretPosition", _wrap_SmartTextBox_setCaretPosition},
+    { "SmartTextBox_setCaretRow", _wrap_SmartTextBox_setCaretRow},
+    { "SmartTextBox_setCaretRowColumn", _wrap_SmartTextBox_setCaretRowColumn},
+    { "SmartTextBox_setEditable", _wrap_SmartTextBox_setEditable},
+    { "SmartTextBox_setTextRow", _wrap_SmartTextBox_setTextRow},
+    { "SmartTextBox_setBackgroundColor", _wrap_SmartTextBox_setBackgroundColor},
+    { "SmartTextBox_setActiveColor", _wrap_SmartTextBox_setActiveColor},
+    { "SmartTextBox_setActiveBackgroundColor", _wrap_SmartTextBox_setActiveBackgroundColor},
+    { "SmartTextBox_getWidth", _wrap_SmartTextBox_getWidth},
+    { "SmartTextBox_getHeight", _wrap_SmartTextBox_getHeight},
+    { "SmartTextBox_getBorderSize", _wrap_SmartTextBox_getBorderSize},
+    { "SmartTextBox_getText", _wrap_SmartTextBox_getText},
+    { "SmartTextBox_getName", _wrap_SmartTextBox_getName},
+    { "SmartTextBox_getCaretColumn", _wrap_SmartTextBox_getCaretColumn},
+    { "SmartTextBox_getCaretPosition", _wrap_SmartTextBox_getCaretPosition},
+    { "SmartTextBox_getCaretRow", _wrap_SmartTextBox_getCaretRow},
+    { "SmartTextBox_getNumberOfRows", _wrap_SmartTextBox_getNumberOfRows},
+    { "SmartTextBox_getRow", _wrap_SmartTextBox_getRow},
+    { "SmartTextBox_isEditable", _wrap_SmartTextBox_isEditable},
+    { "SmartTextBox_getBackgroundColor", _wrap_SmartTextBox_getBackgroundColor},
+    { "SmartTextBox_getActiveColor", _wrap_SmartTextBox_getActiveColor},
+    { "SmartTextBox_getActiveBackgroundColor", _wrap_SmartTextBox_getActiveBackgroundColor},
+    { "SmartTextBox_adjustSize", _wrap_SmartTextBox_adjustSize},
+    { "SmartTextBox_draw", _wrap_SmartTextBox_draw},
+    { "SmartTextBox_drawBorder", _wrap_SmartTextBox_drawBorder},
+    { "SmartTextBox_setColor", _wrap_SmartTextBox_setColor},
+    { "SmartTextBox_setBorderColor", _wrap_SmartTextBox_setBorderColor},
+    { "SmartTextBox_getColor", _wrap_SmartTextBox_getColor},
+    { "SmartTextBox_getBorderColor", _wrap_SmartTextBox_getBorderColor},
     {0,0}
 };
 
@@ -54091,7 +55336,7 @@ static swig_type_info _swigt__p_boost__shared_ptrTlove__ParticleSystem_t = {"_p_
 static swig_type_info _swigt__p_boost__shared_ptrTlove__RadioButton_t = {"_p_boost__shared_ptrTlove__RadioButton_t", "boost::shared_ptr<love::RadioButton > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_RadioButton_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Slider_t = {"_p_boost__shared_ptrTlove__Slider_t", "boost::shared_ptr<love::Slider > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Slider_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Sprite_t = {"_p_boost__shared_ptrTlove__Sprite_t", "boost::shared_ptr<love::Sprite > *|love::pSprite *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Sprite_Sg_, 0};
-static swig_type_info _swigt__p_boost__shared_ptrTlove__TextBox_t = {"_p_boost__shared_ptrTlove__TextBox_t", "boost::shared_ptr<love::TextBox > *|love::pTextBox *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_boost__shared_ptrTlove__TextBox_t = {"_p_boost__shared_ptrTlove__TextBox_t", "boost::shared_ptr<love::TextBox > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_TextBox_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__TextField_t = {"_p_boost__shared_ptrTlove__TextField_t", "boost::shared_ptr<love::TextField > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_TextField_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Text_t = {"_p_boost__shared_ptrTlove__Text_t", "boost::shared_ptr<love::Text > *|love::pText *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Timer_t = {"_p_boost__shared_ptrTlove__Timer_t", "boost::shared_ptr<love::Timer > *|love::pTimer *", 0, 0, (void*)0, 0};

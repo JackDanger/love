@@ -71,6 +71,11 @@ namespace love
 		gcn::TextBox::setTextRow(row, text);
 	}
 
+	void TextBox::setBackgroundColor(const pAbstractColor * color)
+	{
+		GUIElement::setBackgroundColor(color);
+	}
+
 	void TextBox::setActiveColor(const pAbstractColor * color)
 	{
 		activeColor = (*color);
@@ -134,6 +139,11 @@ namespace love
 	bool TextBox::isEditable () const
 	{
 		return gcn::TextBox::isEditable();
+	}
+
+	pAbstractColor TextBox::getBackgroundColor()
+	{
+		return GUIElement::getBackgroundColor();
 	}
 
 	pAbstractColor TextBox::getActiveColor()

@@ -37,6 +37,7 @@ namespace love
 		virtual void setEditable(bool editable);
 		virtual void setTextRow(int row, const char * text);
 
+		virtual void setBackgroundColor(const pAbstractColor * color);
 		virtual void setActiveColor(const pAbstractColor * color);
 		virtual void setActiveBackgroundColor(const pAbstractColor * color);
 
@@ -53,6 +54,7 @@ namespace love
 		virtual const char * getRow(int row) const;
 		virtual bool isEditable () const;
 
+		virtual pAbstractColor getBackgroundColor();
 		virtual pAbstractColor getActiveColor();
 		virtual pAbstractColor getActiveBackgroundColor();
 
