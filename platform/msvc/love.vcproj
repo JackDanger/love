@@ -341,6 +341,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\FontTexGame.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\FrameAnimation.cpp"
 				>
 			</File>

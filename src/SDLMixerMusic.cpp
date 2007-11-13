@@ -52,7 +52,6 @@ namespace love
 			printf("Unable to open music file '%s': %s\n", file->getFilename().c_str(), Mix_GetError());
 			return LOVE_ERROR;
 		}
-		
 
 		Mix_VolumeMusic(SDL_MIX_MAXVOLUME);
 

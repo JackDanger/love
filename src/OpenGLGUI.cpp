@@ -65,6 +65,7 @@ namespace love
 		graphics->setTargetPlane(display.getWidth(), display.getHeight());
 		top->setDimension(gcn::Rectangle(0, 0, display.getWidth(), display.getHeight()));
 
+		// Loading font ... better be damn sure it's unloaded.
 		font->load();
 	}
 }

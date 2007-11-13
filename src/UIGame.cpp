@@ -25,7 +25,9 @@ namespace love
 	{
 		top->clear();
 		core->gui->remove(top);
-		core->gui->displayModeChanged(); // to reset the gui
+
+		// To Mike: Reloading will never change the display mode.
+		//core->gui->displayModeChanged(); // to reset the gui
 
 		core->current = previous;
 		previous = 0;
@@ -173,10 +175,10 @@ namespace love
 
 	void UIGame::reloadGraphics()
 	{
-		errorWarning->load();
-		errorError->load();
-		errorFont->load();
-		pauseFont->load();
+		errorWarning->reload();
+		errorError->reload();
+		errorFont->reload();
+		pauseFont->reload();
 		if(!errorMode && previous != 0)
 			previous->reloadGraphics();
 	}
@@ -298,6 +300,6 @@ namespace love
 
 		if(!errorMode && previous != 0)
 			previous->displayModeChanged();
-		reloadGraphics();
+		//reloadGraphics();
 	}
 }

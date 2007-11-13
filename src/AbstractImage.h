@@ -28,10 +28,6 @@ namespace love
 {
 	/**
 	* @struct la
-	* @version 1.0
-	* @since 1.0
-	* @author Anders Ruud
-	* @date 2006-09-03
 	* @brief Alpha, Luminance
 	**/
 	struct la
@@ -42,10 +38,6 @@ namespace love
 
 	/**
 	* @struct rgb
-	* @version 1.0
-	* @since 1.0
-	* @author Anders Ruud
-	* @date 2006-02-07
 	* @brief Represents the primary
 	* colors of a pixel.
 	**/
@@ -58,10 +50,6 @@ namespace love
 
 	/**
 	* @struct rgb
-	* @version 1.0
-	* @since 1.0
-	* @author Anders Ruud
-	* @date 2006-02-07
 	* @brief Represents the primary
 	* colors and opacity of a pixel.
 	**/
@@ -75,10 +63,6 @@ namespace love
 
 	/**
 	* @class AbstractImage
-	* @version 1.0
-	* @since 1.0
-	* @author Anders Ruud
-	* @date 2007-01-27
 	* @brief 
 	**/
 	class AbstractImage : public Sprite

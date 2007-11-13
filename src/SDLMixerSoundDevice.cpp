@@ -25,7 +25,7 @@ namespace love
 		int audio_rate,audio_channels,
 		// set this to any of 512,1024,2048,4096
 		// the higher it is, the more FPS shown and CPU needed
-		audio_buffers=4096;
+		audio_buffers=1024;
 		Uint16 audio_format;
 
 		if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,audio_buffers)<0)

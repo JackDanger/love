@@ -8,19 +8,22 @@
 
 using love::GameConfiguration;
 
-namespace love {
+namespace love {
+
 FontTexGame::FontTexGame()
 {
 }
 
 FontTexGame::~FontTexGame()
 {
-
 }
 
 
 int FontTexGame::load()
 {
+
+
+
 	loaded = true;
 
 	return LOVE_OK;
@@ -35,11 +38,10 @@ void FontTexGame::unload()
 
 int FontTexGame::init()
 {
-	
 	config = new love::GameConfiguration();
 	config->setTitle("FontTexGame");
 	config->setAuthor("Grammaton Cleric Preston");
-	config->setDisplayMode(DisplayMode(1024, 768));
+	config->setDisplayMode(DisplayMode(800, 600));
 	config->load();
 
 	inited = true;
@@ -64,7 +66,6 @@ void FontTexGame::keyPressed(int key)
 
 void FontTexGame::reloadGraphics()
 {
-	inited = inited;
 }
 
 } // love

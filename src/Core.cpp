@@ -104,7 +104,7 @@ namespace love
 
 
 		//addGame("neoftg", new NeoFontTexGame());
-		//addGame("ftg", new FontTexGame());
+		addGame("ftg", new FontTexGame());
 
 		// Adds scripted games from the game directory.
 		addGames();

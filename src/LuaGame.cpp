@@ -105,6 +105,9 @@ namespace love
 		core->gui->remove(gui);
 		delete gui;
 
+		// Delete graphics context.
+		delete gfx;
+
 		loaded = false;
 	}
 
