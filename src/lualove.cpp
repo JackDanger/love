@@ -36,6 +36,7 @@ namespace love
 	Timer * timer;
 	ObjectFactory * objects;
 	AbstractGraphics * graphics;
+	AbstractSoundDevice * audio;
 	LuaGame * game;
 	GUIContainer * gui;
 
@@ -527,6 +528,7 @@ namespace love
 		timer = core->timer;
 		objects = new ObjectFactory();
 		graphics = core->graphics;
+		audio = core->audio;
 		game = 0;
 		gui = 0;
 	}

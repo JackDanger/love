@@ -95,6 +95,9 @@ namespace love
 		* @param volume The volume from 0.0 - 1.0.
 		**/
 		void setVolume(float volume) const;
+
+		void play(pAbstractSound sound, int loop = 0, int channel = -1) const;
+		void play(pAbstractMusic music, int loop = 0) const;
 		
 	}; // SDLMixerSoundDevice
 	

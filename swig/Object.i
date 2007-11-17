@@ -1,0 +1,6 @@
+namespace love
+{
+	class Object
+	{
+	};
+}

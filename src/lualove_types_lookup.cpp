@@ -20,9 +20,9 @@ namespace love
 		lualove_lookup_types[LOVE_TYPE_MOUSE]					= script_type_p_love__Mouse;
 		lualove_lookup_types[LOVE_TYPE_LUAGL]					= script_type_p_love__LuaGL;
 		lualove_lookup_types[LOVE_TYPE_DISPLAY_MODE]			= script_type_p_love__DisplayMode;
-		lualove_lookup_types[LOVE_TYPE_TEXT]					= script_type_p_love__Text;
-		lualove_lookup_types[LOVE_TYPE_ACTOR]					= script_type_p_love__Actor;
-		lualove_lookup_types[LOVE_TYPE_ACTOR_STATE]				= script_type_p_love__ActorState;
+		//lualove_lookup_types[LOVE_TYPE_TEXT]					= script_type_p_love__Text;
+		//lualove_lookup_types[LOVE_TYPE_ACTOR]					= script_type_p_love__Actor;
+		//lualove_lookup_types[LOVE_TYPE_ACTOR_STATE]				= script_type_p_love__ActorState;
 		lualove_lookup_types[LOVE_TYPE_GUI_EVENT]				= script_type_p_love__GUIEvent;
 		lualove_lookup_types[LOVE_TYPE_MESSAGE_EVENT]			= script_type_p_love__MessageEvent;
 		//lualove_lookup_types[LOVE_TYPE_SCRIPTABLE_ACTOR_STATE]	= script_type_p_love__ScriptableActorState;

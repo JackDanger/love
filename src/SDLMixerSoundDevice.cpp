@@ -28,6 +28,10 @@ namespace love
 		audio_buffers=1024;
 		Uint16 audio_format;
 
+		// High: 44100
+		// Medium: 22050
+		// Low: 11025
+
 		if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,audio_buffers)<0)
 		{
 			printf("Unable to open audio!\n");
@@ -112,6 +116,16 @@ namespace love
 
 		// Set the volume for music
 		Mix_VolumeMusic((int)(MIX_MAX_VOLUME * volume));
+	}
+
+	void SDLMixerSoundDevice::play(pAbstractSound sound, int loop, int channel) const
+	{
+		sound->play(loop);
+	}
+
+	void SDLMixerSoundDevice::play(pAbstractMusic music, int loop) const
+	{
+		music->play(loop);
 	}
 	
 } // love

@@ -50,7 +50,7 @@ namespace love
 		// The current font used for rendering of text.
 		pAbstractFont font;
 
-		// A default font we can revert to in case there is no font selected.
+		// The font used if no font is set.
 		pAbstractFont defaultFont;
 	
 	public:

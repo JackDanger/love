@@ -22,7 +22,6 @@ using std::string;
 namespace love
 {
 
-
 	/**
 	* @class Loadable
 	* @version 1.0

@@ -187,6 +187,8 @@ namespace love
 	 	 * @brief Does nothing.
 	 	 **/
 		virtual void reset();
+
+		void testColor(boost::shared_ptr<AbstractColor> color) const;
 	};
 
 	typedef boost::shared_ptr<AbstractColor> pAbstractColor;

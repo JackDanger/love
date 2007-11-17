@@ -117,4 +117,9 @@ namespace love
 	
 	void AbstractColor::reset()
 	{}
+
+	void AbstractColor::testColor(boost::shared_ptr<AbstractColor> color) const
+	{
+		printf("Testing color: %i, %i, %i ...\n", color->getRed(), color->getGreen(), color->getBlue());
+	}
 }
