@@ -43,7 +43,7 @@ div, a
 
 .master-table .left .horizontal
 {
-  border-bottom: 1px dashed #cfe3fd;
+  border-bottom: 1px solid #cfe3fd;
   margin: 2px 0px 3px 0px;
   color: #4578ba;
   font-weight: bold;
@@ -55,10 +55,23 @@ div, a
 {
   display: block;
   color: #5384c3;
-  padding: 1px 2px 1px 2px;
+  padding-left: 4px;
 }
 
 .master-table .left .element:hover
+{
+  text-decoration: underline;
+}
+
+.master-table .left .element_title
+{
+  display: block;
+  color: #5384c3;
+  padding: 3px;
+  font-weight: bold;
+}
+
+.master-table .left .element_title:hover
 {
   background-color: #5e9be5;
   text-decoration: none;

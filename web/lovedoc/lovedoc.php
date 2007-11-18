@@ -372,19 +372,26 @@ POST;
         }
 
         $tmp .= '<div class="horizontal"></div> ';
-        $tmp .= '<a href="loveTypes.html" class="element">L&#214;VE Types</a>';
-        $tmp .= '<a href="loveObjects.html" class="element">L&#214;VE Objects</a> ';
-        $tmp .= '<div class="horizontal"></div>';
 
-
-
-        $tmp .=  $this->getTypeMenu();
+	$tmp .= '<a href="loveObjects.html" class="element_title">L&#214;VE Devices</a> ';
+        $tmp .=  $this->getObjectMenu();
 
         $tmp .= '<div href="#" class="horizontal"></div>';
 
-        $tmp .=  $this->getObjectMenu();
+        $tmp .= '<a href="loveTypes.html" class="element_title">L&#214;VE Types</a>';
+        $tmp .=  $this->getTypeMenu();
         
         $tmp .= '<div class="horizontal"></div> ';
+	
+	$tmp .= '<a href="cock.html" class="element_title">L&#214;VE Callbacks</a> ';
+	$tmp .= '<a href="cock.html" class="element">load</a>';
+	$tmp .= '<a href="cock.html" class="element">update</a>';
+	$tmp .= '<a href="cock.html" class="element">render</a>';
+	$tmp .= '<a href="cock.html" class="element">event</a>';
+	$tmp .= '<a href="cock.html" class="element">keypressed</a>';
+	$tmp .= '<a href="cock.html" class="element">keyreleased</a>';
+	$tmp .= '<a href="cock.html" class="element">mousepressed</a>';
+	$tmp .= '<a href="cock.html" class="element">mousereleased</a>';
 
         return $tmp;
       }
@@ -464,7 +471,7 @@ CHAPTER_END;
         
         // Write lists
         $this->put_string("loveTypes.html", $this->getTypesList(), "L&#214;VE Types");
-        $this->put_string("loveObjects.html", $this->getObjectsList(), "L&#214;VE Objects");
+        $this->put_string("loveObjects.html", $this->getObjectsList(), "L&#214;VE Devices");
 
       }
 

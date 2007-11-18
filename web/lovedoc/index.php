@@ -11,7 +11,7 @@ $doc = new LoveDoc();
 
              
              
-             
+$verbose = false;
 
 
 
@@ -31,6 +31,7 @@ function startElement($parser, $name, $attrs)
     global $element;
     global $current_attr;
     global $mode;
+    global $verbose;
 
     global $doc;
     
@@ -48,14 +49,14 @@ function startElement($parser, $name, $attrs)
 
     if($name == "documentation")
     {
-     echo "Setting documentation attribs<br />";
+     if($verbose) echo "Setting documentation attribs<br />";
      $doc->setVersion($attrs);
     }
 
 
     if($name == "global")
     {
-     echo "Pushing global ...<br />";
+     if($verbose) echo "Pushing global ...<br />";
      $doc->pushGlobal($attrs);
     }
     
@@ -66,63 +67,63 @@ function startElement($parser, $name, $attrs)
 
     if($name == "type")
     {
-     echo "Pushing type ...<br />";
+     if($verbose) echo "Pushing type ...<br />";
      $doc->pushType($attrs);
     }
     
     if($name == "object")
     {
-     echo "Pushing object ...<br />";
+     if($verbose) echo "Pushing object ...<br />";
      $doc->pushType($attrs);
     }
 
     if($name == "function")
     {
-     echo "Pushing function .. <br />";
+     if($verbose) echo "Pushing function .. <br />";
      $doc->pushFunction($attrs);
     }
 
     if($name == "separator" && ($prev_mode == "type" || $prev_mode == "object"))
     {
-     echo "Pushing function separator<br />";
+     if($verbose) echo "Pushing function separator<br />";
      $doc->pushFunctionSeparator();
     }
 
 
     if($name == "param")
     {
-     echo "Pushing param .. <br />";
+     if($verbose) echo "Pushing param .. <br />";
      $doc->pushParam($attrs);
     }
 
     if($name == "returns")
     {
-     echo "Pushing return .. <br />";
+     if($verbose) echo "Pushing return .. <br />";
      $doc->pushReturns($attrs);
     }
     
     if($name == "see" && $prev_mode == "type")
     {
-     echo "Pushing see .. <br />";
+     if($verbose) echo "Pushing see .. <br />";
      $doc->pushTypeSee($attrs);
     }
 
     if($name == "see" && $prev_mode == "function")
     {
-     echo "Pushing see .. <br />";
+     if($verbose) echo "Pushing see .. <br />";
      $doc->pushFunctionSee($attrs);
     }
 
     if($name == "example" && $prev_mode == "type")
     {
-     echo "Pushing type example.. <br />";
+     if($verbose) echo "Pushing type example.. <br />";
      $doc->pushTypeExample($attrs);
     }
 
 
     if($name == "example" && $prev_mode == "function")
     {
-     echo "Pushing function example.. <br />";
+     if($verbose) echo "Pushing function example.. <br />";
      $doc->pushFunctionExample($attrs);
     }
 
@@ -140,6 +141,7 @@ function endElement($parser, $name)
     global $current_attr;
     global $doc;
     global $mode;
+    global $verbose;
 
 
     $curr_mode = end($mode);
@@ -158,13 +160,13 @@ function endElement($parser, $name)
 
     if($name == "type")
     {
-     echo "Popping type ...<br />";
+     if($verbose) echo "Popping type ...<br />";
      $doc->popType();
     }
     
     if($name == "object")
     {
-     echo "Popping object ...<br />";
+     if($verbose) echo "Popping object ...<br />";
      $doc->popObject();
     }
 
@@ -182,49 +184,50 @@ function characterData($parser, $data)
     global $current_attr;
     global $doc;
     global $mode;
+    global $verbose;
     
     $curr_mode = end($mode);
     $prev_mode = prev($mode);
 
     if($curr_mode == "global")
     {
-          echo "Pushing global data: $data<br />";
+          if($verbose) echo "Pushing global data: $data<br />";
           $doc->pushGlobalData($data);
     }
     
     if($curr_mode == "code" && $prev_mode = "global")
     {
-          echo "Pushing global CODE: $data<br />";
+          if($verbose) echo "Pushing global CODE: $data<br />";
           $doc->pushGlobalDataCode($data);
     }
 
     if($curr_mode == "type")
     {
-          echo "Pushing type data: $data<br />";
+          if($verbose) echo "Pushing type data: $data<br />";
           $doc->pushTypeData($data);
     }
 
     if($curr_mode == "object")
     {
-          echo "Pushing object data: $data<br />";
+          if($verbose) echo "Pushing object data: $data<br />";
           $doc->pushTypeData($data);
     }
 
     if($curr_mode == "function")
     {
-     echo "Pushing function data .. <br />";
+     if($verbose) echo "Pushing function data .. <br />";
      $doc->pushFunctionData($data);
     }
 
     if($curr_mode == "param")
     {
-     echo "Pushing param data .. <br />";
+     if($verbose) echo "Pushing param data .. <br />";
      $doc->pushParamData($data);
     }
     
     if($curr_mode == "returns")
     {
-     echo "Pushing returns data .. <br />";
+     if($verbose) echo "Pushing returns data .. <br />";
      $doc->pushReturnsData($data);
     }
 
@@ -232,13 +235,13 @@ function characterData($parser, $data)
     if($curr_mode == "example" && $prev_mode == "type")
     {
 
-     echo "Pushing type example data.. $data <br />";
+     if($verbose) echo "Pushing type example data.. $data <br />";
      $doc->pushTypeExampleData($data);
     }
 
     if($curr_mode == "example" && $prev_mode == "function")
     {
-     echo "Pushing function example data.. $data <br />";
+     if($verbose) echo "Pushing function example data.. $data <br />";
       $doc->pushFunctionExampleData($data);
     }
 
