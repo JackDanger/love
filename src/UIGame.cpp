@@ -59,6 +59,7 @@ namespace love
 		warning = 0;
 		pause = 0;
 		top = 0;
+		pauseMode = false;
 	}
 
 	UIGame::~UIGame()
@@ -66,6 +67,7 @@ namespace love
 		if(error != 0) delete error;
 		if(warning != 0) delete warning;
 		if(pause != 0) delete pause;
+		if(settings != 0) delete settings;
 		if(top != 0) delete top;
 	}
 
@@ -86,6 +88,7 @@ namespace love
 		pauseFont->load();
 		pAbstractColor borderColor(new Color(0xe9e9e9));
 		pAbstractColor black(new Color(0x000000));
+		pAbstractColor white(new Color(0xFFFFFF));
 		pAbstractColor slightlyWhite(new Color(255,255,255,200));
 
 		// error box
@@ -142,7 +145,7 @@ namespace love
 		pause->addButton("CORE_RESUME", "Resume");
 		//pause->addButton("CORE_SAVE", "Save");
 		//pause->addButton("CORE_LOAD", "Load");
-		//pause->addButton("CORE_OPTIONS", "Options");
+		pause->addButton("CORE_SETTINGS", "Settings");
 		pause->addButton("CORE_RELOAD", "Restart");
 		pause->addButton("CORE_QUIT", "Quit");
 		pause->adjustContent();
@@ -150,6 +153,54 @@ namespace love
 		pause->setX( (core->display->getWidth() / 2) - (pause->getWidth() / 2) );
 		pause->setY( (core->display->getHeight() / 2) - (pause->getHeight() / 2) );
 		pause->show();
+
+		settings = new Menu(pauseFont, black);
+		settings->align(Text::LOVE_ALIGN_LEFT);
+		settings->setSize(150,200);
+		settings->setPadding(10);
+		settings->setSpacing(1);
+		settings->setColor(&black);
+		settings->setBackgroundColor(&slightlyWhite);
+		settings->stretchContent(true);
+		settings->addLabel("SETTINGS");
+		settings->addLabel(" ");
+		settings->addLabel("Graphics:");
+		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL);
+		nested->addLabel("Resolution")->setWidth(150);
+		pDropDown down = nested->addDropDown("CORE_SETTINGS_RESOLUTION");
+		down->add("800x600"); down->add("1024x768");
+		nested->adjustSize();
+		nested->adjustContent();
+		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL);
+		nested->addLabel("Fullscreen")->setWidth(150);
+		pCheckBox check = nested->addCheckBox("CORE_SETTINGS_FULLSCREEN");
+		nested->adjustSize();
+		nested->adjustContent();
+		settings->addLabel(" ");
+		settings->addLabel("Sound:");
+		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL);
+		nested->addLabel("Sound Volume")->setWidth(150);
+		pSlider slid = nested->addSlider("CORE_SETTINGS_SOUND", Slider::LOVE_SLIDER_HORIZONTAL, 0, 1, 200, 15);
+		slid->setColor(&white);
+		nested->adjustSize();
+		nested->adjustContent();
+		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL);
+		nested->addLabel("Music Volume")->setWidth(150);
+		slid = nested->addSlider("CORE_SETTINGS_MUSIC", Slider::LOVE_SLIDER_HORIZONTAL, 0, 1, 200, 15);
+		slid->setColor(&white);
+		nested->adjustSize();
+		nested->adjustContent();
+		settings->adjustSize();
+		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL, 0, 40);
+		nested->setSpacing(5);
+		nested->addButton("CORE_SETTINGS_OK", "Ok");
+		nested->addButton("CORE_SETTINGS_CANCEL", "Cancel");
+		nested->adjustContent();
+		settings->adjustSize();
+		settings->adjustContent();
+		settings->setX( (core->display->getWidth() / 2) - (settings->getWidth() / 2) );
+		settings->setY( (core->display->getHeight() / 2) - (settings->getHeight() / 2) );
+		settings->show();
 
 		return LOVE_OK;
 	}
@@ -242,11 +293,31 @@ namespace love
 		core->current->suspend();
 		previous = core->current;
 		core->current = this;
+		pauseMode = true;
 	}
 
 	void UIGame::hidePause()
 	{
+		pauseMode = false;
 		resumeGame();
+	}
+
+	void UIGame::showSettings()
+	{
+		top->clear();
+		top->add(settings);
+		if(!pauseMode)
+		{
+			core->gui->add(top);
+			core->current->suspend();
+			previous = core->current;
+			core->current = this;
+		}
+		//printf("settings");
+	}
+
+	void UIGame::hideSettings()
+	{
 	}
 
 	bool UIGame::isPaused()
@@ -276,8 +347,8 @@ namespace love
 				printf("save");
 			else if(strcmp(pme->getName(), "CORE_LOAD") == 0)
 				printf("load");
-			else if(strcmp(pme->getName(), "CORE_OPTIONS") == 0)
-				printf("options");
+			else if(strcmp(pme->getName(), "CORE_SETTINGS") == 0)
+				showSettings();
 			else if(strcmp(pme->getName(), "CORE_RELOAD") == 0)
 				reloadGame();
 			else if(strcmp(pme->getName(), "CORE_QUIT") == 0)

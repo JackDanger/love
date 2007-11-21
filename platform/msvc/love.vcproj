@@ -609,6 +609,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\ScrollMenu.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\SDLDisplay.cpp"
 				>
 			</File>
@@ -678,6 +682,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Win32Timer.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\WindowMenu.cpp"
 				>
 			</File>
 		</Filter>
@@ -1187,6 +1195,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\ScrollMenu.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\SDLDisplay.h"
 				>
 			</File>
@@ -1264,6 +1276,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Window.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\WindowMenu.h"
 				>
 			</File>
 		</Filter>

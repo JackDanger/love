@@ -1,5 +1,5 @@
-#ifndef LOVE_MENU_H
-#define LOVE_MENU_H
+#ifndef LOVE_WINDOW_MENU_H
+#define LOVE_WINDOW_MENU_H
 
 #include "AbstractMenu.h"
 
@@ -12,16 +12,16 @@ namespace love
 	 * @since 1.0
 	 * @author Michael Enger
 	 * @date 2007-08-11
-	 * @brief Holds the graphical information and the items that make up a menu.
+	 * @brief A menu that can be dragged around.
 	 **/
-	class Menu : public gcn::Container, public AbstractMenu
+	class WindowMenu : public gcn::Window, public AbstractMenu
 	{
 	protected:
 		virtual void positionItem(gcn::Widget * item);
 
 	public:
-		Menu(pAbstractFont font, pAbstractColor color, int type = LOVE_MENU_VERTICAL);
-		~Menu();
+		WindowMenu(pAbstractFont font, pAbstractColor color, int type = LOVE_MENU_VERTICAL);
+		~WindowMenu();
 
 		virtual void setSize(int width, int height);
 		virtual void setWidth(int width);
@@ -30,6 +30,8 @@ namespace love
 		virtual void setPosition(int x, int y);
 		virtual void setX(int x);
 		virtual void setY(int y);
+		virtual void setCaption(const char * caption);
+		virtual void setTitleBarHeight(unsigned int height);
 
 		virtual void setFont(const pAbstractFont * font);
 		virtual void setBackgroundColor(const pAbstractColor * color);
@@ -39,6 +41,8 @@ namespace love
 		virtual int getX();
 		virtual int getY();
 		virtual unsigned int getBorderSize();
+		virtual const char * getCaption();
+		virtual unsigned int getTitleBarHeight();
 
 		virtual pAbstractFont getFont();
 		virtual pAbstractColor getBackgroundColor();
@@ -53,15 +57,9 @@ namespace love
 		virtual void drawChildren(gcn::Graphics* graphics);
 
 		virtual void add(gcn::Widget * widget);
-
-		// used with WindowMenu only
-		virtual void setCaption(const char * caption);
-		virtual void setTitleBarHeight(unsigned int height);
-		virtual const char * getCaption();
-		virtual unsigned int getTitleBarHeight();
 	};
 
-	typedef boost::shared_ptr<Menu> pMenu;
+	typedef boost::shared_ptr<WindowMenu> pWindowMenu;
 }
 
 #endif

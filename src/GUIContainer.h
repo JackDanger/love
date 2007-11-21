@@ -3,6 +3,8 @@
 
 #include "AbstractMenu.h"
 #include "Menu.h"
+#include "ScrollMenu.h"
+#include "WindowMenu.h"
 
 #include <guichan.hpp>
 #include <boost/shared_ptr.hpp>

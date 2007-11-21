@@ -186,6 +186,29 @@ namespace love
 		//	core->current->getGUI()->add(m.get());
 		return m;
 	}
+
+	pAbstractMenu ObjectFactory::newScrollMenu(int type)
+	{
+		pScrollMenu m(new ScrollMenu(core->gui->getFont(), core->gui->getColor(), type));
+		//pMenu m(new Menu(core->graphics->getFont(), core->graphics->getColor(), type));
+		m->show();
+
+		//if(core->current->getGUI() != 0)
+		//	core->current->getGUI()->add(m.get());
+		return m;
+	}
+
+	pAbstractMenu ObjectFactory::newWindowMenu(int type, const char * caption)
+	{
+		pWindowMenu m(new WindowMenu(core->gui->getFont(), core->gui->getColor(), type));
+		//pMenu m(new Menu(core->graphics->getFont(), core->graphics->getColor(), type));
+		m->setCaption(caption);
+		m->show();
+
+		//if(core->current->getGUI() != 0)
+		//	core->current->getGUI()->add(m.get());
+		return m;
+	}
 	
 
 } // love

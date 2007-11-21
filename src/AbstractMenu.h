@@ -60,7 +60,7 @@ namespace love
 		static const int LOVE_MENU_HORIZONTAL = 2;
 		static const int LOVE_MENU_DEFAULT = 0;
 		static const int LOVE_MENU_WINDOW = 1;
-		static const int LOVE_MENU_SCROLLING = 2;
+		static const int LOVE_MENU_SCROLL = 2;
 
 		/**
 		 * @param type The type of menu (vertical / horizontal).
@@ -77,6 +77,7 @@ namespace love
 		virtual void hide();
 
 		virtual void setFont(const pAbstractFont * font);
+		virtual void setColor(const pAbstractColor * color);
 		virtual void setBackgroundColor(const pAbstractColor * color);
 		virtual void setBackground(const pAbstractImage * image);
 
@@ -116,10 +117,17 @@ namespace love
 		virtual void draw(gcn::Graphics* graphics) = 0;
 		virtual void drawBorder(gcn::Graphics* graphics) = 0;
 		virtual void drawChildren(gcn::Graphics* graphics) = 0;
-
+		// add function(s)
 		virtual void add(gcn::Widget * widget) = 0;
+		// used with WindowMenu only
+		virtual void setCaption(const char * caption) = 0;
+		virtual void setTitleBarHeight(unsigned int height) = 0;
+		virtual const char * getCaption() = 0;
+		virtual unsigned int getTitleBarHeight() = 0;
 
 		virtual boost::shared_ptr<AbstractMenu> addMenu(int type, int width = 0, int height = 0);
+		virtual boost::shared_ptr<AbstractMenu> addScrollMenu(int type, int width = 0, int height = 0);
+		virtual boost::shared_ptr<AbstractMenu> addWindowMenu(int type, const char * caption = "", int width = 0, int height = 0);
 		virtual pLabel addLabel(const char * caption, int width = 0, int height = 0);
 		virtual pMultilineLabel addMultilineLabel(const char * caption, int width = 0, int height = 0);
 		virtual pLabel addImage(const pAbstractImage * image);

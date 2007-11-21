@@ -76,6 +76,8 @@
 #include "TextBox.h"
 #include "AbstractMenu.h"
 #include "Menu.h"
+#include "ScrollMenu.h"
+#include "WindowMenu.h"
 #include "GUIContainer.h"
 #include "AbstractGUI.h"
 
@@ -156,6 +158,8 @@ namespace boost {
 %include "TextBox.h"
 %include "AbstractMenu.h"
 %include "Menu.h"
+%include "ScrollMenu.h"
+%include "WindowMenu.h"
 %include "GUIContainer.h"
 %include "AbstractGUI.h"
 
@@ -205,4 +209,4 @@ namespace boost {
 %template(SmartCheckBox) boost::shared_ptr<love::CheckBox>;
 %template(SmartSlider) boost::shared_ptr<love::Slider>;
 %template(SmartListBox) boost::shared_ptr<love::ListBox>;
-%template(SmartTextBox) boost::shared_ptr<love::TexBtzox>;
+%template(SmartTextBox) boost::shared_ptr<love::TextBox>;

@@ -23,7 +23,7 @@ main = {
 		
 		horseshit = 0;
 		
-		menu = love.objects:newMenu();
+		menu = love.objects:newWindowMenu(love.menu_vertical, "This is a WindowMenu which can be dragged around.");
 		menu:setFont(font["standard"]);
 		menu:setColor(color["black"]);
 		menu:setBorderColor(color["black"]);
@@ -38,7 +38,7 @@ main = {
 		menu:setPadding(10);
 		menu:setSpacing(5);
 		
-		local label = menu:addLabel("THIS IS A MENU (SIEZURE ED.)");
+		label = menu:addLabel("THIS IS A MENU (SIEZURE ED.)");
 		label:setColor(color["shiznet"]);
 		
 		button = menu:addButton("BUTTON", "Click me to change the menu label!");
@@ -123,7 +123,21 @@ main = {
 		--list:setBackgroundColor(color["shiznet"]);
 		--list:setSelectionColor(color["white"]);
 		--list:setSelectionBackgroundColor(list:getBackgroundColor());
-		box = menu:addTextBox("BAWKZ", 100, 100);
+		--box = menu:addTextBox("BAWKZ", 100, 100);
+		nested = menu:addScrollMenu(love.menu_vertical, 200, 100);
+		nested:setColor(color["white"]);
+		nested:setBackgroundColor(color["halfshiz"]);
+		nested:setPadding(4);
+		nested:setBorderSize(0);
+		nested:addLabel("This is a broken ScrollMenu. Fuck, I think I might have to do this manually.");
+		nested:addLabel("TEST2");
+		nested:addLabel("TEST3");
+		--nested:addLabel("TEST4");
+		--nested:addLabel("TEST5");
+		nested:addLabel("TEST6");
+		nested:addLabel("TEST7");
+		--nested:adjustSize();
+		--nested:setHeight(nested:getHeight() + 50);
 		
 		
 		menu:adjustSize();

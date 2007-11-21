@@ -20,8 +20,10 @@ namespace love
 			gcn::Container::add(boost::dynamic_pointer_cast<Menu, AbstractMenu>(*menu).get());
 			break;
 		case AbstractMenu::LOVE_MENU_WINDOW:
+			gcn::Container::add(boost::dynamic_pointer_cast<WindowMenu, AbstractMenu>(*menu).get());
 			break;
-		case AbstractMenu::LOVE_MENU_SCROLLING:
+		case AbstractMenu::LOVE_MENU_SCROLL:
+			gcn::Container::add(boost::dynamic_pointer_cast<ScrollMenu, AbstractMenu>(*menu).get());
 			break;
 		}
 	}
@@ -34,8 +36,10 @@ namespace love
 			gcn::Container::remove(boost::dynamic_pointer_cast<Menu, AbstractMenu>(*menu).get());
 			break;
 		case AbstractMenu::LOVE_MENU_WINDOW:
+			gcn::Container::remove(boost::dynamic_pointer_cast<WindowMenu, AbstractMenu>(*menu).get());
 			break;
-		case AbstractMenu::LOVE_MENU_SCROLLING:
+		case AbstractMenu::LOVE_MENU_SCROLL:
+			gcn::Container::remove(boost::dynamic_pointer_cast<ScrollMenu, AbstractMenu>(*menu).get());
 			break;
 		}
 	}

@@ -1,111 +1,131 @@
-#include "Menu.h"
+#include "WindowMenu.h"
 #include "GUIText.h"
 #include "Core.h"
 #include "love.h"
 
 namespace love
 {
-	Menu::Menu(pAbstractFont font, pAbstractColor color, int type) : AbstractMenu(font, color, type)
+	WindowMenu::WindowMenu(pAbstractFont font, pAbstractColor color, int type) : AbstractMenu(font, color, type)
 	{
-		gcn::Container();
-		gcn::Container::setOpaque(false); //makes the background invisible
-
+		gcn::Window();
+		gcn::Window::setOpaque(false); //makes the background invisible
+		menuType = LOVE_MENU_WINDOW;
 		setOpaque(true); //we deal with the visibility ourselves
 	}
 
-	Menu::~Menu()
+	WindowMenu::~WindowMenu()
 	{
-		gcn::Container::clear();
+		gcn::Window::clear();
 		children.clear();
 	}
 
-	void Menu::setSize(int width, int height)
+	void WindowMenu::setSize(int width, int height)
 	{
-		gcn::Container::setSize(width, height);
+		gcn::Window::setSize(width, height);
 	}
 
-	void Menu::setWidth(int width)
+	void WindowMenu::setWidth(int width)
 	{
-		gcn::Container::setWidth(width);
+		gcn::Window::setWidth(width);
 	}
 
-	void Menu::setHeight(int height)
+	void WindowMenu::setHeight(int height)
 	{
-		gcn::Container::setHeight(height);
+		gcn::Window::setHeight(height);
 	}
 
-	void Menu::setBorderSize(unsigned int size)
+	void WindowMenu::setBorderSize(unsigned int size)
 	{
-		gcn::Container::setBorderSize(size);
+		gcn::Window::setBorderSize(size);
 	}
 
-	void Menu::setPosition(int x, int y)
+	void WindowMenu::setPosition(int x, int y)
 	{
-		gcn::Container::setPosition(x,y);
+		gcn::Window::setPosition(x,y);
 	}
 
-	void Menu::setX(int x)
+	void WindowMenu::setX(int x)
 	{
-		gcn::Container::setX(x);
+		gcn::Window::setX(x);
 	}
 
-	void Menu::setY(int y)
+	void WindowMenu::setY(int y)
 	{
-		gcn::Container::setY(y);
+		gcn::Window::setY(y);
 	}
 
-	void Menu::setFont(const pAbstractFont * font)
+	void WindowMenu::setCaption(const char * caption)
+	{
+		gcn::Window::setCaption(caption);
+	}
+
+	void WindowMenu::setTitleBarHeight(unsigned int height)
+	{
+		gcn::Window::setTitleBarHeight(height);
+	}
+
+	void WindowMenu::setFont(const pAbstractFont * font)
 	{
 		text->setFont(*font);
 	}
 
-	void Menu::setBackgroundColor(const pAbstractColor * color)
+	void WindowMenu::setBackgroundColor(const pAbstractColor * color)
 	{
 		GUIElement::setBackgroundColor(color);
 	}
 
-	int Menu::getWidth()
+	int WindowMenu::getWidth()
 	{
-		return gcn::Container::getWidth();
+		return gcn::Window::getWidth();
 	}
 
-	int Menu::getHeight()
+	int WindowMenu::getHeight()
 	{
-		return gcn::Container::getHeight();
+		return gcn::Window::getHeight();
 	}
 
-	int Menu::getX()
+	int WindowMenu::getX()
 	{
-		return gcn::Container::getX();
+		return gcn::Window::getX();
 	}
 
-	int Menu::getY()
+	int WindowMenu::getY()
 	{
-		return gcn::Container::getY();
+		return gcn::Window::getY();
 	}
 
-	unsigned int Menu::getBorderSize()
+	unsigned int WindowMenu::getBorderSize()
 	{
-		return gcn::Container::getBorderSize();
+		return gcn::Window::getBorderSize();
 	}
 
-	pAbstractFont Menu::getFont()
+	const char * WindowMenu::getCaption()
+	{
+		return gcn::Window::getCaption().c_str();
+	}
+
+	unsigned int WindowMenu::getTitleBarHeight()
+	{
+		return gcn::Window::getTitleBarHeight();
+	}
+
+	pAbstractFont WindowMenu::getFont()
 	{
 		return text->getFont();
 	}
 
-	pAbstractColor Menu::getBackgroundColor()
+	pAbstractColor WindowMenu::getBackgroundColor()
 	{
 		return GUIElement::getBackgroundColor();
 	}
 
-	void Menu::adjustSize()
+	void WindowMenu::adjustSize()
 	{
 		adjustWidth();
 		adjustHeight();
 	}
 
-	void Menu::adjustWidth()
+	void WindowMenu::adjustWidth()
 	{
 		int width = 0;
 		std::list<Widget *>::iterator iter;
@@ -148,7 +168,7 @@ namespace love
 		}
 	}
 
-	void Menu::adjustHeight()
+	void WindowMenu::adjustHeight()
 	{
 		int height = 0;
 		std::list<Widget *>::iterator iter;
@@ -165,7 +185,6 @@ namespace love
 			}
 
 			height += getPaddingBottom() - spacing;
-			setHeight(height);
 
 			break;
 		case LOVE_MENU_HORIZONTAL:
@@ -178,10 +197,12 @@ namespace love
 			}
 			
 			height += getPaddingTop() + getPaddingBottom();
-			setHeight(height);
 
 			break;
 		}
+
+		height += getTitleBarHeight();
+		setHeight(height);
 
 		//compensates for the background image
 		if(background != 0)
@@ -191,7 +212,7 @@ namespace love
 		}
 	}
 
-	int Menu::adjustContent()
+	int WindowMenu::adjustContent()
 	{
 		int size = 0;
 		std::list<Widget *>::iterator iter;
@@ -252,7 +273,7 @@ namespace love
 		return size;
 	}
 
-	void Menu::positionItem(gcn::Widget * item)
+	void WindowMenu::positionItem(gcn::Widget * item)
 	{
 		std::list<Widget *>::iterator iter;
 
@@ -310,9 +331,17 @@ namespace love
 		}
 	}
 
-	void Menu::draw(gcn::Graphics* graphics)
+	void WindowMenu::draw(gcn::Graphics* graphics)
 	{
 		if(!visible) return;
+
+		if(color != 0)
+			gcn::Window::setForegroundColor(gcn::Color(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha()));
+		if(backgroundColor != 0)
+			gcn::Window::setBaseColor(gcn::Color(backgroundColor->getRed(), backgroundColor->getGreen(), backgroundColor->getBlue(), backgroundColor->getAlpha()));
+
+		gcn::Window::draw(graphics);
+		return;
 
 		//glPushMatrix();
 
@@ -366,9 +395,14 @@ namespace love
 		//glPopMatrix();
 	}
 
-	void Menu::drawBorder(gcn::Graphics* graphics)
+	void WindowMenu::drawBorder(gcn::Graphics* graphics)
 	{
 		if(!visible) return;
+
+		if(borderColor != 0)
+			gcn::Window::setBaseColor(gcn::Color(borderColor->getRed(), borderColor->getGreen(), borderColor->getBlue(), borderColor->getAlpha()));
+		gcn::Window::drawBorder(graphics);
+		return;
 
 		//gcn::Container::drawBorder(graphics);
 
@@ -389,57 +423,13 @@ namespace love
 		}
 	}
 
-	void Menu::drawChildren(gcn::Graphics* graphics)
+	void WindowMenu::drawChildren(gcn::Graphics* graphics)
 	{
-		graphics->pushClipArea(getChildrenArea());
-		
-		WidgetListIterator iter;
-		for (iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
-		{
-			// Compensates for the children having their own fonts
-			graphics->setFont(text.get());
-			if ((*iter)->isVisible())
-			{
-				// If the widget has a border,
-				// draw it before drawing the widget
-				if ((*iter)->getBorderSize() > 0)
-				{
-					gcn::Rectangle rec = (*iter)->getDimension();
-					rec.x -= (*iter)->getBorderSize();
-					rec.y -= (*iter)->getBorderSize();
-					rec.width += 2 * (*iter)->getBorderSize();
-					rec.height += 2 * (*iter)->getBorderSize();
-					graphics->pushClipArea(rec);
-					(*iter)->drawBorder(graphics);
-					graphics->popClipArea();
-				}
-				
-				graphics->pushClipArea((*iter)->getDimension());
-				(*iter)->draw(graphics);
-				graphics->popClipArea();
-			}
-		}
-		graphics->popClipArea();
+		gcn::Window::drawChildren(graphics);
 	}
 
-	void Menu::add(gcn::Widget * widget)
+	void WindowMenu::add(gcn::Widget * widget)
 	{
-		gcn::Container::add(widget);
-	}
-
-	void Menu::setCaption(const char * caption)
-	{}
-
-	void Menu::setTitleBarHeight(unsigned int height)
-	{}
-
-	const char * Menu::getCaption()
-	{
-		return "";
-	}
-
-	unsigned int Menu::getTitleBarHeight()
-	{
-		return 0;
+		gcn::Window::add(widget);
 	}
 }

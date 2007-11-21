@@ -1,27 +1,20 @@
-#ifndef LOVE_MENU_H
-#define LOVE_MENU_H
+#ifndef LOVE_SCROLL_MENU_H
+#define LOVE_SCROLL_MENU_H
 
 #include "AbstractMenu.h"
 
 namespace love
 {
-	class GUIText;
-	/**
-	 * @class Menu
-	 * @version 1.0
-	 * @since 1.0
-	 * @author Michael Enger
-	 * @date 2007-08-11
-	 * @brief Holds the graphical information and the items that make up a menu.
-	 **/
-	class Menu : public gcn::Container, public AbstractMenu
+	class ScrollMenu : public gcn::ScrollArea, public AbstractMenu
 	{
 	protected:
+		gcn::Container * container;
+
 		virtual void positionItem(gcn::Widget * item);
 
 	public:
-		Menu(pAbstractFont font, pAbstractColor color, int type = LOVE_MENU_VERTICAL);
-		~Menu();
+		ScrollMenu(pAbstractFont font, pAbstractColor color, int type = LOVE_MENU_VERTICAL);
+		~ScrollMenu();
 
 		virtual void setSize(int width, int height);
 		virtual void setWidth(int width);
@@ -32,7 +25,9 @@ namespace love
 		virtual void setY(int y);
 
 		virtual void setFont(const pAbstractFont * font);
+		//virtual void setColor(const pAbstractColor * color);
 		virtual void setBackgroundColor(const pAbstractColor * color);
+		//virtual void setBorderColor(const pAbstractColor * color);
 
 		virtual int getWidth();
 		virtual int getHeight();
@@ -41,7 +36,9 @@ namespace love
 		virtual unsigned int getBorderSize();
 
 		virtual pAbstractFont getFont();
+		//virtual pAbstractColor getColor();
 		virtual pAbstractColor getBackgroundColor();
+		//virtual pAbstractColor getBorderColor();
 
 		virtual void adjustSize(); //resize to content
 		virtual void adjustWidth(); //adjust width only
@@ -61,8 +58,7 @@ namespace love
 		virtual unsigned int getTitleBarHeight();
 	};
 
-	typedef boost::shared_ptr<Menu> pMenu;
+	typedef boost::shared_ptr<ScrollMenu> pScrollMenu;
 }
 
 #endif
-

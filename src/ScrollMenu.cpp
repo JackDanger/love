@@ -1,111 +1,154 @@
-#include "Menu.h"
-#include "GUIText.h"
-#include "Core.h"
-#include "love.h"
+#include "ScrollMenu.h"
 
 namespace love
 {
-	Menu::Menu(pAbstractFont font, pAbstractColor color, int type) : AbstractMenu(font, color, type)
+	ScrollMenu::ScrollMenu(pAbstractFont font, pAbstractColor color, int type) : AbstractMenu(font, color, type)
 	{
-		gcn::Container();
-		gcn::Container::setOpaque(false); //makes the background invisible
-
-		setOpaque(true); //we deal with the visibility ourselves
+		container = new gcn::Container();
+		gcn::ScrollArea(container);
+		menuType = LOVE_MENU_SCROLL;
 	}
 
-	Menu::~Menu()
+	ScrollMenu::~ScrollMenu()
 	{
-		gcn::Container::clear();
-		children.clear();
+		if(container != 0)
+			delete container;
 	}
 
-	void Menu::setSize(int width, int height)
+	void ScrollMenu::setSize(int width, int height)
 	{
-		gcn::Container::setSize(width, height);
+		gcn::ScrollArea::setSize(width, height);
 	}
 
-	void Menu::setWidth(int width)
+	void ScrollMenu::setWidth(int width)
 	{
-		gcn::Container::setWidth(width);
+		gcn::ScrollArea::setWidth(width);
 	}
 
-	void Menu::setHeight(int height)
+	void ScrollMenu::setHeight(int height)
 	{
-		gcn::Container::setHeight(height);
+		gcn::ScrollArea::setHeight(height);
 	}
 
-	void Menu::setBorderSize(unsigned int size)
+	void ScrollMenu::setBorderSize(unsigned int size)
 	{
-		gcn::Container::setBorderSize(size);
+		gcn::ScrollArea::setBorderSize(size);
 	}
 
-	void Menu::setPosition(int x, int y)
+	void ScrollMenu::setPosition(int x, int y)
 	{
-		gcn::Container::setPosition(x,y);
+		gcn::ScrollArea::setPosition(x,y);
 	}
 
-	void Menu::setX(int x)
+	void ScrollMenu::setX(int x)
 	{
-		gcn::Container::setX(x);
+		gcn::ScrollArea::setX(x);
 	}
 
-	void Menu::setY(int y)
+	void ScrollMenu::setY(int y)
 	{
-		gcn::Container::setY(y);
+		gcn::ScrollArea::setY(y);
 	}
 
-	void Menu::setFont(const pAbstractFont * font)
+	void ScrollMenu::setFont(const pAbstractFont * font)
 	{
 		text->setFont(*font);
 	}
 
-	void Menu::setBackgroundColor(const pAbstractColor * color)
+	void ScrollMenu::setBackgroundColor(const pAbstractColor * color)
 	{
 		GUIElement::setBackgroundColor(color);
 	}
 
-	int Menu::getWidth()
+	int ScrollMenu::getWidth()
 	{
-		return gcn::Container::getWidth();
+		return gcn::ScrollArea::getWidth();
 	}
 
-	int Menu::getHeight()
+	int ScrollMenu::getHeight()
 	{
-		return gcn::Container::getHeight();
+		return gcn::ScrollArea::getHeight();
 	}
 
-	int Menu::getX()
+	int ScrollMenu::getX()
 	{
-		return gcn::Container::getX();
+		return gcn::ScrollArea::getX();
 	}
 
-	int Menu::getY()
+	int ScrollMenu::getY()
 	{
-		return gcn::Container::getY();
+		return gcn::ScrollArea::getY();
 	}
 
-	unsigned int Menu::getBorderSize()
+	unsigned int ScrollMenu::getBorderSize()
 	{
-		return gcn::Container::getBorderSize();
+		return gcn::ScrollArea::getBorderSize();
 	}
 
-	pAbstractFont Menu::getFont()
+	pAbstractFont ScrollMenu::getFont()
 	{
 		return text->getFont();
 	}
 
-	pAbstractColor Menu::getBackgroundColor()
+	pAbstractColor ScrollMenu::getBackgroundColor()
 	{
 		return GUIElement::getBackgroundColor();
 	}
 
-	void Menu::adjustSize()
+	void ScrollMenu::adjustSize()
 	{
-		adjustWidth();
-		adjustHeight();
+		int width = 0;
+		int height = 0;
+		std::list<Widget *>::iterator iter;
+
+		switch(type)
+		{
+		default:
+		case LOVE_MENU_VERTICAL:
+			width = 0;
+			height = getPaddingTop();
+
+			for(iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
+			{
+				if(width < (*iter)->getWidth())
+					width = (*iter)->getWidth();
+				height += (*iter)->getHeight() + spacing + ((*iter)->getBorderSize());
+			}
+
+			width += getPaddingLeft() + getPaddingRight();
+			height += getPaddingBottom() - spacing;
+			setSize(width, height);
+
+			break;
+		case LOVE_MENU_HORIZONTAL:
+			width = getPaddingLeft();
+			height = 0;
+
+			for(iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
+			{
+				if(height < (*iter)->getHeight())
+					height = (*iter)->getHeight();
+				width += (*iter)->getWidth() + spacing + ((*iter)->getBorderSize());
+			}
+			
+			width += getPaddingRight() - spacing;
+			height += getPaddingTop() + getPaddingBottom();
+			setSize(width, height);
+
+			break;
+		}
+
+		//compensates for the background image
+		if(background != 0)
+		{
+			if(getWidth() < background->getWidth())
+				setWidth((int)background->getWidth());
+			if(getHeight() < background->getHeight())
+				setHeight((int)background->getHeight());
+		}
 	}
 
-	void Menu::adjustWidth()
+	void ScrollMenu::adjustWidth()
 	{
 		int width = 0;
 		std::list<Widget *>::iterator iter;
@@ -148,7 +191,7 @@ namespace love
 		}
 	}
 
-	void Menu::adjustHeight()
+	void ScrollMenu::adjustHeight()
 	{
 		int height = 0;
 		std::list<Widget *>::iterator iter;
@@ -191,7 +234,7 @@ namespace love
 		}
 	}
 
-	int Menu::adjustContent()
+	int ScrollMenu::adjustContent()
 	{
 		int size = 0;
 		std::list<Widget *>::iterator iter;
@@ -252,7 +295,7 @@ namespace love
 		return size;
 	}
 
-	void Menu::positionItem(gcn::Widget * item)
+	void ScrollMenu::positionItem(gcn::Widget * item)
 	{
 		std::list<Widget *>::iterator iter;
 
@@ -310,67 +353,22 @@ namespace love
 		}
 	}
 
-	void Menu::draw(gcn::Graphics* graphics)
+	void ScrollMenu::draw(gcn::Graphics* graphics)
 	{
 		if(!visible) return;
 
-		//glPushMatrix();
+		if(backgroundColor != 0)
+			gcn::ScrollArea::setBackgroundColor(gcn::Color(backgroundColor->getRed(), backgroundColor->getGreen(), backgroundColor->getBlue(), backgroundColor->getAlpha()));
 
-		if(text != 0)
-			graphics->setFont(text.get());
-
-		if (isOpaque())
-		{
-			if(backgroundColor != 0)
-			{
-				graphics->setColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
-				graphics->fillRectangle(gcn::Rectangle(0, 0, getWidth(), getHeight()));
-			}
-
-			if(background != 0)
-			{
-				int x = 0;
-				int y = 0;
-				switch(alignment)
-				{
-				default:
-				case Text::LOVE_ALIGN_CENTER:
-					x = (int)((getWidth() / 2) - (background->getWidth() / 2));
-					break;
-				case Text::LOVE_ALIGN_LEFT:
-					//do nothing (leave the values as they are)
-					break;
-				case Text::LOVE_ALIGN_RIGHT:
-					x = (int)(getWidth() - background->getWidth());
-					break;
-				}
-				switch(verticalAlignment)
-				{
-				default:
-				case Text::LOVE_ALIGN_CENTER:
-					y = (int)((getHeight() / 2) - (background->getHeight() / 2));
-					break;
-				case Text::LOVE_ALIGN_TOP:
-					break;
-				case Text::LOVE_ALIGN_BOTTOM:
-					y = (int)(getHeight() - background->getHeight());
-					break;
-				}
-				graphics->setColor(gcn::Color(0xFFFFFF)); // to remove the effects of the background color
-				background->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
-			}
-		}
-
-		drawChildren(graphics);
-
-		//glPopMatrix();
+		gcn::ScrollArea::draw(graphics);
 	}
 
-	void Menu::drawBorder(gcn::Graphics* graphics)
+	void ScrollMenu::drawBorder(gcn::Graphics* graphics)
 	{
 		if(!visible) return;
 
-		//gcn::Container::drawBorder(graphics);
+		gcn::ScrollArea::drawBorder(graphics);
+		return;
 
 		if(borderColor.get() != 0)
 			graphics->setColor(gcn::Color(borderColor->getRed(),borderColor->getGreen(),borderColor->getBlue(),borderColor->getAlpha()));
@@ -389,8 +387,11 @@ namespace love
 		}
 	}
 
-	void Menu::drawChildren(gcn::Graphics* graphics)
+	void ScrollMenu::drawChildren(gcn::Graphics* graphics)
 	{
+		gcn::ScrollArea::drawChildren(graphics);
+		return;
+
 		graphics->pushClipArea(getChildrenArea());
 		
 		WidgetListIterator iter;
@@ -422,23 +423,23 @@ namespace love
 		graphics->popClipArea();
 	}
 
-	void Menu::add(gcn::Widget * widget)
+	void ScrollMenu::add(gcn::Widget * widget)
 	{
-		gcn::Container::add(widget);
+		gcn::ScrollArea::add(widget);
 	}
 
-	void Menu::setCaption(const char * caption)
+	void ScrollMenu::setCaption(const char * caption)
 	{}
 
-	void Menu::setTitleBarHeight(unsigned int height)
+	void ScrollMenu::setTitleBarHeight(unsigned int height)
 	{}
 
-	const char * Menu::getCaption()
+	const char * ScrollMenu::getCaption()
 	{
 		return "";
 	}
 
-	unsigned int Menu::getTitleBarHeight()
+	unsigned int ScrollMenu::getTitleBarHeight()
 	{
 		return 0;
 	}

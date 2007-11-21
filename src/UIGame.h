@@ -31,6 +31,7 @@ namespace love
 		Menu * error;
 		Menu * warning;
 		Menu * pause;
+		Menu * settings;
 		pMultilineLabel errorText;
 		pMultilineLabel warningText;
 		pButton errorButton;
@@ -39,6 +40,7 @@ namespace love
 		// If the UI is in error mode, the previous
 		// game will not rendered.
 		bool errorMode;
+		bool pauseMode; // if in pause mode, will go to pause menu after settings
 
 		virtual void resumeGame();
 		virtual void reloadGame();
@@ -106,6 +108,16 @@ namespace love
 		 * @brief Unpauses.
 		 **/
 		virtual void hidePause();
+
+		/**
+		 * @brief Shows the settings menu.
+		 **/
+		virtual void showSettings();
+
+		/**
+		 * @brief Hides the pause menu (and unpauses).
+		 **/
+		virtual void hideSettings();
 
 		/**
 		 * @return True if paused. False if not paused.

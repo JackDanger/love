@@ -19,6 +19,8 @@
 #include "ParticleSystem.h"
 #include "Bezier.h"
 #include "Menu.h"
+#include "ScrollMenu.h"
+#include "WindowMenu.h"
 
 
 // STL
@@ -75,6 +77,8 @@ namespace love
 		pBezier newBezier(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const;
 
 		pAbstractMenu newMenu(int type = Menu::LOVE_MENU_VERTICAL);
+		pAbstractMenu newScrollMenu(int type = Menu::LOVE_MENU_VERTICAL);
+		pAbstractMenu newWindowMenu(int type = Menu::LOVE_MENU_VERTICAL, const char * caption = "");
 		
 	}; // ObjectFactory
 	

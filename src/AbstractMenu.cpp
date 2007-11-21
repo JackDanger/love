@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "love.h"
 #include "Menu.h"
+#include "ScrollMenu.h"
+#include "WindowMenu.h"
 
 namespace love
 {
@@ -38,6 +40,12 @@ namespace love
 	void AbstractMenu::setFont(const pAbstractFont * font)
 	{
 		text->setFont(*font);
+	}
+
+	void AbstractMenu::setColor(const pAbstractColor * color)
+	{
+		GUIElement::setColor(color);
+		text->setColor(*color);
 	}
 
 	void AbstractMenu::setBackgroundColor(const pAbstractColor * color)
@@ -94,6 +102,37 @@ namespace love
 	{
 		pMenu temp(new Menu(text->getFont(), color, type));
 
+		temp->setSize(width, height);
+		temp->align(alignment);
+		temp->valign(verticalAlignment);
+		temp->show();
+		positionItem(temp.get());
+
+		add(temp.get());
+		children.push_back(temp);
+		return temp;
+	}
+
+	pAbstractMenu AbstractMenu::addScrollMenu(int type, int width, int height)
+	{
+		pScrollMenu temp(new ScrollMenu(text->getFont(), color, type));
+
+		temp->setSize(width, height);
+		temp->align(alignment);
+		temp->valign(verticalAlignment);
+		temp->show();
+		positionItem(temp.get());
+
+		add(temp.get());
+		children.push_back(temp);
+		return temp;
+	}
+
+	pAbstractMenu AbstractMenu::addWindowMenu(int type, const char * caption, int width, int height)
+	{
+		pWindowMenu temp(new WindowMenu(text->getFont(), color, type));
+
+		temp->setCaption(caption);
 		temp->setSize(width, height);
 		temp->align(alignment);
 		temp->valign(verticalAlignment);
