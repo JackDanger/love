@@ -45,6 +45,10 @@ namespace love
 	{
 	}
 
+	void Sprite::render(float x, float y)
+	{
+	}
+
 	void Sprite::renderQuad(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4)
 	{
 

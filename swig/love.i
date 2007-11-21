@@ -163,8 +163,9 @@ namespace boost {
 
 %include "LuaGame.h"
 
+// Visuals
 %include "AbstractDisplay.h"
-%include "AbstractGraphics.h"
+%include "AbstractGraphics.i"
 
 // Sound
 %include "AbstractSound.i"

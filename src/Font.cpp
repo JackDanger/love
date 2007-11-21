@@ -1,4 +1,5 @@
 #include "Font.h"
+#include "Core.h"
 #include "love.h"
 #include "AbstractFile.h"
 
@@ -39,11 +40,13 @@ namespace love
 	void Font::createList(FT_Face face, unsigned short character)
 	{
 		if( FT_Load_Glyph(face, FT_Get_Char_Index(face, character), FT_LOAD_DEFAULT) )
-			throw std::runtime_error("FT_Load_Glyph failed");
+			core->error("Font Loading Error: FT_Load_Glyph failed.");
+			//throw std::runtime_error("FT_Load_Glyph failed");
 
 		FT_Glyph glyph;
 		if( FT_Get_Glyph(face->glyph, &glyph) )
-			throw std::runtime_error("FT_Get_Glyph failed");
+			core->error("Font Loading Error: FT_Get_Glyph failed.");
+			//throw std::runtime_error("FT_Get_Glyph failed");
 
 		FT_Glyph_To_Bitmap(&glyph, FT_RENDER_MODE_NORMAL, 0, 1);
 		FT_BitmapGlyph bitmap_glyph = (FT_BitmapGlyph)glyph;
@@ -170,7 +173,8 @@ namespace love
 
 		FT_Library library;
 		if( FT_Init_FreeType(&library) )
-			throw std::runtime_error("FT_Init_FreeType failed");
+			core->error("Font Loading Error: FT_Init_FreeType failed.");
+			//throw std::runtime_error("FT_Init_FreeType failed");
 
 		FT_Face face;
 		if( FT_New_Memory_Face( library,
@@ -178,7 +182,8 @@ namespace love
 								file->getSize(),      /* size in bytes        */
 								0,         /* face_index           */
 								&face ))
-			throw std::runtime_error("FT_New_Face failed (there is probably a problem with your font file)");
+			core->error("Font Loading Error: FT_New_Face failed (there is probably a problem with your font file).");
+			//throw std::runtime_error("FT_New_Face failed (there is probably a problem with your font file)");
 
 		FT_Set_Char_Size(face, size << 6, size << 6, 96, 96);
 

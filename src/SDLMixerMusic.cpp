@@ -1,5 +1,6 @@
 #include "SDLMixerMusic.h"
 #include "AbstractFile.h"
+#include "Core.h"
 #include "love.h"
 
 namespace love
@@ -49,7 +50,8 @@ namespace love
 
 		if( !(music = Mix_LoadMUS_RW(rw)))
 		{
-			printf("Unable to open music file '%s': %s\n", file->getFilename().c_str(), Mix_GetError());
+			core->error("SDLMixerMusic: Unable to open music file '%s': %s\n", file->getFilename().c_str(), Mix_GetError());
+			//printf("Unable to open music file '%s': %s\n", file->getFilename().c_str(), Mix_GetError());
 			return LOVE_ERROR;
 		}
 

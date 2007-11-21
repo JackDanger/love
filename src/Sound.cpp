@@ -1,4 +1,5 @@
 #include "Sound.h"
+#include "Core.h"
 #include "love.h"
 #include "AbstractFile.h"
 
@@ -23,7 +24,8 @@ namespace love
 	{
 		channel = Mix_PlayChannel(-1, sound, 0);
 		if(channel == -1)
-			printf("Error playing sound: %s\n", Mix_GetError());
+			core->error("Error playing sound: %s\n", Mix_GetError());
+			//printf("Error playing sound: %s\n", Mix_GetError());
 		else
 			Mix_Volume(channel, volume);
 	}
@@ -46,7 +48,8 @@ namespace love
 		SDL_RWops * rw = SDL_RWFromMem(file->getData(), file->getSize());
 
 		if( !(sound = Mix_LoadWAV_RW(rw, 1)) )
-			printf("Unable to create sound: %s\n", Mix_GetError());
+			core->error("Unable to create sound: %s\n", Mix_GetError());
+			//printf("Unable to create sound: %s\n", Mix_GetError());
 
 		return LOVE_OK;
 	}

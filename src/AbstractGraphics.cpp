@@ -120,5 +120,35 @@ namespace love
 		this->drawSubSprite((pSprite)(*sprite), x, y, width, height);
 	}
 
+	void AbstractGraphics::draw(pSprite sprite, float x, float y) const
+	{
+		sprite->render(x, y);
+	}
+	void AbstractGraphics::draw(pSprite sprite, float x, float y, float width, float height) const
+	{
+		sprite->render(x, y, width, height);
+	}
+
+	void AbstractGraphics::draw(pParticleSystem particleSystem, float x, float y) const
+	{
+		particleSystem->render(x, y);
+	}
+		
+	void AbstractGraphics::draw(const char * str, float x, float y, float limit, int align) const
+	{
+		if(font!=0)
+		{
+			// Create new text object.
+			//Text text(0,0);
+			Text text(font.get(), color.get());
+
+			// Set some attributes.
+			text.align(align);
+			text.setLimit(limit);
+
+			// And print.
+			text.print(x, y, str, font.get(), color.get());
+		}
+	}
 
 } // love

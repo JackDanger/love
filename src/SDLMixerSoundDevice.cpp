@@ -34,7 +34,8 @@ namespace love
 
 		if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,audio_buffers)<0)
 		{
-			printf("Unable to open audio!\n");
+			core->error("SDLMixerSoundDevice: Unable to open audio!");
+			//printf("Unable to open audio!\n");
 			return LOVE_ERROR;
 		}
 

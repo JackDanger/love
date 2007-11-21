@@ -1,5 +1,4 @@
 #include "GUIDynamicBackground.h"
-#include "GradientColor.h"
 
 
 namespace love
@@ -103,19 +102,14 @@ namespace love
 		// Distance to center
 		float d = (center - Vector(x, y)).getLength();
 
-		// Zero color
-		Color clr0(colors[0]->getCode());
-		Color clr1(colors[1]->getCode());
-
-		// Create gradient
-		GradientColor g(clr0, clr1);
-
 		float pos = 1 - (d/700);
 
 		if(pos < 0) pos = 0;
 		if(pos > 1) pos = 1;
 
-		return g.getColor(pos);
+		pAbstractColor temp = colors[0]->getGradient(&colors[1], pos);
+
+		return Color(temp->getCode());
 	}
 
 	void GUIDynamicBackground::update(float dt)

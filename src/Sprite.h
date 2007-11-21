@@ -82,6 +82,8 @@ namespace love
 		virtual renderinfo getRenderInfo(float x, float y, float width, float height) = 0;
 		
 		virtual void render();
+
+		virtual void render(float x, float y);
 		
 		/**
 		* @brief Renders sprite onto the the quad given by the vertices.

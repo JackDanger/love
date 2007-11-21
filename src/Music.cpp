@@ -1,4 +1,5 @@
 #include "Music.h"
+#include "Core.h"
 #include "love.h"
 #include "AbstractFile.h"
 
@@ -72,7 +73,8 @@ namespace love
 	void Music::seek(float seconds)
 	{
 		if(Mix_SetMusicPosition(seconds) == -1)
-			printf("Unable to set music position: %s\n", Mix_GetError());
+			core->error("Music: Unable to set music position: %s\n", Mix_GetError());
+			//printf("Unable to set music position: %s\n", Mix_GetError());
 	}
 	
 	void Music::setVolume(int volume)

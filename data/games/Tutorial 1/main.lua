@@ -9,21 +9,21 @@ main = {
 		
 		x = 50;
 		y = 50;
-		speed = 100;
+		speed = 200;
 		
 	end,
 	
 	update = function(dt)
 	
-		if keyboard:isDown(LOVE_KEY_RIGHT) then
+		if love.keyboard:isDown(love.key_right) then
 			x = x + (speed * dt);
-		elseif keyboard:isDown(LOVE_KEY_LEFT) then
+		elseif love.keyboard:isDown(love.key_left) then
 			x = x - (speed * dt);
 		end
 		
-		if keyboard:isDown(LOVE_KEY_DOWN) then
+		if love.keyboard:isDown(love.key_down) then
 			y = y + (speed * dt);
-		elseif keyboard:isDown(LOVE_KEY_UP) then
+		elseif love.keyboard:isDown(love.key_up) then
 			y = y - (speed * dt);
 		end
 	
@@ -31,7 +31,8 @@ main = {
 	
 	render = function()
 	
-		ham:render(x,y);
+		love.graphics:draw(ham, x, y);
+		--ham:render(x,y);
 		
 	end
 

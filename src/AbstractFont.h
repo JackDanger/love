@@ -66,7 +66,14 @@ namespace love
 		 **/
 		virtual float getLineWidth(const char * line) = 0;
 
+		/**
+		 * @brief Abstract function.
+		 **/
 		virtual int load() = 0;
+
+		/**
+		 * @brief Abstract function.
+		 **/
 		virtual void unload() = 0;
 	};
 

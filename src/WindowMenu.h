@@ -11,7 +11,7 @@ namespace love
 	 * @version 1.0
 	 * @since 1.0
 	 * @author Michael Enger
-	 * @date 2007-08-11
+	 * @date 2007-11-20
 	 * @brief A menu that can be dragged around.
 	 **/
 	class WindowMenu : public gcn::Window, public AbstractMenu

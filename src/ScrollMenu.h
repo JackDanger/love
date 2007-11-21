@@ -5,6 +5,14 @@
 
 namespace love
 {
+	/**
+	 * @class ScrollMenu
+	 * @version 1.0
+	 * @since 1.0
+	 * @author Michael Enger
+	 * @date 2007-11-20
+	 * @brief A menu that can be scrolled.
+	 **/
 	class ScrollMenu : public gcn::ScrollArea, public AbstractMenu
 	{
 	protected:

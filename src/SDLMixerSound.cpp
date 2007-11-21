@@ -1,5 +1,6 @@
 #include "SDLMixerSound.h"
 #include "AbstractFile.h"
+#include "Core.h"
 #include "love.h"
 
 namespace love
@@ -34,7 +35,8 @@ namespace love
 
 		if( !(sound = Mix_LoadWAV_RW(rw, 1)) )
 		{
-			printf("Unable to create sound: %s\n", Mix_GetError());
+			core->error("Unable to create sound: %s\n", Mix_GetError());
+			//printf("Unable to create sound: %s\n", Mix_GetError());
 			return LOVE_ERROR;
 		}
 

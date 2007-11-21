@@ -500,6 +500,13 @@ namespace love
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
+	void ParticleSystem::render(float x, float y)
+	{
+		glPushMatrix();
+		glTranslatef(x, y, 0.0f);
+		render();
+		glPopMatrix();
+	}
 
 
 }// love

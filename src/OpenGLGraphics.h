@@ -264,6 +264,7 @@ namespace love
 		* @param rotation The rotation of the line.
 		**/
 		virtual void fillCircle(float x, float y, float radius, int points = 10, float rotation = 0) const;
+	
 	}; // OpenGLGraphics
 	
 	typedef boost::shared_ptr<OpenGLGraphics> pOpenGLGraphics;

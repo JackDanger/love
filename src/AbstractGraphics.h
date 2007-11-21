@@ -17,6 +17,7 @@
 #include "Color.h"
 #include "AbstractFont.h"
 #include "Font.h"
+#include "Text.h"
 #include "Bezier.h"
 
 // STL
@@ -442,6 +443,42 @@ namespace love
 		**/
 		virtual void fillCircle(float x, float y, float radius, int points = 10, float rotation = 0) const = 0;
 
+
+		/**
+		* @brief Draws a sprite at the specified location.
+		* @param sprite The sprite to draw.
+		* @param x The x-coordinate.
+		* @param y The y-coordinate.
+		**/
+		virtual void draw(pSprite sprite, float x = 0, float y = 0) const;
+
+		/**
+		* @brief Draws a sub-sprite.
+		* @param sprite The sprite to draw.
+		* @param x The x-coordinate within the sprite.
+		* @param y The y-coordinate within the sprite.
+		* @param width The width of the sub-sprite.
+		* @param height The height of the sub-sprite.
+		**/
+		virtual void draw(pSprite sprite, float x, float y, float width, float height) const;
+
+		/**
+		* @brief Draws a particle system at the specified location.
+		* @param particleSystem The particleSystem to draw.
+		* @param x The x-coordinate.
+		* @param y The y-coordinate.
+		**/
+		virtual void draw(pParticleSystem particleSystem, float x = 0, float y = 0) const;
+
+		/**
+		* @brief Draws some text at the specified location.
+		* @param str A string to draw.
+		* @param x The x-coordinate.
+		* @param y The y-coordinate.
+		* @param limit The size limit (for word-wrapping).
+		* @param align The alignment (left, right, center).
+		**/
+		virtual void draw(const char * str, float x = 0, float y = 0, float limit = 0, int align = 1) const;
 		
 		/**
 		* @brief Loads the identity matrix.

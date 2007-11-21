@@ -286,6 +286,9 @@ namespace love
 		virtual void update(float dt);
 		virtual void render();
 
+		// added by mike (called by the AbstractGraphics::draw(ParticleSystem, x, y) function
+		virtual void render(float x, float y);
+
 
 	};
 

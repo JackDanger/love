@@ -429,5 +429,22 @@ namespace love
 		current->eventFired(e);
 	}
 
+	void Core::error(const char * text, ...)
+	{
+		char ftext[128];
+		va_list	ap;
+
+		va_start(ap, text);
+		vsprintf(ftext, text, ap);
+		va_end(ap);
+
+		string s(ftext);
+		s = s.substr(0, s.length() - 1);
+
+		console->push(s);
+		uigame->showError(s.c_str());
+		puts(s.c_str());
+	}
+
 
 } // namespace love

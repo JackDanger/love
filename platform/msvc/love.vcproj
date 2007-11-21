@@ -377,10 +377,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\GradientColor.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\GUICircleButton.cpp"
 				>
 			</File>
@@ -900,10 +896,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Globals.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\GradientColor.h"
 				>
 			</File>
 			<File

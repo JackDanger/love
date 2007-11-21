@@ -75,7 +75,7 @@ namespace love
 
 		if(width <= 0 || size <= 0)
 		{
-			core->printf("ERROR: Unable to create Imagefont!");
+			core->error("ImageFont: Unable to create font!");
 			return LOVE_ERROR;
 		}
 

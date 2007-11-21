@@ -289,6 +289,12 @@ namespace love
 		**/
 		void eventFired(pEvent e);
 
+		/**
+		* @brief Sends an error to the system.
+		* @param text The error text.
+		**/
+		void error(const char * text, ...);
+
 	private:
 
 		/**
