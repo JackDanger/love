@@ -13,7 +13,7 @@
 	$geshi->set_strings_style('color: #a31515;');
 	
 	/*$geshi->add_keyword_group(10, 'color: #666; font-weight: bold;', false, array(
-		'main', 'init', 'update', 'render', 
+		'main', 'init', 'update', 'render',
 		'keyboard:isDown',
 		'mouse:getX','mouse:getY',
 		'game:addImage',
@@ -22,14 +22,26 @@
 	//$geshi->set_url_for_keyword_group(10, "?page=documentation&amp;lookup={FNAME}");
 		
 	$geshi->set_tab_width(3);
-	
-	
+
+
 	function toCode($string)
 	{
 
+
+             // Remove whitespace from each line.
+             $lines = explode("\n", $string);
+             
+             for($i=0;$i<sizeof($lines);$i++)
+             {
+               $lines[$i] = trim($lines[$i]);
+             }
+             
+             $src = implode("\n", $lines);
+             $src = str_replace("[tab /]", "\t", $src);
+
              global $geshi;
-	
-             $geshi->set_source(trim($string));
+
+             $geshi->set_source(trim($src));
 
 
              return "<code>".$geshi->parse_code()."</code>";
@@ -46,5 +58,5 @@
 	{
           return str_replace(array("[", "]"), array("<", ">"),$string);
 	}
-	
+
 ?>

@@ -17,6 +17,7 @@ class LoveDoc
       var $version = "";
       var $love_types = array();
       var $love_objects = array();
+      var $love_callbacks = array();
       var $global_text = array();
       
       var $temp_code = "";
@@ -25,9 +26,12 @@ class LoveDoc
       var $middle;
       var $post;
       
-      
-      // Temp type
+      // States.
       public $type;
+      public $func;
+      public $param;
+
+      // Temp type
       public $t_data = "";
 
 
@@ -42,7 +46,7 @@ class LoveDoc
               <link rel="stylesheet" type="text/css" href="css/default.css" />
               <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
             </head>
-            
+
             <table class="master-table">
               <tr>
               <td class="left">
@@ -130,7 +134,15 @@ POST;
 
          $this->type = new LoveType($name, $brief, $brief . " ");
       }
-      
+
+      function pushCallback($atr)
+      {
+         $name = isset($atr['name']) ? $atr['name'] : "";
+         $brief = isset($atr['brief']) ? $atr['brief'] : "";
+
+         $this->func = new LoveFunction($name, $brief, $brief . " ");
+      }
+
       function pushTypeData($data)
       {
         if(strlen(trim($data)) > 0)
@@ -145,16 +157,16 @@ POST;
          $name = isset($atr['name']) ? $atr['name'] : "";
          $brief = isset($atr['brief']) ? $atr['brief'] : "";
 
-         $f = new LoveFunction($name, $brief, $brief . " ", $this->type->name);
+         $this->func = new LoveFunction($name, $brief, $brief . " ", $this->type->name);
 
-         $this->type->add($f);
+         $this->type->add($this->func);
       }
 
       function pushFunctionData($data)
       {
         if(strlen(trim($data)) > 0)
         {
-        $current_function = end($this->type->love_functions);
+        $current_function = $this->func; //end($this->type->love_functions);
         $current_function->description .= trim($data);
         }
       }
@@ -177,7 +189,7 @@ POST;
          $name = isset($atr['name']) ? $atr['name'] : "";
          $url = isset($atr['url']) ? $atr['url'] : "";
 
-         $current_function = end($this->type->love_functions);
+         $current_function = $this->func; //end($this->type->love_functions);
 
        $current_function->see_also[$name] = $url;
       }
@@ -197,14 +209,14 @@ POST;
 
       function pushFunctionExample($atr)
       {
-        $current_function = end($this->type->love_functions);
+        $current_function = $this->func; //end($this->type->love_functions);
         $name = isset($atr['name']) ? $atr['name'] : "";
         $current_function->examples[$name] = "";
       }
 
       function pushFunctionExampleData($data)
       {
-        $current_function = end($this->type->love_functions);
+        $current_function = $this->func; //end($this->type->love_functions);
         $lastkey = end(array_keys($current_function->examples));
         $current_function->examples[$lastkey] .= $data;
       }
@@ -214,7 +226,7 @@ POST;
          $name = isset($atr['name']) ? $atr['name'] : "";
          $brief = isset($atr['brief']) ? $atr['brief'] : "";
 
-         $current_function = end($this->type->love_functions);
+         $current_function = $this->func; //end($this->type->love_functions);
          $current_function->add($name, $brief);
       }
       
@@ -223,7 +235,7 @@ POST;
          $type = isset($atr['type']) ? $atr['type'] : "";
          $brief = isset($atr['brief']) ? $atr['brief'] : "";
 
-         $current_function = end($this->type->love_functions);
+         $current_function = $this->func; //end($this->type->love_functions);
          $current_function->returns->name = $type;
          $current_function->returns->description = $brief;
       }
@@ -232,14 +244,14 @@ POST;
       {
         if(strlen(trim($data)) > 0)
         {
-        $current_function = end($this->type->love_functions);
+        $current_function = $this->func; //end($this->type->love_functions);
         $current_function->returns->description .= $data;
         }
       }
 
       function pushParamData($data)
       {
-        $current_function = end($this->type->love_functions);
+        $current_function = $this->func; //end($this->type->love_functions);
         $current_parameter = end($current_function->love_parameters);
 
         $current_parameter->description .= $data;
@@ -251,6 +263,10 @@ POST;
           if(strlen(trim($this->type->description)) <= 0)
              $this->type->description = $this->type->brief;
 
+             $this->type->type = "t";
+             foreach($this->type->love_functions as $f)
+              $f->parent_type = "t";
+
           $this->love_types[] = $this->type;
       }
 
@@ -260,12 +276,20 @@ POST;
           if(strlen(trim($this->type->description)) <= 0)
              $this->type->description = $this->type->brief;
 
-             $this->type->type = "object";
-             
+             $this->type->type = "o";
              foreach($this->type->love_functions as $f)
-              $f->parent_type = "object";
+              $f->parent_type = "o";
 
           $this->love_objects[] = $this->type;
+      }
+      
+      function popCallback()
+      {
+
+          if(strlen(trim($this->func->description)) <= 0)
+             $this->func->description = $this->func->brief;
+
+          $this->love_callbacks[] = $this->func;
       }
 
       function createType($atr, $data)
@@ -342,18 +366,43 @@ POST;
                     $html .= '<tr><td class="sep"></td><td class="sep"></td><tr>';
                 else
                     $html .= '<tr><td class="signature"><a href="'.$v->type.$v->name.'.html">'.$v->name.'</a></td><td class="brief">'.$v->brief.'</td><tr>';
-  
                }
   
          $html .= '</table>';
          $html .= '</div>';
          $html .= '</div>';
-         
-         
-         
+         $html .= '</div>';
 
-         
-         
+         return $html;
+      }
+
+
+      function getCallbacksList()
+      {
+         $html = '<div class="subchapter">';
+         $html .= '<div class="title">';
+         $html .= 'L&#214;VE Callbacks';
+         $html .= '</div>';
+         $html .= '<div class="text">';
+         $html .= 'Callbacks, lol';
+         $html .= '</div>';
+  
+  
+         $html .= '<div class="section">';
+         $html .= '<div class="title">Functions</div>';
+         $html .= '<table cellspacing="0" class="functions">';
+
+               foreach($this->love_callbacks as $k=>$v)
+               {
+                if($v === false)
+                    $html .= '<tr><td class="sep"></td><td class="sep"></td><tr>';
+                else
+                    $html .= '<tr><td class="signature"><a href="'.$v->type.$v->name.'.html">'.$v->name.'</a></td><td class="brief">'.$v->brief.'</td><tr>';
+               }
+  
+         $html .= '</table>';
+         $html .= '</div>';
+         $html .= '</div>';
          $html .= '</div>';
          
          return $html;
@@ -383,15 +432,10 @@ POST;
         
         $tmp .= '<div class="horizontal"></div> ';
 	
-	$tmp .= '<a href="cock.html" class="element_title">L&#214;VE Callbacks</a> ';
-	$tmp .= '<a href="cock.html" class="element">load</a>';
-	$tmp .= '<a href="cock.html" class="element">update</a>';
-	$tmp .= '<a href="cock.html" class="element">render</a>';
-	$tmp .= '<a href="cock.html" class="element">event</a>';
-	$tmp .= '<a href="cock.html" class="element">keypressed</a>';
-	$tmp .= '<a href="cock.html" class="element">keyreleased</a>';
-	$tmp .= '<a href="cock.html" class="element">mousepressed</a>';
-	$tmp .= '<a href="cock.html" class="element">mousereleased</a>';
+	$tmp .= '<a href="callbacks.html" class="element_title">L&#214;VE Callbacks</a> ';
+	 $tmp .=  $this->getCallbacksMenu();
+
+
 
         return $tmp;
       }
@@ -469,9 +513,19 @@ CHAPTER_END;
 
         }
         
+        // Write callbacks
+        foreach($this->love_callbacks as $t)
+        {
+
+         // Write type
+         $this->put_string($t->type.$t->name.".html", $t->getFull(), "L&#214;VE Callback");
+
+        }
+        
         // Write lists
         $this->put_string("loveTypes.html", $this->getTypesList(), "L&#214;VE Types");
         $this->put_string("loveObjects.html", $this->getObjectsList(), "L&#214;VE Devices");
+        $this->put_string("callbacks.html", $this->getCallbacksList(), "L&#214;VE Callbacks");
 
       }
 
@@ -494,6 +548,19 @@ CHAPTER_END;
         $html = "";
 
         foreach($this->love_objects as $t)
+        {
+         $html .= $t->getMenuItem();
+        }
+        
+        return $html;
+      }
+      
+      function getCallbacksMenu()
+      {
+      
+        $html = "";
+
+        foreach($this->love_callbacks as $t)
         {
          $html .= $t->getMenuItem();
         }

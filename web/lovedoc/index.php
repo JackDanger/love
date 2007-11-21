@@ -4,13 +4,6 @@ include("lovedoc.php");
 $doc = new LoveDoc();
 
 
-             
-             
-             
-             
-
-             
-             
 $verbose = false;
 
 
@@ -76,6 +69,12 @@ function startElement($parser, $name, $attrs)
      if($verbose) echo "Pushing object ...<br />";
      $doc->pushType($attrs);
     }
+    
+    if($name == "callback")
+    {
+     if($verbose) echo "Pushing callback ...<br />";
+     $doc->pushCallback($attrs);
+    }
 
     if($name == "function")
     {
@@ -120,10 +119,15 @@ function startElement($parser, $name, $attrs)
      $doc->pushTypeExample($attrs);
     }
 
-
     if($name == "example" && $prev_mode == "function")
     {
      if($verbose) echo "Pushing function example.. <br />";
+     $doc->pushFunctionExample($attrs);
+    }
+    
+    if($name == "example" && $prev_mode == "callback")
+    {
+     if($verbose) echo "Pushing function/callback example.. <br />";
      $doc->pushFunctionExample($attrs);
     }
 
@@ -162,6 +166,12 @@ function endElement($parser, $name)
     {
      if($verbose) echo "Popping type ...<br />";
      $doc->popType();
+    }
+
+    if($name == "callback")
+    {
+     if($verbose) echo "Popping callback ...<br />";
+     $doc->popCallback();
     }
     
     if($name == "object")
@@ -218,6 +228,12 @@ function characterData($parser, $data)
      if($verbose) echo "Pushing function data .. <br />";
      $doc->pushFunctionData($data);
     }
+    
+    if($curr_mode == "callback")
+    {
+     if($verbose) echo "Pushing function data .. <br />";
+     $doc->pushFunctionData($data);
+    }
 
     if($curr_mode == "param")
     {
@@ -242,6 +258,12 @@ function characterData($parser, $data)
     if($curr_mode == "example" && $prev_mode == "function")
     {
      if($verbose) echo "Pushing function example data.. $data <br />";
+      $doc->pushFunctionExampleData($data);
+    }
+    
+    if($curr_mode == "example" && $prev_mode == "callback")
+    {
+     if($verbose) echo "Pushing callback example data.. $data <br />";
       $doc->pushFunctionExampleData($data);
     }
 

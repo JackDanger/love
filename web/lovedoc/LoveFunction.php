@@ -7,7 +7,7 @@ include("LoveFunctionParameter.php");
 class LoveFunction
 {
       public $parent = "";
-      public $parent_type = "type";
+      public $parent_type = "t";
       public $name = "";
       public $description = "";
       public $brief = "";
@@ -123,6 +123,11 @@ class LoveFunction
         return '<tr><td class="signature"><a href="'.$this->getUrl().'">'.$this->getSignature().'</a></td><td class="brief">'.$this->brief.'</td></tr>';
       }
       
+      function getMenuItem()
+      {
+       return '<a href="'.$this->name.'.html" class="element">'.$this->name.'</a>';
+      }
+      
       function getSignature()
       {
                $html = $this->name . "( ";
@@ -143,7 +148,7 @@ class LoveFunction
       
       function getFullSignature()
       {
-              return  '<a href="'.$this->parent_type.$this->parent.'.html">' . $this->parent . "</a>:" . $this->getSignature();
+              return  '<a href="'.$this->getUrl().'">' . $this->parent . "</a>" . (strlen($this->parent) == 0 ? "" : ":") . "" . $this->getSignature();
       }
 
       function getCompactSignature()
