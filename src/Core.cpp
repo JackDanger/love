@@ -28,7 +28,7 @@ namespace love
 {
 
 
-	Core::Core() : display(0), keyboard(0), mouse(0), timer(0), filesystem(0), current(0)
+	Core::Core() : display(0), keyboard(0), mouse(0), timer(0), filesystem(0), current(0), uigame(0)
 	{
 
 	}
@@ -87,7 +87,7 @@ namespace love
 		status &= graphics->init();
 
 		if(status != LOVE_OK) 
-			printf("Could not init LOVE CORE.\n");
+			error("Could not init LOVE CORE.\n");
 
 		// Post-init 
 
@@ -95,11 +95,18 @@ namespace love
 		filesystem->configure(parameters);
 		core->configure(parameters);
 
+		// Do we have a love.conf override?
+		config.reset<ConfigLoader>(new ConfigLoader(filesystem->getBase() + "data/love.conf"));
+		config->load();
+
+		if(config->isInt("console_lines"))
+			console->setSize(config->getInt("console_lines"));
+
 		// Change the display mode
 		display->tryChange(DisplayMode(800, 600, 32, false));
 		display->listener = this;
 
-		// Okay, now we can load.		
+		// Okay, now we can load.	
 		console->load();
 
 
@@ -160,15 +167,12 @@ namespace love
 
 		string gamesdir = filesystem->getBase() + "data/games";
 
-		// Do we have a love.conf override?
-		ConfigLoader cfg(filesystem->getBase() + "data/love.conf");
-		if(cfg.load())
-			gamesdir = cfg.isString("gamedir") ? cfg.getString("gamedir") : gamesdir;
+		gamesdir = config->isString("gamedir") ? config->getString("gamedir") : gamesdir;
 
 		// Check that game dir exists.
 		if(!filesystem->exists(gamesdir, ""))
 		{
-			this->printf("Game directory %s does not exist.\n", gamesdir.c_str());
+			this->error("Game directory %s does not exist.\n", gamesdir.c_str());
 			return LOVE_ERROR;
 		}
 
@@ -236,6 +240,8 @@ namespace love
 
 	void Core::quit()
 	{
+		// Write all configurations
+		config->write();
 		// Call platform quit.
 		platform_quit();
 	}
@@ -442,7 +448,8 @@ namespace love
 		s = s.substr(0, s.length() - 1);
 
 		console->push(s);
-		uigame->showError(s.c_str());
+		if(uigame != 0 && uigame->isLoaded())
+			uigame->showError(s.c_str());
 		puts(s.c_str());
 	}
 

@@ -12,7 +12,7 @@
 namespace love
 {
 	
-	Console::Console(int size) : compact(true), visible(false), font(0), size(size)
+	Console::Console(unsigned int size) : compact(true), visible(false), font(0), size(size)
 	{
 	}
 	
@@ -37,7 +37,6 @@ namespace love
 
 		if(compact)
 			height = 10;
-
 
 
 
@@ -130,6 +129,16 @@ namespace love
 	void Console::unload()
 	{
 		font->unload();
+	}
+
+	void Console::setSize(unsigned int size)
+	{
+		this->size = size;
+	}
+
+	unsigned int Console::getSize()
+	{
+		return size;
 	}
 
 	void Console::push(string message)

@@ -21,9 +21,8 @@ namespace love
 	class UIGame : public Game
 	{
 	protected:
-		// The suspeded game
 		gcn::Container * top;
-		Game * previous;
+		Game * previous; // The suspeded game.
 		pAbstractImage errorWarning;
 		pAbstractImage errorError;
 		pAbstractFont errorFont;
@@ -37,14 +36,20 @@ namespace love
 		pButton errorButton;
 		pButton warningButton;
 
-		// If the UI is in error mode, the previous
-		// game will not rendered.
-		bool errorMode;
-		bool pauseMode; // if in pause mode, will go to pause menu after settings
+		pCheckBox settingsFullscreen;
+		pCheckBox settingsVSync;
+		pDropDown settingsResolution;
+		pSlider settingsSound;
+		pSlider settingsMusic;
+
+		bool errorMode; // If the UI is in error mode, the previous game will not rendered.
+		bool pauseMode; // If in pause mode, it will go to the pause menu after settings.
+		bool settingsMode; // If in settings mode, it will show the pause menu (and hide the settings) if hidePause() is called.
 
 		virtual void resumeGame();
 		virtual void reloadGame();
 		virtual void quitGame();
+		virtual void saveSettings();
 
 	public:
 		/**
@@ -58,7 +63,7 @@ namespace love
 		~UIGame();
 
 		/**
-		 * @brief Creates the GUI items.
+		 * @brief Creates the GUI items and calls load().
 		 **/
 		virtual int init();
 

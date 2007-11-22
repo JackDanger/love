@@ -63,23 +63,23 @@ main = {
 	
 	render = function()
 
-		eiffel:render(0,0);
+		love.graphics:draw(eiffel,0,0);
 
-		img:render(math.floor(player.x), math.floor(player.y));
+		love.graphics:draw(img, math.floor(player.x), math.floor(player.y));
 		
-		mortis:render(love.mouse:getX(), love.mouse:getY());
+		love.graphics:draw(mortis, love.mouse:getX(), love.mouse:getY());
 		
 		love.graphics:setColor(0xff0668);
-		love.graphics:drawText("Lua makes french pig fly @ (" .. math.floor(player.x) .. "," .. math.floor(player.y) .. ")", 20, 40);
+		love.graphics:draw("Lua makes french pig fly @ (" .. math.floor(player.x) .. "," .. math.floor(player.y) .. ")", 20, 40);
 				
 		love.graphics:setColor(255,255,0);
-		love.graphics:drawText("Last keypress: " .. lastkey, 20, 70);
+		love.graphics:draw("Last keypress: " .. lastkey, 20, 70);
 		
 		love.graphics:setColor(255,0,0);
-		love.graphics:drawText("Mouse @ (" .. love.mouse:getX() .. "," .. love.mouse:getY() .. ")", 20, 100);
+		love.graphics:draw("Mouse @ (" .. love.mouse:getX() .. "," .. love.mouse:getY() .. ")", 20, 100);
 		
 		love.graphics:setColor(255,0,255);
-		love.graphics:drawText("Last mousepress: " .. lastmouse, 20, 130);
+		love.graphics:draw("Last mousepress: " .. lastmouse, 20, 130);
 		
 	end, 
 	

@@ -89,7 +89,7 @@ namespace love
 				else if((int)value.find_first_of('"', 0) == 0 && value.find_last_of('"', value.size() - 1) == value.size() - 1)
 				{
 					if(text.count(key) != 0)
-						core->printf("Config Loader (Line %d): The key '%s' already exists.\n", line, key.c_str());
+						core->printf("ConfigLoader (Line %d): The key '%s' already exists.\n", line, key.c_str());
 						//printf("Config Loader (Line %d): The key '%s' already exists.\n", line, key.c_str());
 					else
 						text[key] = value.substr(1, value.size() - 2);
@@ -98,7 +98,7 @@ namespace love
 				{
 					//printf("Configloader: value =%s\n", value.c_str());
 					if(number.count(key) != 0)
-						core->printf("Config Loader (Line %d): The key '%s' already exists.\n", line, key.c_str());
+						core->printf("ConfigLoader (Line %d): The key '%s' already exists.\n", line, key.c_str());
 						//printf("Config Loader (Line %d): The key '%s' already exists.\n", line, key.c_str());
 					else
 						number[key] = atof(value.c_str());
@@ -217,7 +217,7 @@ namespace love
 		ofstream file(filepath.c_str(), ios::trunc);
 		if(!file)
 		{
-			core->error("Config Loader: ERROR! Could not write to file '%s'.\n", filepath.c_str());
+			core->error("ConfigLoader: ERROR! Could not write to file '%s'.\n", filepath.c_str());
 			//printf("Config Loader: ERROR! Could not write to file '%s'.\n", filepath.c_str());
 			return;
 		}

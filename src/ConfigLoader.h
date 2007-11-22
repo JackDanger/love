@@ -131,7 +131,6 @@ namespace love
 		 **/
 		void addInt(string key, float value);
 
-
 		/**
 		 * @brief Writes the config keys and values to a file.
 		 **/

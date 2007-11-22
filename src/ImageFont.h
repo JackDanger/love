@@ -19,7 +19,7 @@ namespace love
 	{
 	protected:
 		pAbstractImage image;
-		char * charlist;
+		string charlist;
 		int charwidth;
 		int columns; // the amound of columns of characters in the image
 
@@ -38,7 +38,7 @@ namespace love
 		 * @param charlist A list of the characters as they appear in the image (example: "ABCD")
 		 * @brief The default constructor. Constructs.
 		 **/
-		ImageFont(pAbstractImage image, int width, int height, char * charlist);
+		ImageFont(pAbstractImage image, int width, int height, const string & charlist);
 
 		/**
 		 * @brief The deconstructor. Calls unload()

@@ -49,7 +49,7 @@ namespace love
 		Font * font;
 
 		// The size of the message queue
-		int size;
+		unsigned int size;
 
 	public:
 	
@@ -59,7 +59,7 @@ namespace love
 		/**
 		* @brief Constructs an empty Console.
 		**/
-		Console(int size = 10);
+		Console(unsigned int size = 10);
 		
 		/**
 		* @brief Destructor.
@@ -71,6 +71,9 @@ namespace love
 
 		int load();
 		void unload();
+
+		void setSize(unsigned int size);
+		unsigned int getSize();
 
 		void push(string message);
 

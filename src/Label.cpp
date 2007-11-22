@@ -189,8 +189,8 @@ namespace love
 		else
 			graphics->setColor(gcn::Color(0,0,0,255));
 
-		string temp = getCaption();
-		graphics->drawText(temp,x,y);
+		graphics->setFont(getFont());
+		graphics->drawText(getCaption(),x,y);
 	}
 
 	void Label::drawBorder(gcn::Graphics* graphics)

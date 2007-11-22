@@ -69,7 +69,7 @@ namespace love
 
 		pAbstractFont newFont(const char * filename, int size) const;
 		pAbstractFont newDefaultFont(int size) const;
-		pAbstractFont newImageFont(const pAbstractImage * image, int width, int height, char * charlist) const;
+		pAbstractFont newImageFont(const pAbstractImage * image, int width, int height, const char * charlist) const;
 
 		pParticleSystem newParticleSystem() const;
 

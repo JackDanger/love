@@ -119,7 +119,7 @@ namespace love
 	void DropDown::adjustSize()
 	{
 		gcn::DropDown::adjustHeight();
-		if(getHeight() < button->getHeight())
+		if(button != 0 && getHeight() < button->getHeight())
 			setHeight((int)button->getHeight());
 	}
 
@@ -175,6 +175,8 @@ namespace love
 
 	const char * DropDown::getElementAt(int i)
 	{
+		if(i < 0 || i > list->getNumberOfElements())
+			return "";
 		return list->getElementAt(i).c_str();
 	}
 	
@@ -185,7 +187,7 @@ namespace love
 
 	const char * DropDown::getSelectedElement()
 	{
-		return list->getElementAt(getSelected()).c_str();
+		return getElementAt(getSelected());
 	}
 
 	int DropDown::getNumberOfElements()

@@ -149,9 +149,9 @@ namespace love
 		return font;		
 	}
 
-	pAbstractFont ObjectFactory::newImageFont(const pAbstractImage * image, int width, int height, char * charlist) const
+	pAbstractFont ObjectFactory::newImageFont(const pAbstractImage * image, int width, int height, const char * charlist) const
 	{
-		pImageFont font(new ImageFont(*image, width, height, charlist));
+		pImageFont font(new ImageFont(*image, width, height, string(charlist)));
 		font->load();
 		return font;
 	}

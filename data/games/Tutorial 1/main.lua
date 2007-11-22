@@ -10,7 +10,7 @@ main = {
 		x = 50;
 		y = 50;
 		speed = 200;
-		
+	
 	end,
 	
 	update = function(dt)
@@ -32,8 +32,7 @@ main = {
 	render = function()
 	
 		love.graphics:draw(ham, x, y);
-		--ham:render(x,y);
-		
+	
 	end
 
 } -- main

@@ -11,6 +11,8 @@ namespace love
 		gcn::Window::setOpaque(false); //makes the background invisible
 		menuType = LOVE_MENU_WINDOW;
 		setOpaque(true); //we deal with the visibility ourselves
+		if(text != 0)
+			setTitleBarHeight(text->getHeight() + 2);
 	}
 
 	WindowMenu::~WindowMenu()
@@ -57,6 +59,8 @@ namespace love
 	void WindowMenu::setCaption(const char * caption)
 	{
 		gcn::Window::setCaption(caption);
+		if(text != 0)
+			setTitleBarHeight(text->getHeight() + 2);
 	}
 
 	void WindowMenu::setTitleBarHeight(unsigned int height)
@@ -67,6 +71,7 @@ namespace love
 	void WindowMenu::setFont(const pAbstractFont * font)
 	{
 		text->setFont(*font);
+		gcn::Window::setFont(text.get());
 	}
 
 	void WindowMenu::setBackgroundColor(const pAbstractColor * color)
@@ -240,7 +245,7 @@ namespace love
 					(*iter)->setPosition(getWidth() - (*iter)->getWidth() - getPaddingRight()- (*iter)->getBorderSize(), size + (*iter)->getBorderSize());
 					break;
 				}
-				size += (*iter)->getHeight() + spacing;
+				size += (*iter)->getHeight() + spacing + getTitleBarHeight();
 			}
 			size -= (spacing + getPaddingTop()); //to return only the content size
 			break;
@@ -269,6 +274,9 @@ namespace love
 			size -= (spacing + getPaddingLeft()); //to return only the content size
 			break;
 		}
+
+		if(text != 0)
+			setTitleBarHeight(text->getHeight() + 2);
 
 		return size;
 	}

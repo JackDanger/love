@@ -57,6 +57,7 @@ namespace love
 	void Menu::setFont(const pAbstractFont * font)
 	{
 		text->setFont(*font);
+		gcn::Container::setFont(text.get());
 	}
 
 	void Menu::setBackgroundColor(const pAbstractColor * color)

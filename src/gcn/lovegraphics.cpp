@@ -335,14 +335,14 @@ namespace gcn
         const ClipRectangle& top = mClipStack.top();
         
         glBegin(GL_LINE_LOOP);
-        glVertex2f(rectangle.x + top.xOffset,
-                   rectangle.y + top.yOffset);
-        glVertex2f(rectangle.x + rectangle.width + top.xOffset - 1.0f,
-                   rectangle.y + top.yOffset + 0.375f);
-        glVertex2f(rectangle.x + rectangle.width + top.xOffset - 1.0f,
-                   rectangle.y + rectangle.height + top.yOffset);
-        glVertex2f(rectangle.x + top.xOffset,
-                   rectangle.y + rectangle.height + top.yOffset);
+        glVertex2f((float)rectangle.x + top.xOffset,
+                   (float)rectangle.y + top.yOffset);
+        glVertex2f((float)rectangle.x + rectangle.width + top.xOffset - 1.0f,
+                   (float)rectangle.y + top.yOffset + 0.375f);
+        glVertex2f((float)rectangle.x + rectangle.width + top.xOffset - 1.0f,
+                   (float)rectangle.y + rectangle.height + top.yOffset);
+        glVertex2f((float)rectangle.x + top.xOffset,
+                   (float)rectangle.y + rectangle.height + top.yOffset);
         glEnd();
     }
 

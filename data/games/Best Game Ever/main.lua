@@ -15,7 +15,7 @@ main = {
 		anim:addColor(color["white"], 0.1);
 		anim:play();
 		
-		love.graphics:setBackground(color["white"]);
+		love.graphics:setBackgroundColor(color["white"]);
 		love.graphics:setColor(color["black"]);
 		
 		menux = -1;
@@ -130,6 +130,7 @@ main = {
 		nested:setPadding(4);
 		nested:setBorderSize(0);
 		nested:addLabel("This is a broken ScrollMenu. Fuck, I think I might have to do this manually.");
+		nested:addLabel("It seems that your removing of the clipping caused this. Look at what you have done!!");
 		nested:addLabel("TEST2");
 		nested:addLabel("TEST3");
 		--nested:addLabel("TEST4");
@@ -169,7 +170,7 @@ main = {
 		--love.graphics:drawText("Truly the best game ever. Because: it has a lot of shapes (loel)\nPress S to shoot and M to start/stop the music\n(arrow keys for valuum desu)!", 10, 35);
 		--love.graphics:setColor(color["white"]);
 		love.graphics:setFont(font["image"]);
-		love.graphics:drawText("TRULY THE BEST GAME EVER.\nBECAUSE: IT HAS A LOT OF SHAPES (LOEL)\nTHIS IS AN IMAGE FONT, BTW!", 10, 35);
+		love.graphics:draw("TRULY THE BEST GAME EVER.\nBECAUSE: IT HAS A LOT OF SHAPES (LOEL)\nTHIS IS AN IMAGE FONT, BTW!", 10, 35);
 			  
 		love.graphics:setColor(color["shiznet"]);
 		--gl:enable("MULTISAMPLE");
@@ -186,14 +187,14 @@ main = {
 		
 		love.graphics:setColor(color["black"]);
 		love.graphics:setFont(font["small"]);
-		love.graphics:drawText("drawLine(50,200,150,200,horseshit)", 10, 300);
-		love.graphics:drawText("drawTriangle(260, 200, 100, 100, horseshit, 5)", 175, 300);
-		love.graphics:drawText("drawRect(470,200,100,100, horseshit, 5)", 400, 300);
-		love.graphics:drawText("drawCircle(680,200, 60, 10, horseshit)", 615, 300);
+		love.graphics:draw("drawLine(50,200,150,200,horseshit)", 10, 300);
+		love.graphics:draw("drawTriangle(260, 200, 100, 100, horseshit, 5)", 175, 300);
+		love.graphics:draw("drawRect(470,200,100,100, horseshit, 5)", 400, 300);
+		love.graphics:draw("drawCircle(680,200, 60, 10, horseshit)", 615, 300);
 		
-		love.graphics:drawText("drawTriangle(260, 200, 100, 100, horseshit, 5)", 175, 500);
-		love.graphics:drawText("drawRect(470,200,100,100, horseshit, 5)", 400, 500);
-		love.graphics:drawText("drawCircle(680,200, 60, 60)", 615, 500);
+		love.graphics:draw("drawTriangle(260, 200, 100, 100, horseshit, 5)", 175, 500);
+		love.graphics:draw("drawRect(470,200,100,100, horseshit, 5)", 400, 500);
+		love.graphics:draw("drawCircle(680,200, 60, 60)", 615, 500);
 		
 		love.graphics:setFont(font["big"]);
 		love.graphics:setColor(color["shiznet"]);

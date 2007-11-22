@@ -52,7 +52,7 @@ namespace love
 	void AbstractGUI::clear()
 	{
 		top->clear();
-		top->add(new Label("Worst. Bugfix. Ever."));
+		top->add(new Label(" ")); // Worst. Bugfix. Ever.
 	}
 
 	pAbstractFont AbstractGUI::getFont()

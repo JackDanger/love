@@ -52,7 +52,8 @@ namespace love
 		const AbstractFileSystem & fs = core->getFilesystem();
 		const DisplayMode & dm = core->getDisplayMode();
 
-		configLoader = new ConfigLoader(fs.getBase() + "data/love.conf");
+		//configLoader = new ConfigLoader(fs.getBase() + "data/love.conf");
+		configLoader = core->config.get();
 
 		// Add images
 		images.create("default-thumb", core->imaging->getImage(fs.getBaseFile("data/sys/thumb-std.png")));
@@ -344,7 +345,7 @@ namespace love
 
 
 		// Check for last started game.
-		configLoader->load();
+		//configLoader->load();
 
 		string last_game = "";
 
@@ -381,7 +382,7 @@ namespace love
 
 		//text->unload();
 
-		configLoader->unload();
+		//configLoader->unload();
 
 		loaded = false;
 	}

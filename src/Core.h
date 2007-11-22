@@ -23,6 +23,7 @@
 #include "OpenGLGUI.h"
 
 // Other LOVE files
+#include "ConfigLoader.h"
 #include "Game.h"
 #include "UIGame.h"
 
@@ -91,6 +92,8 @@ namespace love
 		AbstractGraphics * graphics;
 		Parameters * parameters;
 		AbstractGUI * gui;
+
+		pConfigLoader config;
 
 
 		// Console used for useful output

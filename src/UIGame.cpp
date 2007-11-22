@@ -26,9 +26,6 @@ namespace love
 		top->clear();
 		core->gui->remove(top);
 
-		// To Mike: Reloading will never change the display mode.
-		//core->gui->displayModeChanged(); // to reset the gui
-
 		core->current = previous;
 		previous = 0;
 
@@ -52,14 +49,25 @@ namespace love
 		errorMode = false;
 	}
 
-	UIGame::UIGame() : errorMode(false)
+	void UIGame::saveSettings()
+	{
+		core->config->addBool("settings_fullscreen", settingsFullscreen->isMarked());
+		core->config->addBool("settings_vsync", settingsVSync->isMarked());
+		core->config->addInt("settings_resolution", (float)settingsResolution->getSelected());
+		core->config->addInt("settings_sound", (float)settingsSound->getValue());
+		core->config->addInt("settings_music", (float)settingsMusic->getValue());
+		core->config->write();
+		hideSettings();
+	}
+
+	UIGame::UIGame() : errorMode(false), pauseMode(false), settingsMode(false)
 	{
 		previous = 0;
 		error = 0;
 		warning = 0;
 		pause = 0;
 		top = 0;
-		pauseMode = false;
+		loaded = false;
 	}
 
 	UIGame::~UIGame()
@@ -166,28 +174,45 @@ namespace love
 		settings->addLabel(" ");
 		settings->addLabel("Graphics:");
 		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL);
-		nested->addLabel("Resolution")->setWidth(150);
-		pDropDown down = nested->addDropDown("CORE_SETTINGS_RESOLUTION");
-		down->add("800x600"); down->add("1024x768");
+		nested->addLabel("Fullscreen")->setWidth(150);
+		settingsFullscreen = nested->addCheckBox("CORE_SETTINGS_GAME_FULLSCREEN");
+		if(core->config->isBool("settings_fullscreen"))
+			settingsFullscreen->setMarked(core->config->getBool("settings_fullscreen"));
 		nested->adjustSize();
 		nested->adjustContent();
 		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL);
-		nested->addLabel("Fullscreen")->setWidth(150);
-		pCheckBox check = nested->addCheckBox("CORE_SETTINGS_FULLSCREEN");
+		nested->addLabel("Vertical Sync")->setWidth(150);
+		settingsVSync = nested->addCheckBox("CORE_SETTINGS_GAME_VSYNC");
+		if(core->config->isBool("settings_vsync"))
+			settingsVSync->setMarked(core->config->getBool("settings_vsync"));
+		nested->adjustSize();
+		nested->adjustContent();
+		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL);
+		nested->addLabel("Default Resolution")->setWidth(150);
+		settingsResolution = nested->addDropDown("CORE_SETTINGS_RESOLUTION");
+		settingsResolution->add("Auto"); settingsResolution->add("1024x768"); settingsResolution->add("800x600");
+		settingsResolution->setSelected(0);
+		settingsResolution->adjustSize();
+		if(core->config->isInt("settings_resolution"))
+			settingsResolution->setSelected(core->config->getInt("settings_resolution"));
 		nested->adjustSize();
 		nested->adjustContent();
 		settings->addLabel(" ");
 		settings->addLabel("Sound:");
 		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL);
 		nested->addLabel("Sound Volume")->setWidth(150);
-		pSlider slid = nested->addSlider("CORE_SETTINGS_SOUND", Slider::LOVE_SLIDER_HORIZONTAL, 0, 1, 200, 15);
-		slid->setColor(&white);
+		settingsSound = nested->addSlider("CORE_SETTINGS_SOUND", Slider::LOVE_SLIDER_HORIZONTAL, 0, 100, 200, 15);
+		settingsSound->setColor(&white);
+		if(core->config->isInt("settings_sound"))
+			settingsSound->setValue(core->config->getInt("settings_sound"));
 		nested->adjustSize();
 		nested->adjustContent();
 		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL);
 		nested->addLabel("Music Volume")->setWidth(150);
-		slid = nested->addSlider("CORE_SETTINGS_MUSIC", Slider::LOVE_SLIDER_HORIZONTAL, 0, 1, 200, 15);
-		slid->setColor(&white);
+		settingsMusic = nested->addSlider("CORE_SETTINGS_MUSIC", Slider::LOVE_SLIDER_HORIZONTAL, 0, 100, 200, 15);
+		settingsMusic->setColor(&white);
+		if(core->config->isInt("settings_music"))
+			settingsMusic->setValue(core->config->getInt("settings_music"));
 		nested->adjustSize();
 		nested->adjustContent();
 		settings->adjustSize();
@@ -202,16 +227,19 @@ namespace love
 		settings->setY( (core->display->getHeight() / 2) - (settings->getHeight() / 2) );
 		settings->show();
 
-		return LOVE_OK;
+		return load();
 	}
 
 	int UIGame::load()
 	{
+		this->loaded = true;
 		return LOVE_OK;
 	}
 
 	void UIGame::unload()
-	{}
+	{
+		this->loaded = false;
+	}
 
 	void UIGame::render()
 	{
@@ -298,8 +326,13 @@ namespace love
 
 	void UIGame::hidePause()
 	{
-		pauseMode = false;
-		resumeGame();
+		if(settingsMode)
+			hideSettings();
+		else
+		{
+			pauseMode = false;
+			resumeGame();
+		}
 	}
 
 	void UIGame::showSettings()
@@ -313,11 +346,18 @@ namespace love
 			previous = core->current;
 			core->current = this;
 		}
+		settingsMode = true;
 		//printf("settings");
 	}
 
 	void UIGame::hideSettings()
 	{
+		top->clear();
+		if(pauseMode)
+			top->add(pause);
+		else
+			core->gui->remove(top);
+		settingsMode = false;
 	}
 
 	bool UIGame::isPaused()
@@ -341,6 +381,10 @@ namespace love
 				quitGame();
 			else if(strcmp(pme->getName(), "CORE_WARNING_OK") == 0)
 				resumeGame();
+			else if(strcmp(pme->getName(), "CORE_SETTINGS_OK") == 0)
+				saveSettings();
+			else if(strcmp(pme->getName(), "CORE_SETTINGS_CANCEL") == 0)
+				hideSettings();
 			else if(strcmp(pme->getName(), "CORE_RESUME") == 0)
 				resumeGame();
 			else if(strcmp(pme->getName(), "CORE_SAVE") == 0)
@@ -371,6 +415,6 @@ namespace love
 
 		if(!errorMode && previous != 0)
 			previous->displayModeChanged();
-		//reloadGraphics();
+		reloadGraphics();
 	}
 }

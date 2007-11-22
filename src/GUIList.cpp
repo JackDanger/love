@@ -9,6 +9,8 @@ namespace love
 
 	string GUIList::getElementAt(int i)
 	{
+		if(i < 0 || i > (int)list.size())
+			return "";
 		return list[i];
 	}
 

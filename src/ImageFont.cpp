@@ -20,7 +20,7 @@ namespace love
 		image->render((float)(width[(int)character] % columns) * charwidth, floor((float)(width[(int)character] / columns)) * size, (float)charwidth, (float)size);
 	}
 
-	ImageFont::ImageFont(pAbstractImage image, int width, int height, char * charlist) : AbstractFont(0, height)
+	ImageFont::ImageFont(pAbstractImage image, int width, int height, const string & charlist) : AbstractFont(0, height)
 	{
 		this->image = image;
 		this->charwidth = width;
@@ -82,7 +82,7 @@ namespace love
 		for(int i = 0; i < MAX_CHARS; i++)
 			width[i] = -1;
 
-		for(unsigned int i = 0; i < strlen(charlist); i++)
+		for(unsigned int i = 0; i < charlist.length(); i++)
 		{
 			// To Mike: ... same as the comment in renderChar.
 			

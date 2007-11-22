@@ -128,16 +128,7 @@ namespace boost {
 %include "AbstractFont.h"
 %include "AbstractColor.h"
 
-// TEST
-// Try to extend abstractcolor.
-%extend love::AbstractColor {
-	void testColor(const boost::shared_ptr<AbstractColor> * color) const
-	{
-		self->testColor(*color);
-	}
-}
-
-
+// GUI
 %include "Padded.h"
 %include "GUIElement.h"
 %include "Button.h"

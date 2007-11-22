@@ -53,6 +53,7 @@ namespace love
 	void ScrollMenu::setFont(const pAbstractFont * font)
 	{
 		text->setFont(*font);
+		gcn::ScrollArea::setFont(text.get());
 	}
 
 	void ScrollMenu::setBackgroundColor(const pAbstractColor * color)

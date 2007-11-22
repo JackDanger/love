@@ -11,9 +11,9 @@ namespace love
 	{
 	}
 	
-	void AbstractGraphics::setColor(const pAbstractColor * color)
+	void AbstractGraphics::setColor(const pAbstractColor & color)
 	{
-		this->color = *color;
+		this->color = color;
 	}
 
 	void AbstractGraphics::setColor(int r, int g, int b, int a)
@@ -27,30 +27,25 @@ namespace love
 		this->color->setAlpha(a);
 	}
 
-	void AbstractGraphics::setBackground(const pAbstractColor * color)
+	void AbstractGraphics::setBackgroundColor(const pAbstractColor & color)
 	{
-		this->background = *color;
+		this->background = color;
 		glClearColor((float)background->getRed()/255.0f, (float)background->getGreen()/255.0f, (float)background->getBlue()/255.0f, 1.0f);
 	}
 
-	void AbstractGraphics::setBackground(int r, int g, int b)
+	void AbstractGraphics::setBackgroundColor(int r, int g, int b)
 	{
 		this->background.reset<Color>(new Color(r, g, b));
 		glClearColor((float)r/255.0f, (float)g/255.0f, (float)b/255.0f, 1.0f);
 	}
 
-	void AbstractGraphics::setBackground(int code)
+	void AbstractGraphics::setBackgroundColor(int code)
 	{
 		this->background.reset<Color>(new Color(code));
 		glClearColor((float)background->getRed()/255.0f, (float)background->getGreen()/255.0f, (float)background->getBlue()/255.0f, 1.0f);
 	}
 
-	void AbstractGraphics::setFont(const pAbstractFont * font)
-	{
-		this->font = *font;
-	}
-
-	void AbstractGraphics::setFont(pAbstractFont font)
+	void AbstractGraphics::setFont(const pAbstractFont & font)
 	{
 		this->font = font;
 	}
@@ -60,7 +55,7 @@ namespace love
 		return color;
 	}
 
-	pAbstractColor AbstractGraphics::getBackground()
+	pAbstractColor AbstractGraphics::getBackgroundColor()
 	{
 		return background;
 	}
@@ -70,76 +65,25 @@ namespace love
 		return font;
 	}
 
-	void AbstractGraphics::drawSprite(const pAbstractImage * sprite) const
-	{
-		this->drawSprite((pSprite)(*sprite));
-	}
-
-	void AbstractGraphics::drawSprite(const pAbstractImage * sprite, float x, float y) const
-	{
-		this->drawSprite((pSprite)(*sprite), x, y);
-	}
-
-	void AbstractGraphics::drawSprite(const pAbstractImage * sprite, float x, float y, float width, float height) const
-	{
-		this->drawSprite((pSprite)(*sprite), x, y, width, height);
-	}
-
-	void AbstractGraphics::drawSprite(const pAbstractImage * sprite, float x, float y, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const
-	{
-		this->drawSprite((pSprite)(*sprite), x, y, x1, y1, x2, y2, x3, y3, x4, y4);
-	}
-
-	void AbstractGraphics::drawSubSprite(const pAbstractImage * sprite, float x, float y, float width, float height) const
-	{
-		this->drawSubSprite((pSprite)(*sprite), x, y, width, height);
-	}
-
-	void AbstractGraphics::drawSprite(const pFrameAnimation * sprite) const
-	{
-		this->drawSprite((pSprite)(*sprite));
-	}
-
-	void AbstractGraphics::drawSprite(const pFrameAnimation * sprite, float x, float y) const
-	{
-		this->drawSprite((pSprite)(*sprite), x, y);
-	}
-
-	void AbstractGraphics::drawSprite(const pFrameAnimation * sprite, float x, float y, float width, float height) const
-	{
-		this->drawSprite((pSprite)(*sprite), x, y, width, height);
-	}
-
-	void AbstractGraphics::drawSprite(const pFrameAnimation * sprite, float x, float y, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const
-	{
-		this->drawSprite((pSprite)(*sprite), x, y, x1, y1, x2, y2, x3, y3, x4, y4);
-	}
-
-	void AbstractGraphics::drawSubSprite(const pFrameAnimation * sprite, float x, float y, float width, float height) const
-	{
-		this->drawSubSprite((pSprite)(*sprite), x, y, width, height);
-	}
-
-	void AbstractGraphics::draw(pSprite sprite, float x, float y) const
+	void AbstractGraphics::draw(const pSprite & sprite, float x, float y) const
 	{
 		sprite->render(x, y);
 	}
-	void AbstractGraphics::draw(pSprite sprite, float x, float y, float width, float height) const
+	void AbstractGraphics::draw(const pSprite & sprite, float x, float y, float width, float height) const
 	{
 		sprite->render(x, y, width, height);
 	}
 
-	void AbstractGraphics::draw(pParticleSystem particleSystem, float x, float y) const
+	void AbstractGraphics::draw(const pParticleSystem & particleSystem, float x, float y) const
 	{
 		particleSystem->render(x, y);
 	}
 		
-	void AbstractGraphics::draw(const char * str, float x, float y, float limit, int align) const
+	void AbstractGraphics::draw(const string & str, float x, float y, float limit, int align) const
 	{
 		if(font!=0)
 		{
 			// Create new text object.
-			//Text text(0,0);
 			Text text(font.get(), color.get());
 
 			// Set some attributes.
@@ -147,7 +91,7 @@ namespace love
 			text.setLimit(limit);
 
 			// And print.
-			text.print(x, y, str, font.get(), color.get());
+			text.print(x, y, str.c_str(), font.get(), color.get());
 		}
 	}
 

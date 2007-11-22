@@ -71,7 +71,7 @@ namespace love
 		* @param color The new color. 
 		* @note The color may or may not be shared with others. (Due to use of shared_ptr).
 		**/
-		void setColor(const pAbstractColor * color);
+		void setColor(const pAbstractColor & color);
 
 		/**
 		* @brief Sets the current (foreground) color directly.
@@ -94,7 +94,7 @@ namespace love
 		* @param color The new background color.
 		* @note The color may or may not be shared/used by others. ^-^ Using shared_ptr!
 		**/
-		void setBackground(const pAbstractColor * color);
+		void setBackgroundColor(const pAbstractColor & color);
 
 		/**
 		* @brief Sets the background color directly.
@@ -103,28 +103,21 @@ namespace love
 		* @param b The blue color component, 0-255.
 		* @note That's right, no alpha. This is the absolute background color.
 		**/
-		void setBackground(int r, int g, int b);
+		void setBackgroundColor(int r, int g, int b);
 
 		/**
 		* @brief Sets the background color directly.
 		* @param code The hexadecimal color code.
 		* @note That's right, no alpha. This is the absolute background color.
 		**/
-		void setBackground(int code);
+		void setBackgroundColor(int code);
 		
 		/**
-		* @brief The current Font used for rendering of text. Used by Lua.
+		* @brief The current Font used for rendering of text.
 		* @param font The new current Font.
 		* @note The Font object may or may not be shared with others.
 		**/
-		void setFont(const pAbstractFont * font);
-
-		/**
-		* @brief The current Font used for rendering of text. Used by LÖVE.
-		* @param font The new current Font.
-		* @note The Font object may or may not be shared with others.
-		**/
-		void setFont(pAbstractFont font);
+		void setFont(const pAbstractFont & font);
 
 		/**
 		 * @return An AbstractColor object.
@@ -136,7 +129,7 @@ namespace love
 		 * @return An AbstractColor object.
 		 * @brief Returns the current background color.
 		 **/
-		pAbstractColor getBackground();
+		pAbstractColor getBackgroundColor();
 
 		/**
 		 * @return An AbstractFont object.
@@ -145,204 +138,13 @@ namespace love
 		pAbstractFont getFont();
 
 		/**
-		* @brief Draws an AbstractImage at the current coordinates.
-		* @param sprite The AbstractImage to draw.
-		**/
-		virtual void drawSprite(const pAbstractImage * sprite) const;
-
-		/**
-		* @brief Draws an AbstractImage at the specified coordinates.
-		* @param sprite AbstractImage to draw.
-		* @param x The x-coordinate of the point.
-		* @param y The y-coordinate of the point.
-		* @note The method draws the AbstractImage so that its center is at (x,y).
-		**/
-		virtual void drawSprite(const pAbstractImage * sprite, float x, float y) const;
-
-		/**
-		* @brief Draws an AbstractImage at the specified coordinates, scaled to the specified width and height.
-		* @param sprite The AbstractImage to draw.
-		* @param x The x-coordinate of the point.
-		* @param y The y-coordinate of the point.
-		* @param width The width to which this AbstractImage should be scaled.
-		* @param height The height to which this AbstractImage should scaled.
-		* @note The method draws the AbstractImage so that its center is at (x,y).
-		**/
-		virtual void drawSprite(const pAbstractImage * sprite, float x, float y, float width, float height) const;
-
-		/**
-		* @brief Draws an AbstractImage using the specified <b>relative</b> points, at the specified coordinates.
-		* @param sprite The AbstractImage to draw.
-		* @param x The x-coordinate of the position.
-		* @param y The y-coordinate of the position.
-		* @param x1 The x-coordinate of the top left corner.
-		* @param y1 The y-coordinate of the top left corner.
-		* @param x2 The x-coordinate of the bottom left corner.
-		* @param y2 The y-coordinate of the bottom left corner.
-		* @param x3 The x-coordinate of the bottom right corner.
-		* @param y3 The y-coordinate of the bottom right corner.
-		* @param x4 The x-coordinate of the top right corner.
-		* @param y4 The y-coordinate of the top right corner.
-		* @note Remeber that 
-		**/
-		virtual void drawSprite(const pAbstractImage * sprite, float x, float y, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const;
-
-		/**
-		* @brief Draws a subsprite of an AbstractImage.
-		* @param sprite The AbstractImage to render a subsprite from.
-		* @param x The x-coordinate of the subsprite. 
-		* @param y The y-coordinate of the subsprite.
-		* @param width The width of the subsprite.
-		* @param height The height of the subsprite.
-		**/
-		virtual void drawSubSprite(const pAbstractImage * sprite, float x, float y, float width, float height) const;
-
-		/**
-		* @brief Draws a FrameAnimation at the current coordinates.
-		* @param sprite The FrameAnimation to draw.
-		**/
-		virtual void drawSprite(const pFrameAnimation * sprite) const;
-
-		/**
-		* @brief Draws a FrameAnimation at the specified coordinates.
-		* @param sprite FrameAnimation to draw.
-		* @param x The x-coordinate of the point.
-		* @param y The y-coordinate of the point.
-		* @note The method draws the FrameAnimation so that its center is at (x,y).
-		**/
-		virtual void drawSprite(const pFrameAnimation * sprite, float x, float y) const;
-
-		/**
-		* @brief Draws a FrameAnimation at the specified coordinates, scaled to the specified width and height.
-		* @param sprite The FrameAnimation to draw.
-		* @param x The x-coordinate of the point.
-		* @param y The y-coordinate of the point.
-		* @param width The width to which this FrameAnimation should be scaled.
-		* @param height The height to which this FrameAnimation should scaled.
-		* @note The method draws the FrameAnimation so that its center is at (x,y).
-		**/
-		virtual void drawSprite(const pFrameAnimation * sprite, float x, float y, float width, float height) const;
-
-		/**
-		* @brief Draws a FrameAnimation using the specified <b>relative</b> points, at the specified coordinates.
-		* @param sprite The FrameAnimation to draw.
-		* @param x The x-coordinate of the position.
-		* @param y The y-coordinate of the position.
-		* @param x1 The x-coordinate of the top left corner.
-		* @param y1 The y-coordinate of the top left corner.
-		* @param x2 The x-coordinate of the bottom left corner.
-		* @param y2 The y-coordinate of the bottom left corner.
-		* @param x3 The x-coordinate of the bottom right corner.
-		* @param y3 The y-coordinate of the bottom right corner.
-		* @param x4 The x-coordinate of the top right corner.
-		* @param y4 The y-coordinate of the top right corner.
-		* @note Remeber that 
-		**/
-		virtual void drawSprite(const pFrameAnimation * sprite, float x, float y, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const;
-
-		/**
-		* @brief Draws a subsprite of a FrameAnimation.
-		* @param sprite The FrameAnimation to render a subsprite from.
-		* @param x The x-coordinate of the subsprite. 
-		* @param y The y-coordinate of the subsprite.
-		* @param width The width of the subsprite.
-		* @param height The height of the subsprite.
-		**/
-		virtual void drawSubSprite(const pFrameAnimation * sprite, float x, float y, float width, float height) const;
-
-		/**
-		* @brief Draws a Sprite at the current coordinates.
-		* @param sprite The Sprite to draw.
-		**/
-		virtual void drawSprite(const pSprite & sprite) const = 0;
-
-		/**
-		* @brief Draws a Sprite at the specified coordinates.
-		* @param sprite Sprite to draw.
-		* @param x The x-coordinate of the point.
-		* @param y The y-coordinate of the point.
-		* @note The method draws the Sprite so that its center is at (x,y).
-		**/
-		virtual void drawSprite(const pSprite & sprite, float x, float y) const = 0;
-
-		/**
-		* @brief Draws a Sprite at the specified coordinates, scaled to the specified width and height.
-		* @param sprite The Sprite to draw.
-		* @param x The x-coordinate of the point.
-		* @param y The y-coordinate of the point.
-		* @param width The width to which this Sprite should be scaled.
-		* @param height The height to which this Sprite should scaled.
-		* @note The method draws the Sprite so that its center is at (x,y).
-		**/
-		virtual void drawSprite(const pSprite & sprite, float x, float y, float width, float height) const = 0;
-
-		/**
-		* @brief Draws a Sprite using the specified <b>relative</b> points, at the specified coordinates.
-		* @param sprite The Sprite to draw.
-		* @param x The x-coordinate of the position.
-		* @param y The y-coordinate of the position.
-		* @param x1 The x-coordinate of the top left corner.
-		* @param y1 The y-coordinate of the top left corner.
-		* @param x2 The x-coordinate of the bottom left corner.
-		* @param y2 The y-coordinate of the bottom left corner.
-		* @param x3 The x-coordinate of the bottom right corner.
-		* @param y3 The y-coordinate of the bottom right corner.
-		* @param x4 The x-coordinate of the top right corner.
-		* @param y4 The y-coordinate of the top right corner.
-		* @note Remeber that 
-		**/
-		virtual void drawSprite(const pSprite & sprite, float x, float y, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const = 0;
-
-		/**
-		* @brief Draws a subsprite of a Sprite.
-		* @param sprite The Sprite to render a subsprite from.
-		* @param x The x-coordinate of the subsprite. 
-		* @param y The y-coordinate of the subsprite.
-		* @param width The width of the subsprite.
-		* @param height The height of the subsprite.
-		**/
-		virtual void drawSubSprite(const pSprite & sprite, float x, float y, float width, float height) const = 0;
-
-		/**
-		* @brief Renders a ParticleSystem at the position defined in the object.
-		* @param particleSystem The ParticleSystem to render.
-		**/
-		virtual void drawParticleSystem(const pParticleSystem * particleSystem) const = 0;
-
-		/**
-		* @brief Renders a ParticleSystem at a given position. The position defined in the 
-		* object is ignored.
-		* @param particleSystem The ParticleSystem to render.
-		* @param x The x-coordinate of the position.
-		* @param y The y-coordinate of the position.
-		**/
-		virtual void drawParticleSystem(const pParticleSystem * particleSystem, float x, float y) const = 0;
-
-		/**
-		* @brief Draws a Bezier curve. 
+		* @brief Draws a Bezier curve. Left here since there is no draw() function that accepts a Bezier curve.
+		*		 Will be removed once the Bezier curve is either completely implemented or killed.
 		* @param bezier The Bezier to draw.
 		* @param precision The amount of points to draw.
 		* @param float lineWidth The width of the line used to draw the Bezier.
 		**/
 		virtual void drawBezier(const pBezier * bezier, float x, float y, int precision = 20, float lineWidth = 2.0f) const = 0;
-
-		/**
-		* @brief Renders the text string at the specified position.
-		* @param str The text to render.
-		* @param x The x-coordinate of the position.
-		* @param y The y-coordinate of the position.
-		**/
-		virtual void drawString(const char * str, float x, float y) const = 0;
-
-		/**
-		* @brief Draws a formatted string. (Word wrap, line breaks, alignment)
-		* @param str The text to render.
-		* @param x The x-coordinate of the position of the first character.
-		* @param y The y-coordinate of the position of the first character.
-		* @param limit Size limit for word wrap.
-		* @param align How to align the text.
-		**/
-		virtual void drawText(const char * str, float x, float y, float limit = 0, int align = 1) const = 0;
 
 		/**
 		* @brief Combines a translation with the current matrix.
@@ -369,6 +171,43 @@ namespace love
 		* @param sy Scale factor on y-axis.
 		**/
 		virtual void scale(float sx, float sy) const = 0;
+
+		/**
+		* @brief Draws a sprite at the specified location.
+		* @param sprite The sprite to draw.
+		* @param x The x-coordinate.
+		* @param y The y-coordinate.
+		**/
+		virtual void draw(const pSprite & sprite, float x = 0, float y = 0) const;
+
+		/**
+		* @brief Draws a sub-sprite.
+		* @param sprite The sprite to draw.
+		* @param x The x-coordinate within the sprite.
+		* @param y The y-coordinate within the sprite.
+		* @param width The width of the sub-sprite.
+		* @param height The height of the sub-sprite.
+		**/
+		virtual void draw(const pSprite & sprite, float x, float y, float width, float height) const;
+
+		/**
+		* @brief Draws a particle system at the specified location.
+		* @param particleSystem The particleSystem to draw.
+		* @param x The x-coordinate.
+		* @param y The y-coordinate.
+		**/
+		virtual void draw(const pParticleSystem & particleSystem, float x = 0, float y = 0) const;
+
+		/**
+		* @brief Draws some text at the specified location.
+		* @param str A string to draw.
+		* @param x The x-coordinate.
+		* @param y The y-coordinate.
+		* @param limit The size limit (for word-wrapping).
+		* @param align The alignment (left, right, center).
+		**/
+		virtual void draw(const string & str, float x = 0, float y = 0, float limit = 0, int align = 1) const;
+
 		/**
 		* @brief Draws a line from [x1,y1] to [x2,y2].
 		* @param x1 The first x-coordinate.
@@ -442,43 +281,6 @@ namespace love
 		* @param rotation The rotation of the line.
 		**/
 		virtual void fillCircle(float x, float y, float radius, int points = 10, float rotation = 0) const = 0;
-
-
-		/**
-		* @brief Draws a sprite at the specified location.
-		* @param sprite The sprite to draw.
-		* @param x The x-coordinate.
-		* @param y The y-coordinate.
-		**/
-		virtual void draw(pSprite sprite, float x = 0, float y = 0) const;
-
-		/**
-		* @brief Draws a sub-sprite.
-		* @param sprite The sprite to draw.
-		* @param x The x-coordinate within the sprite.
-		* @param y The y-coordinate within the sprite.
-		* @param width The width of the sub-sprite.
-		* @param height The height of the sub-sprite.
-		**/
-		virtual void draw(pSprite sprite, float x, float y, float width, float height) const;
-
-		/**
-		* @brief Draws a particle system at the specified location.
-		* @param particleSystem The particleSystem to draw.
-		* @param x The x-coordinate.
-		* @param y The y-coordinate.
-		**/
-		virtual void draw(pParticleSystem particleSystem, float x = 0, float y = 0) const;
-
-		/**
-		* @brief Draws some text at the specified location.
-		* @param str A string to draw.
-		* @param x The x-coordinate.
-		* @param y The y-coordinate.
-		* @param limit The size limit (for word-wrapping).
-		* @param align The alignment (left, right, center).
-		**/
-		virtual void draw(const char * str, float x = 0, float y = 0, float limit = 0, int align = 1) const;
 		
 		/**
 		* @brief Loads the identity matrix.
