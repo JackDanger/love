@@ -8,8 +8,8 @@ namespace love
 	private:
 	public:
 	
-		AbstractSoundDevice();
-		virtual ~AbstractSoundDevice();
+		//AbstractSoundDevice();
+		//virtual ~AbstractSoundDevice();
 		
 		// Don't want these to be available ...
 		// virtual AbstractSound * getSound(AbstractFile * file) const = 0;
