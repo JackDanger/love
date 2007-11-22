@@ -17,7 +17,7 @@ class LoveDoc2
   // The completed document.
   private $document;
 
-  private $verbose = true;
+  private $verbose = false;
   
   // The HTML menu. Is generated once, 
   // then ramains static.
@@ -29,6 +29,11 @@ class LoveDoc2
   private static $url_symbols = array();
   private static $url_symbols_count = array();
 
+  public static function force_url_symbol($key, $value)
+  {
+    self::$url_symbols[$key] = $value;
+  }
+
   // Gets the URL symbol for an identifier.
   // For methods: $key is the full name without parameters, 
   // for instance: love.audio:play, and $signature would then be
@@ -36,6 +41,8 @@ class LoveDoc2
   // the same thing.
   public static function add_url_symbol($key, $signature)
   {
+
+
     // Increment this symbol.
     if(!isset(self::$url_symbols_count[$key]))
       self::$url_symbols_count[$key] = 0;
@@ -45,13 +52,14 @@ class LoveDoc2
     // String representation of $url_symbols_count[$partial].
     $string_app = ( self::$url_symbols_count[$key] == 0 ) ? "" : self::$url_symbols_count[$key];
 
-    // Replace : and . with _
-    $key_url = str_replace(array(".", ":"), "_", $key);
+    // Alphanumeric only, plz.
+    //$key_url = str_replace(array(".", ":", " "), "_", $key);
+    $key_url = preg_replace('/[\WÃ]/', '_', $key);
 
     // Add the URL symbol.
     self::$url_symbols[$signature] = $key_url . $string_app;
-    
-    //echo "Adding symbol: [" . $signature . "]\n";
+
+
     
     return self::$url_symbols[$signature];
   }
@@ -59,6 +67,7 @@ class LoveDoc2
   // Use FULL signature!
   public static function get_url_symbol($key, $signature = "")
   {
+
     $signature = ($signature == "") ? $key : $signature;
     if(!isset(self::$url_symbols[$signature]))
       return self::add_url_symbol($key, $signature);
@@ -79,6 +88,7 @@ class LoveDoc2
     $signature = ($signature == "") ? $key : $signature;
     $url = LoveDoc2::get_url_symbol($key, $signature) . ".html";
     self::write_html($url, $html, $title);
+    return $url;
   }
 
   public static function write_html($file, $html, $title)
@@ -91,7 +101,7 @@ class LoveDoc2
     global $HTML_CHAPTER_END;
     global $HTML_POST;
 
-    $out = $HTML_PRE .'<div class="version">Version 0.x</div>'. self::$html_menu . $HTML_MIDDLE .
+    $out = $HTML_PRE . self::$html_menu . $HTML_MIDDLE .
            $HTML_CHAPTER_START . $title . $HTML_CHAPTER_MIDDLE . $html .
            $HTML_CHAPTER_END . $HTML_POST;
 
@@ -191,7 +201,7 @@ class LoveDoc2
   {
     
     // Get the menu HTML.
-    self::$html_menu = $this->document->html_menu();
+    self::$html_menu = '<div class="version">'.$this->document->atr("version").'</div>'  . $this->document->html_menu();
 
     $this->document->write();
   }
@@ -265,7 +275,7 @@ abstract class Element
   public function data($data)
   {
     $this->data .= $data;
-    echo "data ".$this->name."\n";
+    //echo "data ".$this->name."\n";
   }
 
   public function typeof($name)
@@ -335,11 +345,11 @@ class Section extends Element
 
   public function html_menu()
   {
-    
-    $url = ($this->atr("refer") == "") ? $this->atr("name") : $this->atr("refer");
+
+    $sym = ($this->atr("refer") == "") ? LoveDoc2::get_url_symbol($this->atr("name")) : $this->atr("refer");
 
     $tmp = '<div class="horizontal"></div>';
-    $tmp .= '<a href="'.$url.'.html" class="element_title">'.$this->atr("name").'</a>';
+    $tmp .= '<a href="'.$sym.'.html" class="element_title">'.$this->atr("name").'</a>';
     $tmp .= '<div class="horizontal"></div>';
     
     $tmp .= parent::html_menu();
@@ -349,9 +359,30 @@ class Section extends Element
 
   public function write()
   {
-    
+
+         $html = '<div class="subchapter">';
+         $html .= '<div class="title">';
+         $html .= $this->atr("name");
+         $html .= '</div>';
+         $html .= '<div class="text">';
+         $html .= LoveDoc2::to_html($this->data);
+         $html .= '</div>';
+  
+  
+         $html .= '<div class="section">';
+         $html .= '<div class="title">'.$this->atr("has").'</div>';
+         $html .= '<table cellspacing="0" class="functions">';
+
+         foreach($this->children as $c)
+             $html .= $c->html_listitem();
+
+         $html .= '</table>';
+         $html .= '</div>';
+         $html .= '</div>';
+         $html .= '</div>';
+
     // Create html.
-    LoveDoc2::write_html_sym("Shit", $this->atr("name"), $this->atr("name"));
+    LoveDoc2::write_html_sym($html, "Summary", $this->atr("name"));
 
     parent::write();
   }
@@ -374,6 +405,11 @@ class Type extends Element
     LoveDoc2::write_html_sym($this->html(), "Type", $this->atr("name"));
 
     parent::write();
+  }
+
+  public function html_listitem()
+  {
+    return '<tr><td class="signature"><a href="'.LoveDoc2::get_url_symbol($this->atr("name")).'.html" class="element">'.$this->atr("name").'</a></td><td class="brief">'.$this->atr("brief").'</td></tr>';
   }
 
   public function html_menu()
@@ -690,19 +726,23 @@ class Example extends Element
 
 class Page extends Element
 {
-  
-  
+  public function html_listitem()
+  {
+    $sym = ($this->atr("sym") == "") ? $this->atr("name") : $this->atr("sym");
+    return '<tr><td class="signature"><a href="'.LoveDoc2::get_url_symbol($sym, $this->atr("name")).'.html" class="element">'.$this->atr("name").'</a></td><td class="brief">'.$this->atr("brief").'</td></tr>';
+  }
+
   public function html_menu()
   {
-    return '<a href="'.LoveDoc2::get_url_symbol($this->atr("name")).'.html" class="element">'.$this->atr("name").'</a>';
+    $sym = ($this->atr("sym") == "") ? $this->atr("name") : $this->atr("sym");
+    return '<a href="'.LoveDoc2::get_url_symbol($sym, $this->atr("name")).'.html" class="element">'.$this->atr("name").'</a>';
   }
 
 
  public function write()
  { 
-   
    $html = LoveDoc2::to_html($this->data);
-   
+   $sym = ($this->atr("sym") == "") ? $this->atr("name") : $this->atr("sym");
    LoveDoc2::write_html_sym($html, $this->atr("name"), $this->atr("name"));
  }
 }

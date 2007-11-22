@@ -1,0 +1,536 @@
+<?xml version='1.0' ?>
+<document version="Version 0.1" >
+
+
+  <section name="LÖVE Documentation" refer="index">
+
+    <page name="Overview" sym="index">
+
+      [img src="gfx/mega-sun.png" alt="sun" style="float: right;"/]
+
+      [div class="subchapter"]
+      [div class="title"]
+      Welcome
+      [/div]
+      [div class="text"]
+
+      Welcome to the official LOVE documentation page. Here we have explanations of all the types and objects available for the Lua scripting. This does not describe the inner-workings of the engine itself (but we do have an SVN repository available on SourceForge if that's what you're looking for). To understand anything that's going on it is recommended that you have a little bit of programming experience, but hopefully LOVE is straight-forward and simple enough for even novices to get into game creation.
+      [br /]
+      We believe that thorough documentation is important for the survival of a program so if there is something missing or incorrect, please [a href="http://love.sourceforge.net/?page=contact"]contact us[/a].
+
+      [br /][br /] Some testing: Checkout Licence plz, along with love.graphics, love.audio, etc. Sound, lol; Image, lol; and so forth. Furthermore, 
+      it is clear that main.update( dt ), so plz keep that in mind before calling main.load( ).
+      [/div]
+      [/div]
+
+
+      [div class="subchapter"]
+      [div class="title"]
+      Design
+      [/div]
+      [div class="text"]
+      LOVE is created around the principle of a pseudo-symbiotic environment.[br /]
+      That's basically a fancy way of saying that LOVE reads the Lua code to generate a working game and Lua calls LOVE functions to generate a working game. It works like this:
+      [br /]
+      [img src="gfx/love-rel.png" alt="LOVE Design" /]
+
+      [/div]
+      [/div]
+
+
+      [div class="subchapter"]
+      [div class="title"]
+      Tutorials
+      [/div]
+      [div class="text"]
+      This page has the bare documentation and, except for the simple examples, contain no actual tutorials. 
+      Tutorials are available from the tutorial page on the [a href="http://love.sourceforge.net/?page=documentation"]LOVE website[/a].
+      [/div]
+      [/div]
+
+
+    </page>
+    <page name="Licence">
+
+
+      [div class="subchapter"]
+      [div class="title"]Summary
+      [/div]
+      [div class="text"]
+
+      LOVE is licenced under the terms of the ZLIB licence. This is a short licence to begin with,
+      but for the lazy, here's a summary:
+
+      [ul]
+      [li]Do not claim that you made this software.[/li]
+      [li]Do not make an altered version and claim that it is the original software.[/li]
+      [li]Otherwise, feel free to use this software in any situation, including commercial.[/li]
+      [/ul]
+      [/div]
+      [/div]
+
+      [div class="subchapter"]
+      [div class="title"]
+      ZLIB licence (full)
+      [/div]
+      [div class="text"]
+
+      Copyright © 2007 LOVE Development Team[br /]
+      [br /]
+      This software is provided 'as-is', without any express or implied
+      warranty. In no event will the authors be held liable for any damages
+      arising from the use of this software.[br /]
+      [br /]
+      Permission is granted to anyone to use this software for any purpose,
+      including commercial applications, and to alter it and redistribute it
+      freely, subject to the following restrictions:[br /]
+      [br /]
+      1. The origin of this software must not be misrepresented; you must not
+      claim that you wrote the original software. If you use this software
+      in a product, an acknowledgment in the product documentation would be
+      appreciated but is not required.[br /]
+      [br /]
+      2. Altered source versions must be plainly marked as such, and must not be
+      misrepresented as being the original software.[br /]
+      [br /]
+      3. This notice may not be removed or altered from any source
+      distribution.[br /]
+
+      [/div]
+      [/div]
+
+      <!-- Subchapter start -->
+      [div class="subchapter"]
+      [div class="title"]
+      External libraries
+      [/div]
+      [div class="text"]
+      LOVE uses many libraries, such as SDL, DevIL and FreeType. These all have their own licences.
+      An overview is presented here.
+
+      [ul]
+      [li]SDL ([a href="http://www.opensource.org/licenses/lgpl-license.php"]LGPL[/a])[/li]
+      [li]SDL_mixer ([a href="http://www.opensource.org/licenses/lgpl-license.php"]LGPL[/a])[/li]
+      [li]DevIL ([a href="http://www.opensource.org/licenses/lgpl-license.php"]LGPL[/a])[/li]
+      [li]FreeType 2 ([a href="http://www.freetype.org/FTL.TXT"]FTL[/a])[/li]
+      [li]PhysFS ([a href="http://www.opensource.org/licenses/zlib-license.php"]ZLIB[/a])[/li]
+      [li]Lua ([a href="http://www.opensource.org/licenses/mit-license.html"]MIT[/a])[/li]
+      [/ul]
+
+      [/div]
+      <!-- Subchapter end -->
+
+
+      [/div]
+
+
+    </page>
+    <page name="Credits">
+      [div class="subchapter"]
+      [div class="title"]
+      Creators
+      [/div]
+      [div class="text"]
+      LOVE is created by:[br /]
+      [ul]
+      [li]Anders Ruud[/li]
+      [li]Michael Enger[/li]
+      [/ul]
+      [/div]
+      [/div]
+
+      <!-- Subchapter start -->
+      [div class="subchapter"]
+      [div class="title"]
+      Libraries
+      [/div]
+      [div class="text"]
+      LOVE is built around these libraries, presented here in no particular order:
+
+      [ul]
+      [li][a href="http://libsdl.org/"]SDL[/a] - OS abstraction, mouse input, keyboard input.[/li]
+      [li][a href="http://lua.org/"]Lua[/a] - Scripting.[/li]
+      [li][a href="http://opengl.org/"]OpenGL[/a] - Hardware accelerated graphics.[/li]
+      [li][a href="http://openil.sourceforge.net/"]DevIL[/a] - Image loading.[/li]
+      [li][a href="http://www.freetype.org/"]FreeType 2[/a] - Font loading and rasterization.[/li]
+      [li][a href="http://www.libsdl.org/projects/SDL_mixer/"]SDL_mixer[/a] - Sound loading/playing.[/li]
+      [li][a href="http://icculus.org/physfs/"]PhysicsFS[/a] - Generic file loading + support for archive files.[/li]
+
+      [/ul]
+
+      A behemothic thanks to all of these.
+
+      [/div]
+      <!-- Subchapter end -->
+
+
+    </page>
+
+  </section>
+
+  <section name="Devices" has="List of devices">
+    
+    Devices, such as love.objects totally kick ass. In fact, they kick so much ass that it makes love.graphics, love.audio, love.filesystem, and Music to 
+    seem like complete shit in comparison. etc etc
+    
+    <device name="love.objects" />
+    <device name="love.graphics" />
+    <device name="love.audio" />
+
+    <device name="love.keyboard" brief="Keeps track of the state of the keyboard.">
+
+      <function name="isDown" brief="Checks whether a certain key is down.">
+        <param name="key" brief="The key in question." />
+        <returns type="boolean" brief="Whether the passed key is pressed down." />
+        <example>
+          if keyboard:isDown('x') then
+          print("x is down");
+          end
+        </example>
+      </function>
+
+    </device>
+
+    <device name="love.mouse" />
+    <device name="love.gui" />
+    <device name="love.filesystem" />
+
+  </section>
+
+  <section name="Types" has="List of types">
+
+    <!-- :::::::::::::::::::::::::: ANIMATION :::::::::::::::::::::::::: -->
+
+    <type name="Animation" brief="Contains the data for an animated image.">
+      Created by calling any of the [b]love.objects:newAnimation()[/b] functions.
+      <see name="love.objects:newAnimation( image )" url="TODO" />
+      <see name="love.objects:newAnimation( image, xFrames, yFrames, frameWidth, frameHeight, delay )" url="TODO" />
+
+      <function name="addFrame" brief="Adds a frame by extracting a frame of the assigned image.">
+        <param name="x" brief="x-coordinate within the image." />
+        <param name="y" brief="y-coordinate within the image." />
+        <param name="width" brief="Width of the frame." />
+        <param name="height" brief="Height of the frame." />
+        <param name="delay" brief="Delay after this frame (in seconds)." />
+        <example>
+          -- Loads a sprite sheet and designates it as the frame-animation's source image
+          -- We'll assume that this image is 600x40 pixels
+          sonicanimation = love.objects:newAnimation(love.objects:newImage("sonic.png"));
+
+          -- Creates the first animation frame by creating a sub-image of the source image
+          -- In this case a 40x40 square starting from the top left corner
+          -- And with 0.1 seconds of delay
+          sonicanimation:addFrame(0,0,40,40,0.1);
+
+          -- Now we take a smaller frame from somewhere in the middle of the image
+          sonicanimation:addFrame(420,20,40,20,0.1);
+        </example>
+      </function>
+
+      <function name="addFrames" brief="Automatically adds frames from the source image.">
+        This assumes that all the frames are of the same size and placed in a logical grid and correctly spaced apart.
+        <param name="sizex" brief="How many frames there are per row." />
+        <param name="sizey" brief="The amount of rows." />
+        <param name="width" brief="The width of each frame." />
+        <param name="height" brief="The height of each frame." />
+        <param name="delay" brief="The delay after each frame (in seconds)." />
+        <example>
+          -- Takes an image of an explosion and creates a frame animation with that as its source
+          explosion = love.objects:newAnimation(love.objects:newImage("explosion.png"));
+
+          -- Adds the frames by designating that each of them are 96x96 pixels in size and are arranged
+          -- with 5 frames per rown in 3 rows, giving each frame a 0.17 seconds delay.
+          explosion:addFrames(5, 3, 96, 96, 0.17);
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="start" brief="Starts the animation.">
+      </function>
+
+      <function name="stop" brief="Stops the animation.">
+      </function>
+
+      <function name="delay" brief="Delays the animation.">
+        <param name="t" brief="The amount of seconds to delay the animation." />
+      </function>
+
+      <separator />
+
+      <function name="render" brief="Renders the current frame at the current location."></function>
+
+      <function name="render" brief="Renders the current frame at the specified coordinates.">
+        <param name="x" brief="x-coordinate" />
+        <param name="y" brief="y-coordinate" />
+      </function>
+
+      <function name="render" brief="Renders a sub-image of the current frame at the current coordinates.">
+        <param name="x" brief="x-coordinate within the frame" />
+        <param name="y" brief="y-coordinate within the frame" />
+        <param name="width" brief="The width of the sub-image." />
+        <param name="height" brief="The height of the sub-image." />
+      </function>
+
+      <separator />
+
+    </type>
+
+    <!-- :::::::::::::::::::::::::: COLOR :::::::::::::::::::::::::: -->
+
+    <type name="Color" brief="An object containing color information.">
+      A Color object is created by calling any of the [b]love.objects:newColor()[/b] functions.
+      <see name="love.objects:newColor( red, green, blue, alpha )" url="TODO" />
+      <see name="love.objects:newColor( hex, alpha )" url="TODO" />
+
+      <function name="setColor" brief="Sets the current color.">
+        <param name="red" brief="The amount of red." />
+        <param name="green" brief="The amount of green." />
+        <param name="blue" brief="The amount of blue." />
+        <param name="alpha" brief="The amount of alpha." />
+      </function>
+
+      <function name="setColor" brief="Sets the current color.">
+        <param name="red" brief="The amount of red." />
+        <param name="green" brief="The amount of green." />
+        <param name="blue" brief="The amount of blue." />
+      </function>
+
+      <separator />
+
+      <function name="setRed" brief="Sets the amount of red in the color.">
+        <param name="red" brief="The amount of red." />
+      </function>
+
+      <function name="setGreen" brief="Sets the amount of green in the color.">
+        <param name="green" brief="The amount of green." />
+      </function>
+
+      <function name="setBlue" brief="Sets the amount of blue in the color.">
+        <param name="blue" brief="The amount of blue." />
+      </function>
+
+      <function name="setAlpha" brief="Sets the amount of alpha in the color.">
+        <param name="alpha" brief="The amount of alpha." />
+      </function>
+
+      <separator />
+
+      <function name="getRed" brief="Gets the amount of red in the color.">
+        <returns type="number">The amount of red.</returns>
+      </function>
+
+      <function name="getGreen" brief="Gets the amount of green in the color.">
+        <returns type="number">The amount of green.</returns>
+      </function>
+
+      <function name="getBlue" brief="Gets the amount of blue in the color.">
+        <returns type="number">The amount of blue.</returns>
+      </function>
+
+      <function name="getAlpha" brief="Gets the amount of alpha in the color.">
+        <returns type="number">The amount of alpha.</returns>
+      </function>
+
+      <separator />
+
+      <function name="getGradient" brief="Gets a gradient between this color and another.">
+        <param name="other" brief="A pointer to the other Color object." />
+        <param name="amount" brief="How much to gradient (0 is this color, 1 is other color)." />
+        <returns type="color">A pointer to the gradient color.</returns>
+        <example>
+          red = love.objects:newColor(255, 0, 0);
+          blue = love.objects:newColor(0, 0, 255);
+
+          purple = red:getGradient(blue, 0.5);
+          veryred = red:getGradient(blue, 0.1);
+          veryblue = red:getGradient(blue, 0.9);
+        </example>
+      </function>
+
+    </type>
+
+    <!-- :::::::::::::::::::::::::: FONT :::::::::::::::::::::::::: -->
+
+    <type name="Font" brief="Represents a font.">
+      A Font object is created by calling any of the [b]love.objects:newFont()[/b] functions.[br /]
+      Note: Using the print methods in a font file directly is not recommended and the [b]love.graphics:drawText()[/b] function is the best solution for printing text.
+      <see name="love.objects:newDefaultFont( size )" url="TODO" />
+      <see name="love.objects:newFont( filename, size )" url="TODO" />
+      <see name="love.graphics" url="TODO" />
+
+      <function name="print" brief="Prints some text at the current location.">
+        Does not support line-breaks. It is suggested that you use [b]text:print()[/b] instead.
+        <see name="text:print()" url="TODO" />
+        <param name="text" brief="A line of text." />
+      </function>
+
+      <function name="print" brief="Prints some text at the coordinates.">
+        Does not support line-breaks. It is suggested that you use [b]text:print()[/b] instead.
+        <see name="text:print()" url="TODO" />
+        <param name="text" brief="A line of text." />
+        <param name="x" brief="x-coordinate" />
+        <param name="y" brief="y-coordinate" />
+      </function>
+
+      <function name="print" brief="Prints a character at the current location.">
+        <param name="character" brief="A single character." />
+      </function>
+
+      <function name="print" brief="Prints a character at the coordinates.">
+        <param name="character" brief="A single character." />
+        <param name="x" brief="x-coordinate" />
+        <param name="y" brief="y-coordinate" />
+      </function>
+
+      <separator />
+
+      <function name="getLineHeight" brief="Returns the height of the font.">
+        The height of the font is the size including any spacing; the height which it will need.
+      </function>
+
+      <function name="getLineWidth" brief="Returns the width of the line.">
+        Determines the line length. Does not support line-breaks.
+        <param name="line" brief="A line of text." />
+      </function>
+    </type>
+
+
+
+    <!-- :::::::::::::::::::::::::: IMAGE :::::::::::::::::::::::::: -->
+
+    <type name="Image" brief="Contains image data. Typically loaded from an image file such as png, gif or jpg.">
+      An image is created with the [b]love.objects:newImage()[/b] function.
+      <see name="love.objects:newImage( filepath )" url="TODO" />
+
+      <function name="render" brief="Renders the image at the current location."></function>
+
+      <function name="render" brief="Renders the image at the specified location.">
+        The coordinates denote the top left corner of the image.
+        <param name="x" brief="x-coordinate" />
+        <param name="y" brief="y-coordinate" />
+      </function>
+
+      <function name="render" brief="Renders a sub-image starting at the specified location within the image.">
+        <param name="x" brief="x-coordinate within image" />
+        <param name="y" brief="y-coordinate within image" />
+        <param name="width" brief="Width of the subimage." />
+        <param name="height" brief="Height of the subimage." />
+        <example>
+          -- The size of this image is 64x64 pixles
+          sixtyfour = love.objects:newImage("sixtyfour.png");
+
+          -- This renders a 32x32 square of the image, starting from the top left
+          sixtyfour:render(0,0,32,32);
+
+          -- This renders a 20x12 rectangle from the middle of the image
+          sixtyfour:render(22,26,20,12);
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="getWidth" brief="Gets the width of the image.">
+        <returns type="number">The width of the Image in pixels.</returns>
+      </function>
+
+      <function name="getHeight" brief="Gets the height of the image.">
+        <returns type="number">The height of the Image in pixels.</returns>
+      </function>
+    </type>
+
+
+    <!-- :::::::::::::::::::::::::: MUSIC :::::::::::::::::::::::::: -->
+
+    <type name="Music" brief="Contains compressed sound data.">
+      Can load and play the following formats: MP3, OGG, MIDI, XM and MOD. The difference between Music and Sound is that music is decoded in real-time, while sound is exanded fully in memory. Only a single channel of music is allowed at the same time. (On slower computers, decoding many samples at once is not feasible).
+
+      <see name="love.objects:newMusic( filepath )" url="TODO" />
+
+    </type>
+
+
+    <!-- :::::::::::::::::::::::::: SOUND :::::::::::::::::::::::::: -->
+
+    <type name="Sound" brief="Contains sound data. Loaded from a sample file.">
+      Can play the following types of files: WAVE, AIFF, RIFF, OGG and VOC. Created with [b]love.objects:newSound()[/b].
+
+      <see name="love.objects:newSound( filepath )" url="TODO" />
+
+      <function name="play" brief="Plays the designated sound."></function>
+
+      <separator />
+
+      <function name="setVolume" brief="Sets the volume the sound should be played at.">
+        <param name="volume" brief="The volume (from 0 to 128)." />
+      </function>
+
+      <function name="getVolume" brief="Returns the volume that the sound will be played at.">
+        <returns type="number" brief="The volume (from 0 to 128)." />
+      </function>
+    </type>
+
+
+  </section>
+
+  <section name="Callbacks" has="List of callbacks">
+    <function name="main.load" brief="Called when the game should load.">
+
+      This function is called exacly once at the beginning of the game. Does this mean I can reference Sound, Image, DropDown and so forth? How about main.update( dt )?
+
+      <example>
+        main = {}
+
+        function main.load() = {
+        [tab /]-- Load stuff here.
+        [tab /]image = love.objects:newImage("image.png");
+        [tab /]sound = love.objects:newSound("effect.wav");
+        }
+      </example>
+    </function>
+
+    <function name="main.update" brief="Called each timestep when the game should be updated.">
+      <param name="dt" brief="The time since last update in seconds." />
+      <example>
+        main = {}
+
+        player = { x = 100, y = 100 }
+
+        function main.update(dt) = {
+        [tab /]-- Move the player horizontally by +200px/second.
+        [tab /]player.x = player.x + 200 * dt
+        }
+      </example>
+    </function>
+    <function name="main.render"></function>
+    <function name="main.event"></function>
+    <function name="main.mousepressed">
+      <param name="x" brief="The position of the mouse on the x-axis." />
+      <param name="y" brief="The position of the mouse on the y-axis." />
+      <param name="button" brief="Which button is pressed." />
+    </function>
+    <function name="main.mousereleased">
+      <param name="x" brief="The position of the mouse on the x-axis." />
+      <param name="y" brief="The position of the mouse on the y-axis." />
+      <param name="button" brief="Which button is released." />
+    </function>
+    <function name="main.keypressed">
+      <param name="key" brief="The key code of the pressed key." />
+    </function>
+    <function name="main.keyreleased">
+      <param name="key" brief="The key code of the released key." />
+    </function>
+  </section>
+
+
+  <section name="Miscellaneous" has="List of topics">
+    <page name="Constants" brief="Burgjah">
+      List of constants go here ... This is just a placeholder, tags will be specialized to handle constants.
+    </page>
+    <page name="Configuration files" brief="Testooor">
+     How to write the game .conf files ...
+    </page>
+  </section>
+
+
+</document>

@@ -12,6 +12,21 @@ a:hover
 	color: #555;
 }
 
+/**
+* Symbol links.
+**/
+
+a.symbol:link, a.symbol:active, a.symbol:visited
+{
+	color: #5384c3;
+	text-decoration: none;
+}
+
+a.symbol:hover
+{
+	text-decoration: underline;
+}
+
 div, a
 {
 	font-family: Arial, Verdana, Sans-serif;
