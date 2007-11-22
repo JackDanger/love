@@ -97,7 +97,27 @@ class LoveDoc2
 
     file_put_contents("docs/".$file, $out);
   }
-  
+
+  public static function to_html($string)
+  {
+    // Replace brackets with html tags.
+    $html = trim(str_replace(array("[", "]"), array("<", ">"),$string));
+
+    // Replace text with symbols.
+    foreach(self::$url_symbols as $signature => $url)
+    {
+      $signature = str_replace(array("(",")"),array("\(","\)"), $signature);
+
+      $pattern = '/(\W)('.$signature.')([^\w^:])/';
+      //' <a href="' . $url . '.html" class="symbol"/>' . $signature . "</a> "
+      $replacement = '$1<a href="'.$url.'.html" class="symbol">$2</a>$3';
+
+      $html = preg_replace($pattern, $replacement, $html);
+    }
+
+    return $html;
+  }
+
   public function push($name, $attributes)
   {
     if($this->verbose) echo "push " . $name . "\n";
@@ -112,6 +132,9 @@ class LoveDoc2
            break;
       case "type":
            array_push($this->stack, new Type($name, $attributes));
+           break;
+      case "device":
+           array_push($this->stack, new Device($name, $attributes));
            break;
       case "function":
            array_push($this->stack, new Method($name, $attributes));
@@ -130,6 +153,9 @@ class LoveDoc2
            break;
       case "example":
            array_push($this->stack, new Example($name, $attributes));
+           break;
+      case "page":
+           array_push($this->stack, new Page($name, $attributes));
            break;
     }
   }
@@ -156,6 +182,8 @@ class LoveDoc2
       end($this->stack)->add($popped);
     else
       $this->document = $popped;
+      
+    $popped->popped();
 
   }
   
@@ -167,6 +195,8 @@ class LoveDoc2
 
     $this->document->write();
   }
+  
+
 
 }
 
@@ -275,6 +305,11 @@ abstract class Element
   {
     return "";
   }
+  
+  // Called when this element is popped.
+  public function popped()
+  {
+  }
 }
 
 class Document extends Element
@@ -300,8 +335,11 @@ class Section extends Element
 
   public function html_menu()
   {
+    
+    $url = ($this->atr("refer") == "") ? $this->atr("name") : $this->atr("refer");
+
     $tmp = '<div class="horizontal"></div>';
-    $tmp .= '<a href="'.LoveDoc2::get_url_symbol($this->atr("name")).'.html" class="element_title">'.$this->atr("name").'</a>';
+    $tmp .= '<a href="'.$url.'.html" class="element_title">'.$this->atr("name").'</a>';
     $tmp .= '<div class="horizontal"></div>';
     
     $tmp .= parent::html_menu();
@@ -311,6 +349,7 @@ class Section extends Element
 
   public function write()
   {
+    
     // Create html.
     LoveDoc2::write_html_sym("Shit", $this->atr("name"), $this->atr("name"));
 
@@ -331,8 +370,19 @@ class Type extends Element
 
   public function write()
   {
-    
+    // Create html.
+    LoveDoc2::write_html_sym($this->html(), "Type", $this->atr("name"));
 
+    parent::write();
+  }
+
+  public function html_menu()
+  {
+    return '<a href="'.LoveDoc2::get_url_symbol($this->atr("name")).'.html" class="element">'.$this->atr("name").'</a>';
+  }
+
+  public function html()
+  {
     // Generate HTML.
 
      $html = '<div class="subchapter">';
@@ -341,7 +391,7 @@ class Type extends Element
      $html .= $this->atr("name");
      $html .= '</div>';
      $html .= '<div class="text">';
-     $html .= str_replace(array("[", "]"), array("<", ">"),$this->data);
+     $html .= LoveDoc2::to_html($this->data);
      $html .= '</div>';
 
 
@@ -383,7 +433,125 @@ class Type extends Element
      $num = 1;
      foreach($this->children as $c) {
        if($c->typeof("example")) {
-         $html .= "Example $num:<br />";
+         $html .= "Example $num: ";
+         $html .= $c->html();
+         $num++;
+       }
+     }
+
+       $html .= '</div>';
+       $html .= '</div>';
+
+     $html .= '</div>';
+
+     }
+     
+     return $html;
+  }
+
+  public function add($element)
+  {
+    // Add a parent attribute.
+    $element->add_atr("parent", $this->atr("name"));
+    
+    parent::add($element);
+  }
+  
+  public function popped()
+  {
+    // Add symbol.
+    LoveDoc2::add_url_symbol($this->atr("name"), $this->atr("name"));
+  }
+}
+
+class Method extends Element
+{
+  public function write()
+  {
+
+    $parent = $this->atr("parent") == "" ? "" : $this->atr("parent").":";
+    $partial = $parent . $this->atr("name");
+    $full = $parent . $this->signature();
+    
+
+
+     $html = '<div class="subchapter">';
+  
+     $html .= '<div class="title">';
+     $html .= $full;
+     $html .= '</div>';
+     $html .= '<div class="text">';
+     $html .= LoveDoc2::to_html($this->data);
+     $html .= '</div>';
+  
+  
+     $html .= '<div class="section">';
+     $html .= '<div class="title">Usage</div>';
+     $html .= '<code>';
+  
+     $html .= $full;
+  
+     $html .= '</code>';
+     $html .= '</div>';
+     
+
+     $html .= '<div class="section">';
+     $html .= '<div class="arguments">';
+     $html .= '<div class="title">Arguments</div>';
+  
+     if(!$this->haschildren("param"))
+       $html .= '<div class="entry">None</div>';
+  
+     foreach($this->children as $c)
+       if($c->typeof("param") || $c->typeof("separator"))
+         $html .= $c->html_listitem();
+  
+     $html .= '</div>';
+     $html .= '</div>';
+  
+     $html .= '<div class="section">';
+     $html .= '<div class="arguments">';
+     $html .= '<div class="title">Returns</div>';
+  
+     if(!$this->haschildren("returns"))
+       $html .= '<div class="entry">Nothing</div>';
+
+     foreach($this->children as $c)
+       if($c->typeof("returns"))
+         $html .= $c->html_listitem();
+  
+     $html .= '</div>';
+     $html .= '</div>';
+     
+  
+     if($this->haschildren("see"))
+     {
+
+       $html .= '<div class="section">';
+       $html .= '<div class="title">See also</div>';
+       $html .= '<div class="text">';
+
+
+     foreach($this->children as $c)
+       if($c->typeof("see"))
+         $html .= $c->html_listitem();
+
+       $html .= '</div>';
+       $html .= '</div>';
+       
+     }
+
+      if($this->haschildren("example"))
+     {
+
+       $html .= '<div class="section">';
+       $html .= '<div class="title">Examples</div>';
+       $html .= '<div class="text">';
+
+     $num = 1;
+     foreach($this->children as $c) {
+       if($c->typeof("example")) {
+         $html .= "Example $num: ";
          $html .= $c->html();
          $num++;
        }
@@ -397,48 +565,20 @@ class Type extends Element
      }
 
 
-    // Create html.
-    LoveDoc2::write_html_sym($html, "Type", $this->atr("name"));
-
-    parent::write();
-
-  }
-
-  public function html_menu()
-  {
-    return '<a href="'.LoveDoc2::get_url_symbol($this->atr("name")).'.html" class="element">'.$this->atr("name").'</a>';
-  }
-
-  public function html()
-  {
-  }
+     $html .= '</div>';
   
-  public function add($element)
-  {
-    // Add a parent attribute.
-    $element->add_atr("parent", $this->atr("name"));
-    
-    parent::add($element);
-  }
-}
 
-class Method extends Element
-{
-  public function write()
-  {
 
-    $parent = $this->atr("parent") == "" ? "" : $this->atr("parent").":";
-    $partial = $parent . $this->atr("name");
-    $full = $parent . $this->signature();
+
 
     // Create html.
-    LoveDoc2::write_html_sym("Signature is: " . $full, "Function", $partial, $full);
+    LoveDoc2::write_html_sym($html, "Function", $partial, $full);
 
   }
 
   public function html_listitem()
   {
-    
+
     $parent = $this->atr("parent") == "" ? "" : $this->atr("parent").":";
     $partial = $parent . $this->atr("name");
     $full = $parent . $this->signature();
@@ -450,6 +590,13 @@ class Method extends Element
 
   public function html_menu()
   {
+    
+    $parent = $this->atr("parent") == "" ? "" : $this->atr("parent").":";
+    $partial = $parent . $this->atr("name");
+    $full = $parent . $this->signature();
+    $url = LoveDoc2::get_url_symbol($partial, $full);
+
+    return '<a href="'.$url.'.html" class="element">'.$partial.'</a>';
   }
 
   public function html()
@@ -460,21 +607,47 @@ class Method extends Element
   {
     $s = $this->atr("name") . "( ";
 
-    foreach($this->children as $p)
-     if($p->typeof("param"))
+    $num = 0;
+
+    foreach($this->children as $p) {
+     if($p->typeof("param")) {
       $s .= $p->atr("name") . ", ";
+      $num++;
+     }
+    }
 
-    if(sizeof($this->children))
+    if($num > 0) 
+    {
       $s = substr($s,0, strlen($s) - 2);
-
-    $s .= " )";
+      $s .= " )";
+    }else
+    {
+      $s .= ")";
+    }
 
     return $s;
+  }
+
+  public function popped()
+  {
+    
+    $parent = $this->atr("parent") == "" ? "" : $this->atr("parent").":";
+    $partial = $parent . $this->atr("name");
+    $full = $parent . $this->signature();
+
+    // Add symbol.
+    LoveDoc2::add_url_symbol($partial, $full);
   }
 }
 
 class Parameter extends Element
 {
+
+  public function html_listitem()
+  {
+     $html = '<div class="entry"><span class="name">'.$this->atr("name").'</span>'.$this->atr("brief").'</div>';
+     return $html;
+  }
 
   public function html_menu()
   {
@@ -487,6 +660,11 @@ class Parameter extends Element
 
 class Returns extends Element
 {
+  public function html_listitem()
+  {
+     $html = '<div class="entry"><span class="name">'.$this->atr("type").'</span>'.$this->atr("brief").'</div>';
+     return $html;
+  }
 }
 
 class See extends Element
@@ -498,7 +676,7 @@ class See extends Element
     if($sym == "")
       return '<a href="javascript:void(0)" style="color: red;">(Error: symbol "'.$this->atr("name").'" does not exist.)</a> &nbsp;';
     else
-      return '<a href="'.$sym.'.html">'.$this->atr("name").'</a> &nbsp;';
+      return '<a href="'.$sym.'.html" class="symbol">'.$this->atr("name").'</a> &nbsp;';
   }
 }
 
@@ -506,7 +684,38 @@ class Example extends Element
 {
   public function html()
   {
-    return toCode($this->data);
+    return " " . $this->atr("name") . " " . toCode($this->data);
+  }
+}
+
+class Page extends Element
+{
+  
+  
+  public function html_menu()
+  {
+    return '<a href="'.LoveDoc2::get_url_symbol($this->atr("name")).'.html" class="element">'.$this->atr("name").'</a>';
+  }
+
+
+ public function write()
+ { 
+   
+   $html = LoveDoc2::to_html($this->data);
+   
+   LoveDoc2::write_html_sym($html, $this->atr("name"), $this->atr("name"));
+ }
+}
+
+class Device extends Type
+{
+  public function write()
+  {
+    // Create html.
+    LoveDoc2::write_html_sym($this->html(), "Device", $this->atr("name"));
+
+    foreach($this->children as $c)
+      $c->write();
   }
 }
 

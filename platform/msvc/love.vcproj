@@ -684,6 +684,14 @@
 				RelativePath="..\..\src\WindowMenu.cpp"
 				>
 			</File>
+			<Filter
+				Name="gcn"
+				>
+				<File
+					RelativePath="..\..\src\gcn\lovegraphics.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"

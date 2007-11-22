@@ -7,6 +7,8 @@
 #include "DisplayMode.h"
 #include "GameConfiguration.h"
 
+
+
 namespace love
 {
 	OpenGLGUI::OpenGLGUI()
@@ -35,7 +37,7 @@ namespace love
 		imageLoader = new gcn::OpenGLSDLImageLoader();
 		gcn::Image::setImageLoader(imageLoader);
 
-		graphics = new gcn::OpenGLGraphics();
+		graphics = new gcn::LOVEGraphics(); //new gcn::OpenGLGraphics();
 		graphics->setTargetPlane(display.getWidth(), display.getHeight());
 
 		font.reset<AbstractFont>(new love::Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 10));

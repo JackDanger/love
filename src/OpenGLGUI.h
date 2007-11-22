@@ -7,12 +7,19 @@
 #include <guichan/sdl.hpp>
 #include <guichan/opengl/openglsdlimageloader.hpp>
 
+// 100% quick and dirty love graphics output object.
+#include "gcn/lovegraphics.hpp"
+
 namespace love
 {
+
+	
+
 	class OpenGLGUI : public AbstractGUI
 	{
 	protected:
-		gcn::OpenGLGraphics * graphics;
+
+		gcn::LOVEGraphics * graphics;
 
 	public:
 		/**
