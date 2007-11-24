@@ -53,7 +53,7 @@ namespace love
 
 		FT_Bitmap& bitmap = bitmap_glyph->bitmap; //just to make things easier
 
-		width[character] = face->glyph->advance.x >> 6;
+		widths[character] = face->glyph->advance.x >> 6;
 		int w = next_p2(bitmap.width);
 		int h = next_p2(bitmap.rows);
 
@@ -114,8 +114,9 @@ namespace love
 	{
 		unload();
 	}
+	
 
-	void Font::print(const char * text, float x, float y)
+	void Font::print(string text, float x, float y)
 	{
 		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
@@ -123,15 +124,10 @@ namespace love
 		glTranslatef(x, y, 0.0f);
 		GLuint font = list;
 		glListBase(font);
-		glCallLists((int)strlen(text), GL_UNSIGNED_BYTE, text);
+		glCallLists((int)text.length(), GL_UNSIGNED_BYTE, text.c_str());
 
 		glDisable(GL_TEXTURE_2D);
 		glPopMatrix();
-	}
-
-	void Font::print(string text, float x, float y)
-	{
-		print(text.c_str(), x, y);
 	}
 
 	void Font::print(char character, float x, float y)
@@ -155,7 +151,7 @@ namespace love
 
 		for(unsigned int i = 0; i < strlen(line); i++)
 		{
-			temp += width[(int)line[i]];
+			temp += widths[(int)line[i]];
 		}
 
 		return temp;
@@ -165,11 +161,12 @@ namespace love
 	{
 
 		// Load file
-		file->load();
+		if(!file->load())
+			return LOVE_ERROR;
 
 
 		textures = new GLuint[MAX_CHARS];
-		for(int i = 0; i != MAX_CHARS; i++) width[i] = 0;
+		for(int i = 0; i != MAX_CHARS; i++) widths[i] = 0;
 
 		FT_Library library;
 		if( FT_Init_FreeType(&library) )

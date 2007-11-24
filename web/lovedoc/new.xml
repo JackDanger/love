@@ -274,6 +274,18 @@
           small = love.objects:newFont("SomeAwesomeZeldaFont.ttf", 8);
         </example>
       </function>
+	  
+	  <function name="newImageFont" brief="Creates a new font by loading a formatted image image.">
+	    The image must contain all the glyphs on a single row reparated by spacing of a certain color.[br /]
+		TODO: Add tutorial.
+        <param name="filename" brief="The filepath to the font file. Relative to the game's folder or .love file." />
+        <param name="glyphs" brief="A list of the glyphs in the same order as they are found in the image." />
+		<returns type="Font" brief="A Font object containing the font data." />
+        <example name="Add some fonts.">
+          big = love.objects:newImageFont("bigfont.png", " ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+          small = love.objects:newImageFont("smallfont.png", " abcdefghijklmnopqrstuvwxyz");
+        </example>
+      </function>
 
       <separator />
 
@@ -318,17 +330,17 @@
       </function>
 
       <function name="setColor" brief="Sets the current color.">
-        <param name="r" brief="The amount of red." />
-        <param name="g" brief="The amount of green." />
-        <param name="b" brief="The amount of blue." />
-        <param name="a" brief="The amount of alpha (default: 255)." />
+        <param name="red" brief="The amount of red." />
+        <param name="green" brief="The amount of green." />
+        <param name="blue" brief="The amount of blue." />
+        <param name="alpha" brief="The amount of alpha (default: 255)." />
         <example name="Set the current color as  transparent red and then blue.">
           love.graphics:setColor(255, 10, 10, 150);
           love.graphics:setColor(10, 10, 255); -- the default alpha value (255) will be used
         </example>
       </function>
 
-      <function name="setBackground" brief="Sets the background color.">
+      <function name="setBackgroundColor" brief="Sets the background color.">
         <param name="color" brief="A Color object." />
         <example name="Set the background color as red.">
           red = love.objects:newColor(0xFF1111);
@@ -336,10 +348,10 @@
         </example>
       </function>
 
-      <function name="setBackground" brief="Sets the background color.">
-        <param name="r" brief="The amount of red." />
-        <param name="g" brief="The amount of green." />
-        <param name="b" brief="The amount of blue." />
+      <function name="setBackgroundColor" brief="Sets the background color.">
+        <param name="red" brief="The amount of red." />
+        <param name="green" brief="The amount of green." />
+        <param name="blue" brief="The amount of blue." />
         <example name="Set the current color as  transparent red and then blue.">
           love.graphics:setBackground(255, 10, 10);
           love.graphics:setBackground(10, 10, 255);
@@ -355,6 +367,20 @@
       </function>
 
       <separator />
+	  
+	  <function name="getColor" brief="Gets the current color.">
+	    <returns type="Color" brief="The current color." />
+	  </function>
+	  
+	  <function name="getBackgroundColor" brief="Gets the current background color.">
+	    <returns type="Color" brief="The current background color." />
+	  </function>
+	  
+	  <function name="getFont" brief="Gets the current font.">
+	    <returns type="Font" brief="The current font." />
+	  </function>
+	  
+	  <separator />
 
       <function name="draw" brief="Draws text on screen.">
         <param name="string" brief="A text string." />
@@ -746,44 +772,20 @@
 
     <type name="Font" brief="Represents a font.">
       A Font object is created by calling any of the [b]love.objects:newFont()[/b] functions.[br /]
-      Note: Using the print methods in a font file directly is not recommended and any of the [b]love.graphics:draw()[/b] functions is the best solution for printing text.
-      <see name="love.objects:newDefaultFont( size )" url="TODO" />
-      <see name="love.objects:newFont( filename, size )" url="TODO" />
-      <see name="love.graphics:" url="TODO" />
-
-      <function name="print" brief="Prints some text at the current location.">
-        Does not support line-breaks. It is suggested that you use [b]text:print()[/b] instead.
-        <see name="text:print()" url="TODO" />
-        <param name="text" brief="A line of text." />
-      </function>
-
-      <function name="print" brief="Prints some text at the coordinates.">
-        Does not support line-breaks. It is suggested that you use [b]text:print()[/b] instead.
-        <see name="text:print()" url="TODO" />
-        <param name="text" brief="A line of text." />
-        <param name="x" brief="x-coordinate" />
-        <param name="y" brief="y-coordinate" />
-      </function>
-
-      <function name="print" brief="Prints a character at the current location.">
-        <param name="character" brief="A single character." />
-      </function>
-
-      <function name="print" brief="Prints a character at the coordinates.">
-        <param name="character" brief="A single character." />
-        <param name="x" brief="x-coordinate" />
-        <param name="y" brief="y-coordinate" />
-      </function>
-
-      <separator />
+      <see name="love.objects:newDefaultFont( size )" />
+      <see name="love.objects:newFont( filename, size )" />
+	  <see name="love.objects:newImageFont( filename, glyphs )" />
+      <see name="love.graphics:setFont( font )" />
 
       <function name="getLineHeight" brief="Returns the height of the font.">
         The height of the font is the size including any spacing; the height which it will need.
+		<returns type="number" brief="The height of the font." />
       </function>
 
       <function name="getLineWidth" brief="Returns the width of the line.">
         Determines the line length. Does not support line-breaks.
         <param name="line" brief="A line of text." />
+		<returns type="number" brief="The width of the font." />
       </function>
     </type>
 

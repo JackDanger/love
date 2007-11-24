@@ -183,12 +183,14 @@ namespace love
 		/**
 		* @brief Draws a sub-sprite.
 		* @param sprite The sprite to draw.
-		* @param x The x-coordinate within the sprite.
-		* @param y The y-coordinate within the sprite.
+		* @param x The x-coordinate.
+		* @param y The y-coordinate.
+		* @param xs The x-coordinate within the sprite.
+		* @param ys The y-coordinate within the sprite.
 		* @param width The width of the sub-sprite.
 		* @param height The height of the sub-sprite.
 		**/
-		virtual void draw(const pSprite & sprite, float x, float y, float width, float height) const;
+		virtual void draw(const pSprite & sprite, float x, float y, float xs, float ys, float width, float height) const;
 
 		/**
 		* @brief Draws a particle system at the specified location.

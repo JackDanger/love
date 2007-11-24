@@ -12,6 +12,49 @@ namespace love
 	{
 	}
 
+	AbstractColor & AbstractColor::operator=(const AbstractColor & other)
+	{
+		return *this;
+	}
+
+	AbstractColor & AbstractColor::operator+(const AbstractColor & other)
+	{
+		Color temp;
+		temp.setRed( (this->getRed() + other.getRed() < 255) ? this->getRed() + other.getRed() : 255 );
+		temp.setGreen( (this->getGreen() + other.getGreen() < 255) ? this->getGreen() + other.getGreen() : 255 );
+		temp.setBlue( (this->getBlue() + other.getBlue() < 255) ? this->getBlue() + other.getBlue() : 255 );
+		temp.setAlpha( (this->getAlpha() + other.getAlpha() < 255) ? this->getAlpha() + other.getAlpha() : 255 );
+		return temp;
+	}
+
+	AbstractColor & AbstractColor::operator-(const AbstractColor & other)
+	{
+		Color temp;
+		temp.setRed( (this->getRed() - other.getRed() > 0) ? this->getRed() - other.getRed() : 0 );
+		temp.setGreen( (this->getGreen() - other.getGreen() > 0) ? this->getGreen() - other.getGreen() : 0 );
+		temp.setBlue( (this->getBlue() - other.getBlue() > 0) ? this->getBlue() - other.getBlue() : 0 );
+		temp.setAlpha( (this->getAlpha() - other.getAlpha() > 0) ? this->getAlpha() - other.getAlpha() : 0 );
+		return temp;
+	}
+
+	bool AbstractColor::operator==(const AbstractColor & other) const
+	{
+		if(this->getRed() != other.getRed())
+			return false;
+		if(this->getGreen() != other.getGreen())
+			return false;
+		if(this->getBlue() != other.getBlue())
+			return false;
+		if(this->getAlpha() != other.getAlpha())
+			return false;
+		return true;
+	}
+
+	bool AbstractColor::operator!=(const AbstractColor & other) const
+	{
+		return !(*this == other);
+	}
+
 	int AbstractColor::getRed() const
 	{
 		return red;

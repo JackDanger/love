@@ -79,14 +79,6 @@ namespace love
 		virtual ~Font();
 
 		/**
-		 * @param text Some text.
-		 * @param x The x-coordinate.
-		 * @param y The y-coordinate.
-		 * @brief Prints the text at the set position.
-		 **/
-		void print(const char * text, float x = 0, float y = 0);
-
-		/**
 		 * @param text A string.
 		 * @param x The x-coordinate.
 		 * @param y The y-coordinate.

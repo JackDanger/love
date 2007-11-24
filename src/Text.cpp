@@ -63,7 +63,7 @@ namespace love
 			else if(text[i] == ' ')
 			{
 				temp += text[i];
-				size += font->width[(int)' '];
+				size += font->widths[(int)' '];
 				words.push_back(temp);
 				sizes.push_back(size);
 				size = 0;
@@ -72,7 +72,7 @@ namespace love
 			else
 			{
 				temp += text[i];
-				size += font->width[(int)text[i]];
+				size += font->widths[(int)text[i]];
 			}
 		}
 		//takes the last one and pushes it
@@ -132,7 +132,7 @@ namespace love
 			glPushMatrix();
 			length = 0;
 			for(int j = 0; j != (int)lines[i].length(); j++)
-				length += font->width[(int)lines[i].c_str()[j]];
+				length += font->widths[(int)lines[i].c_str()[j]];
 
 			if(length % 2 != 0) //removes a strange error
 				length++;

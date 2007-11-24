@@ -76,7 +76,8 @@ namespace love
 		removeSource();
 
 		// Notify plz
-		core->printf(" + LOADED \"%s\"\n",(source + "\" -> \"" + filename).c_str());
+		if(core->isVerbose())
+			core->printf(" + LOADED \"%s\"\n",(source + "\" -> \"" + filename).c_str());
 
 
 		return LOVE_OK;
@@ -104,7 +105,8 @@ namespace love
 	{
 		if(data != 0)
 		{
-			core->printf(" - UNLOAD \"%s\"\n", (source + "\" -> \"" + filename).c_str());
+			if(core->isVerbose())
+				core->printf(" - UNLOAD \"%s\"\n", (source + "\" -> \"" + filename).c_str());
 			delete data;
 		}
 

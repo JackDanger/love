@@ -149,10 +149,20 @@ namespace love
 		return font;		
 	}
 
-	pAbstractFont ObjectFactory::newImageFont(const pAbstractImage * image, int width, int height, const char * charlist) const
+	pAbstractFont ObjectFactory::newImageFont(const char * filename, const char * glyphs) const
 	{
-		pImageFont font(new ImageFont(*image, width, height, string(charlist)));
+		// Get the current source
+		string source = core->current->getSource();
+
+		// Get a file pointer
+		AbstractFile * file = core->filesystem->getFile(source, string(filename));
+
+		// Create the font
+		pImageFont font(new ImageFont(file, string(glyphs)));
+
+		// Load it
 		font->load();
+
 		return font;
 	}
 

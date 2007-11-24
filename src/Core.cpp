@@ -28,7 +28,7 @@ namespace love
 {
 
 
-	Core::Core() : display(0), keyboard(0), mouse(0), timer(0), filesystem(0), current(0), uigame(0)
+	Core::Core() : display(0), keyboard(0), mouse(0), timer(0), filesystem(0), current(0), uigame(0), verbose(false)
 	{
 
 	}
@@ -280,7 +280,8 @@ namespace love
 				}
 			}
 
-			core->printf("Display mode was changed to: %i x %i.\n", display->getCurrentDisplayMode().getWidth(), display->getCurrentDisplayMode().getHeight());
+			if(verbose)
+				core->printf("Display mode was changed to: %i x %i.\n", display->getCurrentDisplayMode().getWidth(), display->getCurrentDisplayMode().getHeight());
 
 		}
 
@@ -352,7 +353,8 @@ namespace love
 			{
 				display->toggleFullscreen();
 				current->resume();
-				printf("Fullscreen: %i\n", getDisplayMode().isFullscreen());
+				if(verbose)
+					this->printf("Fullscreen: %i\n", getDisplayMode().isFullscreen());
 			}
 			break;
 		case LOVE_KEY_v:
@@ -360,7 +362,8 @@ namespace love
 			{
 				display->toggleVSync();
 				current->resume();
-				printf("Vsync: %i\n", getDisplayMode().isVsync());
+				if(verbose)
+					this->printf("Vsync: %i\n", getDisplayMode().isVsync());
 			}
 			break;
 		/*case LOVE_KEY_r: //removed because it causes some issues (replaced with pause menu option)
@@ -451,6 +454,11 @@ namespace love
 		if(uigame != 0 && uigame->isLoaded())
 			uigame->showError(s.c_str());
 		puts(s.c_str());
+	}
+
+	bool Core::isVerbose()
+	{
+		return verbose;
 	}
 
 

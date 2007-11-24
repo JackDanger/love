@@ -64,17 +64,17 @@ namespace love
 	{
 		self->draw((pSprite)*sprite, x, y);
 	}
-	void draw(const pAbstractImage * sprite, float x, float y, float width, float height) const
+	void draw(const pAbstractImage * sprite, float x, float y, float sx, float sy, float width, float height) const
 	{
-		self->draw((pSprite)*sprite, x, y, width, height);
+		self->draw((pSprite)*sprite, x, y, sx, sy, width, height);
 	}
 	void draw(const pFrameAnimation * sprite, float x = 0, float y = 0) const
 	{
 		self->draw((pSprite)*sprite, x, y);
 	}
-	void draw(const pFrameAnimation * sprite, float x, float y, float width, float height) const
+	void draw(const pFrameAnimation * sprite, float x, float y, float sx, float sy, float width, float height) const
 	{
-		self->draw((pSprite)*sprite, x, y, width, height);
+		self->draw((pSprite)*sprite, x, y, sx, sy, width, height);
 	}
 	void draw(const pParticleSystem * particleSystem, float x = 0, float y = 0) const
 	{

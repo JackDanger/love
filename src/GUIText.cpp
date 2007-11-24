@@ -16,7 +16,7 @@ namespace love
 	{
 		if(font == 0)
 			return 0;
-		return font->width[glyph];
+		return font->widths[glyph];
 	}
 
     int GUIText::getWidth(const std::string& text) const

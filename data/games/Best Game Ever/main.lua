@@ -6,7 +6,7 @@ main = {
 	load = function()
 
 		-- variables
-		font = { standard = love.objects:newDefaultFont(12), big = love.objects:newDefaultFont(20), small = love.objects:newDefaultFont(7), image = love.objects:newImageFont(love.objects:newImage("letters.png"), 15, 15, "ABCDEFGHIJKLMNOPQRSTUVWXYZ.,!?") };
+		font = { standard = love.objects:newDefaultFont(12), big = love.objects:newDefaultFont(20), small = love.objects:newDefaultFont(7), image = love.objects:newImageFont("techyfontbig.png", " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&`´*#=[]\"") };
 		color = { black = love.objects:newColor(0x000000), white = love.objects:newColor(0xFFFFFF), shiznet = love.objects:newColor(0xF60968), halfshiz = love.objects:newColor(0xF60968) };
 		color["halfshiz"]:setAlpha(200);
 		
@@ -165,10 +165,11 @@ main = {
 	end,
 	render = function()
 
-		love.graphics:setColor(color["black"]);
+		love.graphics:setColor(color["white"]);
 		--love.graphics:setFont(font["big"]);
 		--love.graphics:drawText("Truly the best game ever. Because: it has a lot of shapes (loel)\nPress S to shoot and M to start/stop the music\n(arrow keys for valuum desu)!", 10, 35);
 		--love.graphics:setColor(color["white"]);
+		--love.graphics:setFont(font["image"]);
 		love.graphics:setFont(font["image"]);
 		love.graphics:draw("TRULY THE BEST GAME EVER.\nBECAUSE: IT HAS A LOT OF SHAPES (LOEL)\nTHIS IS AN IMAGE FONT, BTW!", 10, 35);
 			  

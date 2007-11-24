@@ -1,10 +1,11 @@
 #include "ImageFont.h"
 #include "Core.h"
 #include "love.h"
+#include "AbstractImageDevice.h"
 
 namespace love
 {
-	void ImageFont::renderChar(char character)
+	void ImageFont::renderCharacter(char character)
 	{
 		// To Mike: g++ warns about this always being false. (MAX_CHARS = 256, 
 		// and since character is a char, it can't go higher than 255. 
@@ -13,49 +14,44 @@ namespace love
 		// FYI, g++ also complains about using char as an array index. Thus
 		// the constant (int)-ing.
 
-		int c = (int) character;
+		int c = (int)character;
 
-		if(c > MAX_CHARS || width[(int)character] == -1)
+		if(c > MAX_CHARS || widths[(int)character] == -1)
 			return;
-		image->render((float)(width[(int)character] % columns) * charwidth, floor((float)(width[(int)character] / columns)) * size, (float)charwidth, (float)size);
+		charImage->render((float)coordinates[c], 0.0f, (float)widths[c], (float)size);
 	}
 
-	ImageFont::ImageFont(pAbstractImage image, int width, int height, const string & charlist) : AbstractFont(0, height)
+	ImageFont::ImageFont(AbstractFile * file, const string & glyphs) : AbstractFont(file, 0)
 	{
-		this->image = image;
-		this->charwidth = width;
-		this->charlist = charlist;
+		this->glyphs = glyphs;
+		for(int i = 0; i < MAX_CHARS; i++) coordinates[i] = -1;
 	}
 
 	ImageFont::~ImageFont()
 	{
+		file = 0;
 		unload();
-	}
-
-	void ImageFont::print(const char * text, float x, float y)
-	{
-		glPushMatrix();
-		glTranslatef(x,y - getLineHeight(),0.0f);
-		//glColor4ub(255,255,255,255); //might want to remove this?
-		for(unsigned int i = 0; i < strlen(text); i++)
-		{
-			renderChar(text[i]);
-			glTranslatef((float)charwidth, 0.0f,0.0f);
-		}
-		glPopMatrix();
 	}
 
 	void ImageFont::print(string text, float x, float y)
 	{
-		print(text.c_str(), x, y);
+		glPushMatrix();
+		//glColor4ub(255,255,255,255); // clearing colors shouldn't be automatic
+		glTranslatef(x, y, 0.0f);
+		for(unsigned int i = 0; i < text.length(); i++)
+		{
+			renderCharacter(text[i]);
+			glTranslatef( (float)((widths[text[i]] != -1) ? widths[text[i]] : 0), 0.0f, 0.0f );
+		}
+		glPopMatrix();
 	}
 
 	void ImageFont::print(char character, float x, float y)
 	{
 		glPushMatrix();
-		glTranslatef(x,y,0.0f);
-		//glColor4ub(255,255,255,255); //might want to remove this?
-		renderChar(character);
+		//glColor4ub(255,255,255,255); // clearing colors shouldn't be automatic
+		glTranslatef(x, y, 0.0f);
+		renderCharacter(character);
 		glPopMatrix();
 	}
 
@@ -66,33 +62,114 @@ namespace love
 
 	float ImageFont::getLineWidth(const char * line)
 	{
-		return (float)(strlen(line) * charwidth);
+		float temp = 0;
+		for(unsigned int i = 0; i < strlen(line); i++)
+			temp += widths[line[i]];
+		return temp;
 	}
 
 	int ImageFont::load()
 	{
-		//image->load(); //we assume that it has been loaded already
-
-		if(width <= 0 || size <= 0)
+		if(glyphs.length() > MAX_CHARS)
 		{
-			core->error("ImageFont: Unable to create font!");
+			core->error("ImageFont: List of glyphs is too long. MAX_CHARS=%d", MAX_CHARS);
 			return LOVE_ERROR;
 		}
 
-		for(int i = 0; i < MAX_CHARS; i++)
-			width[i] = -1;
+		if(!file->load())
+			return LOVE_ERROR;
 
-		for(unsigned int i = 0; i < charlist.length(); i++)
+		// Generate DevIL image.
+		ilGenImages(1, &image);
+
+		// Bind the image.
+		ilBindImage(image);
+
+		// Try to load the image.
+		ILboolean success = ilLoadL(IL_TYPE_UNKNOWN, (void*)file->getData(), file->getSize());
+
+		// Check for errors
+		if(!success)
+			printf((const char *)iluErrorString(ilGetError()));
+
+		// Get the data
+		this->width	 = (float)ilGetInteger(IL_IMAGE_WIDTH);
+		this->height = (float)ilGetInteger(IL_IMAGE_HEIGHT);
+		this->actualWidth = width;
+		this->actualHeight = height;
+		ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
+
+		rgba * s = (rgba *)ilGetData();
+
+		// Get the spacer color
+		Color spacer(s[0].r, s[0].g, s[0].b, s[0].a);
+
+		const char * glyphlist = glyphs.c_str();
+		int currentChar = 0; // the current character
+		int charPos = 0; // the position of the current char
+		int charWidth = -1; // the width of the current char
+
+		for(int x = 0; x < this->width; x++)
 		{
-			// To Mike: ... same as the comment in renderChar.
-			
-			int c = (int) charlist[i];
-			
-			if(c > 0 && c < MAX_CHARS)
-				width[(int)charlist[i]] = i;
+			Color current(s[x].r, s[x].g, s[x].b, s[x].a);
+			if(current == spacer)
+			{
+				if(charWidth == -1) continue; // we're not reading a character, so we can just continue
+				
+				int temp = (int)glyphlist[currentChar];
+				if(temp < 0 || temp > MAX_CHARS)
+				{
+					core->printf("ImageFont: Character '%c'(%d) out of scope.", (char)temp, temp);
+				}
+				else
+				{
+					coordinates[temp] = charPos;
+					widths[temp] = charWidth;
+				}
+				charPos = 0;
+				charWidth = -1; // we're not reading a char anymore
+				currentChar++;
+				if(currentChar == strlen(glyphlist)) break;
+			}
+			else
+			{
+				if(charWidth != -1) // we're reading a char, so let's continue doing that
+				{
+					charWidth++;
+					continue;
+				}
+
+				charPos = x;
+				charWidth = 0;
+			}
+		}
+		if(charWidth != -1 && currentChar != strlen(glyphlist)) //we have one char left
+		{
+			coordinates[glyphlist[currentChar]] = charPos;
+			widths[glyphlist[currentChar]] = charWidth;
 		}
 
-		columns = (int)(image->getWidth() / charwidth);
+		// Set the height of the font
+		this->size = (int)height;
+
+		// left here if we ever use a grid format
+		/* for(int y = 0; y < this->height; y++)
+			{
+			for(int x = 0; x< this->width; x++)
+			{
+				int si = (int)(y * this->width + x);
+				printf("%dx%d: %c,%c,%c,%c", x, y, s[si].r, s[si].g, s[si].b, s[si].a);
+			}
+		} */
+
+		// Delete DevIL-data (no longer needed)
+		ilDeleteImages(1, &image);
+
+		file->unload();
+
+		// Now that we have our coordinates we can load the actual image that we will use
+		charImage.reset<AbstractImage>(core->getImaging().getImage(file));
+		charImage->load();
 
 		return LOVE_OK;
 	}

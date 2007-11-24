@@ -108,6 +108,9 @@ namespace love
 		// GUI
 		UIGame * uigame;
 
+		// How many messages there should be
+		bool verbose;
+
 
 	public:
 
@@ -297,6 +300,12 @@ namespace love
 		* @param text The error text.
 		**/
 		void error(const char * text, ...);
+
+		/**
+		* @brief Checks whether the system is verbose.
+		* @return true if the system is verbose (anti-Rorschach).
+		**/
+		bool isVerbose();
 
 	private:
 

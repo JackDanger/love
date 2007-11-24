@@ -69,9 +69,11 @@ namespace love
 	{
 		sprite->render(x, y);
 	}
-	void AbstractGraphics::draw(const pSprite & sprite, float x, float y, float width, float height) const
+	void AbstractGraphics::draw(const pSprite & sprite, float x, float y, float xs, float ys, float width, float height) const
 	{
-		sprite->render(x, y, width, height);
+		this->translate(x,y);
+		sprite->render(xs, ys, width, height);
+		this->translate(-x,-y);
 	}
 
 	void AbstractGraphics::draw(const pParticleSystem & particleSystem, float x, float y) const

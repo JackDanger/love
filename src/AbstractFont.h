@@ -24,18 +24,10 @@ namespace love
 
 	public:
 		static const int MAX_CHARS = 256;
-		int width[MAX_CHARS]; //to hold the width of every char
+		int widths[MAX_CHARS]; //to hold the width of every char
 
 		AbstractFont(AbstractFile * file, int size);
 		~AbstractFont();
-
-		/**
-		 * @param text Some text.
-		 * @param x The x-coordinate.
-		 * @param y The y-coordinate.
-		 * @brief Prints the text at the set position.
-		 **/
-		virtual void print(const char * text, float x = 0, float y = 0) = 0;
 
 		/**
 		 * @param text A string.

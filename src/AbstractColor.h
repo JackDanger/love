@@ -40,6 +40,12 @@ namespace love
 		 **/
 		~AbstractColor();
 
+		AbstractColor & operator=(const AbstractColor & other);
+		AbstractColor & operator+(const AbstractColor & other);
+		AbstractColor & operator-(const AbstractColor & other);
+		bool operator==(const AbstractColor & other) const;
+		bool operator!=(const AbstractColor & other) const;
+
 		/**
 		 * @return The amount of red.
 		 * @brief Returns the amount of red is in the color.

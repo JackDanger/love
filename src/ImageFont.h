@@ -4,6 +4,7 @@
 #include "AbstractFile.h"
 #include "AbstractImage.h"
 #include "AbstractFont.h"
+#include "Color.h"
 
 namespace love
 {
@@ -15,43 +16,32 @@ namespace love
 	* @date 2007-10-06
 	* @brief For handling fonts derived from images. Note: This subclass of AbstractFont uses the width variable a little differently.
 	**/
-	class ImageFont : public AbstractFont
+	class ImageFont : public AbstractFont, public AbstractImage
 	{
 	protected:
-		pAbstractImage image;
-		string charlist;
-		int charwidth;
-		int columns; // the amound of columns of characters in the image
+		pAbstractImage charImage; // a pointer to an image
+		string glyphs; // the list of glyphs
+		int coordinates[MAX_CHARS]; // to hold the x-position of every glyph
 
 		/**
 		 * @param character A single character.
 		 * @brief Renders the passed character if it is present in the image.
 		 **/
-		void renderChar(char character);
+		void renderCharacter(char character);
 
 	public:
 
 		/**
-		 * @param image An abstract image.
-		 * @param width The width of each character.
-		 * @param height The height of each character.
-		 * @param charlist A list of the characters as they appear in the image (example: "ABCD")
+		 * @param file an AbstractFile.
+		 * @param glyphs A list of the characters as they appear in the image (example: " ABCD")
 		 * @brief The default constructor. Constructs.
 		 **/
-		ImageFont(pAbstractImage image, int width, int height, const string & charlist);
+		ImageFont(AbstractFile * file, const string & glyphs);
 
 		/**
 		 * @brief The deconstructor. Calls unload()
 		 **/
 		~ImageFont();
-
-		/**
-		 * @param text Some text.
-		 * @param x The x-coordinate.
-		 * @param y The y-coordinate.
-		 * @brief Prints the text at the set position.
-		 **/
-		virtual void print(const char * text, float x = 0, float y = 0);
 
 		/**
 		 * @param text A string.
