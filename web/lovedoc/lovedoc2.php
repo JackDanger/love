@@ -681,7 +681,7 @@ class Parameter extends Element
 
   public function html_listitem()
   {
-     $html = '<div class="entry"><span class="name">'.$this->atr("name").'</span>'.$this->atr("brief").'</div>';
+     $html = '<div class="entry"><span class="name">'.$this->atr("name").'</span>'.LoveDoc2::to_html($this->atr("brief")).'</div>';
      return $html;
   }
 
@@ -698,8 +698,12 @@ class Returns extends Element
 {
   public function html_listitem()
   {
-     $html = '<div class="entry"><span class="name">'.$this->atr("type").'</span>'.$this->atr("brief").'</div>';
-     return $html;
+	$sym = LoveDoc2::urlsym($this->atr("type"));
+	if($sym == "")
+	  $html = '<div class="entry"><span class="name">'.$this->atr("type").'</span>'.$this->atr("brief").'</div>';
+	else
+	  $html = '<div class="entry"><span class="name"><a href="'.$sym.'.html" class="symbol">'.$this->atr("type").'</a></span>'.$this->atr("brief").'</div>';
+    return $html;
   }
 }
 

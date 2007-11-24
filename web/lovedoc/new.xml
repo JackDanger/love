@@ -172,10 +172,11 @@
     Devices, such as love.objects totally kick ass. In fact, they kick so much ass that it makes love.graphics, love.audio, love.filesystem, and Music to
     seem like complete shit in comparison. etc etc
 
-    <device name="love.objects">
-
+    <device name="love.objects" brief="An interface for creating objects within the game engine such as images or music.">
+	  
       <function name="newImage" brief="Loads an image.">
         <param name="filename" brief="The filepath to the image file. Relative to the game's folder or .love file." />
+		<returns type="Image" brief="An Image object containing the display data." />
         <example name="Add an image.">
           picture = love.objects:newImage("picture.jpg");
         </example>
@@ -185,6 +186,7 @@
 
       <function name="newAnimation" brief="Creates an animation from an image file.">
         <param name="image" brief="A loaded image file." />
+		<returns type="Animation" brief="An Animation object containing the animation data." />
         <example name="Add an animation.">
           picture = love.objects:newImage("animated_picture.jpg");
           animation = love.objects:newAnimation(picture);
@@ -199,6 +201,7 @@
         <param name="fw" brief="The width of each frame." />
         <param name="fh" brief="The height of each frame." />
         <param name="delay" brief="The amount of time between each frame (in seconds)." />
+		<returns type="Animation" brief="An Animation object containing the animation data." />
         <example name="Add an animation.">
           picture = love.objects:newImage("animated_picture.jpg");
           animation = love.objects:newAnimation(picture, 4, 3, 100, 75, 0.25);
@@ -210,6 +213,7 @@
 
       <function name="newMusic" brief="Loads a music file.">
         <param name="filename" brief="The filepath to the music file. Relative to the game's folder or .love file." />
+		<returns type="Music" brief="A Music object containing the audio data." />
         <example name="Add some music.">
           muzik = love.objects:newMusic("totally_awesome.mp3");
         </example>
@@ -217,6 +221,7 @@
 
       <function name="newSound" brief="Loads a sound file.">
         <param name="filename" brief="The filepath to the sound file. Relative to the game's folder or .love file." />
+		<returns type="Sound" brief="A Sound object containing the audio data." />
         <example name="Add some sounds.">
           blaster = love.objects:newSound("blast.wav");
           explosion = love.objects:newSount("boom.wav");
@@ -226,10 +231,11 @@
       <separator />
 
       <function name="newColor" brief="Creates a color.">
-        <param name="r" brief="The amount of red." />
-        <param name="g" brief="The amount of green." />
-        <param name="b" brief="The amount of blue." />
-        <param name="a" brief="The amount of alpha (default: 255)." />
+        <param name="red" brief="The amount of red." />
+        <param name="green" brief="The amount of green." />
+        <param name="blue" brief="The amount of blue." />
+        <param name="alpha" brief="The amount of alpha (default: 255)." />
+		<returns type="Color" brief="A Color object containing the color data." />
         <example name="Add some colors.">
           transparent_pink = love.objects:newColor(246, 9, 104, 150);
           opaque_pink = love.objects:newColor(246, 9, 104); -- the default alpha value (255) will be used
@@ -238,7 +244,8 @@
 
       <function name="newColor" brief="Creates a color.">
         <param name="code" brief="A 6-character hexadecimal color code." />
-        <param name="a" brief="The amount of alpha (default: 255)." />
+        <param name="alpha" brief="The amount of alpha (default: 255)." />
+		<returns type="Color" brief="A Color object containing the color data." />
         <example name="Add some colors.">
           transparent_pink = love.objects:newColor(0xF60968, 150);
           opaque_pink = love.objects:newColor(0xF60968); -- the default alpha value (255) will be used
@@ -250,6 +257,7 @@
       <function name="newDefaultFont" brief="Creates a new font based on the default font.">
         The default font is FreeSans.
         <param name="size" brief="The size of the font." />
+		<returns type="Font" brief="A Font object containing the font data." />
         <example name="Add some fonts.">
           big = love.objects:newDefaultFont(40);
           small = love.objects:newDefaultFont(8);
@@ -260,6 +268,7 @@
         Fonts loaded with [url="http://freetype.sourceforge.net/"]FreeType[/url].
         <param name="filename" brief="The filepath to the font file. Relative to the game's folder or .love file." />
         <param name="size" brief="The size of the font." />
+		<returns type="Font" brief="A Font object containing the font data." />
         <example name="Add some fonts.">
           big = love.objects:newFont("Arial.ttf", 40);
           small = love.objects:newFont("SomeAwesomeZeldaFont.ttf", 8);
@@ -292,13 +301,13 @@
 
       <separator />
 
-      <function name="newMenu" breif="Creates a new GUI item.">
+      <!-- <function name="newMenu" breif="Creates a new GUI item.">
         <param name="type" brief="The type of menu setup (default: vertical)." />
-      </function>
+      </function> -->
 
     </device>
 
-    <device name="love.graphics">
+    <device name="love.graphics" brief="Device for drawing all the graphical elements in the game.">
 
       <function name="setColor" brief="Sets the current color.">
         <param name="color" brief="A Color object." />
@@ -338,7 +347,7 @@
       </function>
 
       <function name="setFont" brief="Sets the current font.">
-        <param name="font" brief="A font object." />
+        <param name="font" brief="A Font object." />
         <example name="Create and set a large font.">
           big_text = love.objects:newDefaultFont(40);
           love.graphics:setFont(big_text);
@@ -423,9 +432,9 @@
 
     </device>
     
-    <device name="love.audio">
+    <device name="love.audio" brief="Device for playing audio objects (Music or Sound).">
 
-      Yaaahr, this be the proposed intahrface for love.audio.
+      Yaaahr, this be the proposed intahrface for love.audio. Some things have been added! -mike
 
       <function name="play" brief="Plays a sound.">
         <param name="sound" brief="The sound to play." />
@@ -438,11 +447,15 @@
       </function>
 
       <function name="play" brief="Plays/loops a sound on a specific channel.">
-        TODO: Not sure if this should be available.
+        TODO: Not sure if this should be available. I don't think so... things like channel selection will just confuse it up.
         <param name="sound" brief="The sound to play." />
         <param name="loop" brief="The number of times to loop. (0 = play once, -1 = forever)." />
         <param name="channel" brief="The channel number to play the sound on." />
       </function>
+	  
+	  <function name="stopAllSounds" brief="Stops all sounds.">
+	    TODO: Not sure if this IS available. ^.^
+	  </function>
 
       <separator />
 
@@ -468,6 +481,10 @@
       </function>
 
       <function name="stop" brief="Stops all audio playback.">
+      </function>
+	  
+	  <function name="stop" brief="Fades out all audio playback.">
+		<param name="time" brief="The amount of seconds to fade out." />
       </function>
 
       <separator />
@@ -509,7 +526,7 @@
 
     </device>
 
-    <device name="love.mouse">
+    <device name="love.mouse" brief="Keeps track of the state of the mouse.">
 
       <function name="getX" brief="Gets the current x-position of the mouse.">
         <returns type="number" brief="Current x-position." />
@@ -548,7 +565,7 @@
     </device>
 
 
-    <device name="love.gui">
+    <!-- <device name="love.gui">
       Does that mean this device does not officially exist for first release?
     </device>
     <device name="love.filesystem">
@@ -568,7 +585,7 @@
         <param name="file" brief="The File object to close." />
       </function>
 
-    </device>
+    </device> -->
 
   </section>
 
@@ -578,8 +595,8 @@
 
     <type name="Animation" brief="Contains the data for an animated image.">
       Created by calling any of the [b]love.objects:newAnimation()[/b] functions.
-      <see name="love.objects:newAnimation( image )" url="TODO" />
-      <see name="love.objects:newAnimation( image, xFrames, yFrames, frameWidth, frameHeight, delay )" url="TODO" />
+      <see name="love.objects:newAnimation( image )" />
+      <see name="love.objects:newAnimation( image, xf, yf, fw, fh, delay )" />
 
       <function name="addFrame" brief="Adds a frame by extracting a frame of the assigned image.">
         <param name="x" brief="x-coordinate within the image." />
@@ -655,8 +672,8 @@
 
     <type name="Color" brief="An object containing color information.">
       A Color object is created by calling any of the [b]love.objects:newColor()[/b] functions.
-      <see name="love.objects:newColor( red, green, blue, alpha )" url="TODO" />
-      <see name="love.objects:newColor( hex, alpha )" url="TODO" />
+      <see name="love.objects:newColor( red, green, blue, alpha )" />
+      <see name="love.objects:newColor( code, alpha )" />
 
       <function name="setColor" brief="Sets the current color.">
         <param name="red" brief="The amount of red." />
@@ -729,10 +746,10 @@
 
     <type name="Font" brief="Represents a font.">
       A Font object is created by calling any of the [b]love.objects:newFont()[/b] functions.[br /]
-      Note: Using the print methods in a font file directly is not recommended and the [b]love.graphics:drawText()[/b] function is the best solution for printing text.
+      Note: Using the print methods in a font file directly is not recommended and any of the [b]love.graphics:draw()[/b] functions is the best solution for printing text.
       <see name="love.objects:newDefaultFont( size )" url="TODO" />
       <see name="love.objects:newFont( filename, size )" url="TODO" />
-      <see name="love.graphics" url="TODO" />
+      <see name="love.graphics:" url="TODO" />
 
       <function name="print" brief="Prints some text at the current location.">
         Does not support line-breaks. It is suggested that you use [b]text:print()[/b] instead.
@@ -830,7 +847,10 @@
       love.objects is used to create the Music objects, and love.audio is used to play
       it.
 
-      <see name="love.objects:newMusic( filepath )" />
+	  <see name="Sound" />
+	  <see name="love.audio" />
+	  <see name="love.objects" />
+      <see name="love.objects:newMusic( filename )" />
 
     </type>
 
