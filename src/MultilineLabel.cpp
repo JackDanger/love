@@ -25,8 +25,6 @@ namespace love
 
 	int MultilineLabel::adjustContent()
 	{
-		if(getWidth() == 0) return 0;
-
 		const char * text = getCaption();
 		vector<string> words;
 		vector<float> sizes;
@@ -35,6 +33,9 @@ namespace love
 		lines.clear();
 		words.clear();
 		sizes.clear();
+
+		if(strlen(text) == 0)
+			return getHeight();
 
 		for(int i = 0; i != (int)strlen(text) && text[i] != '\0'; i++)
 		{
@@ -50,7 +51,7 @@ namespace love
 			else if(text[i] == ' ')
 			{
 				temp += text[i];
-				size += getFont()->getWidth(" ");
+				size += gcn::Label::getFont()->getWidth(" ");
 				words.push_back(temp);
 				sizes.push_back(size);
 				size = 0;
@@ -59,7 +60,7 @@ namespace love
 			else
 			{
 				temp += text[i];
-				size += getFont()->getWidth(string(1, text[i]));
+				size += gcn::Label::getFont()->getWidth(string(1, text[i]).c_str());
 			}
 		}
 		//takes the last one and pushes it
@@ -76,7 +77,7 @@ namespace love
 				size = 0;
 				temp = "";
 			}
-			else
+			else if(getWidth() != 0)
 			{
 				size += sizes.at(i);
 				
@@ -93,20 +94,12 @@ namespace love
 		//push the last one
 		lines.push_back(temp);
 
-		return getFont()->getHeight() * (int)lines.size();
+		return (int)(gcn::Label::getFont()->getHeight() * lines.size());
 	}
 
 	void MultilineLabel::adjustSize()
 	{
 		int length, temp = 0;
-		for(int i = 0; i != (int)lines.size(); i++)
-		{
-			length = getFont()->getWidth(lines[i]);
-			temp = (temp > length) ? temp : length;
-		}
-		setWidth(temp);
-
-		setHeight((getFont()->getHeight()) * (int)lines.size());
 
 		if(background != 0)
 		{
@@ -115,6 +108,22 @@ namespace love
 			if(getHeight() < background->getHeight())
 				setHeight((int)background->getHeight());
 		}
+
+		adjustContent();
+
+		if(getWidth() == 0)
+		{
+			for(int i = 0; i != (int)lines.size(); i++)
+			{
+				length = gcn::Label::getFont()->getWidth(lines[i].c_str());
+				temp = (temp > length) ? temp : length;
+			}
+			setWidth(temp);
+		}
+
+		temp = (gcn::Label::getFont()->getHeight()) * (int)lines.size();
+		if(background == 0 || getHeight() < temp)
+			setHeight(temp);
 	}
 
 	void MultilineLabel::draw(gcn::Graphics* graphics)
@@ -122,12 +131,11 @@ namespace love
 		int x = 0;
 		int y = 0;
 
-		if(backgroundColor.get() != 0)
+		if(backgroundColor != 0)
+		{
 			graphics->setColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
-		else
-			graphics->setColor(gcn::Color(0,0,0,0));
-
-		graphics->fillRectangle(gcn::Rectangle(0,0,getWidth(),getHeight()));
+			graphics->fillRectangle(gcn::Rectangle(0,0,getWidth(),getHeight()));
+		}
 
 		if(background.get() != 0)
 		{
@@ -157,7 +165,6 @@ namespace love
 			}
 
 			graphics->setColor(gcn::Color(0xFFFFFF)); // to remove the effects of the background color
-
 			background->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
 		}
 
@@ -168,19 +175,19 @@ namespace love
 		{
 		default:
 		case Text::LOVE_ALIGN_CENTER:
-			y = (getHeight() / 2) - ((getFont()->getHeight() * (int)lines.size()) / 2);
+			y = (getHeight() / 2) - (((int)getFont()->getHeight() * (int)lines.size()) / 2);
 			break;
 		case Text::LOVE_ALIGN_TOP:
 			break;
 		case Text::LOVE_ALIGN_BOTTOM:
-			y = getHeight() - (getFont()->getHeight() * (int)lines.size());
+			y = getHeight() - ((int)getFont()->getHeight() * (int)lines.size());
 			break;
 		}
 
-		if(color.get() != 0)
+		if(font != 0)
+			graphics->setFont(font.get());
+		if(color != 0)
 			graphics->setColor(gcn::Color(color->getRed(),color->getGreen(),color->getBlue(),color->getAlpha()));
-		else
-			graphics->setColor(gcn::Color(0,0,0,255));
 
 		for(unsigned int i = 0; i < lines.size(); i++)
 		{
@@ -188,7 +195,7 @@ namespace love
 			{
 			default:
 			case gcn::Graphics::CENTER:
-				x = (getWidth() / 2) - (getFont()->getWidth(lines[i]) / 2);
+				x = (getWidth() / 2) - ((int)getFont()->getWidth(lines[i].c_str()) / 2);
 				break;
 			case gcn::Graphics::LEFT:
 				break;
@@ -196,7 +203,7 @@ namespace love
 				x = getWidth() - gcn::Label::getFont()->getWidth(lines[i]);
 				break;
 			}
-			graphics->drawText(lines[i], x, y + (i * getFont()->getHeight()));
+			graphics->drawText(lines[i], x, y + (i * (int)getFont()->getHeight()));
 		}
 	}
 }

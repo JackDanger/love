@@ -63,12 +63,24 @@ namespace love
 
 	void CheckBox::setDefaultImage(const pAbstractImage * image)
 	{
-		this->defaultImage = *image;
+		if(image == 0)
+			defaultImage.reset();
+		else
+			defaultImage = *image;
 	}
 
 	void CheckBox::setMarkedImage(const pAbstractImage * image)
 	{
-		this->markedImage = *image;
+		if(image == 0)
+			markedImage.reset();
+		else
+			markedImage = *image;
+	}
+
+	void CheckBox::setFont(const pAbstractFont * font)
+	{
+		GUIElement::setFont(font);
+		gcn::CheckBox::setFont(this->font.get());
 	}
 
 	int CheckBox::getWidth()
@@ -114,6 +126,11 @@ namespace love
 	pAbstractImage CheckBox::getMarkedImage()
 	{
 		return markedImage;
+	}
+
+	pAbstractFont CheckBox::getFont()
+	{
+		return GUIElement::getFont();
 	}
 
 	void CheckBox::adjustSize()

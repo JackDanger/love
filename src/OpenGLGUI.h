@@ -19,7 +19,8 @@ namespace love
 	{
 	protected:
 
-		gcn::LOVEGraphics * graphics;
+		//gcn::LOVEGraphics * graphics;
+		gcn::OpenGLGraphics * graphics;
 
 	public:
 		/**

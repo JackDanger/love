@@ -54,6 +54,12 @@ namespace love
 		this->selectionBackgroundColor = (*color);
 	}
 
+	void ListBox::setFont(const pAbstractFont * font)
+	{
+		GUIElement::setFont(font);
+		gcn::ListBox::setFont(this->font.get());
+	}
+
 	int ListBox::getWidth()
 	{
 		return gcn::ListBox::getWidth();
@@ -87,6 +93,11 @@ namespace love
 	pAbstractColor ListBox::getSeclectionBackgroundColor()
 	{
 		return selectionBackgroundColor;
+	}
+
+	pAbstractFont ListBox::getFont()
+	{
+		return GUIElement::getFont();
 	}
 
 	void ListBox::adjustSize()
@@ -148,12 +159,12 @@ namespace love
 		}
 		
 		graphics->setColor(getForegroundColor());
-		graphics->setFont(getFont());
+		graphics->setFont(font.get());
 		
 		int i, fontHeight;
 		int y = 0;
 		
-		fontHeight = getFont()->getHeight();
+		fontHeight = ((int)getFont()->getHeight());
 		
 		for (i = 0; i < mListModel->getNumberOfElements(); ++i)
 		{

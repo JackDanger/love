@@ -46,6 +46,12 @@ namespace love
 		GUIElement::setBackgroundColor(color);
 	}
 
+	void Label::setFont(const pAbstractFont * font)
+	{
+		GUIElement::setFont(font);
+		gcn::Label::setFont(this->font.get());
+	}
+
 	void Label::align(int alignment)
 	{
 		switch(alignment)
@@ -98,10 +104,20 @@ namespace love
 		return GUIElement::getBackgroundColor();
 	}
 
+	pAbstractImage Label::getBackground()
+	{
+		return background;
+	}
+
+	pAbstractFont Label::getFont()
+	{
+		return GUIElement::getFont();
+	}
+
 	void Label::adjustSize()
 	{
-		setWidth(getFont()->getWidth(getCaption()));
-		setHeight(getFont()->getHeight() + 2);
+		setWidth(gcn::Label::getFont()->getWidth(getCaption()));
+		setHeight(gcn::Label::getFont()->getHeight() + 2);
 
 		if(background != 0)
 		{
@@ -117,12 +133,13 @@ namespace love
 		int x = 0;
 		int y = 0;
 
+		if(font != 0)
+			gcn::Label::setFont(font.get());
 		if(backgroundColor != 0)
+		{
 			graphics->setColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
-		else
-			graphics->setColor(gcn::Color(0,0,0,0));
-
-		graphics->fillRectangle(gcn::Rectangle(0,0,getWidth(),getHeight()));
+			graphics->fillRectangle(gcn::Rectangle(0,0,getWidth(),getHeight()));
+		}
 
 		if(background != 0)
 		{
@@ -162,12 +179,12 @@ namespace love
 		{
 		default:
 		case gcn::Graphics::CENTER:
-			x = (getWidth() / 2) - (getFont()->getWidth(getCaption()) / 2);
+			x = (getWidth() / 2) - (gcn::Label::getFont()->getWidth(getCaption()) / 2);
 			break;
 		case gcn::Graphics::LEFT:
 			break;
 		case gcn::Graphics::RIGHT:
-			x = getWidth() - getFont()->getWidth(getCaption());
+			x = getWidth() - (gcn::Label::getFont()->getWidth(getCaption()));
 			break;
 		}
 
@@ -175,12 +192,12 @@ namespace love
 		{
 		default:
 		case Text::LOVE_ALIGN_CENTER:
-			y = (getHeight() / 2) - (getFont()->getHeight() / 2);
+			y = (getHeight() / 2) - (gcn::Label::getFont()->getHeight() / 2);
 			break;
 		case Text::LOVE_ALIGN_TOP:
 			break;
 		case Text::LOVE_ALIGN_BOTTOM:
-			y = getHeight() - getFont()->getHeight();
+			y = getHeight() - (gcn::Label::getFont()->getHeight());
 			break;
 		}
 
@@ -189,7 +206,7 @@ namespace love
 		else
 			graphics->setColor(gcn::Color(0,0,0,255));
 
-		graphics->setFont(getFont());
+		graphics->setFont(gcn::Label::getFont());
 		graphics->drawText(getCaption(),x,y);
 	}
 

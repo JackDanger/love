@@ -93,6 +93,12 @@ namespace love
 		virtual void setActiveBackgroundColor(const pAbstractColor * color);
 
 		/**
+		 * @param font An AbstractFont.
+		 * @brief Sets the current font.
+		 **/
+		virtual void setFont(const pAbstractFont * font);
+
+		/**
 		 * @return The width of the TextField.
 		 * @brief Returns the width of the TextField.
 		 **/
@@ -145,6 +151,12 @@ namespace love
 		 * @brief Returns the background color when the text label is active.
 		 **/
 		virtual pAbstractColor getActiveBackgroundColor();
+
+		/**
+		 * @return An AbstractFont.
+		 * @brief Gets the current font.
+		 **/
+		virtual pAbstractFont getFont();
 
 		/**
 		 * @brief Adjusts the size of the TextField depending on the content.

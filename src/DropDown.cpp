@@ -52,48 +52,72 @@ namespace love
 
 	void DropDown::setActiveColor(const pAbstractColor * color)
 	{
-		if(color != 0)
+		if(color == 0)
+			activeColor.reset();
+		else
 			activeColor = *color;
 	}
 
 	void DropDown::setActiveBackgroundColor(const pAbstractColor * color)
 	{
-		if(color != 0)
+		if(color == 0)
+			activeBackgroundColor.reset();
+		else
 			activeBackgroundColor = *color;
 	}
 
 	void DropDown::setSelectionColor(const pAbstractColor * color)
 	{
-		if(color != 0)
+		if(color == 0)
+			selectionColor.reset();
+		else
 			selectionColor = *color;
 	}
 
 	void DropDown::setSelectionBackgroundColor(const pAbstractColor * color)
 	{
-		if(color != 0)
+		if(color == 0)
+			selectionBackgroundColor.reset();
+		else
 			selectionBackgroundColor = *color;
 	}
 
 	void DropDown::setButtonColor(const pAbstractColor * color)
 	{
-		if(color != 0)
+		if(color == 0)
+			buttonColor.reset();
+		else
 			buttonColor = *color;
 	}
 
 	void DropDown::setButtonBackgroundColor(const pAbstractColor * color)
 	{
-		if(color != 0)
+		if(color == 0)
+			buttonBackgroundColor.reset();
+		else
 			buttonBackgroundColor = *color;
+	}
+
+	void DropDown::setFont(const pAbstractFont * font)
+	{
+		GUIElement::setFont(font);
+		gcn::DropDown::setFont(this->font.get());
 	}
 
 	void DropDown::setButton(const pAbstractImage * image)
 	{
-		this->button = (*image);
+		if(image == 0)
+			button.reset();
+		else
+			button = (*image);
 	}
 
 	void DropDown::setButtonPressed(const pAbstractImage * image)
 	{
-		this->buttonPressed = (*image);
+		if(image == 0)
+			buttonPressed.reset();
+		else
+			buttonPressed = (*image);
 	}
 
 	int DropDown::getWidth()
@@ -156,6 +180,21 @@ namespace love
 	pAbstractColor DropDown::getButtonBackgroundColor()
 	{
 		return buttonBackgroundColor;
+	}
+
+	pAbstractFont DropDown::getFont()
+	{
+		return GUIElement::getFont();
+	}
+
+	pAbstractImage DropDown::getButton()
+	{
+		return button;
+	}
+
+	pAbstractImage DropDown::getButtonPressed()
+	{
+		return buttonPressed;
 	}
 
 	void DropDown::add(const char * text)

@@ -50,6 +50,7 @@ namespace love
 		 * @brief Returns the height of the font.
 		 **/
 		virtual float getLineHeight() = 0;
+		virtual float getHeight();
 
 		/**
 		 * @param line A line of text.
@@ -57,6 +58,7 @@ namespace love
 		 * @brief Returns the width of the passed string.
 		 **/
 		virtual float getLineWidth(const char * line) = 0;
+		virtual float getWidth(const char * line);
 
 		/**
 		 * @brief Abstract function.

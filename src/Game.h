@@ -56,6 +56,7 @@ namespace love
 
 		friend class GUIGameListElement;
 		friend class LoveMenu4;
+		friend class UIGame;
 		friend class Core;
 		
 		// Used for loading of title, author, thumbnail, etc.

@@ -34,6 +34,7 @@ namespace love
 		pAbstractColor color;
 		pAbstractColor backgroundColor;
 		pAbstractColor borderColor;
+		pGUIText font;
 
 	public:
 		GUIElement();
@@ -43,9 +44,13 @@ namespace love
 		virtual void setBackgroundColor(const pAbstractColor * color);
 		virtual void setBorderColor(const pAbstractColor * color);
 
+		virtual void setFont(const pAbstractFont * font);
+
 		virtual pAbstractColor getColor();
 		virtual pAbstractColor getBackgroundColor();
 		virtual pAbstractColor getBorderColor();
+		
+		virtual pAbstractFont getFont();
 
 		virtual void setSize(int width, int height) = 0;
 		virtual void setWidth(int width) = 0;

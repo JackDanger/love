@@ -63,12 +63,24 @@ namespace love
 
 	void RadioButton::setDefaultImage(const pAbstractImage * image)
 	{
-		this->defaultImage = *image;
+		if(image == 0)
+			defaultImage.reset();
+		else
+			defaultImage = *image;
 	}
 
 	void RadioButton::setMarkedImage(const pAbstractImage * image)
 	{
-		this->markedImage = *image;
+		if(image == 0)
+			markedImage.reset();
+		else
+			markedImage = *image;
+	}
+
+	void RadioButton::setFont(const pAbstractFont * font)
+	{
+		GUIElement::setFont(font);
+		gcn::RadioButton::setFont(this->font.get());
 	}
 
 	int RadioButton::getWidth()
@@ -116,6 +128,11 @@ namespace love
 		return markedImage;
 	}
 
+	pAbstractFont RadioButton::getFont()
+	{
+		return GUIElement::getFont();
+	}
+
 	void RadioButton::adjustSize()
 	{
 		gcn::RadioButton::adjustSize();
@@ -136,7 +153,7 @@ namespace love
 		drawBox(graphics);
 		graphics->popClipArea();
 		
-		graphics->setFont(getFont());
+		graphics->setFont(font.get());
 		graphics->setColor(getForegroundColor());
 		
 		int h = getHeight() + getHeight() / 2;

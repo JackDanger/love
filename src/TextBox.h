@@ -41,6 +41,8 @@ namespace love
 		virtual void setActiveColor(const pAbstractColor * color);
 		virtual void setActiveBackgroundColor(const pAbstractColor * color);
 
+		virtual void setFont(const pAbstractFont * font);
+
 		virtual int getWidth();
 		virtual int getHeight();
 		virtual unsigned int getBorderSize();
@@ -57,6 +59,8 @@ namespace love
 		virtual pAbstractColor getBackgroundColor();
 		virtual pAbstractColor getActiveColor();
 		virtual pAbstractColor getActiveBackgroundColor();
+
+		virtual pAbstractFont getFont();
 
 		virtual void adjustSize();
 

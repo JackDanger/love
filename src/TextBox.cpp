@@ -86,6 +86,12 @@ namespace love
 		activeBackgroundColor = (*color);
 	}
 
+	void TextBox::setFont(const pAbstractFont * font)
+	{
+		GUIElement::setFont(font);
+		gcn::TextBox::setFont(this->font.get());
+	}
+
 	int TextBox::getWidth()
 	{
 		return gcn::TextBox::getWidth();
@@ -154,6 +160,11 @@ namespace love
 	pAbstractColor TextBox::getActiveBackgroundColor()
 	{
 		return activeBackgroundColor;
+	}
+
+	pAbstractFont TextBox::getFont()
+	{
+		return GUIElement::getFont();
 	}
 
 	void TextBox::adjustSize()

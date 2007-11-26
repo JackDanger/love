@@ -37,7 +37,8 @@ namespace love
 		imageLoader = new gcn::OpenGLSDLImageLoader();
 		gcn::Image::setImageLoader(imageLoader);
 
-		graphics = new gcn::LOVEGraphics(); //new gcn::OpenGLGraphics();
+		//graphics = new gcn::LOVEGraphics();
+		graphics = new gcn::OpenGLGraphics();
 		graphics->setTargetPlane(display.getWidth(), display.getHeight());
 
 		font.reset<AbstractFont>(new love::Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 10));
@@ -52,7 +53,7 @@ namespace love
 		gui->setGraphics(graphics);
 		gui->setInput(gcn_input); // correct.
 		gui->setTop(top);
-		text = new love::GUIText(font, black);
+		text = new love::GUIText(font);
 		gcn::Widget::setGlobalFont(text); // the global font is static and must be set
 		graphics->setFont(text);
 

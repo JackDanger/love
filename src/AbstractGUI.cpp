@@ -57,12 +57,14 @@ namespace love
 
 	pAbstractFont AbstractGUI::getFont()
 	{
-		return text->getFont();
+		return font;
+		//return text->getFont();
 	}
 
 	pAbstractColor AbstractGUI::getColor()
 	{
-		return text->getColor();
+		return color;
+		//return text->getColor();
 	}
 
 	int AbstractGUI::init()

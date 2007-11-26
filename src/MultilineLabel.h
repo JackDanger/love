@@ -56,7 +56,8 @@ namespace love
 		virtual int adjustContent();
 
 		/**
-		 * @brief Adjusts the size of the label according to the size of the caption. This also splits the lines and calculates the width and height.
+		 * @brief Adjusts the size of the label according to the size of the caption. 
+				  If the width is already set it only adjusts the height. It also splits the lines and calculates the width and height.
 		 **/
 		virtual void adjustSize();
 

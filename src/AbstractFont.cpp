@@ -10,4 +10,14 @@ namespace love
 	AbstractFont::~AbstractFont()
 	{
 	}
+
+	float AbstractFont::getHeight()
+	{
+		return this->getLineHeight();
+	}
+
+	float AbstractFont::getWidth(const char * line)
+	{
+		return this->getLineWidth(line);
+	}
 }

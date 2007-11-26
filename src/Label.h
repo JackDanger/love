@@ -69,6 +69,12 @@ namespace love
 		virtual void setBackgroundColor(const pAbstractColor * color);
 
 		/**
+		 * @param font An AbstractFont.
+		 * @brief Sets the current font.
+		 **/
+		virtual void setFont(const pAbstractFont * font);
+
+		/**
 		 * @param alignment The horizontal alignment (left, right, center).
 		 * @brief Sets the horizontal alignment of the caption.
 		 **/
@@ -115,6 +121,18 @@ namespace love
 		 * @brief Gets the current background color.
 		 **/
 		virtual pAbstractColor getBackgroundColor();
+
+		/**
+		 * @return An AbstractImage.
+		 * @brief Gets the current background.
+		 **/
+		virtual pAbstractImage getBackground();
+
+		/**
+		 * @return An AbstractFont.
+		 * @brief Gets the current font.
+		 **/
+		virtual pAbstractFont getFont();
 
 		/**
 		 * @brief Adjusts the size of the label according to the size of the caption.

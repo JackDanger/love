@@ -150,6 +150,12 @@ namespace love
 		virtual void setPressedImage(const pAbstractImage * image);
 
 		/**
+		 * @param font An AbstractFont.
+		 * @brief Sets the current font.
+		 **/
+		virtual void setFont(const pAbstractFont * font);
+
+		/**
 		 * @return The width of the Button.
 		 * @brief Returns the width of the button.
 		 **/
@@ -208,6 +214,12 @@ namespace love
 		 * @brief Returns the color of the text in the button when the mouse hovers over it.
 		 **/
 		virtual pAbstractColor getPressedBackgroundColor();
+
+		/**
+		 * @return An AbstractFont.
+		 * @brief Gets the current font.
+		 **/
+		virtual pAbstractFont getFont();
 
 		/**
 		 * @brief Adjusts the size of the button to the size of the caption.

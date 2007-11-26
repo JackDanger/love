@@ -1,5 +1,6 @@
 #include "UIGame.h"
 
+#include "love_keys.h"
 #include "Core.h"
 #include "love.h"
 #include "AbstractDisplay.h"
@@ -18,7 +19,7 @@ namespace love
 		core->current->resume();
 
 		// Exits error mode.
-		errorMode = false;
+		mode = MODE_DEFAULT;
 	}
 
 	void UIGame::reloadGame()
@@ -33,7 +34,7 @@ namespace love
 		printf("Reloaded: %s\n", core->current->getName().c_str());
 
 		// Exits error mode.
-		errorMode = false;
+		mode = MODE_DEFAULT;
 	}
 
 	void UIGame::quitGame()
@@ -46,7 +47,7 @@ namespace love
 		core->startGame("love-system-menu", false);
 
 		// Exits error mode.
-		errorMode = false;
+		mode = MODE_DEFAULT;
 	}
 
 	void UIGame::saveSettings()
@@ -60,11 +61,10 @@ namespace love
 		hideSettings();
 	}
 
-	UIGame::UIGame() : errorMode(false), pauseMode(false), settingsMode(false)
+	UIGame::UIGame() : mode(MODE_DEFAULT)
 	{
 		previous = 0;
 		error = 0;
-		warning = 0;
 		pause = 0;
 		top = 0;
 		loaded = false;
@@ -73,9 +73,7 @@ namespace love
 	UIGame::~UIGame()
 	{
 		if(error != 0) delete error;
-		if(warning != 0) delete warning;
 		if(pause != 0) delete pause;
-		if(settings != 0) delete settings;
 		if(top != 0) delete top;
 	}
 
@@ -86,146 +84,134 @@ namespace love
 		top->setOpaque(false);
 
 		// resources
-		errorWarning.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/warning.png")));
-		errorWarning->load();
-		errorError.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/error.png")));
-		errorError->load();
-		errorFont.reset<AbstractFont>(new Font(core->filesystem->getBaseFile("data/fonts/FreeSans.ttf"), 8));
-		errorFont->load();
+		errorBackground.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/error_background.png")));
+		errorBackground->load();
+		pauseBackground.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/pause_background.png")));
+		pauseBackground->load();
+
+		buttonDefault.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/button_default.png")));
+		buttonDefault->load();
+		buttonHover.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/button_hover.png")));
+		buttonHover->load();
+		buttonPressed.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/button_pressed.png")));
+		buttonPressed->load();
+		buttonQuit.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/button_quit.png")));
+		buttonQuit->load();
+
+		line.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/line.png")));
+		line->load();
+
+		tabDefault.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/tab_default.png")));
+		tabDefault->load();
+		tabHover.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/tab_hover.png")));
+		tabHover->load();
+		tabActive.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/tab_active.png")));
+		tabActive->load();
+
+		imageBackground.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/image_background.png")));
+		imageBackground->load();
+		imageDefault.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/thumb_default.png")));
+		imageDefault->load();
+
+		titleFont.reset<AbstractFont>(new Font(core->filesystem->getBaseFile("data/fonts/VeraBd.ttf"), 10));
+		titleFont->load();
+		subtitleFont.reset<AbstractFont>(new Font(core->filesystem->getBaseFile("data/fonts/Vera.ttf"), 10));
+		subtitleFont->load();
+		defaultFont.reset<AbstractFont>(new Font(core->filesystem->getBaseFile("data/fonts/Vera.ttf"), 8));
+		defaultFont->load();
+		
 		pauseFont.reset<AbstractFont>(new Font(core->filesystem->getBaseFile("data/fonts/FreeSans.ttf"), 14));
 		pauseFont->load();
-		pAbstractColor borderColor(new Color(0xe9e9e9));
+
+
+		// temp variables
 		pAbstractColor black(new Color(0x000000));
 		pAbstractColor white(new Color(0xFFFFFF));
-		pAbstractColor slightlyWhite(new Color(255,255,255,200));
+		pAbstractColor buttonColor(new Color(255,255,255,200));
+		pAbstractColor quitColor(new Color(255,255,255,150));
+
+		pLabel label;
+		pButton button;
+
 
 		// error box
-		error = new Menu(errorFont, black);
-		error->setSize(500,217); // so that we have something to start with
-		error->setPadding(12);
-		error->setColor(&black);
-		error->setBackgroundColor(&slightlyWhite);
-		error->stretchContent(true);
-		error->addImage(&errorError)->align(Text::LOVE_ALIGN_LEFT);
+		error = new Menu(defaultFont, white);
+		error->setSize((int)errorBackground->getWidth(), (int)errorBackground->getHeight());
+		error->setBackground(&errorBackground);
+		
+		label = error->addLabel("An error has occurred");
+		label->setPosition(24, 69); label->setFont(&titleFont); label->adjustSize();
+		
+		label = error->addImage(&line);
+		label->setPosition(24, 87);
+		
 		errorText = error->addMultilineLabel("");
-		errorText->align(Text::LOVE_ALIGN_LEFT);
-		error->addLabel("")->setHeight(20);
-		pAbstractMenu nested = error->addMenu(Menu::LOVE_MENU_HORIZONTAL, 0, 40);
-		nested->setSpacing(10);
-		errorButton = nested->addButton("CORE_ERROR_CONTINUE", "Continue");
-		errorButton->setBorderColor(&borderColor);
-		errorButton->setWidth(70);
-		errorButton->setBorderSize(1);
-		pButton tempb(nested->addButton("CORE_ERROR_RESTART", "Restart"));
-		tempb->setBorderColor(&borderColor);
-		tempb->setWidth(70);
-		tempb->setBorderSize(1);
-		tempb = nested->addButton("CORE_ERROR_QUIT", "Quit");
-		tempb->setBorderColor(&borderColor);
-		tempb->setWidth(70);
-		tempb->setBorderSize(1);
-		nested->adjustWidth();
-		nested->adjustContent();
+		errorText->setPosition(24, 102); errorText->setSize(358, 202); errorText->align(Text::LOVE_ALIGN_LEFT); errorText->valign(Text::LOVE_ALIGN_TOP);
+		
+		button = error->addButton("CORE_ERROR_RESTART", "  Restart");
+		button->setDefaultImage(&buttonDefault); button->setHoverImage(&buttonHover); button->setPressedImage(&buttonPressed);
+		button->setColor(&buttonColor); button->setHoverColor(&white);
+		button->setPosition(141, 333); button->align(Text::LOVE_ALIGN_LEFT); button->adjustSize();
+		
+		button = error->addButton("CORE_ERROR_CONTINUE", "  Continue");
+		button->setDefaultImage(&buttonDefault); button->setHoverImage(&buttonHover); button->setPressedImage(&buttonPressed);
+		button->setColor(&buttonColor); button->setHoverColor(&white);
+		button->setPosition(230, 333); button->align(Text::LOVE_ALIGN_LEFT); button->adjustSize();
+		
+		button = error->addButton("CORE_ERROR_QUIT", "  Quit");
+		button->setDefaultImage(&buttonQuit); button->setHoverImage(&buttonHover); button->setPressedImage(&buttonPressed);
+		button->setColor(&buttonColor); button->setHoverColor(&white);
+		button->setPosition(319, 333); button->align(Text::LOVE_ALIGN_LEFT); button->adjustSize();
+
 		error->show();
-		// warning box
-		warning = new Menu(errorFont, black);
-		warning->setSize(356,217); // so that we have something to start with
-		warning->setPadding(18);
-		warning->setColor(&black);
-		warning->setBackgroundColor(&slightlyWhite);
-		warning->stretchContent(true);
-		warning->addImage(&errorWarning)->align(Text::LOVE_ALIGN_LEFT);
-		warningText = warning->addMultilineLabel("");
-		warning->addLabel("")->setHeight(20);
-		warningButton = warning->addButton("CORE_WARNING_OK", "OK");
-		warningButton->setBorderColor(&borderColor);
-		warningButton->setWidth(70);
-		warningButton->setBorderSize(1);
-		warning->show();
-		// pause menu
-		pause = new Menu(pauseFont, black);
-		pause->setSize(150,200); // so that we have something to start with
-		pause->setPadding(10);
-		pause->setSpacing(1);
-		pause->setColor(&black);
-		pause->setBackgroundColor(&slightlyWhite);
-		pause->stretchContent(true);
-		pause->addButton("CORE_RESUME", "Resume");
-		//pause->addButton("CORE_SAVE", "Save");
-		//pause->addButton("CORE_LOAD", "Load");
-		pause->addButton("CORE_SETTINGS", "Settings");
-		pause->addButton("CORE_RELOAD", "Restart");
-		pause->addButton("CORE_QUIT", "Quit");
-		pause->adjustContent();
-		pause->adjustSize();
+
+
+		// new pause menu
+		pause = new Menu(defaultFont, white);
+		pause->setSize((int)pauseBackground->getWidth(), (int)pauseBackground->getHeight());
+		pause->setBackground(&pauseBackground);
+
+		pauseLabel = pause->addLabel("Game paused");
+		pauseLabel->setPosition(33, 64); pauseLabel->setFont(&titleFont); pauseLabel->adjustSize();
+
+		label = pause->addImage(&line);
+		label->setPosition(33, 81);
+
+		tabPause = pause->addButton("CORE_TAB_PAUSE", "Pause");
+		tabPause->setDefaultImage(&tabActive);
+		tabPause->setPosition(45,25); tabPause->align(Text::LOVE_ALIGN_CENTER); tabPause->adjustSize();
+
+		tabSettings = pause->addButton("CORE_TAB_SETTINGS", "Settings");
+		tabSettings->setDefaultImage(&tabDefault); tabSettings->setHoverImage(&tabHover);
+		tabSettings->setPosition(105,25); tabSettings->align(Text::LOVE_ALIGN_CENTER); tabSettings->adjustSize();
+
+		label = pause->addImage(&imageBackground);
+		label->setPosition(33, 100);
+
+		thumbLabel = pause->addImage(&imageDefault);
+		thumbLabel->setPosition(37, 104);
+
+		gameTitle = pause->addMultilineLabel("Game Title", 143);
+		gameTitle->setPosition(248, 100); gameTitle->align(Text::LOVE_ALIGN_LEFT); gameTitle->setFont(&subtitleFont); gameTitle->adjustSize();
+
+		gameCreator = pause->addMultilineLabel("by Someone", 143);
+		gameCreator->setPosition(248, 108 + gameTitle->getHeight()); gameCreator->align(Text::LOVE_ALIGN_LEFT); gameCreator->adjustSize();
+
+		pButton qbutton = pause->addButton("CORE_QUIT", "  Quit");
+		qbutton->setDefaultImage(&buttonDefault); qbutton->setHoverImage(&buttonHover); qbutton->setPressedImage(&buttonPressed);
+		qbutton->setColor(&quitColor); qbutton->setHoverColor(&white);
+		qbutton->setPosition(24, 287); qbutton->align(Text::LOVE_ALIGN_LEFT); qbutton->adjustSize();
+
+		button = pause->addButton("CORE_RESUME", "  Resume");
+		button->setDefaultImage(&buttonDefault); button->setHoverImage(&buttonHover); button->setPressedImage(&buttonPressed);
+		button->setColor(&buttonColor); button->setHoverColor(&white);
+		button->setPosition(316, 287); button->align(Text::LOVE_ALIGN_LEFT); button->adjustSize();
+
 		pause->setX( (core->display->getWidth() / 2) - (pause->getWidth() / 2) );
 		pause->setY( (core->display->getHeight() / 2) - (pause->getHeight() / 2) );
+
 		pause->show();
 
-		settings = new Menu(pauseFont, black);
-		settings->align(Text::LOVE_ALIGN_LEFT);
-		settings->setSize(150,200);
-		settings->setPadding(10);
-		settings->setSpacing(1);
-		settings->setColor(&black);
-		settings->setBackgroundColor(&slightlyWhite);
-		settings->stretchContent(true);
-		settings->addLabel("SETTINGS");
-		settings->addLabel(" ");
-		settings->addLabel("Graphics:");
-		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL);
-		nested->addLabel("Fullscreen")->setWidth(150);
-		settingsFullscreen = nested->addCheckBox("CORE_SETTINGS_GAME_FULLSCREEN");
-		if(core->config->isBool("settings_fullscreen"))
-			settingsFullscreen->setMarked(core->config->getBool("settings_fullscreen"));
-		nested->adjustSize();
-		nested->adjustContent();
-		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL);
-		nested->addLabel("Vertical Sync")->setWidth(150);
-		settingsVSync = nested->addCheckBox("CORE_SETTINGS_GAME_VSYNC");
-		if(core->config->isBool("settings_vsync"))
-			settingsVSync->setMarked(core->config->getBool("settings_vsync"));
-		nested->adjustSize();
-		nested->adjustContent();
-		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL);
-		nested->addLabel("Default Resolution")->setWidth(150);
-		settingsResolution = nested->addDropDown("CORE_SETTINGS_RESOLUTION");
-		settingsResolution->add("Auto"); settingsResolution->add("1024x768"); settingsResolution->add("800x600");
-		settingsResolution->setSelected(0);
-		settingsResolution->adjustSize();
-		if(core->config->isInt("settings_resolution"))
-			settingsResolution->setSelected(core->config->getInt("settings_resolution"));
-		nested->adjustSize();
-		nested->adjustContent();
-		settings->addLabel(" ");
-		settings->addLabel("Sound:");
-		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL);
-		nested->addLabel("Sound Volume")->setWidth(150);
-		settingsSound = nested->addSlider("CORE_SETTINGS_SOUND", Slider::LOVE_SLIDER_HORIZONTAL, 0, 100, 200, 15);
-		settingsSound->setColor(&white);
-		if(core->config->isInt("settings_sound"))
-			settingsSound->setValue(core->config->getInt("settings_sound"));
-		nested->adjustSize();
-		nested->adjustContent();
-		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL);
-		nested->addLabel("Music Volume")->setWidth(150);
-		settingsMusic = nested->addSlider("CORE_SETTINGS_MUSIC", Slider::LOVE_SLIDER_HORIZONTAL, 0, 100, 200, 15);
-		settingsMusic->setColor(&white);
-		if(core->config->isInt("settings_music"))
-			settingsMusic->setValue(core->config->getInt("settings_music"));
-		nested->adjustSize();
-		nested->adjustContent();
-		settings->adjustSize();
-		nested = settings->addMenu(Menu::LOVE_MENU_HORIZONTAL, 0, 40);
-		nested->setSpacing(5);
-		nested->addButton("CORE_SETTINGS_OK", "Ok");
-		nested->addButton("CORE_SETTINGS_CANCEL", "Cancel");
-		nested->adjustContent();
-		settings->adjustSize();
-		settings->adjustContent();
-		settings->setX( (core->display->getWidth() / 2) - (settings->getWidth() / 2) );
-		settings->setY( (core->display->getHeight() / 2) - (settings->getHeight() / 2) );
-		settings->show();
 
 		return load();
 	}
@@ -243,7 +229,7 @@ namespace love
 
 	void UIGame::render()
 	{
-		if(!errorMode && previous != 0)
+		if(!(mode == MODE_ERROR) && previous != 0)
 			previous->render();
 	}
 
@@ -254,55 +240,41 @@ namespace love
 
 	void UIGame::reloadGraphics()
 	{
-		errorWarning->reload();
-		errorError->reload();
-		errorFont->reload();
+		errorBackground->reload();
+		buttonDefault->reload();
+		buttonHover->reload();
+		buttonPressed->reload();
+		line->reload();
+		tabDefault->reload();
+		tabHover->reload();
+		tabActive->reload();
+		imageBackground->reload();
+		imageDefault->reload();
+
+		titleFont->reload();
+		subtitleFont->reload();
+		defaultFont->reload();
+
 		pauseFont->reload();
-		if(!errorMode && previous != 0)
+		if(!(mode == MODE_ERROR) && previous != 0)
 			previous->reloadGraphics();
 	}
 
 	void UIGame::showError(const char * text)
 	{
 		// Why are you re-erroring yourself? Tsk tsk, little one.
-		if(errorMode) return;
+		if(mode == MODE_ERROR) return;
 
 		// Entering error mode ...
-		errorMode = true;
+		mode = MODE_ERROR;
 
 		errorText->setCaption(text);
-		//errorText->adjustContent();
-		errorText->adjustSize();
-
-		error->adjustContent();
-		error->adjustSize();
 
 		error->setX( (core->display->getWidth() / 2) - (error->getWidth() / 2) );
 		error->setY( (core->display->getHeight() / 2) - (error->getHeight() / 2) );
 
 		top->clear();
 		top->add(error);
-		core->gui->add(top);
-
-		core->current->suspend();
-		previous = core->current;
-		core->current = this;
-	}
-
-	void UIGame::showWarning(const char * text)
-	{
-		warningText->setCaption(text);
-		//errorText->adjustContent();
-		warningText->adjustSize();
-
-		warning->adjustContent();
-		warning->adjustSize();
-
-		warning->setX( (core->display->getWidth() / 2) - (warning->getWidth() / 2) );
-		warning->setY( (core->display->getHeight() / 2) - (warning->getHeight() / 2) );
-
-		top->clear();
-		top->add(warning);
 		core->gui->add(top);
 
 		core->current->suspend();
@@ -321,51 +293,90 @@ namespace love
 		core->current->suspend();
 		previous = core->current;
 		core->current = this;
-		pauseMode = true;
+
+		//grapical stuff
+		tabPause->setDefaultImage(&tabActive);
+		tabPause->setHoverImage(0);
+		tabSettings->setDefaultImage(&tabDefault);
+		tabSettings->setHoverImage(&tabHover);
+
+		pauseLabel->setCaption("Game paused"); pauseLabel->adjustSize();
+		if(previous->config->getThumb() != 0)
+		{
+			thumbLabel->setBackground(&pAbstractImage(previous->config->getThumb())); thumbLabel->adjustSize();
+		}
+		else
+			thumbLabel->setBackground(&imageDefault); thumbLabel->adjustSize();
+		gameTitle->setCaption(previous->config->getTitle());
+		gameTitle->adjustSize();
+		gameCreator->setCaption(string("by ") + previous->config->getAuthor());
+		gameCreator->adjustSize();
+		gameCreator->setY(108 + gameTitle->getHeight());
+
+		mode = MODE_PAUSE;
 	}
 
 	void UIGame::hidePause()
 	{
-		if(settingsMode)
+		if(mode == MODE_SETTINGS || mode == MODE_MENUPAUSE)
 			hideSettings();
 		else
 		{
-			pauseMode = false;
+			mode = MODE_DEFAULT;
 			resumeGame();
 		}
 	}
 
 	void UIGame::showSettings()
 	{
-		top->clear();
-		top->add(settings);
-		if(!pauseMode)
+		if(mode != MODE_PAUSE)
 		{
-			core->gui->add(top);
-			core->current->suspend();
-			previous = core->current;
-			core->current = this;
+			// the settings menu to display when pausing from the menu
+			mode = MODE_MENUPAUSE;
 		}
-		settingsMode = true;
-		//printf("settings");
+		else
+		{
+			tabPause->setDefaultImage(&tabDefault);
+			tabPause->setHoverImage(&tabHover);
+			tabSettings->setDefaultImage(&tabActive);
+			tabSettings->setHoverImage(0);
+			pauseLabel->setCaption("Settings");
+			pauseLabel->adjustSize();
+			mode = MODE_SETTINGS;
+		}
 	}
 
 	void UIGame::hideSettings()
 	{
-		top->clear();
-		if(pauseMode)
-			top->add(pause);
-		else
+		if(mode == MODE_SETTINGS)
+		{
+			tabPause->setDefaultImage(&tabActive);
+			tabPause->setHoverImage(0);
+			tabSettings->setDefaultImage(&tabDefault);
+			tabSettings->setHoverImage(&tabHover);
+			pauseLabel->setCaption("Game paused");
+			pauseLabel->adjustSize();
+			mode = MODE_PAUSE;
+		}
+		else // mode == MODE_MENUPAUSE
+		{
+			top->clear();
 			core->gui->remove(top);
-		settingsMode = false;
+			mode = MODE_DEFAULT;
+		}
 	}
 
 	bool UIGame::isPaused()
 	{
-		if(previous != 0) //this means that it is paused
+		if(mode != MODE_DEFAULT)
 			return true;
 		else
 			return false;
+
+		/*if(previous != 0) //this means that it is paused
+			return true;
+		else
+			return false;*/
 	}
 
 	void UIGame::eventFired(pEvent e)
@@ -379,8 +390,6 @@ namespace love
 				reloadGame();
 			if(strcmp(pme->getName(), "CORE_ERROR_QUIT") == 0)
 				quitGame();
-			else if(strcmp(pme->getName(), "CORE_WARNING_OK") == 0)
-				resumeGame();
 			else if(strcmp(pme->getName(), "CORE_SETTINGS_OK") == 0)
 				saveSettings();
 			else if(strcmp(pme->getName(), "CORE_SETTINGS_CANCEL") == 0)
@@ -391,14 +400,23 @@ namespace love
 				printf("save");
 			else if(strcmp(pme->getName(), "CORE_LOAD") == 0)
 				printf("load");
-			else if(strcmp(pme->getName(), "CORE_SETTINGS") == 0)
-				showSettings();
-			else if(strcmp(pme->getName(), "CORE_RELOAD") == 0)
-				reloadGame();
 			else if(strcmp(pme->getName(), "CORE_QUIT") == 0)
 				quitGame();
+			else if(strcmp(pme->getName(), "CORE_TAB_PAUSE") == 0)
+				hideSettings();
+			else if(strcmp(pme->getName(), "CORE_TAB_SETTINGS") == 0)
+				showSettings();
 		}
 	}
+
+	void UIGame::keyPressed(int key)
+	{
+		if(key == LOVE_KEY_ESCAPE && isPaused())
+			hidePause();
+	}
+
+	void UIGame::keyReleased(int key)
+	{}
 
 	void UIGame::displayModeChanged()
 	{
@@ -410,10 +428,7 @@ namespace love
 		error->setX( (core->display->getWidth() / 2) - (pause->getWidth() / 2) );
 		error->setY( (core->display->getHeight() / 2) - (pause->getHeight() / 2) );
 
-		warning->setX( (core->display->getWidth() / 2) - (pause->getWidth() / 2) );
-		warning->setY( (core->display->getHeight() / 2) - (pause->getHeight() / 2) );
-
-		if(!errorMode && previous != 0)
+		if(!(mode == MODE_ERROR) && previous != 0)
 			previous->displayModeChanged();
 		reloadGraphics();
 	}

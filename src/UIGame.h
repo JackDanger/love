@@ -21,20 +21,43 @@ namespace love
 	class UIGame : public Game
 	{
 	protected:
+		const static int MODE_DEFAULT = 0;
+		const static int MODE_PAUSE = 1;
+		const static int MODE_ERROR = 2;
+		const static int MODE_SETTINGS = 3;
+		const static int MODE_MENUPAUSE = 4;
+
 		gcn::Container * top;
 		Game * previous; // The suspeded game.
-		pAbstractImage errorWarning;
-		pAbstractImage errorError;
-		pAbstractFont errorFont;
 		pAbstractFont pauseFont;
-		Menu * error;
-		Menu * warning;
-		Menu * pause;
-		Menu * settings;
+
+		pAbstractImage errorBackground;
+		pAbstractImage pauseBackground;
+		pAbstractImage buttonDefault;
+		pAbstractImage buttonHover;
+		pAbstractImage buttonPressed;
+		pAbstractImage buttonQuit;
+		pAbstractImage line;
+		pAbstractImage tabDefault;
+		pAbstractImage tabHover;
+		pAbstractImage tabActive;
+		pAbstractImage imageBackground;
+		pAbstractImage imageDefault;
+
+		pAbstractFont titleFont;
+		pAbstractFont subtitleFont;
+		pAbstractFont defaultFont;
+
 		pMultilineLabel errorText;
-		pMultilineLabel warningText;
-		pButton errorButton;
-		pButton warningButton;
+		pButton tabPause;
+		pButton tabSettings;
+		pLabel pauseLabel;
+		pLabel thumbLabel;
+		pMultilineLabel gameTitle;
+		pMultilineLabel gameCreator;
+
+		Menu * error;
+		Menu * pause;
 
 		pCheckBox settingsFullscreen;
 		pCheckBox settingsVSync;
@@ -42,9 +65,7 @@ namespace love
 		pSlider settingsSound;
 		pSlider settingsMusic;
 
-		bool errorMode; // If the UI is in error mode, the previous game will not rendered.
-		bool pauseMode; // If in pause mode, it will go to the pause menu after settings.
-		bool settingsMode; // If in settings mode, it will show the pause menu (and hide the settings) if hidePause() is called.
+		int mode;
 
 		virtual void resumeGame();
 		virtual void reloadGame();
@@ -99,12 +120,6 @@ namespace love
 		virtual void showError(const char * text);
 
 		/**
-		 * @param text The warning text.
-		 * @brief Shows a warning message.
-		 **/
-		virtual void showWarning(const char * text);
-
-		/**
 		 * @brief Shows the pause menu.
 		 **/
 		virtual void showPause();
@@ -135,6 +150,18 @@ namespace love
 		 * @brief Handles events, like the clicking of buttons.
 		 **/
 		virtual void eventFired(pEvent e);
+
+		/**
+		* @brief Called when a key is pressed.
+		* @param key The key that was pressed.
+		**/
+		virtual void keyPressed(int key);
+
+		/**
+		* @brief Called when a key is released.
+		* @param key The key that was released.
+		**/
+		virtual void keyReleased(int key);
 
 		/**
 		 * @brief Updates the GUI to be the same size as the new display mode.

@@ -45,6 +45,8 @@ namespace love
 		virtual void setButtonColor(const pAbstractColor * color);
 		virtual void setButtonBackgroundColor(const pAbstractColor * color);
 
+		virtual void setFont(const pAbstractFont * font);
+
 		virtual void setButton(const pAbstractImage * image);
 		virtual void setButtonPressed(const pAbstractImage * image);
 
@@ -62,6 +64,11 @@ namespace love
 		virtual pAbstractColor getSelectionBackgroundColor();
 		virtual pAbstractColor getButtonColor();
 		virtual pAbstractColor getButtonBackgroundColor();
+
+		virtual pAbstractFont getFont();
+
+		virtual pAbstractImage getButton();
+		virtual pAbstractImage getButtonPressed();
 
 		virtual void add(const char * text);
 		virtual void remove(int i);

@@ -12,17 +12,37 @@ namespace love
 
 	void GUIElement::setColor(const pAbstractColor * color)
 	{
-		this->color = (*color);
+		if(color == 0)
+			this->color.reset();
+		else
+			this->color = (*color);
+		//this->font->setColor(*color);
 	}
 
 	void GUIElement::setBackgroundColor(const pAbstractColor * color)
 	{
-		this->backgroundColor = (*color);
+		if(color == 0)
+			this->backgroundColor.reset();
+		else
+			this->backgroundColor = (*color);
 	}
 
 	void GUIElement::setBorderColor(const pAbstractColor * color)
 	{
-		this->borderColor = (*color);
+		if(color == 0)
+			this->borderColor.reset();
+		else
+			this->borderColor = (*color);
+	}
+
+	void GUIElement::setFont(const pAbstractFont * font)
+	{
+		if(this->font == 0)
+			this->font.reset<GUIText>(new GUIText(*font));
+		else if(font == 0)
+			this->font.reset();
+		else
+			this->font->setFont(*font);
 	}
 
 	pAbstractColor GUIElement::getColor()
@@ -38,5 +58,10 @@ namespace love
 	pAbstractColor GUIElement::getBorderColor()
 	{
 		return borderColor;
+	}
+
+	pAbstractFont GUIElement::getFont()
+	{
+		return font->getFont();
 	}
 }

@@ -56,8 +56,8 @@ namespace love
 
 	void Menu::setFont(const pAbstractFont * font)
 	{
-		text->setFont(*font);
-		gcn::Container::setFont(text.get());
+		GUIElement::setFont(font);
+		gcn::Container::setFont(this->font.get());
 	}
 
 	void Menu::setBackgroundColor(const pAbstractColor * color)
@@ -92,7 +92,7 @@ namespace love
 
 	pAbstractFont Menu::getFont()
 	{
-		return text->getFont();
+		return font->getFont();
 	}
 
 	pAbstractColor Menu::getBackgroundColor()
@@ -317,8 +317,10 @@ namespace love
 
 		//glPushMatrix();
 
-		if(text != 0)
-			graphics->setFont(text.get());
+		if(font != 0)
+			graphics->setFont(font.get());
+		if(color != 0)
+			graphics->setColor(gcn::Color(color->getRed(),color->getGreen(),color->getBlue(),color->getAlpha()));
 
 		if (isOpaque())
 		{
@@ -397,8 +399,12 @@ namespace love
 		WidgetListIterator iter;
 		for (iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
 		{
-			// Compensates for the children having their own fonts
-			graphics->setFont(text.get());
+			// Compensates for the children having their own fonts and colors
+			if(font != 0)
+				graphics->setFont(font.get());
+			if(color != 0)
+				graphics->setColor(gcn::Color(color->getRed(),color->getGreen(),color->getBlue(),color->getAlpha()));
+
 			if ((*iter)->isVisible())
 			{
 				// If the widget has a border,

@@ -41,7 +41,6 @@ namespace love
 	{
 	protected:
 		pAbstractImage background;
-		pGUIText text;
 		vector<pGUIElement> children; // you are all my children
 
 		int menuType; // used for adding/removing the menu from teh GUIContainer

@@ -61,6 +61,12 @@ namespace love
 		activeBackgroundColor = (*color);
 	}
 
+	void TextField::setFont(const pAbstractFont * font)
+	{
+		GUIElement::setFont(font);
+		gcn::TextField::setFont(this->font.get());
+	}
+
 	int TextField::getWidth()
 	{
 		return gcn::TextField::getWidth();
@@ -106,6 +112,11 @@ namespace love
 		return activeBackgroundColor;
 	}
 
+	pAbstractFont TextField::getFont()
+	{
+		return GUIElement::getFont();
+	}
+
 	void TextField::adjustSize()
 	{
 		gcn::TextField::adjustSize();
@@ -113,6 +124,9 @@ namespace love
 
 	void TextField::draw(gcn::Graphics* graphics)
 	{
+		if(getFont() != 0)
+			graphics->setFont(font.get());
+
 		if(isFocused() && activeColor.get() != 0)
 			gcn::TextField::setForegroundColor(gcn::Color(activeColor->getRed(),activeColor->getGreen(),activeColor->getBlue(),activeColor->getAlpha()));
 		else if(color.get() != 0)

@@ -52,8 +52,8 @@ namespace love
 
 	void ScrollMenu::setFont(const pAbstractFont * font)
 	{
-		text->setFont(*font);
-		gcn::ScrollArea::setFont(text.get());
+		GUIElement::setFont(font);
+		gcn::ScrollArea::setFont(this->font.get());
 	}
 
 	void ScrollMenu::setBackgroundColor(const pAbstractColor * color)
@@ -88,7 +88,7 @@ namespace love
 
 	pAbstractFont ScrollMenu::getFont()
 	{
-		return text->getFont();
+		return GUIElement::getFont();
 	}
 
 	pAbstractColor ScrollMenu::getBackgroundColor()
@@ -399,7 +399,7 @@ namespace love
 		for (iter = mWidgets.begin(); iter != mWidgets.end(); iter++)
 		{
 			// Compensates for the children having their own fonts
-			graphics->setFont(text.get());
+			graphics->setFont(font.get());
 			if ((*iter)->isVisible())
 			{
 				// If the widget has a border,
