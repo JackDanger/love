@@ -81,7 +81,8 @@ namespace love
 	{
 		top = new gcn::Container();
 		top->setDimension(gcn::Rectangle(0, 0, core->display->getCurrentDisplayMode().getWidth(), core->display->getCurrentDisplayMode().getHeight()));
-		top->setOpaque(false);
+		top->setBaseColor(gcn::Color(99,170,218,127));
+		top->setOpaque(true);
 
 		// resources
 		errorBackground.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/error_background.png")));
@@ -360,7 +361,7 @@ namespace love
 		pauseMenu->show();
 
 		pauseLabel->setCaption("Game paused"); pauseLabel->adjustSize();
-		if(previous->config->getThumb() != 0 && false) //removed because of buggyness
+		if(previous->config->getThumb() != 0)
 		{
 			thumbLabel->setBackground(&previous->config->getThumb()); thumbLabel->adjustSize();
 		}
@@ -480,9 +481,15 @@ namespace love
 				else
 					quitGame();
 			else if(strcmp(pme->getName(), "CORE_TAB_PAUSE") == 0)
-				hideSettings();
+			{
+				if(mode != MODE_PAUSE)
+					hideSettings();
+			}
 			else if(strcmp(pme->getName(), "CORE_TAB_SETTINGS") == 0)
-				showSettings();
+			{
+				if(mode != MODE_SETTINGS)
+					showSettings();
+			}
 		}
 	}
 
