@@ -54,7 +54,7 @@ namespace love
 	{
 		core->config->addBool("settings_fullscreen", settingsFullscreen->isMarked());
 		core->config->addBool("settings_vsync", settingsVSync->isMarked());
-		core->config->addInt("settings_resolution", (float)settingsResolution->getSelected());
+		//core->config->addInt("settings_resolution", (float)settingsResolution->getSelected());
 		core->config->addInt("settings_sound", (float)settingsSound->getValue());
 		core->config->addInt("settings_music", (float)settingsMusic->getValue());
 		core->config->write();
@@ -97,6 +97,16 @@ namespace love
 		buttonPressed->load();
 		buttonQuit.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/button_quit.png")));
 		buttonQuit->load();
+		checkBoxDefault.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/checkbox_default.png")));
+		checkBoxDefault->load();
+		checkBoxHover.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/checkbox_hover.png")));
+		checkBoxHover->load();
+		checkBoxMarked.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/checkbox_marked.png")));
+		checkBoxMarked->load();
+		sliderBar.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/slider_bar.png")));
+		sliderBar->load();
+		slider.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/slider.png")));
+		slider->load();
 
 		line.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/line.png")));
 		line->load();
@@ -185,27 +195,64 @@ namespace love
 		tabSettings->setDefaultImage(&tabDefault); tabSettings->setHoverImage(&tabHover);
 		tabSettings->setPosition(105,25); tabSettings->align(Text::LOVE_ALIGN_CENTER); tabSettings->adjustSize();
 
-		label = pause->addImage(&imageBackground);
-		label->setPosition(33, 100);
+		pauseMenu = pause->addMenu(AbstractMenu::LOVE_MENU_HORIZONTAL, 358, 167);
+		pauseMenu->setPosition(33,100);
 
-		thumbLabel = pause->addImage(&imageDefault);
-		thumbLabel->setPosition(37, 104);
+		label = pauseMenu->addImage(&imageBackground);
+		label->setPosition(0,0);
 
-		gameTitle = pause->addMultilineLabel("Game Title", 143);
-		gameTitle->setPosition(248, 100); gameTitle->align(Text::LOVE_ALIGN_LEFT); gameTitle->setFont(&subtitleFont); gameTitle->adjustSize();
+		thumbLabel = pauseMenu->addImage(&imageDefault);
+		thumbLabel->setPosition(4, 4);
 
-		gameCreator = pause->addMultilineLabel("by Someone", 143);
-		gameCreator->setPosition(248, 108 + gameTitle->getHeight()); gameCreator->align(Text::LOVE_ALIGN_LEFT); gameCreator->adjustSize();
+		gameTitle = pauseMenu->addMultilineLabel("Game Title", 143);
+		gameTitle->setPosition(215, 0); gameTitle->align(Text::LOVE_ALIGN_LEFT); gameTitle->setFont(&subtitleFont); gameTitle->adjustSize();
 
-		pButton qbutton = pause->addButton("CORE_QUIT", "  Quit");
-		qbutton->setDefaultImage(&buttonDefault); qbutton->setHoverImage(&buttonHover); qbutton->setPressedImage(&buttonPressed);
-		qbutton->setColor(&quitColor); qbutton->setHoverColor(&white);
-		qbutton->setPosition(24, 287); qbutton->align(Text::LOVE_ALIGN_LEFT); qbutton->adjustSize();
+		gameCreator = pauseMenu->addMultilineLabel("by Unknown", 143);
+		gameCreator->setPosition(215, 8 + gameTitle->getHeight()); gameCreator->align(Text::LOVE_ALIGN_LEFT); gameCreator->adjustSize();
 
-		button = pause->addButton("CORE_RESUME", "  Resume");
-		button->setDefaultImage(&buttonDefault); button->setHoverImage(&buttonHover); button->setPressedImage(&buttonPressed);
-		button->setColor(&buttonColor); button->setHoverColor(&white);
-		button->setPosition(316, 287); button->align(Text::LOVE_ALIGN_LEFT); button->adjustSize();
+		pauseMenu->show();
+
+		settingsMenu = pause->addMenu(AbstractMenu::LOVE_MENU_HORIZONTAL, 358, 167);
+		settingsMenu->setPosition(33,100);
+
+		settingsFullscreen = settingsMenu->addCheckBox("CORE_SETTINGS_FULLSCREEN", "  Fullscreen");
+		settingsFullscreen->setDefaultImage(&checkBoxDefault); settingsFullscreen->setHoverImage(&checkBoxHover); settingsFullscreen->setMarkedImage(&checkBoxMarked);
+		settingsFullscreen->setColor(&buttonColor); settingsFullscreen->setHoverColor(&white);  
+		settingsFullscreen->setPosition(24,8); settingsFullscreen->adjustSize();
+
+		settingsVSync = settingsMenu->addCheckBox("CORE_SETTINGS_FULLSCREEN", "  Vertical Sync");
+		settingsVSync->setDefaultImage(&checkBoxDefault); settingsVSync->setHoverImage(&checkBoxHover); settingsVSync->setMarkedImage(&checkBoxMarked);
+		settingsVSync->setColor(&buttonColor); settingsVSync->setHoverColor(&white);  
+		settingsVSync->setPosition(24,33); settingsVSync->adjustSize();
+
+		label = settingsMenu->addImage(&line);
+		label->setPosition(0, 60);
+
+		label = settingsMenu->addLabel("Sound Volume");
+		label->setPosition(24, 90); label->adjustSize();
+
+		settingsSound = settingsMenu->addSlider("CORE_SETTINGS_SOUND", Slider::LOVE_SLIDER_HORIZONTAL, 0, 100);
+		settingsSound->setBackgroundImage(&sliderBar); settingsSound->setMarkerImage(&slider); settingsSound->adjustSize();
+		settingsSound->setPosition(140, 90); settingsSound->setBorderSize(0);
+
+		label = settingsMenu->addLabel("Music Volume");
+		label->setPosition(24, 120); label->adjustSize();
+
+		settingsMusic = settingsMenu->addSlider("CORE_SETTINGS_MUSIC", Slider::LOVE_SLIDER_HORIZONTAL, 0, 100);
+		settingsMusic->setBackgroundImage(&sliderBar); settingsMusic->setMarkerImage(&slider); settingsMusic->adjustSize();
+		settingsMusic->setPosition(140, 120); settingsMusic->setBorderSize(0);
+
+		settingsMenu->hide();
+
+		cancelButton = pause->addButton("CORE_CANCEL", "  Quit");
+		cancelButton->setDefaultImage(&buttonDefault); cancelButton->setHoverImage(&buttonHover); cancelButton->setPressedImage(&buttonPressed);
+		cancelButton->setColor(&quitColor); cancelButton->setHoverColor(&white);  
+		cancelButton->setPosition(24, 287); cancelButton->align(Text::LOVE_ALIGN_LEFT); cancelButton->adjustSize();
+
+		okButton = pause->addButton("CORE_OK", "  Resume");
+		okButton->setDefaultImage(&buttonDefault); okButton->setHoverImage(&buttonHover); okButton->setPressedImage(&buttonPressed);
+		okButton->setColor(&buttonColor); okButton->setHoverColor(&white);
+		okButton->setPosition(316, 287); okButton->align(Text::LOVE_ALIGN_LEFT); okButton->adjustSize();
 
 		pause->setX( (core->display->getWidth() / 2) - (pause->getWidth() / 2) );
 		pause->setY( (core->display->getHeight() / 2) - (pause->getHeight() / 2) );
@@ -241,9 +288,16 @@ namespace love
 	void UIGame::reloadGraphics()
 	{
 		errorBackground->reload();
+		pauseBackground->reload();
 		buttonDefault->reload();
 		buttonHover->reload();
 		buttonPressed->reload();
+		buttonQuit->reload();
+		checkBoxDefault->reload();
+		checkBoxHover->reload();
+		checkBoxMarked->reload();
+		sliderBar->reload();
+		slider->reload();
 		line->reload();
 		tabDefault->reload();
 		tabHover->reload();
@@ -299,9 +353,13 @@ namespace love
 		tabPause->setHoverImage(0);
 		tabSettings->setDefaultImage(&tabDefault);
 		tabSettings->setHoverImage(&tabHover);
+		okButton->setCaption("  Resume");
+		cancelButton->setCaption("  Quit");
+		settingsMenu->hide();
+		pauseMenu->show();
 
 		pauseLabel->setCaption("Game paused"); pauseLabel->adjustSize();
-		if(previous->config->getThumb() != 0)
+		if(previous->config->getThumb() != 0 && false) //removed because of buggyness
 		{
 			thumbLabel->setBackground(&pAbstractImage(previous->config->getThumb())); thumbLabel->adjustSize();
 		}
@@ -311,7 +369,7 @@ namespace love
 		gameTitle->adjustSize();
 		gameCreator->setCaption(string("by ") + previous->config->getAuthor());
 		gameCreator->adjustSize();
-		gameCreator->setY(108 + gameTitle->getHeight());
+		gameCreator->setY(8 + gameTitle->getHeight());
 
 		mode = MODE_PAUSE;
 	}
@@ -329,6 +387,14 @@ namespace love
 
 	void UIGame::showSettings()
 	{
+		if(core->config->isBool("settings_fullscreen"))
+			settingsFullscreen->setMarked(core->config->getBool("settings_fullscreen"));
+		if(core->config->isBool("settings_vsync"))
+			settingsVSync->setMarked(core->config->getBool("settings_vsync"));
+		if(core->config->isInt("settings_sound"))
+			settingsSound->setValue(core->config->getInt("settings_sound"));
+		if(core->config->isInt("settings_music"))
+			settingsMusic->setValue(core->config->getInt("settings_music"));
 		if(mode != MODE_PAUSE)
 		{
 			// the settings menu to display when pausing from the menu
@@ -342,6 +408,10 @@ namespace love
 			tabSettings->setHoverImage(0);
 			pauseLabel->setCaption("Settings");
 			pauseLabel->adjustSize();
+			okButton->setCaption("  Ok");
+			cancelButton->setCaption("  Cancel");
+			pauseMenu->hide();
+			settingsMenu->show();
 			mode = MODE_SETTINGS;
 		}
 	}
@@ -356,6 +426,10 @@ namespace love
 			tabSettings->setHoverImage(&tabHover);
 			pauseLabel->setCaption("Game paused");
 			pauseLabel->adjustSize();
+			okButton->setCaption("  Resume");
+			cancelButton->setCaption("  Quit");
+			settingsMenu->hide();
+			pauseMenu->show();
 			mode = MODE_PAUSE;
 		}
 		else // mode == MODE_MENUPAUSE
@@ -394,14 +468,16 @@ namespace love
 				saveSettings();
 			else if(strcmp(pme->getName(), "CORE_SETTINGS_CANCEL") == 0)
 				hideSettings();
-			else if(strcmp(pme->getName(), "CORE_RESUME") == 0)
-				resumeGame();
-			else if(strcmp(pme->getName(), "CORE_SAVE") == 0)
-				printf("save");
-			else if(strcmp(pme->getName(), "CORE_LOAD") == 0)
-				printf("load");
-			else if(strcmp(pme->getName(), "CORE_QUIT") == 0)
-				quitGame();
+			else if(strcmp(pme->getName(), "CORE_OK") == 0)
+				if(mode == MODE_SETTINGS)
+					saveSettings();
+				else
+					resumeGame();
+			else if(strcmp(pme->getName(), "CORE_CANCEL") == 0)
+				if(mode == MODE_SETTINGS)
+					hideSettings();
+				else
+					quitGame();
 			else if(strcmp(pme->getName(), "CORE_TAB_PAUSE") == 0)
 				hideSettings();
 			else if(strcmp(pme->getName(), "CORE_TAB_SETTINGS") == 0)

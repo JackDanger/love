@@ -9,12 +9,16 @@ namespace love
 	{
 	protected:
 		pAbstractImage defaultImage; // "off"
+		pAbstractImage hoverImage;
 		pAbstractImage markedImage; // "on"
+		pAbstractColor hoverColor;
+		pAbstractColor markedColor;
 		int alignment;
 		int verticalAlignment;
+		bool mHasMouse; // when the mouse is over the widget
 
 	public:
-		CheckBox(const string caption = "");
+		CheckBox(const string & caption = "");
 		~CheckBox();
 
 		virtual void setSize(int width, int height);
@@ -30,7 +34,10 @@ namespace love
 		virtual void valign(int alignment);
 
 		virtual void setBackgroundColor(const pAbstractColor * color);
+		virtual void setHoverColor(const pAbstractColor * color);
+		virtual void setMarkedColor(const pAbstractColor * color);
 		virtual void setDefaultImage(const pAbstractImage * image);
+		virtual void setHoverImage(const pAbstractImage * image);
 		virtual void setMarkedImage(const pAbstractImage * image);
 
 		virtual void setFont(const pAbstractFont * font);
@@ -44,7 +51,10 @@ namespace love
 		virtual bool isMarked();
 
 		virtual pAbstractColor getBackgroundColor();
+		virtual pAbstractColor getHoverColor();
+		virtual pAbstractColor getMarkedColor();
 		virtual pAbstractImage getDefaultImage();
+		virtual pAbstractImage getHoverImage();
 		virtual pAbstractImage getMarkedImage();
 
 		virtual pAbstractFont getFont();
@@ -54,6 +64,10 @@ namespace love
 		virtual void draw(gcn::Graphics * graphics);
 		virtual void drawBorder(gcn::Graphics * graphics);
 		virtual void drawBox(gcn::Graphics * graphics);
+
+		//overriding the guichan stuff to give hover "ability"
+		virtual void mouseEntered(gcn::MouseEvent & mouseEvent);
+		virtual void mouseExited(gcn::MouseEvent & mouseEvent);
 	};
 
 	typedef boost::shared_ptr<CheckBox> pCheckBox;

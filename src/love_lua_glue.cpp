@@ -2838,6 +2838,24 @@ fail:
 }
 
 
+static int _wrap_AbstractFont_getHeight(lua_State* L) {
+  int SWIG_arg = -1;
+  love::AbstractFont *arg1 = (love::AbstractFont *) 0 ;
+  float result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::AbstractFont *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractFont,0,1,"AbstractFont_getHeight");
+  result = (float)(arg1)->getHeight();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_AbstractFont_getLineWidth(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractFont *arg1 = (love::AbstractFont *) 0 ;
@@ -2849,6 +2867,27 @@ static int _wrap_AbstractFont_getLineWidth(lua_State* L) {
   arg1=(love::AbstractFont *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractFont,0,1,"AbstractFont_getLineWidth");
   arg2 = (char*)lua_tostring(L, 2);
   result = (float)(arg1)->getLineWidth((char const *)arg2);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_AbstractFont_getWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  love::AbstractFont *arg1 = (love::AbstractFont *) 0 ;
+  char *arg2 = (char *) 0 ;
+  float result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(love::AbstractFont *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractFont,0,1,"AbstractFont_getWidth");
+  arg2 = (char*)lua_tostring(L, 2);
+  result = (float)(arg1)->getWidth((char const *)arg2);
   SWIG_arg=0;
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
@@ -2901,7 +2940,9 @@ delete arg1;
 static swig_lua_method swig_love_AbstractFont_methods[] = {
     {"print", _wrap_AbstractFont_print}, 
     {"getLineHeight", _wrap_AbstractFont_getLineHeight}, 
+    {"getHeight", _wrap_AbstractFont_getHeight}, 
     {"getLineWidth", _wrap_AbstractFont_getLineWidth}, 
+    {"getWidth", _wrap_AbstractFont_getWidth}, 
     {"load", _wrap_AbstractFont_load}, 
     {"unload", _wrap_AbstractFont_unload}, 
     {0,0}
@@ -4233,6 +4274,26 @@ fail:
 }
 
 
+static int _wrap_GUIElement_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::GUIElement *arg1 = (love::GUIElement *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::GUIElement *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__GUIElement,0,1,"GUIElement_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"GUIElement_setFont");
+  (arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_GUIElement_getColor(lua_State* L) {
   int SWIG_arg = -1;
   love::GUIElement *arg1 = (love::GUIElement *) 0 ;
@@ -4290,6 +4351,28 @@ static int _wrap_GUIElement_getBorderColor(lua_State* L) {
     love::pAbstractColor * resultptr;
     resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_GUIElement_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::GUIElement *arg1 = (love::GUIElement *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::GUIElement *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__GUIElement,0,1,"GUIElement_getFont");
+  result = (arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -4461,9 +4544,11 @@ static swig_lua_method swig_love_GUIElement_methods[] = {
     {"setColor", _wrap_GUIElement_setColor}, 
     {"setBackgroundColor", _wrap_GUIElement_setBackgroundColor}, 
     {"setBorderColor", _wrap_GUIElement_setBorderColor}, 
+    {"setFont", _wrap_GUIElement_setFont}, 
     {"getColor", _wrap_GUIElement_getColor}, 
     {"getBackgroundColor", _wrap_GUIElement_getBackgroundColor}, 
     {"getBorderColor", _wrap_GUIElement_getBorderColor}, 
+    {"getFont", _wrap_GUIElement_getFont}, 
     {"setSize", _wrap_GUIElement_setSize}, 
     {"setWidth", _wrap_GUIElement_setWidth}, 
     {"setHeight", _wrap_GUIElement_setHeight}, 
@@ -4883,6 +4968,26 @@ fail:
 }
 
 
+static int _wrap_Button_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Button *arg1 = (love::Button *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"Button_setFont");
+  (arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Button_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   love::Button *arg1 = (love::Button *) 0 ;
@@ -5083,6 +5188,28 @@ fail:
 }
 
 
+static int _wrap_Button_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Button *arg1 = (love::Button *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_getFont");
+  result = (arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Button_adjustSize(lua_State* L) {
   int SWIG_arg = -1;
   love::Button *arg1 = (love::Button *) 0 ;
@@ -5181,6 +5308,7 @@ static swig_lua_method swig_love_Button_methods[] = {
     {"setDefaultImage", _wrap_Button_setDefaultImage}, 
     {"setHoverImage", _wrap_Button_setHoverImage}, 
     {"setPressedImage", _wrap_Button_setPressedImage}, 
+    {"setFont", _wrap_Button_setFont}, 
     {"getWidth", _wrap_Button_getWidth}, 
     {"getHeight", _wrap_Button_getHeight}, 
     {"getBorderSize", _wrap_Button_getBorderSize}, 
@@ -5191,6 +5319,7 @@ static swig_lua_method swig_love_Button_methods[] = {
     {"getPressedColor", _wrap_Button_getPressedColor}, 
     {"getHoverBackgroundColor", _wrap_Button_getHoverBackgroundColor}, 
     {"getPressedBackgroundColor", _wrap_Button_getPressedBackgroundColor}, 
+    {"getFont", _wrap_Button_getFont}, 
     {"adjustSize", _wrap_Button_adjustSize}, 
     {"isFocused", _wrap_Button_isFocused}, 
     {"draw", _wrap_Button_draw}, 
@@ -5472,6 +5601,26 @@ static int _wrap_DropDown_setButtonBackgroundColor(lua_State* L) {
   arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_setButtonBackgroundColor");
   arg2=(love::pAbstractColor *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,0,2,"DropDown_setButtonBackgroundColor");
   (arg1)->setButtonBackgroundColor((love::pAbstractColor const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DropDown_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::DropDown *arg1 = (love::DropDown *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"DropDown_setFont");
+  (arg1)->setFont((love::pAbstractFont const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -5765,6 +5914,72 @@ fail:
 }
 
 
+static int _wrap_DropDown_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::DropDown *arg1 = (love::DropDown *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_getFont");
+  result = (arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DropDown_getButton(lua_State* L) {
+  int SWIG_arg = -1;
+  love::DropDown *arg1 = (love::DropDown *) 0 ;
+  pAbstractImage result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_getButton");
+  result = (arg1)->getButton();
+  SWIG_arg=0;
+  {
+    pAbstractImage * resultptr;
+    resultptr = new pAbstractImage((pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DropDown_getButtonPressed(lua_State* L) {
+  int SWIG_arg = -1;
+  love::DropDown *arg1 = (love::DropDown *) 0 ;
+  pAbstractImage result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_getButtonPressed");
+  result = (arg1)->getButtonPressed();
+  SWIG_arg=0;
+  {
+    pAbstractImage * resultptr;
+    resultptr = new pAbstractImage((pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_DropDown_add(lua_State* L) {
   int SWIG_arg = -1;
   love::DropDown *arg1 = (love::DropDown *) 0 ;
@@ -5974,6 +6189,7 @@ static swig_lua_method swig_love_DropDown_methods[] = {
     {"setSelectionBackgroundColor", _wrap_DropDown_setSelectionBackgroundColor}, 
     {"setButtonColor", _wrap_DropDown_setButtonColor}, 
     {"setButtonBackgroundColor", _wrap_DropDown_setButtonBackgroundColor}, 
+    {"setFont", _wrap_DropDown_setFont}, 
     {"setButton", _wrap_DropDown_setButton}, 
     {"setButtonPressed", _wrap_DropDown_setButtonPressed}, 
     {"getWidth", _wrap_DropDown_getWidth}, 
@@ -5988,6 +6204,9 @@ static swig_lua_method swig_love_DropDown_methods[] = {
     {"getSelectionBackgroundColor", _wrap_DropDown_getSelectionBackgroundColor}, 
     {"getButtonColor", _wrap_DropDown_getButtonColor}, 
     {"getButtonBackgroundColor", _wrap_DropDown_getButtonBackgroundColor}, 
+    {"getFont", _wrap_DropDown_getFont}, 
+    {"getButton", _wrap_DropDown_getButton}, 
+    {"getButtonPressed", _wrap_DropDown_getButtonPressed}, 
     {"add", _wrap_DropDown_add}, 
     {"remove", _wrap_DropDown_remove}, 
     {"clear", _wrap_DropDown_clear}, 
@@ -6214,6 +6433,26 @@ fail:
 }
 
 
+static int _wrap_Label_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Label *arg1 = (love::Label *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Label *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Label,0,1,"Label_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"Label_setFont");
+  (arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Label_align(lua_State* L) {
   int SWIG_arg = -1;
   love::Label *arg1 = (love::Label *) 0 ;
@@ -6368,6 +6607,50 @@ fail:
 }
 
 
+static int _wrap_Label_getBackground(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Label *arg1 = (love::Label *) 0 ;
+  pAbstractImage result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Label *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Label,0,1,"Label_getBackground");
+  result = (arg1)->getBackground();
+  SWIG_arg=0;
+  {
+    pAbstractImage * resultptr;
+    resultptr = new pAbstractImage((pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Label_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Label *arg1 = (love::Label *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Label *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Label,0,1,"Label_getFont");
+  result = (arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Label_adjustSize(lua_State* L) {
   int SWIG_arg = -1;
   love::Label *arg1 = (love::Label *) 0 ;
@@ -6436,6 +6719,7 @@ static swig_lua_method swig_love_Label_methods[] = {
     {"setBorderSize", _wrap_Label_setBorderSize}, 
     {"setCaption", _wrap_Label_setCaption}, 
     {"setBackgroundColor", _wrap_Label_setBackgroundColor}, 
+    {"setFont", _wrap_Label_setFont}, 
     {"align", _wrap_Label_align}, 
     {"valign", _wrap_Label_valign}, 
     {"setBackground", _wrap_Label_setBackground}, 
@@ -6444,6 +6728,8 @@ static swig_lua_method swig_love_Label_methods[] = {
     {"getBorderSize", _wrap_Label_getBorderSize}, 
     {"getCaption", _wrap_Label_getCaption}, 
     {"getBackgroundColor", _wrap_Label_getBackgroundColor}, 
+    {"getBackground", _wrap_Label_getBackground}, 
+    {"getFont", _wrap_Label_getFont}, 
     {"adjustSize", _wrap_Label_adjustSize}, 
     {"draw", _wrap_Label_draw}, 
     {"drawBorder", _wrap_Label_drawBorder}, 
@@ -6987,6 +7273,26 @@ fail:
 }
 
 
+static int _wrap_TextField_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::TextField *arg1 = (love::TextField *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::TextField *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__TextField,0,1,"TextField_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"TextField_setFont");
+  (arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_TextField_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   love::TextField *arg1 = (love::TextField *) 0 ;
@@ -7161,6 +7467,28 @@ fail:
 }
 
 
+static int _wrap_TextField_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::TextField *arg1 = (love::TextField *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::TextField *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__TextField,0,1,"TextField_getFont");
+  result = (arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_TextField_adjustSize(lua_State* L) {
   int SWIG_arg = -1;
   love::TextField *arg1 = (love::TextField *) 0 ;
@@ -7233,6 +7561,7 @@ static swig_lua_method swig_love_TextField_methods[] = {
     {"setBackgroundColor", _wrap_TextField_setBackgroundColor}, 
     {"setActiveColor", _wrap_TextField_setActiveColor}, 
     {"setActiveBackgroundColor", _wrap_TextField_setActiveBackgroundColor}, 
+    {"setFont", _wrap_TextField_setFont}, 
     {"getWidth", _wrap_TextField_getWidth}, 
     {"getHeight", _wrap_TextField_getHeight}, 
     {"getBorderSize", _wrap_TextField_getBorderSize}, 
@@ -7242,6 +7571,7 @@ static swig_lua_method swig_love_TextField_methods[] = {
     {"getBackgroundColor", _wrap_TextField_getBackgroundColor}, 
     {"getActiveColor", _wrap_TextField_getActiveColor}, 
     {"getActiveBackgroundColor", _wrap_TextField_getActiveBackgroundColor}, 
+    {"getFont", _wrap_TextField_getFont}, 
     {"adjustSize", _wrap_TextField_adjustSize}, 
     {"draw", _wrap_TextField_draw}, 
     {"drawBorder", _wrap_TextField_drawBorder}, 
@@ -7581,6 +7911,26 @@ fail:
 }
 
 
+static int _wrap_RadioButton_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"RadioButton_setFont");
+  (arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_RadioButton_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   love::RadioButton *arg1 = (love::RadioButton *) 0 ;
@@ -7755,6 +8105,28 @@ fail:
 }
 
 
+static int _wrap_RadioButton_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::RadioButton *arg1 = (love::RadioButton *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_getFont");
+  result = (arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_RadioButton_adjustSize(lua_State* L) {
   int SWIG_arg = -1;
   love::RadioButton *arg1 = (love::RadioButton *) 0 ;
@@ -7849,6 +8221,7 @@ static swig_lua_method swig_love_RadioButton_methods[] = {
     {"setBackgroundColor", _wrap_RadioButton_setBackgroundColor}, 
     {"setDefaultImage", _wrap_RadioButton_setDefaultImage}, 
     {"setMarkedImage", _wrap_RadioButton_setMarkedImage}, 
+    {"setFont", _wrap_RadioButton_setFont}, 
     {"getWidth", _wrap_RadioButton_getWidth}, 
     {"getHeight", _wrap_RadioButton_getHeight}, 
     {"getBorderSize", _wrap_RadioButton_getBorderSize}, 
@@ -7858,6 +8231,7 @@ static swig_lua_method swig_love_RadioButton_methods[] = {
     {"getBackgroundColor", _wrap_RadioButton_getBackgroundColor}, 
     {"getDefaultImage", _wrap_RadioButton_getDefaultImage}, 
     {"getMarkedImage", _wrap_RadioButton_getMarkedImage}, 
+    {"getFont", _wrap_RadioButton_getFont}, 
     {"adjustSize", _wrap_RadioButton_adjustSize}, 
     {"draw", _wrap_RadioButton_draw}, 
     {"drawBorder", _wrap_RadioButton_drawBorder}, 
@@ -8198,6 +8572,26 @@ fail:
 }
 
 
+static int _wrap_CheckBox_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::CheckBox *arg1 = (love::CheckBox *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::CheckBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__CheckBox,0,1,"CheckBox_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"CheckBox_setFont");
+  (arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_CheckBox_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   love::CheckBox *arg1 = (love::CheckBox *) 0 ;
@@ -8372,6 +8766,28 @@ fail:
 }
 
 
+static int _wrap_CheckBox_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::CheckBox *arg1 = (love::CheckBox *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::CheckBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__CheckBox,0,1,"CheckBox_getFont");
+  result = (arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_CheckBox_adjustSize(lua_State* L) {
   int SWIG_arg = -1;
   love::CheckBox *arg1 = (love::CheckBox *) 0 ;
@@ -8466,6 +8882,7 @@ static swig_lua_method swig_love_CheckBox_methods[] = {
     {"setBackgroundColor", _wrap_CheckBox_setBackgroundColor}, 
     {"setDefaultImage", _wrap_CheckBox_setDefaultImage}, 
     {"setMarkedImage", _wrap_CheckBox_setMarkedImage}, 
+    {"setFont", _wrap_CheckBox_setFont}, 
     {"getWidth", _wrap_CheckBox_getWidth}, 
     {"getHeight", _wrap_CheckBox_getHeight}, 
     {"getBorderSize", _wrap_CheckBox_getBorderSize}, 
@@ -8475,6 +8892,7 @@ static swig_lua_method swig_love_CheckBox_methods[] = {
     {"getBackgroundColor", _wrap_CheckBox_getBackgroundColor}, 
     {"getDefaultImage", _wrap_CheckBox_getDefaultImage}, 
     {"getMarkedImage", _wrap_CheckBox_getMarkedImage}, 
+    {"getFont", _wrap_CheckBox_getFont}, 
     {"adjustSize", _wrap_CheckBox_adjustSize}, 
     {"draw", _wrap_CheckBox_draw}, 
     {"drawBorder", _wrap_CheckBox_drawBorder}, 
@@ -8904,6 +9322,26 @@ fail:
 }
 
 
+static int _wrap_Slider_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Slider *arg1 = (love::Slider *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Slider *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Slider,0,1,"Slider_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"Slider_setFont");
+  (arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Slider_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   love::Slider *arg1 = (love::Slider *) 0 ;
@@ -9150,6 +9588,28 @@ fail:
 }
 
 
+static int _wrap_Slider_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Slider *arg1 = (love::Slider *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Slider *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Slider,0,1,"Slider_getFont");
+  result = (arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Slider_adjustSize(lua_State* L) {
   int SWIG_arg = -1;
   love::Slider *arg1 = (love::Slider *) 0 ;
@@ -9247,6 +9707,7 @@ static swig_lua_method swig_love_Slider_methods[] = {
     {"setBackgroundColor", _wrap_Slider_setBackgroundColor}, 
     {"setMarkerImage", _wrap_Slider_setMarkerImage}, 
     {"setBackgroundImage", _wrap_Slider_setBackgroundImage}, 
+    {"setFont", _wrap_Slider_setFont}, 
     {"getWidth", _wrap_Slider_getWidth}, 
     {"getHeight", _wrap_Slider_getHeight}, 
     {"getBorderSize", _wrap_Slider_getBorderSize}, 
@@ -9260,6 +9721,7 @@ static swig_lua_method swig_love_Slider_methods[] = {
     {"getBackgroundColor", _wrap_Slider_getBackgroundColor}, 
     {"getMarkerImage", _wrap_Slider_getMarkerImage}, 
     {"getBackgroundImage", _wrap_Slider_getBackgroundImage}, 
+    {"getFont", _wrap_Slider_getFont}, 
     {"adjustSize", _wrap_Slider_adjustSize}, 
     {"draw", _wrap_Slider_draw}, 
     {"drawBorder", _wrap_Slider_drawBorder}, 
@@ -9471,6 +9933,26 @@ fail:
 }
 
 
+static int _wrap_ListBox_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ListBox *arg1 = (love::ListBox *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::ListBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ListBox,0,1,"ListBox_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"ListBox_setFont");
+  (arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_ListBox_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   love::ListBox *arg1 = (love::ListBox *) 0 ;
@@ -9600,6 +10082,28 @@ static int _wrap_ListBox_getSeclectionBackgroundColor(lua_State* L) {
     love::pAbstractColor * resultptr;
     resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ListBox_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ListBox *arg1 = (love::ListBox *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::ListBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ListBox,0,1,"ListBox_getFont");
+  result = (arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -9811,6 +10315,7 @@ static swig_lua_method swig_love_ListBox_methods[] = {
     {"setBackgroundColor", _wrap_ListBox_setBackgroundColor}, 
     {"setSelectionColor", _wrap_ListBox_setSelectionColor}, 
     {"setSelectionBackgroundColor", _wrap_ListBox_setSelectionBackgroundColor}, 
+    {"setFont", _wrap_ListBox_setFont}, 
     {"getWidth", _wrap_ListBox_getWidth}, 
     {"getHeight", _wrap_ListBox_getHeight}, 
     {"getBorderSize", _wrap_ListBox_getBorderSize}, 
@@ -9818,6 +10323,7 @@ static swig_lua_method swig_love_ListBox_methods[] = {
     {"getBackgroundColor", _wrap_ListBox_getBackgroundColor}, 
     {"getSeclectionColor", _wrap_ListBox_getSeclectionColor}, 
     {"getSeclectionBackgroundColor", _wrap_ListBox_getSeclectionBackgroundColor}, 
+    {"getFont", _wrap_ListBox_getFont}, 
     {"adjustSize", _wrap_ListBox_adjustSize}, 
     {"add", _wrap_ListBox_add}, 
     {"remove", _wrap_ListBox_remove}, 
@@ -10221,6 +10727,26 @@ fail:
 }
 
 
+static int _wrap_TextBox_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::TextBox *arg1 = (love::TextBox *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(love::TextBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__TextBox,0,1,"TextBox_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"TextBox_setFont");
+  (arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_TextBox_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   love::TextBox *arg1 = (love::TextBox *) 0 ;
@@ -10488,6 +11014,28 @@ fail:
 }
 
 
+static int _wrap_TextBox_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love::TextBox *arg1 = (love::TextBox *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::TextBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__TextBox,0,1,"TextBox_getFont");
+  result = (arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_TextBox_adjustSize(lua_State* L) {
   int SWIG_arg = -1;
   love::TextBox *arg1 = (love::TextBox *) 0 ;
@@ -10565,6 +11113,7 @@ static swig_lua_method swig_love_TextBox_methods[] = {
     {"setBackgroundColor", _wrap_TextBox_setBackgroundColor}, 
     {"setActiveColor", _wrap_TextBox_setActiveColor}, 
     {"setActiveBackgroundColor", _wrap_TextBox_setActiveBackgroundColor}, 
+    {"setFont", _wrap_TextBox_setFont}, 
     {"getWidth", _wrap_TextBox_getWidth}, 
     {"getHeight", _wrap_TextBox_getHeight}, 
     {"getBorderSize", _wrap_TextBox_getBorderSize}, 
@@ -10579,6 +11128,7 @@ static swig_lua_method swig_love_TextBox_methods[] = {
     {"getBackgroundColor", _wrap_TextBox_getBackgroundColor}, 
     {"getActiveColor", _wrap_TextBox_getActiveColor}, 
     {"getActiveBackgroundColor", _wrap_TextBox_getActiveBackgroundColor}, 
+    {"getFont", _wrap_TextBox_getFont}, 
     {"adjustSize", _wrap_TextBox_adjustSize}, 
     {"draw", _wrap_TextBox_draw}, 
     {"drawBorder", _wrap_TextBox_drawBorder}, 
@@ -27809,6 +28359,24 @@ fail:
 }
 
 
+static int _wrap_SmartAbstractFont_getHeight(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::AbstractFont > *arg1 = (boost::shared_ptr<love::AbstractFont > *) 0 ;
+  float result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::AbstractFont > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,1,"SmartAbstractFont_getHeight");
+  result = (float)(*arg1)->getHeight();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartAbstractFont_getLineWidth(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::AbstractFont > *arg1 = (boost::shared_ptr<love::AbstractFont > *) 0 ;
@@ -27820,6 +28388,27 @@ static int _wrap_SmartAbstractFont_getLineWidth(lua_State* L) {
   arg1=(boost::shared_ptr<love::AbstractFont > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,1,"SmartAbstractFont_getLineWidth");
   arg2 = (char*)lua_tostring(L, 2);
   result = (float)(*arg1)->getLineWidth((char const *)arg2);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAbstractFont_getWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::AbstractFont > *arg1 = (boost::shared_ptr<love::AbstractFont > *) 0 ;
+  char *arg2 = (char *) 0 ;
+  float result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isstring(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::AbstractFont > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,1,"SmartAbstractFont_getWidth");
+  arg2 = (char*)lua_tostring(L, 2);
+  result = (float)(*arg1)->getWidth((char const *)arg2);
   SWIG_arg=0;
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
@@ -27873,7 +28462,9 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_AbstractFont_Sg__methods[] 
     {"__deref__", _wrap_SmartAbstractFont___deref__}, 
     {"print", _wrap_SmartAbstractFont_print}, 
     {"getLineHeight", _wrap_SmartAbstractFont_getLineHeight}, 
+    {"getHeight", _wrap_SmartAbstractFont_getHeight}, 
     {"getLineWidth", _wrap_SmartAbstractFont_getLineWidth}, 
+    {"getWidth", _wrap_SmartAbstractFont_getWidth}, 
     {"load", _wrap_SmartAbstractFont_load}, 
     {"unload", _wrap_SmartAbstractFont_unload}, 
     {0,0}
@@ -34423,6 +35014,26 @@ fail:
 }
 
 
+static int _wrap_SmartLabel_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Label > *arg1 = (boost::shared_ptr<love::Label > *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Label > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Label_t,0,1,"SmartLabel_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"SmartLabel_setFont");
+  (*arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartLabel_align(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Label > *arg1 = (boost::shared_ptr<love::Label > *) 0 ;
@@ -34568,6 +35179,50 @@ static int _wrap_SmartLabel_getBackgroundColor(lua_State* L) {
     love::pAbstractColor * resultptr;
     resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartLabel_getBackground(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Label > *arg1 = (boost::shared_ptr<love::Label > *) 0 ;
+  pAbstractImage result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Label > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Label_t,0,1,"SmartLabel_getBackground");
+  result = (*arg1)->getBackground();
+  SWIG_arg=0;
+  {
+    pAbstractImage * resultptr;
+    resultptr = new pAbstractImage((pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartLabel_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Label > *arg1 = (boost::shared_ptr<love::Label > *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Label > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Label_t,0,1,"SmartLabel_getFont");
+  result = (*arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -34730,6 +35385,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_Label_Sg__methods[] = {
     {"setBorderSize", _wrap_SmartLabel_setBorderSize}, 
     {"setCaption", _wrap_SmartLabel_setCaption}, 
     {"setBackgroundColor", _wrap_SmartLabel_setBackgroundColor}, 
+    {"setFont", _wrap_SmartLabel_setFont}, 
     {"align", _wrap_SmartLabel_align}, 
     {"valign", _wrap_SmartLabel_valign}, 
     {"setBackground", _wrap_SmartLabel_setBackground}, 
@@ -34738,6 +35394,8 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_Label_Sg__methods[] = {
     {"getBorderSize", _wrap_SmartLabel_getBorderSize}, 
     {"getCaption", _wrap_SmartLabel_getCaption}, 
     {"getBackgroundColor", _wrap_SmartLabel_getBackgroundColor}, 
+    {"getBackground", _wrap_SmartLabel_getBackground}, 
+    {"getFont", _wrap_SmartLabel_getFont}, 
     {"adjustSize", _wrap_SmartLabel_adjustSize}, 
     {"draw", _wrap_SmartLabel_draw}, 
     {"drawBorder", _wrap_SmartLabel_drawBorder}, 
@@ -35043,6 +35701,26 @@ fail:
 }
 
 
+static int _wrap_SmartMultilineLabel_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::MultilineLabel > *arg1 = (boost::shared_ptr<love::MultilineLabel > *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::MultilineLabel > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__MultilineLabel_t,0,1,"SmartMultilineLabel_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"SmartMultilineLabel_setFont");
+  (*arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartMultilineLabel_align(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::MultilineLabel > *arg1 = (boost::shared_ptr<love::MultilineLabel > *) 0 ;
@@ -35197,6 +35875,50 @@ fail:
 }
 
 
+static int _wrap_SmartMultilineLabel_getBackground(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::MultilineLabel > *arg1 = (boost::shared_ptr<love::MultilineLabel > *) 0 ;
+  pAbstractImage result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::MultilineLabel > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__MultilineLabel_t,0,1,"SmartMultilineLabel_getBackground");
+  result = (*arg1)->getBackground();
+  SWIG_arg=0;
+  {
+    pAbstractImage * resultptr;
+    resultptr = new pAbstractImage((pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMultilineLabel_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::MultilineLabel > *arg1 = (boost::shared_ptr<love::MultilineLabel > *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::MultilineLabel > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__MultilineLabel_t,0,1,"SmartMultilineLabel_getFont");
+  result = (*arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartMultilineLabel_drawBorder(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::MultilineLabel > *arg1 = (boost::shared_ptr<love::MultilineLabel > *) 0 ;
@@ -35316,6 +36038,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_MultilineLabel_Sg__methods[
     {"setHeight", _wrap_SmartMultilineLabel_setHeight}, 
     {"setBorderSize", _wrap_SmartMultilineLabel_setBorderSize}, 
     {"setBackgroundColor", _wrap_SmartMultilineLabel_setBackgroundColor}, 
+    {"setFont", _wrap_SmartMultilineLabel_setFont}, 
     {"align", _wrap_SmartMultilineLabel_align}, 
     {"valign", _wrap_SmartMultilineLabel_valign}, 
     {"setBackground", _wrap_SmartMultilineLabel_setBackground}, 
@@ -35324,6 +36047,8 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_MultilineLabel_Sg__methods[
     {"getBorderSize", _wrap_SmartMultilineLabel_getBorderSize}, 
     {"getCaption", _wrap_SmartMultilineLabel_getCaption}, 
     {"getBackgroundColor", _wrap_SmartMultilineLabel_getBackgroundColor}, 
+    {"getBackground", _wrap_SmartMultilineLabel_getBackground}, 
+    {"getFont", _wrap_SmartMultilineLabel_getFont}, 
     {"drawBorder", _wrap_SmartMultilineLabel_drawBorder}, 
     {"setColor", _wrap_SmartMultilineLabel_setColor}, 
     {"setBorderColor", _wrap_SmartMultilineLabel_setBorderColor}, 
@@ -35736,6 +36461,26 @@ fail:
 }
 
 
+static int _wrap_SmartButton_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Button > *arg1 = (boost::shared_ptr<love::Button > *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Button > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Button_t,0,1,"SmartButton_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"SmartButton_setFont");
+  (*arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartButton_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Button > *arg1 = (boost::shared_ptr<love::Button > *) 0 ;
@@ -35936,6 +36681,28 @@ fail:
 }
 
 
+static int _wrap_SmartButton_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Button > *arg1 = (boost::shared_ptr<love::Button > *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Button > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Button_t,0,1,"SmartButton_getFont");
+  result = (*arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartButton_adjustSize(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Button > *arg1 = (boost::shared_ptr<love::Button > *) 0 ;
@@ -36119,6 +36886,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_Button_Sg__methods[] = {
     {"setDefaultImage", _wrap_SmartButton_setDefaultImage}, 
     {"setHoverImage", _wrap_SmartButton_setHoverImage}, 
     {"setPressedImage", _wrap_SmartButton_setPressedImage}, 
+    {"setFont", _wrap_SmartButton_setFont}, 
     {"getWidth", _wrap_SmartButton_getWidth}, 
     {"getHeight", _wrap_SmartButton_getHeight}, 
     {"getBorderSize", _wrap_SmartButton_getBorderSize}, 
@@ -36129,6 +36897,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_Button_Sg__methods[] = {
     {"getPressedColor", _wrap_SmartButton_getPressedColor}, 
     {"getHoverBackgroundColor", _wrap_SmartButton_getHoverBackgroundColor}, 
     {"getPressedBackgroundColor", _wrap_SmartButton_getPressedBackgroundColor}, 
+    {"getFont", _wrap_SmartButton_getFont}, 
     {"adjustSize", _wrap_SmartButton_adjustSize}, 
     {"isFocused", _wrap_SmartButton_isFocused}, 
     {"draw", _wrap_SmartButton_draw}, 
@@ -36384,6 +37153,26 @@ fail:
 }
 
 
+static int _wrap_SmartTextField_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextField > *arg1 = (boost::shared_ptr<love::TextField > *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextField > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextField_t,0,1,"SmartTextField_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"SmartTextField_setFont");
+  (*arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartTextField_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::TextField > *arg1 = (boost::shared_ptr<love::TextField > *) 0 ;
@@ -36558,6 +37347,28 @@ fail:
 }
 
 
+static int _wrap_SmartTextField_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextField > *arg1 = (boost::shared_ptr<love::TextField > *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextField > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextField_t,0,1,"SmartTextField_getFont");
+  result = (*arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartTextField_adjustSize(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::TextField > *arg1 = (boost::shared_ptr<love::TextField > *) 0 ;
@@ -36715,6 +37526,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_TextField_Sg__methods[] = {
     {"setBackgroundColor", _wrap_SmartTextField_setBackgroundColor}, 
     {"setActiveColor", _wrap_SmartTextField_setActiveColor}, 
     {"setActiveBackgroundColor", _wrap_SmartTextField_setActiveBackgroundColor}, 
+    {"setFont", _wrap_SmartTextField_setFont}, 
     {"getWidth", _wrap_SmartTextField_getWidth}, 
     {"getHeight", _wrap_SmartTextField_getHeight}, 
     {"getBorderSize", _wrap_SmartTextField_getBorderSize}, 
@@ -36724,6 +37536,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_TextField_Sg__methods[] = {
     {"getBackgroundColor", _wrap_SmartTextField_getBackgroundColor}, 
     {"getActiveColor", _wrap_SmartTextField_getActiveColor}, 
     {"getActiveBackgroundColor", _wrap_SmartTextField_getActiveBackgroundColor}, 
+    {"getFont", _wrap_SmartTextField_getFont}, 
     {"adjustSize", _wrap_SmartTextField_adjustSize}, 
     {"draw", _wrap_SmartTextField_draw}, 
     {"drawBorder", _wrap_SmartTextField_drawBorder}, 
@@ -37018,6 +37831,26 @@ fail:
 }
 
 
+static int _wrap_SmartDropDown_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::DropDown > *arg1 = (boost::shared_ptr<love::DropDown > *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::DropDown > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t,0,1,"SmartDropDown_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"SmartDropDown_setFont");
+  (*arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartDropDown_setButton(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::DropDown > *arg1 = (boost::shared_ptr<love::DropDown > *) 0 ;
@@ -37292,6 +38125,72 @@ static int _wrap_SmartDropDown_getButtonBackgroundColor(lua_State* L) {
     love::pAbstractColor * resultptr;
     resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartDropDown_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::DropDown > *arg1 = (boost::shared_ptr<love::DropDown > *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::DropDown > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t,0,1,"SmartDropDown_getFont");
+  result = (*arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartDropDown_getButton(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::DropDown > *arg1 = (boost::shared_ptr<love::DropDown > *) 0 ;
+  pAbstractImage result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::DropDown > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t,0,1,"SmartDropDown_getButton");
+  result = (*arg1)->getButton();
+  SWIG_arg=0;
+  {
+    pAbstractImage * resultptr;
+    resultptr = new pAbstractImage((pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartDropDown_getButtonPressed(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::DropDown > *arg1 = (boost::shared_ptr<love::DropDown > *) 0 ;
+  pAbstractImage result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::DropDown > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t,0,1,"SmartDropDown_getButtonPressed");
+  result = (*arg1)->getButtonPressed();
+  SWIG_arg=0;
+  {
+    pAbstractImage * resultptr;
+    resultptr = new pAbstractImage((pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -37595,6 +38494,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_DropDown_Sg__methods[] = {
     {"setSelectionBackgroundColor", _wrap_SmartDropDown_setSelectionBackgroundColor}, 
     {"setButtonColor", _wrap_SmartDropDown_setButtonColor}, 
     {"setButtonBackgroundColor", _wrap_SmartDropDown_setButtonBackgroundColor}, 
+    {"setFont", _wrap_SmartDropDown_setFont}, 
     {"setButton", _wrap_SmartDropDown_setButton}, 
     {"setButtonPressed", _wrap_SmartDropDown_setButtonPressed}, 
     {"getWidth", _wrap_SmartDropDown_getWidth}, 
@@ -37609,6 +38509,9 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_DropDown_Sg__methods[] = {
     {"getSelectionBackgroundColor", _wrap_SmartDropDown_getSelectionBackgroundColor}, 
     {"getButtonColor", _wrap_SmartDropDown_getButtonColor}, 
     {"getButtonBackgroundColor", _wrap_SmartDropDown_getButtonBackgroundColor}, 
+    {"getFont", _wrap_SmartDropDown_getFont}, 
+    {"getButton", _wrap_SmartDropDown_getButton}, 
+    {"getButtonPressed", _wrap_SmartDropDown_getButtonPressed}, 
     {"add", _wrap_SmartDropDown_add}, 
     {"remove", _wrap_SmartDropDown_remove}, 
     {"clear", _wrap_SmartDropDown_clear}, 
@@ -37910,6 +38813,26 @@ fail:
 }
 
 
+static int _wrap_SmartRadioButton_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::RadioButton > *arg1 = (boost::shared_ptr<love::RadioButton > *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::RadioButton > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__RadioButton_t,0,1,"SmartRadioButton_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"SmartRadioButton_setFont");
+  (*arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartRadioButton_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::RadioButton > *arg1 = (boost::shared_ptr<love::RadioButton > *) 0 ;
@@ -38075,6 +38998,28 @@ static int _wrap_SmartRadioButton_getMarkedImage(lua_State* L) {
     pAbstractImage * resultptr;
     resultptr = new pAbstractImage((pAbstractImage &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRadioButton_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::RadioButton > *arg1 = (boost::shared_ptr<love::RadioButton > *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::RadioButton > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__RadioButton_t,0,1,"SmartRadioButton_getFont");
+  result = (*arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -38263,6 +39208,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_RadioButton_Sg__methods[] =
     {"setBackgroundColor", _wrap_SmartRadioButton_setBackgroundColor}, 
     {"setDefaultImage", _wrap_SmartRadioButton_setDefaultImage}, 
     {"setMarkedImage", _wrap_SmartRadioButton_setMarkedImage}, 
+    {"setFont", _wrap_SmartRadioButton_setFont}, 
     {"getWidth", _wrap_SmartRadioButton_getWidth}, 
     {"getHeight", _wrap_SmartRadioButton_getHeight}, 
     {"getBorderSize", _wrap_SmartRadioButton_getBorderSize}, 
@@ -38272,6 +39218,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_RadioButton_Sg__methods[] =
     {"getBackgroundColor", _wrap_SmartRadioButton_getBackgroundColor}, 
     {"getDefaultImage", _wrap_SmartRadioButton_getDefaultImage}, 
     {"getMarkedImage", _wrap_SmartRadioButton_getMarkedImage}, 
+    {"getFont", _wrap_SmartRadioButton_getFont}, 
     {"adjustSize", _wrap_SmartRadioButton_adjustSize}, 
     {"draw", _wrap_SmartRadioButton_draw}, 
     {"drawBorder", _wrap_SmartRadioButton_drawBorder}, 
@@ -38567,6 +39514,26 @@ fail:
 }
 
 
+static int _wrap_SmartCheckBox_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::CheckBox > *arg1 = (boost::shared_ptr<love::CheckBox > *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::CheckBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__CheckBox_t,0,1,"SmartCheckBox_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"SmartCheckBox_setFont");
+  (*arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartCheckBox_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::CheckBox > *arg1 = (boost::shared_ptr<love::CheckBox > *) 0 ;
@@ -38732,6 +39699,28 @@ static int _wrap_SmartCheckBox_getMarkedImage(lua_State* L) {
     pAbstractImage * resultptr;
     resultptr = new pAbstractImage((pAbstractImage &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCheckBox_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::CheckBox > *arg1 = (boost::shared_ptr<love::CheckBox > *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::CheckBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__CheckBox_t,0,1,"SmartCheckBox_getFont");
+  result = (*arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -38920,6 +39909,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_CheckBox_Sg__methods[] = {
     {"setBackgroundColor", _wrap_SmartCheckBox_setBackgroundColor}, 
     {"setDefaultImage", _wrap_SmartCheckBox_setDefaultImage}, 
     {"setMarkedImage", _wrap_SmartCheckBox_setMarkedImage}, 
+    {"setFont", _wrap_SmartCheckBox_setFont}, 
     {"getWidth", _wrap_SmartCheckBox_getWidth}, 
     {"getHeight", _wrap_SmartCheckBox_getHeight}, 
     {"getBorderSize", _wrap_SmartCheckBox_getBorderSize}, 
@@ -38929,6 +39919,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_CheckBox_Sg__methods[] = {
     {"getBackgroundColor", _wrap_SmartCheckBox_getBackgroundColor}, 
     {"getDefaultImage", _wrap_SmartCheckBox_getDefaultImage}, 
     {"getMarkedImage", _wrap_SmartCheckBox_getMarkedImage}, 
+    {"getFont", _wrap_SmartCheckBox_getFont}, 
     {"adjustSize", _wrap_SmartCheckBox_adjustSize}, 
     {"draw", _wrap_SmartCheckBox_draw}, 
     {"drawBorder", _wrap_SmartCheckBox_drawBorder}, 
@@ -39323,6 +40314,26 @@ fail:
 }
 
 
+static int _wrap_SmartSlider_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Slider > *arg1 = (boost::shared_ptr<love::Slider > *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Slider > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Slider_t,0,1,"SmartSlider_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"SmartSlider_setFont");
+  (*arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartSlider_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Slider > *arg1 = (boost::shared_ptr<love::Slider > *) 0 ;
@@ -39569,6 +40580,28 @@ fail:
 }
 
 
+static int _wrap_SmartSlider_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Slider > *arg1 = (boost::shared_ptr<love::Slider > *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Slider > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Slider_t,0,1,"SmartSlider_getFont");
+  result = (*arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartSlider_adjustSize(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Slider > *arg1 = (boost::shared_ptr<love::Slider > *) 0 ;
@@ -39751,6 +40784,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_Slider_Sg__methods[] = {
     {"setBackgroundColor", _wrap_SmartSlider_setBackgroundColor}, 
     {"setMarkerImage", _wrap_SmartSlider_setMarkerImage}, 
     {"setBackgroundImage", _wrap_SmartSlider_setBackgroundImage}, 
+    {"setFont", _wrap_SmartSlider_setFont}, 
     {"getWidth", _wrap_SmartSlider_getWidth}, 
     {"getHeight", _wrap_SmartSlider_getHeight}, 
     {"getBorderSize", _wrap_SmartSlider_getBorderSize}, 
@@ -39764,6 +40798,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_Slider_Sg__methods[] = {
     {"getBackgroundColor", _wrap_SmartSlider_getBackgroundColor}, 
     {"getMarkerImage", _wrap_SmartSlider_getMarkerImage}, 
     {"getBackgroundImage", _wrap_SmartSlider_getBackgroundImage}, 
+    {"getFont", _wrap_SmartSlider_getFont}, 
     {"adjustSize", _wrap_SmartSlider_adjustSize}, 
     {"draw", _wrap_SmartSlider_draw}, 
     {"drawBorder", _wrap_SmartSlider_drawBorder}, 
@@ -39981,6 +41016,26 @@ fail:
 }
 
 
+static int _wrap_SmartListBox_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::ListBox > *arg1 = (boost::shared_ptr<love::ListBox > *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::ListBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__ListBox_t,0,1,"SmartListBox_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"SmartListBox_setFont");
+  (*arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartListBox_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::ListBox > *arg1 = (boost::shared_ptr<love::ListBox > *) 0 ;
@@ -40110,6 +41165,28 @@ static int _wrap_SmartListBox_getSeclectionBackgroundColor(lua_State* L) {
     love::pAbstractColor * resultptr;
     resultptr = new love::pAbstractColor((love::pAbstractColor &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartListBox_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::ListBox > *arg1 = (boost::shared_ptr<love::ListBox > *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::ListBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__ListBox_t,0,1,"SmartListBox_getFont");
+  result = (*arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -40406,6 +41483,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_ListBox_Sg__methods[] = {
     {"setBackgroundColor", _wrap_SmartListBox_setBackgroundColor}, 
     {"setSelectionColor", _wrap_SmartListBox_setSelectionColor}, 
     {"setSelectionBackgroundColor", _wrap_SmartListBox_setSelectionBackgroundColor}, 
+    {"setFont", _wrap_SmartListBox_setFont}, 
     {"getWidth", _wrap_SmartListBox_getWidth}, 
     {"getHeight", _wrap_SmartListBox_getHeight}, 
     {"getBorderSize", _wrap_SmartListBox_getBorderSize}, 
@@ -40413,6 +41491,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_ListBox_Sg__methods[] = {
     {"getBackgroundColor", _wrap_SmartListBox_getBackgroundColor}, 
     {"getSeclectionColor", _wrap_SmartListBox_getSeclectionColor}, 
     {"getSeclectionBackgroundColor", _wrap_SmartListBox_getSeclectionBackgroundColor}, 
+    {"getFont", _wrap_SmartListBox_getFont}, 
     {"adjustSize", _wrap_SmartListBox_adjustSize}, 
     {"add", _wrap_SmartListBox_add}, 
     {"remove", _wrap_SmartListBox_remove}, 
@@ -40780,6 +41859,26 @@ fail:
 }
 
 
+static int _wrap_SmartTextBox_setFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  love::pAbstractFont *arg2 = (love::pAbstractFont *) 0 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_setFont");
+  arg2=(love::pAbstractFont *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,2,"SmartTextBox_setFont");
+  (*arg1)->setFont((love::pAbstractFont const *)arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartTextBox_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
@@ -41047,6 +42146,28 @@ fail:
 }
 
 
+static int _wrap_SmartTextBox_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
+  love::pAbstractFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::TextBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t,0,1,"SmartTextBox_getFont");
+  result = (*arg1)->getFont();
+  SWIG_arg=0;
+  {
+    love::pAbstractFont * resultptr;
+    resultptr = new love::pAbstractFont((love::pAbstractFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartTextBox_adjustSize(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::TextBox > *arg1 = (boost::shared_ptr<love::TextBox > *) 0 ;
@@ -41209,6 +42330,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_TextBox_Sg__methods[] = {
     {"setBackgroundColor", _wrap_SmartTextBox_setBackgroundColor}, 
     {"setActiveColor", _wrap_SmartTextBox_setActiveColor}, 
     {"setActiveBackgroundColor", _wrap_SmartTextBox_setActiveBackgroundColor}, 
+    {"setFont", _wrap_SmartTextBox_setFont}, 
     {"getWidth", _wrap_SmartTextBox_getWidth}, 
     {"getHeight", _wrap_SmartTextBox_getHeight}, 
     {"getBorderSize", _wrap_SmartTextBox_getBorderSize}, 
@@ -41223,6 +42345,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_TextBox_Sg__methods[] = {
     {"getBackgroundColor", _wrap_SmartTextBox_getBackgroundColor}, 
     {"getActiveColor", _wrap_SmartTextBox_getActiveColor}, 
     {"getActiveBackgroundColor", _wrap_SmartTextBox_getActiveBackgroundColor}, 
+    {"getFont", _wrap_SmartTextBox_getFont}, 
     {"adjustSize", _wrap_SmartTextBox_adjustSize}, 
     {"draw", _wrap_SmartTextBox_draw}, 
     {"drawBorder", _wrap_SmartTextBox_drawBorder}, 
@@ -41285,7 +42408,9 @@ static const struct luaL_reg swig_commands[] = {
     { "delete_AbstractFont", _wrap_delete_AbstractFont},
     { "AbstractFont_print",_wrap_AbstractFont_print},
     { "AbstractFont_getLineHeight", _wrap_AbstractFont_getLineHeight},
+    { "AbstractFont_getHeight", _wrap_AbstractFont_getHeight},
     { "AbstractFont_getLineWidth", _wrap_AbstractFont_getLineWidth},
+    { "AbstractFont_getWidth", _wrap_AbstractFont_getWidth},
     { "AbstractFont_load", _wrap_AbstractFont_load},
     { "AbstractFont_unload", _wrap_AbstractFont_unload},
     { "delete_AbstractColor", _wrap_delete_AbstractColor},
@@ -41326,9 +42451,11 @@ static const struct luaL_reg swig_commands[] = {
     { "GUIElement_setColor", _wrap_GUIElement_setColor},
     { "GUIElement_setBackgroundColor", _wrap_GUIElement_setBackgroundColor},
     { "GUIElement_setBorderColor", _wrap_GUIElement_setBorderColor},
+    { "GUIElement_setFont", _wrap_GUIElement_setFont},
     { "GUIElement_getColor", _wrap_GUIElement_getColor},
     { "GUIElement_getBackgroundColor", _wrap_GUIElement_getBackgroundColor},
     { "GUIElement_getBorderColor", _wrap_GUIElement_getBorderColor},
+    { "GUIElement_getFont", _wrap_GUIElement_getFont},
     { "GUIElement_setSize", _wrap_GUIElement_setSize},
     { "GUIElement_setWidth", _wrap_GUIElement_setWidth},
     { "GUIElement_setHeight", _wrap_GUIElement_setHeight},
@@ -41357,6 +42484,7 @@ static const struct luaL_reg swig_commands[] = {
     { "Button_setDefaultImage", _wrap_Button_setDefaultImage},
     { "Button_setHoverImage", _wrap_Button_setHoverImage},
     { "Button_setPressedImage", _wrap_Button_setPressedImage},
+    { "Button_setFont", _wrap_Button_setFont},
     { "Button_getWidth", _wrap_Button_getWidth},
     { "Button_getHeight", _wrap_Button_getHeight},
     { "Button_getBorderSize", _wrap_Button_getBorderSize},
@@ -41367,6 +42495,7 @@ static const struct luaL_reg swig_commands[] = {
     { "Button_getPressedColor", _wrap_Button_getPressedColor},
     { "Button_getHoverBackgroundColor", _wrap_Button_getHoverBackgroundColor},
     { "Button_getPressedBackgroundColor", _wrap_Button_getPressedBackgroundColor},
+    { "Button_getFont", _wrap_Button_getFont},
     { "Button_adjustSize", _wrap_Button_adjustSize},
     { "Button_isFocused", _wrap_Button_isFocused},
     { "Button_draw", _wrap_Button_draw},
@@ -41385,6 +42514,7 @@ static const struct luaL_reg swig_commands[] = {
     { "DropDown_setSelectionBackgroundColor", _wrap_DropDown_setSelectionBackgroundColor},
     { "DropDown_setButtonColor", _wrap_DropDown_setButtonColor},
     { "DropDown_setButtonBackgroundColor", _wrap_DropDown_setButtonBackgroundColor},
+    { "DropDown_setFont", _wrap_DropDown_setFont},
     { "DropDown_setButton", _wrap_DropDown_setButton},
     { "DropDown_setButtonPressed", _wrap_DropDown_setButtonPressed},
     { "DropDown_getWidth", _wrap_DropDown_getWidth},
@@ -41399,6 +42529,9 @@ static const struct luaL_reg swig_commands[] = {
     { "DropDown_getSelectionBackgroundColor", _wrap_DropDown_getSelectionBackgroundColor},
     { "DropDown_getButtonColor", _wrap_DropDown_getButtonColor},
     { "DropDown_getButtonBackgroundColor", _wrap_DropDown_getButtonBackgroundColor},
+    { "DropDown_getFont", _wrap_DropDown_getFont},
+    { "DropDown_getButton", _wrap_DropDown_getButton},
+    { "DropDown_getButtonPressed", _wrap_DropDown_getButtonPressed},
     { "DropDown_add", _wrap_DropDown_add},
     { "DropDown_remove", _wrap_DropDown_remove},
     { "DropDown_clear", _wrap_DropDown_clear},
@@ -41417,6 +42550,7 @@ static const struct luaL_reg swig_commands[] = {
     { "Label_setBorderSize", _wrap_Label_setBorderSize},
     { "Label_setCaption", _wrap_Label_setCaption},
     { "Label_setBackgroundColor", _wrap_Label_setBackgroundColor},
+    { "Label_setFont", _wrap_Label_setFont},
     { "Label_align", _wrap_Label_align},
     { "Label_valign", _wrap_Label_valign},
     { "Label_setBackground", _wrap_Label_setBackground},
@@ -41425,6 +42559,8 @@ static const struct luaL_reg swig_commands[] = {
     { "Label_getBorderSize", _wrap_Label_getBorderSize},
     { "Label_getCaption", _wrap_Label_getCaption},
     { "Label_getBackgroundColor", _wrap_Label_getBackgroundColor},
+    { "Label_getBackground", _wrap_Label_getBackground},
+    { "Label_getFont", _wrap_Label_getFont},
     { "Label_adjustSize", _wrap_Label_adjustSize},
     { "Label_draw", _wrap_Label_draw},
     { "Label_drawBorder", _wrap_Label_drawBorder},
@@ -41446,6 +42582,7 @@ static const struct luaL_reg swig_commands[] = {
     { "TextField_setBackgroundColor", _wrap_TextField_setBackgroundColor},
     { "TextField_setActiveColor", _wrap_TextField_setActiveColor},
     { "TextField_setActiveBackgroundColor", _wrap_TextField_setActiveBackgroundColor},
+    { "TextField_setFont", _wrap_TextField_setFont},
     { "TextField_getWidth", _wrap_TextField_getWidth},
     { "TextField_getHeight", _wrap_TextField_getHeight},
     { "TextField_getBorderSize", _wrap_TextField_getBorderSize},
@@ -41455,6 +42592,7 @@ static const struct luaL_reg swig_commands[] = {
     { "TextField_getBackgroundColor", _wrap_TextField_getBackgroundColor},
     { "TextField_getActiveColor", _wrap_TextField_getActiveColor},
     { "TextField_getActiveBackgroundColor", _wrap_TextField_getActiveBackgroundColor},
+    { "TextField_getFont", _wrap_TextField_getFont},
     { "TextField_adjustSize", _wrap_TextField_adjustSize},
     { "TextField_draw", _wrap_TextField_draw},
     { "TextField_drawBorder", _wrap_TextField_drawBorder},
@@ -41472,6 +42610,7 @@ static const struct luaL_reg swig_commands[] = {
     { "RadioButton_setBackgroundColor", _wrap_RadioButton_setBackgroundColor},
     { "RadioButton_setDefaultImage", _wrap_RadioButton_setDefaultImage},
     { "RadioButton_setMarkedImage", _wrap_RadioButton_setMarkedImage},
+    { "RadioButton_setFont", _wrap_RadioButton_setFont},
     { "RadioButton_getWidth", _wrap_RadioButton_getWidth},
     { "RadioButton_getHeight", _wrap_RadioButton_getHeight},
     { "RadioButton_getBorderSize", _wrap_RadioButton_getBorderSize},
@@ -41481,6 +42620,7 @@ static const struct luaL_reg swig_commands[] = {
     { "RadioButton_getBackgroundColor", _wrap_RadioButton_getBackgroundColor},
     { "RadioButton_getDefaultImage", _wrap_RadioButton_getDefaultImage},
     { "RadioButton_getMarkedImage", _wrap_RadioButton_getMarkedImage},
+    { "RadioButton_getFont", _wrap_RadioButton_getFont},
     { "RadioButton_adjustSize", _wrap_RadioButton_adjustSize},
     { "RadioButton_draw", _wrap_RadioButton_draw},
     { "RadioButton_drawBorder", _wrap_RadioButton_drawBorder},
@@ -41499,6 +42639,7 @@ static const struct luaL_reg swig_commands[] = {
     { "CheckBox_setBackgroundColor", _wrap_CheckBox_setBackgroundColor},
     { "CheckBox_setDefaultImage", _wrap_CheckBox_setDefaultImage},
     { "CheckBox_setMarkedImage", _wrap_CheckBox_setMarkedImage},
+    { "CheckBox_setFont", _wrap_CheckBox_setFont},
     { "CheckBox_getWidth", _wrap_CheckBox_getWidth},
     { "CheckBox_getHeight", _wrap_CheckBox_getHeight},
     { "CheckBox_getBorderSize", _wrap_CheckBox_getBorderSize},
@@ -41508,6 +42649,7 @@ static const struct luaL_reg swig_commands[] = {
     { "CheckBox_getBackgroundColor", _wrap_CheckBox_getBackgroundColor},
     { "CheckBox_getDefaultImage", _wrap_CheckBox_getDefaultImage},
     { "CheckBox_getMarkedImage", _wrap_CheckBox_getMarkedImage},
+    { "CheckBox_getFont", _wrap_CheckBox_getFont},
     { "CheckBox_adjustSize", _wrap_CheckBox_adjustSize},
     { "CheckBox_draw", _wrap_CheckBox_draw},
     { "CheckBox_drawBorder", _wrap_CheckBox_drawBorder},
@@ -41529,6 +42671,7 @@ static const struct luaL_reg swig_commands[] = {
     { "Slider_setBackgroundColor", _wrap_Slider_setBackgroundColor},
     { "Slider_setMarkerImage", _wrap_Slider_setMarkerImage},
     { "Slider_setBackgroundImage", _wrap_Slider_setBackgroundImage},
+    { "Slider_setFont", _wrap_Slider_setFont},
     { "Slider_getWidth", _wrap_Slider_getWidth},
     { "Slider_getHeight", _wrap_Slider_getHeight},
     { "Slider_getBorderSize", _wrap_Slider_getBorderSize},
@@ -41542,6 +42685,7 @@ static const struct luaL_reg swig_commands[] = {
     { "Slider_getBackgroundColor", _wrap_Slider_getBackgroundColor},
     { "Slider_getMarkerImage", _wrap_Slider_getMarkerImage},
     { "Slider_getBackgroundImage", _wrap_Slider_getBackgroundImage},
+    { "Slider_getFont", _wrap_Slider_getFont},
     { "Slider_adjustSize", _wrap_Slider_adjustSize},
     { "Slider_draw", _wrap_Slider_draw},
     { "Slider_drawBorder", _wrap_Slider_drawBorder},
@@ -41556,6 +42700,7 @@ static const struct luaL_reg swig_commands[] = {
     { "ListBox_setBackgroundColor", _wrap_ListBox_setBackgroundColor},
     { "ListBox_setSelectionColor", _wrap_ListBox_setSelectionColor},
     { "ListBox_setSelectionBackgroundColor", _wrap_ListBox_setSelectionBackgroundColor},
+    { "ListBox_setFont", _wrap_ListBox_setFont},
     { "ListBox_getWidth", _wrap_ListBox_getWidth},
     { "ListBox_getHeight", _wrap_ListBox_getHeight},
     { "ListBox_getBorderSize", _wrap_ListBox_getBorderSize},
@@ -41563,6 +42708,7 @@ static const struct luaL_reg swig_commands[] = {
     { "ListBox_getBackgroundColor", _wrap_ListBox_getBackgroundColor},
     { "ListBox_getSeclectionColor", _wrap_ListBox_getSeclectionColor},
     { "ListBox_getSeclectionBackgroundColor", _wrap_ListBox_getSeclectionBackgroundColor},
+    { "ListBox_getFont", _wrap_ListBox_getFont},
     { "ListBox_adjustSize", _wrap_ListBox_adjustSize},
     { "ListBox_add", _wrap_ListBox_add},
     { "ListBox_remove", _wrap_ListBox_remove},
@@ -41590,6 +42736,7 @@ static const struct luaL_reg swig_commands[] = {
     { "TextBox_setBackgroundColor", _wrap_TextBox_setBackgroundColor},
     { "TextBox_setActiveColor", _wrap_TextBox_setActiveColor},
     { "TextBox_setActiveBackgroundColor", _wrap_TextBox_setActiveBackgroundColor},
+    { "TextBox_setFont", _wrap_TextBox_setFont},
     { "TextBox_getWidth", _wrap_TextBox_getWidth},
     { "TextBox_getHeight", _wrap_TextBox_getHeight},
     { "TextBox_getBorderSize", _wrap_TextBox_getBorderSize},
@@ -41604,6 +42751,7 @@ static const struct luaL_reg swig_commands[] = {
     { "TextBox_getBackgroundColor", _wrap_TextBox_getBackgroundColor},
     { "TextBox_getActiveColor", _wrap_TextBox_getActiveColor},
     { "TextBox_getActiveBackgroundColor", _wrap_TextBox_getActiveBackgroundColor},
+    { "TextBox_getFont", _wrap_TextBox_getFont},
     { "TextBox_adjustSize", _wrap_TextBox_adjustSize},
     { "TextBox_draw", _wrap_TextBox_draw},
     { "TextBox_drawBorder", _wrap_TextBox_drawBorder},
@@ -41982,7 +43130,9 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartAbstractFont_widths_get", _wrap_SmartAbstractFont_widths_get},
     { "SmartAbstractFont_print",_wrap_SmartAbstractFont_print},
     { "SmartAbstractFont_getLineHeight", _wrap_SmartAbstractFont_getLineHeight},
+    { "SmartAbstractFont_getHeight", _wrap_SmartAbstractFont_getHeight},
     { "SmartAbstractFont_getLineWidth", _wrap_SmartAbstractFont_getLineWidth},
+    { "SmartAbstractFont_getWidth", _wrap_SmartAbstractFont_getWidth},
     { "SmartAbstractFont_load", _wrap_SmartAbstractFont_load},
     { "SmartAbstractFont_unload", _wrap_SmartAbstractFont_unload},
     { "SmartParticleSystem___deref__", _wrap_SmartParticleSystem___deref__},
@@ -42100,6 +43250,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartLabel_setBorderSize", _wrap_SmartLabel_setBorderSize},
     { "SmartLabel_setCaption", _wrap_SmartLabel_setCaption},
     { "SmartLabel_setBackgroundColor", _wrap_SmartLabel_setBackgroundColor},
+    { "SmartLabel_setFont", _wrap_SmartLabel_setFont},
     { "SmartLabel_align", _wrap_SmartLabel_align},
     { "SmartLabel_valign", _wrap_SmartLabel_valign},
     { "SmartLabel_setBackground", _wrap_SmartLabel_setBackground},
@@ -42108,6 +43259,8 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartLabel_getBorderSize", _wrap_SmartLabel_getBorderSize},
     { "SmartLabel_getCaption", _wrap_SmartLabel_getCaption},
     { "SmartLabel_getBackgroundColor", _wrap_SmartLabel_getBackgroundColor},
+    { "SmartLabel_getBackground", _wrap_SmartLabel_getBackground},
+    { "SmartLabel_getFont", _wrap_SmartLabel_getFont},
     { "SmartLabel_adjustSize", _wrap_SmartLabel_adjustSize},
     { "SmartLabel_draw", _wrap_SmartLabel_draw},
     { "SmartLabel_drawBorder", _wrap_SmartLabel_drawBorder},
@@ -42126,6 +43279,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartMultilineLabel_setHeight", _wrap_SmartMultilineLabel_setHeight},
     { "SmartMultilineLabel_setBorderSize", _wrap_SmartMultilineLabel_setBorderSize},
     { "SmartMultilineLabel_setBackgroundColor", _wrap_SmartMultilineLabel_setBackgroundColor},
+    { "SmartMultilineLabel_setFont", _wrap_SmartMultilineLabel_setFont},
     { "SmartMultilineLabel_align", _wrap_SmartMultilineLabel_align},
     { "SmartMultilineLabel_valign", _wrap_SmartMultilineLabel_valign},
     { "SmartMultilineLabel_setBackground", _wrap_SmartMultilineLabel_setBackground},
@@ -42134,6 +43288,8 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartMultilineLabel_getBorderSize", _wrap_SmartMultilineLabel_getBorderSize},
     { "SmartMultilineLabel_getCaption", _wrap_SmartMultilineLabel_getCaption},
     { "SmartMultilineLabel_getBackgroundColor", _wrap_SmartMultilineLabel_getBackgroundColor},
+    { "SmartMultilineLabel_getBackground", _wrap_SmartMultilineLabel_getBackground},
+    { "SmartMultilineLabel_getFont", _wrap_SmartMultilineLabel_getFont},
     { "SmartMultilineLabel_drawBorder", _wrap_SmartMultilineLabel_drawBorder},
     { "SmartMultilineLabel_setColor", _wrap_SmartMultilineLabel_setColor},
     { "SmartMultilineLabel_setBorderColor", _wrap_SmartMultilineLabel_setBorderColor},
@@ -42159,6 +43315,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartButton_setDefaultImage", _wrap_SmartButton_setDefaultImage},
     { "SmartButton_setHoverImage", _wrap_SmartButton_setHoverImage},
     { "SmartButton_setPressedImage", _wrap_SmartButton_setPressedImage},
+    { "SmartButton_setFont", _wrap_SmartButton_setFont},
     { "SmartButton_getWidth", _wrap_SmartButton_getWidth},
     { "SmartButton_getHeight", _wrap_SmartButton_getHeight},
     { "SmartButton_getBorderSize", _wrap_SmartButton_getBorderSize},
@@ -42169,6 +43326,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartButton_getPressedColor", _wrap_SmartButton_getPressedColor},
     { "SmartButton_getHoverBackgroundColor", _wrap_SmartButton_getHoverBackgroundColor},
     { "SmartButton_getPressedBackgroundColor", _wrap_SmartButton_getPressedBackgroundColor},
+    { "SmartButton_getFont", _wrap_SmartButton_getFont},
     { "SmartButton_adjustSize", _wrap_SmartButton_adjustSize},
     { "SmartButton_isFocused", _wrap_SmartButton_isFocused},
     { "SmartButton_draw", _wrap_SmartButton_draw},
@@ -42189,6 +43347,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartTextField_setBackgroundColor", _wrap_SmartTextField_setBackgroundColor},
     { "SmartTextField_setActiveColor", _wrap_SmartTextField_setActiveColor},
     { "SmartTextField_setActiveBackgroundColor", _wrap_SmartTextField_setActiveBackgroundColor},
+    { "SmartTextField_setFont", _wrap_SmartTextField_setFont},
     { "SmartTextField_getWidth", _wrap_SmartTextField_getWidth},
     { "SmartTextField_getHeight", _wrap_SmartTextField_getHeight},
     { "SmartTextField_getBorderSize", _wrap_SmartTextField_getBorderSize},
@@ -42198,6 +43357,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartTextField_getBackgroundColor", _wrap_SmartTextField_getBackgroundColor},
     { "SmartTextField_getActiveColor", _wrap_SmartTextField_getActiveColor},
     { "SmartTextField_getActiveBackgroundColor", _wrap_SmartTextField_getActiveBackgroundColor},
+    { "SmartTextField_getFont", _wrap_SmartTextField_getFont},
     { "SmartTextField_adjustSize", _wrap_SmartTextField_adjustSize},
     { "SmartTextField_draw", _wrap_SmartTextField_draw},
     { "SmartTextField_drawBorder", _wrap_SmartTextField_drawBorder},
@@ -42219,6 +43379,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartDropDown_setSelectionBackgroundColor", _wrap_SmartDropDown_setSelectionBackgroundColor},
     { "SmartDropDown_setButtonColor", _wrap_SmartDropDown_setButtonColor},
     { "SmartDropDown_setButtonBackgroundColor", _wrap_SmartDropDown_setButtonBackgroundColor},
+    { "SmartDropDown_setFont", _wrap_SmartDropDown_setFont},
     { "SmartDropDown_setButton", _wrap_SmartDropDown_setButton},
     { "SmartDropDown_setButtonPressed", _wrap_SmartDropDown_setButtonPressed},
     { "SmartDropDown_getWidth", _wrap_SmartDropDown_getWidth},
@@ -42233,6 +43394,9 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartDropDown_getSelectionBackgroundColor", _wrap_SmartDropDown_getSelectionBackgroundColor},
     { "SmartDropDown_getButtonColor", _wrap_SmartDropDown_getButtonColor},
     { "SmartDropDown_getButtonBackgroundColor", _wrap_SmartDropDown_getButtonBackgroundColor},
+    { "SmartDropDown_getFont", _wrap_SmartDropDown_getFont},
+    { "SmartDropDown_getButton", _wrap_SmartDropDown_getButton},
+    { "SmartDropDown_getButtonPressed", _wrap_SmartDropDown_getButtonPressed},
     { "SmartDropDown_add", _wrap_SmartDropDown_add},
     { "SmartDropDown_remove", _wrap_SmartDropDown_remove},
     { "SmartDropDown_clear", _wrap_SmartDropDown_clear},
@@ -42261,6 +43425,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartRadioButton_setBackgroundColor", _wrap_SmartRadioButton_setBackgroundColor},
     { "SmartRadioButton_setDefaultImage", _wrap_SmartRadioButton_setDefaultImage},
     { "SmartRadioButton_setMarkedImage", _wrap_SmartRadioButton_setMarkedImage},
+    { "SmartRadioButton_setFont", _wrap_SmartRadioButton_setFont},
     { "SmartRadioButton_getWidth", _wrap_SmartRadioButton_getWidth},
     { "SmartRadioButton_getHeight", _wrap_SmartRadioButton_getHeight},
     { "SmartRadioButton_getBorderSize", _wrap_SmartRadioButton_getBorderSize},
@@ -42270,6 +43435,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartRadioButton_getBackgroundColor", _wrap_SmartRadioButton_getBackgroundColor},
     { "SmartRadioButton_getDefaultImage", _wrap_SmartRadioButton_getDefaultImage},
     { "SmartRadioButton_getMarkedImage", _wrap_SmartRadioButton_getMarkedImage},
+    { "SmartRadioButton_getFont", _wrap_SmartRadioButton_getFont},
     { "SmartRadioButton_adjustSize", _wrap_SmartRadioButton_adjustSize},
     { "SmartRadioButton_draw", _wrap_SmartRadioButton_draw},
     { "SmartRadioButton_drawBorder", _wrap_SmartRadioButton_drawBorder},
@@ -42292,6 +43458,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartCheckBox_setBackgroundColor", _wrap_SmartCheckBox_setBackgroundColor},
     { "SmartCheckBox_setDefaultImage", _wrap_SmartCheckBox_setDefaultImage},
     { "SmartCheckBox_setMarkedImage", _wrap_SmartCheckBox_setMarkedImage},
+    { "SmartCheckBox_setFont", _wrap_SmartCheckBox_setFont},
     { "SmartCheckBox_getWidth", _wrap_SmartCheckBox_getWidth},
     { "SmartCheckBox_getHeight", _wrap_SmartCheckBox_getHeight},
     { "SmartCheckBox_getBorderSize", _wrap_SmartCheckBox_getBorderSize},
@@ -42301,6 +43468,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartCheckBox_getBackgroundColor", _wrap_SmartCheckBox_getBackgroundColor},
     { "SmartCheckBox_getDefaultImage", _wrap_SmartCheckBox_getDefaultImage},
     { "SmartCheckBox_getMarkedImage", _wrap_SmartCheckBox_getMarkedImage},
+    { "SmartCheckBox_getFont", _wrap_SmartCheckBox_getFont},
     { "SmartCheckBox_adjustSize", _wrap_SmartCheckBox_adjustSize},
     { "SmartCheckBox_draw", _wrap_SmartCheckBox_draw},
     { "SmartCheckBox_drawBorder", _wrap_SmartCheckBox_drawBorder},
@@ -42328,6 +43496,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartSlider_setBackgroundColor", _wrap_SmartSlider_setBackgroundColor},
     { "SmartSlider_setMarkerImage", _wrap_SmartSlider_setMarkerImage},
     { "SmartSlider_setBackgroundImage", _wrap_SmartSlider_setBackgroundImage},
+    { "SmartSlider_setFont", _wrap_SmartSlider_setFont},
     { "SmartSlider_getWidth", _wrap_SmartSlider_getWidth},
     { "SmartSlider_getHeight", _wrap_SmartSlider_getHeight},
     { "SmartSlider_getBorderSize", _wrap_SmartSlider_getBorderSize},
@@ -42341,6 +43510,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartSlider_getBackgroundColor", _wrap_SmartSlider_getBackgroundColor},
     { "SmartSlider_getMarkerImage", _wrap_SmartSlider_getMarkerImage},
     { "SmartSlider_getBackgroundImage", _wrap_SmartSlider_getBackgroundImage},
+    { "SmartSlider_getFont", _wrap_SmartSlider_getFont},
     { "SmartSlider_adjustSize", _wrap_SmartSlider_adjustSize},
     { "SmartSlider_draw", _wrap_SmartSlider_draw},
     { "SmartSlider_drawBorder", _wrap_SmartSlider_drawBorder},
@@ -42359,6 +43529,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartListBox_setBackgroundColor", _wrap_SmartListBox_setBackgroundColor},
     { "SmartListBox_setSelectionColor", _wrap_SmartListBox_setSelectionColor},
     { "SmartListBox_setSelectionBackgroundColor", _wrap_SmartListBox_setSelectionBackgroundColor},
+    { "SmartListBox_setFont", _wrap_SmartListBox_setFont},
     { "SmartListBox_getWidth", _wrap_SmartListBox_getWidth},
     { "SmartListBox_getHeight", _wrap_SmartListBox_getHeight},
     { "SmartListBox_getBorderSize", _wrap_SmartListBox_getBorderSize},
@@ -42366,6 +43537,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartListBox_getBackgroundColor", _wrap_SmartListBox_getBackgroundColor},
     { "SmartListBox_getSeclectionColor", _wrap_SmartListBox_getSeclectionColor},
     { "SmartListBox_getSeclectionBackgroundColor", _wrap_SmartListBox_getSeclectionBackgroundColor},
+    { "SmartListBox_getFont", _wrap_SmartListBox_getFont},
     { "SmartListBox_adjustSize", _wrap_SmartListBox_adjustSize},
     { "SmartListBox_add", _wrap_SmartListBox_add},
     { "SmartListBox_remove", _wrap_SmartListBox_remove},
@@ -42397,6 +43569,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartTextBox_setBackgroundColor", _wrap_SmartTextBox_setBackgroundColor},
     { "SmartTextBox_setActiveColor", _wrap_SmartTextBox_setActiveColor},
     { "SmartTextBox_setActiveBackgroundColor", _wrap_SmartTextBox_setActiveBackgroundColor},
+    { "SmartTextBox_setFont", _wrap_SmartTextBox_setFont},
     { "SmartTextBox_getWidth", _wrap_SmartTextBox_getWidth},
     { "SmartTextBox_getHeight", _wrap_SmartTextBox_getHeight},
     { "SmartTextBox_getBorderSize", _wrap_SmartTextBox_getBorderSize},
@@ -42411,6 +43584,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartTextBox_getBackgroundColor", _wrap_SmartTextBox_getBackgroundColor},
     { "SmartTextBox_getActiveColor", _wrap_SmartTextBox_getActiveColor},
     { "SmartTextBox_getActiveBackgroundColor", _wrap_SmartTextBox_getActiveBackgroundColor},
+    { "SmartTextBox_getFont", _wrap_SmartTextBox_getFont},
     { "SmartTextBox_adjustSize", _wrap_SmartTextBox_adjustSize},
     { "SmartTextBox_draw", _wrap_SmartTextBox_draw},
     { "SmartTextBox_drawBorder", _wrap_SmartTextBox_drawBorder},

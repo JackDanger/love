@@ -2,10 +2,9 @@
 
 namespace love
 {
-	CheckBox::CheckBox(const string caption)
+	CheckBox::CheckBox(const string & caption) : gcn::CheckBox(caption)
 	{
-		gcn::CheckBox();
-		gcn::CheckBox::setCaption(caption);
+		mHasMouse = false;
 	}
 
 	CheckBox::~CheckBox()
@@ -61,12 +60,36 @@ namespace love
 		GUIElement::setBackgroundColor(color);
 	}
 
+	void CheckBox::setHoverColor(const pAbstractColor * color)
+	{
+		if(color == 0)
+			hoverColor.reset();
+		else
+			hoverColor = *color;
+	}
+
+	void CheckBox::setMarkedColor(const pAbstractColor * color)
+	{
+		if(color == 0)
+			markedColor.reset();
+		else
+			markedColor = *color;
+	}
+
 	void CheckBox::setDefaultImage(const pAbstractImage * image)
 	{
 		if(image == 0)
 			defaultImage.reset();
 		else
 			defaultImage = *image;
+	}
+
+	void CheckBox::setHoverImage(const pAbstractImage * image)
+	{
+		if(image == 0)
+			hoverImage.reset();
+		else
+			hoverImage = *image;
 	}
 
 	void CheckBox::setMarkedImage(const pAbstractImage * image)
@@ -118,9 +141,24 @@ namespace love
 		return GUIElement::getBackgroundColor();
 	}
 
+	pAbstractColor CheckBox::getHoverColor()
+	{
+		return hoverColor;
+	}
+
+	pAbstractColor CheckBox::getMarkedColor()
+	{
+		return markedColor;
+	}
+
 	pAbstractImage CheckBox::getDefaultImage()
 	{
 		return defaultImage;
+	}
+
+	pAbstractImage CheckBox::getHoverImage()
+	{
+		return hoverImage;
 	}
 
 	pAbstractImage CheckBox::getMarkedImage()
@@ -140,20 +178,32 @@ namespace love
 
 	void CheckBox::draw(gcn::Graphics * graphics)
 	{
-		if(color.get() != 0)
+		if(isMarked() && markedColor != 0)
+		{
+			setBaseColor(gcn::Color(markedColor->getRed(), markedColor->getGreen(), markedColor->getBlue(), markedColor->getAlpha()));
+			setForegroundColor(gcn::Color(markedColor->getRed(), markedColor->getGreen(), markedColor->getBlue(), markedColor->getAlpha()));
+		}
+		else if(mHasMouse && hoverColor != 0)
+		{
+			setBaseColor(gcn::Color(hoverColor->getRed(), hoverColor->getGreen(), hoverColor->getBlue(), hoverColor->getAlpha()));
+			setForegroundColor(gcn::Color(hoverColor->getRed(), hoverColor->getGreen(), hoverColor->getBlue(), hoverColor->getAlpha()));
+		}
+		else if(color != 0)
 		{
 			setBaseColor(gcn::Color(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha()));
 			setForegroundColor(gcn::Color(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha()));
 		}
-		if(backgroundColor.get() != 0)
+		if(backgroundColor != 0)
+		{
 			gcn::CheckBox::setBackgroundColor(gcn::Color(backgroundColor->getRed(), backgroundColor->getGreen(), backgroundColor->getBlue(), backgroundColor->getAlpha()));
+		}
 
 		gcn::CheckBox::draw(graphics);
 	}
 
 	void CheckBox::drawBorder(gcn::Graphics * graphics)
 	{
-		if(borderColor.get() != 0)
+		if(borderColor != 0)
 			setBaseColor(gcn::Color(borderColor->getRed(), borderColor->getGreen(), borderColor->getBlue(), borderColor->getAlpha()));
 
 		gcn::CheckBox::drawBorder(graphics);
@@ -161,13 +211,23 @@ namespace love
 
 	void CheckBox::drawBox(gcn::Graphics * graphics)
 	{
-		if(defaultImage.get() != 0)
+		if(defaultImage != 0)
 		{
+			if(backgroundColor != 0)
+			{
+				graphics->setColor(gcn::Color(backgroundColor->getRed(), backgroundColor->getGreen(), backgroundColor->getBlue(), backgroundColor->getAlpha()));
+				graphics->fillRectangle(gcn::Rectangle(0,0,getWidth(),getHeight()));
+			}
 			int pad = 0; // the padding around the image depending on the size
-			if(isMarked() && markedImage.get() != 0)
+			if(isMarked() && markedImage != 0)
 			{
 				pad = (graphics->getCurrentClipArea().height / 2) - (int)(markedImage->getHeight() / 2);
 				markedImage->render((float)graphics->getCurrentClipArea().x + pad, (float)graphics->getCurrentClipArea().y + pad);
+			}
+			else if(mHasMouse && hoverImage != 0)
+			{
+				pad = (graphics->getCurrentClipArea().height / 2) - (int)(hoverImage->getHeight() / 2);
+				hoverImage->render((float)graphics->getCurrentClipArea().x + pad, (float)graphics->getCurrentClipArea().y + pad);
 			}
 			else
 			{
@@ -177,5 +237,15 @@ namespace love
 		}
 		else
 			gcn::CheckBox::drawBox(graphics);
+	}
+
+	void CheckBox::mouseEntered(gcn::MouseEvent & mouseEvent)
+	{
+		mHasMouse = true;
+	}
+
+	void CheckBox::mouseExited(gcn::MouseEvent & mouseEvent)
+	{
+		mHasMouse = false;
 	}
 }

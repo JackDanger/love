@@ -2,12 +2,6 @@
 
 namespace love
 {
-	/*GUIText::GUIText(pAbstractFont font, pAbstractColor color)
-	{
-		this->font = font;
-		this->color = color;
-	}*/
-
 	GUIText::GUIText(pAbstractFont font)
 	{
 		this->font = font;
@@ -38,14 +32,9 @@ namespace love
 	{
 		if(font == 0)
 			return 0;
-		return (int)(font->getLineHeight() * 1.2);
-		//return (int)(font->getLineHeight());
+		//return (int)(font->getLineHeight() * 1.2);
+		return (int)font->getLineHeight();
 	}
-
-	/*void GUIText::setColor(gcn::Color color)
-	{
-		//this->color->setColor(color.r, color.g, color.b, color.a);
-	}*/
 
 	pAbstractFont GUIText::getFont()
 	{
@@ -61,16 +50,6 @@ namespace love
 	{
 		this->font = font;
 	}
-
-	/*pAbstractColor GUIText::getColor()
-	{
-		return color;
-	}
-
-	void GUIText::setColor(pAbstractColor color)
-	{
-		this->color = color;
-	}*/
 
 	void GUIText::drawString(gcn::Graphics* graphics, const std::string& text, int x, int y)
 	{

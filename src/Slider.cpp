@@ -90,6 +90,11 @@ namespace love
 		backgroundImage = (*image);
 	}
 
+	void Slider::setFont(const pAbstractFont * font)
+	{
+		GUIElement::setFont(font);
+	}
+
 	int Slider::getWidth()
 	{
 		return gcn::Slider::getWidth();
@@ -153,6 +158,11 @@ namespace love
 	pAbstractImage Slider::getBackgroundImage()
 	{
 		return backgroundImage;
+	}
+
+	pAbstractFont Slider::getFont()
+	{
+		return GUIElement::getFont();
 	}
 
 	void Slider::adjustSize()

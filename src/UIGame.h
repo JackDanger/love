@@ -31,12 +31,18 @@ namespace love
 		Game * previous; // The suspeded game.
 		pAbstractFont pauseFont;
 
+		// Resources
 		pAbstractImage errorBackground;
 		pAbstractImage pauseBackground;
 		pAbstractImage buttonDefault;
 		pAbstractImage buttonHover;
 		pAbstractImage buttonPressed;
 		pAbstractImage buttonQuit;
+		pAbstractImage checkBoxDefault;
+		pAbstractImage checkBoxHover;
+		pAbstractImage checkBoxMarked;
+		pAbstractImage sliderBar;
+		pAbstractImage slider;
 		pAbstractImage line;
 		pAbstractImage tabDefault;
 		pAbstractImage tabHover;
@@ -48,6 +54,8 @@ namespace love
 		pAbstractFont subtitleFont;
 		pAbstractFont defaultFont;
 
+
+		// Widgets
 		pMultilineLabel errorText;
 		pButton tabPause;
 		pButton tabSettings;
@@ -55,6 +63,11 @@ namespace love
 		pLabel thumbLabel;
 		pMultilineLabel gameTitle;
 		pMultilineLabel gameCreator;
+		pButton okButton;
+		pButton cancelButton;
+
+		pAbstractMenu pauseMenu;
+		pAbstractMenu settingsMenu;
 
 		Menu * error;
 		Menu * pause;

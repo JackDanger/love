@@ -46,6 +46,8 @@ namespace love
 		virtual void setMarkerImage(const pAbstractImage * image);
 		virtual void setBackgroundImage(const pAbstractImage * image);
 
+		virtual void setFont(const pAbstractFont * image);
+
 		virtual int getWidth();
 		virtual int getHeight();
 		virtual unsigned int getBorderSize();
@@ -62,6 +64,8 @@ namespace love
 		virtual pAbstractColor getBackgroundColor();
 		virtual pAbstractImage getMarkerImage();
 		virtual pAbstractImage getBackgroundImage();
+
+		virtual pAbstractFont getFont();
 
 		virtual void adjustSize();
 

@@ -19,27 +19,19 @@ namespace love
 	{
 	private:
 		pAbstractFont font;
-		//pAbstractColor color;
 
 	public:
-		//GUIText(pAbstractFont font, pAbstractColor color);
 		GUIText(pAbstractFont font);
        
 		virtual ~GUIText();
 
 		virtual int getWidth(unsigned char glyph) const;
-
         virtual int getWidth(const std::string& text) const;
-
 		virtual int getHeight() const;
-
-		//virtual void setColor(gcn::Color color);
 		
 		virtual pAbstractFont getFont();
 		virtual void setFont(AbstractFont * font);
 		virtual void setFont(pAbstractFont font);
-		//virtual pAbstractColor getColor();
-		//virtual void setColor(pAbstractColor color);
 
         virtual void drawString(gcn::Graphics* graphics, const std::string& text, int x, int y);
 	};
