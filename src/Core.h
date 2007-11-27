@@ -22,6 +22,13 @@
 #include "AbstractGraphics.h"
 #include "OpenGLGUI.h"
 
+#include "AbstractImage.h"
+#include "AbstractFont.h"
+#include "AbstractSound.h"
+#include "AbstractMusic.h"
+#include "AbstractFile.h"
+#include "Loadable.h"
+
 // Other LOVE files
 #include "ConfigLoader.h"
 #include "Game.h"
@@ -111,6 +118,8 @@ namespace love
 		// How many messages there should be
 		bool verbose;
 
+		list<pLoadable> persistents;
+
 
 	public:
 
@@ -176,6 +185,13 @@ namespace love
 		* @brief Destructor.
 		**/
 		virtual ~Core();
+
+		pAbstractFile getFile(const string & filename);
+		pAbstractImage getImage(const string & filename, int flags = 0);
+		pAbstractFont getFont(const string & filename, int size,  int flags = 0);
+		pAbstractFont getImageFont(const string & filename, const string & glyphs, int flags = 0);
+		pAbstractSound getSound(const string & filename);
+		pAbstractMusic getMusic(const string & filename);
 
 		/**
 		* @brief Intializes the Core.
@@ -306,6 +322,10 @@ namespace love
 		* @return true if the system is verbose (anti-Rorschach).
 		**/
 		bool isVerbose();
+
+		void reloadPersistent();
+		void addPersistent(pLoadable persistent);
+		void removePersistent(pLoadable & persistent);
 
 	private:
 

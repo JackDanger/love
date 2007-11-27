@@ -13,8 +13,6 @@ namespace love
 
 	GameConfiguration::GameConfiguration()
 	{
-		// Create the ConfigLoader
-		this->thumb = 0;
 	}
 
 	GameConfiguration::~GameConfiguration()
@@ -42,12 +40,12 @@ namespace love
 		this->author = author;
 	}
 
-	AbstractImage * GameConfiguration::getThumb() const
+	pAbstractImage GameConfiguration::getThumb() const
 	{
 		return thumb;
 	}
 
-	void GameConfiguration::setThumb(AbstractImage * thumb)
+	void GameConfiguration::setThumb(pAbstractImage thumb)
 	{
 		this->thumb = thumb;
 	}
@@ -69,15 +67,13 @@ namespace love
 		const AbstractImageDevice & imaging = core->getImaging();
 		const AbstractFileSystem & fs = core->getFilesystem();
 
-		this->thumb = imaging.getImage(fs.getBaseFile("data/sys/thumb-std.png"));
+		this->thumb.reset<AbstractImage>(imaging.getImage(fs.getBaseFile("data/sys/thumb-std.png")));
 
 		return LOVE_OK;
 	}
 
 	void GameConfiguration::unload()
 	{
-		thumb->unload();
-		delete thumb;
 	}
 
 

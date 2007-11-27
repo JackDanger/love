@@ -29,6 +29,11 @@ namespace love
 		LOVE_QUALITY_HIGH = 4
 	};
 
+	enum 
+	{
+		LOVE_PERSIST = 1
+	};
+
 }
 
 #endif

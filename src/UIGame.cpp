@@ -290,6 +290,7 @@ namespace love
 		errorBackground->reload();
 		pauseBackground->reload();
 		buttonDefault->reload();
+		buttonQuit->reload();
 		buttonHover->reload();
 		buttonPressed->reload();
 		buttonQuit->reload();
@@ -361,7 +362,7 @@ namespace love
 		pauseLabel->setCaption("Game paused"); pauseLabel->adjustSize();
 		if(previous->config->getThumb() != 0 && false) //removed because of buggyness
 		{
-			thumbLabel->setBackground(&pAbstractImage(previous->config->getThumb())); thumbLabel->adjustSize();
+			thumbLabel->setBackground(&previous->config->getThumb()); thumbLabel->adjustSize();
 		}
 		else
 			thumbLabel->setBackground(&imageDefault); thumbLabel->adjustSize();

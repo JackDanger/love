@@ -81,10 +81,12 @@ namespace love
 		// The union used to get SDL events. 
 		SDL_Event e;
 
+		bool hasfocus = true;
+
 
 		while(1)
 		{
-		
+
 			// Get the time since last time.
 			float dt = core->timer->getDelta();
 
@@ -107,11 +109,11 @@ namespace love
 				// Pass input to GuiChan
 				// @todo MAKE GENERIC
 				gcn_input->pushInput(e);
-		
+
 				// Do events.
 				switch(e.type)
 				{
-				case SDL_KEYDOWN:
+					case SDL_KEYDOWN:
 						core->keyPressed(e.key.keysym.sym);
 						break;
 					case SDL_KEYUP:

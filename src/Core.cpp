@@ -15,6 +15,8 @@
 #include "Console.h"
 #include "ConfigLoader.h"
 
+#include "ImageFont.h"
+
 // Include the LoveMenu
 #include "LoveMenu4.h"
 #include "LuaGame.h"
@@ -35,6 +37,59 @@ namespace love
 
 	Core::~Core()
 	{
+	}
+
+	pAbstractFile Core::getFile(const string & filename)
+	{
+		pAbstractFile file(filesystem->getBaseFile(filename));
+		return file;
+	}
+
+	pAbstractImage Core::getImage(const string & filename, int flags)
+	{
+		pAbstractFile file(filesystem->getBaseFile(filename));
+		pAbstractImage image(imaging->getImage(file.get()));
+
+		if((flags & LOVE_PERSIST) != 0)
+			addPersistent(image);
+
+		return image;
+	}
+
+	pAbstractFont Core::getFont(const string & filename, int size, int flags)
+	{
+		pAbstractFile file(filesystem->getBaseFile(filename));
+		pAbstractFont font(new Font(file.get(), size));
+
+		if((flags & LOVE_PERSIST) != 0)
+			addPersistent(font);
+
+		return font;
+	}
+
+	pAbstractFont Core::getImageFont(const string & filename, const string & glyphs, int flags)
+	{
+		pAbstractFile file(filesystem->getBaseFile(filename));
+		pAbstractFont font(new ImageFont(file.get(), glyphs));
+
+		if((flags & LOVE_PERSIST) != 0)
+			addPersistent(font);
+
+		return font;
+	}
+
+	pAbstractSound Core::getSound(const string & filename)
+	{
+		pAbstractFile file(filesystem->getBaseFile(filename));
+		pAbstractSound sound(audio->getSound(file.get()));
+		return sound;
+	}
+
+	pAbstractMusic Core::getMusic(const string & filename)
+	{
+		pAbstractFile file(filesystem->getBaseFile(filename));
+		pAbstractMusic music(audio->getMusic(file.get()));
+		return music;
 	}
 
 	const Mouse & Core::getMouse() const
@@ -433,6 +488,9 @@ namespace love
 
 		// Reload console
 		console->reload();
+
+		// Reload persistent items.
+		reloadPersistent();
 	}
 
 	void Core::eventFired(pEvent e)
@@ -463,5 +521,26 @@ namespace love
 		return verbose;
 	}
 
+	void Core::reloadPersistent()
+	{
+		list<pLoadable>::iterator i = persistents.begin();
+
+		// Reload all children.
+		while(i != persistents.end())
+		{
+			(*i)->reload();			
+			i++;
+		}
+	}
+
+	void Core::addPersistent(pLoadable persistent)
+	{
+		persistents.push_back(persistent);
+	}
+
+	void Core::removePersistent(pLoadable & persistent)
+	{
+		persistents.remove(persistent);
+	}
 
 } // namespace love

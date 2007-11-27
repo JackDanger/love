@@ -138,7 +138,7 @@ namespace love
 	pAbstractFont ObjectFactory::newDefaultFont(int size) const
 	{
 		// Get a file pointer
-		AbstractFile * file = core->filesystem->getBaseFile("data/fonts/FreeSans.ttf");
+		AbstractFile * file = core->filesystem->getBaseFile("data/fonts/Vera.ttf");
 
 		// Create the font
 		pFont font(new Font(file, size));

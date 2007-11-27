@@ -15,7 +15,6 @@ namespace love
 	{
 		this->title = "Untitled";
 		this->author = "Unknown";
-		this->thumb = 0;
 	}
 
 	GameConfigurationLoader::~GameConfigurationLoader()
@@ -52,12 +51,12 @@ namespace love
 			display.resize(width, height);
 
 			if(config->isString("thumbnail"))
-				this->thumb = imaging.getImage(fs.getFile(source, thumb));
+				this->thumb.reset<AbstractImage>(imaging.getImage(fs.getFile(source, thumb)));
 			else if(!config->isString("thumbnail"))
-				this->thumb = imaging.getImage(fs.getBaseFile(thumb));
+				this->thumb.reset<AbstractImage>(imaging.getImage(fs.getBaseFile(thumb)));
 		}else
 		{
-			this->thumb = imaging.getImage(fs.getBaseFile("data/sys/thumb-std.png"));
+			this->thumb.reset<AbstractImage>(imaging.getImage(fs.getBaseFile("data/sys/thumb-std.png")));
 			display = core->getDisplayMode();
 		}
 
@@ -66,8 +65,6 @@ namespace love
 
 	void GameConfigurationLoader::unload()
 	{
-		thumb->unload();
-		delete thumb;
 		config->unload();
 		delete config;
 	}

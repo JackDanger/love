@@ -14,11 +14,14 @@ main =
 		local c = love.objects:newImage("c.png");
 		local arrow = love.objects:newImage("arrow.png");
 		local thing = love.objects:newImage("thing.png");
+		local font = love.objects:newDefaultFont(10)
+		
+		love.graphics:setFont(font);
 		
 	
 	
-		clr = game:addColor("clr", 80, 80, 80);
-		game:setColor(clr);
+		clr = love.objects:newColor(200, 200, 200);
+		love.graphics:setColor(clr);
 	
 		-- System start
 		local p = love.objects:newParticleSystem();
@@ -347,11 +350,11 @@ main =
 	
 	update = function(dt)
 		
-		if mouse:isDown(LOVE_MOUSE_LEFT) then 
+		if love.mouse:isDown(love.mouse_left) then 
 			if systems[current]:isDead() then
 				systems[current]:reset();
 			end
-			systems[current]:setPosition(mouse:getX(), mouse:getY());
+			systems[current]:setPosition(love.mouse:getX(), love.mouse:getY());
 		end
 		
 		systems[current]:update(dt);
@@ -361,8 +364,8 @@ main =
 	render = function()
 		systems[current]:render();
 		
-		game:drawString(30, 570, "System: [" .. current .. "/"..table.getn(systems).."] - " .. systems[current]:getNumParticles() .. " particles.");
-		game:drawString(30, 540, "Click: spawn particles. Mousewheel: change system.");
+		love.graphics:draw("System: [" .. current .. "/"..table.getn(systems).."] - " .. systems[current]:getNumParticles() .. " particles.", 30, 570);
+		love.graphics:draw("Click: spawn particles. Mousewheel: change system.", 30, 540);
 		
 	end, 
 	

@@ -138,6 +138,8 @@ namespace love
 
 	void LuaGame::reloadGraphics()
 	{
+		// Reload thumbnail.
+		config->getThumb()->reload();
 	}
 
 	void LuaGame::keyPressed(int key)

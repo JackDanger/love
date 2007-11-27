@@ -308,7 +308,7 @@ namespace love
 			e.setGame(games.value().get());
 
 			// Load thumb if neccessary
-			AbstractImage * thumb = games.value().get()->config->getThumb();
+			pAbstractImage thumb = games.value().get()->config->getThumb();
 
 			if(thumb != 0 && !thumb->isLoaded())
 				thumb->load();
@@ -428,7 +428,7 @@ namespace love
 		for(games.begin(); !games.end(); games.next())
 		{
 
-			AbstractImage * i = games.value()->config->getThumb();
+			pAbstractImage i = games.value()->config->getThumb();
 
 			if(i != 0 && !i->isLoaded())
 				i->load();

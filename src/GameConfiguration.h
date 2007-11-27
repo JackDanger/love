@@ -11,6 +11,7 @@
 // LOVE
 #include "DisplayMode.h"
 #include "Loadable.h"
+#include "AbstractImage.h"
 
 // STL
 #include <string>
@@ -26,7 +27,6 @@ namespace love
 	// Forward declarations
 	class ConfigLoader;
 	class AbstractFile;
-	class AbstractImage;
 
 	/**
 	* @class GameConfiguration
@@ -47,7 +47,7 @@ namespace love
 		string author;
 
 		// thumb
-		AbstractImage * thumb;
+		pAbstractImage thumb;
 
 		// display
 		DisplayMode display;
@@ -92,13 +92,13 @@ namespace love
 		* @brief Gets thumb.
 		* @return thumb.
 		**/
-		AbstractImage * getThumb() const;
+		pAbstractImage getThumb() const;
 
 		/**
 		* @brief Sets thumb.
 		* @param thumb 
 		**/
-		void setThumb(AbstractImage * thumb);
+		void setThumb(pAbstractImage thumb);
 
 		/**
 		* @brief Gets display.

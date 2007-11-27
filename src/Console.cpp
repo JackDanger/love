@@ -121,7 +121,7 @@ namespace love
 		// Get a reference to the filesystem
 		const AbstractFileSystem & fs = core->getFilesystem();
 
-		font = new Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 7);
+		font = new Font(fs.getBaseFile("data/fonts/Vera.ttf"), 7);
 
 		return (font->load());
 	}
