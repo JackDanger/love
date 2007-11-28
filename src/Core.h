@@ -61,10 +61,8 @@ namespace love
 	class Mouse;
 	class Timer;
 	class AbstractFileSystem;
-	class AbstractSoundDevice;
-	class AbstractImageDevice;
+	class AbstractAudio;
 	class AbstractGraphics;
-	class Console;
 	class DisplayMode;
 
 
@@ -94,17 +92,12 @@ namespace love
 		Mouse * mouse;
 		Timer * timer;
 		AbstractFileSystem * filesystem;
-		AbstractSoundDevice * audio;
-		AbstractImageDevice * imaging;
+		AbstractAudio * audio;
 		AbstractGraphics * graphics;
 		Parameters * parameters;
 		AbstractGUI * gui;
 
 		pConfigLoader config;
-
-
-		// Console used for useful output
-		Console * console;
 
 		//Contains all the Games.
 		Container<Game> games;
@@ -139,6 +132,11 @@ namespace love
 		friend class ObjectFactory;
 		//friend class OpenGLGUI;
 		friend class UIGame;
+		friend class AbstractGraphics;
+		friend class AbstractAudio;
+		friend class GameConfiguration;
+		friend class GameConfigurationLoader;
+		friend class Text;
 
 		/**
 		* @brief Creates a new Core object. Remeber to always call init(). 
@@ -156,12 +154,6 @@ namespace love
 		* @return A reference to the file system.
 		**/
 		const AbstractFileSystem & getFilesystem() const;
-
-		/**
-		* @brief Gets a constant reference to the current image system
-		* @return A reference to the image system.
-		**/
-		const AbstractImageDevice & getImaging() const;
 
 		/**
 		* @brief Gets the current display mode.
@@ -185,13 +177,6 @@ namespace love
 		* @brief Destructor.
 		**/
 		virtual ~Core();
-
-		pAbstractFile getFile(const string & filename);
-		pAbstractImage getImage(const string & filename, int flags = 0);
-		pAbstractFont getFont(const string & filename, int size,  int flags = 0);
-		pAbstractFont getImageFont(const string & filename, const string & glyphs, int flags = 0);
-		pAbstractSound getSound(const string & filename);
-		pAbstractMusic getMusic(const string & filename);
 
 		/**
 		* @brief Intializes the Core.

@@ -124,10 +124,6 @@ namespace love
 		// particleSpin
 		interval particleSpin;
 
-
-
-
-
 		inline float getT(particle & p) const;
 		inline Vector getPosition(particle & p) const;
 		inline void estimateStart(particle & p);
@@ -284,10 +280,10 @@ namespace love
 
 
 		virtual void update(float dt);
-		virtual void render();
+		virtual void render() = 0;
 
 		// added by mike (called by the AbstractGraphics::draw(ParticleSystem, x, y) function
-		virtual void render(float x, float y);
+		virtual void render(float x, float y) = 0;
 
 
 	};

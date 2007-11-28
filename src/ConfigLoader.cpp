@@ -14,12 +14,12 @@ namespace love
 {
 
 
-	ConfigLoader::ConfigLoader(string filepath) : Resource(0), filepath(filepath)
+	ConfigLoader::ConfigLoader(string filepath) : filepath(filepath)
 	{
 
 	}
 
-	ConfigLoader::ConfigLoader(AbstractFile * file) : Resource(file), filepath("")
+	ConfigLoader::ConfigLoader(pAbstractFile file) : Resource(file), filepath("")
 	{
 	}
 

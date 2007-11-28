@@ -1,4 +1,4 @@
-#include "DevILImage.h"
+#include "OpenGLImage.h"
 #include "AbstractImage.h"
 #include "AbstractFile.h"
 #include "love.h"
@@ -9,18 +9,18 @@
 namespace love
 {
 	
-	DevILImage::DevILImage(AbstractFile * file) : Resource(file)
+	OpenGLImage::OpenGLImage(pAbstractFile file) : Resource(file)
 	{
 
 	}
 	
-	DevILImage::~DevILImage()
+	OpenGLImage::~OpenGLImage()
 	{
 		printf("[-.-] - Destroyed! - [%s]\n", toString().c_str());
 		unload();
 	}
 
-	int DevILImage::load()
+	int OpenGLImage::load()
 	{	
 
 		// Load image data into memory
@@ -87,7 +87,7 @@ namespace love
 
 	}
 
-	void DevILImage::unload()
+	void OpenGLImage::unload()
 	{
 
 		// Delete texture.
@@ -96,7 +96,7 @@ namespace love
 		//printf("Image \"%s\" Unloaded!\n", file->getFilename().c_str());
 	}
 
-	int DevILImage::twoPower(int num) const
+	int OpenGLImage::twoPower(int num) const
 	{
 		int temp = 1;
 		while(temp < num)
@@ -104,7 +104,7 @@ namespace love
 		return temp;
 	}
 
-	void DevILImage::padTwoPower()
+	void OpenGLImage::padTwoPower()
 	{
 
 		// Get twopower of width and height
@@ -177,9 +177,9 @@ namespace love
 		delete [] d;
 	}
 
-	string DevILImage::toString() const
+	string OpenGLImage::toString() const
 	{
-		return "DevILImage: " + file->getFilename();
+		return "OpenGLImage: " + file->getFilename();
 	}
 	
 } // love

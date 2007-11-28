@@ -1,5 +1,5 @@
-#ifndef LOVE_FONT_H
-#define LOVE_FONT_H
+#ifndef LOVE_OpenGLFont_H
+#define LOVE_OpenGLFont_H
 
 #include "AbstractFont.h"
 
@@ -21,14 +21,14 @@ namespace love
 	class AbstractFile;
 
 	/**
-	* @class Font
+	* @class OpenGLFont
 	* @version 2.0
 	* @since 1.0
 	* @author Michael Enger (with great help from Sven C. Olsen) 
 	* @date 2007-01-15
-	* @brief A class to handle fonts. Uses the library FreeType2 (available here: http://www.freetype.org/) and takes use of both their local documentation and Sven's experience.
+	* @brief A class to handle OpenGLFonts. Uses the library FreeType2 (available here: http://www.freetype.org/) and takes use of both their local documentation and Sven's experience.
 	**/
-	class Font : public AbstractFont
+	class OpenGLFont : public AbstractFont
 	{
 	protected:
 		
@@ -52,11 +52,11 @@ namespace love
 		inline void popProjectionMatrix();
 
 		/**
-		 * @param fontpath A file path to the font.
-		 * @param size The size of the font.
-		 * @brief Initializes FreeType and creates the font by calling createList for every character (up to MAX_CHARS).
+		 * @param OpenGLFontpath A file path to the OpenGLFont.
+		 * @param size The size of the OpenGLFont.
+		 * @brief Initializes FreeType and creates the OpenGLFont by calling createList for every character (up to MAX_CHARS).
 		 **/
-		void createFont(const char * fontpath, unsigned int size);
+		void createOpenGLFont(const char * OpenGLFontpath, unsigned int size);
 
 		/**
 		 * @param face The FT_Face containing information about the character.
@@ -67,16 +67,16 @@ namespace love
 
 	public:
 		/**
-		 * @param file The file containing the font data.
-		 * @param size The size of the font.
-		 * @brief Simply appens fontname to the path of the fonts folder and calles createFont.
+		 * @param file The file containing the OpenGLFont data.
+		 * @param size The size of the OpenGLFont.
+		 * @brief Simply appens OpenGLFontname to the path of the OpenGLFonts folder and calles createOpenGLFont.
 		 **/
-		Font(AbstractFile * file, int size);
+		OpenGLFont(pAbstractFile file, int size);
 
 		/**
 		 * @brief Clears the display lists and the textures.
 		 **/
-		virtual ~Font();
+		virtual ~OpenGLFont();
 
 		/**
 		 * @param text A string.
@@ -95,8 +95,8 @@ namespace love
 		void print(char character, float x = 0, float y = 0);
 
 		/**
-		 * @return The height of the font.
-		 * @brief Returns the size of the font multiplied by 1.5
+		 * @return The height of the OpenGLFont.
+		 * @brief Returns the size of the OpenGLFont multiplied by 1.5
 		 **/
 		float getLineHeight();
 
@@ -111,7 +111,7 @@ namespace love
 		virtual void unload();
 	};
 
-	typedef boost::shared_ptr<Font> pFont;
+	typedef boost::shared_ptr<OpenGLFont> pOpenGLFont;
 }
 
 #endif

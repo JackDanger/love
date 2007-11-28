@@ -7,7 +7,6 @@
 // Ignore things here.
 %ignore love::Scriptable;
 %ignore love::Loadable;
-%ignore love::AbstractEntity;
 %ignore love::Entity.h;
 %ignore love::VisualEntity.h;
 %ignore love::Renderable.h;
@@ -26,7 +25,7 @@
 
 #include "ObjectFactory.h"
 #include "AbstractGraphics.h"
-#include "AbstractSoundDevice.h"
+#include "AbstractAudio.h"
 
 #include "AbstractState.h"
 #include "ActorState.h"
@@ -41,8 +40,7 @@
 #include "Color.h"
 #include "AnimatedColor.h"
 #include "AbstractFont.h"
-#include "Font.h"
-#include "ImageFont.h"
+#include "AbstractFont.h"
 #include "Text.h"
 
 #include "love_globals.h"
@@ -70,7 +68,6 @@
 #include "LuaGame.h"
 #include "Timer.h"
 #include "DisplayMode.h"
-#include "LuaGL.h"
 
 #include "AbstractImage.h"
 #include "FrameAnimation.h"
@@ -122,6 +119,7 @@ namespace boost {
 %include "Mouse.i"
 
 // Graphics, etc
+%include "AbstractEntity.h"
 %include "Sprite.i"
 %include "AbstractImage.i"
 %include "FrameAnimation.i"
@@ -150,7 +148,6 @@ namespace boost {
 
 %include "Timer.h"
 %include "DisplayMode.h"
-%include "LuaGL.h"
 
 %include "LuaGame.h"
 
@@ -161,7 +158,7 @@ namespace boost {
 // Sound
 %include "AbstractSound.i"
 %include "AbstractMusic.i"
-%include "AbstractSoundDevice.i"
+%include "AbstractAudio.i"
 
 %include "ObjectFactory.h"
 

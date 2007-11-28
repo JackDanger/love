@@ -1,11 +1,11 @@
-#include "ImageFont.h"
+#include "OpenGLImageFont.h"
 #include "Core.h"
 #include "love.h"
 #include "AbstractImageDevice.h"
 
 namespace love
 {
-	void ImageFont::renderCharacter(char character)
+	void OpenGLImageFont::renderCharacter(char character)
 	{
 		// To Mike: g++ warns about this always being false. (MAX_CHARS = 256, 
 		// and since character is a char, it can't go higher than 255. 
@@ -21,19 +21,19 @@ namespace love
 		charImage->render((float)coordinates[c], 0.0f, (float)widths[c], (float)size);
 	}
 
-	ImageFont::ImageFont(AbstractFile * file, const string & glyphs) : AbstractFont(file, 0)
+	OpenGLImageFont::OpenGLImageFont(pAbstractFile file, const string & glyphs) : AbstractFont(file, 0)
 	{
 		this->glyphs = glyphs;
 		for(int i = 0; i < MAX_CHARS; i++) coordinates[i] = -1;
 	}
 
-	ImageFont::~ImageFont()
+	OpenGLImageFont::~OpenGLImageFont()
 	{
-		file = 0;
+		//file = 0;
 		unload();
 	}
 
-	void ImageFont::print(string text, float x, float y)
+	void OpenGLImageFont::print(string text, float x, float y)
 	{
 		glPushMatrix();
 		//glColor4ub(255,255,255,255); // clearing colors shouldn't be automatic
@@ -46,7 +46,7 @@ namespace love
 		glPopMatrix();
 	}
 
-	void ImageFont::print(char character, float x, float y)
+	void OpenGLImageFont::print(char character, float x, float y)
 	{
 		glPushMatrix();
 		//glColor4ub(255,255,255,255); // clearing colors shouldn't be automatic
@@ -55,12 +55,12 @@ namespace love
 		glPopMatrix();
 	}
 
-	float ImageFont::getLineHeight()
+	float OpenGLImageFont::getLineHeight()
 	{
 		return (float)size;
 	}
 
-	float ImageFont::getLineWidth(const char * line)
+	float OpenGLImageFont::getLineWidth(const char * line)
 	{
 		float temp = 0;
 		for(unsigned int i = 0; i < strlen(line); i++)
@@ -68,11 +68,11 @@ namespace love
 		return temp;
 	}
 
-	int ImageFont::load()
+	int OpenGLImageFont::load()
 	{
 		if(glyphs.length() > MAX_CHARS)
 		{
-			core->error("ImageFont: List of glyphs is too long. MAX_CHARS=%d", MAX_CHARS);
+			core->error("OpenGLImageFont: List of glyphs is too long. MAX_CHARS=%d", MAX_CHARS);
 			return LOVE_ERROR;
 		}
 
@@ -119,7 +119,7 @@ namespace love
 				int temp = (int)glyphlist[currentChar];
 				if(temp < 0 || temp > MAX_CHARS)
 				{
-					core->printf("ImageFont: Character '%c'(%d) out of scope.", (char)temp, temp);
+					core->printf("OpenGLImageFont: Character '%c'(%d) out of scope.", (char)temp, temp);
 				}
 				else
 				{
@@ -168,13 +168,17 @@ namespace love
 		file->unload();
 
 		// Now that we have our coordinates we can load the actual image that we will use
-		charImage.reset<AbstractImage>(core->getImaging().getImage(file));
+		
+		const AbstractGraphics & g = core->getGraphics();
+
+		charImage = g.getImage(file);
 		charImage->load();
+		
 
 		return LOVE_OK;
 	}
 
-	void ImageFont::unload()
+	void OpenGLImageFont::unload()
 	{
 	}
 }

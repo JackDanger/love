@@ -45,7 +45,7 @@ namespace love
 		/**
 		* @brief Constructs an empty SDLMixerMusic.
 		**/
-		SDLMixerMusic(AbstractFile * file);
+		SDLMixerMusic(pAbstractFile file);
 		
 		/**
 		* @brief Destructor.

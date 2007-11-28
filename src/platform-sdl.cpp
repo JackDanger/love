@@ -20,8 +20,7 @@
 #include "Mouse.h"
 #include "Keyboard.h"
 #include "PhysFSFileSystem.h"
-#include "SDLMixerSoundDevice.h"
-#include "DevILImageDevice.h"
+#include "SDLMixerAudio.h"
 #include "OpenGLGraphics.h"
 #include "lualove_globals.h"
 #include "Parameters.h"
@@ -50,22 +49,19 @@ namespace love
 			return LOVE_ERROR;
 		}
 
-
-		
 		// Assign devices
 		core->display = new SDLDisplay();
 		core->timer = new SDLTimer();
 		core->mouse = new Mouse();
 		core->keyboard = new Keyboard();
 		core->filesystem = new PhysFSFileSystem(argc, argv);
-		core->audio = new SDLMixerSoundDevice();
-		core->imaging = new DevILImageDevice();
+		core->audio = new SDLMixerAudio();
+		//core->imaging = new DevILImageDevice();
 		core->graphics = new OpenGLGraphics();
 		core->parameters = new Parameters(argc, argv);
 		core->gui = new OpenGLGUI();
 
 		// Init GuiChan here
-		// @todo MAKE GENERIC
 		gcn_input = new gcn::SDLInput();
 
 		return LOVE_OK;

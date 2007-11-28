@@ -10,10 +10,11 @@
 
 // LOVE
 #include "GUIEntity.h"
-#include "ImageFromFile.h"
-#include "Font.h"
+#include "AbstractFont.h"
 #include "Event.h"
 
+
+#include "AbstractImage.h"
 
 // STL
 
@@ -40,9 +41,9 @@ namespace love
 
 		friend class GUIGameListElement;
 
-		AbstractImage * image;
+		pAbstractImage image;
 
-		Font * font;
+		pAbstractFont font;
 
 		string label;
 		pEvent command;
@@ -57,7 +58,7 @@ namespace love
 		/**
 		* @brief Contructs an empty GUICircleButton.
 		**/
-		GUICircleButton(AbstractImage * image, const string & label, pEvent command, Font * font = 0);
+		GUICircleButton(pAbstractImage image, const string & label, pEvent command, pAbstractFont font);
 		virtual ~GUICircleButton();
 
 

@@ -1,17 +1,18 @@
 /**
-* @file AbstractSoundDevice.h
+* @file AbstractAudio.h
 * @author Anders Ruud
 * @date 2007-08-19
-* @brief Contains definition for class AbstractSoundDevice.
+* @brief Contains definition for class AbstractAudio.
 **/
 
-#ifndef LOVE_ABSTRACTSOUNDDEVICE_H 
-#define LOVE_ABSTRACTSOUNDDEVICE_H 
+#ifndef LOVE_AbstractAudio_H 
+#define LOVE_AbstractAudio_H 
 
 // LOVE
 #include "AbstractDevice.h"
 #include "AbstractSound.h"
 #include "AbstractMusic.h"
+#include "AbstractFile.h"
 
 // STL
 
@@ -24,42 +25,45 @@ namespace love
 	class AbstractFile;
 
 	/**
-	* @class AbstractSoundDevice
+	* @class AbstractAudio
 	* @version 1.0
 	* @since 1.0
 	* @author Anders Ruud
 	* @date 2007-08-19
 	* @brief
 	**/
-	class AbstractSoundDevice : public AbstractDevice
+	class AbstractAudio : public AbstractDevice
 	{
 	private:
 	
 	public:
 	
 		/**
-		* @brief Constructs an empty AbstractSoundDevice.
+		* @brief Constructs an empty AbstractAudio.
 		**/
-		AbstractSoundDevice();
+		AbstractAudio();
 		
 		/**
 		* @brief Destructor.
 		**/
-		virtual ~AbstractSoundDevice();
+		virtual ~AbstractAudio();
 
 		/**
 		* @brief Gets a sound that is compatible with the current sound device.
 		* @param file The file to get the sound from.
 		* @return A pointer to a new sound.
 		**/
-		virtual AbstractSound * getSound(AbstractFile * file) const = 0;
+		virtual pAbstractSound getSound(pAbstractFile file) const = 0;
 		
 		/**
 		* @brief Gets music that is compatible with the current sound device.
 		* @param file The file to get the music from.
 		* @return A pointer to the new music.
 		**/
-		virtual AbstractMusic * getMusic(AbstractFile * file) const = 0;
+		virtual pAbstractMusic getMusic(pAbstractFile file) const = 0;
+
+		pAbstractSound getSound(const string & filename) const;
+		pAbstractMusic getMusic(const string & filename) const;
 
 		/**
 		* @brief Checks if audio is playing or not.
@@ -110,9 +114,9 @@ namespace love
 		**/
 
 		
-	}; // AbstractSoundDevice
+	}; // AbstractAudio
 	
-	typedef boost::shared_ptr<AbstractSoundDevice> pAbstractSoundDevice;
+	typedef boost::shared_ptr<AbstractAudio> pAbstractAudio;
 	
 } // love
 

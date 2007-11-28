@@ -24,7 +24,7 @@ using std::string;
 
 namespace love
 {
-	class Font;
+	class AbstractFont;
 
 	/**
 	* @class Console
@@ -46,7 +46,7 @@ namespace love
 		deque<string> messages;
 
 		// The font used for rendering the messages
-		Font * font;
+		pAbstractFont font;
 
 		// The size of the message queue
 		unsigned int size;

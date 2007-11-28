@@ -36,7 +36,7 @@ namespace love
 	Timer * timer;
 	ObjectFactory * objects;
 	AbstractGraphics * graphics;
-	AbstractSoundDevice * audio;
+	AbstractAudio * audio;
 	LuaGame * game;
 	GUIContainer * gui;
 
@@ -85,7 +85,7 @@ namespace love
 		return true;
 	}
 
-	bool lualove_load(lua_State * L, AbstractFile * file)
+	bool lualove_load(lua_State * L, pAbstractFile file)
 	{
 
 		file->load();
@@ -109,8 +109,6 @@ namespace love
 
 		int status = lualove_call(L, 0);
 		lualove_handle_error(L, status);
-
-		delete file;
 
 		return (status == 0);
 

@@ -3,7 +3,7 @@
 
 #include "AbstractImage.h"
 #include "AbstractColor.h"
-#include "Font.h"
+#include "AbstractFont.h"
 #include "GUIText.h"
 #include "Menu.h"
 #include "Renderable.h"

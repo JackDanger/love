@@ -13,8 +13,7 @@
 #include "Core.h"
 #include "love_mouse.h"
 #include "AbstractFileSystem.h"
-#include "AbstractSoundDevice.h"
-#include "AbstractImageDevice.h"
+#include "AbstractAudio.h"
 #include "DisplayMode.h"
 #include "GameConfiguration.h"
 
@@ -56,27 +55,27 @@ namespace love
 		configLoader = core->config.get();
 
 		// Add images
-		images.create("default-thumb", core->imaging->getImage(fs.getBaseFile("data/sys/thumb-std.png")));
-		images.create("default-thumb-dither", core->imaging->getImage((fs.getBaseFile("data/sys/thumb-outer-glow.png"))));
-		images.create("button-play", core->imaging->getImage((fs.getBaseFile("data/sys/button-play.png"))));
-		images.create("button-stop", core->imaging->getImage((fs.getBaseFile("data/sys/button-stop.png"))));
-		images.create("button-restart", core->imaging->getImage((fs.getBaseFile("data/sys/button-restart.png"))));
-		images.create("button-cancel", core->imaging->getImage((fs.getBaseFile("data/sys/button-cancel.png"))));
-		images.create("logo-small", core->imaging->getImage((fs.getBaseFile("data/sys/logo128x64.png"))));
-		images.create("knob-big", core->imaging->getImage((fs.getBaseFile("data/sys/knob-big.png"))));
-		images.create("knob-small", core->imaging->getImage((fs.getBaseFile("data/sys/knob-small.png"))));
+		images["default-thumb"] = core->graphics->getImage("data/sys/thumb-std.png");
+		images["default-thumb-dither"] = core->graphics->getImage("data/sys/thumb-outer-glow.png");
+		images["button-play"] = core->graphics->getImage("data/sys/button-play.png");
+		images["button-stop"] = core->graphics->getImage("data/sys/button-stop.png");
+		images["button-restart"] = core->graphics->getImage("data/sys/button-restart.png");
+		images["button-cancel"] = core->graphics->getImage("data/sys/button-cancel.png");
+		images["logo-small"] = core->graphics->getImage("data/sys/logo128x64.png");
+		images["knob-big"] = core->graphics->getImage("data/sys/knob-big.png");
+		images["knob-small"] = core->graphics->getImage("data/sys/knob-small.png");
 		
 		// Add fonts
-		fonts.create("title", new Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 22));
-		fonts.create("subtitle", new Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 11));
-		fonts.create("button-font", new Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 14));
+		fonts["title"] = core->graphics->getFont("data/fonts/FreeSans.ttf", 22);
+		fonts["subtitle"] = core->graphics->getFont("data/fonts/FreeSans.ttf", 11);
+		fonts["button-font"] = core->graphics->getFont("data/fonts/FreeSans.ttf", 14);
 
-		knob.reset<GUIRadialKnob>(new GUIRadialKnob(images["knob-big"].get(), images["knob-small"].get(), fonts["subtitle"].get()));
+		knob.reset<GUIRadialKnob>(new GUIRadialKnob(images["knob-big"], images["knob-small"], fonts["subtitle"]));
 		knob->setPosition(0.1f*dm.getWidth(), dm.getHeight()*0.5f);
 		//knob->setControl(&list);
 
 		pMessageEvent msg(new MessageEvent("quit"));
-		exit.reset<GUICircleButton>(new GUICircleButton(images["button-cancel"].get(), "Exit to desktop", msg,fonts["subtitle"].get()));
+		exit.reset<GUICircleButton>(new GUICircleButton(images["button-cancel"], "Exit to desktop", msg,fonts["subtitle"]));
 		exit->setSize(125,23);
 		exit->setParent(this);
 		exit->setPosition((float)dm.getWidth()-150, 7);
@@ -272,13 +271,12 @@ namespace love
 	int LoveMenu4::load()
 	{	
 		// Load images
-		for(images.begin(); !images.end(); images.next())
-			images.value()->load();
+		for(map<string,pAbstractImage>::iterator iter = images.begin();iter!=images.end();iter++)
+			iter->second->load();
 
 		// Load fonts
-		for(fonts.begin(); !fonts.end(); fonts.next())
-			fonts.value()->load();
-
+		for(map<string,pAbstractFont>::iterator iter = fonts.begin();iter!=fonts.end();iter++)
+			iter->second->load();
 
 		exit->load();
 
@@ -303,8 +301,8 @@ namespace love
 			}
 			
 
-			GUIGameListElement e(images["default-thumb"].get(), images["default-thumb-dither"].get(), fonts["title"].get(), fonts["subtitle"].get(), 
-				images["button-play"].get(), images["button-stop"].get(), images["button-restart"].get());
+			GUIGameListElement e(images["default-thumb"], images["default-thumb-dither"], fonts["title"], fonts["subtitle"], 
+				images["button-play"], images["button-stop"], images["button-restart"]);
 			e.setGame(games.value().get());
 
 			// Load thumb if neccessary
@@ -369,12 +367,13 @@ namespace love
 		exit->unload();
 
 		// Unload images
-		for(images.begin(); !images.end(); images.next())
-			images.value()->unload();
+		// Load images
+		for(map<string,pAbstractImage>::iterator iter = images.begin();iter!=images.end();iter++)
+			iter->second->unload();
 
-		// Unload fonts
-		for(fonts.begin(); !fonts.end(); fonts.next())
-			fonts.value()->unload();
+		// Load fonts
+		for(map<string,pAbstractFont>::iterator iter = fonts.begin();iter!=fonts.end();iter++)
+			iter->second->unload();
 
 		// Unload games.
 		list.unload();
@@ -396,12 +395,12 @@ namespace love
 	{
 		
 		// Load images
-		for(images.begin(); !images.end(); images.next())
-			images.value()->load();
+		for(map<string,pAbstractImage>::iterator iter = images.begin();iter!=images.end();iter++)
+			iter->second->load();
 
 		// Load fonts
-		for(fonts.begin(); !fonts.end(); fonts.next())
-			fonts.value()->load();
+		for(map<string,pAbstractFont>::iterator iter = fonts.begin();iter!=fonts.end();iter++)
+			iter->second->load();
 
 		float dw = (float)core->getDisplayMode().getWidth();
 		float dh = (float)core->getDisplayMode().getHeight();

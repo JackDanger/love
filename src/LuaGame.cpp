@@ -5,7 +5,7 @@
 
 #include "AbstractFileSystem.h"
 #include "AbstractDisplay.h"
-#include "AbstractSoundDevice.h"
+#include "AbstractAudio.h"
 #include "GameConfigurationLoader.h"
 
 #include "Core.h"

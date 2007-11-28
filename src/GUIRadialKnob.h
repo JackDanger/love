@@ -36,9 +36,9 @@ namespace love
 	private:
 
 
-		AbstractImage * big;
-		AbstractImage * small;
-		Font * font;
+		pAbstractImage big;
+		pAbstractImage small;
+		pAbstractFont font;
 
 		float bigRadius;
 		float smallRadius;
@@ -55,7 +55,7 @@ namespace love
 		/**
 		* @brief Contructs an empty GUIRadialKnob.
 		**/
-		GUIRadialKnob(AbstractImage * big, AbstractImage * small, Font * font);
+		GUIRadialKnob(pAbstractImage big, pAbstractImage small, pAbstractFont font);
 		virtual ~GUIRadialKnob();
 
 		void update(float dt);

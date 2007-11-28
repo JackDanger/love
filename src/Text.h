@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "Object.h"
-#include "Font.h"
+#include "AbstractFont.h"
 #include "Color.h"
 #include "Updateable.h"
 
@@ -32,7 +32,7 @@ namespace love
 		AbstractColor * color; //the current color
 		AbstractFont * font; //the current font
 		pColor defaultColor;
-		pFont defaultFont;
+		pAbstractFont defaultFont;
 		int alignment; //which side the text is aligned to (LEFT, RIGHT or CENTER)
 		float wrapLimit; //what the limit of the text wrapping is
 

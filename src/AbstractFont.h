@@ -26,7 +26,7 @@ namespace love
 		static const int MAX_CHARS = 256;
 		int widths[MAX_CHARS]; //to hold the width of every char
 
-		AbstractFont(AbstractFile * file, int size);
+		AbstractFont(pAbstractFile file, int size);
 		~AbstractFont();
 
 		/**

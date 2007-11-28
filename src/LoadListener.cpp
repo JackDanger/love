@@ -27,6 +27,4 @@ namespace love
 	{
 		this->parentLoadListener = loadListener;
 	}
-
-
 }

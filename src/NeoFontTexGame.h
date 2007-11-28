@@ -8,7 +8,7 @@
 #include "ParticleSystem.h"
 #include "SmoothAnimatedColor.h"
 #include "AbstractImage.h"
-#include "Font.h"
+#include "AbstractFont.h"
 #include "Bezier.h"
 #include "BezierParticleSystem.h"
 
@@ -32,17 +32,6 @@ class NeoFontTexGame : public love::Game
 {
 
 private:
-
-//	love::ParticleSystem * psys;
-	love::pAbstractImage img;
-	love::AnimatedColor * clr;
-	love::Font * font;
-
-	float r;
-
-	pBezier b;
-	BezierParticleSystem * psys;
-
 public:
 
 

@@ -16,7 +16,7 @@
 namespace love
 {
 
-	GUIRadialKnob::GUIRadialKnob(AbstractImage * big, AbstractImage * small, Font * font)
+	GUIRadialKnob::GUIRadialKnob(pAbstractImage big, pAbstractImage small, pAbstractFont font)
 		: big(big), small(small), font(font)
 	{
 		bigRadius = 51;

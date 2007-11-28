@@ -10,8 +10,7 @@
 
 // LOVE
 #include "GUIEntity.h"
-#include "ImageFromFile.h"
-#include "Font.h"
+#include "AbstractFont.h"
 #include "GUICircleButton.h"
 
 // STL
@@ -57,15 +56,15 @@ namespace love
 		float buttonPaddingY;
 
 
-		AbstractImage * defaultThumb;
-		AbstractImage *  defaultThumbDither;
+		pAbstractImage defaultThumb;
+		pAbstractImage defaultThumbDither;
 
-		AbstractImage * playImage;
-		AbstractImage * stopImage;
-		AbstractImage * restartImage;
+		pAbstractImage playImage;
+		pAbstractImage stopImage;
+		pAbstractImage restartImage;
 
-		Font * font;
-		Font * smallFont;
+		pAbstractFont font;
+		pAbstractFont smallFont;
 
 		float buttonsAlpha;
 
@@ -78,7 +77,8 @@ namespace love
 		/**
 		* @brief Contructs an empty GUIGameListElement.
 		**/
-		GUIGameListElement(AbstractImage * defaultThumb, AbstractImage * defaultThumbDither, Font * font, Font * smallFont, AbstractImage * playImage, AbstractImage * stopImage, AbstractImage * restartImage);
+		GUIGameListElement(pAbstractImage defaultThumb, pAbstractImage defaultThumbDither, pAbstractFont font, 
+			pAbstractFont smallFont, pAbstractImage playImage, pAbstractImage stopImage, pAbstractImage restartImage);
 		virtual ~GUIGameListElement();
 
 		/**

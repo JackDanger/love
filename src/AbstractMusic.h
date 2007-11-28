@@ -40,7 +40,7 @@ namespace love
 		/**
 		* @brief Constructs an empty AbstractMusic.
 		**/
-		AbstractMusic(AbstractFile * file);
+		AbstractMusic(pAbstractFile file);
 		
 		/**
 		* @brief Destructor.

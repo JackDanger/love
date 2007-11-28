@@ -5,7 +5,7 @@
 
 // LOVE
 #include "Game.h"
-#include "Font.h"
+#include "AbstractFont.h"
 #include "Text.h"
 #include "SmoothAnimatedColor.h"
 #include "ImageFromFile.h"

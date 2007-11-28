@@ -3,6 +3,8 @@ namespace love
 {
 	class AbstractImage : public Sprite
 	{
+	public:
+	virtual void update(float dt);
 	};
 }
 

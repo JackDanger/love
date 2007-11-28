@@ -4,15 +4,12 @@
 namespace love
 {
 
-	Resource::Resource(AbstractFile * file) : file(file)
+	Resource::Resource()
 	{
 	}
 
-	Resource::~Resource()
+	Resource::Resource(pAbstractFile file) : file(file)
 	{
-		if(file != 0)
-			delete file;
 	}
-
 
 }// love

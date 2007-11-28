@@ -1,4 +1,9 @@
 /**
+* Part of Project LOVE.
+* See http://love.sourceforge.net
+* Licence: ZLIB
+* Copyright © LOVE Development Team
+* 
 * @file Resource.h
 * @author Anders Ruud
 * @date 2007-08-18
@@ -9,6 +14,7 @@
 #define LOVE_RESOURCE_H
 
 // LOVE
+#include "AbstractFile.h"
 
 // STL
 
@@ -33,20 +39,17 @@ namespace love
 	{
 	protected:
 
-		// file
-		AbstractFile * file;
+		// The file this resource is loaded from.
+		pAbstractFile file;
 
 	public:
+
+		Resource();
 
 		/**
 		* @brief Contructs an empty Resource.
 		**/
-		Resource(AbstractFile * file);
-
-		/**
-		* @brief Destructor.
-		**/
-		virtual ~Resource();
+		Resource(pAbstractFile file);
 
 	};
 

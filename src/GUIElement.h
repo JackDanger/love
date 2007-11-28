@@ -8,7 +8,6 @@
 #include "AbstractImage.h"
 
 #include "AbstractFont.h"
-#include "Font.h"
 #include "GUIText.h"
 
 #include "Text.h"

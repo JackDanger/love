@@ -3,7 +3,7 @@ namespace love
 {
 	//class AbstractFile;
 	
-	class AbstractSoundDevice : public AbstractDevice
+	class AbstractAudio : public AbstractDevice
 	{
 	private:
 	public:
@@ -34,7 +34,7 @@ namespace love
 
 
 // Extensions
-%extend love::AbstractSoundDevice {
+%extend love::AbstractAudio {
 
 	const char * fist() 
 	{

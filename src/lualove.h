@@ -39,7 +39,7 @@ namespace love
 	void lualove_close(lua_State * L);
 
 	bool lualove_loaddir(lua_State * L, const string & path);
-	bool lualove_load(lua_State * L, AbstractFile * file);
+	bool lualove_load(lua_State * L, pAbstractFile file);
 	bool lualove_load(lua_State * L, const string & filename);
 
 	bool lualove_is_function(lua_State * L, const string & tablename, const string & functionname);

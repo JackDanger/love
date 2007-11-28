@@ -42,7 +42,7 @@ namespace love
 		 **/
 		ConfigLoader();
 		ConfigLoader(string filepath);
-		ConfigLoader(AbstractFile * file);
+		ConfigLoader(pAbstractFile file);
 
 		virtual int load();
 		virtual void unload();

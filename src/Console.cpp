@@ -1,6 +1,6 @@
 #include "Console.h"
 
-#include "Font.h"
+#include "AbstractFont.h"
 #include "love.h"
 #include "Core.h"
 #include "AbstractFileSystem.h"

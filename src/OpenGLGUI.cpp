@@ -31,6 +31,7 @@ namespace love
 	{
 		const DisplayMode & display = core->getDisplayMode();
 		const AbstractFileSystem & fs = core->getFilesystem();
+		const AbstractGraphics & gfx = core->getGraphics();
 		//const AbstractImageDevice & imaging = core->getImaging();
 
 		// Initialize GUIchan
@@ -41,7 +42,7 @@ namespace love
 		graphics = new gcn::OpenGLGraphics();
 		graphics->setTargetPlane(display.getWidth(), display.getHeight());
 
-		font.reset<AbstractFont>(new love::Font(fs.getBaseFile("data/fonts/FreeSans.ttf"), 10));
+		font = gfx.getFont("data/fonts/FreeSans.ttf", 10);
 		font->load();
 		pAbstractColor black(new Color(0x000000));
 

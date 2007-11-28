@@ -1,4 +1,9 @@
 #include "AbstractGraphics.h"
+#include "Core.h"
+#include "love.h"
+#include "AbstractFile.h"
+
+#include "AbstractFilesystem.h"
 
 namespace love
 {
@@ -11,6 +16,25 @@ namespace love
 	{
 	}
 	
+	pAbstractImage AbstractGraphics::getImage(const string & filename) const
+	{
+		pAbstractFile file = core->filesystem->getBaseFile(filename);
+		return getImage(file);
+	}
+
+	pAbstractFont AbstractGraphics::getFont(const string & filename, int size) const
+	{
+		pAbstractFile file = core->filesystem->getBaseFile(filename);
+		return getFont(file, size);
+	}
+
+	pAbstractFont AbstractGraphics::getImageFont(const string & filename, const string & glyphs) const
+	{
+		pAbstractFile file = core->filesystem->getBaseFile(filename);
+		return getImageFont(file, glyphs);
+	}
+
+
 	void AbstractGraphics::setColor(const pAbstractColor & color)
 	{
 		this->color = color;
@@ -67,7 +91,11 @@ namespace love
 
 	void AbstractGraphics::draw(const pSprite & sprite, float x, float y) const
 	{
+		push();
+		translate(-sprite->getWidth() / 2.0f, -sprite->getHeight() / 2.0f);
 		sprite->render(x, y);
+		pop();
+
 	}
 	void AbstractGraphics::draw(const pSprite & sprite, float x, float y, float xs, float ys, float width, float height) const
 	{

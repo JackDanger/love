@@ -16,7 +16,7 @@ player = {
 	image = nil, 
 	
 	render = function(self)
-		self.image:render(self.x, self.y);
+		love.graphics:draw(self.image, self.x, self.y);
 	end
 }
 
@@ -38,22 +38,22 @@ enemy = {
 	image = nil, 
 	
 	render = function(self)
-		self.image:render(self.x, self.y);
+		love.graphics:draw(self.image, self.x, self.y);
 	end
 }
 
 player1 = player:new();
 enemies = {};
 
-num_enemies = 1000;
+num_enemies = 100;
 
 main = {
 	
 	load = function()
 	
 		-- Images
-		player.image = game:addImage('img_player', 'img/player.gif');
-		enemy.image = game:addImage('img_enemy', 'img/enemy.gif');
+		player.image = love.objects:newImage("img/player.gif");
+		enemy.image = love.objects:newImage("img/enemy.gif");
 		
 		for i=1, num_enemies do
 			enemies[i] = enemy:new();
@@ -67,19 +67,19 @@ main = {
 	
 		local thrust = 500;
 
-		if keyboard:isDown(LOVE_KEY_RIGHT) then
+		if love.keyboard:isDown(love.key_right) then
 			player1.xspeed = player1.xspeed + (thrust * dt);
 		end
 		
-		if keyboard:isDown(LOVE_KEY_LEFT) then		
+		if love.keyboard:isDown(love.key_left) then		
 			player1.xspeed = player1.xspeed - (thrust * dt);
 		end
 		
-		if keyboard:isDown(LOVE_KEY_UP) then		
+		if love.keyboard:isDown(love.key_up) then		
 			player1.yspeed = player1.yspeed - (thrust * dt);
 		end
 		
-		if keyboard:isDown(LOVE_KEY_DOWN) then		
+		if love.keyboard:isDown(love.key_down) then		
 			player1.yspeed = player1.yspeed + (thrust * dt);
 		end
 		

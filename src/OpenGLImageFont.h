@@ -9,14 +9,14 @@
 namespace love
 {
 	/**
-	* @class ImageFont
+	* @class OpenGLImageFont
 	* @version 1.0
 	* @since 1.0
 	* @author Michael Enger
 	* @date 2007-10-06
 	* @brief For handling fonts derived from images. Note: This subclass of AbstractFont uses the width variable a little differently.
 	**/
-	class ImageFont : public AbstractFont, public AbstractImage
+	class OpenGLImageFont : public AbstractFont, public AbstractImage
 	{
 	protected:
 		pAbstractImage charImage; // a pointer to an image
@@ -36,12 +36,12 @@ namespace love
 		 * @param glyphs A list of the characters as they appear in the image (example: " ABCD")
 		 * @brief The default constructor. Constructs.
 		 **/
-		ImageFont(AbstractFile * file, const string & glyphs);
+		OpenGLImageFont(pAbstractFile file, const string & glyphs);
 
 		/**
 		 * @brief The deconstructor. Calls unload()
 		 **/
-		~ImageFont();
+		~OpenGLImageFont();
 
 		/**
 		 * @param text A string.
@@ -84,7 +84,7 @@ namespace love
 		virtual void unload();
 	};
 
-	typedef boost::shared_ptr<ImageFont> pImageFont;
+	typedef boost::shared_ptr<OpenGLImageFont> pOpenGLImageFont;
 }
 
 #endif

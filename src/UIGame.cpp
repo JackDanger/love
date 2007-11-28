@@ -85,53 +85,53 @@ namespace love
 		top->setOpaque(true);
 
 		// resources
-		errorBackground.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/error_background.png")));
+		errorBackground = core->graphics->getImage("data/gui/error_background.png");
 		errorBackground->load();
-		pauseBackground.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/pause_background.png")));
+		pauseBackground = core->graphics->getImage("data/gui/pause_background.png");
 		pauseBackground->load();
 
-		buttonDefault.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/button_default.png")));
+		buttonDefault = core->graphics->getImage("data/gui/button_default.png");
 		buttonDefault->load();
-		buttonHover.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/button_hover.png")));
+		buttonHover = core->graphics->getImage("data/gui/button_hover.png");
 		buttonHover->load();
-		buttonPressed.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/button_pressed.png")));
+		buttonPressed = core->graphics->getImage("data/gui/button_pressed.png");
 		buttonPressed->load();
-		buttonQuit.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/button_quit.png")));
+		buttonQuit = core->graphics->getImage("data/gui/button_quit.png");
 		buttonQuit->load();
-		checkBoxDefault.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/checkbox_default.png")));
+		checkBoxDefault = core->graphics->getImage("data/gui/checkbox_default.png");
 		checkBoxDefault->load();
-		checkBoxHover.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/checkbox_hover.png")));
+		checkBoxHover = core->graphics->getImage("data/gui/checkbox_hover.png");
 		checkBoxHover->load();
-		checkBoxMarked.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/checkbox_marked.png")));
+		checkBoxMarked = core->graphics->getImage("data/gui/checkbox_marked.png");
 		checkBoxMarked->load();
-		sliderBar.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/slider_bar.png")));
+		sliderBar = core->graphics->getImage("data/gui/slider_bar.png");
 		sliderBar->load();
-		slider.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/slider.png")));
+		slider = core->graphics->getImage("data/gui/slider.png");
 		slider->load();
 
-		line.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/line.png")));
+		line = core->graphics->getImage("data/gui/line.png");
 		line->load();
 
-		tabDefault.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/tab_default.png")));
+		tabDefault = core->graphics->getImage("data/gui/tab_default.png");
 		tabDefault->load();
-		tabHover.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/tab_hover.png")));
+		tabHover = core->graphics->getImage("data/gui/tab_hover.png");
 		tabHover->load();
-		tabActive.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/tab_active.png")));
+		tabActive = core->graphics->getImage("data/gui/tab_active.png");
 		tabActive->load();
 
-		imageBackground.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/image_background.png")));
+		imageBackground = core->graphics->getImage("data/gui/image_background.png");
 		imageBackground->load();
-		imageDefault.reset<AbstractImage>(core->imaging->getImage(core->filesystem->getBaseFile("data/gui/thumb_default.png")));
+		imageDefault = core->graphics->getImage("data/gui/thumb_default.png");
 		imageDefault->load();
 
-		titleFont.reset<AbstractFont>(new Font(core->filesystem->getBaseFile("data/fonts/VeraBd.ttf"), 10));
+		titleFont = core->graphics->getFont("data/fonts/VeraBd.ttf", 10);
 		titleFont->load();
-		subtitleFont.reset<AbstractFont>(new Font(core->filesystem->getBaseFile("data/fonts/Vera.ttf"), 10));
+		subtitleFont = core->graphics->getFont("data/fonts/Vera.ttf", 10);
 		subtitleFont->load();
-		defaultFont.reset<AbstractFont>(new Font(core->filesystem->getBaseFile("data/fonts/Vera.ttf"), 8));
+		defaultFont = core->graphics->getFont("data/fonts/Vera.ttf", 8);
 		defaultFont->load();
 		
-		pauseFont.reset<AbstractFont>(new Font(core->filesystem->getBaseFile("data/fonts/FreeSans.ttf"), 14));
+		pauseFont = core->graphics->getFont("data/fonts/FreeSans.ttf", 14);
 		pauseFont->load();
 
 

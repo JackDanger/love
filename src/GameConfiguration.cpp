@@ -63,12 +63,7 @@ namespace love
 	int GameConfiguration::load()
 	{
 
-		// Get devices
-		const AbstractImageDevice & imaging = core->getImaging();
-		const AbstractFileSystem & fs = core->getFilesystem();
-
-		this->thumb.reset<AbstractImage>(imaging.getImage(fs.getBaseFile("data/sys/thumb-std.png")));
-
+		this->thumb = core->graphics->getImage("data/sys/thumb-std.png"); 
 		return LOVE_OK;
 	}
 

@@ -1,12 +1,12 @@
 /**
-* @file DevILImage.h
+* @file OpenGLImage.h
 * @author Anders Ruud
 * @date 2007-08-19
-* @brief Contains definition for class DevILImage.
+* @brief Contains definition for class OpenGLImage.
 **/
 
-#ifndef LOVE_DEVILIMAGE_H 
-#define LOVE_DEVILIMAGE_H 
+#ifndef LOVE_OpenGLImage_H 
+#define LOVE_OpenGLImage_H 
 
 // LOVE
 #include "AbstractImage.h"
@@ -23,28 +23,28 @@ namespace love
 	class AbstractFile;
 
 	/**
-	* @class DevILImage
+	* @class OpenGLImage
 	* @version 1.0
 	* @since 1.0
 	* @author Anders Ruud
 	* @date 2007-08-19
 	* @brief 
 	**/
-	class DevILImage : public AbstractImage, public Resource
+	class OpenGLImage : public AbstractImage, public Resource
 	{
 	private:
 	
 	public:
 	
 		/**
-		* @brief Constructs an empty DevILImage.
+		* @brief Constructs an empty OpenGLImage.
 		**/
-		DevILImage(AbstractFile * file);
+		OpenGLImage(pAbstractFile file);
 		
 		/**
 		* @brief Destructor.
 		**/
-		virtual ~DevILImage();
+		virtual ~OpenGLImage();
 
 		/**
 		* @brief Loads the image.
@@ -75,9 +75,9 @@ namespace love
 		void padTwoPower();
 
 		
-	}; // DevILImage
+	}; // OpenGLImage
 	
-	typedef boost::shared_ptr<DevILImage> pDevILImage;
+	typedef boost::shared_ptr<OpenGLImage> pOpenGLImage;
 	
 } // love
 

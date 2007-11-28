@@ -30,8 +30,6 @@ namespace love
 	class PhysFSFile : public AbstractFile
 	{
 	private:
-
-
 	public:
 
 		/**

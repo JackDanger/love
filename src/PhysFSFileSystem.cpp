@@ -16,19 +16,22 @@ namespace love
 	{
 	}
 
-	AbstractFile * PhysFSFileSystem::getFile(const string & source, const string & file) const
+	pAbstractFile PhysFSFileSystem::getFile(const string & source, const string & file) const
 	{
-		return new PhysFSFile(source, file);
+		pAbstractFile tmp(new PhysFSFile(source, file));
+		return tmp;
 	}
 
-	AbstractFile * PhysFSFileSystem::getBaseFile(const string & file) const
+	pAbstractFile PhysFSFileSystem::getBaseFile(const string & file) const
 	{
-		return new PhysFSFile(this->base, file);
+		pAbstractFile tmp(new PhysFSFile(this->base, file));
+		return tmp;
 	}
 
-	AbstractFile * PhysFSFileSystem::getUserFile(const string & file) const
+	pAbstractFile PhysFSFileSystem::getUserFile(const string & file) const
 	{
-		return new PhysFSFile(this->user, file);
+		pAbstractFile tmp(new PhysFSFile(this->user, file));
+		return tmp;
 	}
 
 	int PhysFSFileSystem::init()

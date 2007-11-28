@@ -8,14 +8,13 @@
 #include "Mouse.h"
 #include "Timer.h"
 #include "AbstractFileSystem.h"
-#include "AbstractSoundDevice.h"
-#include "AbstractImageDevice.h"
+#include "AbstractAudio.h"
 #include "AbstractGraphics.h"
 #include "Parameters.h"
 #include "Console.h"
 #include "ConfigLoader.h"
 
-#include "ImageFont.h"
+#include "AbstractFont.h"
 
 // Include the LoveMenu
 #include "LoveMenu4.h"
@@ -39,59 +38,6 @@ namespace love
 	{
 	}
 
-	pAbstractFile Core::getFile(const string & filename)
-	{
-		pAbstractFile file(filesystem->getBaseFile(filename));
-		return file;
-	}
-
-	pAbstractImage Core::getImage(const string & filename, int flags)
-	{
-		pAbstractFile file(filesystem->getBaseFile(filename));
-		pAbstractImage image(imaging->getImage(file.get()));
-
-		if((flags & LOVE_PERSIST) != 0)
-			addPersistent(image);
-
-		return image;
-	}
-
-	pAbstractFont Core::getFont(const string & filename, int size, int flags)
-	{
-		pAbstractFile file(filesystem->getBaseFile(filename));
-		pAbstractFont font(new Font(file.get(), size));
-
-		if((flags & LOVE_PERSIST) != 0)
-			addPersistent(font);
-
-		return font;
-	}
-
-	pAbstractFont Core::getImageFont(const string & filename, const string & glyphs, int flags)
-	{
-		pAbstractFile file(filesystem->getBaseFile(filename));
-		pAbstractFont font(new ImageFont(file.get(), glyphs));
-
-		if((flags & LOVE_PERSIST) != 0)
-			addPersistent(font);
-
-		return font;
-	}
-
-	pAbstractSound Core::getSound(const string & filename)
-	{
-		pAbstractFile file(filesystem->getBaseFile(filename));
-		pAbstractSound sound(audio->getSound(file.get()));
-		return sound;
-	}
-
-	pAbstractMusic Core::getMusic(const string & filename)
-	{
-		pAbstractFile file(filesystem->getBaseFile(filename));
-		pAbstractMusic music(audio->getMusic(file.get()));
-		return music;
-	}
-
 	const Mouse & Core::getMouse() const
 	{
 		return (*mouse);
@@ -100,11 +46,6 @@ namespace love
 	const AbstractFileSystem & Core::getFilesystem() const
 	{
 		return (*filesystem);
-	}
-
-	const AbstractImageDevice & Core::getImaging() const
-	{
-		return (*imaging);
 	}
 
 	const DisplayMode & Core::getDisplayMode() const
@@ -125,10 +66,6 @@ namespace love
 	int Core::init()
 	{
 		int status = LOVE_OK;
-		
-		// Create the console first, but do not load before
-		// display mode is set.
-		console = new Console(30);
 
 		// Init all devices
 		status &= display->init();
@@ -138,7 +75,6 @@ namespace love
 		status &= filesystem->init();
 		status &= parameters->init();
 		status &= audio->init();
-		status &= imaging->init();
 		status &= graphics->init();
 
 		if(status != LOVE_OK) 
@@ -154,15 +90,9 @@ namespace love
 		config.reset<ConfigLoader>(new ConfigLoader(filesystem->getBase() + "data/love.conf"));
 		config->load();
 
-		if(config->isInt("console_lines"))
-			console->setSize(config->getInt("console_lines"));
-
 		// Change the display mode
 		display->tryChange(DisplayMode(800, 600, 32, false));
 		display->listener = this;
-
-		// Okay, now we can load.	
-		console->load();
 
 
 		//addGame("neoftg", new NeoFontTexGame());
@@ -194,7 +124,7 @@ namespace love
 			return LOVE_ERROR;
 
 		// add a default default font
-		pAbstractFont defaultFont(new Font(filesystem->getBaseFile("data/fonts/FreeSans.ttf"), 14));
+		pAbstractFont defaultFont = core->graphics->getFont("data/fonts/FreeSans.ttf", 14);
 		defaultFont->load();
 		graphics->setFont(defaultFont);
 
@@ -286,10 +216,7 @@ namespace love
 
 		gui->render();
 
-		// Render console
-		if(console->visible) 
-			console->render();
-
+		// @todo KILL.
 		glLoadIdentity();
 	}
 
@@ -374,7 +301,6 @@ namespace love
 		string s(ftext);
 		s = s.substr(0, s.length() - 1);
 
-		console->push(s);
 		puts(s.c_str());
 	}
 
@@ -384,15 +310,6 @@ namespace love
 		// Catch global stuff here
 		switch(key)
 		{
-		case LOVE_KEY_BACKQUOTE:
-			if(!console->visible) console->visible = true;
-			else if(console->visible && console->compact) console->compact = false;
-			else if(console->visible && !console->compact)
-			{
-				console->visible = false;
-				console->compact = true;
-			}
-			break;
 		case LOVE_KEY_ESCAPE:
 			if(strcmp(current->getName().c_str(),"love-system-menu") != 0)
 			{
@@ -486,9 +403,6 @@ namespace love
 		gui->displayModeChanged();
 		uigame->displayModeChanged();
 
-		// Reload console
-		console->reload();
-
 		// Reload persistent items.
 		reloadPersistent();
 	}
@@ -510,7 +424,6 @@ namespace love
 		string s(ftext);
 		s = s.substr(0, s.length() - 1);
 
-		console->push(s);
 		if(uigame != 0 && uigame->isLoaded())
 			uigame->showError(s.c_str());
 		puts(s.c_str());

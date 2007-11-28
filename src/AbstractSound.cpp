@@ -3,7 +3,7 @@
 namespace love
 {
 	
-	AbstractSound::AbstractSound(AbstractFile * file) : Resource(file)
+	AbstractSound::AbstractSound(pAbstractFile file) : Resource(file)
 	{
 	}
 	

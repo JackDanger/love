@@ -1,15 +1,15 @@
 /**
-* @file SDLMixerSoundDevice.h
+* @file SDLMixerAudio.h
 * @author Anders Ruud
 * @date 2007-08-19
-* @brief Contains definition for class SDLMixerSoundDevice.
+* @brief Contains definition for class SDLMixerAudio.
 **/
 
-#ifndef LOVE_SDLMIXERSOUNDDEVICE_H 
-#define LOVE_SDLMIXERSOUNDDEVICE_H 
+#ifndef LOVE_SDLMixerAudio_H 
+#define LOVE_SDLMixerAudio_H 
 
 // LOVE
-#include "AbstractSoundDevice.h"
+#include "AbstractAudio.h"
 
 // STL
 
@@ -20,28 +20,28 @@ namespace love
 {
 
 	/**
-	* @class SDLMixerSoundDevice
+	* @class SDLMixerAudio
 	* @version 1.0
 	* @since 1.0
 	* @author Anders Ruud
 	* @date 2007-08-19
 	* @brief 
 	**/
-	class SDLMixerSoundDevice : public AbstractSoundDevice
+	class SDLMixerAudio : public AbstractAudio
 	{
 	private:
 	
 	public:
 	
 		/**
-		* @brief Constructs an empty SDLMixerSoundDevice.
+		* @brief Constructs an empty SDLMixerAudio.
 		**/
-		SDLMixerSoundDevice();
+		SDLMixerAudio();
 		
 		/**
 		* @brief Destructor.
 		**/
-		virtual ~SDLMixerSoundDevice();
+		virtual ~SDLMixerAudio();
 
 		/**
 		* @brief Inits the sound device.
@@ -54,14 +54,14 @@ namespace love
 		* @param file The file to get the sound from.
 		* @return A pointer to a new sound.
 		**/
-		AbstractSound * getSound(AbstractFile * file) const;
+		pAbstractSound getSound(pAbstractFile file) const;
 		
 		/**
 		* @brief Gets music that is compatible with the current sound device.
 		* @param file The file to get the music from.
 		* @return A pointer to the new music.
 		**/
-		AbstractMusic * getMusic(AbstractFile * file) const;
+		pAbstractMusic getMusic(pAbstractFile file) const;
 
 		/**
 		* @brief Checks if audio is playing or not.
@@ -99,9 +99,9 @@ namespace love
 		void play(pAbstractSound sound, int loop = 0, int channel = -1) const;
 		void play(pAbstractMusic music, int loop = 0) const;
 		
-	}; // SDLMixerSoundDevice
+	}; // SDLMixerAudio
 	
-	typedef boost::shared_ptr<SDLMixerSoundDevice> pSDLMixerSoundDevice;
+	typedef boost::shared_ptr<SDLMixerAudio> pSDLMixerAudio;
 	
 } // love
 

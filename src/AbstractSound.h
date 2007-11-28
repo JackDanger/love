@@ -12,6 +12,7 @@
 #include "Object.h"
 #include "Resource.h"
 #include "Loadable.h"
+#include "AbstractFile.h"
 
 // STL
 
@@ -40,7 +41,7 @@ namespace love
 		/**
 		* @brief Constructs an empty AbstractSound.
 		**/
-		AbstractSound(AbstractFile * file);
+		AbstractSound(pAbstractFile file);
 		
 		/**
 		* @brief Destructor.

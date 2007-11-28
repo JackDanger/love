@@ -17,7 +17,7 @@ namespace love
 	class ObjectFactory;
 	class KeyConstants;
 	class AbstractGraphics;
-	class AbstractSoundDevice;
+	class AbstractAudio;
 	class LuaGame;
 	//class LuaGame; //an extra LuaGame? if removing this kills all, then forgive me
 	class GUIContainer;
@@ -26,7 +26,7 @@ namespace love
 	extern Mouse * mouse;
 	extern AbstractDisplay * display;
 	extern AbstractGraphics * graphics;
-	extern AbstractSoundDevice * audio;
+	extern AbstractAudio * audio;
 	extern Timer * timer;
 	extern ObjectFactory * objects;
 	extern LuaGame * game;

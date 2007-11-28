@@ -11,7 +11,7 @@
 namespace love
 {
 
-	GUICircleButton::GUICircleButton(AbstractImage * image, const string & label, pEvent command, Font * font)
+	GUICircleButton::GUICircleButton(pAbstractImage image, const string & label, pEvent command, pAbstractFont font)
 	{
 		this->font = font;
 		this->label = label;

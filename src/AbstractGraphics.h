@@ -16,15 +16,18 @@
 #include "AbstractColor.h"
 #include "Color.h"
 #include "AbstractFont.h"
-#include "Font.h"
 #include "Text.h"
 #include "Bezier.h"
+#include "AbstractFile.h"
 
 // STL
 #include "AbstractDevice.h"
 
 // Boost
 #include <boost/shared_ptr.hpp>
+
+using std::string;
+using std::vector;
 
 namespace love
 {
@@ -66,6 +69,17 @@ namespace love
 		**/
 		virtual ~AbstractGraphics();
 		
+
+
+		virtual pAbstractImage getImage(pAbstractFile file) const = 0;
+		virtual pAbstractFont getFont(pAbstractFile file, int size) const = 0;
+		virtual pAbstractFont getImageFont(pAbstractFile file, const string & glyphs) const = 0;
+
+		pAbstractImage getImage(const string & filename) const;
+		pAbstractFont getFont(const string & filename, int size) const;
+		pAbstractFont getImageFont(const string & filename, const string & glyphs) const;
+
+
 		/**
 		* @brief Sets the current (foreground) color.
 		* @param color The new color. 
@@ -136,15 +150,6 @@ namespace love
 		 * @brief Returns the current font.
 		 **/
 		pAbstractFont getFont();
-
-		/**
-		* @brief Draws a Bezier curve. Left here since there is no draw() function that accepts a Bezier curve.
-		*		 Will be removed once the Bezier curve is either completely implemented or killed.
-		* @param bezier The Bezier to draw.
-		* @param precision The amount of points to draw.
-		* @param float lineWidth The width of the line used to draw the Bezier.
-		**/
-		virtual void drawBezier(const pBezier * bezier, float x, float y, int precision = 20, float lineWidth = 2.0f) const = 0;
 
 		/**
 		* @brief Combines a translation with the current matrix.

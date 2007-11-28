@@ -1,18 +1,18 @@
-#include "Font.h"
+#include "OpenGLFont.h"
 #include "Core.h"
 #include "love.h"
 #include "AbstractFile.h"
 
 namespace love
 {
-	inline int Font::next_p2(int num)
+	inline int OpenGLFont::next_p2(int num)
 	{
 		int powered = 2;
 		while(powered < num) powered <<= 1;
 		return powered;
 	}
 
-	inline void Font::pushScreenCoordinateMatrix()
+	inline void OpenGLFont::pushScreenCoordinateMatrix()
 	{
 		glPushAttrib(GL_TRANSFORM_BIT);
 		GLint viewport[4];
@@ -24,7 +24,7 @@ namespace love
 		glPopAttrib();
 	}
 
-	inline void Font::popProjectionMatrix()
+	inline void OpenGLFont::popProjectionMatrix()
 	{
 		glPushAttrib(GL_TRANSFORM_BIT);
 		glMatrixMode(GL_PROJECTION);
@@ -32,20 +32,20 @@ namespace love
 		glPopAttrib();
 	}
 
-	void Font::createFont(const char * fontpath, unsigned int size)
+	void OpenGLFont::createOpenGLFont(const char * OpenGLFontpath, unsigned int size)
 	{
 
 	}
 
-	void Font::createList(FT_Face face, unsigned short character)
+	void OpenGLFont::createList(FT_Face face, unsigned short character)
 	{
 		if( FT_Load_Glyph(face, FT_Get_Char_Index(face, character), FT_LOAD_DEFAULT) )
-			core->error("Font Loading Error: FT_Load_Glyph failed.");
+			core->error("OpenGLFont Loading Error: FT_Load_Glyph failed.");
 			//throw std::runtime_error("FT_Load_Glyph failed");
 
 		FT_Glyph glyph;
 		if( FT_Get_Glyph(face->glyph, &glyph) )
-			core->error("Font Loading Error: FT_Get_Glyph failed.");
+			core->error("OpenGLFont Loading Error: FT_Get_Glyph failed.");
 			//throw std::runtime_error("FT_Get_Glyph failed");
 
 		FT_Glyph_To_Bitmap(&glyph, FT_RENDER_MODE_NORMAL, 0, 1);
@@ -106,46 +106,46 @@ namespace love
 		FT_Done_Glyph(glyph);
 	}
 
-	Font::Font(AbstractFile * file, int size) : AbstractFont(file, size)
+	OpenGLFont::OpenGLFont(pAbstractFile file, int size) : AbstractFont(file, size)
 	{
 	}	
 
-	Font::~Font()
+	OpenGLFont::~OpenGLFont()
 	{
 		unload();
 	}
 	
 
-	void Font::print(string text, float x, float y)
+	void OpenGLFont::print(string text, float x, float y)
 	{
 		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
 
 		glTranslatef(x, y, 0.0f);
-		GLuint font = list;
-		glListBase(font);
+		GLuint OpenGLFont = list;
+		glListBase(OpenGLFont);
 		glCallLists((int)text.length(), GL_UNSIGNED_BYTE, text.c_str());
 
 		glDisable(GL_TEXTURE_2D);
 		glPopMatrix();
 	}
 
-	void Font::print(char character, float x, float y)
+	void OpenGLFont::print(char character, float x, float y)
 	{
 		glPushMatrix();
 		glTranslatef(x, y, 0.0f);
-		GLuint font = list;
-		glListBase(font);
+		GLuint OpenGLFont = list;
+		glListBase(OpenGLFont);
 		glCallList(character);
 		glPopMatrix();
 	}
 
-	float Font::getLineHeight()
+	float OpenGLFont::getLineHeight()
 	{
 		return ((float)size) * 1.5f;
 	}
 
-	float Font::getLineWidth(const char * line)
+	float OpenGLFont::getLineWidth(const char * line)
 	{
 		float temp = 0;
 
@@ -157,7 +157,7 @@ namespace love
 		return temp;
 	}
 
-	int Font::load()
+	int OpenGLFont::load()
 	{
 
 		// Load file
@@ -170,7 +170,7 @@ namespace love
 
 		FT_Library library;
 		if( FT_Init_FreeType(&library) )
-			core->error("Font Loading Error: FT_Init_FreeType failed.");
+			core->error("OpenGLFont Loading Error: FT_Init_FreeType failed.");
 			//throw std::runtime_error("FT_Init_FreeType failed");
 
 		FT_Face face;
@@ -179,8 +179,8 @@ namespace love
 								file->getSize(),      /* size in bytes        */
 								0,         /* face_index           */
 								&face ))
-			core->error("Font Loading Error: FT_New_Face failed (there is probably a problem with your font file).");
-			//throw std::runtime_error("FT_New_Face failed (there is probably a problem with your font file)");
+			core->error("OpenGLFont Loading Error: FT_New_Face failed (there is probably a problem with your OpenGLFont file).");
+			//throw std::runtime_error("FT_New_Face failed (there is probably a problem with your OpenGLFont file)");
 
 		FT_Set_Char_Size(face, size << 6, size << 6, 96, 96);
 
@@ -192,15 +192,15 @@ namespace love
 		FT_Done_Face(face);
 		FT_Done_FreeType(library); //all done
 
-		//printf("Loading font: %s (%i px)\n", file->getFilename().c_str(), size);
+		//printf("Loading OpenGLFont: %s (%i px)\n", file->getFilename().c_str(), size);
 		file->unload();
 
 		return LOVE_OK;
 	}
 
-	void Font::unload()
+	void OpenGLFont::unload()
 	{
-		//printf("Unoading font: %s (%i px)\n", file->getFilename().c_str(), size);
+		//printf("Unoading OpenGLFont: %s (%i px)\n", file->getFilename().c_str(), size);
 		glDeleteLists(list, MAX_CHARS);
 		glDeleteTextures(MAX_CHARS, textures);
 	}

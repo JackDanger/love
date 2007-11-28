@@ -13,8 +13,7 @@
 #include "FrameAnimation.h"
 #include "AbstractSound.h"
 #include "AbstractMusic.h"
-#include "Font.h"
-#include "ImageFont.h"
+#include "AbstractFont.h"
 #include "Color.h"
 #include "ParticleSystem.h"
 #include "Bezier.h"
@@ -72,9 +71,6 @@ namespace love
 		pAbstractFont newImageFont(const char * filename, const char * glyphs) const;
 
 		pParticleSystem newParticleSystem() const;
-
-		pBezier newBezier() const;
-		pBezier newBezier(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const;
 
 		pAbstractMenu newMenu(int type = Menu::LOVE_MENU_VERTICAL);
 		pAbstractMenu newScrollMenu(int type = Menu::LOVE_MENU_VERTICAL);

@@ -24,15 +24,11 @@ namespace love
 	int GameConfigurationLoader::load()
 	{
 
-		// Get devices
-		const AbstractImageDevice & imaging = core->getImaging();
-		const AbstractFileSystem & fs = core->getFilesystem();
-
-		if(fs.exists(source, "game.conf"))
+		if(core->filesystem->exists(source, "game.conf"))
 		{
 
 			// Create config loader.
-			config = new ConfigLoader(fs.getFile(source, "game.conf"));
+			config = new ConfigLoader(core->filesystem->getFile(source, "game.conf"));
 
 			// Load config
 			if(!config->load())
@@ -51,12 +47,12 @@ namespace love
 			display.resize(width, height);
 
 			if(config->isString("thumbnail"))
-				this->thumb.reset<AbstractImage>(imaging.getImage(fs.getFile(source, thumb)));
+				this->thumb = core->graphics->getImage(core->filesystem->getFile(source, thumb));
 			else if(!config->isString("thumbnail"))
-				this->thumb.reset<AbstractImage>(imaging.getImage(fs.getBaseFile(thumb)));
+				this->thumb = core->graphics->getImage(thumb);
 		}else
 		{
-			this->thumb.reset<AbstractImage>(imaging.getImage(fs.getBaseFile("data/sys/thumb-std.png")));
+			this->thumb = core->graphics->getImage("data/sys/thumb-std.png");
 			display = core->getDisplayMode();
 		}
 

@@ -1,11 +1,11 @@
 #include "ObjectFactory.h"
-#include "AbstractImageDevice.h"
-#include "AbstractSoundDevice.h"
+#include "AbstractAudio.h"
 #include "AbstractFileSystem.h"
 #include "AbstractFile.h"
 #include "Core.h"
 #include "love.h"
 
+#include "OpenGLParticleSystem.h"
 
 namespace love
 {
@@ -24,10 +24,10 @@ namespace love
 		string source = core->current->getSource();
 
 		// Get a file pointer
-		AbstractFile * file = core->filesystem->getFile(source, string(filename));
+		pAbstractFile file = core->filesystem->getFile(source, string(filename));
 
 		// Create the image
-		pAbstractImage img(core->imaging->getImage(file));
+		pAbstractImage img = core->graphics->getImage(file);
 
 		// Load it.
 		img->load();
@@ -64,10 +64,10 @@ namespace love
 		string source = core->current->getSource();
 
 		// Get a file pointer
-		AbstractFile * file = core->filesystem->getFile(source, string(filename));
+		pAbstractFile file = core->filesystem->getFile(source, string(filename));
 
 		// Create the music
-		pAbstractMusic music(core->audio->getMusic(file));
+		pAbstractMusic music = core->audio->getMusic(file); 
 
 		// Load it.
 		music->load();
@@ -82,10 +82,10 @@ namespace love
 		string source = core->current->getSource();
 
 		// Get a file pointer
-		AbstractFile * file = core->filesystem->getFile(source, string(filename));
+		pAbstractFile file = core->filesystem->getFile(source, string(filename));
 
 		// Create the music
-		pAbstractSound sound(core->audio->getSound(file));
+		pAbstractSound sound = core->audio->getSound(file);
 
 		// Load it.
 		sound->load();
@@ -124,10 +124,10 @@ namespace love
 		string source = core->current->getSource();
 
 		// Get a file pointer
-		AbstractFile * file = core->filesystem->getFile(source, string(filename));
+		pAbstractFile file = core->filesystem->getFile(source, string(filename));
 
 		// Create the font
-		pFont font(new Font(file, size));
+		pAbstractFont font = core->graphics->getFont(file, size); //(new Font(file, size));
 
 		// Load it.
 		font->load();
@@ -137,11 +137,8 @@ namespace love
 
 	pAbstractFont ObjectFactory::newDefaultFont(int size) const
 	{
-		// Get a file pointer
-		AbstractFile * file = core->filesystem->getBaseFile("data/fonts/Vera.ttf");
-
 		// Create the font
-		pFont font(new Font(file, size));
+		pAbstractFont font = core->graphics->getFont("data/fonts/Vera.ttf", size); //(new Font(file, size));
 
 		// Load it.
 		font->load();
@@ -155,10 +152,10 @@ namespace love
 		string source = core->current->getSource();
 
 		// Get a file pointer
-		AbstractFile * file = core->filesystem->getFile(source, string(filename));
+		pAbstractFile file = core->filesystem->getFile(source, string(filename));
 
 		// Create the font
-		pImageFont font(new ImageFont(file, string(glyphs)));
+		pAbstractFont font = core->graphics->getImageFont(file, glyphs);
 
 		// Load it
 		font->load();
@@ -168,22 +165,9 @@ namespace love
 
 	pParticleSystem ObjectFactory::newParticleSystem() const
 	{
-		pParticleSystem psys(new ParticleSystem());
+		pParticleSystem psys(new OpenGLParticleSystem());
 
 		return psys;
-	}
-
-	pBezier ObjectFactory::newBezier() const
-	{
-		pBezier b(new Bezier());
-		return b;
-	}
-
-	pBezier ObjectFactory::newBezier(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const
-	{
-		pBezier b(new Bezier());
-		b->first(x1, y1, x2, y2, x3, y3, x4, y4);
-		return b;
 	}
 
 	pAbstractMenu ObjectFactory::newMenu(int type)

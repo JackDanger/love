@@ -10,24 +10,13 @@
 namespace love
 {
 
-	/**
-	pAbstractImage GUIGameListElement::defaultThumb(new ImageFromFile("data/thumb-std.png"));
-	pAbstractImage GUIGameListElement::defaultThumbDither(new ImageFromFile("data/thumb-outer-glow.png"));
-	pFont GUIGameListElement::font(new Font("FreeSans.ttf", 22));
-	pFont GUIGameListElement::smallFont(new Font("FreeSans.ttf", 11));
-
-	**/
-
-	GUIGameListElement::GUIGameListElement(AbstractImage * defaultThumb, AbstractImage * defaultThumbDither, Font * font, Font * smallFont, AbstractImage * playImage, AbstractImage * stopImage, AbstractImage * restartImage) 
-		: defaultThumb(defaultThumb), defaultThumbDither(defaultThumbDither), playImage(playImage), stopImage(stopImage), restartImage(restartImage), font(font), smallFont(smallFont)
+	GUIGameListElement::GUIGameListElement(pAbstractImage defaultThumb, pAbstractImage defaultThumbDither, 
+		pAbstractFont font, pAbstractFont smallFont, pAbstractImage playImage, pAbstractImage stopImage, pAbstractImage restartImage) 
+		: defaultThumb(defaultThumb), defaultThumbDither(defaultThumbDither), playImage(playImage), 
+		stopImage(stopImage), restartImage(restartImage), font(font), smallFont(smallFont)
 	{
 
 		buttonsAlpha = 1.0f;
-
-		defaultThumb = 0;
-		defaultThumbDither = 0;
-		font = 0;
-		smallFont = 0;
 
 		angle = 0;
 

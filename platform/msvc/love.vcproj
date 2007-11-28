@@ -181,6 +181,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath="..\..\src\AbstractAudio.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\AbstractColor.cpp"
 				>
 			</File>
@@ -237,35 +241,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\AbstractSoundDevice.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\AbstractState.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\Actor.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\ActorState.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\AnimatedColor.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\src\Animation.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\Bezier.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\BezierParticleSystem.cpp"
 				>
 			</File>
 			<File
@@ -285,10 +265,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\Console.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\Container.cpp"
 				>
 			</File>
@@ -297,23 +273,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\DevILImage.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\DevILImageDevice.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\Display.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\src\DisplayMode.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\DisplayModeListener.cpp"
 				>
 			</File>
 			<File
@@ -326,18 +290,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Event.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\EventListener.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\FileSystem.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\Font.cpp"
 				>
 			</File>
 			<File
@@ -362,18 +314,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\GameControlEvent.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\GameObjectContainer.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\GameState.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\Globals.cpp"
 				>
 			</File>
 			<File
@@ -425,19 +365,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\ImageFont.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\Initializable.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\Keyboard.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\KeyListener.cpp"
 				>
 			</File>
 			<File
@@ -449,19 +377,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\Listener.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\Loadable.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\src\Loader.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\LoadListener.cpp"
 				>
 			</File>
 			<File
@@ -474,10 +394,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\LuaGame.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\LuaGL.cpp"
 				>
 			</File>
 			<File
@@ -509,19 +425,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\MouseListener.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\MouseMotionListener.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\MultilineLabel.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\Music.cpp"
 				>
 			</File>
 			<File
@@ -537,27 +441,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\OpenGLGraphics.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\OpenGLGUI.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\Padded.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\src\Parameters.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\Particle.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\ParticleEmitter.cpp"
 				>
 			</File>
 			<File
@@ -581,51 +469,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\Renderable.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\Resource.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\Resumable.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\Scriptable.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\ScriptableActorState.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\ScriptableParticle.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\ScrollMenu.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\SDLDisplay.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\SDLMixerMusic.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\SDLMixerSound.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\SDLMixerSoundDevice.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\SDLTimer.cpp"
 				>
 			</File>
 			<File
@@ -634,10 +478,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\SmoothAnimatedColor.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\Sound.cpp"
 				>
 			</File>
 			<File
@@ -665,10 +505,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\Updateable.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\Vector.cpp"
 				>
 			</File>
@@ -685,10 +521,114 @@
 				>
 			</File>
 			<Filter
-				Name="gcn"
+				Name="opengl"
 				>
 				<File
-					RelativePath="..\..\src\gcn\lovegraphics.cpp"
+					RelativePath="..\..\src\OpenGLFont.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\OpenGLGraphics.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\OpenGLGUI.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\OpenGLImage.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\OpenGLImageFont.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\OpenGLParticleSystem.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="sdl"
+				>
+				<File
+					RelativePath="..\..\src\SDLDisplay.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\SDLMixerAudio.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\SDLMixerMusic.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\SDLMixerSound.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\SDLTimer.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="widgets"
+				>
+			</Filter>
+			<Filter
+				Name="interfaces"
+				>
+				<File
+					RelativePath="..\..\src\DisplayModeListener.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\EventListener.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\Initializable.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\KeyListener.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\Listener.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\LoadListener.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\MouseListener.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\MouseMotionListener.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\Renderable.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\Resource.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\Resumable.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\Scriptable.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\Updateable.cpp"
 					>
 				</File>
 			</Filter>

@@ -5,6 +5,10 @@
 #include "Sprite.h"
 #include "Text.h"
 
+#include "OpenGLImage.h"
+#include "OpenGLFont.h"
+#include "OpenGLImageFont.h"
+
 namespace love
 {
 	
@@ -19,37 +23,27 @@ namespace love
 	{
 	}
 
+	pAbstractImage OpenGLGraphics::getImage(pAbstractFile file) const
+	{
+		pAbstractImage tmp (new OpenGLImage(file));
+		return tmp;
+	}
+
+	pAbstractFont OpenGLGraphics::getFont(pAbstractFile file, int size) const
+	{
+		pAbstractFont tmp (new OpenGLFont(file, size));
+		return tmp;
+	}
+
+	pAbstractFont OpenGLGraphics::getImageFont(pAbstractFile file, const string & glyphs) const
+	{
+		pAbstractFont tmp (new OpenGLImageFont(file, glyphs));
+		return tmp;
+	}
+
 	int OpenGLGraphics::init()
 	{	
 		return LOVE_OK;
-	}
-
-	void OpenGLGraphics::drawBezier(const pBezier * bezier, float x, float y, int precision, float lineWidth) const
-	{
-		// Test render bezier curve.
-		const vector<Vector> points = (*bezier)->getPoints();
-
-		float p = 1.0f/(float)(precision-1);
-
-		glDisable(GL_TEXTURE_2D);
-		glLineWidth(lineWidth);
-		glEnable(GL_LINE_SMOOTH);
-		glColor4ub(color->getRed(),color->getGreen(), color->getBlue(), color->getAlpha());
-
-		glPushMatrix();
-		glTranslatef(x, y, 0);
-		glBegin(GL_LINE_STRIP);
-
-		for(int i = 0;i<precision;i++)
-		{
-			Vector v = (*bezier)->getPoint(i*p);
-			glVertex2f(v.getX(), v.getY());
-		}
-
-		glEnd();
-		glPopMatrix();
-
-		glDisable(GL_LINE_SMOOTH);
 	}
 
 	void OpenGLGraphics::drawLine(float x1, float y1, float x2, float y2, float rotation, float lineWidth) const

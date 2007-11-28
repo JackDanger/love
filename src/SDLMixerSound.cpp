@@ -6,7 +6,7 @@
 namespace love
 {
 	
-	SDLMixerSound::SDLMixerSound(AbstractFile * file) : AbstractSound(file)
+	SDLMixerSound::SDLMixerSound(pAbstractFile file) : AbstractSound(file)
 	{
 	}
 	

@@ -43,21 +43,18 @@ namespace love
 		**/
 		virtual ~OpenGLGraphics();
 
+
+		// Inherited from AbstractGraphics
+		virtual pAbstractImage getImage(pAbstractFile file) const;
+		virtual pAbstractFont getFont(pAbstractFile file, int size) const;
+		virtual pAbstractFont getImageFont(pAbstractFile file, const string & glyphs) const;
+
+
 		/**
 		* @brief Inits the graphics.
 		* @return LOVE_OK if no errors. 
 		**/ 
 		virtual int init();
-
-		/**
-		* @brief Draws a Bezier curve. 
-		* @param bezier The Bezier to draw.
-		* @param x The x-coordinate of the position (first point).
-		* @param y The y-coordinate of the position (first point).
-		* @param precision The amount of points to draw.
-		* @param float lineWidth The width of the line used to draw the Bezier.
-		**/
-		virtual void drawBezier(const pBezier * bezier, float x, float y, int precision = 20, float lineWidth = 2.0f) const;
 
 		/**
 		* @brief Combines a translation with the current matrix.

@@ -10,6 +10,9 @@
 
 #include "Listener.h"
 
+#include <list>
+
+
 namespace love 
 {
 
@@ -24,6 +27,8 @@ namespace love
 	class KeyListener : public Listener
 	{
 	private:
+
+		static std::list<KeyListener> children;
 
 	public:
 

@@ -1,4 +1,4 @@
-#include "SDLMixerSoundDevice.h"
+#include "SDLMixerAudio.h"
 #include "SDL_mixer.h"
 #include "love.h"
 #include "Core.h"
@@ -9,17 +9,17 @@
 namespace love
 {
 	
-	SDLMixerSoundDevice::SDLMixerSoundDevice()
+	SDLMixerAudio::SDLMixerAudio()
 	{
 	}
 	
-	SDLMixerSoundDevice::~SDLMixerSoundDevice()
+	SDLMixerAudio::~SDLMixerAudio()
 	{
 		// Close the audio device.
 		Mix_CloseAudio();
 	}
 
-	int SDLMixerSoundDevice::init()
+	int SDLMixerAudio::init()
 	{
 		int bits=0;
 		int audio_rate,audio_channels,
@@ -34,7 +34,7 @@ namespace love
 
 		if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,audio_buffers)<0)
 		{
-			core->error("SDLMixerSoundDevice: Unable to open audio!");
+			core->error("SDLMixerAudio: Unable to open audio!");
 			//printf("Unable to open audio!\n");
 			return LOVE_ERROR;
 		}
@@ -47,17 +47,19 @@ namespace love
 		return LOVE_OK;
 	}
 
-	AbstractSound * SDLMixerSoundDevice::getSound(AbstractFile * file) const
+	pAbstractSound SDLMixerAudio::getSound(pAbstractFile file) const
 	{
-		return new SDLMixerSound(file);
+		pAbstractSound tmp(new SDLMixerSound(file));
+		return tmp;
 	}
 	
-	AbstractMusic * SDLMixerSoundDevice::getMusic(AbstractFile * file) const
+	pAbstractMusic SDLMixerAudio::getMusic(pAbstractFile file) const
 	{
-		return new SDLMixerMusic(file);
+		pAbstractMusic tmp(new SDLMixerMusic(file));
+		return tmp;
 	}
 
-	bool SDLMixerSoundDevice::isPlaying() const
+	bool SDLMixerAudio::isPlaying() const
 	{
 		// Is sound playing?
 		int sound = Mix_Playing(-1);
@@ -69,7 +71,7 @@ namespace love
 		return (sound + music != 0);
 	}
 
-	bool SDLMixerSoundDevice::isPaused() const
+	bool SDLMixerAudio::isPaused() const
 	{
 		// Is sound paused?
 		int sound = Mix_Paused(-1);
@@ -81,7 +83,7 @@ namespace love
 		return (sound + music != 0);
 	}
 
-	void SDLMixerSoundDevice::pause() const
+	void SDLMixerAudio::pause() const
 	{
 		// Pause all sound
 		Mix_Pause(-1);
@@ -91,7 +93,7 @@ namespace love
 
 	}
 
-	void SDLMixerSoundDevice::stop() const
+	void SDLMixerAudio::stop() const
 	{
 		// Stop all sounds
 		Mix_HaltChannel(-1);
@@ -101,7 +103,7 @@ namespace love
 
 	}
 
-	void SDLMixerSoundDevice::resume() const
+	void SDLMixerAudio::resume() const
 	{
 		// Resume sounds
 		Mix_Resume(-1);
@@ -110,7 +112,7 @@ namespace love
 		Mix_ResumeMusic();
 	}
 
-	void SDLMixerSoundDevice::setVolume(float volume) const
+	void SDLMixerAudio::setVolume(float volume) const
 	{
 		// Set the volume for all channels
 		Mix_Volume(1,(int)(MIX_MAX_VOLUME * volume));
@@ -119,12 +121,12 @@ namespace love
 		Mix_VolumeMusic((int)(MIX_MAX_VOLUME * volume));
 	}
 
-	void SDLMixerSoundDevice::play(pAbstractSound sound, int loop, int channel) const
+	void SDLMixerAudio::play(pAbstractSound sound, int loop, int channel) const
 	{
 		sound->play(loop);
 	}
 
-	void SDLMixerSoundDevice::play(pAbstractMusic music, int loop) const
+	void SDLMixerAudio::play(pAbstractMusic music, int loop) const
 	{
 		music->play(loop);
 	}

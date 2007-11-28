@@ -10,6 +10,7 @@
 
 // LOVE
 #include "AbstractDevice.h"
+#include "AbstractFile.h"
 
 // STL
 #include <string>
@@ -24,9 +25,6 @@ using std::vector;
 
 namespace love
 {
-
-	// Forward 
-	class AbstractFile;
 
 	/**
 	* @class AbstractFileSystem
@@ -62,21 +60,21 @@ namespace love
 		* @param file The the filepath relative to the source.
 		* @return The new AbstractFile. (Unloaded)
 		**/
-		virtual AbstractFile * getFile(const string & source, const string & file) const = 0;
+		virtual pAbstractFile getFile(const string & source, const string & file) const = 0;
 
 		/**
 		* @brief Gets a new AbstractFile, relative to base directory.
 		* @param file The the filepath relative to the base directory.
 		* @return The new AbstractFile. (Unloaded)
 		**/
-		virtual AbstractFile * getBaseFile(const string & file) const = 0;
+		virtual pAbstractFile getBaseFile(const string & file) const = 0;
 
 		/**
 		* @brief Gets a new AbstractFile, relative to user directory.
 		* @param file The the filepath relative to the user directory.
 		* @return The new AbstractFile. (Unloaded)
 		**/
-		virtual AbstractFile * getUserFile(const string & file) const = 0;
+		virtual pAbstractFile getUserFile(const string & file) const = 0;
 
 		/**
 		* @brief Gets a list of entries in the specified file (or dir).

@@ -23,6 +23,9 @@
 
 // STL
 
+#include <map>
+using std::map;
+using std::string;
 // Boost
 #include <boost/shared_ptr.hpp>
 
@@ -48,8 +51,10 @@ namespace love
 
 		Container<Game> * games;
 
-		Container<AbstractImage> images;
-		Container<Font> fonts;
+		map<string, pAbstractImage> images;
+		map<string, pAbstractFont> fonts;
+
+
 
 		pGUICircleButton exit;
 		pGUIRadialKnob knob;
