@@ -23,6 +23,8 @@ namespace love
 	int OpenGLImage::load()
 	{	
 
+		//printf("Loading OGLImage, LOEL %s -> %s\n", file->getSource().c_str(), file->getFilename().c_str());
+
 		// Load image data into memory
 		if(!file->load())
 			return LOVE_ERROR;

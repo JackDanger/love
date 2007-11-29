@@ -39,11 +39,7 @@ namespace love
 		 * @brief Does nothing.
 		 **/
 		~AbstractColor();
-
-		AbstractColor & operator=(const AbstractColor & other);
-		AbstractColor & operator+(const AbstractColor & other);
-		AbstractColor & operator-(const AbstractColor & other);
-		bool operator==(const AbstractColor & other) const;
+		bool operator==(const AbstractColor & other) const;
 		bool operator!=(const AbstractColor & other) const;
 
 		/**

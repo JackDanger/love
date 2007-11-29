@@ -2,7 +2,8 @@ CC=g++
 CFLAGS=-c -Wall -Wno-unused-label
 LDFLAGS=-lGL -lGLU -lIL -lILU -lILUT -lSDL -lSDL_mixer -lSDL_image -llua5.1 -lphysfs -lfreetype -lguichan -lguichan_opengl -lguichan_sdl
 DIR=src
-SOURCES=AbstractColor.cpp \
+SOURCES=AbstractAudio.cpp \
+AbstractColor.cpp \
 AbstractDevice.cpp \
 AbstractDisplay.cpp \
 AbstractEntity.cpp \
@@ -16,7 +17,6 @@ AbstractImageDevice.cpp \
 AbstractMusic.cpp \
 AbstractMenu.cpp \
 AbstractSound.cpp \
-AbstractSoundDevice.cpp \
 AbstractState.cpp \
 AnimatedColor.cpp \
 Animation.cpp \
@@ -27,12 +27,9 @@ BezierParticleSystem.cpp \
 Button.cpp \
 Color.cpp \
 ConfigLoader.cpp \
-Console.cpp \
 Container.cpp \
 Core.cpp \
 CheckBox.cpp \
-DevILImage.cpp \
-DevILImageDevice.cpp \
 Display.cpp \
 DisplayMode.cpp \
 DisplayModeListener.cpp \
@@ -41,17 +38,14 @@ Entity.cpp \
 Event.cpp \
 EventListener.cpp \
 FileSystem.cpp \
-Font.cpp \
 FrameAnimation.cpp \
+FontTexGame.cpp \
 GameConfiguration.cpp \
 GameConfigurationLoader.cpp \
 GameControlEvent.cpp \
 Game.cpp \
-GameObjectContainer.cpp \
-GameState.cpp \
 GUIElement.cpp \
 Globals.cpp \
-GradientColor.cpp \
 GUICircleButton.cpp \
 GUIDynamicBackground.cpp \
 GUIEntity.cpp \
@@ -63,9 +57,7 @@ GUIEvent.cpp \
 GUIContainer.cpp \
 GUIList.cpp \
 GUIText.cpp \
-ImageFromFile.cpp \
 Initializable.cpp \
-ImageFont.cpp \
 Keyboard.cpp \
 KeyListener.cpp \
 Listener.cpp \
@@ -92,7 +84,11 @@ NeoFontTexGame.cpp \
 Object.cpp \
 ObjectFactory.cpp \
 OpenGLGraphics.cpp \
+OpenGLImage.cpp \
+OpenGLFont.cpp \
+OpenGLImageFont.cpp \
 OpenGLGUI.cpp \
+OpenGLParticleSystem.cpp \
 Parameters.cpp \
 Padded.cpp \
 Particle.cpp \
@@ -107,10 +103,11 @@ Resumable.cpp \
 RadioButton.cpp \
 Scriptable.cpp \
 ScriptableParticle.cpp \
+ScrollMenu.cpp \
 SDLDisplay.cpp \
 SDLMixerMusic.cpp \
 SDLMixerSound.cpp \
-SDLMixerSoundDevice.cpp \
+SDLMixerAudio.cpp \
 SDLTimer.cpp \
 SmoothAnimatedColor.cpp \
 ScriptableActorState.cpp \
@@ -124,7 +121,8 @@ Updateable.cpp \
 UIGame.cpp \
 Vector.cpp \
 Vextor.cpp \
-VisualEntity.cpp
+VisualEntity.cpp \
+WindowMenu.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=love
 VPATH=src

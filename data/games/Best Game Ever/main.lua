@@ -47,6 +47,11 @@ main = {
 		button:setHoverBackgroundColor(color["shiznet"]);
 		--button:setPressedBackgroundColor(color["white"]);
 		
+		local button_death = menu:addButton("ADD_ANOTHER", "CLICK HERE TO ADD AND REMOVE A BUTTON");
+		button_death:setBorderSize(1);
+		button_death:setBackgroundColor(color["halfshiz"]);
+		button_death:setHoverBackgroundColor(color["shiznet"]);		
+		
 		local nested = menu:addMenu(love.menu_horizontal);
 		nested:setFont(font["small"]);
 		spartbutton =nested:addButton("SPAR_BUTTON", "Sparta!");
@@ -239,6 +244,9 @@ main = {
 				slider_sparta_label:setCaption(math.floor(slider_sparta:getValue()));
 			elseif e:getName() == "SLIDER_NOTSPARTA" then
 				slider_notsparta_label:setCaption(slider_notsparta:getValue());
+			elseif e:getName() == "ADD_ANOTHER" then
+				print("Adding another button")
+				local b = menu:addButton("SHISLZLZLLZL","Fist");
 			end
 			--print("This baby just received a GUIEvent (bn). GUIname is: " .. e:getName())
 		end

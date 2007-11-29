@@ -57,6 +57,11 @@ namespace love
 		core->filesystem = new PhysFSFileSystem(argc, argv);
 		core->audio = new SDLMixerAudio();
 		//core->imaging = new DevILImageDevice();
+
+		// @todo KILL LATER
+		// Init DevIL.
+		ilInit();
+
 		core->graphics = new OpenGLGraphics();
 		core->parameters = new Parameters(argc, argv);
 		core->gui = new OpenGLGUI();

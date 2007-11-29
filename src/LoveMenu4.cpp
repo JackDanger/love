@@ -272,7 +272,10 @@ namespace love
 	{	
 		// Load images
 		for(map<string,pAbstractImage>::iterator iter = images.begin();iter!=images.end();iter++)
+		{
+			printf("BITCH: %i\n", (int)iter->second.get());
 			iter->second->load();
+		}
 
 		// Load fonts
 		for(map<string,pAbstractFont>::iterator iter = fonts.begin();iter!=fonts.end();iter++)

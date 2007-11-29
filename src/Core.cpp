@@ -291,7 +291,7 @@ namespace love
 
 	void Core::printf(const char * msg, ...)
 	{
-		char ftext[128];
+		char ftext[1024];
 		va_list	ap;
 
 		va_start(ap, msg);
@@ -414,7 +414,7 @@ namespace love
 
 	void Core::error(const char * text, ...)
 	{
-		char ftext[128];
+		char ftext[1024];
 		va_list	ap;
 
 		va_start(ap, text);

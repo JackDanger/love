@@ -15,8 +15,6 @@ namespace love
 
 	int DevILImageDevice::init()
 	{
-		// Init DevIL.
-		ilInit();
 
 		return LOVE_OK;
 	}

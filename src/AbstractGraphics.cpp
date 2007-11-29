@@ -3,7 +3,7 @@
 #include "love.h"
 #include "AbstractFile.h"
 
-#include "AbstractFilesystem.h"
+#include "AbstractFileSystem.h"
 
 namespace love
 {
