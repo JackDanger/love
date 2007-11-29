@@ -5,11 +5,14 @@ $c = file_get_contents("../../../../src/love_lua_glue.cpp");
 $t = "// Made by AutoLOVE\n// IGNORE WARNINGS PLZ\n"; 
 
 // Disable warnings ...
+
+$t .= "#ifdef WIN32\n";
 $t .= "#pragma warning( push )\n";
 $t .= "#pragma warning ( disable : 4005)\n";
 $t .= "#pragma warning ( disable : 4244)\n";
 $t .= "#pragma warning ( disable : 4102)\n";
 $t .= "#pragma warning ( disable : 4800)\n";
+$t .= "#endif\n";
 $t .= "\n\n" . $c;
 
 // And then enable warnings

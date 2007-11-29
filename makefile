@@ -125,7 +125,7 @@ $(OBJDIR)/VisualEntity.o \
 $(OBJDIR)/WindowMenu.o
 
 CC = g++
-CFLAGS = -g -O2 -Wall -Wno-unused-label
+CFLAGS = -g -O2 -Wall -Wno-unused-label -fno-strict-aliasing
 LDFLAGS = -lGL -lGLU -lIL -lILU -lILUT -lSDL -lSDL_mixer -lSDL_image -llua5.1 -lphysfs -lfreetype -lguichan -lguichan_opengl -lguichan_sdl
 INCLUDES = -I/usr/include/freetype2 -I/usr/include/lua5.1 -I/usr/include/SDL
 
