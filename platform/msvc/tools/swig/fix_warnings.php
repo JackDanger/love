@@ -19,7 +19,9 @@ $t .= "\n\n" . $c;
 
 $t .= "\n\n";
 $t .= "// Made by AutoLOVE\n// ENABLE WARNINGS PLZ\n"; 
-$t .= "#pragma warning( pop )";
+$t .= "#ifdef WIN32\n";
+$t .= "#pragma warning( pop )\n";
+$t .= "#endif\n";
 
 
 file_put_contents("../../../../src/love_lua_glue.cpp", $t);

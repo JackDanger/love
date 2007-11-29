@@ -1,10 +1,12 @@
 // Made by AutoLOVE
 // IGNORE WARNINGS PLZ
+#ifdef WIN32
 #pragma warning( push )
 #pragma warning ( disable : 4005)
 #pragma warning ( disable : 4244)
 #pragma warning ( disable : 4102)
 #pragma warning ( disable : 4800)
+#endif
 
 
 /* ----------------------------------------------------------------------------
@@ -27442,11 +27444,11 @@ fail:
 static int _wrap_SmartAbstractFont_MAX_CHARS_get(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::AbstractFont > *arg1 = (boost::shared_ptr<love::AbstractFont > *) 0 ;
-  int result;
+  unsigned int result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::AbstractFont > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t,0,1,"SmartAbstractFont_MAX_CHARS_get");
-  result = (int)(int) (love::AbstractFont::MAX_CHARS);
+  result = (unsigned int)(unsigned int) (love::AbstractFont::MAX_CHARS);
   SWIG_arg=0;
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
@@ -44266,4 +44268,6 @@ void SWIG_init_user(lua_State* L)
 
 // Made by AutoLOVE
 // ENABLE WARNINGS PLZ
+#ifdef WIN32
 #pragma warning( pop )
+#endif
