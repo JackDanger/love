@@ -166,7 +166,7 @@ namespace love
 
 
 		textures = new GLuint[MAX_CHARS];
-		for(int i = 0; i != MAX_CHARS; i++) widths[i] = 0;
+		for(unsigned int i = 0; i != MAX_CHARS; i++) widths[i] = 0;
 
 		FT_Library library;
 		if( FT_Init_FreeType(&library) )

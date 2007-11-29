@@ -14,7 +14,7 @@ namespace love
 		// FYI, g++ also complains about using char as an array index. Thus
 		// the constant (int)-ing.
 
-		int c = (int)character;
+		unsigned int c = (int)character;
 
 		if(c > MAX_CHARS || widths[(int)character] == -1)
 			return;
@@ -24,7 +24,7 @@ namespace love
 	OpenGLImageFont::OpenGLImageFont(pAbstractFile file, const string & glyphs) : AbstractFont(file, 0)
 	{
 		this->glyphs = glyphs;
-		for(int i = 0; i < MAX_CHARS; i++) coordinates[i] = -1;
+		for(unsigned int i = 0; i < MAX_CHARS; i++) coordinates[i] = -1;
 	}
 
 	OpenGLImageFont::~OpenGLImageFont()
@@ -41,7 +41,7 @@ namespace love
 		for(unsigned int i = 0; i < text.length(); i++)
 		{
 			renderCharacter(text[i]);
-			glTranslatef( (float)((widths[text[i]] != -1) ? widths[text[i]] : 0), 0.0f, 0.0f );
+			glTranslatef( (float)((widths[(int)text[i]] != -1) ? widths[(int)text[i]] : 0), 0.0f, 0.0f );
 		}
 		glPopMatrix();
 	}
@@ -64,7 +64,7 @@ namespace love
 	{
 		float temp = 0;
 		for(unsigned int i = 0; i < strlen(line); i++)
-			temp += widths[line[i]];
+			temp += widths[(int)line[i]];
 		return temp;
 	}
 
@@ -105,7 +105,7 @@ namespace love
 		Color spacer(s[0].r, s[0].g, s[0].b, s[0].a);
 
 		const char * glyphlist = glyphs.c_str();
-		int currentChar = 0; // the current character
+		unsigned int currentChar = 0; // the current character
 		int charPos = 0; // the position of the current char
 		int charWidth = -1; // the width of the current char
 
@@ -117,7 +117,7 @@ namespace love
 				if(charWidth == -1) continue; // we're not reading a character, so we can just continue
 				
 				int temp = (int)glyphlist[currentChar];
-				if(temp < 0 || temp > MAX_CHARS)
+				if(temp < 0 || temp > (int)MAX_CHARS)
 				{
 					core->printf("OpenGLImageFont: Character '%c'(%d) out of scope.", (char)temp, temp);
 				}
@@ -145,8 +145,8 @@ namespace love
 		}
 		if(charWidth != -1 && currentChar != strlen(glyphlist)) //we have one char left
 		{
-			coordinates[glyphlist[currentChar]] = charPos;
-			widths[glyphlist[currentChar]] = charWidth;
+			coordinates[(int)glyphlist[currentChar]] = charPos;
+			widths[(int)glyphlist[currentChar]] = charWidth;
 		}
 
 		// Set the height of the font

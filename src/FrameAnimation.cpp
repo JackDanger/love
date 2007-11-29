@@ -102,6 +102,8 @@ namespace love
 			r.yTex = 0;
 			r.width = 0;
 			r.height = 0;
+			r.top = 0;
+			r.left = 0;
 			return r;
 		}
 
@@ -120,6 +122,8 @@ namespace love
 			r.yTex = 0;
 			r.width = 0;
 			r.height = 0;
+			r.top = 0;
+			r.left = 0;
 			return r;
 		}
 

@@ -333,7 +333,7 @@ namespace love
 	int Text::load()
 	{
 
-		const love::AbstractFileSystem & fs = love::core->getFilesystem();
+		//const love::AbstractFileSystem & fs = love::core->getFilesystem();
 
 		defaultFont = core->graphics->getFont("data/fonts/FreeSans.ttf", 20); 
 		defaultColor.reset<Color>(new Color(0x000000));

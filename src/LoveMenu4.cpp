@@ -48,7 +48,7 @@ namespace love
 		config->setAuthor("LOVE DEV Team");
 
 		// Get a reference to the filesystem
-		const AbstractFileSystem & fs = core->getFilesystem();
+		//const AbstractFileSystem & fs = core->getFilesystem();
 		const DisplayMode & dm = core->getDisplayMode();
 
 		//configLoader = new ConfigLoader(fs.getBase() + "data/love.conf");

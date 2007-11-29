@@ -82,7 +82,7 @@ namespace love
 		// The union used to get SDL events. 
 		SDL_Event e;
 
-		bool hasfocus = true;
+		//bool hasfocus = true;
 
 
 		while(1)

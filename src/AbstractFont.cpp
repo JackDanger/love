@@ -4,7 +4,7 @@ namespace love
 {
 	AbstractFont::AbstractFont(pAbstractFile file, int size)  : Resource(file), size(size)
 	{
-		for(int i = 0; i < MAX_CHARS; i++) widths[i] = -1;
+		for(unsigned int i = 0; i < MAX_CHARS; i++) widths[i] = -1;
 	}
 
 	AbstractFont::~AbstractFont()

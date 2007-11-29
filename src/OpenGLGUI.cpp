@@ -30,7 +30,7 @@ namespace love
 	int OpenGLGUI::init()
 	{
 		const DisplayMode & display = core->getDisplayMode();
-		const AbstractFileSystem & fs = core->getFilesystem();
+		//const AbstractFileSystem & fs = core->getFilesystem();
 		const AbstractGraphics & gfx = core->getGraphics();
 		//const AbstractImageDevice & imaging = core->getImaging();
 
