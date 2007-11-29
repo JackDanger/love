@@ -273,7 +273,7 @@ namespace love
 		// Load images
 		for(map<string,pAbstractImage>::iterator iter = images.begin();iter!=images.end();iter++)
 		{
-			printf("BITCH: %i\n", (int)iter->second.get());
+			//printf("BITCH: %i\n", (int)iter->second.get());
 			iter->second->load();
 		}
 
