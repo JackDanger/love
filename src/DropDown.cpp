@@ -4,22 +4,23 @@ namespace love
 {
 	int DropDown::getItemHeight()
 	{
-		return gcn::DropDown::getFont()->getHeight() + 2;
+		return gcn::DropDown::getFont()->getHeight() + (spacing * 2);
 	}
 
 	int DropDown::getItemAt(int x, int y)
 	{
 		if(x < 0 || x > getWidth() || y < 0 || y > getHeight() - mOldH) return -1;
 		
-		return y / getItemHeight();
+		return (y - getPaddingTop()) / getItemHeight();
 	}
 
-	DropDown::DropDown(GUIList * list) : gcn::DropDown()
+	DropDown::DropDown(GUIList * list) : gcn::DropDown(), Padded()
 	{
 		setListModel(list);
 		this->list = list;
 		mCloseOnSelect = false;
 		mHasMouse = false;
+		spacing = 0;
 	}
 
 	DropDown::~DropDown()
@@ -51,6 +52,11 @@ namespace love
 	void DropDown::setName(const string & name)
 	{
 		gcn::DropDown::setActionEventId(name);
+	}
+
+	void DropDown::setSpacing(int spacing)
+	{
+		this->spacing = spacing;
 	}
 
 	void DropDown::setBackgroundColor(const pAbstractColor & color)
@@ -169,6 +175,11 @@ namespace love
 		return gcn::DropDown::getActionEventId();
 	}
 
+	int DropDown::getSpacing()
+	{
+		return spacing;
+	}
+
 	void DropDown::adjustHeight()
 	{
 		int h = gcn::DropDown::getFont()->getHeight();
@@ -180,10 +191,11 @@ namespace love
 		
 		if(mDroppedDown)
 		{
-			int sh = getItemHeight() * (list->getNumberOfElements()); // +2 for a little spacing
+			int sh = getItemHeight() * (list->getNumberOfElements());
+			sh += getPaddingTop() + getPaddingBottom() + getBorderSize(); // +borderSize because of the separating line
 			if(listImage != 0)
 				sh = listImage->getHeight() > sh ? (int)listImage->getHeight() : sh;
-			h += sh;
+			h += sh + 10000; //why isn't this making the widget hueg???
 		}
 
 		setHeight(h);
@@ -202,12 +214,17 @@ namespace love
 				w = t;
 		}
 
+		w += getPaddingLeft() + getPaddingRight() + (spacing * 2);
+
 		if(backgroundImage != 0)
 		{
-			if(button != 0)
-				w = (int)(backgroundImage->getWidth() + button->getWidth());
+			int t = (int)backgroundImage->getWidth();
+			/*if(button != 0)
+				t = (int)(backgroundImage->getWidth() + button->getWidth());
 			else // if no button is present, the font height is used as a size determinant
-				w = (int)backgroundImage->getWidth() + gcn::DropDown::getFont()->getHeight();
+				t = (int)backgroundImage->getWidth() + gcn::DropDown::getFont()->getHeight();*/
+			if(t > w)
+				w = t;
 		}
 
 		if(listImage != 0)
@@ -386,33 +403,69 @@ namespace love
 			graphics->setFont(font.get());
 
 		if (mListBox->getSelected() >= 0)
-			graphics->drawText(list->getElementAt(mListBox->getSelected()), 0, 0);
+		{
+			int y;
+			if(mDroppedDown)
+				y = (int)((mOldH / 2) - (gcn::DropDown::getFont()->getHeight() / 2));
+			else
+				y = (int)((getHeight() / 2) - (gcn::DropDown::getFont()->getHeight() / 2));
+
+			graphics->drawText(list->getElementAt(mListBox->getSelected()), getPaddingLeft() + spacing, y);
+		}
 
 		drawButton(graphics);
 
 		if(mDroppedDown)
+		{
+			int width = getWidth() + getBorderSize() * 2 - 1;
+			int height = mOldH + getBorderSize() - 1;
+
+			if(borderColor != 0)
+				graphics->setColor(gcn::Color(borderColor->getRed(),borderColor->getGreen(),borderColor->getBlue(),borderColor->getAlpha()));
+			else if(backgroundColor != 0)
+				graphics->setColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
+			else
+				graphics->setColor(getBaseColor());
+
+			for(unsigned int i = 0; i < getBorderSize(); i++)
+				graphics->drawLine(0,height - i, width - 1, height - i);
+
 			drawList(graphics);
+		}
 	}
 
 	void DropDown::drawBorder(gcn::Graphics * graphics)
 	{
 		if(borderColor != 0)
-			gcn::DropDown::setBaseColor(gcn::Color(borderColor->getRed(),borderColor->getGreen(),borderColor->getBlue(),borderColor->getAlpha()));
+			graphics->setColor(gcn::Color(borderColor->getRed(),borderColor->getGreen(),borderColor->getBlue(),borderColor->getAlpha()));
 		else if(backgroundColor != 0)
-			gcn::DropDown::setBaseColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
+			graphics->setColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
+		else
+			graphics->setColor(getBaseColor());
 
-		gcn::DropDown::drawBorder(graphics);
+		//gcn::DropDown::drawBorder(graphics);
+		unsigned int i;
+		int width = getWidth() + getBorderSize() * 2 - 1;
+		int height = getHeight() + getBorderSize() * 2 - 1;
+
+		for (i = 0; i < getBorderSize(); ++i)
+		{
+			graphics->drawLine(i,i, width - i, i);
+			graphics->drawLine(i,i + 1, i, height - i - 1);
+			graphics->drawLine(width - i,i + 1, width - i, height - i);
+			graphics->drawLine(i,height - i, width - i - 1, height - i);
+		}
 	}
 
 	void DropDown::drawList(gcn::Graphics * graphics)
 	{
 		int x = 0;
-		int y = mOldH;
+		int y = mOldH + getBorderSize();
 
 		if(listBackgroundColor != 0)
 		{
 			graphics->setColor(gcn::Color(listBackgroundColor->getRed(),listBackgroundColor->getGreen(),listBackgroundColor->getBlue(),listBackgroundColor->getAlpha()));
-			graphics->fillRectangle(gcn::Rectangle(0,mOldH,getWidth(),getHeight()));
+			graphics->fillRectangle(gcn::Rectangle(x,y,getWidth(),getHeight()));
 		}
 
 		if(listImage != 0)
@@ -428,6 +481,9 @@ namespace love
 		else
 			graphics->setColor(getForegroundColor());
 
+		x = getPaddingLeft();
+		y += getPaddingTop();
+
 		for(int i = 0; i < list->getNumberOfElements(); i++)
 		{
 			if(mHoverSelect == i)
@@ -436,13 +492,13 @@ namespace love
 				if(hoverBackgroundColor != 0)
 				{
 					graphics->setColor(gcn::Color(hoverBackgroundColor->getRed(),hoverBackgroundColor->getGreen(),hoverBackgroundColor->getBlue(),hoverBackgroundColor->getAlpha()));
-					graphics->fillRectangle(gcn::Rectangle(0,y,getWidth(),getItemHeight()));
+					graphics->fillRectangle(gcn::Rectangle(x, y, getWidth() - getPaddingLeft() - getPaddingRight(), getItemHeight()));
 					graphics->setColor(temp);
 				}
 				if(hoverColor != 0)
 					graphics->setColor(gcn::Color(hoverColor->getRed(),hoverColor->getGreen(),hoverColor->getBlue(),hoverColor->getAlpha()));
 
-				graphics->drawText(list->getElementAt(i), x, y);
+				graphics->drawText(list->getElementAt(i), x + spacing, y + spacing);
 				graphics->setColor(temp);
 			}
 			else if(getSelected() == i)
@@ -451,18 +507,18 @@ namespace love
 				if(selectedBackgroundColor != 0)
 				{
 					graphics->setColor(gcn::Color(selectedBackgroundColor->getRed(),selectedBackgroundColor->getGreen(),selectedBackgroundColor->getBlue(),selectedBackgroundColor->getAlpha()));
-					graphics->fillRectangle(gcn::Rectangle(0,y,getWidth(),getItemHeight()));
+					graphics->fillRectangle(gcn::Rectangle(x, y, getWidth() - getPaddingLeft() - getPaddingRight(), getItemHeight()));
 					graphics->setColor(temp);
 				}
 				if(selectedColor != 0)
 					graphics->setColor(gcn::Color(selectedColor->getRed(),selectedColor->getGreen(),selectedColor->getBlue(),selectedColor->getAlpha()));
 
-				graphics->drawText(list->getElementAt(i), x, y);
+				graphics->drawText(list->getElementAt(i), x + spacing, y + spacing);
 				graphics->setColor(temp);
 			}
 			else
-				graphics->drawText(list->getElementAt(i), x, y);
-			y += gcn::DropDown::getFont()->getHeight() + 2;
+				graphics->drawText(list->getElementAt(i), x + spacing, y + spacing);
+			y += getItemHeight();
 		}
 	}
 

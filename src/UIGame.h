@@ -43,6 +43,8 @@ namespace love
 		pAbstractImage checkBoxMarked;
 		pAbstractImage sliderBar;
 		pAbstractImage slider;
+		pAbstractImage dropDownBackground;
+		pAbstractImage dropDownButton;
 		pAbstractImage line;
 		pAbstractImage tabDefault;
 		pAbstractImage tabHover;

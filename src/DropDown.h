@@ -3,6 +3,7 @@
 
 #include "GUIElement.h"
 #include "GUIList.h"
+#include "Padded.h"
 
 namespace love
 {
@@ -14,7 +15,7 @@ namespace love
 	 * @date 2007-08-17
 	 * @brief A drop-down list to be used by the Menu.
 	 **/
-	class DropDown : public gcn::DropDown, public GUIElement
+	class DropDown : public gcn::DropDown, public GUIElement, public Padded
 	{
 	protected:
 		GUIList * list;
@@ -41,6 +42,8 @@ namespace love
 		pAbstractImage buttonHover;
 		pAbstractImage buttonPressed;
 
+		int spacing; // spacing around items
+
 		bool mCloseOnSelect; // whether to close on select
 		bool mHasMouse; // whether the mouse is present in the widget
 		int mHoverSelect; // the list item being hovered over
@@ -57,6 +60,8 @@ namespace love
 		virtual void setHeight(int height);
 		virtual void setBorderSize(unsigned int size);
 		virtual void setName(const string & name);
+
+		virtual void setSpacing(int spacing);
 
 		virtual void setBackgroundColor(const pAbstractColor & color);
 		virtual void setListColor(const pAbstractColor & color);
@@ -84,6 +89,8 @@ namespace love
 		virtual int getHeight();
 		virtual unsigned int getBorderSize();
 		virtual const string & getName();
+
+		virtual int getSpacing();
 
 		virtual void adjustHeight();
 		virtual void adjustSize();

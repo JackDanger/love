@@ -54,7 +54,8 @@ namespace love
 	{
 		core->config->addBool("settings_fullscreen", settingsFullscreen->isMarked());
 		core->config->addBool("settings_vsync", settingsVSync->isMarked());
-		//core->config->addInt("settings_resolution", (float)settingsResolution->getSelected());
+		if(settingsResolution->getSelected() >= 0)
+			core->config->addString("settings_resolution", settingsResolution->getSelectedElement());
 		core->config->addInt("settings_sound", (float)settingsSound->getValue());
 		core->config->addInt("settings_music", (float)settingsMusic->getValue());
 		core->config->write();
@@ -108,6 +109,10 @@ namespace love
 		sliderBar->load();
 		slider = core->graphics->getImage("data/gui/slider.png");
 		slider->load();
+		dropDownBackground = core->graphics->getImage("data/gui/dropdown_background.png");
+		dropDownBackground->load();
+		dropDownButton = core->graphics->getImage("data/gui/dropdown_button.png");
+		dropDownButton->load();
 
 		line = core->graphics->getImage("data/gui/line.png");
 		line->load();
@@ -140,6 +145,10 @@ namespace love
 		pAbstractColor white(new Color(0xFFFFFF));
 		pAbstractColor buttonColor(new Color(255,255,255,200));
 		pAbstractColor quitColor(new Color(255,255,255,150));
+		pAbstractColor dropDownBack(new Color(0x327BAC)); dropDownBack->setAlpha(153);
+		pAbstractColor dropDownSelect(new Color(0xA8D6F5));
+		pAbstractColor dropDownBorder(new Color(0X7AB6DF));
+		pAbstractColor dropDownSelectColor(new Color(0x316081));
 
 		pLabel label;
 		pButton button;
@@ -226,6 +235,22 @@ namespace love
 		settingsVSync->setColor(buttonColor); settingsVSync->setHoverColor(white);  
 		settingsVSync->setPosition(24,33); settingsVSync->adjustSize();
 
+		label = settingsMenu->addLabel("Resolution");
+		label->setPosition(167, 8);
+
+		settingsResolution = settingsMenu->addDropDown("CORE_SETTINGS_RESOLUTION");
+		settingsResolution->setBackgroundImage(dropDownBackground); settingsResolution->setButton(dropDownButton);
+		settingsResolution->setListBackgroundColor(dropDownBack); settingsResolution->setBorderColor(dropDownBorder);
+		settingsResolution->setHoverBackgroundColor(dropDownSelect); settingsResolution->setHoverColor(dropDownSelectColor);
+		settingsResolution->setSelectedBackgroundColor(dropDownSelect); settingsResolution->setSelectedColor(dropDownSelectColor);
+		settingsResolution->setPosition(167, 30); settingsResolution->setPadding(5); settingsResolution->setSpacing(5); settingsResolution->adjustSize();
+		settingsResolution->setBorderSize(1); settingsResolution->closeOnSelect(true);
+		settingsResolution->add("1280x1024");
+		settingsResolution->add("1024x768");
+		settingsResolution->add("800x600");
+		settingsResolution->add("640x480");
+		settingsResolution->add("320x240");
+
 		label = settingsMenu->addImage(line);
 		label->setPosition(0, 60);
 
@@ -300,6 +325,8 @@ namespace love
 		checkBoxMarked->reload();
 		sliderBar->reload();
 		slider->reload();
+		dropDownBackground->reload();
+		dropDownButton->reload();
 		line->reload();
 		tabDefault->reload();
 		tabHover->reload();
@@ -396,6 +423,15 @@ namespace love
 			settingsSound->setValue(core->config->getInt("settings_sound"));
 		if(core->config->isInt("settings_music"))
 			settingsMusic->setValue(core->config->getInt("settings_music"));
+		if(core->config->isString("settings_resolution"))
+		{
+			string temp = core->config->getString("settings_resolution");
+			for(int i = 0; i < settingsResolution->getNumberOfElements(); i++)
+			{
+				if(settingsResolution->getElementAt(i) == temp)
+					settingsResolution->setSelected(i);
+			}
+		}
 		if(mode != MODE_PAUSE)
 		{
 			// the settings menu to display when pausing from the menu
