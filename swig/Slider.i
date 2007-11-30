@@ -1,31 +1,16 @@
-#ifndef LOVE_SLIDER_H
-#define LOVE_SLIDER_H
-
-#include "GUIElement.h"
 
 namespace love
 {
-	/**
-	 * @class Slider
-	 * @version 1.0
-	 * @since 1.0
-	 * @author Michael Enger
-	 * @date 2007-10-28
-	 * @brief A slider used by the Menu.
-	 **/
 	class Slider : public gcn::Slider, public GUIElement
 	{
 	protected:
-		pAbstractImage markerImage;
-		pAbstractImage backgroundImage;
-
 	public:
 		static const int LOVE_SLIDER_HORIZONTAL = gcn::Slider::HORIZONTAL;
 		static const int LOVE_SLIDER_VERTICAL = gcn::Slider::VERTICAL;
 
-		Slider(double scaleEnd = 1);
-		Slider(double scaleStart, double scaleEnd);
-		~Slider();
+		//Slider(double scaleEnd = 1);
+		//Slider(double scaleStart, double scaleEnd);
+		//~Slider();
 
 		virtual void setSize(int width, int height);
 		virtual void setWidth(int width);
@@ -40,13 +25,13 @@ namespace love
 		virtual void setOrientation(unsigned int orientation);
 
 		virtual void setValue(double value);
-		virtual void setName(const string & name);
+		//virtual void setName(const string & name);
 
-		virtual void setBackgroundColor(const pAbstractColor & color);
-		virtual void setMarkerImage(const pAbstractImage & image);
-		virtual void setBackgroundImage(const pAbstractImage & image);
+		//virtual void setBackgroundColor(const pAbstractColor & color);
+		//virtual void setMarkerImage(const pAbstractImage & image);
+		//virtual void setBackgroundImage(const pAbstractImage & image);
 
-		virtual void setFont(const pAbstractFont & image);
+		//virtual void setFont(const pAbstractFont & image);
 
 		virtual int getWidth();
 		virtual int getHeight();
@@ -59,7 +44,7 @@ namespace love
 		virtual unsigned int getOrientation();
 
 		virtual double getValue();
-		virtual const string & getName();
+		//virtual const string & getName();
 
 		virtual pAbstractColor getBackgroundColor();
 		virtual pAbstractImage getMarkerImage();
@@ -77,4 +62,36 @@ namespace love
 	typedef boost::shared_ptr<Slider> pSlider;
 }
 
-#endif
+// Extensions
+%extend love::Slider {
+
+	void setName(const char * name)
+	{
+		self->setName(string(name));
+	}
+	
+	void setBackgroundColor(const pAbstractColor * color)
+	{
+		self->setBackgroundColor(*color);
+	}
+	
+	void setMarkerImage(const pAbstractImage * image)
+	{
+		self->setMarkerImage(*image);
+	}
+	
+	void setBackgroundImage(const pAbstractImage * image)
+	{
+		self->setBackgroundImage(*image);
+	}
+	
+	void setFont(const pAbstractFont * font)
+	{
+		self->setFont(*font);
+	}
+	
+	const char * getName()
+	{
+		return self->getName().c_str();
+	}
+};

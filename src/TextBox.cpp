@@ -2,10 +2,8 @@
 
 namespace love
 {
-	TextBox::TextBox(const char * text)
+	TextBox::TextBox(const string & text) : gcn::TextBox(text)
 	{
-		gcn::TextBox();
-		gcn::TextBox::setText(text);
 	}
 
 	TextBox::~TextBox()
@@ -31,12 +29,12 @@ namespace love
 		gcn::TextBox::setBorderSize(size);
 	}
 
-	void TextBox::setText(const char * text)
+	void TextBox::setText(const string & text)
 	{
 		gcn::TextBox::setText(text);
 	}
 
-	void TextBox::setName(const char * name)
+	void TextBox::setName(const string & name)
 	{
 		gcn::TextBox::setActionEventId(name);
 	}
@@ -66,27 +64,27 @@ namespace love
 		gcn::TextBox::setEditable(editable);
 	}
 
-	void TextBox::setTextRow(int row, const char * text)
+	void TextBox::setTextRow(int row, const string & text)
 	{
 		gcn::TextBox::setTextRow(row, text);
 	}
 
-	void TextBox::setBackgroundColor(const pAbstractColor * color)
+	void TextBox::setBackgroundColor(const pAbstractColor & color)
 	{
 		GUIElement::setBackgroundColor(color);
 	}
 
-	void TextBox::setActiveColor(const pAbstractColor * color)
+	void TextBox::setActiveColor(const pAbstractColor & color)
 	{
-		activeColor = (*color);
+		activeColor = color;
 	}
 
-	void TextBox::setActiveBackgroundColor(const pAbstractColor * color)
+	void TextBox::setActiveBackgroundColor(const pAbstractColor & color)
 	{
-		activeBackgroundColor = (*color);
+		activeBackgroundColor = color;
 	}
 
-	void TextBox::setFont(const pAbstractFont * font)
+	void TextBox::setFont(const pAbstractFont & font)
 	{
 		GUIElement::setFont(font);
 		gcn::TextBox::setFont(this->font.get());
@@ -107,14 +105,14 @@ namespace love
 		return gcn::TextBox::getBorderSize();
 	}
 
-	const char * TextBox::getText()
+	const string TextBox::getText()
 	{
-		return gcn::TextBox::getText().c_str();
+		return gcn::TextBox::getText();
 	}
 
-	const char * TextBox::getName()
+	const string & TextBox::getName()
 	{
-		return gcn::TextBox::getActionEventId().c_str();
+		return gcn::TextBox::getActionEventId();
 	}
 
 	unsigned int TextBox::getCaretColumn() const
@@ -137,9 +135,9 @@ namespace love
 		return gcn::TextBox::getNumberOfRows();
 	}
 
-	const char * TextBox::getRow(int row) const
+	const string & TextBox::getRow(int row) const
 	{
-		return gcn::TextBox::getTextRow(row).c_str();
+		return gcn::TextBox::getTextRow(row);
 	}
 
 	bool TextBox::isEditable () const

@@ -39,24 +39,24 @@ namespace love
 		visible = false;
 	}
 
-	void AbstractMenu::setFont(const pAbstractFont * font)
+	void AbstractMenu::setFont(const pAbstractFont & font)
 	{
 		GUIElement::setFont(font);
 	}
 
-	void AbstractMenu::setColor(const pAbstractColor * color)
+	void AbstractMenu::setColor(const pAbstractColor & color)
 	{
 		GUIElement::setColor(color);
 	}
 
-	void AbstractMenu::setBackgroundColor(const pAbstractColor * color)
+	void AbstractMenu::setBackgroundColor(const pAbstractColor & color)
 	{
 		GUIElement::setBackgroundColor(color);
 	}
 
-	void AbstractMenu::setBackground(const pAbstractImage * image)
+	void AbstractMenu::setBackground(const pAbstractImage & image)
 	{
-		background = *image;
+		background = image;
 	}
 
 	void AbstractMenu::setSpacing(int spacing)
@@ -129,11 +129,11 @@ namespace love
 		return temp;
 	}
 
-	pAbstractMenu AbstractMenu::addWindowMenu(int type, const char * caption, int width, int height)
+	pAbstractMenu AbstractMenu::addWindowMenu(int type, const string & caption, int width, int height)
 	{
 		pWindowMenu temp(new WindowMenu(font->getFont(), color, type));
 
-		temp->setCaption(caption);
+		temp->setCaption(caption.c_str());
 		temp->setSize(width, height);
 		temp->align(alignment);
 		temp->valign(verticalAlignment);
@@ -145,11 +145,11 @@ namespace love
 		return temp;
 	}
 
-	pLabel AbstractMenu::addLabel(const char * caption, int width, int height)
+	pLabel AbstractMenu::addLabel(const string & caption, int width, int height)
 	{
-		pLabel temp(new Label(caption));
-		temp->setFont(&font->getFont());
-		temp->setColor(&color);
+		pLabel temp(new Label(caption.c_str()));
+		temp->setFont(font->getFont());
+		temp->setColor(color);
 
 		temp->adjustSize();
 		if(width != 0)
@@ -166,11 +166,11 @@ namespace love
 		return temp;
 	}
 
-	pMultilineLabel AbstractMenu::addMultilineLabel(const char * caption, int width, int height)
+	pMultilineLabel AbstractMenu::addMultilineLabel(const string & caption, int width, int height)
 	{
-		pMultilineLabel temp(new MultilineLabel(caption));
-		temp->setFont(&font->getFont());
-		temp->setColor(&color);
+		pMultilineLabel temp(new MultilineLabel(caption.c_str()));
+		temp->setFont(font->getFont());
+		temp->setColor(color);
 
 		if(width != 0)
 			temp->setWidth(width);
@@ -190,12 +190,12 @@ namespace love
 		return temp;
 	}
 
-	pLabel AbstractMenu::addImage(const pAbstractImage * image)
+	pLabel AbstractMenu::addImage(const pAbstractImage & image)
 	{
 		pLabel temp(new Label());
-		temp->setFont(&font->getFont());
-		temp->setColor(&color);
-		temp->setBackground(image);
+		temp->setFont(font->getFont());
+		temp->setColor(color);
+		temp->setBackgroundImage(image);
 
 		temp->adjustSize();
 		//temp->addActionListener(core->getGUI()); //not needed here
@@ -203,15 +203,15 @@ namespace love
 
 		add(temp.get());
 		children.push_back(temp);
-		pAbstractImage tempimg = temp->getBackground();
+		//pAbstractImage tempimg = temp->getBackground(); // what is this?
 		return temp;
 	}
 
-	pButton AbstractMenu::addButton(const char * name, const char * caption, int width, int height)
+	pButton AbstractMenu::addButton(const string & name, const string & caption, int width, int height)
 	{
-		pButton temp(new Button(caption));
-		temp->setFont(&font->getFont());
-		temp->setColor(&color);
+		pButton temp(new Button(caption.c_str()));
+		temp->setFont(font->getFont());
+		temp->setColor(color);
 
 		temp->adjustSize();
 		if(width != 0)
@@ -221,7 +221,7 @@ namespace love
 		//temp->align(alignment);
 		//temp->valign(verticalAlignment);
 		temp->addActionListener(core->getGUI());
-		temp->setName(name);
+		temp->setName(name.c_str());
 		positionItem(temp.get());
 
 		add(temp.get());
@@ -229,11 +229,11 @@ namespace love
 		return temp;
 	}
 
-	pTextField AbstractMenu::addTextField(const char * name, const char * text, int width, int height)
+	pTextField AbstractMenu::addTextField(const string & name, const string & text, int width, int height)
 	{
-		pTextField temp(new TextField(text));
-		temp->setFont(&font->getFont());
-		temp->setColor(&color);
+		pTextField temp(new TextField(text.c_str()));
+		temp->setFont(font->getFont());
+		temp->setColor(color);
 
 		temp->adjustSize();
 		if(width != 0)
@@ -241,7 +241,7 @@ namespace love
 		if(height != 0)
 			temp->setHeight(height);
 		temp->addActionListener(core->getGUI());
-		temp->setName(name);
+		temp->setName(name.c_str());
 		positionItem(temp.get());
 
 		add(temp.get());
@@ -249,12 +249,12 @@ namespace love
 		return temp;
 	}
 
-	pDropDown AbstractMenu::addDropDown(const char * name, int width, int height)
+	pDropDown AbstractMenu::addDropDown(const string & name, int width, int height)
 	{
 		GUIList * tlist = new GUIList();
 		pDropDown temp(new DropDown(tlist));
-		temp->setFont(&font->getFont());
-		temp->setColor(&color);
+		temp->setFont(font->getFont());
+		temp->setColor(color);
 
 		temp->adjustHeight();
 		if(width != 0)
@@ -262,7 +262,7 @@ namespace love
 		if(height != 0)
 			temp->setHeight(height);
 		temp->addActionListener(core->getGUI());
-		temp->setName(name);
+		temp->setName(name.c_str());
 		positionItem(temp.get());
 
 		add(temp.get());
@@ -270,11 +270,11 @@ namespace love
 		return temp;
 	}
 
-	pRadioButton AbstractMenu::addRadioButton(const char * name, const char * caption, int width, int height)
+	pRadioButton AbstractMenu::addRadioButton(const string & name, const string & caption, int width, int height)
 	{
 		pRadioButton temp(new RadioButton(caption));
-		temp->setFont(&font->getFont());
-		temp->setColor(&color);
+		temp->setFont(font->getFont());
+		temp->setColor(color);
 
 		temp->adjustSize();
 		if(width != 0)
@@ -282,7 +282,7 @@ namespace love
 		if(height != 0)
 			temp->setHeight(height);
 		temp->addActionListener(core->getGUI());
-		temp->setName(name);
+		temp->setName(name.c_str());
 		positionItem(temp.get());
 
 		add(temp.get());
@@ -290,11 +290,11 @@ namespace love
 		return temp;
 	}
 
-	pCheckBox AbstractMenu::addCheckBox(const char * name, const char * caption, int width, int height)
+	pCheckBox AbstractMenu::addCheckBox(const string & name, const string & caption, int width, int height)
 	{
 		pCheckBox temp(new CheckBox(caption));
-		temp->setFont(&font->getFont());
-		temp->setColor(&color);
+		temp->setFont(font->getFont());
+		temp->setColor(color);
 
 		temp->adjustSize();
 		if(width != 0)
@@ -302,7 +302,7 @@ namespace love
 		if(height != 0)
 			temp->setHeight(height);
 		temp->addActionListener(core->getGUI());
-		temp->setName(name);
+		temp->setName(name.c_str());
 		positionItem(temp.get());
 
 		add(temp.get());
@@ -310,7 +310,7 @@ namespace love
 		return temp;
 	}
 
-	pSlider AbstractMenu::addSlider(const char * name, unsigned int orientation, double scaleStart, double scaleEnd, int width, int height)
+	pSlider AbstractMenu::addSlider(const string & name, unsigned int orientation, double scaleStart, double scaleEnd, int width, int height)
 	{
 		pSlider temp(new Slider(scaleStart, scaleEnd));
 		temp->setOrientation(orientation);
@@ -323,7 +323,7 @@ namespace love
 		if(height != 0)
 			temp->setHeight(height);
 		temp->addActionListener(core->getGUI());
-		temp->setName(name);
+		temp->setName(name.c_str());
 		positionItem(temp.get());
 
 		add(temp.get());
@@ -331,12 +331,12 @@ namespace love
 		return temp;
 	}
 
-	pListBox AbstractMenu::addListBox(const char * name, int width, int height)
+	pListBox AbstractMenu::addListBox(const string & name, int width, int height)
 	{
 		GUIList * tlist = new GUIList();
 		pListBox temp(new ListBox(tlist));
-		temp->setFont(&font->getFont());
-		temp->setColor(&color);
+		temp->setFont(font->getFont());
+		temp->setColor(color);
 
 		temp->adjustSize();
 		if(width != 0)
@@ -344,7 +344,7 @@ namespace love
 		if(height != 0)
 			temp->setHeight(height);
 		temp->addActionListener(core->getGUI());
-		temp->setName(name);
+		temp->setName(name.c_str());
 		positionItem(temp.get());
 
 		add(temp.get());
@@ -352,11 +352,11 @@ namespace love
 		return temp;
 	}
 
-	pTextBox AbstractMenu::addTextBox(const char * name, int width, int height)
+	pTextBox AbstractMenu::addTextBox(const string & name, int width, int height)
 	{
 		pTextBox temp(new TextBox());
-		temp->setFont(&font->getFont());
-		temp->setColor(&color);
+		temp->setFont(font->getFont());
+		temp->setColor(color);
 
 		temp->adjustSize();
 		if(width != 0)
@@ -364,7 +364,7 @@ namespace love
 		if(height != 0)
 			temp->setHeight(height);
 		temp->addActionListener(core->getGUI());
-		temp->setName(name);
+		temp->setName(name.c_str());
 		positionItem(temp.get());
 
 		add(temp.get());

@@ -26,7 +26,7 @@ namespace love
 		 * @param caption The label's caption.
 		 * @brief Constructor. Initializes the variables and aligns the caption to the middle of the label.
 		 **/
-		MultilineLabel(const string caption = "");
+		MultilineLabel(const string & caption = "");
 
 		/**
 		 * @brief Deconstructor. Does nothing.
@@ -34,20 +34,10 @@ namespace love
 		virtual ~MultilineLabel();
 
 		/**
-		 * gcn::Label functions that should be documented:
-		 * setCaption(caption)
-		 * setSize(width, height)
-		 * setWidth(width)
-		 * setHeight(height)
-		 * setBorderSize(size)
-		 */
-
-		/**
 		 * @param caption The text in the multiline label.
 		 * @brief Sets the caption.
 		 **/
 		virtual void setCaption(const string & caption);
-		virtual void setCaption(const char * caption);
 
 		/**
 		 * @return The new height.

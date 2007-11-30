@@ -2,10 +2,10 @@
 
 namespace love
 {
-	TextField::TextField(const char * text)
+	TextField::TextField(const string & text) : gcn::TextField(text)
 	{
-		gcn::TextField();
-		gcn::TextField::setText(text);
+		//gcn::TextField();
+		//gcn::TextField::setText(text);
 	}
 
 	TextField::~TextField()
@@ -31,12 +31,12 @@ namespace love
 		gcn::TextField::setBorderSize(size);
 	}
 
-	void TextField::setText(const char * text)
+	void TextField::setText(const string & text)
 	{
 		gcn::TextField::setText(text);
 	}
 
-	void TextField::setName(const char * name)
+	void TextField::setName(const string & name)
 	{
 		gcn::TextField::setActionEventId(name);
 	}
@@ -46,22 +46,22 @@ namespace love
 		gcn::TextField::setCaretPosition(position);
 	}
 
-	void TextField::setBackgroundColor(const pAbstractColor * color)
+	void TextField::setBackgroundColor(const pAbstractColor & color)
 	{
 		GUIElement::setBackgroundColor(color);
 	}
 
-	void TextField::setActiveColor(const pAbstractColor * color)
+	void TextField::setActiveColor(const pAbstractColor & color)
 	{
-		activeColor = (*color);
+		activeColor = color;
 	}
 
-	void TextField::setActiveBackgroundColor(const pAbstractColor * color)
+	void TextField::setActiveBackgroundColor(const pAbstractColor & color)
 	{
-		activeBackgroundColor = (*color);
+		activeBackgroundColor = color;
 	}
 
-	void TextField::setFont(const pAbstractFont * font)
+	void TextField::setFont(const pAbstractFont & font)
 	{
 		GUIElement::setFont(font);
 		gcn::TextField::setFont(this->font.get());
@@ -82,14 +82,14 @@ namespace love
 		return gcn::TextField::getBorderSize();
 	}
 
-	const char * TextField::getText()
+	const string & TextField::getText()
 	{
-		return gcn::TextField::getText().c_str();
+		return gcn::TextField::getText();
 	}
 
-	const char * TextField::getName()
+	const string & TextField::getName()
 	{
-		return gcn::TextField::getActionEventId().c_str();
+		return gcn::TextField::getActionEventId();
 	}
 
 	unsigned int TextField::getCaretPosition()

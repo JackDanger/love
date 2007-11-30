@@ -16,7 +16,7 @@ namespace love
 	class Label : public gcn::Label, public GUIElement
 	{
 	protected:
-		pAbstractImage background;
+		pAbstractImage backgroundImage;
 		int verticalAlignment;
 
 	public:
@@ -24,7 +24,7 @@ namespace love
 		 * @param caption The label's caption.
 		 * @brief Constructor. Initializes the variables and aligns the caption to the middle of the label.
 		 **/
-		Label(const string caption = "");
+		Label(const string & caption = "");
 
 		/**
 		 * @brief Deconstructor. Does nothing.
@@ -60,19 +60,19 @@ namespace love
 		 * @param caption The text in the label.
 		 * @brief Sets the caption of the label.
 		 **/
-		virtual void setCaption(const char * caption);
+		virtual void setCaption(const string & caption);
 
 		/**
 		 * @param color An AbstractColor.
 		 * @brief Sets the current background color.
 		 **/
-		virtual void setBackgroundColor(const pAbstractColor * color);
+		virtual void setBackgroundColor(const pAbstractColor & color);
 
 		/**
 		 * @param font An AbstractFont.
 		 * @brief Sets the current font.
 		 **/
-		virtual void setFont(const pAbstractFont * font);
+		virtual void setFont(const pAbstractFont & font);
 
 		/**
 		 * @param alignment The horizontal alignment (left, right, center).
@@ -90,7 +90,7 @@ namespace love
 		 * @param color An AbstractImage object.
 		 * @brief Sets the background.
 		 **/
-		virtual void setBackground(const pAbstractImage * image);
+		virtual void setBackgroundImage(const pAbstractImage & image);
 
 		/**
 		 * @return The width of the Label.
@@ -114,7 +114,7 @@ namespace love
 		 * @return The current caption.
 		 * @brief Returns the Label's caption.
 		 **/
-		virtual const char * getCaption();
+		virtual const string & getCaption();
 
 		/**
 		 * @return An AbstractColor.
@@ -126,7 +126,7 @@ namespace love
 		 * @return An AbstractImage.
 		 * @brief Gets the current background.
 		 **/
-		virtual pAbstractImage getBackground();
+		virtual pAbstractImage getBackgroundImage();
 
 		/**
 		 * @return An AbstractFont.

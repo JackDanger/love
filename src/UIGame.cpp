@@ -148,30 +148,30 @@ namespace love
 		// error box
 		error = new Menu(defaultFont, white);
 		error->setSize((int)errorBackground->getWidth(), (int)errorBackground->getHeight());
-		error->setBackground(&errorBackground);
+		error->setBackground(errorBackground);
 		
 		label = error->addLabel("An error has occurred");
-		label->setPosition(24, 69); label->setFont(&titleFont); label->adjustSize();
+		label->setPosition(24, 69); label->setFont(titleFont); label->adjustSize();
 		
-		label = error->addImage(&line);
+		label = error->addImage(line);
 		label->setPosition(24, 87);
 		
 		errorText = error->addMultilineLabel("");
 		errorText->setPosition(24, 102); errorText->setSize(358, 202); errorText->align(Text::LOVE_ALIGN_LEFT); errorText->valign(Text::LOVE_ALIGN_TOP);
 		
 		button = error->addButton("CORE_ERROR_RESTART", "  Restart");
-		button->setDefaultImage(&buttonDefault); button->setHoverImage(&buttonHover); button->setPressedImage(&buttonPressed);
-		button->setColor(&buttonColor); button->setHoverColor(&white);
+		button->setDefaultImage(buttonDefault); button->setHoverImage(buttonHover); button->setPressedImage(buttonPressed);
+		button->setColor(buttonColor); button->setHoverColor(white);
 		button->setPosition(141, 333); button->align(Text::LOVE_ALIGN_LEFT); button->adjustSize();
 		
 		button = error->addButton("CORE_ERROR_CONTINUE", "  Continue");
-		button->setDefaultImage(&buttonDefault); button->setHoverImage(&buttonHover); button->setPressedImage(&buttonPressed);
-		button->setColor(&buttonColor); button->setHoverColor(&white);
+		button->setDefaultImage(buttonDefault); button->setHoverImage(buttonHover); button->setPressedImage(buttonPressed);
+		button->setColor(buttonColor); button->setHoverColor(white);
 		button->setPosition(230, 333); button->align(Text::LOVE_ALIGN_LEFT); button->adjustSize();
 		
 		button = error->addButton("CORE_ERROR_QUIT", "  Quit");
-		button->setDefaultImage(&buttonQuit); button->setHoverImage(&buttonHover); button->setPressedImage(&buttonPressed);
-		button->setColor(&buttonColor); button->setHoverColor(&white);
+		button->setDefaultImage(buttonQuit); button->setHoverImage(buttonHover); button->setPressedImage(buttonPressed);
+		button->setColor(buttonColor); button->setHoverColor(white);
 		button->setPosition(319, 333); button->align(Text::LOVE_ALIGN_LEFT); button->adjustSize();
 
 		error->show();
@@ -180,33 +180,33 @@ namespace love
 		// new pause menu
 		pause = new Menu(defaultFont, white);
 		pause->setSize((int)pauseBackground->getWidth(), (int)pauseBackground->getHeight());
-		pause->setBackground(&pauseBackground);
+		pause->setBackground(pauseBackground);
 
 		pauseLabel = pause->addLabel("Game paused");
-		pauseLabel->setPosition(33, 64); pauseLabel->setFont(&titleFont); pauseLabel->adjustSize();
+		pauseLabel->setPosition(33, 64); pauseLabel->setFont(titleFont); pauseLabel->adjustSize();
 
-		label = pause->addImage(&line);
+		label = pause->addImage(line);
 		label->setPosition(33, 81);
 
 		tabPause = pause->addButton("CORE_TAB_PAUSE", "Pause");
-		tabPause->setDefaultImage(&tabActive);
+		tabPause->setDefaultImage(tabActive);
 		tabPause->setPosition(45,25); tabPause->align(Text::LOVE_ALIGN_CENTER); tabPause->adjustSize();
 
 		tabSettings = pause->addButton("CORE_TAB_SETTINGS", "Settings");
-		tabSettings->setDefaultImage(&tabDefault); tabSettings->setHoverImage(&tabHover);
+		tabSettings->setDefaultImage(tabDefault); tabSettings->setHoverImage(tabHover);
 		tabSettings->setPosition(105,25); tabSettings->align(Text::LOVE_ALIGN_CENTER); tabSettings->adjustSize();
 
 		pauseMenu = pause->addMenu(AbstractMenu::LOVE_MENU_HORIZONTAL, 358, 167);
 		pauseMenu->setPosition(33,100);
 
-		label = pauseMenu->addImage(&imageBackground);
+		label = pauseMenu->addImage(imageBackground);
 		label->setPosition(0,0);
 
-		thumbLabel = pauseMenu->addImage(&imageDefault);
+		thumbLabel = pauseMenu->addImage(imageDefault);
 		thumbLabel->setPosition(4, 4);
 
 		gameTitle = pauseMenu->addMultilineLabel("Game Title", 143);
-		gameTitle->setPosition(215, 0); gameTitle->align(Text::LOVE_ALIGN_LEFT); gameTitle->setFont(&subtitleFont); gameTitle->adjustSize();
+		gameTitle->setPosition(215, 0); gameTitle->align(Text::LOVE_ALIGN_LEFT); gameTitle->setFont(subtitleFont); gameTitle->adjustSize();
 
 		gameCreator = pauseMenu->addMultilineLabel("by Unknown", 143);
 		gameCreator->setPosition(215, 8 + gameTitle->getHeight()); gameCreator->align(Text::LOVE_ALIGN_LEFT); gameCreator->adjustSize();
@@ -217,42 +217,42 @@ namespace love
 		settingsMenu->setPosition(33,100);
 
 		settingsFullscreen = settingsMenu->addCheckBox("CORE_SETTINGS_FULLSCREEN", "  Fullscreen");
-		settingsFullscreen->setDefaultImage(&checkBoxDefault); settingsFullscreen->setHoverImage(&checkBoxHover); settingsFullscreen->setMarkedImage(&checkBoxMarked);
-		settingsFullscreen->setColor(&buttonColor); settingsFullscreen->setHoverColor(&white);  
+		settingsFullscreen->setDefaultImage(checkBoxDefault); settingsFullscreen->setHoverImage(checkBoxHover); settingsFullscreen->setMarkedImage(checkBoxMarked);
+		settingsFullscreen->setColor(buttonColor); settingsFullscreen->setHoverColor(white);  
 		settingsFullscreen->setPosition(24,8); settingsFullscreen->adjustSize();
 
 		settingsVSync = settingsMenu->addCheckBox("CORE_SETTINGS_FULLSCREEN", "  Vertical Sync");
-		settingsVSync->setDefaultImage(&checkBoxDefault); settingsVSync->setHoverImage(&checkBoxHover); settingsVSync->setMarkedImage(&checkBoxMarked);
-		settingsVSync->setColor(&buttonColor); settingsVSync->setHoverColor(&white);  
+		settingsVSync->setDefaultImage(checkBoxDefault); settingsVSync->setHoverImage(checkBoxHover); settingsVSync->setMarkedImage(checkBoxMarked);
+		settingsVSync->setColor(buttonColor); settingsVSync->setHoverColor(white);  
 		settingsVSync->setPosition(24,33); settingsVSync->adjustSize();
 
-		label = settingsMenu->addImage(&line);
+		label = settingsMenu->addImage(line);
 		label->setPosition(0, 60);
 
 		label = settingsMenu->addLabel("Sound Volume");
 		label->setPosition(24, 90); label->adjustSize();
 
 		settingsSound = settingsMenu->addSlider("CORE_SETTINGS_SOUND", Slider::LOVE_SLIDER_HORIZONTAL, 0, 100);
-		settingsSound->setBackgroundImage(&sliderBar); settingsSound->setMarkerImage(&slider); settingsSound->adjustSize();
+		settingsSound->setBackgroundImage(sliderBar); settingsSound->setMarkerImage(slider); settingsSound->adjustSize();
 		settingsSound->setPosition(140, 90); settingsSound->setBorderSize(0);
 
 		label = settingsMenu->addLabel("Music Volume");
 		label->setPosition(24, 120); label->adjustSize();
 
 		settingsMusic = settingsMenu->addSlider("CORE_SETTINGS_MUSIC", Slider::LOVE_SLIDER_HORIZONTAL, 0, 100);
-		settingsMusic->setBackgroundImage(&sliderBar); settingsMusic->setMarkerImage(&slider); settingsMusic->adjustSize();
+		settingsMusic->setBackgroundImage(sliderBar); settingsMusic->setMarkerImage(slider); settingsMusic->adjustSize();
 		settingsMusic->setPosition(140, 120); settingsMusic->setBorderSize(0);
 
 		settingsMenu->hide();
 
 		cancelButton = pause->addButton("CORE_CANCEL", "  Quit");
-		cancelButton->setDefaultImage(&buttonDefault); cancelButton->setHoverImage(&buttonHover); cancelButton->setPressedImage(&buttonPressed);
-		cancelButton->setColor(&quitColor); cancelButton->setHoverColor(&white);  
+		cancelButton->setDefaultImage(buttonDefault); cancelButton->setHoverImage(buttonHover); cancelButton->setPressedImage(buttonPressed);
+		cancelButton->setColor(quitColor); cancelButton->setHoverColor(white);  
 		cancelButton->setPosition(24, 287); cancelButton->align(Text::LOVE_ALIGN_LEFT); cancelButton->adjustSize();
 
 		okButton = pause->addButton("CORE_OK", "  Resume");
-		okButton->setDefaultImage(&buttonDefault); okButton->setHoverImage(&buttonHover); okButton->setPressedImage(&buttonPressed);
-		okButton->setColor(&buttonColor); okButton->setHoverColor(&white);
+		okButton->setDefaultImage(buttonDefault); okButton->setHoverImage(buttonHover); okButton->setPressedImage(buttonPressed);
+		okButton->setColor(buttonColor); okButton->setHoverColor(white);
 		okButton->setPosition(316, 287); okButton->align(Text::LOVE_ALIGN_LEFT); okButton->adjustSize();
 
 		pause->setX( (core->display->getWidth() / 2) - (pause->getWidth() / 2) );
@@ -351,10 +351,10 @@ namespace love
 		core->current = this;
 
 		//grapical stuff
-		tabPause->setDefaultImage(&tabActive);
-		tabPause->setHoverImage(0);
-		tabSettings->setDefaultImage(&tabDefault);
-		tabSettings->setHoverImage(&tabHover);
+		tabPause->setDefaultImage(tabActive);
+		tabPause->setHoverImage(tabActive);
+		tabSettings->setDefaultImage(tabDefault);
+		tabSettings->setHoverImage(tabHover);
 		okButton->setCaption("  Resume");
 		cancelButton->setCaption("  Quit");
 		settingsMenu->hide();
@@ -362,11 +362,10 @@ namespace love
 
 		pauseLabel->setCaption("Game paused"); pauseLabel->adjustSize();
 		if(previous->config->getThumb() != 0)
-		{
-			thumbLabel->setBackground(&previous->config->getThumb()); thumbLabel->adjustSize();
-		}
+			thumbLabel->setBackgroundImage(previous->config->getThumb());
 		else
-			thumbLabel->setBackground(&imageDefault); thumbLabel->adjustSize();
+			thumbLabel->setBackgroundImage(imageDefault);
+		thumbLabel->adjustSize();
 		gameTitle->setCaption(previous->config->getTitle());
 		gameTitle->adjustSize();
 		gameCreator->setCaption(string("by ") + previous->config->getAuthor());
@@ -404,10 +403,10 @@ namespace love
 		}
 		else
 		{
-			tabPause->setDefaultImage(&tabDefault);
-			tabPause->setHoverImage(&tabHover);
-			tabSettings->setDefaultImage(&tabActive);
-			tabSettings->setHoverImage(0);
+			tabPause->setDefaultImage(tabDefault);
+			tabPause->setHoverImage(tabHover);
+			tabSettings->setDefaultImage(tabActive);
+			tabSettings->setHoverImage(tabActive);
 			pauseLabel->setCaption("Settings");
 			pauseLabel->adjustSize();
 			okButton->setCaption("  Ok");
@@ -422,10 +421,10 @@ namespace love
 	{
 		if(mode == MODE_SETTINGS)
 		{
-			tabPause->setDefaultImage(&tabActive);
-			tabPause->setHoverImage(0);
-			tabSettings->setDefaultImage(&tabDefault);
-			tabSettings->setHoverImage(&tabHover);
+			tabPause->setDefaultImage(tabActive);
+			tabPause->setHoverImage(tabActive);
+			tabSettings->setDefaultImage(tabDefault);
+			tabSettings->setHoverImage(tabHover);
 			pauseLabel->setCaption("Game paused");
 			pauseLabel->adjustSize();
 			okButton->setCaption("  Resume");

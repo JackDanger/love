@@ -54,15 +54,15 @@ namespace love
 		gcn::Container::setY(y);
 	}
 
-	void Menu::setFont(const pAbstractFont * font)
+	void Menu::setFont(const pAbstractFont & font)
 	{
-		GUIElement::setFont(font);
+		AbstractMenu::setFont(font);
 		gcn::Container::setFont(this->font.get());
 	}
 
-	void Menu::setBackgroundColor(const pAbstractColor * color)
+	void Menu::setBackgroundColor(const pAbstractColor & color)
 	{
-		GUIElement::setBackgroundColor(color);
+		AbstractMenu::setBackgroundColor(color);
 	}
 
 	int Menu::getWidth()
@@ -97,7 +97,7 @@ namespace love
 
 	pAbstractColor Menu::getBackgroundColor()
 	{
-		return GUIElement::getBackgroundColor();
+		return AbstractMenu::getBackgroundColor();
 	}
 
 	void Menu::adjustSize()
@@ -109,7 +109,7 @@ namespace love
 	void Menu::adjustWidth()
 	{
 		int width = 0;
-		std::list<Widget *>::iterator iter;
+		std::list<gcn::Widget *>::iterator iter;
 
 		switch(type)
 		{
@@ -152,7 +152,7 @@ namespace love
 	void Menu::adjustHeight()
 	{
 		int height = 0;
-		std::list<Widget *>::iterator iter;
+		std::list<gcn::Widget *>::iterator iter;
 
 		switch(type)
 		{
@@ -195,7 +195,7 @@ namespace love
 	int Menu::adjustContent()
 	{
 		int size = 0;
-		std::list<Widget *>::iterator iter;
+		std::list<gcn::Widget *>::iterator iter;
 
 		switch(type)
 		{
@@ -255,7 +255,7 @@ namespace love
 
 	void Menu::positionItem(gcn::Widget * item)
 	{
-		std::list<Widget *>::iterator iter;
+		std::list<gcn::Widget *>::iterator iter;
 
 		switch(type)
 		{

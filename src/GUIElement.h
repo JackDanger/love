@@ -39,11 +39,11 @@ namespace love
 		GUIElement();
 		virtual ~GUIElement();
 
-		virtual void setColor(const pAbstractColor * color);
-		virtual void setBackgroundColor(const pAbstractColor * color);
-		virtual void setBorderColor(const pAbstractColor * color);
+		virtual void setColor(const pAbstractColor & color);
+		virtual void setBackgroundColor(const pAbstractColor & color);
+		virtual void setBorderColor(const pAbstractColor & color);
 
-		virtual void setFont(const pAbstractFont * font);
+		virtual void setFont(const pAbstractFont & font);
 
 		virtual pAbstractColor getColor();
 		virtual pAbstractColor getBackgroundColor();

@@ -69,28 +69,28 @@ namespace love
 		gcn::Slider::setValue(value);
 	}
 
-	void Slider::setName(const char * name)
+	void Slider::setName(const string & name)
 	{
 		gcn::Slider::setActionEventId(name);
 	}
 
-	void Slider::setBackgroundColor(const pAbstractColor * color)
+	void Slider::setBackgroundColor(const pAbstractColor & color)
 	{
 		GUIElement::setBackgroundColor(color);
 	}
 
-	void Slider::setMarkerImage(const pAbstractImage * image)
+	void Slider::setMarkerImage(const pAbstractImage & image)
 	{
-		markerImage = (*image);
+		markerImage = image;
 		setMarkerLength((int)markerImage->getWidth());
 	}
 
-	void Slider::setBackgroundImage(const pAbstractImage * image)
+	void Slider::setBackgroundImage(const pAbstractImage & image)
 	{
-		backgroundImage = (*image);
+		backgroundImage = image;
 	}
 
-	void Slider::setFont(const pAbstractFont * font)
+	void Slider::setFont(const pAbstractFont & font)
 	{
 		GUIElement::setFont(font);
 	}
@@ -140,9 +140,9 @@ namespace love
 		return gcn::Slider::getValue();
 	}
 
-	const char * Slider::getName()
+	const string & Slider::getName()
 	{
-		return gcn::Slider::getActionEventId().c_str();
+		return gcn::Slider::getActionEventId();
 	}
 
 	pAbstractColor Slider::getBackgroundColor()

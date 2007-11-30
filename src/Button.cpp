@@ -2,13 +2,8 @@
 
 namespace love
 {
-	Button::Button(const string caption)
+	Button::Button(const string & caption) : gcn::Button(caption)
 	{
-		gcn::Button();
-
-		gcn::Button::setCaption(string(caption));
-		//setSize(getFont()->getWidth(caption),getFont()->getHeight());
-
 		setBaseColor(gcn::Color(0,0,0,255));
 		setBorderSize(0);
 
@@ -39,12 +34,12 @@ namespace love
 		gcn::Button::setBorderSize(size);
 	}
 
-	void Button::setCaption(const char * caption)
+	void Button::setCaption(const string & caption)
 	{
-		gcn::Button::setCaption(string(caption));
+		gcn::Button::setCaption(caption);
 	}
 
-	void Button::setName(const char * name)
+	void Button::setName(const string & name)
 	{
 		gcn::Button::setActionEventId(name);
 	}
@@ -71,104 +66,50 @@ namespace love
 		verticalAlignment = alignment;
 	}
 
-	void Button::setBackgroundColor(const pAbstractColor * color)
+	void Button::setBackgroundColor(const pAbstractColor & color)
 	{
 		GUIElement::setBackgroundColor(color);
 	}
 
-	void Button::setHoverColor(const pAbstractColor * color)
+	void Button::setHoverColor(const pAbstractColor & color)
 	{
-		if(color == 0)
-			hoverColor.reset();
-		else
-			hoverColor = *color;
+		hoverColor = color;
 	}
 
-	void Button::setPressedColor(const pAbstractColor * color)
+	void Button::setPressedColor(const pAbstractColor & color)
 	{
-		if(color == 0)
-			pressedColor.reset();
-		else
-			pressedColor = *color;
+		pressedColor = color;
 	}
 
-	void Button::setAllColors(const pAbstractColor * color)
+	void Button::setHoverBackgroundColor(const pAbstractColor & color)
 	{
-		if(color == 0)
-		{
-			this->color.reset();
-			hoverColor.reset();
-			hoverColor.reset();
-		}
-		else
-		{
-			this->color = *color;
-			hoverColor = *color;
-			pressedColor = *color;
-		}
+		hoverBackgroundColor = color;
 	}
 
-	void Button::setHoverBackgroundColor(const pAbstractColor * color)
+	void Button::setPressedBackgroundColor(const pAbstractColor & color)
 	{
-		if(color == 0)
-			hoverBackgroundColor.reset();
-		else
-			hoverBackgroundColor = *color;
+		pressedBackgroundColor = color;
 	}
 
-	void Button::setPressedBackgroundColor(const pAbstractColor * color)
+	void Button::setDefaultImage(const pAbstractImage & image)
 	{
-		if(color == 0)
-			pressedBackgroundColor.reset();
-		else
-			pressedBackgroundColor = *color;
+		defaultImage = image;
 	}
 
-	void Button::setAllBackgroundColors(const pAbstractColor * color)
+	void Button::setHoverImage(const pAbstractImage & image)
 	{
-		if(color == 0)
-		{
-			backgroundColor.reset();
-			hoverBackgroundColor.reset();
-			pressedBackgroundColor.reset();
-		}
-		else
-		{
-			backgroundColor = *color;
-			hoverBackgroundColor = *color;
-			pressedBackgroundColor = *color;
-		}
+		hoverImage = image;
 	}
 
-	void Button::setDefaultImage(const pAbstractImage * image)
+	void Button::setPressedImage(const pAbstractImage & image)
 	{
-		if(image == 0)
-			defaultImage.reset();
-		else
-			defaultImage = (*image);
+		pressedImage = image;
 	}
 
-	void Button::setHoverImage(const pAbstractImage * image)
-	{
-		if(image == 0)
-			hoverImage.reset();
-		else
-			hoverImage = (*image);
-	}
-
-	void Button::setPressedImage(const pAbstractImage * image)
-	{
-		if(image == 0)
-			pressedImage.reset();
-		else
-			pressedImage = (*image);
-	}
-
-	void Button::setFont(const pAbstractFont * font)
+	void Button::setFont(const pAbstractFont & font)
 	{
 		GUIElement::setFont(font);
-		if(font != 0)
-			gcn::Button::setFont(this->font.get());
+		gcn::Button::setFont(this->font.get());
 	}
 
 	int Button::getWidth()
@@ -186,14 +127,14 @@ namespace love
 		return gcn::Button::getBorderSize();
 	}
 
-	const char * Button::getCaption()
+	const string & Button::getCaption()
 	{
-		return gcn::Button::getCaption().c_str();
+		return gcn::Button::getCaption();
 	}
 
-	const char * Button::getName()
+	const string & Button::getName()
 	{
-		return gcn::Button::getActionEventId().c_str();
+		return gcn::Button::getActionEventId();
 	}
 
 	pAbstractColor Button::getBackgroundColor()
@@ -219,6 +160,21 @@ namespace love
 	pAbstractColor Button::getPressedBackgroundColor()
 	{
 		return pressedBackgroundColor;
+	}
+
+	pAbstractImage Button::getDefaultImage()
+	{
+		return defaultImage;
+	}
+
+	pAbstractImage Button::getHoverImage()
+	{
+		return hoverImage;
+	}
+
+	pAbstractImage Button::getPressedImage()
+	{
+		return pressedImage;
 	}
 
 	pAbstractFont Button::getFont()

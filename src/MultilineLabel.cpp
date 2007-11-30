@@ -2,9 +2,8 @@
 
 namespace love
 {
-	MultilineLabel::MultilineLabel(const string caption) : Label(caption)
+	MultilineLabel::MultilineLabel(const string & caption) : Label(caption)
 	{
-		setCaption(caption);
 	}
 
 	MultilineLabel::~MultilineLabel()
@@ -18,14 +17,9 @@ namespace love
 		adjustContent();
 	}
 
-	void MultilineLabel::setCaption(const char * caption)
-	{
-		setCaption(string(caption));
-	}
-
 	int MultilineLabel::adjustContent()
 	{
-		const char * text = getCaption();
+		const char * text = getCaption().c_str();
 		vector<string> words;
 		vector<float> sizes;
 		float size = 0;
@@ -101,12 +95,12 @@ namespace love
 	{
 		int length, temp = 0;
 
-		if(background != 0)
+		if(backgroundImage != 0)
 		{
-			if(getWidth() < background->getWidth())
-				setWidth((int)background->getWidth());
-			if(getHeight() < background->getHeight())
-				setHeight((int)background->getHeight());
+			if(getWidth() < backgroundImage->getWidth())
+				setWidth((int)backgroundImage->getWidth());
+			if(getHeight() < backgroundImage->getHeight())
+				setHeight((int)backgroundImage->getHeight());
 		}
 
 		adjustContent();
@@ -122,7 +116,7 @@ namespace love
 		}
 
 		temp = (gcn::Label::getFont()->getHeight()) * (int)lines.size();
-		if(background == 0 || getHeight() < temp)
+		if(backgroundImage == 0 || getHeight() < temp)
 			setHeight(temp);
 	}
 
@@ -137,35 +131,35 @@ namespace love
 			graphics->fillRectangle(gcn::Rectangle(0,0,getWidth(),getHeight()));
 		}
 
-		if(background.get() != 0)
+		if(backgroundImage != 0)
 		{
 			switch(getAlignment())
 			{
 			default:
 			case gcn::Graphics::CENTER:
-				x = (int)((getWidth() / 2) - (background->getWidth() / 2));
+				x = (int)((getWidth() / 2) - (backgroundImage->getWidth() / 2));
 				break;
 			case gcn::Graphics::LEFT:
 				break;
 			case gcn::Graphics::RIGHT:
-				x = (int)(getWidth() - background->getWidth());
+				x = (int)(getWidth() - backgroundImage->getWidth());
 				break;
 			}
 			switch(verticalAlignment)
 			{
 			default:
 			case Text::LOVE_ALIGN_CENTER:
-				y = (int)((getHeight() / 2) - (background->getHeight() / 2));
+				y = (int)((getHeight() / 2) - (backgroundImage->getHeight() / 2));
 				break;
 			case Text::LOVE_ALIGN_TOP:
 				break;
 			case Text::LOVE_ALIGN_BOTTOM:
-				y = (int)(getHeight() - background->getHeight());
+				y = (int)(getHeight() - backgroundImage->getHeight());
 				break;
 			}
 
 			graphics->setColor(gcn::Color(0xFFFFFF)); // to remove the effects of the background color
-			background->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
+			backgroundImage->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
 		}
 
 		x = 0;

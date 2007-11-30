@@ -68,15 +68,15 @@ namespace love
 		gcn::Window::setTitleBarHeight(height);
 	}
 
-	void WindowMenu::setFont(const pAbstractFont * font)
+	void WindowMenu::setFont(const pAbstractFont & font)
 	{
-		GUIElement::setFont(font);
+		AbstractMenu::setFont(font);
 		gcn::Window::setFont(this->font.get());
 	}
 
-	void WindowMenu::setBackgroundColor(const pAbstractColor * color)
+	void WindowMenu::setBackgroundColor(const pAbstractColor & color)
 	{
-		GUIElement::setBackgroundColor(color);
+		AbstractMenu::setBackgroundColor(color);
 	}
 
 	int WindowMenu::getWidth()
@@ -121,7 +121,7 @@ namespace love
 
 	pAbstractColor WindowMenu::getBackgroundColor()
 	{
-		return GUIElement::getBackgroundColor();
+		return AbstractMenu::getBackgroundColor();
 	}
 
 	void WindowMenu::adjustSize()
@@ -133,7 +133,7 @@ namespace love
 	void WindowMenu::adjustWidth()
 	{
 		int width = 0;
-		std::list<Widget *>::iterator iter;
+		std::list<gcn::Widget *>::iterator iter;
 
 		switch(type)
 		{
@@ -176,7 +176,7 @@ namespace love
 	void WindowMenu::adjustHeight()
 	{
 		int height = 0;
-		std::list<Widget *>::iterator iter;
+		std::list<gcn::Widget *>::iterator iter;
 
 		switch(type)
 		{
@@ -220,7 +220,7 @@ namespace love
 	int WindowMenu::adjustContent()
 	{
 		int size = 0;
-		std::list<Widget *>::iterator iter;
+		std::list<gcn::Widget *>::iterator iter;
 
 		switch(type)
 		{
@@ -283,7 +283,7 @@ namespace love
 
 	void WindowMenu::positionItem(gcn::Widget * item)
 	{
-		std::list<Widget *>::iterator iter;
+		std::list<gcn::Widget *>::iterator iter;
 
 		switch(type)
 		{

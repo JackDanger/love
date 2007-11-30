@@ -34,27 +34,32 @@ namespace love
 		gcn::ListBox::setBorderSize(size);
 	}
 
-	void ListBox::setName(const char * name)
+	void ListBox::setName(const string & name)
 	{
 		gcn::ListBox::setActionEventId(name);
 	}
 
-	void ListBox::setBackgroundColor(const pAbstractColor * color)
+	void ListBox::setBackgroundColor(const pAbstractColor & color)
 	{
 		GUIElement::setBackgroundColor(color);
 	}
 
-	void ListBox::setSelectionColor(const pAbstractColor * color)
+	void ListBox::setSelectionColor(const pAbstractColor & color)
 	{
-		this->selectionColor = (*color);
+		this->selectionColor = color;
 	}
 
-	void ListBox::setSelectionBackgroundColor(const pAbstractColor * color)
+	void ListBox::setSelectionBackgroundColor(const pAbstractColor & color)
 	{
-		this->selectionBackgroundColor = (*color);
+		this->selectionBackgroundColor = color;
 	}
 
-	void ListBox::setFont(const pAbstractFont * font)
+	void ListBox::setBackgroundImage(const pAbstractImage & image)
+	{
+		backgroundImage = image;
+	}
+
+	void ListBox::setFont(const pAbstractFont & font)
 	{
 		GUIElement::setFont(font);
 		gcn::ListBox::setFont(this->font.get());
@@ -75,9 +80,9 @@ namespace love
 		return gcn::ListBox::getBorderSize();
 	}
 
-	const char * ListBox::getName()
+	const string & ListBox::getName()
 	{
-		return gcn::ListBox::getActionEventId().c_str();
+		return gcn::ListBox::getActionEventId();
 	}
 
 	pAbstractColor ListBox::getBackgroundColor()
@@ -85,14 +90,19 @@ namespace love
 		return GUIElement::getBackgroundColor();
 	}
 
-	pAbstractColor ListBox::getSeclectionColor()
+	pAbstractColor ListBox::getSelectionColor()
 	{
 		return selectionColor;
 	}
 
-	pAbstractColor ListBox::getSeclectionBackgroundColor()
+	pAbstractColor ListBox::getSelectionBackgroundColor()
 	{
 		return selectionBackgroundColor;
+	}
+
+	pAbstractImage ListBox::getBackgroundImage()
+	{
+		return backgroundImage;
 	}
 
 	pAbstractFont ListBox::getFont()
@@ -103,9 +113,17 @@ namespace love
 	void ListBox::adjustSize()
 	{
 		gcn::ListBox::adjustSize();
+
+		if(backgroundImage != 0)
+		{
+			if(getWidth() < backgroundImage->getWidth())
+				setWidth((int)backgroundImage->getWidth());
+			if(getHeight() < backgroundImage->getHeight())
+				setHeight((int)backgroundImage->getHeight());
+		}
 	}
 
-	void ListBox::add(const char * text)
+	void ListBox::add(const string & text)
 	{
 		list->add(text);
 	}
@@ -120,9 +138,9 @@ namespace love
 		list->clear();
 	}
 
-	const char * ListBox::getElementAt(int i)
+	string ListBox::getElementAt(int i)
 	{
-		return list->getElementAt(i).c_str();
+		return list->getElementAt(i);
 	}
 	
 	int ListBox::getSelected()
@@ -130,9 +148,9 @@ namespace love
 		return gcn::ListBox::getSelected();
 	}
 
-	const char * ListBox::getSelectedElement()
+	string ListBox::getSelectedElement()
 	{
-		return list->getElementAt(getSelected()).c_str();
+		return list->getElementAt(getSelected());
 	}
 
 	int ListBox::getNumberOfElements()
@@ -152,6 +170,12 @@ namespace love
 		// (almost) straight rip from gcn::ListBox::draw()
 		graphics->setColor(gcn::ListBox::getBackgroundColor());
 		graphics->fillRectangle(gcn::Rectangle(0, 0, getWidth(), getHeight()));
+
+		if(backgroundImage != 0)
+		{
+			graphics->setColor(gcn::Color(0xFFFFFF)); // to remove the effects of the background color
+			backgroundImage->render((float)graphics->getCurrentClipArea().x, (float)graphics->getCurrentClipArea().y);
+		}
 		
 		if (mListModel == NULL)
 		{
@@ -170,7 +194,7 @@ namespace love
 		{
 			if (i == mSelected)
 			{
-				graphics->setColor(getSelectionColor());
+				graphics->setColor(gcn::ListBox::getSelectionColor());
 				graphics->fillRectangle(gcn::Rectangle(0, y, getWidth(), fontHeight));
 				if(selectionColor != 0)
 					graphics->setColor(gcn::Color(selectionColor->getRed(),selectionColor->getGreen(),selectionColor->getBlue(),selectionColor->getAlpha()));

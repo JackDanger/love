@@ -2,10 +2,10 @@
 
 namespace love
 {
-	RadioButton::RadioButton(const string caption)
+	RadioButton::RadioButton(const string & caption) : gcn::RadioButton()
 	{
-		gcn::RadioButton();
 		gcn::RadioButton::setCaption(caption);
+		mHasMouse = false;
 	}
 
 	RadioButton::~RadioButton()
@@ -31,12 +31,12 @@ namespace love
 		gcn::RadioButton::setBorderSize(size);
 	}
 
-	void RadioButton::setCaption(const char * caption)
+	void RadioButton::setCaption(const string & caption)
 	{
 		gcn::RadioButton::setCaption(caption);
 	}
 
-	void RadioButton::setName(const char * name)
+	void RadioButton::setName(const string & name)
 	{
 		gcn::RadioButton::setActionEventId(name);
 	}
@@ -56,28 +56,37 @@ namespace love
 		this->verticalAlignment = alignment;
 	}
 
-	void RadioButton::setBackgroundColor(const pAbstractColor * color)
+	void RadioButton::setBackgroundColor(const pAbstractColor & color)
 	{
 		GUIElement::setBackgroundColor(color);
 	}
 
-	void RadioButton::setDefaultImage(const pAbstractImage * image)
+	void RadioButton::setHoverColor(const pAbstractColor & color)
 	{
-		if(image == 0)
-			defaultImage.reset();
-		else
-			defaultImage = *image;
+		hoverColor = color;
 	}
 
-	void RadioButton::setMarkedImage(const pAbstractImage * image)
+	void RadioButton::setMarkedColor(const pAbstractColor & color)
 	{
-		if(image == 0)
-			markedImage.reset();
-		else
-			markedImage = *image;
+		markedColor = color;
 	}
 
-	void RadioButton::setFont(const pAbstractFont * font)
+	void RadioButton::setDefaultImage(const pAbstractImage & image)
+	{
+		defaultImage = image;
+	}
+
+	void RadioButton::setHoverImage(const pAbstractImage & image)
+	{
+		hoverImage = image;
+	}
+
+	void RadioButton::setMarkedImage(const pAbstractImage & image)
+	{
+		markedImage = image;
+	}
+
+	void RadioButton::setFont(const pAbstractFont & font)
 	{
 		GUIElement::setFont(font);
 		gcn::RadioButton::setFont(this->font.get());
@@ -98,14 +107,14 @@ namespace love
 		return gcn::RadioButton::getBorderSize();
 	}
 
-	const char * RadioButton::getCaption()
+	const string & RadioButton::getCaption()
 	{
-		return gcn::RadioButton::getCaption().c_str();
+		return gcn::RadioButton::getCaption();
 	}
 
-	const char * RadioButton::getName()
+	const string & RadioButton::getName()
 	{
-		return gcn::RadioButton::getActionEventId().c_str();
+		return gcn::RadioButton::getActionEventId();
 	}
 
 	bool RadioButton::isMarked()
@@ -118,9 +127,24 @@ namespace love
 		return GUIElement::getBackgroundColor();
 	}
 
+	pAbstractColor RadioButton::getHoverColor()
+	{
+		return hoverColor;
+	}
+
+	pAbstractColor RadioButton::getMarkedColor()
+	{
+		return markedColor;
+	}
+
 	pAbstractImage RadioButton::getDefaultImage()
 	{
 		return defaultImage;
+	}
+
+	pAbstractImage RadioButton::getHoverImage()
+	{
+		return hoverImage;
 	}
 
 	pAbstractImage RadioButton::getMarkedImage()
@@ -140,7 +164,17 @@ namespace love
 
 	void RadioButton::draw(gcn::Graphics * graphics)
 	{
-		if(color != 0)
+		if(isMarked() && markedColor != 0)
+		{
+			setBaseColor(gcn::Color(markedColor->getRed(), markedColor->getGreen(), markedColor->getBlue(), markedColor->getAlpha()));
+			setForegroundColor(gcn::Color(markedColor->getRed(), markedColor->getGreen(), markedColor->getBlue(), markedColor->getAlpha()));
+		}
+		else if(mHasMouse && hoverColor != 0)
+		{
+			setBaseColor(gcn::Color(hoverColor->getRed(), hoverColor->getGreen(), hoverColor->getBlue(), hoverColor->getAlpha()));
+			setForegroundColor(gcn::Color(hoverColor->getRed(), hoverColor->getGreen(), hoverColor->getBlue(), hoverColor->getAlpha()));
+		}
+		else if(color != 0)
 		{
 			setBaseColor(gcn::Color(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha()));
 			setForegroundColor(gcn::Color(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha()));
@@ -178,6 +212,11 @@ namespace love
 				pad = (graphics->getCurrentClipArea().height / 2) - (int)(markedImage->getHeight() / 2);
 				markedImage->render((float)graphics->getCurrentClipArea().x + pad, (float)graphics->getCurrentClipArea().y + pad);
 			}
+			else if(mHasMouse && hoverImage != 0)
+			{
+				pad = (graphics->getCurrentClipArea().height / 2) - (int)(hoverImage->getHeight() / 2);
+				hoverImage->render((float)graphics->getCurrentClipArea().x + pad, (float)graphics->getCurrentClipArea().y + pad);
+			}
 			else
 			{
 				pad = (graphics->getCurrentClipArea().height / 2) - (int)(defaultImage->getHeight() / 2);
@@ -186,5 +225,15 @@ namespace love
 		}
 		else
 			gcn::RadioButton::drawBox(graphics);
+	}
+
+	void RadioButton::mouseEntered(gcn::MouseEvent & mouseEvent)
+	{
+		mHasMouse = true;
+	}
+
+	void RadioButton::mouseExited(gcn::MouseEvent & mouseEvent)
+	{
+		mHasMouse = false;
 	}
 }

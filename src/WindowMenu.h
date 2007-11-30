@@ -33,8 +33,8 @@ namespace love
 		virtual void setCaption(const char * caption);
 		virtual void setTitleBarHeight(unsigned int height);
 
-		virtual void setFont(const pAbstractFont * font);
-		virtual void setBackgroundColor(const pAbstractColor * color);
+		virtual void setFont(const pAbstractFont & font);
+		virtual void setBackgroundColor(const pAbstractColor & color);
 
 		virtual int getWidth();
 		virtual int getHeight();

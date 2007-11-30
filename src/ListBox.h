@@ -21,6 +21,7 @@ namespace love
 	{
 	protected:
 		GUIList * list;
+		pAbstractImage backgroundImage;
 		pAbstractColor selectionColor;
 		pAbstractColor selectionBackgroundColor;
 
@@ -32,33 +33,35 @@ namespace love
 		virtual void setWidth(int width);
 		virtual void setHeight(int height);
 		virtual void setBorderSize(unsigned int size);
-		virtual void setName(const char * name);
+		virtual void setName(const string & name);
 
-		virtual void setBackgroundColor(const pAbstractColor * color);
-		virtual void setSelectionColor(const pAbstractColor * color);
-		virtual void setSelectionBackgroundColor(const pAbstractColor * color);
+		virtual void setBackgroundColor(const pAbstractColor & color);
+		virtual void setSelectionColor(const pAbstractColor & color);
+		virtual void setSelectionBackgroundColor(const pAbstractColor & color);
+		virtual void setBackgroundImage(const pAbstractImage & image);
 
-		virtual void setFont(const pAbstractFont * font);
+		virtual void setFont(const pAbstractFont & font);
 
 		virtual int getWidth();
 		virtual int getHeight();
 		virtual unsigned int getBorderSize();
-		virtual const char * getName();
+		virtual const string & getName();
 
 		virtual pAbstractColor getBackgroundColor();
-		virtual pAbstractColor getSeclectionColor();
-		virtual pAbstractColor getSeclectionBackgroundColor();
+		virtual pAbstractColor getSelectionColor();
+		virtual pAbstractColor getSelectionBackgroundColor();
+		virtual pAbstractImage getBackgroundImage();
 
 		virtual pAbstractFont getFont();
 
 		virtual void adjustSize();
 
-		virtual void add(const char * text);
+		virtual void add(const string & text);
 		virtual void remove(int i);
 		virtual void clear();
-		virtual const char * getElementAt(int i);
+		virtual string getElementAt(int i);
 		virtual int getSelected();
-		virtual const char * getSelectedElement();
+		virtual string getSelectedElement();
 		virtual int getNumberOfElements();
 
 		virtual void draw(gcn::Graphics * graphics);

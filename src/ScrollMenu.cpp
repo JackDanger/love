@@ -50,15 +50,15 @@ namespace love
 		gcn::ScrollArea::setY(y);
 	}
 
-	void ScrollMenu::setFont(const pAbstractFont * font)
+	void ScrollMenu::setFont(const pAbstractFont & font)
 	{
-		GUIElement::setFont(font);
+		AbstractMenu::setFont(font);
 		gcn::ScrollArea::setFont(this->font.get());
 	}
 
-	void ScrollMenu::setBackgroundColor(const pAbstractColor * color)
+	void ScrollMenu::setBackgroundColor(const pAbstractColor& color)
 	{
-		GUIElement::setBackgroundColor(color);
+		AbstractMenu::setBackgroundColor(color);
 	}
 
 	int ScrollMenu::getWidth()
@@ -88,19 +88,19 @@ namespace love
 
 	pAbstractFont ScrollMenu::getFont()
 	{
-		return GUIElement::getFont();
+		return AbstractMenu::getFont();
 	}
 
 	pAbstractColor ScrollMenu::getBackgroundColor()
 	{
-		return GUIElement::getBackgroundColor();
+		return AbstractMenu::getBackgroundColor();
 	}
 
 	void ScrollMenu::adjustSize()
 	{
 		int width = 0;
 		int height = 0;
-		std::list<Widget *>::iterator iter;
+		std::list<gcn::Widget *>::iterator iter;
 
 		switch(type)
 		{
@@ -152,7 +152,7 @@ namespace love
 	void ScrollMenu::adjustWidth()
 	{
 		int width = 0;
-		std::list<Widget *>::iterator iter;
+		std::list<gcn::Widget *>::iterator iter;
 
 		switch(type)
 		{
@@ -195,7 +195,7 @@ namespace love
 	void ScrollMenu::adjustHeight()
 	{
 		int height = 0;
-		std::list<Widget *>::iterator iter;
+		std::list<gcn::Widget *>::iterator iter;
 
 		switch(type)
 		{
@@ -238,7 +238,7 @@ namespace love
 	int ScrollMenu::adjustContent()
 	{
 		int size = 0;
-		std::list<Widget *>::iterator iter;
+		std::list<gcn::Widget *>::iterator iter;
 
 		switch(type)
 		{
@@ -298,7 +298,7 @@ namespace love
 
 	void ScrollMenu::positionItem(gcn::Widget * item)
 	{
-		std::list<Widget *>::iterator iter;
+		std::list<gcn::Widget *>::iterator iter;
 
 		switch(type)
 		{

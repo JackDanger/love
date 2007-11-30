@@ -30,12 +30,12 @@ namespace love
 		gcn::CheckBox::setBorderSize(size);
 	}
 
-	void CheckBox::setCaption(const char * caption)
+	void CheckBox::setCaption(const string & caption)
 	{
 		gcn::CheckBox::setCaption(caption);
 	}
 
-	void CheckBox::setName(const char * name)
+	void CheckBox::setName(const string & name)
 	{
 		gcn::CheckBox::setActionEventId(name);
 	}
@@ -55,52 +55,37 @@ namespace love
 		this->verticalAlignment = alignment;
 	}
 
-	void CheckBox::setBackgroundColor(const pAbstractColor * color)
+	void CheckBox::setBackgroundColor(const pAbstractColor & color)
 	{
 		GUIElement::setBackgroundColor(color);
 	}
 
-	void CheckBox::setHoverColor(const pAbstractColor * color)
+	void CheckBox::setHoverColor(const pAbstractColor & color)
 	{
-		if(color == 0)
-			hoverColor.reset();
-		else
-			hoverColor = *color;
+		hoverColor = color;
 	}
 
-	void CheckBox::setMarkedColor(const pAbstractColor * color)
+	void CheckBox::setMarkedColor(const pAbstractColor & color)
 	{
-		if(color == 0)
-			markedColor.reset();
-		else
-			markedColor = *color;
+		markedColor = color;
 	}
 
-	void CheckBox::setDefaultImage(const pAbstractImage * image)
+	void CheckBox::setDefaultImage(const pAbstractImage & image)
 	{
-		if(image == 0)
-			defaultImage.reset();
-		else
-			defaultImage = *image;
+		defaultImage = image;
 	}
 
-	void CheckBox::setHoverImage(const pAbstractImage * image)
+	void CheckBox::setHoverImage(const pAbstractImage & image)
 	{
-		if(image == 0)
-			hoverImage.reset();
-		else
-			hoverImage = *image;
+		hoverImage = image;
 	}
 
-	void CheckBox::setMarkedImage(const pAbstractImage * image)
+	void CheckBox::setMarkedImage(const pAbstractImage & image)
 	{
-		if(image == 0)
-			markedImage.reset();
-		else
-			markedImage = *image;
+		markedImage = image;
 	}
 
-	void CheckBox::setFont(const pAbstractFont * font)
+	void CheckBox::setFont(const pAbstractFont & font)
 	{
 		GUIElement::setFont(font);
 		gcn::CheckBox::setFont(this->font.get());
@@ -121,14 +106,14 @@ namespace love
 		return gcn::CheckBox::getBorderSize();
 	}
 
-	const char * CheckBox::getCaption()
+	const string & CheckBox::getCaption()
 	{
-		return gcn::CheckBox::getCaption().c_str();
+		return gcn::CheckBox::getCaption();
 	}
 
-	const char * CheckBox::getName()
+	const string & CheckBox::getName()
 	{
-		return gcn::CheckBox::getActionEventId().c_str();
+		return gcn::CheckBox::getActionEventId();
 	}
 
 	bool CheckBox::isMarked()

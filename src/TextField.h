@@ -24,7 +24,7 @@ namespace love
 		 * @param text Text which is to be in the TextField.
 		 * @brief Constructor. Initiates the variables.
 		 **/
-		TextField(const char * text = "");
+		TextField(const string & text = "");
 
 		/**
 		 * @brief Deconstructor. Does nothing.
@@ -60,13 +60,13 @@ namespace love
 		 * @param text The text in the text field.
 		 * @brief Sets the text of the text field.
 		 **/
-		virtual void setText(const char * text);
+		virtual void setText(const string & text);
 
 		/**
 		 * @param text The new name.
 		 * @brief Sets the name of the text field (for event handling).
 		 **/
-		virtual void setName(const char * name);
+		virtual void setName(const string & name);
 
 		/**
 		 * @param text The new position.
@@ -78,25 +78,25 @@ namespace love
 		 * @param color An AbstractColor.
 		 * @brief Sets the current background color.
 		 **/
-		virtual void setBackgroundColor(const pAbstractColor * color);
+		virtual void setBackgroundColor(const pAbstractColor & color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the text color when the text field is active.
 		 **/
-		virtual void setActiveColor(const pAbstractColor * color);
+		virtual void setActiveColor(const pAbstractColor & color);
 
 		/**
 		 * @param color An AbstractColor object.
 		 * @brief Sets the background color when the text field is active.
 		 **/
-		virtual void setActiveBackgroundColor(const pAbstractColor * color);
+		virtual void setActiveBackgroundColor(const pAbstractColor & color);
 
 		/**
 		 * @param font An AbstractFont.
 		 * @brief Sets the current font.
 		 **/
-		virtual void setFont(const pAbstractFont * font);
+		virtual void setFont(const pAbstractFont & font);
 
 		/**
 		 * @return The width of the TextField.
@@ -120,13 +120,13 @@ namespace love
 		 * @return The text in the TextField.
 		 * @brief Returns the text in the TextField.
 		 **/
-		virtual const char * getText();
+		virtual const string & getText();
 
 		/**
 		 * @return The TextField's name.
 		 * @brief Returns the TextField's name.
 		 **/
-		virtual const char * getName();
+		virtual const string & getName();
 
 		/**
 		 * @return The position.

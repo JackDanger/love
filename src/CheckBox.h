@@ -26,28 +26,28 @@ namespace love
 		virtual void setHeight(int height);
 		virtual void setBorderSize(unsigned int size);
 
-		virtual void setCaption(const char * caption);
-		virtual void setName(const char * name);
+		virtual void setCaption(const string & caption);
+		virtual void setName(const string & name);
 		virtual void setMarked(bool marked);
 
 		virtual void align(int alignment);
 		virtual void valign(int alignment);
 
-		virtual void setBackgroundColor(const pAbstractColor * color);
-		virtual void setHoverColor(const pAbstractColor * color);
-		virtual void setMarkedColor(const pAbstractColor * color);
-		virtual void setDefaultImage(const pAbstractImage * image);
-		virtual void setHoverImage(const pAbstractImage * image);
-		virtual void setMarkedImage(const pAbstractImage * image);
+		virtual void setBackgroundColor(const pAbstractColor & color);
+		virtual void setHoverColor(const pAbstractColor & color);
+		virtual void setMarkedColor(const pAbstractColor & color);
+		virtual void setDefaultImage(const pAbstractImage & image);
+		virtual void setHoverImage(const pAbstractImage & image);
+		virtual void setMarkedImage(const pAbstractImage & image);
 
-		virtual void setFont(const pAbstractFont * font);
+		virtual void setFont(const pAbstractFont & font);
 
 		virtual int getWidth();
 		virtual int getHeight();
 		virtual unsigned int getBorderSize();
 
-		virtual const char * getCaption();
-		virtual const char * getName();
+		virtual const string & getCaption();
+		virtual const string & getName();
 		virtual bool isMarked();
 
 		virtual pAbstractColor getBackgroundColor();

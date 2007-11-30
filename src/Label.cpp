@@ -2,12 +2,8 @@
 
 namespace love
 {
-	Label::Label(const string caption)
+	Label::Label(const string & caption) : gcn::Label(caption)
 	{
-		gcn::Label();
-
-		gcn::Label::setCaption(caption);
-
 		align(Text::LOVE_ALIGN_CENTER);
 		valign(Text::LOVE_ALIGN_CENTER);
 	}
@@ -36,17 +32,17 @@ namespace love
 		gcn::Label::setBorderSize(size);
 	}
 
-	void Label::setCaption(const char * caption)
+	void Label::setCaption(const string & caption)
 	{
-		gcn::Label::setCaption(string(caption));
+		gcn::Label::setCaption(caption);
 	}
 
-	void Label::setBackgroundColor(const pAbstractColor * color)
+	void Label::setBackgroundColor(const pAbstractColor & color)
 	{
 		GUIElement::setBackgroundColor(color);
 	}
 
-	void Label::setFont(const pAbstractFont * font)
+	void Label::setFont(const pAbstractFont & font)
 	{
 		GUIElement::setFont(font);
 		gcn::Label::setFont(this->font.get());
@@ -74,9 +70,9 @@ namespace love
 		verticalAlignment = alignment;
 	}
 
-	void Label::setBackground(const pAbstractImage * image)
+	void Label::setBackgroundImage(const pAbstractImage & image)
 	{
-		background = *image;
+		backgroundImage = image;
 	}
 
 	int Label::getWidth()
@@ -94,9 +90,9 @@ namespace love
 		return gcn::Label::getBorderSize();
 	}
 
-	const char * Label::getCaption()
+	const string & Label::getCaption()
 	{
-		return gcn::Label::getCaption().c_str();
+		return gcn::Label::getCaption();
 	}
 
 	pAbstractColor Label::getBackgroundColor()
@@ -104,9 +100,9 @@ namespace love
 		return GUIElement::getBackgroundColor();
 	}
 
-	pAbstractImage Label::getBackground()
+	pAbstractImage Label::getBackgroundImage()
 	{
-		return background;
+		return backgroundImage;
 	}
 
 	pAbstractFont Label::getFont()
@@ -119,12 +115,12 @@ namespace love
 		setWidth(gcn::Label::getFont()->getWidth(getCaption()));
 		setHeight(gcn::Label::getFont()->getHeight() + 2);
 
-		if(background != 0)
+		if(backgroundImage != 0)
 		{
-			if(getWidth() < background->getWidth())
-				setWidth((int)background->getWidth());
-			if(getHeight() < background->getHeight())
-				setHeight((int)background->getHeight());
+			if(getWidth() < backgroundImage->getWidth())
+				setWidth((int)backgroundImage->getWidth());
+			if(getHeight() < backgroundImage->getHeight())
+				setHeight((int)backgroundImage->getHeight());
 		}
 	}
 
@@ -141,35 +137,35 @@ namespace love
 			graphics->fillRectangle(gcn::Rectangle(0,0,getWidth(),getHeight()));
 		}
 
-		if(background != 0)
+		if(backgroundImage != 0)
 		{
 			switch(getAlignment())
 			{
 			default:
 			case gcn::Graphics::CENTER:
-				x = (int)((getWidth() / 2) - (background->getWidth() / 2));
+				x = (int)((getWidth() / 2) - (backgroundImage->getWidth() / 2));
 				break;
 			case gcn::Graphics::LEFT:
 				break;
 			case gcn::Graphics::RIGHT:
-				x = (int)(getWidth() - background->getWidth());
+				x = (int)(getWidth() - backgroundImage->getWidth());
 				break;
 			}
 			switch(verticalAlignment)
 			{
 			default:
 			case Text::LOVE_ALIGN_CENTER:
-				y = (int)((getHeight() / 2) - (background->getHeight() / 2));
+				y = (int)((getHeight() / 2) - (backgroundImage->getHeight() / 2));
 				break;
 			case Text::LOVE_ALIGN_TOP:
 				break;
 			case Text::LOVE_ALIGN_BOTTOM:
-				y = (int)(getHeight() - background->getHeight());
+				y = (int)(getHeight() - backgroundImage->getHeight());
 				break;
 			}
 
 			graphics->setColor(gcn::Color(0xFFFFFF)); // to remove the effects of the background color
-			background->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
+			backgroundImage->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
 		}
 
 		x = 0;

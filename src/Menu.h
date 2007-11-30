@@ -31,8 +31,8 @@ namespace love
 		virtual void setX(int x);
 		virtual void setY(int y);
 
-		virtual void setFont(const pAbstractFont * font);
-		virtual void setBackgroundColor(const pAbstractColor * color);
+		virtual void setFont(const pAbstractFont & font);
+		virtual void setBackgroundColor(const pAbstractColor & color);
 
 		virtual int getWidth();
 		virtual int getHeight();

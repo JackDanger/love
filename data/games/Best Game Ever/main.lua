@@ -66,11 +66,20 @@ main = {
 		
 		drop = menu:addDropDown("DROP YOUR PANTS");
 		drop:setButton(love.objects:newImage("dropdown.png"));
+		drop:setButtonHover(love.objects:newImage("dropdown_hover.png"));
 		drop:setButtonPressed(love.objects:newImage("dropdown_pressed.png"));
+		drop:setBackgroundImage(love.objects:newImage("slider_back.png"));
 		drop:add("one");
 		drop:add("two");
 		drop:add("four");
+		drop:setListImage(love.objects:newImage("zero.png"));
 		drop:setBackgroundColor(color["shiznet"]);
+		drop:setColor(color["white"]);
+		drop:setSelectedColor(color["black"]);
+		drop:setHoverBackgroundColor(color["black"]);
+		drop:adjustSize();
+		drop:setSelected(0);
+		drop:closeOnSelect(true);
 		
 		nested = menu:addMenu(love.menu_horizontal);
 		--nested:setFont(font["image"]);
@@ -94,7 +103,7 @@ main = {
 		nested:adjustSize();
 		nested:adjustContent();
 		
-		menu:addMultilineLabel("Just wanted to let you know that the previous example (the one with the radio buttons) uses the event system. GUIchan has a built-in group-system for dealing with radio buttons (seeing as you are only supposed to be able to select one at a time), but I thought that it would just add one more value to keep track of and doing it manually yields more control. ^-^\n(ps: you can click and drag this menu around [REMOVED])");
+		--menu:addMultilineLabel("Just wanted to let you know that the previous example (the one with the radio buttons) uses the event system. GUIchan has a built-in group-system for dealing with radio buttons (seeing as you are only supposed to be able to select one at a time), but I thought that it would just add one more value to keep track of and doing it manually yields more control. ^-^\n(ps: you can click and drag this menu around [REMOVED])");
 		
 		nested = menu:addMenu(love.menu_horizontal);
 		nested:setSpacing(5);
@@ -118,17 +127,8 @@ main = {
 		nested:adjustSize();
 		nested:adjustContent();
 		
-		--list = menu:addListBox("THEY SEE ME LISTING!");
-		--list:add("this");
-		--list:add("is");
-		--list:add("a");
-		--list:add("list");
-		--list:add("(also: sparta)");
-		--list:adjustSize();
-		--list:setBackgroundColor(color["shiznet"]);
-		--list:setSelectionColor(color["white"]);
-		--list:setSelectionBackgroundColor(list:getBackgroundColor());
-		--box = menu:addTextBox("BAWKZ", 100, 100);
+		box = menu:addTextBox("BAWKZ", 100, 100);
+		
 		nested = menu:addScrollMenu(love.menu_vertical, 200, 100);
 		nested:setColor(color["white"]);
 		nested:setBackgroundColor(color["halfshiz"]);
@@ -247,6 +247,7 @@ main = {
 			elseif e:getName() == "ADD_ANOTHER" then
 				print("Adding another button")
 				local b = menu:addButton("SHISLZLZLLZL","Fist");
+				menu:adjustSize(); -- this is magic
 			end
 			--print("This baby just received a GUIEvent (bn). GUIname is: " .. e:getName())
 		end
