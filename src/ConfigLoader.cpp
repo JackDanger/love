@@ -33,7 +33,8 @@ namespace love
 		if(filepath != "")
 		{
 			ifs = new ifstream (filepath.c_str());
-		}else
+		}
+		else
 		{
 			file->load();
 
@@ -75,33 +76,27 @@ namespace love
 				//find the type of value
 				if(value.compare("true") == 0 || value.compare("false") == 0)
 				{
-					if(boolean.count(key) != 0)
-						core->printf("ConfigLoader (Line %d): The key '%s' already exists.\n", line, key.c_str());
-						//printf("Config Loader (Line %d): The key '%s' already exists.\n", line, key.c_str());
+					if(boolean.count(key) == 0 && core->isVerbose())
+						core->printf("ConfigLoader (Line %d): Creating the config entry '%s'.\n", line, key.c_str());
+					
+					if(value.compare("true") == 0)
+						boolean[key] = true;
 					else
-					{
-						if(value.compare("true") == 0)
-							boolean[key] = true;
-						else
-							boolean[key] = false;
-					}
+						boolean[key] = false;
 				}
 				else if((int)value.find_first_of('"', 0) == 0 && value.find_last_of('"', value.size() - 1) == value.size() - 1)
 				{
-					if(text.count(key) != 0)
-						core->printf("ConfigLoader (Line %d): The key '%s' already exists.\n", line, key.c_str());
-						//printf("Config Loader (Line %d): The key '%s' already exists.\n", line, key.c_str());
-					else
-						text[key] = value.substr(1, value.size() - 2);
+					if(text.count(key) == 0 && core->isVerbose())
+						core->printf("ConfigLoader (Line %d): Creating the config entry '%s'.\n", line, key.c_str());
+					
+					text[key] = value.substr(1, value.size() - 2);
 				}
 				else //assumes number
 				{
-					//printf("Configloader: value =%s\n", value.c_str());
-					if(number.count(key) != 0)
-						core->printf("ConfigLoader (Line %d): The key '%s' already exists.\n", line, key.c_str());
-						//printf("Config Loader (Line %d): The key '%s' already exists.\n", line, key.c_str());
-					else
-						number[key] = atof(value.c_str());
+					if(number.count(key) == 0  && core->isVerbose())
+						core->printf("ConfigLoader (Line %d): Creating the config entry '%s'.\n", line, key.c_str());
+					
+					number[key] = atof(value.c_str());
 				}
 			}
 		}

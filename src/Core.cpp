@@ -13,6 +13,7 @@
 #include "Parameters.h"
 #include "Console.h"
 #include "ConfigLoader.h"
+#include "DefaultConfiguration.h"
 
 #include "AbstractFont.h"
 
@@ -29,7 +30,7 @@ namespace love
 {
 
 
-	Core::Core() : display(0), keyboard(0), mouse(0), timer(0), filesystem(0), current(0), uigame(0), verbose(false)
+	Core::Core() : display(0), keyboard(0), mouse(0), timer(0), filesystem(0), current(0), uigame(0), verbose(false), runningExternalGame(false)
 	{
 
 	}
@@ -67,6 +68,8 @@ namespace love
 	{
 		int status = LOVE_OK;
 
+		// Init filesystem
+
 		// Init all devices
 		status &= display->init();
 		status &= keyboard->init();
@@ -87,13 +90,26 @@ namespace love
 		core->configure(parameters);
 
 		// Do we have a love.conf override?
+		pDefaultConfiguration defaultConfig(new DefaultConfiguration());
 		config.reset<ConfigLoader>(new ConfigLoader(filesystem->getBase() + "data/love.conf"));
-		config->load();
+		defaultConfig->defaultSystemConfig(config); // load defaults
+		config->load(); // replace defaults with set values
 
 		// Change the display mode
-		display->tryChange(DisplayMode(800, 600, 32, false));
-		display->listener = this;
+		int w = 800;
+		int h = 600;
+		bool full = false;
+		if(config->isString("default_resolution"))
+		{
+			string res = config->getString("default_resolution");
+			w = atoi(res.substr(0, res.find('x')).c_str());
+			h = atoi(res.substr(res.find('x')+1).c_str());
+		}
+		if(config->isBool("fullscreen"))
+			full = config->getBool("fullscreen");
 
+		display->tryChange(DisplayMode(w, h, 32, full));
+		display->listener = this;
 
 		//addGame("neoftg", new NeoFontTexGame());
 		addGame("ftg", new FontTexGame());
@@ -112,9 +128,15 @@ namespace love
 		if(current == 0)
 			startGame("love-system-menu", false);
 
+		// Init the GUI
+		gui->init();
+		uigame = new UIGame();
+		uigame->init();
+
 		// Start param game, if we have that.
 		if(parameters->exists("game"))
 		{
+			runningExternalGame = true;
 			string source = parameters->get("game");
 			startGame(source);
 		}
@@ -123,15 +145,11 @@ namespace love
 		if(current == 0)
 			return LOVE_ERROR;
 
-		// add a default default font
-		pAbstractFont defaultFont = core->graphics->getFont("data/fonts/FreeSans.ttf", 14);
+		// Add a default font
+		string temp = filesystem->getBase();
+		pAbstractFont defaultFont = graphics->getFont("data/fonts/FreeSans.ttf", 14);
 		defaultFont->load();
 		graphics->setFont(defaultFont);
-
-		// GUI
-		gui->init();
-		uigame = new UIGame();
-		uigame->init();
 
 		return status;		
 	}
@@ -433,7 +451,7 @@ namespace love
 		string s(ftext);
 		s = s.substr(0, s.length() - 1);
 
-		if(uigame != 0 && uigame->isLoaded())
+		if(uigame != 0 && uigame->isLoaded() && current != 0)
 			uigame->showError(s.c_str());
 		puts(s.c_str());
 	}

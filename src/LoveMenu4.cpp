@@ -355,9 +355,11 @@ namespace love
 
 		if(last_game != "")
 		{
-			printf("***\n\nFound last game: %s ... exists: ", last_game.c_str());
+			if(core->isVerbose())
+				core->printf("***\n\nFound last game: %s ... exists: ", last_game.c_str());
 			bool e = list.seekGame(last_game, 0.75f);
-			printf("%i.\n", e);
+			if(core->isVerbose())
+				core->printf("%i.\n", e);
 		}
 
 		loaded = true;
@@ -435,6 +437,15 @@ namespace love
 			if(i != 0 && !i->isLoaded())
 				i->load();
 		}
+
+		// Go back to the last game
+		string last_game = "";
+
+		if(configLoader->isString("last_game"))
+			last_game = configLoader->getString("last_game");
+
+		if(last_game != "")
+			bool e = list.seekGame(last_game, 0.75f);
 	}
 
 

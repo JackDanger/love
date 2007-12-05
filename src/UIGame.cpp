@@ -6,6 +6,7 @@
 #include "AbstractDisplay.h"
 #include "AbstractImageDevice.h"
 #include "AbstractFileSystem.h"
+#include "DisplayMode.h"
 
 using boost::dynamic_pointer_cast;
 
@@ -44,10 +45,14 @@ namespace love
 		previous = 0;
 		top->clear();
 		core->gui->remove(top);
-		core->startGame("love-system-menu", false);
 
 		// Exits error mode.
 		mode = MODE_DEFAULT;
+
+		if(core->runningExternalGame)
+			core->quit();
+		else
+			core->startGame("love-system-menu", false);
 	}
 
 	void UIGame::saveSettings()
@@ -61,8 +66,12 @@ namespace love
 			core->config->addInt("sound_volume", (float)settingsAudioSound->getValue());
 			core->config->addInt("music_volume", (float)settingsAudioMusic->getValue());
 			core->config->addBool("mute", settingsAudioMute->isMarked());
-			core->config->addString("audio_quality", settingsAudioQuality->getSelectedElement());
-			core->config->addString("audio_latency", settingsAudioLatency->getSelectedElement());
+			string temp = settingsAudioQuality->getSelectedElement();
+			int num = atoi(temp.substr(0, temp.find(' ')).c_str()); // removes anything beyond the number
+			core->config->addInt("audio_quality", (float)num);
+			temp = settingsAudioLatency->getSelectedElement();
+			num = atoi(temp.substr(0, temp.find(' ')).c_str()); // ditto
+			core->config->addInt("audio_latency", (float)num);
 
 			core->config->addString("config_path", settingsPathsConfig->getText());
 			core->config->addString("resource_path", settingsPathsResource->getText());
@@ -424,8 +433,8 @@ namespace love
 		settingsAudioQuality->setPosition(24, 131); settingsAudioQuality->setPadding(5); settingsAudioQuality->setSpacing(5); settingsAudioQuality->adjustSize();
 		settingsAudioQuality->setBorderSize(1); settingsAudioQuality->closeOnSelect(true);
 		settingsAudioQuality->add("44100 kHz (high)");
-		settingsAudioQuality->add("other");
-		settingsAudioQuality->add("other");
+		settingsAudioQuality->add("22050 kHz");
+		settingsAudioQuality->add("0 kHz (impossible)");
 
 		label = settingsAudio->addLabel("Latency");
 		label->setPosition(24, 165);
@@ -439,8 +448,8 @@ namespace love
 		settingsAudioLatency->setPosition(24, 184); settingsAudioLatency->setPadding(5); settingsAudioLatency->setSpacing(5); settingsAudioLatency->adjustSize();
 		settingsAudioLatency->setBorderSize(1); settingsAudioLatency->closeOnSelect(true);
 		settingsAudioLatency->add("2048 ms");
-		settingsAudioLatency->add("other");
-		settingsAudioLatency->add("other");
+		settingsAudioLatency->add("1024 ms");
+		settingsAudioLatency->add("512 ms");
 
 		settingsAudio->show();
 
@@ -494,7 +503,6 @@ namespace love
 		settings->remove(boost::dynamic_pointer_cast<Menu, AbstractMenu>(settingsPaths).get());
 
 		settings->show();
-
 
 		return load();
 	}
@@ -643,21 +651,25 @@ namespace love
 			settingsMute->setMarked(core->config->getBool("mute"));
 			settingsAudioMute->setMarked(core->config->getBool("mute"));
 		}
-		if(core->config->isString("audio_quality"))
+		if(core->config->isInt("audio_quality"))
 		{
-			string temp = core->config->getString("audio_quality");
+			int num = core->config->getInt("audio_quality");
 			for(int i = 0; i < settingsAudioQuality->getNumberOfElements(); i++)
 			{
-				if(settingsAudioQuality->getElementAt(i) == temp)
+				string temp = settingsAudioQuality->getElementAt(i);
+				temp = temp.substr(0, temp.find(' '));
+				if(num == atoi(temp.c_str()))
 					settingsAudioQuality->setSelected(i);
 			}
 		}
-		if(core->config->isString("audio_latency"))
+		if(core->config->isInt("audio_latency"))
 		{
-			string temp = core->config->getString("audio_latency");
+			int num = core->config->getInt("audio_latency");
 			for(int i = 0; i < settingsAudioLatency->getNumberOfElements(); i++)
 			{
-				if(settingsAudioLatency->getElementAt(i) == temp)
+				string temp = settingsAudioLatency->getElementAt(i);
+				temp = temp.substr(0, temp.find(' '));
+				if(num == atoi(temp.c_str()))
 					settingsAudioLatency->setSelected(i);
 			}
 		}
@@ -922,6 +934,7 @@ namespace love
 
 		if(!(mode == MODE_ERROR) && previous != 0)
 			previous->displayModeChanged();
+
 		reloadGraphics();
 	}
 }

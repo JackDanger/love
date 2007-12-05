@@ -111,6 +111,10 @@ namespace love
 		// How many messages there should be
 		bool verbose;
 
+		// Running an "external game" (a game opened outside the menu)?
+		// If so, should quit the engine upon game quit.
+		bool runningExternalGame;
+
 		list<pLoadable> persistents;
 
 

@@ -265,6 +265,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\DefaultConfiguration.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Display.cpp"
 				>
 			</File>
@@ -756,6 +760,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Core.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\DefaultConfiguration.h"
 				>
 			</File>
 			<File
