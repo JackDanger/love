@@ -4,7 +4,6 @@
 #include "AbstractColor.h"
 #include "Color.h"
 #include "AnimatedColor.h"
-
 #include "AbstractImage.h"
 
 #include "AbstractFont.h"

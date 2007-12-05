@@ -1,7 +1,7 @@
 
 namespace love
 {
-	class Button : public gcn::Button, public GUIElement
+	class Button : public GUIElement
 	{
 	protected:
 	public:

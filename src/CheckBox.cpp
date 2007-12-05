@@ -159,6 +159,17 @@ namespace love
 	void CheckBox::adjustSize()
 	{
 		gcn::CheckBox::adjustSize();
+
+		int h = getHeight();
+		if(defaultImage != 0)
+			h = defaultImage->getHeight() > h ? (int)defaultImage->getHeight() : h;
+		if(hoverImage != 0)
+			h = hoverImage->getHeight() > h ? (int)hoverImage->getHeight() : h;
+		if(markedImage != 0)
+			h = markedImage->getHeight() > h ? (int)markedImage->getHeight() : h;
+
+		if(h > getHeight())
+			setHeight(h);
 	}
 
 	void CheckBox::draw(gcn::Graphics * graphics)

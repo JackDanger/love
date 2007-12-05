@@ -359,9 +359,39 @@ namespace love
 		if(!visible) return;
 
 		if(backgroundColor != 0)
-			gcn::ScrollArea::setBackgroundColor(gcn::Color(backgroundColor->getRed(), backgroundColor->getGreen(), backgroundColor->getBlue(), backgroundColor->getAlpha()));
+		{
+			//gcn::ScrollArea::setBackgroundColor(gcn::Color(backgroundColor->getRed(), backgroundColor->getGreen(), backgroundColor->getBlue(), backgroundColor->getAlpha()));
+			graphics->setColor(gcn::Color(backgroundColor->getRed(), backgroundColor->getGreen(), backgroundColor->getBlue(), backgroundColor->getAlpha()));
+			graphics->fillRectangle(gcn::Rectangle(0,0,getWidth(),getHeight()));
+		}
 
-		gcn::ScrollArea::draw(graphics);
+		if (mVBarVisible)
+		{
+			drawUpButton(graphics);
+			drawDownButton(graphics);
+			drawVBar(graphics);
+			drawVMarker(graphics);
+		}
+		
+		if (mHBarVisible)
+		{
+			drawLeftButton(graphics);
+			drawRightButton(graphics);
+			drawHBar(graphics);
+			drawHMarker(graphics);
+		}
+
+		int temp = getHorizontalScrollAmount();
+		graphics->pushClipArea(gcn::Rectangle(-temp, 0, getWidth() + temp, getHeight()));
+
+		graphics->setColor(gcn::Color(0xFF00FF));
+		graphics->fillRectangle(gcn::Rectangle(0,0,100,100));
+
+		drawChildren(graphics);
+
+		graphics->popClipArea();
+
+		//gcn::ScrollArea::draw(graphics);
 	}
 
 	void ScrollMenu::drawBorder(gcn::Graphics* graphics)

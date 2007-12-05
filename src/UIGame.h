@@ -7,6 +7,11 @@
 #include "GUIEvent.h"
 
 #include <boost/shared_ptr.hpp>
+#include <string>
+#include <map>
+
+using std::string;
+using std::map;
 
 namespace love
 {
@@ -32,25 +37,7 @@ namespace love
 		pAbstractFont pauseFont;
 
 		// Resources
-		pAbstractImage errorBackground;
-		pAbstractImage pauseBackground;
-		pAbstractImage buttonDefault;
-		pAbstractImage buttonHover;
-		pAbstractImage buttonPressed;
-		pAbstractImage buttonQuit;
-		pAbstractImage checkBoxDefault;
-		pAbstractImage checkBoxHover;
-		pAbstractImage checkBoxMarked;
-		pAbstractImage sliderBar;
-		pAbstractImage slider;
-		pAbstractImage dropDownBackground;
-		pAbstractImage dropDownButton;
-		pAbstractImage line;
-		pAbstractImage tabDefault;
-		pAbstractImage tabHover;
-		pAbstractImage tabActive;
-		pAbstractImage imageBackground;
-		pAbstractImage imageDefault;
+		map<string, pAbstractImage> images;
 
 		pAbstractFont titleFont;
 		pAbstractFont subtitleFont;
@@ -73,12 +60,40 @@ namespace love
 
 		Menu * error;
 		Menu * pause;
+		Menu * settings;
 
+		// pause-menu settings
 		pCheckBox settingsFullscreen;
 		pCheckBox settingsVSync;
-		pDropDown settingsResolution;
 		pSlider settingsSound;
 		pSlider settingsMusic;
+		pCheckBox settingsMute;
+
+
+		// main settings
+		pAbstractMenu settingsGeneral;
+		pButton generalTab;
+
+		pAbstractMenu settingsVideo;
+		pButton videoTab;
+		pCheckBox settingsVideoFullscreen;
+		pCheckBox settingsVideoVSync;
+		pDropDown settingsVideoResolution;
+
+		pAbstractMenu settingsAudio;
+		pButton audioTab;
+		pSlider settingsAudioSound;
+		pSlider settingsAudioMusic;
+		pCheckBox settingsAudioMute;
+		pDropDown settingsAudioQuality;
+		pDropDown settingsAudioLatency;
+
+		pAbstractMenu settingsPaths;
+		pButton pathsTab;
+		pTextField settingsPathsConfig;
+		pTextField settingsPathsResource;
+		pTextField settingsPathsGamedir;
+
 
 		int mode;
 

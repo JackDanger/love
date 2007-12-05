@@ -320,6 +320,15 @@ namespace love
 					return;
 				}
 			}
+			else
+			{
+				if(!uigame->isPaused())
+				{
+					uigame->showSettings();
+					keyboard->keyPressed(key);
+					return;
+				}
+			}
 			//startGame("love-system-menu", false);
 			break;
 		case LOVE_KEY_RETURN:

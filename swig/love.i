@@ -85,9 +85,9 @@
 #include "ListBox.h"
 #include "TextBox.h"
 #include "AbstractMenu.h"
-#include "Menu.h"
+//#include "Menu.h"
 #include "GUIContainer.h"
-#include "AbstractGUI.h"
+//#include "AbstractGUI.h"
 
 #include "Bezier.h"
 
@@ -128,7 +128,7 @@ namespace boost {
 
 // GUI
 %include "Padded.h"
-%include "GUIElement.h"
+%include "GUIElement.i"
 %include "Button.i"
 %include "DropDown.i"
 %include "Label.i"
@@ -140,9 +140,9 @@ namespace boost {
 %include "ListBox.i"
 %include "TextBox.i"
 %include "AbstractMenu.i"
-//%include "Menu.h"
-%include "GUIContainer.h"
-%include "AbstractGUI.h"
+//%include "Menu.h" // AbstractMenu should take care of all Menu needs
+%include "GUIContainer.i"
+//%include "AbstractGUI.h" // This is (apparently) not needed. Uncomment if death occurs.
 
 %include "ParticleSystem.h"
 

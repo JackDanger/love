@@ -1,7 +1,7 @@
 
 namespace love
 {
-	class CheckBox : public gcn::CheckBox, public GUIElement
+	class CheckBox : public GUIElement
 	{
 	protected:
 	public:

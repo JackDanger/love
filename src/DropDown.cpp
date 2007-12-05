@@ -140,19 +140,19 @@ namespace love
 		listImage = image;
 	}
 
-	void DropDown::setButton(const pAbstractImage & image)
+	void DropDown::setButtonImage(const pAbstractImage & image)
 	{
-		button = image;
+		buttonImage = image;
 	}
 
-	void DropDown::setButtonHover(const pAbstractImage & image)
+	void DropDown::setButtonHoverImage(const pAbstractImage & image)
 	{
-		buttonHover = image;
+		buttonHoverImage = image;
 	}
 
-	void DropDown::setButtonPressed(const pAbstractImage & image)
+	void DropDown::setButtonPressedImage(const pAbstractImage & image)
 	{
-		buttonPressed = image;
+		buttonPressedImage = image;
 	}
 
 	int DropDown::getWidth()
@@ -186,8 +186,8 @@ namespace love
 
 		if(backgroundImage != 0)
 			h = backgroundImage->getHeight() > h ? (int)backgroundImage->getHeight() : h;
-		if(button != 0)
-			h = button->getHeight() > h ? (int)button->getHeight() : h;
+		if(buttonImage != 0)
+			h = buttonImage->getHeight() > h ? (int)buttonImage->getHeight() : h;
 		
 		if(mDroppedDown)
 		{
@@ -195,7 +195,7 @@ namespace love
 			sh += getPaddingTop() + getPaddingBottom() + getBorderSize(); // +borderSize because of the separating line
 			if(listImage != 0)
 				sh = listImage->getHeight() > sh ? (int)listImage->getHeight() : sh;
-			h += sh + 10000; //why isn't this making the widget hueg???
+			h += sh; //why isn't this making the widget hueg???
 		}
 
 		setHeight(h);
@@ -314,19 +314,19 @@ namespace love
 		return listImage;
 	}
 
-	pAbstractImage DropDown::getButton()
+	pAbstractImage DropDown::getButtonImage()
 	{
-		return button;
+		return buttonImage;
 	}
 
-	pAbstractImage DropDown::getButtonHover()
+	pAbstractImage DropDown::getButtonHoverImage()
 	{
-		return buttonHover;
+		return buttonHoverImage;
 	}
 
-	pAbstractImage DropDown::getButtonPressed()
+	pAbstractImage DropDown::getButtonPressedImage()
 	{
-		return buttonPressed;
+		return buttonPressedImage;
 	}
 
 	void DropDown::add(const string & text)
@@ -524,7 +524,7 @@ namespace love
 
 	void DropDown::drawButton(gcn::Graphics *graphics)
 	{
-		if(button != 0)
+		if(buttonImage != 0)
 		{
 			int x = getWidth();
 			if (mDroppedDown)
@@ -532,12 +532,12 @@ namespace love
 			else
 				x -= getHeight();
 			int y = 0;
-			if((mPushed || mDroppedDown) && buttonPressed != 0)
-				buttonPressed->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
-			else if(mHasMouse && !mDroppedDown && buttonHover != 0)
-				buttonHover->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
+			if((mPushed || mDroppedDown) && buttonPressedImage != 0)
+				buttonPressedImage->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
+			else if(mHasMouse && !mDroppedDown && buttonHoverImage != 0)
+				buttonHoverImage->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
 			else
-				button->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
+				buttonImage->render((float)graphics->getCurrentClipArea().x + x, (float)graphics->getCurrentClipArea().y + y);
 		}
 		else
 		{

@@ -2,7 +2,7 @@
 namespace love
 {
 
-	class TextField : public gcn::TextField, public GUIElement
+	class TextField : public GUIElement
 	{
 	protected:
 	public:
@@ -22,6 +22,7 @@ namespace love
 		//virtual void setBackgroundColor(const pAbstractColor & color);
 		//virtual void setActiveColor(const pAbstractColor & color);
 		//virtual void setActiveBackgroundColor(const pAbstractColor & color);
+		//virtual void setBackgroundImage(const pAbstractImage & image);
 
 		//virtual void setFont(const pAbstractFont & font);
 
@@ -37,6 +38,7 @@ namespace love
 		virtual pAbstractColor getBackgroundColor();
 		virtual pAbstractColor getActiveColor();
 		virtual pAbstractColor getActiveBackgroundColor();
+		virtual pAbstractImage getBackgroundImage();
 
 		virtual pAbstractFont getFont();
 
@@ -72,6 +74,11 @@ namespace love
 	void setActiveBackgroundColor(const pAbstractColor * color)
 	{
 		self->setActiveBackgroundColor(*color);
+	}
+	
+	void setBackgroundImage(const pAbstractImage * image)
+	{
+		self->setBackgroundImage(*image);
 	}
 	
 	void setFont(const pAbstractFont * font)

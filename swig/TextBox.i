@@ -1,7 +1,7 @@
 
 namespace love
 {
-	class TextBox : public gcn::TextBox, public GUIElement
+	class TextBox : public GUIElement
 	{
 	protected:
 	public:

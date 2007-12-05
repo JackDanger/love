@@ -26,9 +26,11 @@ namespace love
 		GUIContainer();
 		~GUIContainer();
 
-		void add(const pAbstractMenu * menu);
-		void remove(const pAbstractMenu * menu);
+		virtual void add(const pAbstractMenu & menu);
+		virtual void remove(const pAbstractMenu & menu);
 	};
+
+	typedef boost::shared_ptr<GUIContainer> pGUIContainer;
 }
 
 #endif

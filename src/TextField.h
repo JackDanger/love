@@ -18,6 +18,7 @@ namespace love
 	protected:
 		pAbstractColor activeColor;
 		pAbstractColor activeBackgroundColor;
+		pAbstractImage backgroundImage;
 
 	public:
 		/**
@@ -93,6 +94,12 @@ namespace love
 		virtual void setActiveBackgroundColor(const pAbstractColor & color);
 
 		/**
+		 * @param image An AbstractImage object.
+		 * @brief Sets the background image.
+		 **/
+		virtual void setBackgroundImage(const pAbstractImage & image);
+
+		/**
 		 * @param font An AbstractFont.
 		 * @brief Sets the current font.
 		 **/
@@ -151,6 +158,12 @@ namespace love
 		 * @brief Returns the background color when the text label is active.
 		 **/
 		virtual pAbstractColor getActiveBackgroundColor();
+
+		/**
+		 * @return An AbstractImage object.
+		 * @brief Returns the background image.
+		 **/
+		virtual pAbstractImage getBackgroundImage();
 
 		/**
 		 * @return An AbstractFont.

@@ -234,20 +234,36 @@
         <param name="red" brief="The amount of red." />
         <param name="green" brief="The amount of green." />
         <param name="blue" brief="The amount of blue." />
-        <param name="alpha" brief="The amount of alpha (default: 255)." />
+        <param name="alpha" brief="The amount of alpha." />
 		<returns type="Color" brief="A Color object containing the color data." />
-        <example name="Add some colors.">
+        <example name="Add a color.">
           transparent_pink = love.objects:newColor(246, 9, 104, 150);
+        </example>
+      </function>
+	  
+	  <function name="newColor" brief="Creates a color.">
+        <param name="red" brief="The amount of red." />
+        <param name="green" brief="The amount of green." />
+        <param name="blue" brief="The amount of blue." />
+		<returns type="Color" brief="A Color object containing the color data." />
+        <example name="Add a color.">
           opaque_pink = love.objects:newColor(246, 9, 104); -- the default alpha value (255) will be used
         </example>
       </function>
 
       <function name="newColor" brief="Creates a color.">
         <param name="code" brief="A 6-character hexadecimal color code." />
-        <param name="alpha" brief="The amount of alpha (default: 255)." />
+        <param name="alpha" brief="The amount of alpha." />
 		<returns type="Color" brief="A Color object containing the color data." />
-        <example name="Add some colors.">
+        <example name="Add a color.">
           transparent_pink = love.objects:newColor(0xF60968, 150);
+        </example>
+      </function>
+	  
+	  <function name="newColor" brief="Creates a color.">
+        <param name="code" brief="A 6-character hexadecimal color code." />
+		<returns type="Color" brief="A Color object containing the color data." />
+        <example name="Add a color.">
           opaque_pink = love.objects:newColor(0xF60968); -- the default alpha value (255) will be used
         </example>
       </function>
@@ -333,14 +349,23 @@
         <param name="red" brief="The amount of red." />
         <param name="green" brief="The amount of green." />
         <param name="blue" brief="The amount of blue." />
-        <param name="alpha" brief="The amount of alpha (default: 255)." />
-        <example name="Set the current color as  transparent red and then blue.">
+        <param name="alpha" brief="The amount of alpha." />
+        <example name="Set the current color as transparent red.">
           love.graphics:setColor(255, 10, 10, 150);
+        </example>
+      </function>
+	  
+	  <function name="setColor" brief="Sets the current color.">
+        <param name="red" brief="The amount of red." />
+        <param name="green" brief="The amount of green." />
+        <param name="blue" brief="The amount of blue." />
+        <example name="Set the current color as blue.">
           love.graphics:setColor(10, 10, 255); -- the default alpha value (255) will be used
         </example>
       </function>
 
       <function name="setBackgroundColor" brief="Sets the background color.">
+		Note: The alpha value of the Color will be ignored as the background cannot be transparent.
         <param name="color" brief="A Color object." />
         <example name="Set the background color as red.">
           red = love.objects:newColor(0xFF1111);
@@ -349,10 +374,11 @@
       </function>
 
       <function name="setBackgroundColor" brief="Sets the background color.">
+	    No alpha value is present as the background cannot be transparent.
         <param name="red" brief="The amount of red." />
         <param name="green" brief="The amount of green." />
         <param name="blue" brief="The amount of blue." />
-        <example name="Set the current color as  transparent red and then blue.">
+        <example name="Set the current color as red, then blue.">
           love.graphics:setBackground(255, 10, 10);
           love.graphics:setBackground(10, 10, 255);
         </example>
@@ -699,7 +725,9 @@
     <type name="Color" brief="An object containing color information.">
       A Color object is created by calling any of the [b]love.objects:newColor()[/b] functions.
       <see name="love.objects:newColor( red, green, blue, alpha )" />
+	  <see name="love.objects:newColor( red, green, blue )" />
       <see name="love.objects:newColor( code, alpha )" />
+	  <see name="love.objects:newColor( code )" />
 
       <function name="setColor" brief="Sets the current color.">
         <param name="red" brief="The amount of red." />
@@ -755,7 +783,7 @@
       <function name="getGradient" brief="Gets a gradient between this color and another.">
         <param name="other" brief="A pointer to the other Color object." />
         <param name="amount" brief="How much to gradient (0 is this color, 1 is other color)." />
-        <returns type="color">A pointer to the gradient color.</returns>
+        <returns type="Color">A pointer to the gradient color.</returns>
         <example>
           red = love.objects:newColor(255, 0, 0);
           blue = love.objects:newColor(0, 0, 255);

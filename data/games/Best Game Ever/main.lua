@@ -65,9 +65,9 @@ main = {
 		textfield = menu:addTextField("TEXT_FIELD", "Or press <enter> here.", 200);
 		
 		drop = menu:addDropDown("DROP YOUR PANTS");
-		drop:setButton(love.objects:newImage("dropdown.png"));
-		drop:setButtonHover(love.objects:newImage("dropdown_hover.png"));
-		drop:setButtonPressed(love.objects:newImage("dropdown_pressed.png"));
+		drop:setButtonImage(love.objects:newImage("dropdown.png"));
+		drop:setButtonHoverImage(love.objects:newImage("dropdown_hover.png"));
+		drop:setButtonPressedImage(love.objects:newImage("dropdown_pressed.png"));
 		drop:setBackgroundImage(love.objects:newImage("slider_back.png"));
 		drop:add("one");
 		drop:add("two");
@@ -133,7 +133,7 @@ main = {
 		nested:setColor(color["white"]);
 		nested:setBackgroundColor(color["halfshiz"]);
 		nested:setPadding(4);
-		nested:setBorderSize(0);
+		nested:setBorderSize(1);
 		nested:addLabel("This is a broken ScrollMenu. Fuck, I think I might have to do this manually.");
 		nested:addLabel("It seems that your removing of the clipping caused this. Look at what you have done!!");
 		nested:addLabel("TEST2");

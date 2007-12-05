@@ -12,34 +12,34 @@ namespace love
 		clear();
 	}
 
-	void GUIContainer::add(const pAbstractMenu * menu)
+	void GUIContainer::add(const pAbstractMenu & menu)
 	{
-		switch(menu->get()->getMenuType())
+		switch(menu->getMenuType())
 		{
 		case AbstractMenu::LOVE_MENU_DEFAULT:
-			gcn::Container::add(boost::dynamic_pointer_cast<Menu, AbstractMenu>(*menu).get());
+			gcn::Container::add(boost::dynamic_pointer_cast<Menu, AbstractMenu>(menu).get());
 			break;
 		case AbstractMenu::LOVE_MENU_WINDOW:
-			gcn::Container::add(boost::dynamic_pointer_cast<WindowMenu, AbstractMenu>(*menu).get());
+			gcn::Container::add(boost::dynamic_pointer_cast<WindowMenu, AbstractMenu>(menu).get());
 			break;
 		case AbstractMenu::LOVE_MENU_SCROLL:
-			gcn::Container::add(boost::dynamic_pointer_cast<ScrollMenu, AbstractMenu>(*menu).get());
+			gcn::Container::add(boost::dynamic_pointer_cast<ScrollMenu, AbstractMenu>(menu).get());
 			break;
 		}
 	}
 
-	void GUIContainer::remove(const pAbstractMenu * menu)
+	void GUIContainer::remove(const pAbstractMenu & menu)
 	{
-		switch(menu->get()->getMenuType())
+		switch(menu->getMenuType())
 		{
 		case AbstractMenu::LOVE_MENU_DEFAULT:
-			gcn::Container::remove(boost::dynamic_pointer_cast<Menu, AbstractMenu>(*menu).get());
+			gcn::Container::remove(boost::dynamic_pointer_cast<Menu, AbstractMenu>(menu).get());
 			break;
 		case AbstractMenu::LOVE_MENU_WINDOW:
-			gcn::Container::remove(boost::dynamic_pointer_cast<WindowMenu, AbstractMenu>(*menu).get());
+			gcn::Container::remove(boost::dynamic_pointer_cast<WindowMenu, AbstractMenu>(menu).get());
 			break;
 		case AbstractMenu::LOVE_MENU_SCROLL:
-			gcn::Container::remove(boost::dynamic_pointer_cast<ScrollMenu, AbstractMenu>(*menu).get());
+			gcn::Container::remove(boost::dynamic_pointer_cast<ScrollMenu, AbstractMenu>(menu).get());
 			break;
 		}
 	}

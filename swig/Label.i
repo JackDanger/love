@@ -1,6 +1,6 @@
 namespace love
 {
-	class Label : public gcn::Label, public GUIElement
+	class Label : public GUIElement
 	{
 	protected:
 	public:

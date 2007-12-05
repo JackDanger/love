@@ -61,6 +61,11 @@ namespace love
 		activeBackgroundColor = color;
 	}
 
+	void TextField::setBackgroundImage(const pAbstractImage & image)
+	{
+		backgroundImage = image;
+	}
+
 	void TextField::setFont(const pAbstractFont & font)
 	{
 		GUIElement::setFont(font);
@@ -112,6 +117,11 @@ namespace love
 		return activeBackgroundColor;
 	}
 
+	pAbstractImage TextField::getBackgroundImage()
+	{
+		return backgroundImage;
+	}
+
 	pAbstractFont TextField::getFont()
 	{
 		return GUIElement::getFont();
@@ -120,41 +130,79 @@ namespace love
 	void TextField::adjustSize()
 	{
 		gcn::TextField::adjustSize();
+
+		if(backgroundImage != 0)
+		{
+			if(backgroundImage->getWidth() > getWidth())
+				setWidth((int)backgroundImage->getWidth());
+			if(backgroundImage->getHeight() > getHeight())
+				setHeight((int)backgroundImage->getHeight());
+		}
 	}
 
 	void TextField::draw(gcn::Graphics* graphics)
 	{
 		if(getFont() != 0)
 			graphics->setFont(font.get());
+		else
+			graphics->setFont(gcn::TextField::getFont());
 
-		if(isFocused() && activeColor.get() != 0)
-			gcn::TextField::setForegroundColor(gcn::Color(activeColor->getRed(),activeColor->getGreen(),activeColor->getBlue(),activeColor->getAlpha()));
-		else if(color.get() != 0)
-			gcn::TextField::setForegroundColor(gcn::Color(color->getRed(),color->getGreen(),color->getBlue(),color->getAlpha()));
+		if(isFocused() && activeBackgroundColor != 0)
+			graphics->setColor(gcn::Color(activeBackgroundColor->getRed(),activeBackgroundColor->getGreen(),activeBackgroundColor->getBlue(),activeBackgroundColor->getAlpha()));
+		else if(backgroundColor != 0)
+			graphics->setColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
+		else
+			graphics->setColor(gcn::TextField::getBackgroundColor());
+
+		graphics->fillRectangle(gcn::Rectangle(1, 0, getWidth(), getHeight()));
+
+		if(backgroundImage)
+		{
+			float x = (getWidth() / 2) - (backgroundImage->getWidth() / 2) + 2;
+			float y = (getHeight() / 2) - (backgroundImage->getHeight() / 2);
+
+			backgroundImage->render(graphics->getCurrentClipArea().x + x, graphics->getCurrentClipArea().y + y);
+		}
+
+		if(isFocused() && activeColor != 0)
+			graphics->setColor(gcn::Color(activeColor->getRed(),activeColor->getGreen(),activeColor->getBlue(),activeColor->getAlpha()));
+		else if(color != 0)
+			graphics->setColor(gcn::Color(color->getRed(),color->getGreen(),color->getBlue(),color->getAlpha()));
+		else
+			graphics->setColor(gcn::TextField::getForegroundColor());
 		
-		if(isFocused() && activeBackgroundColor.get() != 0)
-			gcn::TextField::setBackgroundColor(gcn::Color(activeBackgroundColor->getRed(),activeBackgroundColor->getGreen(),activeBackgroundColor->getBlue(),activeBackgroundColor->getAlpha()));
-		else if(backgroundColor.get() != 0)
-			gcn::TextField::setBackgroundColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
-		gcn::TextField::draw(graphics);
+
+		if(isFocused())
+		{
+			int x = gcn::TextField::getFont()->getWidth(mText.substr(0, mCaretPosition)) - mXScroll;
+			graphics->drawLine(x, getHeight() - 2, x, 1);
+		}
+
+		int y = (int)((getHeight() / 2) - (gcn::TextField::getFont()->getHeight() / 2));
+
+		graphics->drawText(mText, 2 - mXScroll, y);
 	}
 
 	void TextField::drawBorder(gcn::Graphics* graphics)
 	{
+		if(borderColor != 0)
+			graphics->setColor(gcn::Color(borderColor->getRed(),borderColor->getGreen(),borderColor->getBlue(),borderColor->getAlpha()));
+		else if(backgroundColor != 0)
+			graphics->setColor(gcn::Color(backgroundColor->getRed(),backgroundColor->getGreen(),backgroundColor->getBlue(),backgroundColor->getAlpha()));
+		else
+			graphics->setColor(getBaseColor());
+
+		//gcn::TextField::drawBorder(graphics);
+		unsigned int i;
 		int width = getWidth() + getBorderSize() * 2 - 1;
 		int height = getHeight() + getBorderSize() * 2 - 1;
 
-		if(borderColor.get() != 0)
-			graphics->setColor(gcn::Color(borderColor->getRed(),borderColor->getGreen(),borderColor->getBlue(),borderColor->getAlpha()));
-		else
-			graphics->setColor(gcn::Color(0x000000));
-		
-		for (unsigned int i = 0; i < getBorderSize(); ++i)
+		for (i = 0; i < getBorderSize(); ++i)
 		{
 			graphics->drawLine(i,i, width - i, i);
-			graphics->drawLine(i,i + 1, i, height - i - 1);
+			graphics->drawLine(i+1,i + 1, i+1, height - i - 1);
 			graphics->drawLine(width - i,i + 1, width - i, height - i);
-			graphics->drawLine(i,height - i, width - i - 1, height - i);
+			graphics->drawLine(i,height - i, width - i, height - i);
 		}
 	}
 }

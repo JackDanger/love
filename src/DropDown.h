@@ -38,9 +38,9 @@ namespace love
 		pAbstractImage backgroundImage;
 		pAbstractImage listImage;
 
-		pAbstractImage button;
-		pAbstractImage buttonHover;
-		pAbstractImage buttonPressed;
+		pAbstractImage buttonImage;
+		pAbstractImage buttonHoverImage;
+		pAbstractImage buttonPressedImage;
 
 		int spacing; // spacing around items
 
@@ -81,9 +81,9 @@ namespace love
 
 		virtual void setBackgroundImage(const pAbstractImage & image);
 		virtual void setListImage(const pAbstractImage & image);
-		virtual void setButton(const pAbstractImage & image);
-		virtual void setButtonHover(const pAbstractImage & image);
-		virtual void setButtonPressed(const pAbstractImage & image);
+		virtual void setButtonImage(const pAbstractImage & image);
+		virtual void setButtonHoverImage(const pAbstractImage & image);
+		virtual void setButtonPressedImage(const pAbstractImage & image);
 
 		virtual int getWidth();
 		virtual int getHeight();
@@ -113,9 +113,9 @@ namespace love
 
 		virtual pAbstractImage getBackgroundImage();
 		virtual pAbstractImage getListImage();
-		virtual pAbstractImage getButton();
-		virtual pAbstractImage getButtonHover();
-		virtual pAbstractImage getButtonPressed();
+		virtual pAbstractImage getButtonImage();
+		virtual pAbstractImage getButtonHoverImage();
+		virtual pAbstractImage getButtonPressedImage();
 
 		virtual void add(const string & text);
 		virtual void remove(int i);

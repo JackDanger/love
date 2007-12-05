@@ -2,7 +2,7 @@
 namespace love
 {
 
-	class ListBox : public gcn::ListBox, public GUIElement
+	class ListBox : public GUIElement
 	{
 	protected:
 	public:

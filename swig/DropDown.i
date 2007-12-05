@@ -1,7 +1,7 @@
 
 namespace love
 {
-	class DropDown : public gcn::DropDown, public GUIElement
+	class DropDown : public GUIElement
 	{
 	protected:
 	public:
@@ -30,9 +30,9 @@ namespace love
 
 		//virtual void setBackgroundImage(const pAbstractImage & image);
 		//virtual void setListImage(const pAbstractImage & image);
-		//virtual void setButton(const pAbstractImage & image);
-		//virtual void setButtonHover(const pAbstractImage & image);
-		//virtual void setButtonPressed(const pAbstractImage & image);
+		//virtual void setButtonImage(const pAbstractImage & image);
+		//virtual void setButtonHoverImage(const pAbstractImage & image);
+		//virtual void setButtonPressedImage(const pAbstractImage & image);
 
 		virtual int getWidth();
 		virtual int getHeight();
@@ -59,9 +59,9 @@ namespace love
 
 		virtual pAbstractImage getBackgroundImage();
 		virtual pAbstractImage getListImage();
-		virtual pAbstractImage getButton();
-		virtual pAbstractImage getButtonHover();
-		virtual pAbstractImage getButtonPressed();
+		virtual pAbstractImage getButtonImage();
+		virtual pAbstractImage getButtonHoverImage();
+		virtual pAbstractImage getButtonPressedImage();
 
 		//virtual void add(const string & text);
 		virtual void remove(int i);
@@ -167,19 +167,19 @@ namespace love
 		self->setListImage(*image);
 	}
 
-	void setButton(const pAbstractImage * image)
+	void setButtonImage(const pAbstractImage * image)
 	{
-		self->setButton(*image);
+		self->setButtonImage(*image);
 	}
 	
-	void setButtonHover(const pAbstractImage * image)
+	void setButtonHoverImage(const pAbstractImage * image)
 	{
-		self->setButtonHover(*image);
+		self->setButtonHoverImage(*image);
 	}
 	
-	void setButtonPressed(const pAbstractImage * image)
+	void setButtonPressedImage(const pAbstractImage * image)
 	{
-		self->setButtonPressed(*image);
+		self->setButtonPressedImage(*image);
 	}
 	
 	const char * getName()
