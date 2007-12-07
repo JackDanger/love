@@ -41,11 +41,11 @@ namespace love
 		virtual void setPadding(int top, int right, int bottom, int left);
 
 		/**
-		 * @param horizontal Padding on the horizontal sides (top and bottom).
 		 * @param vertical Padding on the vertical sides (left and right).
+		 * @param horizontal Padding on the horizontal sides (top and bottom).
 		 * @brief Sets the padding on the sets of sides.
 		 **/
-		virtual void setPadding(int horizontal, int vertical);
+		virtual void setPadding(int vertical, int horizontal);
 
 		/**
 		 * @param padding Padding on all the sides.

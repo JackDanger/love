@@ -50,7 +50,7 @@ namespace love
 	    top->setDimension(gcn::Rectangle(0, 0, display.getWidth(), display.getHeight()));
 		top->setOpaque(false);
 
-		gui = new gcn::Gui();
+		gui = new GUI();
 		gui->setGraphics(graphics);
 		gui->setInput(gcn_input); // correct.
 		gui->setTop(top);

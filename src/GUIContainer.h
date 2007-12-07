@@ -28,6 +28,8 @@ namespace love
 
 		virtual void add(const pAbstractMenu & menu);
 		virtual void remove(const pAbstractMenu & menu);
+
+		virtual bool hasFocus();
 	};
 
 	typedef boost::shared_ptr<GUIContainer> pGUIContainer;

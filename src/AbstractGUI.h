@@ -4,6 +4,7 @@
 #include "AbstractImage.h"
 #include "AbstractColor.h"
 #include "AbstractFont.h"
+#include "GUI.h"
 #include "GUIText.h"
 #include "Menu.h"
 #include "Renderable.h"
@@ -20,7 +21,7 @@ namespace love
 						public DisplayModeListener
 	{
 	protected:
-		gcn::Gui * gui;
+		GUI * gui;
 		gcn::Font * guifont;
 		gcn::Graphics * graphics;
 		gcn::ImageLoader * imageLoader;
@@ -76,6 +77,12 @@ namespace love
 		 * @return The default color used in the GUI system.
 		 **/
 		virtual pAbstractColor getColor();
+
+		/**
+		 * @brief Checks whether any of the GUI widgets have focus.
+		 * @return True if any widgets have focus, false otherwise.
+		 **/
+		virtual bool hasFocus();
 
 		/**
 		 * @brief Does nothing.

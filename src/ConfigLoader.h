@@ -109,6 +109,7 @@ namespace love
 		 * @brief If the key does not already exist in the list, it is replaced by the new value
 		 **/
 		void addString(string key, string value);
+		void add(string key, string value);
 
 		/**
 		 * @param key The key of the new boolean.
@@ -116,6 +117,7 @@ namespace love
 		 * @brief If the key does not already exist in the list, it is replaced by the new value
 		 **/
 		void addBool(string key, bool value);
+		void add(string key, bool value);
 
 		/**
 		 * @param key The key of the new number.
@@ -123,13 +125,15 @@ namespace love
 		 * @brief If the key does not already exist in the list, it is replaced by the new value
 		 **/
 		void addFloat(string key, float value);
+		void add(string key, float value);
 
 		/**
 		 * @param key The key of the new number.
 		 * @param value The number itself.
 		 * @brief If the key does not already exist in the list, it is replaced by the new value
 		 **/
-		void addInt(string key, float value);
+		void addInt(string key, int value);
+		void add(string key, int value);
 
 		/**
 		 * @brief Writes the config keys and values to a file.

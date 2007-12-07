@@ -2,6 +2,7 @@
 #define LOVE_TEXT_FIELD_H
 
 #include "GUIElement.h"
+#include "Padded.h"
 
 namespace love
 {
@@ -13,7 +14,7 @@ namespace love
 	 * @date 2007-08-16
 	 * @brief A text field to be used by the Menu.
 	 **/
-	class TextField : public gcn::TextField, public GUIElement
+	class TextField : public gcn::TextField, public GUIElement, public Padded
 	{
 	protected:
 		pAbstractColor activeColor;
@@ -175,6 +176,19 @@ namespace love
 		 * @brief Adjusts the size of the TextField depending on the content.
 		 **/
 		virtual void adjustSize();
+
+		/**
+		 * @brief Adjusts the height of the TextField depending on the content.
+		 **/
+		virtual void adjustHeight();
+
+		void keyPressed(gcn::KeyEvent& keyEvent);
+		void mousePressed(gcn::MouseEvent& mouseEvent);
+
+		/**
+		 * @brief Scrolls the text horizontally as needed.
+		 **/
+		virtual void fixScroll();
 
 		/**
 		 * @param graphics A GUIchan Graphics object.

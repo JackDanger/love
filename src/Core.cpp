@@ -136,6 +136,7 @@ namespace love
 		// Start param game, if we have that.
 		if(parameters->exists("game"))
 		{
+			// This is where we have an intro screen.
 			runningExternalGame = true;
 			string source = parameters->get("game");
 			startGame(source);
@@ -329,20 +330,22 @@ namespace love
 		switch(key)
 		{
 		case LOVE_KEY_ESCAPE:
-			if(strcmp(current->getName().c_str(),"love-system-menu") != 0)
-			{
-				if(!uigame->isPaused())
-				{
-					uigame->showPause();
-					keyboard->keyPressed(key);
-					return;
-				}
-			}
-			else
+			if(strcmp(current->getName().c_str(),"love-system-menu") == 0)
 			{
 				if(!uigame->isPaused())
 				{
 					uigame->showSettings();
+					keyboard->keyPressed(key);
+					return;
+				}
+			}
+			break;
+		case LOVE_KEY_TAB:
+			if(strcmp(current->getName().c_str(),"love-system-menu") != 0 && (keyboard->isDown(LOVE_KEY_LSHIFT) || keyboard->isDown(LOVE_KEY_RSHIFT)))
+			{
+				if(!uigame->isPaused())
+				{
+					uigame->showPause();
 					keyboard->keyPressed(key);
 					return;
 				}
@@ -367,13 +370,17 @@ namespace love
 					this->printf("Vsync: %i\n", getDisplayMode().isVsync());
 			}
 			break;
-		/*case LOVE_KEY_r: //removed because it causes some issues (replaced with pause menu option)
+		case LOVE_KEY_r:
 			if(keyboard->isDown(LOVE_KEY_LCTRL))
 			{
-				current->reload();
-				printf("Reloaded: %s\n", current->getName().c_str());
+				if(!uigame->isPaused() && strcmp(current->getName().c_str(),"love-system-menu") != 0)
+				{
+					current->reload();
+					if(verbose)
+						printf("Reloaded: %s\n", current->getName().c_str());
+				}
 			}
-			break;*/
+			break;
 		}
 
 		// Update keyboard state.

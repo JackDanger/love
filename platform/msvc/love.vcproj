@@ -229,10 +229,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\AbstractMenu.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\AbstractMusic.cpp"
 				>
 			</File>
@@ -306,6 +302,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\GameControlEvent.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\GUI.cpp"
 				>
 			</File>
 			<File
@@ -519,6 +519,10 @@
 			<Filter
 				Name="widgets"
 				>
+				<File
+					RelativePath="..\..\src\AbstractMenu.cpp"
+					>
+				</File>
 				<File
 					RelativePath="..\..\src\Button.cpp"
 					>
@@ -852,6 +856,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Globals.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\GUI.h"
 				>
 			</File>
 			<File

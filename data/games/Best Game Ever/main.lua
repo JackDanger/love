@@ -18,8 +18,8 @@ main = {
 		love.graphics:setBackgroundColor(color["white"]);
 		love.graphics:setColor(color["black"]);
 		
-		menux = -1;
-		menuy = -1;
+		menux = 10;
+		menuy = 35;
 		
 		horseshit = 0;
 		
@@ -151,6 +151,7 @@ main = {
 		love.gui:add(menu);
 		
 	end,
+	
 	update = function(dt)
 		
 		-- update animated colors
@@ -159,15 +160,9 @@ main = {
 		horseshit = horseshit + 5 * dt;
 		--game:setRotation(horseshit);
 		
-		if love.mouse:isDown(love.mouse_left) and menux ~= -1 and menuy ~= -1 and false then
-			menu:setX(menu:getX() - (menux - love.mouse:getX()));
-			menux = love.mouse:getX();
-			
-			menu:setY(menu:getY() - (menuy - love.mouse:getY()));
-			menuy = love.mouse:getY();
-		end
 		
 	end,
+	
 	render = function()
 
 		love.graphics:setColor(color["white"]);
@@ -176,7 +171,12 @@ main = {
 		--love.graphics:setColor(color["white"]);
 		--love.graphics:setFont(font["image"]);
 		love.graphics:setFont(font["image"]);
-		love.graphics:draw("TRULY THE BEST GAME EVER.\nBECAUSE: IT HAS A LOT OF SHAPES (LOEL)\nTHIS IS AN IMAGE FONT, BTW!", 10, 35);
+		if love.gui:hasFocus() then
+			love.graphics:draw("GUI HAS FOCUS", 10, 35);
+		else
+			love.graphics:draw("NO FOCUS FOR YOU, COCKFIST!", 10, 35);
+		end
+		--love.graphics:draw("TRULY THE BEST GAME EVER.\nBECAUSE: IT HAS A LOT OF SHAPES (LOEL)\nTHIS IS AN IMAGE FONT, BTW!", 10, 35);
 			  
 		love.graphics:setColor(color["shiznet"]);
 		--gl:enable("MULTISAMPLE");

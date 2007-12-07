@@ -177,34 +177,42 @@ namespace love
 
 	void ConfigLoader::addString(string key, string value)
 	{
-		//if(!isString(key))
-			text[key] = value;
-		//else
-			//printf("Config Loader: The key '%s' already exists.\n", key.c_str());
+		text[key] = value;
+	}
+
+	void ConfigLoader::add(string key, string value)
+	{
+		addString(key, value);
 	}
 
 	void ConfigLoader::addBool(string key, bool value)
 	{
-		//if(!isBool(key))
-			boolean[key] = value;
-		//else
-			//printf("Config Loader: The key '%s' already exists.\n", key.c_str());
+		boolean[key] = value;
+	}
+
+	void ConfigLoader::add(string key, bool value)
+	{
+		addBool(key, value);
 	}
 
 	void ConfigLoader::addFloat(string key, float value)
 	{
-		//if(!isFloat(key))
-			number[key] = value;
-		//else
-			//printf("Config Loader: The key '%s' already exists.\n", key.c_str());
+		number[key] = value;
 	}
 
-	void ConfigLoader::addInt(string key, float value)
+	void ConfigLoader::add(string key, float value)
 	{
-		//if(!isInt(key))
-			number[key] = value;
-		//else
-			//printf("Config Loader: The key '%s' already exists.\n", key.c_str());
+		addFloat(key, value);
+	}
+
+	void ConfigLoader::addInt(string key, int value)
+	{
+		number[key] = value;
+	}
+
+	void ConfigLoader::add(string key, int value)
+	{
+		addInt(key, value);
 	}
 
 	void ConfigLoader::write()

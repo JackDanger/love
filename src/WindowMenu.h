@@ -57,6 +57,8 @@ namespace love
 		virtual void drawChildren(gcn::Graphics* graphics);
 
 		virtual void add(gcn::Widget * widget);
+
+		// overwritten to remove focus
 	};
 
 	typedef boost::shared_ptr<WindowMenu> pWindowMenu;

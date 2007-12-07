@@ -1,4 +1,6 @@
 #include "GUIContainer.h"
+#include "Core.h"
+#include "love.h"
 
 namespace love
 {
@@ -42,5 +44,10 @@ namespace love
 			gcn::Container::remove(boost::dynamic_pointer_cast<ScrollMenu, AbstractMenu>(menu).get());
 			break;
 		}
+	}
+
+	bool GUIContainer::hasFocus()
+	{
+		return core->getGUI()->hasFocus();
 	}
 }

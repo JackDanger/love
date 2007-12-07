@@ -67,6 +67,11 @@ namespace love
 		//return text->getColor();
 	}
 
+	bool AbstractGUI::hasFocus()
+	{
+		return gui->hasFocus();
+	}
+
 	int AbstractGUI::init()
 	{
 		return LOVE_OK;

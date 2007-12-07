@@ -32,7 +32,8 @@ namespace love
 		previous = 0;
 
 		core->current->reload();
-		printf("Reloaded: %s\n", core->current->getName().c_str());
+		if(core->verbose)
+			printf("Reloaded: %s\n", core->current->getName().c_str());
 
 		// Exits error mode.
 		mode = MODE_DEFAULT;
@@ -63,15 +64,15 @@ namespace love
 			core->config->addBool("vsync", settingsVideoVSync->isMarked());
 			core->config->addString("default_resolution", settingsVideoResolution->getSelectedElement());
 
-			core->config->addInt("sound_volume", (float)settingsAudioSound->getValue());
-			core->config->addInt("music_volume", (float)settingsAudioMusic->getValue());
+			core->config->addFloat("sound_volume", (float)settingsAudioSound->getValue());
+			core->config->addFloat("music_volume", (float)settingsAudioMusic->getValue());
 			core->config->addBool("mute", settingsAudioMute->isMarked());
 			string temp = settingsAudioQuality->getSelectedElement();
 			int num = atoi(temp.substr(0, temp.find(' ')).c_str()); // removes anything beyond the number
-			core->config->addInt("audio_quality", (float)num);
+			core->config->addInt("audio_quality", num);
 			temp = settingsAudioLatency->getSelectedElement();
 			num = atoi(temp.substr(0, temp.find(' ')).c_str()); // ditto
-			core->config->addInt("audio_latency", (float)num);
+			core->config->addInt("audio_latency", num);
 
 			core->config->addString("config_path", settingsPathsConfig->getText());
 			core->config->addString("resource_path", settingsPathsResource->getText());
@@ -81,8 +82,8 @@ namespace love
 		{
 			core->config->addBool("fullscreen", settingsFullscreen->isMarked());
 			core->config->addBool("vsync", settingsVSync->isMarked());
-			core->config->addInt("sound_volume", (float)settingsSound->getValue());
-			core->config->addInt("music_volume", (float)settingsMusic->getValue());
+			core->config->addFloat("sound_volume", (float)settingsSound->getValue());
+			core->config->addFloat("music_volume", (float)settingsMusic->getValue());
 			core->config->addBool("mute", settingsMute->isMarked());
 		}
 		core->config->write();
@@ -463,7 +464,7 @@ namespace love
 		settingsPathsConfig->setBackgroundImage(images["dropDownBackground"]); settingsPathsConfig->adjustSize();
 		settingsPathsConfig->setBorderColor(dropDownBorder); settingsPathsConfig->setBorderSize(1);
 		settingsPathsConfig->setColor(buttonColor); settingsPathsConfig->setActiveColor(white);
-		settingsPathsConfig->setPosition(0, 30);
+		settingsPathsConfig->setPosition(0, 30); settingsPathsConfig->setPadding(0, 5);
 
 		label = settingsPaths->addLabel("Resource file");
 		label->setPosition(0, 63);
@@ -472,7 +473,7 @@ namespace love
 		settingsPathsResource->setBackgroundImage(images["dropDownBackground"]); settingsPathsResource->adjustSize();
 		settingsPathsResource->setBorderColor(dropDownBorder); settingsPathsResource->setBorderSize(1);
 		settingsPathsResource->setColor(buttonColor); settingsPathsResource->setActiveColor(white);
-		settingsPathsResource->setPosition(0, 80);
+		settingsPathsResource->setPosition(0, 80); settingsPathsResource->setPadding(0, 5);
 
 		label = settingsPaths->addLabel("Game directory");
 		label->setPosition(0, 113);
@@ -481,7 +482,7 @@ namespace love
 		settingsPathsGamedir->setBackgroundImage(images["dropDownBackground"]); settingsPathsGamedir->adjustSize();
 		settingsPathsGamedir->setBorderColor(dropDownBorder); settingsPathsGamedir->setBorderSize(1);
 		settingsPathsGamedir->setColor(buttonColor); settingsPathsGamedir->setActiveColor(white);
-		settingsPathsGamedir->setPosition(0, 130);
+		settingsPathsGamedir->setPosition(0, 130); settingsPathsGamedir->setPadding(0, 5);
 
 		settingsPaths->show();
 

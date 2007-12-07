@@ -2,7 +2,7 @@
 namespace love
 {
 
-	class TextField : public GUIElement
+	class TextField : public GUIElement, public Padded
 	{
 	protected:
 	public:

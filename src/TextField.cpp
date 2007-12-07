@@ -135,8 +135,55 @@ namespace love
 		{
 			if(backgroundImage->getWidth() > getWidth())
 				setWidth((int)backgroundImage->getWidth());
+		}
+	}
+
+	void TextField::adjustHeight()
+	{
+		gcn::TextField::adjustHeight();
+
+		if(backgroundImage != 0)
+		{
 			if(backgroundImage->getHeight() > getHeight())
 				setHeight((int)backgroundImage->getHeight());
+		}
+	}
+
+	void TextField::keyPressed(gcn::KeyEvent& keyEvent)
+	{
+		gcn::TextField::keyPressed(keyEvent);
+		fixScroll();
+	}
+
+	void TextField::mousePressed(gcn::MouseEvent& mouseEvent)
+	{
+		if (mouseEvent.getButton() == gcn::MouseEvent::LEFT)
+		{
+			mCaretPosition = gcn::TextField::getFont()->getStringIndexAt(mText, mouseEvent.getX() + mXScroll - getPaddingLeft() - 4);
+			fixScroll();
+		}
+	}
+
+	void TextField::fixScroll()
+	{
+		int m = 5;
+		if (isFocused())
+		{
+			int caretX = gcn::TextField::getFont()->getWidth(mText.substr(0, mCaretPosition));
+			
+			if (caretX - mXScroll > getWidth() - getPaddingLeft() - getPaddingRight() - 4)
+			{
+				mXScroll = caretX - getWidth() + getPaddingLeft() + getPaddingRight() + 4;
+			}
+			else if (caretX - mXScroll < getFont()->getWidth(" "))
+			{
+				mXScroll = caretX - gcn::TextField::getFont()->getWidth(" ");
+				
+				if (mXScroll < 0)
+				{
+					mXScroll = 0;
+				}
+			}
 		}
 	}
 
@@ -170,17 +217,20 @@ namespace love
 			graphics->setColor(gcn::Color(color->getRed(),color->getGreen(),color->getBlue(),color->getAlpha()));
 		else
 			graphics->setColor(gcn::TextField::getForegroundColor());
-		
+
+		graphics->pushClipArea(gcn::Rectangle(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingLeft() - getPaddingRight(), getHeight() - getPaddingTop() - getPaddingBottom()));
 
 		if(isFocused())
 		{
-			int x = gcn::TextField::getFont()->getWidth(mText.substr(0, mCaretPosition)) - mXScroll;
+			int x = gcn::TextField::getFont()->getWidth(mText.substr(0, mCaretPosition)) - mXScroll + 2;
 			graphics->drawLine(x, getHeight() - 2, x, 1);
 		}
 
 		int y = (int)((getHeight() / 2) - (gcn::TextField::getFont()->getHeight() / 2));
 
 		graphics->drawText(mText, 2 - mXScroll, y);
+
+		graphics->popClipArea();
 	}
 
 	void TextField::drawBorder(gcn::Graphics* graphics)

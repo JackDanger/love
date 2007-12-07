@@ -21,12 +21,12 @@ namespace love
 		this->left = left;
 	}
 
-	void Padded::setPadding(int horizontal, int vertical)
+	void Padded::setPadding(int vertical, int horizontal)
 	{
-		this->top = horizontal;
-		this->bottom = horizontal;
-		this->right = vertical;
-		this->left = vertical;
+		this->top = vertical;
+		this->bottom = vertical;
+		this->right = horizontal;
+		this->left = horizontal;
 	}
 
 	void Padded::setPadding(int padding)
