@@ -63,6 +63,11 @@ $HTML_CHAPTER_END = <<< CHAPTER_END
 
         </div>
         </div>
+		
+		<div class="copyright">
+			Copyright &copy; 2006-2007 L&Ouml;VE Development Team<br />
+			<a href="http://love.sourceforge.net">Visit home page</a> - <a href="javascript:void(0)">Report error</a>
+		</div>
 CHAPTER_END;
 
 

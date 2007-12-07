@@ -12,6 +12,27 @@ a:hover
 	color: #555;
 }
 
+.copyright
+{
+	text-align: center;
+	color: #888;
+	font-size: 10px;
+	margin-top: -20px;
+}
+
+.copyright a
+{
+	font-size: 10px;
+	color: #5384c3;	
+}
+
+.break
+{
+ clear: both;
+ height: 0px;
+ overflow:: none;
+}
+
 /**
 * Symbol links.
 **/
@@ -174,6 +195,7 @@ div, a
 	padding: 10px;
 	border-bottom: 1px solid #cfe3fd;
 	margin: 5px 0px 10px 0px;
+	clear: left;
 }
 
 .chapter .subchapter .title, .chapter .subchapter .title a
@@ -284,10 +306,18 @@ border: 1px solid #bbdbf1;
 .functions .brief
 {
  border: 0px solid black;
- vertical-align: center;
+ vertical-align: middle;
  padding: 0px 0px 0px 20px;
  font-style: italic;
- color: #72bde9;
+ color: #555;
+}
+
+.functions .type
+{
+ border: 0px solid black;
+ vertical-align: middle;
+ padding: 0px 0px 0px 20px;
+ color: #555; 
 }
 
 .functions .sep

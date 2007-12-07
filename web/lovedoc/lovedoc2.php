@@ -167,6 +167,12 @@ class LoveDoc2
       case "page":
            array_push($this->stack, new Page($name, $attributes));
            break;
+	  case "constants":
+	       array_push($this->stack, new Constants($name, $attributes));
+		   break;
+	  case "constant":
+	       array_push($this->stack, new Constant($name, $attributes));
+		   break;
     }
   }
 
@@ -477,10 +483,9 @@ class Type extends Element
 
        $html .= '</div>';
        $html .= '</div>';
-
-     $html .= '</div>';
-
      }
+	 
+	 $html .= '</div>';
      
      return $html;
   }
@@ -760,6 +765,102 @@ class Device extends Type
 
     foreach($this->children as $c)
       $c->write();
+  }
+}
+
+class Constants extends Page
+{
+
+  public function html()
+  {
+    // Generate HTML.
+
+     $html = '<div class="subchapter">';
+
+     $html .= '<div class="title">';
+     $html .= $this->atr("name");
+     $html .= '</div>';
+     $html .= '<div class="text">';
+     $html .= LoveDoc2::to_html($this->data);
+     $html .= '</div>';
+
+
+     $html .= '<div class="section">';
+     $html .= '<div class="title">'.$this->atr("has").'</div>';
+     $html .= '<table cellspacing="0" class="functions">';
+
+     foreach($this->children as $c) 
+       if($c->typeof("constant") || $c->typeof("separator")) 
+         $html .= $c->html_listitem();
+
+     $html .= '</table>';
+     $html .= '</div>';
+
+     if($this->haschildren("see"))
+     {
+
+       $html .= '<div class="section">';
+       $html .= '<div class="title">See also</div>';
+       $html .= '<div class="text">';
+
+
+     foreach($this->children as $c)
+       if($c->typeof("see"))
+         $html .= $c->html_listitem();
+
+       $html .= '</div>';
+       $html .= '</div>';
+       
+     }
+
+      if($this->haschildren("example"))
+     {
+
+       $html .= '<div class="section">';
+       $html .= '<div class="title">Examples</div>';
+       $html .= '<div class="text">';
+
+     $num = 1;
+     foreach($this->children as $c) {
+       if($c->typeof("example")) {
+         $html .= "Example $num: ";
+         $html .= $c->html();
+         $num++;
+       }
+     }
+
+       $html .= '</div>';
+       $html .= '</div>';
+     }
+	 
+	 $html .= '</div>';
+     
+     return $html;
+  }
+
+
+ public function write()
+ { 
+   $html = $this->html();
+   $sym = ($this->atr("sym") == "") ? $this->atr("name") : $this->atr("sym");
+   LoveDoc2::write_html_sym($html, $this->atr("name"), $this->atr("name"));
+ } 
+}
+
+class Constant extends Element
+{
+
+  public function html_listitem()
+  {
+     return '<tr><td class="signature">' .$this->atr("name").'</a></td><td class="type">['.($this->atr("type") == "" ? "integer" : $this->atr("type")).']</td><td class="brief">' .$this->atr("brief").'</td></tr>';
+  }
+
+  public function html_menu()
+  {
+  }
+
+  public function html()
+  {
   }
 }
 
