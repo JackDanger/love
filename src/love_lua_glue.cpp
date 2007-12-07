@@ -11607,6 +11607,24 @@ fail:
 }
 
 
+static int _wrap_AbstractMenu_isVisible(lua_State* L) {
+  int SWIG_arg = -1;
+  love::AbstractMenu *arg1 = (love::AbstractMenu *) 0 ;
+  bool result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::AbstractMenu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractMenu,0,1,"AbstractMenu_isVisible");
+  result = (bool)(arg1)->isVisible();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_AbstractMenu_setSpacing(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractMenu *arg1 = (love::AbstractMenu *) 0 ;
@@ -14999,6 +15017,7 @@ delete arg1;
 static swig_lua_method swig_love_AbstractMenu_methods[] = {
     {"show", _wrap_AbstractMenu_show}, 
     {"hide", _wrap_AbstractMenu_hide}, 
+    {"isVisible", _wrap_AbstractMenu_isVisible}, 
     {"setSpacing", _wrap_AbstractMenu_setSpacing}, 
     {"stretchContent", _wrap_AbstractMenu_stretchContent}, 
     {"align", _wrap_AbstractMenu_align}, 
@@ -29152,6 +29171,24 @@ fail:
 }
 
 
+static int _wrap_SmartMenu_isVisible(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::AbstractMenu > *arg1 = (boost::shared_ptr<love::AbstractMenu > *) 0 ;
+  bool result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::AbstractMenu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractMenu_t,0,1,"SmartMenu_isVisible");
+  result = (bool)(*arg1)->isVisible();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartMenu_setSpacing(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::AbstractMenu > *arg1 = (boost::shared_ptr<love::AbstractMenu > *) 0 ;
@@ -32905,6 +32942,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_AbstractMenu_Sg__methods[] 
     {"__deref__", _wrap_SmartMenu___deref__}, 
     {"show", _wrap_SmartMenu_show}, 
     {"hide", _wrap_SmartMenu_hide}, 
+    {"isVisible", _wrap_SmartMenu_isVisible}, 
     {"setSpacing", _wrap_SmartMenu_setSpacing}, 
     {"stretchContent", _wrap_SmartMenu_stretchContent}, 
     {"align", _wrap_SmartMenu_align}, 
@@ -41559,6 +41597,7 @@ static const struct luaL_reg swig_commands[] = {
     { "delete_TextBox", _wrap_delete_TextBox},
     { "AbstractMenu_show", _wrap_AbstractMenu_show},
     { "AbstractMenu_hide", _wrap_AbstractMenu_hide},
+    { "AbstractMenu_isVisible", _wrap_AbstractMenu_isVisible},
     { "AbstractMenu_setSpacing", _wrap_AbstractMenu_setSpacing},
     { "AbstractMenu_stretchContent", _wrap_AbstractMenu_stretchContent},
     { "AbstractMenu_align", _wrap_AbstractMenu_align},
@@ -41906,6 +41945,7 @@ static const struct luaL_reg swig_commands[] = {
     { "delete_SmartMenu", _wrap_delete_SmartMenu},
     { "SmartMenu_show", _wrap_SmartMenu_show},
     { "SmartMenu_hide", _wrap_SmartMenu_hide},
+    { "SmartMenu_isVisible", _wrap_SmartMenu_isVisible},
     { "SmartMenu_setSpacing", _wrap_SmartMenu_setSpacing},
     { "SmartMenu_stretchContent", _wrap_SmartMenu_stretchContent},
     { "SmartMenu_align", _wrap_SmartMenu_align},

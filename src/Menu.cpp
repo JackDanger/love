@@ -19,6 +19,21 @@ namespace love
 		children.clear();
 	}
 
+	void Menu::show()
+	{
+		gcn::Container::setVisible(true);
+	}
+
+	void Menu::hide()
+	{
+		gcn::Container::setVisible(false);
+	}
+
+	bool Menu::isVisible()
+	{
+		return gcn::Container::isVisible();
+	}
+
 	void Menu::setSize(int width, int height)
 	{
 		gcn::Container::setSize(width, height);

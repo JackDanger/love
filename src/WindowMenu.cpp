@@ -21,6 +21,21 @@ namespace love
 		children.clear();
 	}
 
+	void WindowMenu::show()
+	{
+		gcn::Window::setVisible(true);
+	}
+
+	void WindowMenu::hide()
+	{
+		gcn::Window::setVisible(false);
+	}
+
+	bool WindowMenu::isVisible()
+	{
+		return gcn::Window::isVisible();
+	}
+
 	void WindowMenu::setSize(int width, int height)
 	{
 		gcn::Window::setSize(width, height);

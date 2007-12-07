@@ -6,8 +6,9 @@ namespace love
 	{
 		int x = mouseInput.getX();
 		int y = mouseInput.getY();
-		gcn::Widget * temp = mTop->getWidgetAt(x, y); // this will always be the top GUIContainer
-		temp = temp->getWidgetAt(x, y);
+		gcn::Widget * temp = mTop->getWidgetAt(x, y); // this will always be the top GUIContainer (or nothing)
+		if(temp != 0)
+			temp = temp->getWidgetAt(x, y);
 		if(temp == 0)
 			this->mFocusHandler->focusNone();
 		gcn::Gui::handleMousePressed(mouseInput);

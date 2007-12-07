@@ -17,7 +17,7 @@ namespace love
 		spacing = 0;
 		position = 0;
 		stretch = false;
-		visible = false;
+		visible = true;
 		align(Text::LOVE_ALIGN_CENTER);
 		valign(Text::LOVE_ALIGN_CENTER);
 		menuType = LOVE_MENU_DEFAULT;
@@ -27,16 +27,6 @@ namespace love
 	AbstractMenu::~AbstractMenu()
 	{
 		children.clear();
-	}
-
-	void AbstractMenu::show()
-	{
-		visible = true;
-	}
-
-	void AbstractMenu::hide()
-	{
-		visible = false;
 	}
 
 	void AbstractMenu::setFont(const pAbstractFont & font)

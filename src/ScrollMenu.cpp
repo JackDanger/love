@@ -15,6 +15,21 @@ namespace love
 			delete container;
 	}
 
+	void ScrollMenu::show()
+	{
+		gcn::ScrollArea::setVisible(true);
+	}
+
+	void ScrollMenu::hide()
+	{
+		gcn::ScrollArea::setVisible(false);
+	}
+
+	bool ScrollMenu::isVisible()
+	{
+		return gcn::ScrollArea::isVisible();
+	}
+
 	void ScrollMenu::setSize(int width, int height)
 	{
 		gcn::ScrollArea::setSize(width, height);

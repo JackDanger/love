@@ -23,6 +23,10 @@ namespace love
 		WindowMenu(pAbstractFont font, pAbstractColor color, int type = LOVE_MENU_VERTICAL);
 		~WindowMenu();
 
+		virtual void show();
+		virtual void hide();
+		virtual bool isVisible();
+
 		virtual void setSize(int width, int height);
 		virtual void setWidth(int width);
 		virtual void setHeight(int height);

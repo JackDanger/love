@@ -72,8 +72,9 @@ namespace love
 		 **/
 		~AbstractMenu();
 
-		virtual void show();
-		virtual void hide();
+		virtual void show() = 0;
+		virtual void hide() = 0;
+		virtual bool isVisible() = 0;
 
 		virtual void setFont(const pAbstractFont & font);
 		virtual void setColor(const pAbstractColor & color);

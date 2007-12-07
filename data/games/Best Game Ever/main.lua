@@ -210,6 +210,11 @@ main = {
 	
 	keypressed = function(key)
 		
+		if key == love.key_escape then
+			if menu:isVisible() then menu:hide();
+			else menu:show(); end
+		end
+		
 	end,
 	
 	mousepressed = function(x, y, button)
