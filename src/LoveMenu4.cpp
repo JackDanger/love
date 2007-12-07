@@ -445,7 +445,8 @@ namespace love
 			last_game = configLoader->getString("last_game");
 
 		if(last_game != "")
-			bool e = list.seekGame(last_game, 0.75f);
+			//bool e = list.seekGame(last_game, 0.75f);
+			list.seekGame(last_game, 0.75f);
 	}
 
 

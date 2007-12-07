@@ -20,7 +20,7 @@ namespace love
 	protected:
 	public:
 		DefaultConfiguration();
-		~DefaultConfiguration();
+		virtual ~DefaultConfiguration();
 
 		virtual void defaultSystemConfig(const pConfigLoader & config);
 		virtual void defaultGameConfig(const pConfigLoader & config);

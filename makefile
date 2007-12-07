@@ -30,6 +30,7 @@ $(OBJDIR)/ConfigLoader.o \
 $(OBJDIR)/Container.o \
 $(OBJDIR)/Core.o \
 $(OBJDIR)/CheckBox.o \
+$(OBJDIR)/DefaultConfiguration.o \
 $(OBJDIR)/Display.o \
 $(OBJDIR)/DisplayMode.o \
 $(OBJDIR)/DisplayModeListener.o \
