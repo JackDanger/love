@@ -16,11 +16,13 @@ namespace love
 		// General
 		config->addBool("verbose", false);
 		config->addInt("console_lines", 30);
+		config->addBool("copy_game", false); // wether to copy an externally opened game to the game directory
 
 		// Video
+		config->addString("default_resolution", "800x600");
+		config->addInt("color_depth", 32);
 		config->addBool("fullscreen", false);
 		config->addBool("vsync", true);
-		config->addString("default_resolution", "800x600");
 		config->addInt("FSAA", 0);
 
 		// Audio
@@ -38,5 +40,13 @@ namespace love
 
 	void DefaultConfiguration::defaultGameConfig(const pConfigLoader & config)
 	{
+		// General
+		config->addString("title", "Untitled");
+		config->addString("author", "Unknown");
+		config->addString("love_version", "0.3");
+
+		// Video
+		config->addInt("width", 800);
+		config->addInt("height", 600);
 	}
 }

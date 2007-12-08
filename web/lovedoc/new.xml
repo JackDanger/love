@@ -1037,11 +1037,170 @@
 
       This is the complete list of constants available in LOVE.
 
-      <constant name="love.mouse_left" />
-      <constant name="love.mouse_right" />
-      <separator />
-      <constant name="love.key_left" brief="Optional description for constants"/>
+	  <constant name="love.key_unknown" brief="Represents an unknown key" />
+	  <constant name="love.key_first" />
+	  <constant name="love.key_backspace" brief="Backspace key" />
+	  <constant name="love.key_tab" brief="Tab key" />
+	  <constant name="love.key_clear" />
+	  <constant name="love.key_return" brief="Carriage return key" />
+	  <constant name="love.key_pause" brief="Pause key" />
+	  <constant name="love.key_escape" brief="Escape key" />
+	  <constant name="love.key_space" brief="Spacebar key" />
+	  <constant name="love.key_exclaim" brief="! key" />
+	  <constant name="love.key_quotedbl" />
+	  <constant name="love.key_hash" brief="# key" />
+	  <constant name="love.key_dollar" brief="$ key" />
+	  <constant name="love.key_ampersand" brief="&amp; key" />
+	  <constant name="love.key_quote" brief='" key' />
+	  <constant name="love.key_leftparen" brief="( key" />
+	  <constant name="love.key_rightparen" brief=") key" />
+	  <constant name="love.key_asterisk" brief="* key" />
+	  <constant name="love.key_plus" brief="+ key" />
+	  <constant name="love.key_comma" brief=", key" />
+	  <constant name="love.key_minus" brief="- key" />
+	  <constant name="love.key_period" brief=". key" />
+	  <constant name="love.key_slash" brief="/ key" />
+	  <constant name="love.key_0" brief="0 key" />
+	  <constant name="love.key_1" brief="1 key" />
+	  <constant name="love.key_2" brief="2 key" />
+	  <constant name="love.key_3" brief="3 key" />
+	  <constant name="love.key_4" brief="4 key" />
+	  <constant name="love.key_5" brief="5 key" />
+	  <constant name="love.key_6" brief="6 key" />
+	  <constant name="love.key_7" brief="7 key" />
+	  <constant name="love.key_8" brief="8 key" />
+	  <constant name="love.key_9" brief="9 key" />
+	  <constant name="love.key_colon" brief=": key" />
+	  <constant name="love.key_semicolon" brief="; key" />
+	  <constant name="love.key_less" brief="&lt; key" />
+	  <constant name="love.key_equals" brief="= key" />
+	  <constant name="love.key_greater" brief="&gt; key" />
+	  <constant name="love.key_question" brief="? key" />
+	  <constant name="love.key_at" brief="@ key" />
+	  <separator />
+	  <constant name="love.key_leftbracket" brief="[ key" />
+	  <constant name="love.key_backslash" brief="\ key" />
+	  <constant name="love.key_rightbracket" brief="] key" />
+	  <constant name="love.key_caret" brief="^ key" />
+	  <constant name="love.key_underscore" brief="_ key" />
+	  <constant name="love.key_backquote" brief=" key" />
+	  <constant name="love.key_a" brief="A key" />
+	  <constant name="love.key_b" brief="B key" />
+	  <constant name="love.key_c" brief="C key" />
+	  <constant name="love.key_d" brief="D key" />
+	  <constant name="love.key_e" brief="E key" />
+	  <constant name="love.key_f" brief="F key" />
+	  <constant name="love.key_g" brief="G key" />
+	  <constant name="love.key_h" brief="H key" />
+	  <constant name="love.key_i" brief="I key" />
+	  <constant name="love.key_j" brief="J key" />
+	  <constant name="love.key_k" brief="K key" />
+	  <constant name="love.key_l" brief="L key" />
+	  <constant name="love.key_m" brief="M key" />
+	  <constant name="love.key_n" brief="N key" />
+	  <constant name="love.key_o" brief="O key" />
+	  <constant name="love.key_p" brief="P key" />
+	  <constant name="love.key_q" brief="Q key" />
+	  <constant name="love.key_r" brief="R key" />
+	  <constant name="love.key_s" brief="S key" />
+	  <constant name="love.key_t" brief="T key" />
+	  <constant name="love.key_u" brief="U key" />
+	  <constant name="love.key_v" brief="V key" />
+	  <constant name="love.key_w" brief="W key" />
+	  <constant name="love.key_x" brief="X key" />
+	  <constant name="love.key_y" brief="Y key" />
+	  <constant name="love.key_z" brief="Z key" />
+	  <constant name="love.key_delete" brief="Delete key" />
+	  <separator />
+	  <constant name="love.key_kp0" brief="Keypad 0" />
+	  <constant name="love.key_kp1" brief="Keypad 1" />
+	  <constant name="love.key_kp2" brief="Keypad 2" />
+	  <constant name="love.key_kp3" brief="Keypad 3" />
+	  <constant name="love.key_kp4" brief="Keypad 4" />
+	  <constant name="love.key_kp5" brief="Keypad 5" />
+	  <constant name="love.key_kp6" brief="Keypad 6" />
+	  <constant name="love.key_kp7" brief="Keypad 7" />
+	  <constant name="love.key_kp8" brief="Keypad 8" />
+	  <constant name="love.key_kp9" brief="Keypad 9" />
+	  <constant name="love.key_kp_period" brief="Keypad ." />
+	  <constant name="love.key_kp_divide" brief="Keypad /" />
+	  <constant name="love.key_kp_multiply" brief="Keypad *" />
+	  <constant name="love.key_kp_minus" brief="Keypad -" />
+	  <constant name="love.key_kp_plus" brief="Keypad +" />
+	  <constant name="love.key_kp_enter" brief="Keypad enter" />
+	  <constant name="love.key_kp_equals" brief="Keypad =" />
+	  <separator />
+	  <constant name="love.key_up" brief="Up key" />
+	  <constant name="love.key_down" brief="Down key" />
+	  <constant name="love.key_right" brief="Right key" />
+	  <constant name="love.key_left" brief="Left key" />
+	  <constant name="love.key_insert" brief="Insert key" />
+	  <constant name="love.key_home" brief="Home key" />
+	  <constant name="love.key_end" brief="End key" />
+	  <constant name="love.key_pageup" brief="Page Up key" />
+	  <constant name="love.key_pagedown" brief="Page Down key" />
+	  <separator />
+	  <constant name="love.key_f1" brief="F1 key" />
+	  <constant name="love.key_f2" brief="F2 key" />
+	  <constant name="love.key_f3" brief="F3 key" />
+	  <constant name="love.key_f4" brief="F4 key" />
+	  <constant name="love.key_f5" brief="F5 key" />
+	  <constant name="love.key_f6" brief="F6 key" />
+	  <constant name="love.key_f7" brief="F7 key" />
+	  <constant name="love.key_f8" brief="F8 key" />
+	  <constant name="love.key_f9" brief="F9 key" />
+	  <constant name="love.key_f10" brief="F10 key" />
+	  <constant name="love.key_f11" brief="F11 key" />
+	  <constant name="love.key_f12" brief="F12 key" />
+	  <constant name="love.key_f13" brief="F13 key" />
+	  <constant name="love.key_f14" brief="F14 key" />
+	  <constant name="love.key_f15" brief="F15 key" />
+	  <separator />
+	  <constant name="love.key_numlock" brief="Num lock key" />
+	  <constant name="love.key_capslock" brief="Caps lock key" />
+	  <constant name="love.key_scrollock" brief="Scroll lock key" />
+	  <constant name="love.key_rshift" brief="Right shift key" />
+	  <constant name="love.key_lshift" brief="Left shift key" />
+	  <constant name="love.key_rctrl" brief="Right control key" />
+	  <constant name="love.key_lctrl" brief="Left control key" />
+	  <constant name="love.key_ralt" brief="Right alt key" />
+	  <constant name="love.key_lalt" brief="Left alt key" />
+	  <constant name="love.key_rmeta" brief="Right meta key" />
+	  <constant name="love.key_lmeta" brief="Left meta key" />
+	  <constant name="love.key_rsuper" brief="Right super key" />
+	  <constant name="love.key_lsuper" brief="Left super key" />
+	  <constant name="love.key_mode" brief="Mode key" />
+	  <constant name="love.key_compose" brief="Compose key" />
+	  <separator />
+	  <constant name="love.key_help" brief="Help key" />
+	  <constant name="love.key_print" brief="Print key" />
+	  <constant name="love.key_sysreq" brief="System request key" />
+	  <constant name="love.key_break" brief="Break key" />
+	  <constant name="love.key_menu" brief="Menu key" />
+	  <constant name="love.key_power" brief="Power key" />
+	  <constant name="love.key_euro" brief="€ key" />
+	  <constant name="love.key_undo" brief="Undo key" />
+	  <separator />
+      <constant name="love.mouse_left" brief="The left mouse button." />
+	  <constant name="love.mouse_middle" brief="The middle mouse button."  />
+      <constant name="love.mouse_right" brief="The right mouse button."  />
+	  <constant name="love.mouse_wheelup" brief="Mouse wheel scrolled upwards."  />
+	  <constant name="love.mouse_wheeldown" brief="Mouse wheel scrolled downwards."  />
+	  <separator />
+	  <constant name="love.align_left" brief="Align to the left side." />
+	  <constant name="love.align_center" brief="Align in the center (vertically or horizontally)." />
+	  <constant name="love.align_right" brief="Align to the right side." />
+	  <constant name="love.align_top" brief="Align to the top." />
+	  <constant name="love.align_bottom" brief="Align to the bottom." />
+	  <separator />
+	  <constant name="love.mode_loop" brief="Loops continuesly." />
+	  <constant name="love.mode_once" brief="Plays once." />
+	  <constant name="love.mode_bounce" brief="Bounces back and forth." />
+	  <separator />
+	  <constant name="love.event_message" brief="A message event." />
+	  <constant name="love.event_gui" brief="A GUI event." />
     </constants>
+	
     <constants name="Config files" brief="How to create config files." has="List of attributes"> 
 
       Each game should have a config file that specifies game title, author, version, etc. 

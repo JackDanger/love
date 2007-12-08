@@ -19,10 +19,26 @@ namespace love
 	{
 	protected:
 	public:
+		/**
+		 * @brief Constructor. Does nothing.
+		 **/
 		DefaultConfiguration();
+
+		/**
+		 * @brief Deconstructor. Does nothing.
+		 **/
 		virtual ~DefaultConfiguration();
 
+		/**
+		 * @param config A ConfigLoader object to be manipulated.
+		 * @brief Adds the default system configurations to the passed ConfigLoader object.
+		 **/
 		virtual void defaultSystemConfig(const pConfigLoader & config);
+
+		/**
+		 * @param config A ConfigLoader object to be manipulated.
+		 * @brief Adds the default game configurations to the passed ConfigLoader object.
+		 **/
 		virtual void defaultGameConfig(const pConfigLoader & config);
 	};
 

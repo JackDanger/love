@@ -98,6 +98,7 @@ namespace love
 		// Change the display mode
 		int w = 800;
 		int h = 600;
+		int depth = 32;
 		bool full = false;
 		if(config->isString("default_resolution"))
 		{
@@ -105,10 +106,12 @@ namespace love
 			w = atoi(res.substr(0, res.find('x')).c_str());
 			h = atoi(res.substr(res.find('x')+1).c_str());
 		}
+		if(config->isInt("color_depth"))
+			depth = config->getInt("color_depth");
 		if(config->isBool("fullscreen"))
 			full = config->getBool("fullscreen");
 
-		display->tryChange(DisplayMode(w, h, 32, full));
+		display->tryChange(DisplayMode(w, h, depth, full));
 		display->listener = this;
 
 		//addGame("neoftg", new NeoFontTexGame());

@@ -58,10 +58,16 @@ namespace love
 
 	void UIGame::saveSettings()
 	{
+		bool changed = false; // whether the visual settings have been changed
+
 		if(mode == MODE_MENUPAUSE) // save all settings
 		{
+			if(core->config->isBool("fullscreen") && core->config->getBool("fullscreen") != settingsVideoFullscreen->isMarked())
+				changed = true;
 			core->config->addBool("fullscreen", settingsVideoFullscreen->isMarked());
 			core->config->addBool("vsync", settingsVideoVSync->isMarked());
+			if(core->config->isString("default_resolution") && core->config->getString("default_resolution") != settingsVideoResolution->getSelectedElement())
+				changed = true;
 			core->config->addString("default_resolution", settingsVideoResolution->getSelectedElement());
 
 			core->config->addFloat("sound_volume", (float)settingsAudioSound->getValue());
@@ -80,6 +86,8 @@ namespace love
 		}
 		else // only save the in-game settings
 		{
+			if(core->config->isBool("fullscreen") && core->config->getBool("fullscreen") != settingsFullscreen->isMarked())
+				changed = true;
 			core->config->addBool("fullscreen", settingsFullscreen->isMarked());
 			core->config->addBool("vsync", settingsVSync->isMarked());
 			core->config->addFloat("sound_volume", (float)settingsSound->getValue());
@@ -88,6 +96,36 @@ namespace love
 		}
 		core->config->write();
 		hideSettings();
+
+		if(changed && false) // this is very buggy, causes all kinds of problems
+		{
+			int w = core->display->getCurrentDisplayMode().getWidth();
+			int h = core->display->getCurrentDisplayMode().getHeight();
+			int depth = core->display->getCurrentDisplayMode().getColorDepth();
+			bool full = core->display->getCurrentDisplayMode().isFullscreen();
+			if(core->config->isString("default_resolution"))
+			{
+				string res = core->config->getString("default_resolution");
+				w = atoi(res.substr(0, res.find('x')).c_str());
+				h = atoi(res.substr(res.find('x')+1).c_str());
+			}
+			if(core->config->isInt("color_depth"))
+				depth = core->config->getInt("color_depth");
+			if(core->config->isBool("fullscreen"))
+				full = core->config->getBool("fullscreen");
+
+			// Change it.
+			if(!core->display->tryChange(love::DisplayMode(w, h, depth, full)))
+			{
+				core->printf("Could not to change to requested display mode, trying default.\n");
+			}
+			else
+			{
+				core->current->reload();
+				if(core->verbose)
+					core->printf("Display mode was changed to: %i x %i.\n", core->display->getCurrentDisplayMode().getWidth(), core->display->getCurrentDisplayMode().getHeight());
+			}
+		}
 	}
 
 	UIGame::UIGame() : mode(MODE_DEFAULT)
