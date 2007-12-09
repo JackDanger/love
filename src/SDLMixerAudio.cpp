@@ -39,6 +39,8 @@ namespace love
 			return LOVE_ERROR;
 		}
 
+		Mix_AllocateChannels(32);
+
 		Mix_QuerySpec(&audio_rate, &audio_format, &audio_channels);
 		bits=audio_format&0xFF;
 		core->printf("Opened audio at %d Hz %d bit %s, %d bytes audio buffer\n", audio_rate,

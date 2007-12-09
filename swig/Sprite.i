@@ -3,10 +3,11 @@ namespace love
 	class Sprite : public AbstractEntity, public Loadable
 	{
 	public:
-		virtual void update(float dt);
-		float getWidth() const;
-		float getHeight() const;
+	float getWidth() const;
+	float getHeight() const;
 	};
+	
+	typedef boost::shared_ptr<Sprite> pSprite;
 }
 
 %template(SmartSprite) boost::shared_ptr<love::Sprite>;

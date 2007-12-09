@@ -10,8 +10,6 @@ namespace love
 		void start();
 		void stop();
 		void delay(float t);
-		
-		void update(float dt);
 	};
 
 	typedef boost::shared_ptr<FrameAnimation> pFrameAnimation;

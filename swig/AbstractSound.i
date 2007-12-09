@@ -9,6 +9,8 @@ namespace love
 		
 	}; // AbstractSound
 	
+	typedef boost::shared_ptr<AbstractSound> pAbstractSound;
+	
 } // love
 
 %template(SmartSound) boost::shared_ptr<love::AbstractSound>;

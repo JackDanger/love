@@ -1,11 +1,10 @@
-
 namespace love
 {
 	class AbstractImage : public Sprite
 	{
-	public:
-	virtual void update(float dt);
 	};
+
+	typedef boost::shared_ptr<AbstractImage> pAbstractImage;
 }
 
-%template(SmartAbstractImage) boost::shared_ptr<love::AbstractImage>;
+%template(SmartImage) boost::shared_ptr<love::AbstractImage>;

@@ -119,7 +119,7 @@ namespace boost {
 %include "Mouse.i"
 
 // Graphics, etc
-%include "AbstractEntity.h"
+%include "AbstractEntity.i"
 %include "Sprite.i"
 %include "AbstractImage.i"
 %include "FrameAnimation.i"
@@ -189,3 +189,4 @@ namespace boost {
 %template(SmartSlider) boost::shared_ptr<love::Slider>;
 %template(SmartListBox) boost::shared_ptr<love::ListBox>;
 %template(SmartTextBox) boost::shared_ptr<love::TextBox>;
+

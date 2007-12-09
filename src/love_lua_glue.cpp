@@ -1340,88 +1340,83 @@ SWIG_Lua_SetModule(lua_State* L, swig_module_info *module) {
 #define SWIGTYPE_p_boost__shared_ptrTAbstractSoundDevice_t swig_types[5]
 #define SWIGTYPE_p_boost__shared_ptrTlove__AbstractColor_t swig_types[6]
 #define SWIGTYPE_p_boost__shared_ptrTlove__AbstractDisplay_t swig_types[7]
-#define SWIGTYPE_p_boost__shared_ptrTlove__AbstractEntity_t swig_types[8]
-#define SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t swig_types[9]
-#define SWIGTYPE_p_boost__shared_ptrTlove__AbstractGraphics_t swig_types[10]
-#define SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t swig_types[11]
-#define SWIGTYPE_p_boost__shared_ptrTlove__AbstractMenu_t swig_types[12]
-#define SWIGTYPE_p_boost__shared_ptrTlove__AbstractMusic_t swig_types[13]
-#define SWIGTYPE_p_boost__shared_ptrTlove__AbstractSound_t swig_types[14]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Bezier_t swig_types[15]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Button_t swig_types[16]
-#define SWIGTYPE_p_boost__shared_ptrTlove__CheckBox_t swig_types[17]
-#define SWIGTYPE_p_boost__shared_ptrTlove__DisplayMode_t swig_types[18]
-#define SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t swig_types[19]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Event_t swig_types[20]
-#define SWIGTYPE_p_boost__shared_ptrTlove__FrameAnimation_t swig_types[21]
-#define SWIGTYPE_p_boost__shared_ptrTlove__GUIElement_t swig_types[22]
-#define SWIGTYPE_p_boost__shared_ptrTlove__GUIEvent_t swig_types[23]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Label_t swig_types[24]
-#define SWIGTYPE_p_boost__shared_ptrTlove__ListBox_t swig_types[25]
-#define SWIGTYPE_p_boost__shared_ptrTlove__MessageEvent_t swig_types[26]
-#define SWIGTYPE_p_boost__shared_ptrTlove__MultilineLabel_t swig_types[27]
-#define SWIGTYPE_p_boost__shared_ptrTlove__ObjectFactory_t swig_types[28]
-#define SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t swig_types[29]
-#define SWIGTYPE_p_boost__shared_ptrTlove__RadioButton_t swig_types[30]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Slider_t swig_types[31]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t swig_types[32]
-#define SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t swig_types[33]
-#define SWIGTYPE_p_boost__shared_ptrTlove__TextField_t swig_types[34]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Timer_t swig_types[35]
-#define SWIGTYPE_p_gcn__Graphics swig_types[36]
-#define SWIGTYPE_p_gcn__Widget swig_types[37]
-#define SWIGTYPE_p_int swig_types[38]
-#define SWIGTYPE_p_listTlove__particle_t swig_types[39]
-#define SWIGTYPE_p_love__AbstractAudio swig_types[40]
-#define SWIGTYPE_p_love__AbstractColor swig_types[41]
-#define SWIGTYPE_p_love__AbstractDisplay swig_types[42]
-#define SWIGTYPE_p_love__AbstractEntity swig_types[43]
-#define SWIGTYPE_p_love__AbstractFont swig_types[44]
-#define SWIGTYPE_p_love__AbstractGraphics swig_types[45]
-#define SWIGTYPE_p_love__AbstractImage swig_types[46]
-#define SWIGTYPE_p_love__AbstractMenu swig_types[47]
-#define SWIGTYPE_p_love__AbstractMusic swig_types[48]
-#define SWIGTYPE_p_love__AbstractSound swig_types[49]
-#define SWIGTYPE_p_love__Bezier swig_types[50]
-#define SWIGTYPE_p_love__Button swig_types[51]
-#define SWIGTYPE_p_love__CheckBox swig_types[52]
-#define SWIGTYPE_p_love__DisplayMode swig_types[53]
-#define SWIGTYPE_p_love__DropDown swig_types[54]
-#define SWIGTYPE_p_love__Event swig_types[55]
-#define SWIGTYPE_p_love__FrameAnimation swig_types[56]
-#define SWIGTYPE_p_love__GUIContainer swig_types[57]
-#define SWIGTYPE_p_love__GUIElement swig_types[58]
-#define SWIGTYPE_p_love__GUIEvent swig_types[59]
-#define SWIGTYPE_p_love__Keyboard swig_types[60]
-#define SWIGTYPE_p_love__Label swig_types[61]
-#define SWIGTYPE_p_love__ListBox swig_types[62]
-#define SWIGTYPE_p_love__LuaGame swig_types[63]
-#define SWIGTYPE_p_love__MessageEvent swig_types[64]
-#define SWIGTYPE_p_love__Mouse swig_types[65]
-#define SWIGTYPE_p_love__MultilineLabel swig_types[66]
-#define SWIGTYPE_p_love__Object swig_types[67]
-#define SWIGTYPE_p_love__ObjectFactory swig_types[68]
-#define SWIGTYPE_p_love__Padded swig_types[69]
-#define SWIGTYPE_p_love__ParticleSystem swig_types[70]
-#define SWIGTYPE_p_love__RadioButton swig_types[71]
-#define SWIGTYPE_p_love__Slider swig_types[72]
-#define SWIGTYPE_p_love__Sprite swig_types[73]
-#define SWIGTYPE_p_love__TextBox swig_types[74]
-#define SWIGTYPE_p_love__TextField swig_types[75]
-#define SWIGTYPE_p_love__Timer swig_types[76]
-#define SWIGTYPE_p_love__Updateable swig_types[77]
-#define SWIGTYPE_p_love__interval swig_types[78]
-#define SWIGTYPE_p_love__particle swig_types[79]
-#define SWIGTYPE_p_pAbstractImage swig_types[80]
-#define SWIGTYPE_p_pAbstractMusic swig_types[81]
-#define SWIGTYPE_p_pAbstractSound swig_types[82]
-#define SWIGTYPE_p_pAnimatedColor swig_types[83]
-#define SWIGTYPE_p_pEvent swig_types[84]
-#define SWIGTYPE_p_pSprite swig_types[85]
-#define SWIGTYPE_p_string swig_types[86]
-#define SWIGTYPE_string swig_types[87]
-static swig_type_info *swig_types[89];
-static swig_module_info swig_module = {swig_types, 88, 0, 0, 0, 0};
+#define SWIGTYPE_p_boost__shared_ptrTlove__AbstractFont_t swig_types[8]
+#define SWIGTYPE_p_boost__shared_ptrTlove__AbstractGraphics_t swig_types[9]
+#define SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t swig_types[10]
+#define SWIGTYPE_p_boost__shared_ptrTlove__AbstractMenu_t swig_types[11]
+#define SWIGTYPE_p_boost__shared_ptrTlove__AbstractMusic_t swig_types[12]
+#define SWIGTYPE_p_boost__shared_ptrTlove__AbstractSound_t swig_types[13]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Bezier_t swig_types[14]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Button_t swig_types[15]
+#define SWIGTYPE_p_boost__shared_ptrTlove__CheckBox_t swig_types[16]
+#define SWIGTYPE_p_boost__shared_ptrTlove__DisplayMode_t swig_types[17]
+#define SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t swig_types[18]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Event_t swig_types[19]
+#define SWIGTYPE_p_boost__shared_ptrTlove__FrameAnimation_t swig_types[20]
+#define SWIGTYPE_p_boost__shared_ptrTlove__GUIElement_t swig_types[21]
+#define SWIGTYPE_p_boost__shared_ptrTlove__GUIEvent_t swig_types[22]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Label_t swig_types[23]
+#define SWIGTYPE_p_boost__shared_ptrTlove__ListBox_t swig_types[24]
+#define SWIGTYPE_p_boost__shared_ptrTlove__MessageEvent_t swig_types[25]
+#define SWIGTYPE_p_boost__shared_ptrTlove__MultilineLabel_t swig_types[26]
+#define SWIGTYPE_p_boost__shared_ptrTlove__ObjectFactory_t swig_types[27]
+#define SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t swig_types[28]
+#define SWIGTYPE_p_boost__shared_ptrTlove__RadioButton_t swig_types[29]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Slider_t swig_types[30]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t swig_types[31]
+#define SWIGTYPE_p_boost__shared_ptrTlove__TextBox_t swig_types[32]
+#define SWIGTYPE_p_boost__shared_ptrTlove__TextField_t swig_types[33]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Timer_t swig_types[34]
+#define SWIGTYPE_p_gcn__Graphics swig_types[35]
+#define SWIGTYPE_p_gcn__Widget swig_types[36]
+#define SWIGTYPE_p_int swig_types[37]
+#define SWIGTYPE_p_listTlove__particle_t swig_types[38]
+#define SWIGTYPE_p_love__AbstractAudio swig_types[39]
+#define SWIGTYPE_p_love__AbstractColor swig_types[40]
+#define SWIGTYPE_p_love__AbstractDisplay swig_types[41]
+#define SWIGTYPE_p_love__AbstractEntity swig_types[42]
+#define SWIGTYPE_p_love__AbstractFont swig_types[43]
+#define SWIGTYPE_p_love__AbstractGraphics swig_types[44]
+#define SWIGTYPE_p_love__AbstractImage swig_types[45]
+#define SWIGTYPE_p_love__AbstractMenu swig_types[46]
+#define SWIGTYPE_p_love__AbstractMusic swig_types[47]
+#define SWIGTYPE_p_love__AbstractSound swig_types[48]
+#define SWIGTYPE_p_love__Bezier swig_types[49]
+#define SWIGTYPE_p_love__Button swig_types[50]
+#define SWIGTYPE_p_love__CheckBox swig_types[51]
+#define SWIGTYPE_p_love__DisplayMode swig_types[52]
+#define SWIGTYPE_p_love__DropDown swig_types[53]
+#define SWIGTYPE_p_love__Event swig_types[54]
+#define SWIGTYPE_p_love__FrameAnimation swig_types[55]
+#define SWIGTYPE_p_love__GUIContainer swig_types[56]
+#define SWIGTYPE_p_love__GUIElement swig_types[57]
+#define SWIGTYPE_p_love__GUIEvent swig_types[58]
+#define SWIGTYPE_p_love__Keyboard swig_types[59]
+#define SWIGTYPE_p_love__Label swig_types[60]
+#define SWIGTYPE_p_love__ListBox swig_types[61]
+#define SWIGTYPE_p_love__LuaGame swig_types[62]
+#define SWIGTYPE_p_love__MessageEvent swig_types[63]
+#define SWIGTYPE_p_love__Mouse swig_types[64]
+#define SWIGTYPE_p_love__MultilineLabel swig_types[65]
+#define SWIGTYPE_p_love__Object swig_types[66]
+#define SWIGTYPE_p_love__ObjectFactory swig_types[67]
+#define SWIGTYPE_p_love__Padded swig_types[68]
+#define SWIGTYPE_p_love__ParticleSystem swig_types[69]
+#define SWIGTYPE_p_love__RadioButton swig_types[70]
+#define SWIGTYPE_p_love__Slider swig_types[71]
+#define SWIGTYPE_p_love__Sprite swig_types[72]
+#define SWIGTYPE_p_love__TextBox swig_types[73]
+#define SWIGTYPE_p_love__TextField swig_types[74]
+#define SWIGTYPE_p_love__Timer swig_types[75]
+#define SWIGTYPE_p_love__Updateable swig_types[76]
+#define SWIGTYPE_p_love__interval swig_types[77]
+#define SWIGTYPE_p_love__particle swig_types[78]
+#define SWIGTYPE_p_pAnimatedColor swig_types[79]
+#define SWIGTYPE_p_pEvent swig_types[80]
+#define SWIGTYPE_p_string swig_types[81]
+#define SWIGTYPE_string swig_types[82]
+static swig_type_info *swig_types[84];
+static swig_module_info swig_module = {swig_types, 83, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1547,13 +1542,13 @@ SWIGINTERN void love_Button_setHoverBackgroundColor(love::Button *self,love::pAb
 SWIGINTERN void love_Button_setPressedBackgroundColor(love::Button *self,love::pAbstractColor const *color){
 		self->setPressedBackgroundColor(*color);
 	}
-SWIGINTERN void love_Button_setDefaultImage(love::Button *self,pAbstractImage const *image){
+SWIGINTERN void love_Button_setDefaultImage(love::Button *self,love::pAbstractImage const *image){
 		self->setDefaultImage(*image);
 	}
-SWIGINTERN void love_Button_setHoverImage(love::Button *self,pAbstractImage const *image){
+SWIGINTERN void love_Button_setHoverImage(love::Button *self,love::pAbstractImage const *image){
 		self->setHoverImage(*image);
 	}
-SWIGINTERN void love_Button_setPressedImage(love::Button *self,pAbstractImage const *image){
+SWIGINTERN void love_Button_setPressedImage(love::Button *self,love::pAbstractImage const *image){
 		self->setPressedImage(*image);
 	}
 SWIGINTERN char const *love_Button_getCaption(love::Button *self){
@@ -1607,19 +1602,19 @@ SWIGINTERN void love_DropDown_setButtonPressedBackgroundColor(love::DropDown *se
 SWIGINTERN void love_DropDown_setFont(love::DropDown *self,love::pAbstractFont const *font){
 		self->setFont(*font);
 	}
-SWIGINTERN void love_DropDown_setBackgroundImage(love::DropDown *self,pAbstractImage const *image){
+SWIGINTERN void love_DropDown_setBackgroundImage(love::DropDown *self,love::pAbstractImage const *image){
 		self->setBackgroundImage(*image);
 	}
-SWIGINTERN void love_DropDown_setListImage(love::DropDown *self,pAbstractImage const *image){
+SWIGINTERN void love_DropDown_setListImage(love::DropDown *self,love::pAbstractImage const *image){
 		self->setListImage(*image);
 	}
-SWIGINTERN void love_DropDown_setButtonImage(love::DropDown *self,pAbstractImage const *image){
+SWIGINTERN void love_DropDown_setButtonImage(love::DropDown *self,love::pAbstractImage const *image){
 		self->setButtonImage(*image);
 	}
-SWIGINTERN void love_DropDown_setButtonHoverImage(love::DropDown *self,pAbstractImage const *image){
+SWIGINTERN void love_DropDown_setButtonHoverImage(love::DropDown *self,love::pAbstractImage const *image){
 		self->setButtonHoverImage(*image);
 	}
-SWIGINTERN void love_DropDown_setButtonPressedImage(love::DropDown *self,pAbstractImage const *image){
+SWIGINTERN void love_DropDown_setButtonPressedImage(love::DropDown *self,love::pAbstractImage const *image){
 		self->setButtonPressedImage(*image);
 	}
 SWIGINTERN char const *love_DropDown_getName(love::DropDown *self){
@@ -1643,7 +1638,7 @@ SWIGINTERN void love_Label_setFont(love::Label *self,love::pAbstractFont const *
 SWIGINTERN void love_Label_setBackgroundColor(love::Label *self,love::pAbstractColor const *color){
 		self->setBackgroundColor(*color);
 	}
-SWIGINTERN void love_Label_setBackgroundImage(love::Label *self,pAbstractImage const *image){
+SWIGINTERN void love_Label_setBackgroundImage(love::Label *self,love::pAbstractImage const *image){
 		self->setBackgroundImage(*image);
 	}
 SWIGINTERN char const *love_Label_getCaption(love::Label *self){
@@ -1667,7 +1662,7 @@ SWIGINTERN void love_TextField_setActiveColor(love::TextField *self,love::pAbstr
 SWIGINTERN void love_TextField_setActiveBackgroundColor(love::TextField *self,love::pAbstractColor const *color){
 		self->setActiveBackgroundColor(*color);
 	}
-SWIGINTERN void love_TextField_setBackgroundImage(love::TextField *self,pAbstractImage const *image){
+SWIGINTERN void love_TextField_setBackgroundImage(love::TextField *self,love::pAbstractImage const *image){
 		self->setBackgroundImage(*image);
 	}
 SWIGINTERN void love_TextField_setFont(love::TextField *self,love::pAbstractFont const *font){
@@ -1694,13 +1689,13 @@ SWIGINTERN void love_RadioButton_setHoverColor(love::RadioButton *self,love::pAb
 SWIGINTERN void love_RadioButton_setMarkedColor(love::RadioButton *self,love::pAbstractColor const *color){
 		self->setMarkedColor(*color);
 	}
-SWIGINTERN void love_RadioButton_setDefaultImage(love::RadioButton *self,pAbstractImage const *image){
+SWIGINTERN void love_RadioButton_setDefaultImage(love::RadioButton *self,love::pAbstractImage const *image){
 		self->setDefaultImage(*image);
 	}
-SWIGINTERN void love_RadioButton_setHoverImage(love::RadioButton *self,pAbstractImage const *image){
+SWIGINTERN void love_RadioButton_setHoverImage(love::RadioButton *self,love::pAbstractImage const *image){
 		self->setHoverImage(*image);
 	}
-SWIGINTERN void love_RadioButton_setMarkedImage(love::RadioButton *self,pAbstractImage const *image){
+SWIGINTERN void love_RadioButton_setMarkedImage(love::RadioButton *self,love::pAbstractImage const *image){
 		self->setMarkedImage(*image);
 	}
 SWIGINTERN void love_RadioButton_setFont(love::RadioButton *self,love::pAbstractFont const *font){
@@ -1727,13 +1722,13 @@ SWIGINTERN void love_CheckBox_setHoverColor(love::CheckBox *self,love::pAbstract
 SWIGINTERN void love_CheckBox_setMarkedColor(love::CheckBox *self,love::pAbstractColor const *color){
 		self->setMarkedColor(*color);
 	}
-SWIGINTERN void love_CheckBox_setDefaultImage(love::CheckBox *self,pAbstractImage const *image){
+SWIGINTERN void love_CheckBox_setDefaultImage(love::CheckBox *self,love::pAbstractImage const *image){
 		self->setDefaultImage(*image);
 	}
-SWIGINTERN void love_CheckBox_setHoverImage(love::CheckBox *self,pAbstractImage const *image){
+SWIGINTERN void love_CheckBox_setHoverImage(love::CheckBox *self,love::pAbstractImage const *image){
 		self->setHoverImage(*image);
 	}
-SWIGINTERN void love_CheckBox_setMarkedImage(love::CheckBox *self,pAbstractImage const *image){
+SWIGINTERN void love_CheckBox_setMarkedImage(love::CheckBox *self,love::pAbstractImage const *image){
 		self->setMarkedImage(*image);
 	}
 SWIGINTERN void love_CheckBox_setFont(love::CheckBox *self,love::pAbstractFont const *font){
@@ -1751,10 +1746,10 @@ SWIGINTERN void love_Slider_setName(love::Slider *self,char const *name){
 SWIGINTERN void love_Slider_setBackgroundColor(love::Slider *self,love::pAbstractColor const *color){
 		self->setBackgroundColor(*color);
 	}
-SWIGINTERN void love_Slider_setMarkerImage(love::Slider *self,pAbstractImage const *image){
+SWIGINTERN void love_Slider_setMarkerImage(love::Slider *self,love::pAbstractImage const *image){
 		self->setMarkerImage(*image);
 	}
-SWIGINTERN void love_Slider_setBackgroundImage(love::Slider *self,pAbstractImage const *image){
+SWIGINTERN void love_Slider_setBackgroundImage(love::Slider *self,love::pAbstractImage const *image){
 		self->setBackgroundImage(*image);
 	}
 SWIGINTERN void love_Slider_setFont(love::Slider *self,love::pAbstractFont const *font){
@@ -1775,7 +1770,7 @@ SWIGINTERN void love_ListBox_setSelectionColor(love::ListBox *self,love::pAbstra
 SWIGINTERN void love_ListBox_setSelectionBackgroundColor(love::ListBox *self,love::pAbstractColor const *color){
 		self->setSelectionBackgroundColor(*color);
 	}
-SWIGINTERN void love_ListBox_setBackgroundImage(love::ListBox *self,pAbstractImage const *image){
+SWIGINTERN void love_ListBox_setBackgroundImage(love::ListBox *self,love::pAbstractImage const *image){
 		self->setBackgroundImage(*image);
 	}
 SWIGINTERN void love_ListBox_setFont(love::ListBox *self,love::pAbstractFont const *font){
@@ -1832,7 +1827,7 @@ SWIGINTERN void love_AbstractMenu_setColor(love::AbstractMenu *self,love::pAbstr
 SWIGINTERN void love_AbstractMenu_setBackgroundColor(love::AbstractMenu *self,love::pAbstractColor const *color){
 		self->setBackgroundColor(*color);
 	}
-SWIGINTERN void love_AbstractMenu_setBackground(love::AbstractMenu *self,pAbstractImage const *image){
+SWIGINTERN void love_AbstractMenu_setBackground(love::AbstractMenu *self,love::pAbstractImage const *image){
 		self->setBackground(*image);
 	}
 SWIGINTERN boost::shared_ptr<love::AbstractMenu > love_AbstractMenu_addWindowMenu__SWIG_0(love::AbstractMenu *self,int type,char const *caption="",int width=0,int height=0){
@@ -1844,7 +1839,7 @@ SWIGINTERN love::pLabel love_AbstractMenu_addLabel__SWIG_0(love::AbstractMenu *s
 SWIGINTERN love::pMultilineLabel love_AbstractMenu_addMultilineLabel__SWIG_0(love::AbstractMenu *self,char const *caption,int width=0,int height=0){
 		return self->addMultilineLabel(string(caption), width, height);
 	}
-SWIGINTERN love::pLabel love_AbstractMenu_addImage(love::AbstractMenu *self,pAbstractImage const *image){
+SWIGINTERN love::pLabel love_AbstractMenu_addImage(love::AbstractMenu *self,love::pAbstractImage const *image){
 		return self->addImage(*image);
 	}
 SWIGINTERN love::pButton love_AbstractMenu_addButton__SWIG_0(love::AbstractMenu *self,char const *name,char const *caption,int width=0,int height=0){
@@ -1886,10 +1881,10 @@ SWIGINTERN void love_AbstractGraphics_setBackgroundColor__SWIG_2(love::AbstractG
 SWIGINTERN void love_AbstractGraphics_setFont(love::AbstractGraphics *self,love::pAbstractFont const *font){
 		self->setFont(*font);
 	}
-SWIGINTERN void love_AbstractGraphics_draw__SWIG_0(love::AbstractGraphics const *self,pAbstractImage const *sprite,float x=0,float y=0){
+SWIGINTERN void love_AbstractGraphics_draw__SWIG_0(love::AbstractGraphics const *self,love::pAbstractImage const *sprite,float x=0,float y=0){
 		self->draw((pSprite)*sprite, x, y);
 	}
-SWIGINTERN void love_AbstractGraphics_draw__SWIG_3(love::AbstractGraphics const *self,pAbstractImage const *sprite,float x,float y,float sx,float sy,float width,float height){
+SWIGINTERN void love_AbstractGraphics_draw__SWIG_3(love::AbstractGraphics const *self,love::pAbstractImage const *sprite,float x,float y,float sx,float sy,float width,float height){
 		self->draw((pSprite)*sprite, x, y, sx, sy, width, height);
 	}
 SWIGINTERN void love_AbstractGraphics_draw__SWIG_4(love::AbstractGraphics const *self,love::pFrameAnimation const *sprite,float x=0,float y=0){
@@ -1907,10 +1902,10 @@ SWIGINTERN void love_AbstractGraphics_draw__SWIG_11(love::AbstractGraphics const
 SWIGINTERN char const *love_AbstractAudio_fist(love::AbstractAudio *self){
 		return "Diznick";
 	}
-SWIGINTERN void love_AbstractAudio_play__SWIG_0(love::AbstractAudio const *self,pAbstractSound const *sound,int loop=0,int channel=-1){
+SWIGINTERN void love_AbstractAudio_play__SWIG_0(love::AbstractAudio const *self,love::pAbstractSound const *sound,int loop=0,int channel=-1){
 		self->play(*sound, loop, channel);
 	}
-SWIGINTERN void love_AbstractAudio_play__SWIG_3(love::AbstractAudio const *self,pAbstractMusic const *music,int loop=0){
+SWIGINTERN void love_AbstractAudio_play__SWIG_3(love::AbstractAudio const *self,love::pAbstractMusic const *music,int loop=0){
 		self->play(*music, loop);
 	}
 #ifdef __cplusplus
@@ -2222,23 +2217,6 @@ fail:
 }
 
 
-static int _wrap_AbstractEntity_render(lua_State* L) {
-  int SWIG_arg = -1;
-  love::AbstractEntity *arg1 = (love::AbstractEntity *) 0 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::AbstractEntity *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractEntity,0,1,"AbstractEntity_render");
-  (arg1)->render();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_delete_AbstractEntity(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractEntity *arg1 = (love::AbstractEntity *) 0 ;
@@ -2263,7 +2241,6 @@ delete arg1;
 }
 static swig_lua_method swig_love_AbstractEntity_methods[] = {
     {"update", _wrap_AbstractEntity_update}, 
-    {"render", _wrap_AbstractEntity_render}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_AbstractEntity_attributes[] = {
@@ -2271,26 +2248,6 @@ static swig_lua_attribute swig_love_AbstractEntity_attributes[] = {
 };
 static swig_lua_class *swig_love_AbstractEntity_bases[] = {&_wrap_class_love_Object,&_wrap_class_love_Updateable,0};
 swig_lua_class _wrap_class_love_AbstractEntity = { "AbstractEntity", &SWIGTYPE_p_love__AbstractEntity,0, swig_delete_AbstractEntity, swig_love_AbstractEntity_methods, swig_love_AbstractEntity_attributes, swig_love_AbstractEntity_bases };
-
-static int _wrap_Sprite_update(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Sprite *arg1 = (love::Sprite *) 0 ;
-  float arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(love::Sprite *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Sprite,0,1,"Sprite_update");
-  arg2 = (float)lua_tonumber(L, 2);
-  (arg1)->update(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
 
 static int _wrap_Sprite_getWidth(lua_State* L) {
   int SWIG_arg = -1;
@@ -2351,7 +2308,6 @@ love::Sprite *arg1 = (love::Sprite *) obj;
 delete arg1;
 }
 static swig_lua_method swig_love_Sprite_methods[] = {
-    {"update", _wrap_Sprite_update}, 
     {"getWidth", _wrap_Sprite_getWidth}, 
     {"getHeight", _wrap_Sprite_getHeight}, 
     {0,0}
@@ -2398,26 +2354,6 @@ fail:
 }
 
 
-static int _wrap_SmartSprite_update(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::Sprite > *arg1 = (boost::shared_ptr<love::Sprite > *) 0 ;
-  float arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(boost::shared_ptr<love::Sprite > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t,0,1,"SmartSprite_update");
-  arg2 = (float)lua_tonumber(L, 2);
-  (*arg1)->update(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_SmartSprite_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Sprite > *arg1 = (boost::shared_ptr<love::Sprite > *) 0 ;
@@ -2454,13 +2390,16 @@ fail:
 }
 
 
-static int _wrap_SmartSprite_render(lua_State* L) {
+static int _wrap_SmartSprite_update(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Sprite > *arg1 = (boost::shared_ptr<love::Sprite > *) 0 ;
+  float arg2 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(boost::shared_ptr<love::Sprite > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t,0,1,"SmartSprite_render");
-  (*arg1)->render();
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Sprite > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t,0,1,"SmartSprite_update");
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->update(arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -2477,10 +2416,9 @@ delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_Sprite_Sg__methods[] = {
     {"__deref__", _wrap_SmartSprite___deref__}, 
-    {"update", _wrap_SmartSprite_update}, 
     {"getWidth", _wrap_SmartSprite_getWidth}, 
     {"getHeight", _wrap_SmartSprite_getHeight}, 
-    {"render", _wrap_SmartSprite_render}, 
+    {"update", _wrap_SmartSprite_update}, 
     {0,0}
 };
 static swig_lua_attribute swig_boost_shared_ptr_Sl_love_Sprite_Sg__attributes[] = {
@@ -2488,26 +2426,6 @@ static swig_lua_attribute swig_boost_shared_ptr_Sl_love_Sprite_Sg__attributes[] 
 };
 static swig_lua_class *swig_boost_shared_ptr_Sl_love_Sprite_Sg__bases[] = {0};
 swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_Sprite_Sg_ = { "SmartSprite", &SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t,0, swig_delete_SmartSprite, swig_boost_shared_ptr_Sl_love_Sprite_Sg__methods, swig_boost_shared_ptr_Sl_love_Sprite_Sg__attributes, swig_boost_shared_ptr_Sl_love_Sprite_Sg__bases };
-
-static int _wrap_AbstractImage_update(lua_State* L) {
-  int SWIG_arg = -1;
-  love::AbstractImage *arg1 = (love::AbstractImage *) 0 ;
-  float arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(love::AbstractImage *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractImage,0,1,"AbstractImage_update");
-  arg2 = (float)lua_tonumber(L, 2);
-  (arg1)->update(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
 
 static int _wrap_delete_AbstractImage(lua_State* L) {
   int SWIG_arg = -1;
@@ -2532,7 +2450,6 @@ love::AbstractImage *arg1 = (love::AbstractImage *) obj;
 delete arg1;
 }
 static swig_lua_method swig_love_AbstractImage_methods[] = {
-    {"update", _wrap_AbstractImage_update}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_AbstractImage_attributes[] = {
@@ -2541,13 +2458,13 @@ static swig_lua_attribute swig_love_AbstractImage_attributes[] = {
 static swig_lua_class *swig_love_AbstractImage_bases[] = {&_wrap_class_love_Sprite,0};
 swig_lua_class _wrap_class_love_AbstractImage = { "AbstractImage", &SWIGTYPE_p_love__AbstractImage,0, swig_delete_AbstractImage, swig_love_AbstractImage_methods, swig_love_AbstractImage_attributes, swig_love_AbstractImage_bases };
 
-static int _wrap_SmartAbstractImage___deref__(lua_State* L) {
+static int _wrap_SmartImage___deref__(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::AbstractImage > *arg1 = (boost::shared_ptr<love::AbstractImage > *) 0 ;
   love::AbstractImage *result = 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(boost::shared_ptr<love::AbstractImage > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,1,"SmartAbstractImage___deref__");
+  arg1=(boost::shared_ptr<love::AbstractImage > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,1,"SmartImage___deref__");
   result = (love::AbstractImage *)((boost::shared_ptr<love::AbstractImage > const *)arg1)->operator ->();
   SWIG_arg=0;
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__AbstractImage,0); SWIG_arg++; 
@@ -2559,12 +2476,12 @@ fail:
 }
 
 
-static int _wrap_delete_SmartAbstractImage(lua_State* L) {
+static int _wrap_delete_SmartImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::AbstractImage > *arg1 = (boost::shared_ptr<love::AbstractImage > *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(boost::shared_ptr<love::AbstractImage > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,1,"delete_SmartAbstractImage");
+  arg1=(boost::shared_ptr<love::AbstractImage > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,1,"delete_SmartImage");
   delete arg1;
   
   SWIG_arg=0;
@@ -2577,14 +2494,50 @@ fail:
 }
 
 
-static int _wrap_SmartAbstractImage_update(lua_State* L) {
+static int _wrap_SmartImage_getWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::AbstractImage > *arg1 = (boost::shared_ptr<love::AbstractImage > *) 0 ;
+  float result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::AbstractImage > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,1,"SmartImage_getWidth");
+  result = (float)(*arg1)->getWidth();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartImage_getHeight(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::AbstractImage > *arg1 = (boost::shared_ptr<love::AbstractImage > *) 0 ;
+  float result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::AbstractImage > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,1,"SmartImage_getHeight");
+  result = (float)(*arg1)->getHeight();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartImage_update(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::AbstractImage > *arg1 = (boost::shared_ptr<love::AbstractImage > *) 0 ;
   float arg2 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(boost::shared_ptr<love::AbstractImage > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,1,"SmartAbstractImage_update");
+  arg1=(boost::shared_ptr<love::AbstractImage > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,1,"SmartImage_update");
   arg2 = (float)lua_tonumber(L, 2);
   (*arg1)->update(arg2);
   SWIG_arg=0;
@@ -2597,76 +2550,22 @@ fail:
 }
 
 
-static int _wrap_SmartAbstractImage_getWidth(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::AbstractImage > *arg1 = (boost::shared_ptr<love::AbstractImage > *) 0 ;
-  float result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(boost::shared_ptr<love::AbstractImage > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,1,"SmartAbstractImage_getWidth");
-  result = (float)(*arg1)->getWidth();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartAbstractImage_getHeight(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::AbstractImage > *arg1 = (boost::shared_ptr<love::AbstractImage > *) 0 ;
-  float result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(boost::shared_ptr<love::AbstractImage > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,1,"SmartAbstractImage_getHeight");
-  result = (float)(*arg1)->getHeight();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartAbstractImage_render(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::AbstractImage > *arg1 = (boost::shared_ptr<love::AbstractImage > *) 0 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(boost::shared_ptr<love::AbstractImage > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,1,"SmartAbstractImage_render");
-  (*arg1)->render();
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_SmartAbstractImage(void *obj) {
+static void swig_delete_SmartImage(void *obj) {
 boost::shared_ptr<love::AbstractImage > *arg1 = (boost::shared_ptr<love::AbstractImage > *) obj;
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_AbstractImage_Sg__methods[] = {
-    {"__deref__", _wrap_SmartAbstractImage___deref__}, 
-    {"update", _wrap_SmartAbstractImage_update}, 
-    {"getWidth", _wrap_SmartAbstractImage_getWidth}, 
-    {"getHeight", _wrap_SmartAbstractImage_getHeight}, 
-    {"render", _wrap_SmartAbstractImage_render}, 
+    {"__deref__", _wrap_SmartImage___deref__}, 
+    {"getWidth", _wrap_SmartImage_getWidth}, 
+    {"getHeight", _wrap_SmartImage_getHeight}, 
+    {"update", _wrap_SmartImage_update}, 
     {0,0}
 };
 static swig_lua_attribute swig_boost_shared_ptr_Sl_love_AbstractImage_Sg__attributes[] = {
     {0,0,0}
 };
 static swig_lua_class *swig_boost_shared_ptr_Sl_love_AbstractImage_Sg__bases[] = {0};
-swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_AbstractImage_Sg_ = { "SmartAbstractImage", &SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0, swig_delete_SmartAbstractImage, swig_boost_shared_ptr_Sl_love_AbstractImage_Sg__methods, swig_boost_shared_ptr_Sl_love_AbstractImage_Sg__attributes, swig_boost_shared_ptr_Sl_love_AbstractImage_Sg__bases };
+swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_AbstractImage_Sg_ = { "SmartImage", &SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0, swig_delete_SmartImage, swig_boost_shared_ptr_Sl_love_AbstractImage_Sg__methods, swig_boost_shared_ptr_Sl_love_AbstractImage_Sg__attributes, swig_boost_shared_ptr_Sl_love_AbstractImage_Sg__bases };
 
 static int _wrap_FrameAnimation_addFrame(lua_State* L) {
   int SWIG_arg = -1;
@@ -2786,26 +2685,6 @@ fail:
 }
 
 
-static int _wrap_FrameAnimation_update(lua_State* L) {
-  int SWIG_arg = -1;
-  love::FrameAnimation *arg1 = (love::FrameAnimation *) 0 ;
-  float arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(love::FrameAnimation *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__FrameAnimation,0,1,"FrameAnimation_update");
-  arg2 = (float)lua_tonumber(L, 2);
-  (arg1)->update(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_delete_FrameAnimation(lua_State* L) {
   int SWIG_arg = -1;
   love::FrameAnimation *arg1 = (love::FrameAnimation *) 0 ;
@@ -2834,7 +2713,6 @@ static swig_lua_method swig_love_FrameAnimation_methods[] = {
     {"start", _wrap_FrameAnimation_start}, 
     {"stop", _wrap_FrameAnimation_stop}, 
     {"delay", _wrap_FrameAnimation_delay}, 
-    {"update", _wrap_FrameAnimation_update}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_FrameAnimation_attributes[] = {
@@ -2997,26 +2875,6 @@ fail:
 }
 
 
-static int _wrap_SmartFrameAnimation_update(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr<love::FrameAnimation > *arg1 = (boost::shared_ptr<love::FrameAnimation > *) 0 ;
-  float arg2 ;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
-  arg1=(boost::shared_ptr<love::FrameAnimation > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__FrameAnimation_t,0,1,"SmartFrameAnimation_update");
-  arg2 = (float)lua_tonumber(L, 2);
-  (*arg1)->update(arg2);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_SmartFrameAnimation_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::FrameAnimation > *arg1 = (boost::shared_ptr<love::FrameAnimation > *) 0 ;
@@ -3053,13 +2911,16 @@ fail:
 }
 
 
-static int _wrap_SmartFrameAnimation_render(lua_State* L) {
+static int _wrap_SmartFrameAnimation_update(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::FrameAnimation > *arg1 = (boost::shared_ptr<love::FrameAnimation > *) 0 ;
+  float arg2 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(boost::shared_ptr<love::FrameAnimation > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__FrameAnimation_t,0,1,"SmartFrameAnimation_render");
-  (*arg1)->render();
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::FrameAnimation > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__FrameAnimation_t,0,1,"SmartFrameAnimation_update");
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->update(arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -3081,10 +2942,9 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_FrameAnimation_Sg__methods[
     {"start", _wrap_SmartFrameAnimation_start}, 
     {"stop", _wrap_SmartFrameAnimation_stop}, 
     {"delay", _wrap_SmartFrameAnimation_delay}, 
-    {"update", _wrap_SmartFrameAnimation_update}, 
     {"getWidth", _wrap_SmartFrameAnimation_getWidth}, 
     {"getHeight", _wrap_SmartFrameAnimation_getHeight}, 
-    {"render", _wrap_SmartFrameAnimation_render}, 
+    {"update", _wrap_SmartFrameAnimation_update}, 
     {0,0}
 };
 static swig_lua_attribute swig_boost_shared_ptr_Sl_love_FrameAnimation_Sg__attributes[] = {
@@ -5460,16 +5320,16 @@ fail:
 static int _wrap_Button_getDefaultImage(lua_State* L) {
   int SWIG_arg = -1;
   love::Button *arg1 = (love::Button *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_getDefaultImage");
   result = (arg1)->getDefaultImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -5482,16 +5342,16 @@ fail:
 static int _wrap_Button_getHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   love::Button *arg1 = (love::Button *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_getHoverImage");
   result = (arg1)->getHoverImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -5504,16 +5364,16 @@ fail:
 static int _wrap_Button_getPressedImage(lua_State* L) {
   int SWIG_arg = -1;
   love::Button *arg1 = (love::Button *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_getPressedImage");
   result = (arg1)->getPressedImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -5725,13 +5585,13 @@ fail:
 static int _wrap_Button_setDefaultImage(lua_State* L) {
   int SWIG_arg = -1;
   love::Button *arg1 = (love::Button *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_setDefaultImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"Button_setDefaultImage");
-  love_Button_setDefaultImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"Button_setDefaultImage");
+  love_Button_setDefaultImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -5745,13 +5605,13 @@ fail:
 static int _wrap_Button_setHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   love::Button *arg1 = (love::Button *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_setHoverImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"Button_setHoverImage");
-  love_Button_setHoverImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"Button_setHoverImage");
+  love_Button_setHoverImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -5765,13 +5625,13 @@ fail:
 static int _wrap_Button_setPressedImage(lua_State* L) {
   int SWIG_arg = -1;
   love::Button *arg1 = (love::Button *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::Button *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Button,0,1,"Button_setPressedImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"Button_setPressedImage");
-  love_Button_setPressedImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"Button_setPressedImage");
+  love_Button_setPressedImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -6346,16 +6206,16 @@ fail:
 static int _wrap_DropDown_getBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   love::DropDown *arg1 = (love::DropDown *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_getBackgroundImage");
   result = (arg1)->getBackgroundImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -6368,16 +6228,16 @@ fail:
 static int _wrap_DropDown_getListImage(lua_State* L) {
   int SWIG_arg = -1;
   love::DropDown *arg1 = (love::DropDown *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_getListImage");
   result = (arg1)->getListImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -6390,16 +6250,16 @@ fail:
 static int _wrap_DropDown_getButtonImage(lua_State* L) {
   int SWIG_arg = -1;
   love::DropDown *arg1 = (love::DropDown *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_getButtonImage");
   result = (arg1)->getButtonImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -6412,16 +6272,16 @@ fail:
 static int _wrap_DropDown_getButtonHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   love::DropDown *arg1 = (love::DropDown *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_getButtonHoverImage");
   result = (arg1)->getButtonHoverImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -6434,16 +6294,16 @@ fail:
 static int _wrap_DropDown_getButtonPressedImage(lua_State* L) {
   int SWIG_arg = -1;
   love::DropDown *arg1 = (love::DropDown *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_getButtonPressedImage");
   result = (arg1)->getButtonPressedImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -6887,13 +6747,13 @@ fail:
 static int _wrap_DropDown_setBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   love::DropDown *arg1 = (love::DropDown *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_setBackgroundImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"DropDown_setBackgroundImage");
-  love_DropDown_setBackgroundImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"DropDown_setBackgroundImage");
+  love_DropDown_setBackgroundImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -6907,13 +6767,13 @@ fail:
 static int _wrap_DropDown_setListImage(lua_State* L) {
   int SWIG_arg = -1;
   love::DropDown *arg1 = (love::DropDown *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_setListImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"DropDown_setListImage");
-  love_DropDown_setListImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"DropDown_setListImage");
+  love_DropDown_setListImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -6927,13 +6787,13 @@ fail:
 static int _wrap_DropDown_setButtonImage(lua_State* L) {
   int SWIG_arg = -1;
   love::DropDown *arg1 = (love::DropDown *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_setButtonImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"DropDown_setButtonImage");
-  love_DropDown_setButtonImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"DropDown_setButtonImage");
+  love_DropDown_setButtonImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -6947,13 +6807,13 @@ fail:
 static int _wrap_DropDown_setButtonHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   love::DropDown *arg1 = (love::DropDown *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_setButtonHoverImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"DropDown_setButtonHoverImage");
-  love_DropDown_setButtonHoverImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"DropDown_setButtonHoverImage");
+  love_DropDown_setButtonHoverImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -6967,13 +6827,13 @@ fail:
 static int _wrap_DropDown_setButtonPressedImage(lua_State* L) {
   int SWIG_arg = -1;
   love::DropDown *arg1 = (love::DropDown *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::DropDown *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__DropDown,0,1,"DropDown_setButtonPressedImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"DropDown_setButtonPressedImage");
-  love_DropDown_setButtonPressedImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"DropDown_setButtonPressedImage");
+  love_DropDown_setButtonPressedImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -7352,16 +7212,16 @@ fail:
 static int _wrap_Label_getBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   love::Label *arg1 = (love::Label *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::Label *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Label,0,1,"Label_getBackgroundImage");
   result = (arg1)->getBackgroundImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -7473,13 +7333,13 @@ fail:
 static int _wrap_Label_setBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   love::Label *arg1 = (love::Label *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::Label *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Label,0,1,"Label_setBackgroundImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"Label_setBackgroundImage");
-  love_Label_setBackgroundImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"Label_setBackgroundImage");
+  love_Label_setBackgroundImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -7890,16 +7750,16 @@ fail:
 static int _wrap_TextField_getBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   love::TextField *arg1 = (love::TextField *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::TextField *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__TextField,0,1,"TextField_getBackgroundImage");
   result = (arg1)->getBackgroundImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -8051,13 +7911,13 @@ fail:
 static int _wrap_TextField_setBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   love::TextField *arg1 = (love::TextField *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::TextField *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__TextField,0,1,"TextField_setBackgroundImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"TextField_setBackgroundImage");
-  love_TextField_setBackgroundImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"TextField_setBackgroundImage");
+  love_TextField_setBackgroundImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -8463,16 +8323,16 @@ fail:
 static int _wrap_RadioButton_getDefaultImage(lua_State* L) {
   int SWIG_arg = -1;
   love::RadioButton *arg1 = (love::RadioButton *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_getDefaultImage");
   result = (arg1)->getDefaultImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -8485,16 +8345,16 @@ fail:
 static int _wrap_RadioButton_getHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   love::RadioButton *arg1 = (love::RadioButton *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_getHoverImage");
   result = (arg1)->getHoverImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -8507,16 +8367,16 @@ fail:
 static int _wrap_RadioButton_getMarkedImage(lua_State* L) {
   int SWIG_arg = -1;
   love::RadioButton *arg1 = (love::RadioButton *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_getMarkedImage");
   result = (arg1)->getMarkedImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -8668,13 +8528,13 @@ fail:
 static int _wrap_RadioButton_setDefaultImage(lua_State* L) {
   int SWIG_arg = -1;
   love::RadioButton *arg1 = (love::RadioButton *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setDefaultImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"RadioButton_setDefaultImage");
-  love_RadioButton_setDefaultImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"RadioButton_setDefaultImage");
+  love_RadioButton_setDefaultImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -8688,13 +8548,13 @@ fail:
 static int _wrap_RadioButton_setHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   love::RadioButton *arg1 = (love::RadioButton *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setHoverImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"RadioButton_setHoverImage");
-  love_RadioButton_setHoverImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"RadioButton_setHoverImage");
+  love_RadioButton_setHoverImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -8708,13 +8568,13 @@ fail:
 static int _wrap_RadioButton_setMarkedImage(lua_State* L) {
   int SWIG_arg = -1;
   love::RadioButton *arg1 = (love::RadioButton *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::RadioButton *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__RadioButton,0,1,"RadioButton_setMarkedImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"RadioButton_setMarkedImage");
-  love_RadioButton_setMarkedImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"RadioButton_setMarkedImage");
+  love_RadioButton_setMarkedImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -9126,16 +8986,16 @@ fail:
 static int _wrap_CheckBox_getDefaultImage(lua_State* L) {
   int SWIG_arg = -1;
   love::CheckBox *arg1 = (love::CheckBox *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::CheckBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__CheckBox,0,1,"CheckBox_getDefaultImage");
   result = (arg1)->getDefaultImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -9148,16 +9008,16 @@ fail:
 static int _wrap_CheckBox_getHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   love::CheckBox *arg1 = (love::CheckBox *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::CheckBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__CheckBox,0,1,"CheckBox_getHoverImage");
   result = (arg1)->getHoverImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -9170,16 +9030,16 @@ fail:
 static int _wrap_CheckBox_getMarkedImage(lua_State* L) {
   int SWIG_arg = -1;
   love::CheckBox *arg1 = (love::CheckBox *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::CheckBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__CheckBox,0,1,"CheckBox_getMarkedImage");
   result = (arg1)->getMarkedImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -9331,13 +9191,13 @@ fail:
 static int _wrap_CheckBox_setDefaultImage(lua_State* L) {
   int SWIG_arg = -1;
   love::CheckBox *arg1 = (love::CheckBox *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::CheckBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__CheckBox,0,1,"CheckBox_setDefaultImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"CheckBox_setDefaultImage");
-  love_CheckBox_setDefaultImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"CheckBox_setDefaultImage");
+  love_CheckBox_setDefaultImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -9351,13 +9211,13 @@ fail:
 static int _wrap_CheckBox_setHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   love::CheckBox *arg1 = (love::CheckBox *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::CheckBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__CheckBox,0,1,"CheckBox_setHoverImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"CheckBox_setHoverImage");
-  love_CheckBox_setHoverImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"CheckBox_setHoverImage");
+  love_CheckBox_setHoverImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -9371,13 +9231,13 @@ fail:
 static int _wrap_CheckBox_setMarkedImage(lua_State* L) {
   int SWIG_arg = -1;
   love::CheckBox *arg1 = (love::CheckBox *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::CheckBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__CheckBox,0,1,"CheckBox_setMarkedImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"CheckBox_setMarkedImage");
-  love_CheckBox_setMarkedImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"CheckBox_setMarkedImage");
+  love_CheckBox_setMarkedImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -9918,16 +9778,16 @@ fail:
 static int _wrap_Slider_getMarkerImage(lua_State* L) {
   int SWIG_arg = -1;
   love::Slider *arg1 = (love::Slider *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::Slider *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Slider,0,1,"Slider_getMarkerImage");
   result = (arg1)->getMarkerImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -9940,16 +9800,16 @@ fail:
 static int _wrap_Slider_getBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   love::Slider *arg1 = (love::Slider *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::Slider *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Slider,0,1,"Slider_getBackgroundImage");
   result = (arg1)->getBackgroundImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -10101,13 +9961,13 @@ fail:
 static int _wrap_Slider_setMarkerImage(lua_State* L) {
   int SWIG_arg = -1;
   love::Slider *arg1 = (love::Slider *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::Slider *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Slider,0,1,"Slider_setMarkerImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"Slider_setMarkerImage");
-  love_Slider_setMarkerImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"Slider_setMarkerImage");
+  love_Slider_setMarkerImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -10121,13 +9981,13 @@ fail:
 static int _wrap_Slider_setBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   love::Slider *arg1 = (love::Slider *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::Slider *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Slider,0,1,"Slider_setBackgroundImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"Slider_setBackgroundImage");
-  love_Slider_setBackgroundImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"Slider_setBackgroundImage");
+  love_Slider_setBackgroundImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -10447,16 +10307,16 @@ fail:
 static int _wrap_ListBox_getBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   love::ListBox *arg1 = (love::ListBox *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::ListBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ListBox,0,1,"ListBox_getBackgroundImage");
   result = (arg1)->getBackgroundImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -10661,13 +10521,13 @@ fail:
 static int _wrap_ListBox_setBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   love::ListBox *arg1 = (love::ListBox *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::ListBox *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ListBox,0,1,"ListBox_setBackgroundImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"ListBox_setBackgroundImage");
-  love_ListBox_setBackgroundImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"ListBox_setBackgroundImage");
+  love_ListBox_setBackgroundImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -12567,13 +12427,13 @@ fail:
 static int _wrap_AbstractMenu_setBackground(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractMenu *arg1 = (love::AbstractMenu *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::AbstractMenu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractMenu,0,1,"AbstractMenu_setBackground");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"AbstractMenu_setBackground");
-  love_AbstractMenu_setBackground(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"AbstractMenu_setBackground");
+  love_AbstractMenu_setBackground(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -13162,14 +13022,14 @@ static int _wrap_AbstractMenu_addMultilineLabel(lua_State* L) {
 static int _wrap_AbstractMenu_addImage(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractMenu *arg1 = (love::AbstractMenu *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   love::pLabel result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::AbstractMenu *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractMenu,0,1,"AbstractMenu_addImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"AbstractMenu_addImage");
-  result = love_AbstractMenu_addImage(arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"AbstractMenu_addImage");
+  result = love_AbstractMenu_addImage(arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   {
     love::pLabel * resultptr;
@@ -16048,16 +15908,16 @@ fail:
 static int _wrap_ParticleSystem_getSprite(lua_State* L) {
   int SWIG_arg = -1;
   love::ParticleSystem *arg1 = (love::ParticleSystem *) 0 ;
-  pSprite *result = 0 ;
+  love::pSprite *result = 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(love::ParticleSystem *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ParticleSystem,0,1,"ParticleSystem_getSprite");
   {
-    pSprite const &_result_ref = ((love::ParticleSystem const *)arg1)->getSprite();
-    result = (pSprite *) &_result_ref;
+    love::pSprite const &_result_ref = ((love::ParticleSystem const *)arg1)->getSprite();
+    result = (love::pSprite *) &_result_ref;
   }
   SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_pSprite,0); SWIG_arg++; 
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t,0); SWIG_arg++; 
   return SWIG_arg;
   
 fail:
@@ -16541,13 +16401,13 @@ static int _wrap_ParticleSystem_addColor(lua_State* L) {
 static int _wrap_ParticleSystem_setSprite__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love::ParticleSystem *arg1 = (love::ParticleSystem *) 0 ;
-  pSprite *arg2 = (pSprite *) 0 ;
+  love::pSprite *arg2 = (love::pSprite *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::ParticleSystem *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ParticleSystem,0,1,"ParticleSystem_setSprite");
-  arg2=(pSprite *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pSprite,0,2,"ParticleSystem_setSprite");
-  (arg1)->setSprite((pSprite const *)arg2);
+  arg2=(love::pSprite *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t,0,2,"ParticleSystem_setSprite");
+  (arg1)->setSprite((love::pSprite const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -16561,13 +16421,13 @@ fail:
 static int _wrap_ParticleSystem_setSprite__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   love::ParticleSystem *arg1 = (love::ParticleSystem *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::ParticleSystem *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ParticleSystem,0,1,"ParticleSystem_setSprite");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"ParticleSystem_setSprite");
-  (arg1)->setSprite((pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"ParticleSystem_setSprite");
+  (arg1)->setSprite((love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -16618,7 +16478,7 @@ static int _wrap_ParticleSystem_setSprite(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_pSprite, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -16642,7 +16502,7 @@ static int _wrap_ParticleSystem_setSprite(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_pAbstractImage, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -21750,7 +21610,7 @@ fail:
 static int _wrap_AbstractGraphics_draw__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractGraphics *arg1 = (love::AbstractGraphics *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   float arg3 ;
   float arg4 ;
   
@@ -21759,10 +21619,10 @@ static int _wrap_AbstractGraphics_draw__SWIG_0(lua_State* L) {
   if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
   if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
   arg1=(love::AbstractGraphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractGraphics,0,1,"AbstractGraphics_draw");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"AbstractGraphics_draw");
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"AbstractGraphics_draw");
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
-  love_AbstractGraphics_draw__SWIG_0((love::AbstractGraphics const *)arg1,(pAbstractImage const *)arg2,arg3,arg4);
+  love_AbstractGraphics_draw__SWIG_0((love::AbstractGraphics const *)arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2,arg3,arg4);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -21776,16 +21636,16 @@ fail:
 static int _wrap_AbstractGraphics_draw__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractGraphics *arg1 = (love::AbstractGraphics *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   float arg3 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
   arg1=(love::AbstractGraphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractGraphics,0,1,"AbstractGraphics_draw");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"AbstractGraphics_draw");
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"AbstractGraphics_draw");
   arg3 = (float)lua_tonumber(L, 3);
-  love_AbstractGraphics_draw__SWIG_0((love::AbstractGraphics const *)arg1,(pAbstractImage const *)arg2,arg3);
+  love_AbstractGraphics_draw__SWIG_0((love::AbstractGraphics const *)arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2,arg3);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -21799,13 +21659,13 @@ fail:
 static int _wrap_AbstractGraphics_draw__SWIG_2(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractGraphics *arg1 = (love::AbstractGraphics *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::AbstractGraphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractGraphics,0,1,"AbstractGraphics_draw");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"AbstractGraphics_draw");
-  love_AbstractGraphics_draw__SWIG_0((love::AbstractGraphics const *)arg1,(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"AbstractGraphics_draw");
+  love_AbstractGraphics_draw__SWIG_0((love::AbstractGraphics const *)arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -21819,7 +21679,7 @@ fail:
 static int _wrap_AbstractGraphics_draw__SWIG_3(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractGraphics *arg1 = (love::AbstractGraphics *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   float arg3 ;
   float arg4 ;
   float arg5 ;
@@ -21836,14 +21696,14 @@ static int _wrap_AbstractGraphics_draw__SWIG_3(lua_State* L) {
   if(!lua_isnumber(L,7)) SWIG_fail_arg(7);
   if(!lua_isnumber(L,8)) SWIG_fail_arg(8);
   arg1=(love::AbstractGraphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractGraphics,0,1,"AbstractGraphics_draw");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"AbstractGraphics_draw");
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"AbstractGraphics_draw");
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
   arg5 = (float)lua_tonumber(L, 5);
   arg6 = (float)lua_tonumber(L, 6);
   arg7 = (float)lua_tonumber(L, 7);
   arg8 = (float)lua_tonumber(L, 8);
-  love_AbstractGraphics_draw__SWIG_3((love::AbstractGraphics const *)arg1,(pAbstractImage const *)arg2,arg3,arg4,arg5,arg6,arg7,arg8);
+  love_AbstractGraphics_draw__SWIG_3((love::AbstractGraphics const *)arg1,(boost::shared_ptr<love::AbstractImage > const *)arg2,arg3,arg4,arg5,arg6,arg7,arg8);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -22180,7 +22040,7 @@ static int _wrap_AbstractGraphics_draw(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_pAbstractImage, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -22329,7 +22189,7 @@ static int _wrap_AbstractGraphics_draw(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_pAbstractImage, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -22450,7 +22310,7 @@ static int _wrap_AbstractGraphics_draw(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_pAbstractImage, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -22586,7 +22446,7 @@ static int _wrap_AbstractGraphics_draw(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_pAbstractImage, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -23054,7 +22914,7 @@ fail:
 static int _wrap_AbstractAudio_play__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractAudio *arg1 = (love::AbstractAudio *) 0 ;
-  pAbstractSound *arg2 = (pAbstractSound *) 0 ;
+  love::pAbstractSound *arg2 = (love::pAbstractSound *) 0 ;
   int arg3 ;
   int arg4 ;
   
@@ -23063,10 +22923,10 @@ static int _wrap_AbstractAudio_play__SWIG_0(lua_State* L) {
   if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
   if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
   arg1=(love::AbstractAudio *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractAudio,0,1,"AbstractAudio_play");
-  arg2=(pAbstractSound *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractSound,0,2,"AbstractAudio_play");
+  arg2=(love::pAbstractSound *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractSound_t,0,2,"AbstractAudio_play");
   arg3 = (int)lua_tonumber(L, 3);
   arg4 = (int)lua_tonumber(L, 4);
-  love_AbstractAudio_play__SWIG_0((love::AbstractAudio const *)arg1,(pAbstractSound const *)arg2,arg3,arg4);
+  love_AbstractAudio_play__SWIG_0((love::AbstractAudio const *)arg1,(boost::shared_ptr<love::AbstractSound > const *)arg2,arg3,arg4);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -23080,16 +22940,16 @@ fail:
 static int _wrap_AbstractAudio_play__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractAudio *arg1 = (love::AbstractAudio *) 0 ;
-  pAbstractSound *arg2 = (pAbstractSound *) 0 ;
+  love::pAbstractSound *arg2 = (love::pAbstractSound *) 0 ;
   int arg3 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
   arg1=(love::AbstractAudio *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractAudio,0,1,"AbstractAudio_play");
-  arg2=(pAbstractSound *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractSound,0,2,"AbstractAudio_play");
+  arg2=(love::pAbstractSound *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractSound_t,0,2,"AbstractAudio_play");
   arg3 = (int)lua_tonumber(L, 3);
-  love_AbstractAudio_play__SWIG_0((love::AbstractAudio const *)arg1,(pAbstractSound const *)arg2,arg3);
+  love_AbstractAudio_play__SWIG_0((love::AbstractAudio const *)arg1,(boost::shared_ptr<love::AbstractSound > const *)arg2,arg3);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -23103,13 +22963,13 @@ fail:
 static int _wrap_AbstractAudio_play__SWIG_2(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractAudio *arg1 = (love::AbstractAudio *) 0 ;
-  pAbstractSound *arg2 = (pAbstractSound *) 0 ;
+  love::pAbstractSound *arg2 = (love::pAbstractSound *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::AbstractAudio *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractAudio,0,1,"AbstractAudio_play");
-  arg2=(pAbstractSound *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractSound,0,2,"AbstractAudio_play");
-  love_AbstractAudio_play__SWIG_0((love::AbstractAudio const *)arg1,(pAbstractSound const *)arg2);
+  arg2=(love::pAbstractSound *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractSound_t,0,2,"AbstractAudio_play");
+  love_AbstractAudio_play__SWIG_0((love::AbstractAudio const *)arg1,(boost::shared_ptr<love::AbstractSound > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -23123,16 +22983,16 @@ fail:
 static int _wrap_AbstractAudio_play__SWIG_3(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractAudio *arg1 = (love::AbstractAudio *) 0 ;
-  pAbstractMusic *arg2 = (pAbstractMusic *) 0 ;
+  love::pAbstractMusic *arg2 = (love::pAbstractMusic *) 0 ;
   int arg3 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
   arg1=(love::AbstractAudio *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractAudio,0,1,"AbstractAudio_play");
-  arg2=(pAbstractMusic *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractMusic,0,2,"AbstractAudio_play");
+  arg2=(love::pAbstractMusic *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractMusic_t,0,2,"AbstractAudio_play");
   arg3 = (int)lua_tonumber(L, 3);
-  love_AbstractAudio_play__SWIG_3((love::AbstractAudio const *)arg1,(pAbstractMusic const *)arg2,arg3);
+  love_AbstractAudio_play__SWIG_3((love::AbstractAudio const *)arg1,(boost::shared_ptr<love::AbstractMusic > const *)arg2,arg3);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -23146,13 +23006,13 @@ fail:
 static int _wrap_AbstractAudio_play__SWIG_4(lua_State* L) {
   int SWIG_arg = -1;
   love::AbstractAudio *arg1 = (love::AbstractAudio *) 0 ;
-  pAbstractMusic *arg2 = (pAbstractMusic *) 0 ;
+  love::pAbstractMusic *arg2 = (love::pAbstractMusic *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::AbstractAudio *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__AbstractAudio,0,1,"AbstractAudio_play");
-  arg2=(pAbstractMusic *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractMusic,0,2,"AbstractAudio_play");
-  love_AbstractAudio_play__SWIG_3((love::AbstractAudio const *)arg1,(pAbstractMusic const *)arg2);
+  arg2=(love::pAbstractMusic *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractMusic_t,0,2,"AbstractAudio_play");
+  love_AbstractAudio_play__SWIG_3((love::AbstractAudio const *)arg1,(boost::shared_ptr<love::AbstractMusic > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -23183,7 +23043,7 @@ static int _wrap_AbstractAudio_play(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_pAbstractSound, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractSound_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -23207,7 +23067,7 @@ static int _wrap_AbstractAudio_play(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_pAbstractMusic, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractMusic_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -23231,7 +23091,7 @@ static int _wrap_AbstractAudio_play(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_pAbstractMusic, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractMusic_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -23260,7 +23120,7 @@ static int _wrap_AbstractAudio_play(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_pAbstractSound, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractSound_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -23289,7 +23149,7 @@ static int _wrap_AbstractAudio_play(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_pAbstractSound, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractSound_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -23392,7 +23252,7 @@ static int _wrap_ObjectFactory_newImage(lua_State* L) {
   int SWIG_arg = -1;
   love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
   char *arg2 = (char *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
@@ -23401,9 +23261,9 @@ static int _wrap_ObjectFactory_newImage(lua_State* L) {
   result = ((love::ObjectFactory const *)arg1)->newImage((char const *)arg2);
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -23416,14 +23276,14 @@ fail:
 static int _wrap_ObjectFactory_newAnimation__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   love::pFrameAnimation result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::ObjectFactory *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ObjectFactory,0,1,"ObjectFactory_newAnimation");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"ObjectFactory_newAnimation");
-  result = (arg1)->newAnimation((pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"ObjectFactory_newAnimation");
+  result = (arg1)->newAnimation((love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   {
     love::pFrameAnimation * resultptr;
@@ -23441,7 +23301,7 @@ fail:
 static int _wrap_ObjectFactory_newAnimation__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   int arg3 ;
   int arg4 ;
   int arg5 ;
@@ -23457,13 +23317,13 @@ static int _wrap_ObjectFactory_newAnimation__SWIG_1(lua_State* L) {
   if(!lua_isnumber(L,6)) SWIG_fail_arg(6);
   if(!lua_isnumber(L,7)) SWIG_fail_arg(7);
   arg1=(love::ObjectFactory *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ObjectFactory,0,1,"ObjectFactory_newAnimation");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"ObjectFactory_newAnimation");
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"ObjectFactory_newAnimation");
   arg3 = (int)lua_tonumber(L, 3);
   arg4 = (int)lua_tonumber(L, 4);
   arg5 = (int)lua_tonumber(L, 5);
   arg6 = (int)lua_tonumber(L, 6);
   arg7 = (float)lua_tonumber(L, 7);
-  result = (arg1)->newAnimation((pAbstractImage const *)arg2,arg3,arg4,arg5,arg6,arg7);
+  result = (arg1)->newAnimation((love::pAbstractImage const *)arg2,arg3,arg4,arg5,arg6,arg7);
   SWIG_arg=0;
   {
     love::pFrameAnimation * resultptr;
@@ -23498,7 +23358,7 @@ static int _wrap_ObjectFactory_newAnimation(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_pAbstractImage, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -23522,7 +23382,7 @@ static int _wrap_ObjectFactory_newAnimation(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_pAbstractImage, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -23568,7 +23428,7 @@ static int _wrap_ObjectFactory_newMusic(lua_State* L) {
   int SWIG_arg = -1;
   love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
   char *arg2 = (char *) 0 ;
-  pAbstractMusic result;
+  love::pAbstractMusic result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
@@ -23577,9 +23437,9 @@ static int _wrap_ObjectFactory_newMusic(lua_State* L) {
   result = ((love::ObjectFactory const *)arg1)->newMusic((char const *)arg2);
   SWIG_arg=0;
   {
-    pAbstractMusic * resultptr;
-    resultptr = new pAbstractMusic((pAbstractMusic &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractMusic,1); SWIG_arg++;
+    love::pAbstractMusic * resultptr;
+    resultptr = new love::pAbstractMusic((love::pAbstractMusic &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractMusic_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -23593,7 +23453,7 @@ static int _wrap_ObjectFactory_newSound(lua_State* L) {
   int SWIG_arg = -1;
   love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
   char *arg2 = (char *) 0 ;
-  pAbstractSound result;
+  love::pAbstractSound result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isstring(L,2)) SWIG_fail_arg(2);
@@ -23602,9 +23462,9 @@ static int _wrap_ObjectFactory_newSound(lua_State* L) {
   result = ((love::ObjectFactory const *)arg1)->newSound((char const *)arg2);
   SWIG_arg=0;
   {
-    pAbstractSound * resultptr;
-    resultptr = new pAbstractSound((pAbstractSound &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractSound,1); SWIG_arg++;
+    love::pAbstractSound * resultptr;
+    resultptr = new love::pAbstractSound((love::pAbstractSound &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractSound_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -27091,16 +26951,16 @@ fail:
 static int _wrap_SmartParticleSystem_getSprite(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::ParticleSystem > *arg1 = (boost::shared_ptr<love::ParticleSystem > *) 0 ;
-  pSprite *result = 0 ;
+  love::pSprite *result = 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::ParticleSystem > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t,0,1,"SmartParticleSystem_getSprite");
   {
-    pSprite const &_result_ref = (*arg1)->getSprite();
-    result = (pSprite *) &_result_ref;
+    love::pSprite const &_result_ref = (*arg1)->getSprite();
+    result = (love::pSprite *) &_result_ref;
   }
   SWIG_arg=0;
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_pSprite,0); SWIG_arg++; 
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t,0); SWIG_arg++; 
   return SWIG_arg;
   
 fail:
@@ -27584,13 +27444,13 @@ static int _wrap_SmartParticleSystem_addColor(lua_State* L) {
 static int _wrap_SmartParticleSystem_setSprite__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::ParticleSystem > *arg1 = (boost::shared_ptr<love::ParticleSystem > *) 0 ;
-  pSprite *arg2 = (pSprite *) 0 ;
+  love::pSprite *arg2 = (love::pSprite *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::ParticleSystem > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t,0,1,"SmartParticleSystem_setSprite");
-  arg2=(pSprite *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pSprite,0,2,"SmartParticleSystem_setSprite");
-  (*arg1)->setSprite((pSprite const *)arg2);
+  arg2=(love::pSprite *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t,0,2,"SmartParticleSystem_setSprite");
+  (*arg1)->setSprite((love::pSprite const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -27604,13 +27464,13 @@ fail:
 static int _wrap_SmartParticleSystem_setSprite__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::ParticleSystem > *arg1 = (boost::shared_ptr<love::ParticleSystem > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::ParticleSystem > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__ParticleSystem_t,0,1,"SmartParticleSystem_setSprite");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartParticleSystem_setSprite");
-  (*arg1)->setSprite((pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartParticleSystem_setSprite");
+  (*arg1)->setSprite((love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -27661,7 +27521,7 @@ static int _wrap_SmartParticleSystem_setSprite(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_pSprite, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -27685,7 +27545,7 @@ static int _wrap_SmartParticleSystem_setSprite(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_pAbstractImage, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -30215,13 +30075,13 @@ fail:
 static int _wrap_SmartMenu_setBackground(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::AbstractMenu > *arg1 = (boost::shared_ptr<love::AbstractMenu > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::AbstractMenu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractMenu_t,0,1,"SmartMenu_setBackground");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartMenu_setBackground");
-  love_AbstractMenu_setBackground((love::AbstractMenu*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartMenu_setBackground");
+  love_AbstractMenu_setBackground((love::AbstractMenu*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -30810,14 +30670,14 @@ static int _wrap_SmartMenu_addMultilineLabel(lua_State* L) {
 static int _wrap_SmartMenu_addImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::AbstractMenu > *arg1 = (boost::shared_ptr<love::AbstractMenu > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   love::pLabel result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::AbstractMenu > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__AbstractMenu_t,0,1,"SmartMenu_addImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartMenu_addImage");
-  result = love_AbstractMenu_addImage((love::AbstractMenu*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartMenu_addImage");
+  result = love_AbstractMenu_addImage((love::AbstractMenu*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   {
     love::pLabel * resultptr;
@@ -33331,16 +33191,16 @@ fail:
 static int _wrap_SmartLabel_getBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Label > *arg1 = (boost::shared_ptr<love::Label > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::Label > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Label_t,0,1,"SmartLabel_getBackgroundImage");
   result = (*arg1)->getBackgroundImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -33452,13 +33312,13 @@ fail:
 static int _wrap_SmartLabel_setBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Label > *arg1 = (boost::shared_ptr<love::Label > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::Label > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Label_t,0,1,"SmartLabel_setBackgroundImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartLabel_setBackgroundImage");
-  love_Label_setBackgroundImage((love::Label*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartLabel_setBackgroundImage");
+  love_Label_setBackgroundImage((love::Label*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -33900,16 +33760,16 @@ fail:
 static int _wrap_SmartMultilineLabel_getBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::MultilineLabel > *arg1 = (boost::shared_ptr<love::MultilineLabel > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::MultilineLabel > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__MultilineLabel_t,0,1,"SmartMultilineLabel_getBackgroundImage");
   result = (*arg1)->getBackgroundImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -33984,13 +33844,13 @@ fail:
 static int _wrap_SmartMultilineLabel_setBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::MultilineLabel > *arg1 = (boost::shared_ptr<love::MultilineLabel > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::MultilineLabel > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__MultilineLabel_t,0,1,"SmartMultilineLabel_setBackgroundImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartMultilineLabel_setBackgroundImage");
-  love_Label_setBackgroundImage((love::Label*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartMultilineLabel_setBackgroundImage");
+  love_Label_setBackgroundImage((love::Label*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -34466,16 +34326,16 @@ fail:
 static int _wrap_SmartButton_getDefaultImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Button > *arg1 = (boost::shared_ptr<love::Button > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::Button > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Button_t,0,1,"SmartButton_getDefaultImage");
   result = (*arg1)->getDefaultImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -34488,16 +34348,16 @@ fail:
 static int _wrap_SmartButton_getHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Button > *arg1 = (boost::shared_ptr<love::Button > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::Button > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Button_t,0,1,"SmartButton_getHoverImage");
   result = (*arg1)->getHoverImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -34510,16 +34370,16 @@ fail:
 static int _wrap_SmartButton_getPressedImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Button > *arg1 = (boost::shared_ptr<love::Button > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::Button > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Button_t,0,1,"SmartButton_getPressedImage");
   result = (*arg1)->getPressedImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -34731,13 +34591,13 @@ fail:
 static int _wrap_SmartButton_setDefaultImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Button > *arg1 = (boost::shared_ptr<love::Button > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::Button > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Button_t,0,1,"SmartButton_setDefaultImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartButton_setDefaultImage");
-  love_Button_setDefaultImage((love::Button*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartButton_setDefaultImage");
+  love_Button_setDefaultImage((love::Button*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -34751,13 +34611,13 @@ fail:
 static int _wrap_SmartButton_setHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Button > *arg1 = (boost::shared_ptr<love::Button > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::Button > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Button_t,0,1,"SmartButton_setHoverImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartButton_setHoverImage");
-  love_Button_setHoverImage((love::Button*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartButton_setHoverImage");
+  love_Button_setHoverImage((love::Button*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -34771,13 +34631,13 @@ fail:
 static int _wrap_SmartButton_setPressedImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Button > *arg1 = (boost::shared_ptr<love::Button > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::Button > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Button_t,0,1,"SmartButton_setPressedImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartButton_setPressedImage");
-  love_Button_setPressedImage((love::Button*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartButton_setPressedImage");
+  love_Button_setPressedImage((love::Button*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -35238,16 +35098,16 @@ fail:
 static int _wrap_SmartTextField_getBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::TextField > *arg1 = (boost::shared_ptr<love::TextField > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::TextField > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextField_t,0,1,"SmartTextField_getBackgroundImage");
   result = (*arg1)->getBackgroundImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -35399,13 +35259,13 @@ fail:
 static int _wrap_SmartTextField_setBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::TextField > *arg1 = (boost::shared_ptr<love::TextField > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::TextField > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__TextField_t,0,1,"SmartTextField_setBackgroundImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartTextField_setBackgroundImage");
-  love_TextField_setBackgroundImage((love::TextField*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartTextField_setBackgroundImage");
+  love_TextField_setBackgroundImage((love::TextField*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -36422,16 +36282,16 @@ fail:
 static int _wrap_SmartDropDown_getBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::DropDown > *arg1 = (boost::shared_ptr<love::DropDown > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::DropDown > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t,0,1,"SmartDropDown_getBackgroundImage");
   result = (*arg1)->getBackgroundImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -36444,16 +36304,16 @@ fail:
 static int _wrap_SmartDropDown_getListImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::DropDown > *arg1 = (boost::shared_ptr<love::DropDown > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::DropDown > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t,0,1,"SmartDropDown_getListImage");
   result = (*arg1)->getListImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -36466,16 +36326,16 @@ fail:
 static int _wrap_SmartDropDown_getButtonImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::DropDown > *arg1 = (boost::shared_ptr<love::DropDown > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::DropDown > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t,0,1,"SmartDropDown_getButtonImage");
   result = (*arg1)->getButtonImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -36488,16 +36348,16 @@ fail:
 static int _wrap_SmartDropDown_getButtonHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::DropDown > *arg1 = (boost::shared_ptr<love::DropDown > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::DropDown > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t,0,1,"SmartDropDown_getButtonHoverImage");
   result = (*arg1)->getButtonHoverImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -36510,16 +36370,16 @@ fail:
 static int _wrap_SmartDropDown_getButtonPressedImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::DropDown > *arg1 = (boost::shared_ptr<love::DropDown > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::DropDown > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t,0,1,"SmartDropDown_getButtonPressedImage");
   result = (*arg1)->getButtonPressedImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -36963,13 +36823,13 @@ fail:
 static int _wrap_SmartDropDown_setBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::DropDown > *arg1 = (boost::shared_ptr<love::DropDown > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::DropDown > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t,0,1,"SmartDropDown_setBackgroundImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartDropDown_setBackgroundImage");
-  love_DropDown_setBackgroundImage((love::DropDown*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartDropDown_setBackgroundImage");
+  love_DropDown_setBackgroundImage((love::DropDown*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -36983,13 +36843,13 @@ fail:
 static int _wrap_SmartDropDown_setListImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::DropDown > *arg1 = (boost::shared_ptr<love::DropDown > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::DropDown > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t,0,1,"SmartDropDown_setListImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartDropDown_setListImage");
-  love_DropDown_setListImage((love::DropDown*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartDropDown_setListImage");
+  love_DropDown_setListImage((love::DropDown*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -37003,13 +36863,13 @@ fail:
 static int _wrap_SmartDropDown_setButtonImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::DropDown > *arg1 = (boost::shared_ptr<love::DropDown > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::DropDown > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t,0,1,"SmartDropDown_setButtonImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartDropDown_setButtonImage");
-  love_DropDown_setButtonImage((love::DropDown*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartDropDown_setButtonImage");
+  love_DropDown_setButtonImage((love::DropDown*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -37023,13 +36883,13 @@ fail:
 static int _wrap_SmartDropDown_setButtonHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::DropDown > *arg1 = (boost::shared_ptr<love::DropDown > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::DropDown > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t,0,1,"SmartDropDown_setButtonHoverImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartDropDown_setButtonHoverImage");
-  love_DropDown_setButtonHoverImage((love::DropDown*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartDropDown_setButtonHoverImage");
+  love_DropDown_setButtonHoverImage((love::DropDown*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -37043,13 +36903,13 @@ fail:
 static int _wrap_SmartDropDown_setButtonPressedImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::DropDown > *arg1 = (boost::shared_ptr<love::DropDown > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::DropDown > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__DropDown_t,0,1,"SmartDropDown_setButtonPressedImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartDropDown_setButtonPressedImage");
-  love_DropDown_setButtonPressedImage((love::DropDown*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartDropDown_setButtonPressedImage");
+  love_DropDown_setButtonPressedImage((love::DropDown*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -37617,16 +37477,16 @@ fail:
 static int _wrap_SmartRadioButton_getDefaultImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::RadioButton > *arg1 = (boost::shared_ptr<love::RadioButton > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::RadioButton > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__RadioButton_t,0,1,"SmartRadioButton_getDefaultImage");
   result = (*arg1)->getDefaultImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -37639,16 +37499,16 @@ fail:
 static int _wrap_SmartRadioButton_getHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::RadioButton > *arg1 = (boost::shared_ptr<love::RadioButton > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::RadioButton > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__RadioButton_t,0,1,"SmartRadioButton_getHoverImage");
   result = (*arg1)->getHoverImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -37661,16 +37521,16 @@ fail:
 static int _wrap_SmartRadioButton_getMarkedImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::RadioButton > *arg1 = (boost::shared_ptr<love::RadioButton > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::RadioButton > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__RadioButton_t,0,1,"SmartRadioButton_getMarkedImage");
   result = (*arg1)->getMarkedImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -37822,13 +37682,13 @@ fail:
 static int _wrap_SmartRadioButton_setDefaultImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::RadioButton > *arg1 = (boost::shared_ptr<love::RadioButton > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::RadioButton > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__RadioButton_t,0,1,"SmartRadioButton_setDefaultImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartRadioButton_setDefaultImage");
-  love_RadioButton_setDefaultImage((love::RadioButton*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartRadioButton_setDefaultImage");
+  love_RadioButton_setDefaultImage((love::RadioButton*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -37842,13 +37702,13 @@ fail:
 static int _wrap_SmartRadioButton_setHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::RadioButton > *arg1 = (boost::shared_ptr<love::RadioButton > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::RadioButton > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__RadioButton_t,0,1,"SmartRadioButton_setHoverImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartRadioButton_setHoverImage");
-  love_RadioButton_setHoverImage((love::RadioButton*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartRadioButton_setHoverImage");
+  love_RadioButton_setHoverImage((love::RadioButton*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -37862,13 +37722,13 @@ fail:
 static int _wrap_SmartRadioButton_setMarkedImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::RadioButton > *arg1 = (boost::shared_ptr<love::RadioButton > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::RadioButton > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__RadioButton_t,0,1,"SmartRadioButton_setMarkedImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartRadioButton_setMarkedImage");
-  love_RadioButton_setMarkedImage((love::RadioButton*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartRadioButton_setMarkedImage");
+  love_RadioButton_setMarkedImage((love::RadioButton*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -38387,16 +38247,16 @@ fail:
 static int _wrap_SmartCheckBox_getDefaultImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::CheckBox > *arg1 = (boost::shared_ptr<love::CheckBox > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::CheckBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__CheckBox_t,0,1,"SmartCheckBox_getDefaultImage");
   result = (*arg1)->getDefaultImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -38409,16 +38269,16 @@ fail:
 static int _wrap_SmartCheckBox_getHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::CheckBox > *arg1 = (boost::shared_ptr<love::CheckBox > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::CheckBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__CheckBox_t,0,1,"SmartCheckBox_getHoverImage");
   result = (*arg1)->getHoverImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -38431,16 +38291,16 @@ fail:
 static int _wrap_SmartCheckBox_getMarkedImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::CheckBox > *arg1 = (boost::shared_ptr<love::CheckBox > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::CheckBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__CheckBox_t,0,1,"SmartCheckBox_getMarkedImage");
   result = (*arg1)->getMarkedImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -38592,13 +38452,13 @@ fail:
 static int _wrap_SmartCheckBox_setDefaultImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::CheckBox > *arg1 = (boost::shared_ptr<love::CheckBox > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::CheckBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__CheckBox_t,0,1,"SmartCheckBox_setDefaultImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartCheckBox_setDefaultImage");
-  love_CheckBox_setDefaultImage((love::CheckBox*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartCheckBox_setDefaultImage");
+  love_CheckBox_setDefaultImage((love::CheckBox*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -38612,13 +38472,13 @@ fail:
 static int _wrap_SmartCheckBox_setHoverImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::CheckBox > *arg1 = (boost::shared_ptr<love::CheckBox > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::CheckBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__CheckBox_t,0,1,"SmartCheckBox_setHoverImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartCheckBox_setHoverImage");
-  love_CheckBox_setHoverImage((love::CheckBox*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartCheckBox_setHoverImage");
+  love_CheckBox_setHoverImage((love::CheckBox*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -38632,13 +38492,13 @@ fail:
 static int _wrap_SmartCheckBox_setMarkedImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::CheckBox > *arg1 = (boost::shared_ptr<love::CheckBox > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::CheckBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__CheckBox_t,0,1,"SmartCheckBox_setMarkedImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartCheckBox_setMarkedImage");
-  love_CheckBox_setMarkedImage((love::CheckBox*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartCheckBox_setMarkedImage");
+  love_CheckBox_setMarkedImage((love::CheckBox*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -39322,16 +39182,16 @@ fail:
 static int _wrap_SmartSlider_getMarkerImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Slider > *arg1 = (boost::shared_ptr<love::Slider > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::Slider > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Slider_t,0,1,"SmartSlider_getMarkerImage");
   result = (*arg1)->getMarkerImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -39344,16 +39204,16 @@ fail:
 static int _wrap_SmartSlider_getBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Slider > *arg1 = (boost::shared_ptr<love::Slider > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::Slider > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Slider_t,0,1,"SmartSlider_getBackgroundImage");
   result = (*arg1)->getBackgroundImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -39505,13 +39365,13 @@ fail:
 static int _wrap_SmartSlider_setMarkerImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Slider > *arg1 = (boost::shared_ptr<love::Slider > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::Slider > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Slider_t,0,1,"SmartSlider_setMarkerImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartSlider_setMarkerImage");
-  love_Slider_setMarkerImage((love::Slider*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartSlider_setMarkerImage");
+  love_Slider_setMarkerImage((love::Slider*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -39525,13 +39385,13 @@ fail:
 static int _wrap_SmartSlider_setBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Slider > *arg1 = (boost::shared_ptr<love::Slider > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::Slider > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Slider_t,0,1,"SmartSlider_setBackgroundImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartSlider_setBackgroundImage");
-  love_Slider_setBackgroundImage((love::Slider*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartSlider_setBackgroundImage");
+  love_Slider_setBackgroundImage((love::Slider*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -39960,16 +39820,16 @@ fail:
 static int _wrap_SmartListBox_getBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::ListBox > *arg1 = (boost::shared_ptr<love::ListBox > *) 0 ;
-  pAbstractImage result;
+  love::pAbstractImage result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   arg1=(boost::shared_ptr<love::ListBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__ListBox_t,0,1,"SmartListBox_getBackgroundImage");
   result = (*arg1)->getBackgroundImage();
   SWIG_arg=0;
   {
-    pAbstractImage * resultptr;
-    resultptr = new pAbstractImage((pAbstractImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_pAbstractImage,1); SWIG_arg++;
+    love::pAbstractImage * resultptr;
+    resultptr = new love::pAbstractImage((love::pAbstractImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -40174,13 +40034,13 @@ fail:
 static int _wrap_SmartListBox_setBackgroundImage(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::ListBox > *arg1 = (boost::shared_ptr<love::ListBox > *) 0 ;
-  pAbstractImage *arg2 = (pAbstractImage *) 0 ;
+  love::pAbstractImage *arg2 = (love::pAbstractImage *) 0 ;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(boost::shared_ptr<love::ListBox > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__ListBox_t,0,1,"SmartListBox_setBackgroundImage");
-  arg2=(pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_pAbstractImage,0,2,"SmartListBox_setBackgroundImage");
-  love_ListBox_setBackgroundImage((love::ListBox*)(arg1)->operator ->(),(pAbstractImage const *)arg2);
+  arg2=(love::pAbstractImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__AbstractImage_t,0,2,"SmartListBox_setBackgroundImage");
+  love_ListBox_setBackgroundImage((love::ListBox*)(arg1)->operator ->(),(love::pAbstractImage const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -41282,32 +41142,26 @@ static const struct luaL_reg swig_commands[] = {
     { "Mouse_isDown", _wrap_Mouse_isDown},
     { "delete_Mouse", _wrap_delete_Mouse},
     { "AbstractEntity_update", _wrap_AbstractEntity_update},
-    { "AbstractEntity_render", _wrap_AbstractEntity_render},
     { "delete_AbstractEntity", _wrap_delete_AbstractEntity},
-    { "Sprite_update", _wrap_Sprite_update},
     { "Sprite_getWidth", _wrap_Sprite_getWidth},
     { "Sprite_getHeight", _wrap_Sprite_getHeight},
     { "delete_Sprite", _wrap_delete_Sprite},
     { "SmartSprite___deref__", _wrap_SmartSprite___deref__},
     { "delete_SmartSprite", _wrap_delete_SmartSprite},
-    { "SmartSprite_update", _wrap_SmartSprite_update},
     { "SmartSprite_getWidth", _wrap_SmartSprite_getWidth},
     { "SmartSprite_getHeight", _wrap_SmartSprite_getHeight},
-    { "SmartSprite_render", _wrap_SmartSprite_render},
-    { "AbstractImage_update", _wrap_AbstractImage_update},
+    { "SmartSprite_update", _wrap_SmartSprite_update},
     { "delete_AbstractImage", _wrap_delete_AbstractImage},
-    { "SmartAbstractImage___deref__", _wrap_SmartAbstractImage___deref__},
-    { "delete_SmartAbstractImage", _wrap_delete_SmartAbstractImage},
-    { "SmartAbstractImage_update", _wrap_SmartAbstractImage_update},
-    { "SmartAbstractImage_getWidth", _wrap_SmartAbstractImage_getWidth},
-    { "SmartAbstractImage_getHeight", _wrap_SmartAbstractImage_getHeight},
-    { "SmartAbstractImage_render", _wrap_SmartAbstractImage_render},
+    { "SmartImage___deref__", _wrap_SmartImage___deref__},
+    { "delete_SmartImage", _wrap_delete_SmartImage},
+    { "SmartImage_getWidth", _wrap_SmartImage_getWidth},
+    { "SmartImage_getHeight", _wrap_SmartImage_getHeight},
+    { "SmartImage_update", _wrap_SmartImage_update},
     { "FrameAnimation_addFrame", _wrap_FrameAnimation_addFrame},
     { "FrameAnimation_addFrames", _wrap_FrameAnimation_addFrames},
     { "FrameAnimation_start", _wrap_FrameAnimation_start},
     { "FrameAnimation_stop", _wrap_FrameAnimation_stop},
     { "FrameAnimation_delay", _wrap_FrameAnimation_delay},
-    { "FrameAnimation_update", _wrap_FrameAnimation_update},
     { "delete_FrameAnimation", _wrap_delete_FrameAnimation},
     { "SmartFrameAnimation___deref__", _wrap_SmartFrameAnimation___deref__},
     { "delete_SmartFrameAnimation", _wrap_delete_SmartFrameAnimation},
@@ -41316,10 +41170,9 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartFrameAnimation_start", _wrap_SmartFrameAnimation_start},
     { "SmartFrameAnimation_stop", _wrap_SmartFrameAnimation_stop},
     { "SmartFrameAnimation_delay", _wrap_SmartFrameAnimation_delay},
-    { "SmartFrameAnimation_update", _wrap_SmartFrameAnimation_update},
     { "SmartFrameAnimation_getWidth", _wrap_SmartFrameAnimation_getWidth},
     { "SmartFrameAnimation_getHeight", _wrap_SmartFrameAnimation_getHeight},
-    { "SmartFrameAnimation_render", _wrap_SmartFrameAnimation_render},
+    { "SmartFrameAnimation_update", _wrap_SmartFrameAnimation_update},
     { "AbstractFont_widths_set", _wrap_AbstractFont_widths_set},
     { "AbstractFont_widths_get", _wrap_AbstractFont_widths_get},
     { "delete_AbstractFont", _wrap_delete_AbstractFont},
@@ -42786,13 +42639,12 @@ static swig_type_info _swigt__p_Vector = {"_p_Vector", "Vector *", 0, 0, (void*)
 static swig_type_info _swigt__p_boost__shared_ptrTAbstractSoundDevice_t = {"_p_boost__shared_ptrTAbstractSoundDevice_t", "boost::shared_ptr<AbstractSoundDevice > *|love::pAbstractSoundDevice *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__AbstractColor_t = {"_p_boost__shared_ptrTlove__AbstractColor_t", "boost::shared_ptr<love::AbstractColor > *|love::pAbstractColor *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_AbstractColor_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__AbstractDisplay_t = {"_p_boost__shared_ptrTlove__AbstractDisplay_t", "boost::shared_ptr<love::AbstractDisplay > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_AbstractDisplay_Sg_, 0};
-static swig_type_info _swigt__p_boost__shared_ptrTlove__AbstractEntity_t = {"_p_boost__shared_ptrTlove__AbstractEntity_t", "boost::shared_ptr<love::AbstractEntity > *|love::pAbstractEntity *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__AbstractFont_t = {"_p_boost__shared_ptrTlove__AbstractFont_t", "boost::shared_ptr<love::AbstractFont > *|love::pAbstractFont *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_AbstractFont_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__AbstractGraphics_t = {"_p_boost__shared_ptrTlove__AbstractGraphics_t", "boost::shared_ptr<love::AbstractGraphics > *|love::pAbstractGraphics *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_boost__shared_ptrTlove__AbstractImage_t = {"_p_boost__shared_ptrTlove__AbstractImage_t", "boost::shared_ptr<love::AbstractImage > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_AbstractImage_Sg_, 0};
+static swig_type_info _swigt__p_boost__shared_ptrTlove__AbstractImage_t = {"_p_boost__shared_ptrTlove__AbstractImage_t", "boost::shared_ptr<love::AbstractImage > *|love::pAbstractImage *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_AbstractImage_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__AbstractMenu_t = {"_p_boost__shared_ptrTlove__AbstractMenu_t", "boost::shared_ptr<love::AbstractMenu > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_AbstractMenu_Sg_, 0};
-static swig_type_info _swigt__p_boost__shared_ptrTlove__AbstractMusic_t = {"_p_boost__shared_ptrTlove__AbstractMusic_t", "boost::shared_ptr<love::AbstractMusic > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_AbstractMusic_Sg_, 0};
-static swig_type_info _swigt__p_boost__shared_ptrTlove__AbstractSound_t = {"_p_boost__shared_ptrTlove__AbstractSound_t", "boost::shared_ptr<love::AbstractSound > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_AbstractSound_Sg_, 0};
+static swig_type_info _swigt__p_boost__shared_ptrTlove__AbstractMusic_t = {"_p_boost__shared_ptrTlove__AbstractMusic_t", "boost::shared_ptr<love::AbstractMusic > *|love::pAbstractMusic *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_AbstractMusic_Sg_, 0};
+static swig_type_info _swigt__p_boost__shared_ptrTlove__AbstractSound_t = {"_p_boost__shared_ptrTlove__AbstractSound_t", "boost::shared_ptr<love::AbstractSound > *|love::pAbstractSound *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_AbstractSound_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Bezier_t = {"_p_boost__shared_ptrTlove__Bezier_t", "boost::shared_ptr<love::Bezier > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Bezier_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Button_t = {"_p_boost__shared_ptrTlove__Button_t", "boost::shared_ptr<love::Button > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Button_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__CheckBox_t = {"_p_boost__shared_ptrTlove__CheckBox_t", "boost::shared_ptr<love::CheckBox > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_CheckBox_Sg_, 0};
@@ -42810,7 +42662,7 @@ static swig_type_info _swigt__p_boost__shared_ptrTlove__ObjectFactory_t = {"_p_b
 static swig_type_info _swigt__p_boost__shared_ptrTlove__ParticleSystem_t = {"_p_boost__shared_ptrTlove__ParticleSystem_t", "boost::shared_ptr<love::ParticleSystem > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_ParticleSystem_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__RadioButton_t = {"_p_boost__shared_ptrTlove__RadioButton_t", "boost::shared_ptr<love::RadioButton > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_RadioButton_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Slider_t = {"_p_boost__shared_ptrTlove__Slider_t", "boost::shared_ptr<love::Slider > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Slider_Sg_, 0};
-static swig_type_info _swigt__p_boost__shared_ptrTlove__Sprite_t = {"_p_boost__shared_ptrTlove__Sprite_t", "boost::shared_ptr<love::Sprite > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Sprite_Sg_, 0};
+static swig_type_info _swigt__p_boost__shared_ptrTlove__Sprite_t = {"_p_boost__shared_ptrTlove__Sprite_t", "boost::shared_ptr<love::Sprite > *|love::pSprite *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Sprite_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__TextBox_t = {"_p_boost__shared_ptrTlove__TextBox_t", "boost::shared_ptr<love::TextBox > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_TextBox_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__TextField_t = {"_p_boost__shared_ptrTlove__TextField_t", "boost::shared_ptr<love::TextField > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_TextField_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Timer_t = {"_p_boost__shared_ptrTlove__Timer_t", "boost::shared_ptr<love::Timer > *|love::pTimer *", 0, 0, (void*)0, 0};
@@ -42858,12 +42710,8 @@ static swig_type_info _swigt__p_love__Timer = {"_p_love__Timer", "love::Timer *"
 static swig_type_info _swigt__p_love__Updateable = {"_p_love__Updateable", "love::Updateable *", 0, 0, (void*)&_wrap_class_love_Updateable, 0};
 static swig_type_info _swigt__p_love__interval = {"_p_love__interval", "love::interval *", 0, 0, (void*)&_wrap_class_love_interval, 0};
 static swig_type_info _swigt__p_love__particle = {"_p_love__particle", "love::particle *", 0, 0, (void*)&_wrap_class_love_particle, 0};
-static swig_type_info _swigt__p_pAbstractImage = {"_p_pAbstractImage", "pAbstractImage *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_pAbstractMusic = {"_p_pAbstractMusic", "pAbstractMusic *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_pAbstractSound = {"_p_pAbstractSound", "pAbstractSound *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_pAnimatedColor = {"_p_pAnimatedColor", "pAnimatedColor *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_pEvent = {"_p_pEvent", "pEvent *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_pSprite = {"_p_pSprite", "pSprite *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_string = {"_p_string", "string *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__string = {"_string", "string", 0, 0, (void*)0, 0};
 
@@ -42876,7 +42724,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_boost__shared_ptrTAbstractSoundDevice_t,
   &_swigt__p_boost__shared_ptrTlove__AbstractColor_t,
   &_swigt__p_boost__shared_ptrTlove__AbstractDisplay_t,
-  &_swigt__p_boost__shared_ptrTlove__AbstractEntity_t,
   &_swigt__p_boost__shared_ptrTlove__AbstractFont_t,
   &_swigt__p_boost__shared_ptrTlove__AbstractGraphics_t,
   &_swigt__p_boost__shared_ptrTlove__AbstractImage_t,
@@ -42948,12 +42795,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_love__Updateable,
   &_swigt__p_love__interval,
   &_swigt__p_love__particle,
-  &_swigt__p_pAbstractImage,
-  &_swigt__p_pAbstractMusic,
-  &_swigt__p_pAbstractSound,
   &_swigt__p_pAnimatedColor,
   &_swigt__p_pEvent,
-  &_swigt__p_pSprite,
   &_swigt__p_string,
   &_swigt__string,
 };
@@ -42966,7 +42809,6 @@ static swig_cast_info _swigc__p_Vector[] = {  {&_swigt__p_Vector, 0, 0, 0},{0, 0
 static swig_cast_info _swigc__p_boost__shared_ptrTAbstractSoundDevice_t[] = {  {&_swigt__p_boost__shared_ptrTAbstractSoundDevice_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__AbstractColor_t[] = {  {&_swigt__p_boost__shared_ptrTlove__AbstractColor_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__AbstractDisplay_t[] = {  {&_swigt__p_boost__shared_ptrTlove__AbstractDisplay_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_boost__shared_ptrTlove__AbstractEntity_t[] = {  {&_swigt__p_boost__shared_ptrTlove__AbstractEntity_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__AbstractFont_t[] = {  {&_swigt__p_boost__shared_ptrTlove__AbstractFont_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__AbstractGraphics_t[] = {  {&_swigt__p_boost__shared_ptrTlove__AbstractGraphics_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__AbstractImage_t[] = {  {&_swigt__p_boost__shared_ptrTlove__AbstractImage_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -43038,12 +42880,8 @@ static swig_cast_info _swigc__p_love__Timer[] = {  {&_swigt__p_love__Timer, 0, 0
 static swig_cast_info _swigc__p_love__Updateable[] = {  {&_swigt__p_love__AbstractImage, _p_love__AbstractImageTo_p_love__Updateable, 0, 0},  {&_swigt__p_love__Updateable, 0, 0, 0},  {&_swigt__p_love__AbstractEntity, _p_love__AbstractEntityTo_p_love__Updateable, 0, 0},  {&_swigt__p_love__AbstractColor, _p_love__AbstractColorTo_p_love__Updateable, 0, 0},  {&_swigt__p_love__Sprite, _p_love__SpriteTo_p_love__Updateable, 0, 0},  {&_swigt__p_love__ParticleSystem, _p_love__ParticleSystemTo_p_love__Updateable, 0, 0},  {&_swigt__p_love__FrameAnimation, _p_love__FrameAnimationTo_p_love__Updateable, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__interval[] = {  {&_swigt__p_love__interval, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__particle[] = {  {&_swigt__p_love__particle, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_pAbstractImage[] = {  {&_swigt__p_pAbstractImage, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_pAbstractMusic[] = {  {&_swigt__p_pAbstractMusic, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_pAbstractSound[] = {  {&_swigt__p_pAbstractSound, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_pAnimatedColor[] = {  {&_swigt__p_pAnimatedColor, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_pEvent[] = {  {&_swigt__p_pEvent, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_pSprite[] = {  {&_swigt__p_pSprite, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_string[] = {  {&_swigt__p_string, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__string[] = {  {&_swigt__string, 0, 0, 0},{0, 0, 0, 0}};
 
@@ -43056,7 +42894,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_boost__shared_ptrTAbstractSoundDevice_t,
   _swigc__p_boost__shared_ptrTlove__AbstractColor_t,
   _swigc__p_boost__shared_ptrTlove__AbstractDisplay_t,
-  _swigc__p_boost__shared_ptrTlove__AbstractEntity_t,
   _swigc__p_boost__shared_ptrTlove__AbstractFont_t,
   _swigc__p_boost__shared_ptrTlove__AbstractGraphics_t,
   _swigc__p_boost__shared_ptrTlove__AbstractImage_t,
@@ -43128,12 +42965,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_love__Updateable,
   _swigc__p_love__interval,
   _swigc__p_love__particle,
-  _swigc__p_pAbstractImage,
-  _swigc__p_pAbstractMusic,
-  _swigc__p_pAbstractSound,
   _swigc__p_pAnimatedColor,
   _swigc__p_pEvent,
-  _swigc__p_pSprite,
   _swigc__p_string,
   _swigc__string,
 };

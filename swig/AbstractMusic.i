@@ -7,6 +7,8 @@ namespace love
 		
 	}; // AbstractMusic
 	
+	typedef boost::shared_ptr<AbstractMusic> pAbstractMusic;
+	
 } // love
 
 %template(SmartMusic) boost::shared_ptr<love::AbstractMusic>;

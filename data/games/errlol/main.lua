@@ -20,6 +20,17 @@ end
 
 
 main.load = function()
+	
+	local color = love.objects:newColor(255, 0, 0);
+	print(color:getRed())
+	
+	local img = love.objects:newImage("button_default.png");
+	local shit = img:getWidth();
+	
+	print(shit)
+	
+
+	
 
 end
 
