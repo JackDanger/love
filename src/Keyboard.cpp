@@ -1,4 +1,5 @@
 #include "Keyboard.h"
+#include "Core.h"
 #include "love.h"
 
 namespace love
@@ -23,7 +24,7 @@ namespace love
 	{
 
 		if(key > NUM_KEYS)
-			printf("Warning: Out of bounds @ Keyboard");
+			core->printf("Keyboard: Key code '%d' is out of bounds.", key);
 
 		keys[key] = true;
 	}
@@ -31,7 +32,7 @@ namespace love
 	void Keyboard::keyReleased(int key)
 	{
 		if(key > NUM_KEYS)
-			printf("Warning: Out of bounds @ Keyboard");
+			core->printf("Keyboard: Key code '%d' is out of bounds.", key);
 
 		keys[key] = false;
 	}
@@ -39,7 +40,7 @@ namespace love
 	bool Keyboard::isDown(int key)
 	{
 		if(key > NUM_KEYS)
-			printf("Warning: Out of bounds @ Keyboard");
+			core->printf("Keyboard: Key code '%d' is out of bounds.", key);
 
 		return keys[key] == true;
 	}

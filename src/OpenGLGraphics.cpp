@@ -11,7 +11,6 @@
 
 namespace love
 {
-	
 	OpenGLGraphics::OpenGLGraphics()
 	{
 		// default color
@@ -225,6 +224,11 @@ namespace love
 		//glEnable(GL_TEXTURE_2D); //enabled elsewhere
 		glPopAttrib();
 		glPopMatrix();
+	}
+
+	void OpenGLGraphics::setAlpha(int a) const
+	{
+		glColor4ub(255,255,255,a);
 	}
 
 	void OpenGLGraphics::translate(float x, float y) const

@@ -1,5 +1,5 @@
-#ifndef LOVE_CONFIGLOADER_H
-#define LOVE_CONFIGLOADER_H
+#ifndef LOVE_CONFIGURATION_H
+#define LOVE_CONFIGURATION_H
 
 #include <string>
 #include <vector>
@@ -19,30 +19,29 @@ using namespace std;
 namespace love
 {
 	/**
-	* @class ConfigLoader
+	* @class Configuration
 	* @version 1.0
 	* @since 1.0
 	* @author Michael Enger
 	* @date 2007-03-03
 	* @brief Handles the config files that accompanies every game.
 	**/
-	class ConfigLoader : public Resource, public Loadable
+	class Configuration : public Resource, public Loadable
 	{
 	private:
-		map<string, string> text;
-		map<string, bool> boolean;
-		map<string, double> number;
-		
-		string filepath;
+		map<string, string> data; // the configuration data
+		string filepath; // path to a file to load
+		char buffer [33]; // buffer for changing from number to string
 
 	public:
 		/**
 		 * @param filepath The path to the config file.
 		 * @brief Sets the local private filepath variable.
 		 **/
-		ConfigLoader();
-		ConfigLoader(string filepath);
-		ConfigLoader(pAbstractFile file);
+		Configuration();
+		Configuration(string filepath);
+		Configuration(pAbstractFile file);
+		~Configuration();
 
 		virtual int load();
 		virtual void unload();
@@ -104,6 +103,13 @@ namespace love
 		bool isInt(string key);
 
 		/**
+		 * @param key The key of the value to be checked.
+		 * @return Whether the key exists.
+		 * @brief Checks the list of values to see whether the key exists.
+		 **/
+		bool exists(string key);
+
+		/**
 		 * @param key The key of the new string.
 		 * @param value The string itself.
 		 * @brief If the key does not already exist in the list, it is replaced by the new value
@@ -141,7 +147,7 @@ namespace love
 		void write();
 	};
 
-	typedef boost::shared_ptr<ConfigLoader> pConfigLoader;
+	typedef boost::shared_ptr<Configuration> pConfiguration;
 }
 
 #endif

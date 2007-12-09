@@ -12,7 +12,7 @@
 #include "FrameAnimation.h"
 #include "Loader.h"
 #include "LoadListener.h"
-#include "ConfigLoader.h"
+#include "Configuration.h"
 #include "Actor.h"
 #include "Particle.h"
 #include "ParticleEmitter.h"

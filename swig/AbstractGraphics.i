@@ -18,7 +18,8 @@ namespace love
 		pAbstractColor getColor();
 		pAbstractColor getBackgroundColor();
 		pAbstractFont getFont();
-
+		
+		virtual void setAlpha(int alpha = 255) const = 0;
 		virtual void translate(float x, float y) const = 0;
 		virtual void rotate(float a) const = 0;
 		virtual void scale(float s) const = 0;

@@ -123,7 +123,7 @@ namespace love
 		// Okay, setup OpenGL here, for now.
 
 		// Enable blending
-		glEnable(GL_BLEND);		
+		glEnable(GL_BLEND);
 
 		// "Normal" blending
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

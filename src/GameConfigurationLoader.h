@@ -23,7 +23,7 @@ namespace love
 {
 
 	// Forward declarations
-	class ConfigLoader;
+	class Configuration;
 
 	/**
 	* @class GameConfigurationLoader
@@ -38,7 +38,7 @@ namespace love
 	private:
 
 		// The ConfigLoader used to load all the data below.
-		ConfigLoader * config;
+		Configuration * config;
 
 		// The source for the game. (Directory or archive file)
 		string source;

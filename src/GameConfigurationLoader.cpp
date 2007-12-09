@@ -3,7 +3,7 @@
 #include "Core.h"
 
 #include "AbstractFile.h"
-#include "ConfigLoader.h"
+#include "Configuration.h"
 #include "AbstractImage.h"
 #include "AbstractImageDevice.h"
 #include "AbstractFileSystem.h"
@@ -28,7 +28,7 @@ namespace love
 		{
 
 			// Create config loader.
-			config = new ConfigLoader(core->filesystem->getFile(source, "game.conf"));
+			config = new Configuration(core->filesystem->getFile(source, "game.conf"));
 
 			// Load config
 			if(!config->load())

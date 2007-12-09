@@ -8,6 +8,7 @@ namespace love
 		setType(LOVE_TYPE_SPRITE);
 		this->width = 0;
 		this->height = 0;
+		this->alpha = 255;
 	}
 
 	Sprite::~Sprite()
@@ -22,6 +23,16 @@ namespace love
 	float Sprite::getHeight() const
 	{
 		return this->height;
+	}
+
+	float Sprite::getAlpha() const
+	{
+		return this->alpha;
+	}
+
+	void Sprite::setAlpha(float alpha)
+	{
+		this->alpha = alpha;
 	}
 
 	void Sprite::bind()

@@ -328,10 +328,6 @@ namespace love
 
 	void Menu::draw(gcn::Graphics* graphics)
 	{
-		if(!visible) return;
-
-		//glPushMatrix();
-
 		if(font != 0)
 			graphics->setFont(font.get());
 		if(color != 0)
@@ -380,14 +376,10 @@ namespace love
 		}
 
 		drawChildren(graphics);
-
-		//glPopMatrix();
 	}
 
 	void Menu::drawBorder(gcn::Graphics* graphics)
 	{
-		if(!visible) return;
-
 		//gcn::Container::drawBorder(graphics);
 
 		if(borderColor.get() != 0)

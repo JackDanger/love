@@ -30,7 +30,7 @@
 #include "Loadable.h"
 
 // Other LOVE files
-#include "ConfigLoader.h"
+#include "Configuration.h"
 #include "Game.h"
 #include "UIGame.h"
 
@@ -97,7 +97,7 @@ namespace love
 		Parameters * parameters;
 		AbstractGUI * gui;
 
-		pConfigLoader config;
+		pConfiguration config;
 
 		//Contains all the Games.
 		Container<Game> games;
@@ -152,6 +152,12 @@ namespace love
 		* @return A reference to the mouse device.
 		**/
 		const Mouse & getMouse() const;
+
+		/**
+		* @brief Gets a reference to the keyboard device.
+		* @return A reference to the keyboard device.
+		**/
+		const Keyboard & getKeyboard() const;
 
 		/**
 		* @brief Gets a constant reference to the current file system.

@@ -25,7 +25,7 @@ namespace love
 {
 
 	// Forward declarations
-	class ConfigLoader;
+	class Configuration;
 	class AbstractFile;
 
 	/**

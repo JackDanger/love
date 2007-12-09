@@ -5,7 +5,7 @@
 #include "MessageEvent.h"
 #include "GameControlEvent.h"
 #include "Game.h"
-#include "ConfigLoader.h"
+#include "Configuration.h"
 
 #include <math.h>
 

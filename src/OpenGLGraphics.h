@@ -29,8 +29,8 @@ namespace love
 	**/
 	class OpenGLGraphics : public AbstractGraphics
 	{
-	private:
-	
+	protected:
+
 	public:
 	
 		/**
@@ -55,6 +55,12 @@ namespace love
 		* @return LOVE_OK if no errors. 
 		**/ 
 		virtual int init();
+
+		/**
+		* @brief Sets the alpha for rendering of images.
+		* @param a The alpha component, 0-255. (Default 255).
+		**/
+		virtual void setAlpha(int a = 255) const;
 
 		/**
 		* @brief Combines a translation with the current matrix.

@@ -17,7 +17,6 @@ namespace love
 		spacing = 0;
 		position = 0;
 		stretch = false;
-		visible = true;
 		align(Text::LOVE_ALIGN_CENTER);
 		valign(Text::LOVE_ALIGN_CENTER);
 		menuType = LOVE_MENU_DEFAULT;

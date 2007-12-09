@@ -1,7 +1,7 @@
 #ifndef LOVE_DEFAULT_CONFIGURATION_H
 #define LOVE_DEFAULT_CONFIGURATION_H
 
-#include "ConfigLoader.h"
+#include "Configuration.h"
 #include <boost/shared_ptr.hpp>
 
 namespace love
@@ -33,13 +33,13 @@ namespace love
 		 * @param config A ConfigLoader object to be manipulated.
 		 * @brief Adds the default system configurations to the passed ConfigLoader object.
 		 **/
-		virtual void defaultSystemConfig(const pConfigLoader & config);
+		virtual void defaultSystemConfig(const pConfiguration & config);
 
 		/**
 		 * @param config A ConfigLoader object to be manipulated.
 		 * @brief Adds the default game configurations to the passed ConfigLoader object.
 		 **/
-		virtual void defaultGameConfig(const pConfigLoader & config);
+		virtual void defaultGameConfig(const pConfiguration & config);
 	};
 
 	typedef boost::shared_ptr<DefaultConfiguration> pDefaultConfiguration;

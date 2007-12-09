@@ -52,6 +52,9 @@ namespace love
 		float width;
 		float height;
 
+		// The alpha value for rendering transparencies.
+		float alpha;
+
 	public:
 
 		/**
@@ -71,6 +74,18 @@ namespace love
 		* @return The current height of the Sprite.
 		**/
 		float getHeight() const;
+
+		/**
+		* @brief Gets the current alpha value.
+		* @return The current alpha value.
+		**/
+		float getAlpha() const;
+
+		/**
+		* @brief Sets the current alpha value.
+		* @param alpha The new alpha value.
+		**/
+		void setAlpha(float alpha);
 
 		// For "performance" rendering
 		virtual void bind();

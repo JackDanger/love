@@ -249,7 +249,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\ConfigLoader.cpp"
+				RelativePath="..\..\src\Configuration.cpp"
 				>
 			</File>
 			<File
@@ -751,7 +751,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\ConfigLoader.h"
+				RelativePath="..\..\src\Configuration.h"
 				>
 			</File>
 			<File

@@ -63,7 +63,7 @@ namespace love
 		GUIGameList2 list;
 		//pText text;
 
-		ConfigLoader * configLoader;
+		Configuration * configLoader;
 
 	public:
 

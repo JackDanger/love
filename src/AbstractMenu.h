@@ -50,7 +50,6 @@ namespace love
 		int alignment;
 		int verticalAlignment;
 		bool stretch;
-		bool visible;
 
 		virtual void positionItem(gcn::Widget * item) = 0;
 

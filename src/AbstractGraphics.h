@@ -152,6 +152,12 @@ namespace love
 		pAbstractFont getFont();
 
 		/**
+		* @brief Sets the alpha for rendering of images.
+		* @param a The alpha component, 0-255. (Default 255).
+		**/
+		virtual void setAlpha(int a = 255) const = 0;
+
+		/**
 		* @brief Combines a translation with the current matrix.
 		* @param x Translation along x-axis.
 		* @param y Translation along y-axis.

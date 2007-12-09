@@ -363,6 +363,15 @@
           love.graphics:setColor(red);
         </example>
       </function>
+	  
+	  <function name="setColor" brief="Sets the current color.">
+        <param name="red" brief="The amount of red." />
+        <param name="green" brief="The amount of green." />
+        <param name="blue" brief="The amount of blue." />
+        <example name="Set the current color as blue.">
+          love.graphics:setColor(10, 10, 255); -- the default alpha value (255) will be used
+        </example>
+      </function>
 
       <function name="setColor" brief="Sets the current color.">
         <param name="red" brief="The amount of red." />
@@ -373,13 +382,19 @@
           love.graphics:setColor(255, 10, 10, 150);
         </example>
       </function>
-
-      <function name="setColor" brief="Sets the current color.">
-        <param name="red" brief="The amount of red." />
-        <param name="green" brief="The amount of green." />
-        <param name="blue" brief="The amount of blue." />
+	  
+	  <function name="setColor" brief="Sets the current color.">
+        <param name="code" brief="A hexadecimal color code." />
         <example name="Set the current color as blue.">
-          love.graphics:setColor(10, 10, 255); -- the default alpha value (255) will be used
+          love.graphics:setColor(0x0000FF); -- the default alpha value (255) will be used
+        </example>
+      </function>
+	  
+	  <function name="setColor" brief="Sets the current color.">
+        <param name="code" brief="A hexadecimal color code." />
+		<param name="alpha" brief="The amount of alpha." />
+        <example name="Set the current color as transparent blue.">
+          love.graphics:setColor(0x0000FF, 150);
         </example>
       </function>
 

@@ -93,6 +93,7 @@ namespace love
 	{
 		push();
 		translate(-sprite->getWidth() / 2.0f, -sprite->getHeight() / 2.0f);
+		setAlpha((int)sprite->getAlpha());
 		sprite->render(x, y);
 		pop();
 
@@ -100,6 +101,7 @@ namespace love
 	void AbstractGraphics::draw(const pSprite & sprite, float x, float y, float xs, float ys, float width, float height) const
 	{
 		this->translate(x,y);
+		setAlpha((int)sprite->getAlpha());
 		sprite->render(xs, ys, width, height);
 		this->translate(-x,-y);
 	}

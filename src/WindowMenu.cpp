@@ -356,8 +356,6 @@ namespace love
 
 	void WindowMenu::draw(gcn::Graphics* graphics)
 	{
-		if(!visible) return;
-
 		if(color != 0)
 			gcn::Window::setForegroundColor(gcn::Color(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha()));
 		if(backgroundColor != 0)
@@ -420,8 +418,6 @@ namespace love
 
 	void WindowMenu::drawBorder(gcn::Graphics* graphics)
 	{
-		if(!visible) return;
-
 		if(borderColor != 0)
 			gcn::Window::setBaseColor(gcn::Color(borderColor->getRed(), borderColor->getGreen(), borderColor->getBlue(), borderColor->getAlpha()));
 		gcn::Window::drawBorder(graphics);

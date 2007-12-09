@@ -371,8 +371,6 @@ namespace love
 
 	void ScrollMenu::draw(gcn::Graphics* graphics)
 	{
-		if(!visible) return;
-
 		if(backgroundColor != 0)
 		{
 			//gcn::ScrollArea::setBackgroundColor(gcn::Color(backgroundColor->getRed(), backgroundColor->getGreen(), backgroundColor->getBlue(), backgroundColor->getAlpha()));
@@ -411,8 +409,6 @@ namespace love
 
 	void ScrollMenu::drawBorder(gcn::Graphics* graphics)
 	{
-		if(!visible) return;
-
 		gcn::ScrollArea::drawBorder(graphics);
 		return;
 

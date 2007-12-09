@@ -69,7 +69,10 @@ namespace love
 
 	bool AbstractGUI::hasFocus()
 	{
-		return gui->hasFocus();
+		if(gui != 0)
+			return gui->hasFocus();
+		else
+			return false;
 	}
 
 	int AbstractGUI::init()
@@ -79,11 +82,13 @@ namespace love
 
 	void AbstractGUI::render()
 	{
-		gui->draw();
+		if(gui != 0)
+			gui->draw();
 	}
 
 	void AbstractGUI::update(float dt)
 	{
-		gui->logic();
+		if(gui != 0)
+			gui->logic();
 	}
 }

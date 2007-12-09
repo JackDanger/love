@@ -3,7 +3,7 @@
 #include "Core.h"
 
 #include "AbstractFile.h"
-#include "ConfigLoader.h"
+#include "Configuration.h"
 #include "AbstractImage.h"
 #include "AbstractImageDevice.h"
 #include "AbstractFileSystem.h"

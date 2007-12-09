@@ -12,7 +12,6 @@
 #include "AbstractGraphics.h"
 #include "Parameters.h"
 #include "Console.h"
-#include "ConfigLoader.h"
 #include "DefaultConfiguration.h"
 
 #include "AbstractFont.h"
@@ -42,6 +41,11 @@ namespace love
 	const Mouse & Core::getMouse() const
 	{
 		return (*mouse);
+	}
+
+	const Keyboard & Core::getKeyboard() const
+	{
+		return (*keyboard);
 	}
 
 	const AbstractFileSystem & Core::getFilesystem() const
@@ -91,7 +95,7 @@ namespace love
 
 		// Do we have a love.conf override?
 		pDefaultConfiguration defaultConfig(new DefaultConfiguration());
-		config.reset<ConfigLoader>(new ConfigLoader(filesystem->getBase() + "data/love.conf"));
+		config.reset<Configuration>(new Configuration(filesystem->getBase() + "data/love.conf"));
 		defaultConfig->defaultSystemConfig(config); // load defaults
 		config->load(); // replace defaults with set values
 
@@ -356,7 +360,7 @@ namespace love
 			//startGame("love-system-menu", false);
 			break;
 		case LOVE_KEY_RETURN:
-			if(keyboard->isDown(LOVE_KEY_LALT))
+			if(keyboard->isDown(LOVE_KEY_LALT) || keyboard->isDown(LOVE_KEY_RALT))
 			{
 				display->toggleFullscreen();
 				current->resume();
@@ -365,7 +369,7 @@ namespace love
 			}
 			break;
 		case LOVE_KEY_v:
-			if(keyboard->isDown(LOVE_KEY_LCTRL))
+			if(keyboard->isDown(LOVE_KEY_LCTRL) || keyboard->isDown(LOVE_KEY_RCTRL))
 			{
 				display->toggleVSync();
 				current->resume();
@@ -374,7 +378,7 @@ namespace love
 			}
 			break;
 		case LOVE_KEY_r:
-			if(keyboard->isDown(LOVE_KEY_LCTRL))
+			if(keyboard->isDown(LOVE_KEY_LCTRL) || keyboard->isDown(LOVE_KEY_RCTRL))
 			{
 				if(!uigame->isPaused() && strcmp(current->getName().c_str(),"love-system-menu") != 0)
 				{

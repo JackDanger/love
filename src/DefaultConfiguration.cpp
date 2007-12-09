@@ -11,7 +11,7 @@ namespace love
 	DefaultConfiguration::~DefaultConfiguration()
 	{}
 
-	void DefaultConfiguration::defaultSystemConfig(const pConfigLoader & config)
+	void DefaultConfiguration::defaultSystemConfig(const pConfiguration & config)
 	{
 		// General
 		config->addBool("verbose", false);
@@ -38,7 +38,7 @@ namespace love
 		config->addString("gamedir", core->getFilesystem().getBase() + "data/games");
 	}
 
-	void DefaultConfiguration::defaultGameConfig(const pConfigLoader & config)
+	void DefaultConfiguration::defaultGameConfig(const pConfiguration & config)
 	{
 		// General
 		config->addString("title", "Untitled");

@@ -1,4 +1,9 @@
 #include "TextField.h"
+#include "Core.h"
+#include "Keyboard.h"
+
+#include "love.h"
+#include "love_keys.h"
 
 namespace love
 {
