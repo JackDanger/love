@@ -26,7 +26,7 @@ $(OBJDIR)/Bezier.o \
 $(OBJDIR)/BezierParticleSystem.o \
 $(OBJDIR)/Button.o \
 $(OBJDIR)/Color.o \
-$(OBJDIR)/ConfigLoader.o \
+$(OBJDIR)/Configuration.o \
 $(OBJDIR)/Container.o \
 $(OBJDIR)/Core.o \
 $(OBJDIR)/CheckBox.o \
@@ -45,10 +45,11 @@ $(OBJDIR)/GameConfiguration.o \
 $(OBJDIR)/GameConfigurationLoader.o \
 $(OBJDIR)/GameControlEvent.o \
 $(OBJDIR)/Game.o \
-$(OBJDIR)/GUIElement.o \
 $(OBJDIR)/Globals.o \
+$(OBJDIR)/GUI.o \
 $(OBJDIR)/GUICircleButton.o \
 $(OBJDIR)/GUIDynamicBackground.o \
+$(OBJDIR)/GUIElement.o \
 $(OBJDIR)/GUIEntity.o \
 $(OBJDIR)/GUIGameList2.o \
 $(OBJDIR)/GUIGameList.o \
@@ -126,7 +127,7 @@ $(OBJDIR)/VisualEntity.o \
 $(OBJDIR)/WindowMenu.o
 
 CC = g++
-CFLAGS = -g -O2 -Wall -Wno-unused-label -fno-strict-aliasing
+CFLAGS = -g -O0 -Wall -Wno-unused-label -fno-strict-aliasing
 LDFLAGS = -lGL -lGLU -lIL -lILU -lILUT -lSDL -lSDL_mixer -lSDL_image -llua5.1 -lphysfs -lfreetype -lguichan -lguichan_opengl -lguichan_sdl
 INCLUDES = -I/usr/include/freetype2 -I/usr/include/lua5.1 -I/usr/include/SDL
 
@@ -143,4 +144,3 @@ clean:
 
 cleanall: clean
 	rm -f $(TARGET)
-

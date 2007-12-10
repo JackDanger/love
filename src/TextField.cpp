@@ -171,7 +171,7 @@ namespace love
 
 	void TextField::fixScroll()
 	{
-		int m = 5;
+		//int m = 5;
 		if (isFocused())
 		{
 			int caretX = gcn::TextField::getFont()->getWidth(mText.substr(0, mCaretPosition));

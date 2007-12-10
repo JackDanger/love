@@ -148,10 +148,14 @@ namespace love
 		if(data.count(key) == 0)
 			return false;
 		
-		if(sprintf(buffer, "%f", data[key]) != -1)
-			return true;
-		else
-			return false;
+		//if(sprintf(buffer, "%f", data[key].c_str()) != -1)
+		//	return true;
+		//else
+		//	return false;
+		for (string::const_iterator i = data[key].begin(); i != data[key].end(); i++)
+			if (!isdigit(*i) && *i != ',' && *i != '.')
+				return false;
+		return true;
 	}
 
 	bool Configuration::isInt(string key)
@@ -159,10 +163,14 @@ namespace love
 		if(data.count(key) == 0)
 			return false;
 		
-		if(sprintf(buffer, "%d", data[key]) != -1)
-			return true;
-		else
-			return false;
+		//if(sprintf(buffer, "%d", data[key].c_str()) != -1)
+		//	return true;
+		//else
+		//	return false;
+		for (string::const_iterator i = data[key].begin(); i != data[key].end(); i++)
+			if (!isdigit(*i))
+				return false;
+		return true;
 	}
 
 	bool Configuration::exists(string key)
