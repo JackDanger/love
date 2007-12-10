@@ -2,6 +2,7 @@
 #include "AbstractImage.h"
 #include "AbstractFile.h"
 #include "love.h"
+#include "Core.h"
 
 // DevIL
 #include <IL/ilut.h>
@@ -16,7 +17,8 @@ namespace love
 	
 	OpenGLImage::~OpenGLImage()
 	{
-		printf("[-.-] - Destroyed! - [%s]\n", toString().c_str());
+		if(core->isVerbose())
+			printf("[-.-] - Destroyed! - [%s]\n", toString().c_str());
 		unload();
 	}
 
