@@ -31,7 +31,6 @@ namespace love
 	private:
 		map<string, string> data; // the configuration data
 		string filepath; // path to a file to load
-		char buffer [33]; // buffer for changing from number to string
 
 	public:
 		/**

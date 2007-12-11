@@ -48,8 +48,7 @@ namespace love
 		
 		if(!ifs)
 		{
-			core->error("ConfigLoader: ERROR! Could not read file '%s'.\n", filepath.c_str());
-			//printf("Config Loader: ERROR! Could not read file '%s'.\n", filepath.c_str());
+			core->error("Configuration: ERROR! Could not read file '%s'.\n", filepath.c_str());
 			return LOVE_ERROR;
 		}
 
@@ -59,8 +58,7 @@ namespace love
 			line++;
 			index = (int)temp.find_first_of('=', 0);
 			if(index == (int)string::npos)
-				core->printf("ConfigLoader (Line %d): Unrecognized command: \"%s\"\n", line, temp.c_str());
-				//printf("Config Loader (Line %d): Unrecognized command: \"%s\"\n", line, temp.c_str());
+				core->printf("Configuration (Line %d): Unrecognized command: \"%s\"\n", line, temp.c_str());
 			if(index != (int)string::npos && temp.find_first_of('#', 0) != 0 && trim(temp).size() != 0)
 			{
 				key = trim(temp.substr(0, index));
@@ -76,7 +74,7 @@ namespace love
 				}
 
 				if(exists(key) && core->isVerbose())
-					core->printf("ConfigLoader: Overwriting config entry '%s'.\n", key.c_str());
+					core->printf("Configuration: Overwriting config entry '%s'.\n", key.c_str());
 				data[key] = value;
 			}
 		}
@@ -148,10 +146,7 @@ namespace love
 		if(data.count(key) == 0)
 			return false;
 		
-		//if(sprintf(buffer, "%f", data[key].c_str()) != -1)
-		//	return true;
-		//else
-		//	return false;
+		// thnx tommy ^^
 		for (string::const_iterator i = data[key].begin(); i != data[key].end(); i++)
 			if (!isdigit(*i) && *i != ',' && *i != '.')
 				return false;
@@ -163,10 +158,7 @@ namespace love
 		if(data.count(key) == 0)
 			return false;
 		
-		//if(sprintf(buffer, "%d", data[key].c_str()) != -1)
-		//	return true;
-		//else
-		//	return false;
+		// thnx tommy ^^
 		for (string::const_iterator i = data[key].begin(); i != data[key].end(); i++)
 			if (!isdigit(*i))
 				return false;
@@ -183,8 +175,9 @@ namespace love
 
 	void Configuration::addString(string key, string value)
 	{
-		sprintf(buffer, "\"%s\"", value.c_str());
-		data[key] = buffer;
+		std::stringstream ss;
+		ss << "\"" << value << "\"";
+		data[key] = ss.str();
 	}
 
 	void Configuration::add(string key, string value)
@@ -207,8 +200,9 @@ namespace love
 
 	void Configuration::addFloat(string key, float value)
 	{
-		sprintf(buffer, "%f", value);
-		data[key] = string(buffer);
+		std::stringstream ss;
+		ss << value;
+		data[key] = ss.str();
 	}
 
 	void Configuration::add(string key, float value)
@@ -218,8 +212,9 @@ namespace love
 
 	void Configuration::addInt(string key, int value)
 	{
-		sprintf(buffer, "%d", value);
-		data[key] = string(buffer);
+		std::stringstream ss;
+		ss << value;
+		data[key] = ss.str();
 	}
 
 	void Configuration::add(string key, int value)
@@ -232,8 +227,7 @@ namespace love
 		ofstream file(filepath.c_str(), ios::trunc);
 		if(!file)
 		{
-			core->error("ConfigLoader: ERROR! Could not write to file '%s'.\n", filepath.c_str());
-			//printf("Config Loader: ERROR! Could not write to file '%s'.\n", filepath.c_str());
+			core->error("Configuration: ERROR! Could not write to file '%s'.\n", filepath.c_str());
 			return;
 		}
 
