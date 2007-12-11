@@ -40,6 +40,16 @@ namespace love
 		this->author = author;
 	}
 
+	bool GameConfiguration::getDisableEscape()
+	{
+		return disableEscape;
+	}
+
+	void GameConfiguration::setDisableEscape(bool setting)
+	{
+		this->disableEscape = setting;
+	}
+
 	pAbstractImage GameConfiguration::getThumb() const
 	{
 		return thumb;

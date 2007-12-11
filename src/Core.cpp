@@ -358,6 +358,15 @@ namespace love
 					return;
 				}
 			}
+			else if(current != uigame && !current->config->getDisableEscape())
+			{
+				if(!uigame->isPaused())
+				{
+					uigame->showPause();
+					keyboard->keyPressed(key);
+					return;
+				}
+			}
 			break;
 		case LOVE_KEY_TAB:
 			if(strcmp(current->getName().c_str(),"love-system-menu") != 0 && (keyboard->isDown(LOVE_KEY_LSHIFT) || keyboard->isDown(LOVE_KEY_RSHIFT)))

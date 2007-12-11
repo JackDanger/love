@@ -34,12 +34,14 @@ namespace love
 		 * @brief Adds the default system configurations to the passed ConfigLoader object.
 		 **/
 		virtual void defaultSystemConfig(const pConfiguration & config);
+		virtual void defaultSystemConfig(Configuration * config);
 
 		/**
 		 * @param config A ConfigLoader object to be manipulated.
 		 * @brief Adds the default game configurations to the passed ConfigLoader object.
 		 **/
 		virtual void defaultGameConfig(const pConfiguration & config);
+		virtual void defaultGameConfig(Configuration * config);
 	};
 
 	typedef boost::shared_ptr<DefaultConfiguration> pDefaultConfiguration;

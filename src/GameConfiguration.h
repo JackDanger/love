@@ -46,6 +46,9 @@ namespace love
 		// author
 		string author;
 
+		// whether to disable pause menu at [escape]
+		bool disableEscape;
+
 		// thumb
 		pAbstractImage thumb;
 
@@ -87,6 +90,18 @@ namespace love
 		* @param author 
 		**/
 		void setAuthor(string author);
+
+		/**
+		* @brief Gets escape disabling.
+		* @return settings
+		**/
+		bool getDisableEscape();
+
+		/**
+		* @brief Sets escape disabling.
+		* @param setting
+		**/
+		void setDisableEscape(bool setting);
 
 		/**
 		* @brief Gets thumb.
