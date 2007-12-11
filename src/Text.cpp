@@ -192,20 +192,33 @@ namespace love
 
 	void Text::printf(AbstractFont * font, AbstractColor * color, const char * text, ...)
 	{
-		//this is enabled and disabled every time, just in case
-		glEnable(GL_TEXTURE_2D);
-		char ftext[MAX_SIZE];
-		va_list	ap;
-
 		if(text == 0)
 			return; //pointless to continue with NO text to print
 
-		for(int i = (MAX_SIZE - 1); i != 0; i--)
-			ftext[i] = '\0'; //let's start clean
+		//this is enabled and disabled every time, just in case
+		glEnable(GL_TEXTURE_2D);
+		//char ftext[MAX_SIZE];
+		bool buffer_overrun;
+		int buffer_size = 1024;
+		char *ftext;
+		va_list	ap;
+
+		//for(int i = (MAX_SIZE - 1); i != 0; i--)
+		//	ftext[i] = '\0'; //let's start clean
 
 		va_start(ap, text);
 			//vsprintf_s(ftext, text, ap);
-			vsprintf(ftext, text, ap);
+			//vsprintf(ftext, text, ap);
+			do
+			{
+				ftext = new char[buffer_size];
+				buffer_overrun = vsnprintf(ftext, buffer_size, text, ap) < 0;
+				if (buffer_overrun)
+				{
+					delete[] ftext;
+					buffer_size *= 1024;
+				}
+			} while (buffer_overrun);
 		va_end(ap);
 
 		//turning the text into lines
@@ -213,25 +226,39 @@ namespace love
 			createLines(font, wrapLimit, ftext);
 		else
 			createLines(ftext);
+		delete[] ftext;
 
 		printText(font, color);
 	}
 
 	void Text::printf(const char * text, ...)
 	{
-		//this is enabled and disabled every time, just in case
-		glEnable(GL_TEXTURE_2D);
-		char ftext[MAX_SIZE];
-		va_list	ap;
-
 		if(text == 0)
 			return; //pointless to continue with NO text to print
 
-		for(int i = (MAX_SIZE - 1); i != 0; i--)
-			ftext[i] = '\0'; //let's start clean
+		//this is enabled and disabled every time, just in case
+		glEnable(GL_TEXTURE_2D);
+		//char ftext[MAX_SIZE];
+		bool buffer_overrun;
+		int buffer_size = 1024;
+		char *ftext;
+		va_list	ap;
+
+		//for(int i = (MAX_SIZE - 1); i != 0; i--)
+		//	ftext[i] = '\0'; //let's start clean
 
 		va_start(ap, text);
-			vsprintf(ftext, text, ap);
+			//vsprintf(ftext, text, ap);
+			do
+			{
+				ftext = new char[buffer_size];
+				buffer_overrun = vsnprintf(ftext, buffer_size, text, ap) < 0;
+				if (buffer_overrun)
+				{
+					delete[] ftext;
+					buffer_size *= 2;
+				}
+			} while (buffer_overrun);
 		va_end(ap);
 
 		//turning the text into lines
@@ -239,6 +266,7 @@ namespace love
 			createLines(this->font, wrapLimit, ftext);
 		else
 			createLines(ftext);
+		delete[] ftext;
 
 		printText(this->font, this->color);
 	}

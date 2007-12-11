@@ -317,17 +317,29 @@ namespace love
 
 	void Core::printf(const char * msg, ...)
 	{
-		char ftext[1024];
+		//char ftext[1024];
+		bool buffer_overrun;
+		int buffer_size = 1024;
+		char *ftext;
 		va_list	ap;
 
 		va_start(ap, msg);
-		vsprintf(ftext, msg, ap);
+		//vsprintf(ftext, msg, ap);
+		do
+		{
+			ftext = new char[buffer_size];
+			buffer_overrun = vsnprintf(ftext, buffer_size, msg, ap) < 0;
+			if (buffer_overrun)
+			{
+				delete[] ftext;
+				buffer_size *= 2;
+			}
+		} while (buffer_overrun);
 		va_end(ap);
 
 		string s(ftext);
-		s = s.substr(0, s.length() - 1);
-
-		puts(s.c_str());
+		delete[] ftext;
+		puts(s.substr(0, s.length() - 1).c_str());
 	}
 
 	void Core::keyPressed(int key)
@@ -406,7 +418,6 @@ namespace love
 		current->keyReleased(key);
 	}
 
-
 	void Core::mouseMoved(float x, float y)
 	{
 		// Update mouse state.
@@ -455,14 +466,28 @@ namespace love
 
 	void Core::error(const char * text, ...)
 	{
-		char ftext[1024];
+		//char ftext[1024];
+		bool buffer_overrun;
+		int buffer_size = 1024;
+		char *ftext;
 		va_list	ap;
 
 		va_start(ap, text);
-		vsprintf(ftext, text, ap);
+		//vsprintf(ftext, text, ap);
+		do
+		{
+			ftext = new char[buffer_size];
+			buffer_overrun = vsnprintf(ftext, buffer_size, text, ap) < 0;
+			if (buffer_overrun)
+			{
+				delete[] ftext;
+				buffer_size *= 2;
+			}
+		} while (buffer_overrun);
 		va_end(ap);
 
 		string s(ftext);
+		delete[] ftext;
 		s = s.substr(0, s.length() - 1);
 
 		if(uigame != 0 && uigame->isLoaded() && current != 0)
