@@ -192,8 +192,10 @@ namespace love
 
 	void Text::printf(AbstractFont * font, AbstractColor * color, const char * text, ...)
 	{
-		if(text == 0)
-			return; //pointless to continue with NO text to print
+		// The following code will return FALSE regardless. I've checked
+		// several fora, and the only way to do this is to send a STRING
+		//if(text == 0)
+		//	return; //pointless to continue with NO text to print
 
 		//this is enabled and disabled every time, just in case
 		glEnable(GL_TEXTURE_2D);
@@ -216,7 +218,7 @@ namespace love
 				if (buffer_overrun)
 				{
 					delete[] ftext;
-					buffer_size *= 1024;
+					buffer_size *= 2;
 				}
 			} while (buffer_overrun);
 		va_end(ap);
@@ -233,8 +235,10 @@ namespace love
 
 	void Text::printf(const char * text, ...)
 	{
-		if(text == 0)
-			return; //pointless to continue with NO text to print
+		// The following code will return FALSE regardless. I've checked
+		// several fora, and the only way to do this is to send a STRING
+		//if(text == 0)
+		//	return; //pointless to continue with NO text to print
 
 		//this is enabled and disabled every time, just in case
 		glEnable(GL_TEXTURE_2D);
