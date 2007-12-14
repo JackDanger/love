@@ -25,7 +25,7 @@ namespace love
 	private:
 
 		Mix_Chunk * sound;
-		string filename;
+		std::string filename;
 		int channel;
 		int volume;
 

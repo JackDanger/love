@@ -37,7 +37,7 @@ namespace love
 		* @param source The source from which to load the file. (Archive or directory)
 		* @param filename The relative filepath of the file to load from the source.
 		**/
-		PhysFSFile(const string & source, const string & filename);
+		PhysFSFile(const std::string & source, const std::string & filename);
 
 		/**
 		* @brief Destructor. Calls unload().

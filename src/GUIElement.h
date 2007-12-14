@@ -14,8 +14,6 @@
 #include <boost/shared_ptr.hpp>
 #include <guichan.hpp>
 
-using std::string;
-
 namespace love
 {
 	/**

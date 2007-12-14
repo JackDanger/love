@@ -29,10 +29,7 @@
 
 // STL
 #include <string>
-#include <vector>
-
-using std::string;
-using std::vector;
+//#include <vector>
 
 namespace love
 {
@@ -66,7 +63,7 @@ namespace love
 		//gcn::Container * gui;
 
 		// The base diretory for this game.
-		string source;
+		std::string source;
 
 	public:
 
@@ -151,7 +148,7 @@ namespace love
 		* @brief Returns the source of this game.
 		* @return The source for this game.
 		**/
-		const string & getSource() const;
+		const std::string & getSource() const;
 	};
 
 	typedef boost::shared_ptr<Game> pGame;

@@ -17,8 +17,6 @@
 // STL
 #include <vector>
 
-using std::vector;
-
 // Boost
 #include <boost/shared_ptr.hpp>
 
@@ -45,7 +43,7 @@ namespace love
 		float triangleWidth;
 		float triangleHeight;
 
-		vector<pAbstractColor> colors;
+		std::vector<pAbstractColor> colors;
 
 		
 		Vector vel;

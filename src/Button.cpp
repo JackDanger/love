@@ -1,5 +1,7 @@
 #include "Button.h"
 
+using std::string;
+
 namespace love
 {
 	Button::Button(const string & caption) : gcn::Button(caption)

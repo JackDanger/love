@@ -45,7 +45,7 @@ namespace love
 
 		pAbstractFont font;
 
-		string label;
+		std::string label;
 		pEvent command;
 
 		bool bg;
@@ -58,11 +58,11 @@ namespace love
 		/**
 		* @brief Contructs an empty GUICircleButton.
 		**/
-		GUICircleButton(pAbstractImage image, const string & label, pEvent command, pAbstractFont font);
+		GUICircleButton(pAbstractImage image, const std::string & label, pEvent command, pAbstractFont font);
 		virtual ~GUICircleButton();
 
 
-		void setLabel(const string & label);
+		void setLabel(const std::string & label);
 
 		void update(float dt);
 		void render();

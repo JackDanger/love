@@ -11,11 +11,8 @@
 // LOVE
 #include "Object.h"
 
-// string
-#include <string>
-using std::string;
-
 // STL
+//#include <string>
 
 // Boost
 #include <boost/shared_ptr.hpp>

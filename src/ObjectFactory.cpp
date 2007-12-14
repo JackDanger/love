@@ -7,6 +7,8 @@
 
 #include "OpenGLParticleSystem.h"
 
+using std::string;
+
 namespace love
 {
 	

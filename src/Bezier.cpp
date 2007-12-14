@@ -1,5 +1,7 @@
 #include "Bezier.h"
 
+using std::vector;
+
 namespace love
 {
 	

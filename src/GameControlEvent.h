@@ -17,8 +17,6 @@
 // Boost
 #include <boost/shared_ptr.hpp>
 
-using std::string;
-
 namespace love
 {
 
@@ -38,7 +36,7 @@ namespace love
 		int mode;
 
 		// game
-		string game;
+		std::string game;
 
 	public:
 
@@ -49,7 +47,7 @@ namespace love
 		/**
 		* @brief Contructs an empty GameControlEvent.
 		**/
-		GameControlEvent(int mode, const string & game);
+		GameControlEvent(int mode, const std::string & game);
 		virtual ~GameControlEvent();
 
 		/**
@@ -70,14 +68,14 @@ namespace love
 		* @brief Gets game.
 		* @return game.
 		**/
-		const string & getGame() const;
+		const std::string & getGame() const;
 
 
 		/**
 		* @brief Sets game.
 		* @param game 
 		**/
-		void setGame(string game);
+		void setGame(std::string game);
 
 
 	};

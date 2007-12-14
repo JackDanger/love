@@ -13,7 +13,6 @@
 
 // STL
 #include <string>
-using std::string;
 
 // Boost
 #include <boost/shared_ptr.hpp>
@@ -34,7 +33,7 @@ namespace love
 	private:
 
 		// script
-		string script;
+		std::string script;
 
 		// availableMethods
 		int availableMethods;
@@ -51,14 +50,14 @@ namespace love
 		* @brief Gets script.
 		* @return script.
 		**/
-		const string & getScript() const;
+		const std::string & getScript() const;
 
 
 		/**
 		* @brief Sets script.
 		* @param script 
 		**/
-		void setScript(string script);
+		void setScript(std::string script);
 
 
 		/**

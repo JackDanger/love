@@ -10,9 +10,6 @@
 #include <string>
 #include <map>
 
-using std::string;
-using std::map;
-
 namespace love
 {
 	/**
@@ -37,7 +34,7 @@ namespace love
 		pAbstractFont pauseFont;
 
 		// Resources
-		map<string, pAbstractImage> images;
+		std::map<std::string, pAbstractImage> images;
 
 		pAbstractFont titleFont;
 		pAbstractFont subtitleFont;

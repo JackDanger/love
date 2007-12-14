@@ -1,5 +1,7 @@
 #include "RadioButton.h"
 
+using std::string;
+
 namespace love
 {
 	RadioButton::RadioButton(const string & caption) : gcn::RadioButton()

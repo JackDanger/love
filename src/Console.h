@@ -16,9 +16,6 @@
 #include <deque>
 #include <string>
 
-using std::deque;
-using std::string;
-
 // Boost
 #include <boost/shared_ptr.hpp>
 
@@ -43,7 +40,7 @@ namespace love
 		bool visible;
 	
 		// The queue containing the actual messages
-		deque<string> messages;
+		std::deque<std::string> messages;
 
 		// The font used for rendering the messages
 		pAbstractFont font;
@@ -75,7 +72,7 @@ namespace love
 		void setSize(unsigned int size);
 		unsigned int getSize();
 
-		void push(string message);
+		void push(std::string message);
 
 		
 	}; // Console

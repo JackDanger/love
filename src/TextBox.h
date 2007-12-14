@@ -20,22 +20,22 @@ namespace love
 		pAbstractColor activeBackgroundColor;
 
 	public:
-		TextBox(const string & text = "");
+		TextBox(const std::string & text = "");
 		virtual ~TextBox();
 
 		virtual void setSize(int width, int height);
 		virtual void setWidth(int width);
 		virtual void setHeight(int height);
 		virtual void setBorderSize(unsigned int size);
-		virtual void setText(const string & text);
-		virtual void setName(const string & name);
+		virtual void setText(const std::string & text);
+		virtual void setName(const std::string & name);
 
 		virtual void setCaretColumn(int column);
 		virtual void setCaretPosition(unsigned int position);
 		virtual void setCaretRow(int row);
 		virtual void setCaretRowColumn(int row, int column);
 		virtual void setEditable(bool editable);
-		virtual void setTextRow(int row, const string & text);
+		virtual void setTextRow(int row, const std::string & text);
 
 		virtual void setBackgroundColor(const pAbstractColor & color);
 		virtual void setActiveColor(const pAbstractColor & color);
@@ -46,14 +46,14 @@ namespace love
 		virtual int getWidth();
 		virtual int getHeight();
 		virtual unsigned int getBorderSize();
-		virtual const string getText();
-		virtual const string & getName();
+		virtual const std::string getText();
+		virtual const std::string & getName();
 
 		virtual unsigned int getCaretColumn() const;
 		virtual unsigned int getCaretPosition() const;
 		virtual unsigned int getCaretRow() const;
 		virtual unsigned int getNumberOfRows() const;
-		virtual const string & getRow(int row) const;
+		virtual const std::string & getRow(int row) const;
 		virtual bool isEditable () const;
 
 		virtual pAbstractColor getBackgroundColor();

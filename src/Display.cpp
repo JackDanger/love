@@ -1,5 +1,7 @@
 #include "Display.h"
 
+using std::vector;
+
 namespace love
 {
 

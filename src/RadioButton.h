@@ -18,7 +18,7 @@ namespace love
 		bool mHasMouse;
 
 	public:
-		RadioButton(const string & caption = "");
+		RadioButton(const std::string & caption = "");
 		~RadioButton();
 
 		virtual void setSize(int width, int height);
@@ -26,8 +26,8 @@ namespace love
 		virtual void setHeight(int height);
 		virtual void setBorderSize(unsigned int size);
 
-		virtual void setCaption(const string & caption);
-		virtual void setName(const string & name);
+		virtual void setCaption(const std::string & caption);
+		virtual void setName(const std::string & name);
 		virtual void setMarked(bool marked);
 
 		virtual void align(int alignment);
@@ -46,8 +46,8 @@ namespace love
 		virtual int getHeight();
 		virtual unsigned int getBorderSize();
 
-		virtual const string & getCaption();
-		virtual const string & getName();
+		virtual const std::string & getCaption();
+		virtual const std::string & getName();
 		virtual bool isMarked();
 
 		virtual pAbstractColor getBackgroundColor();

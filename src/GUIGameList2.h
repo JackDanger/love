@@ -16,7 +16,6 @@
 
 // STL
 #include <vector>
-using std::vector;
 
 // Boost
 #include <boost/shared_ptr.hpp>
@@ -96,7 +95,7 @@ namespace love
 
 
 		// games
-		vector<GUIGameListElement> gameListElements;
+		std::vector<GUIGameListElement> gameListElements;
 
 		float step;
 
@@ -116,7 +115,7 @@ namespace love
 		* @brief Gets games.
 		* @return games.
 		**/
-		vector<GUIGameListElement> & getGameListElements();
+		std::vector<GUIGameListElement> & getGameListElements();
 
 
 		void addGameListElement(GUIGameListElement e);
@@ -129,7 +128,7 @@ namespace love
 
 
 		void seek(float t, float time = 0.5f);
-		bool seekGame(const string & game, float time = 0.5f);
+		bool seekGame(const std::string & game, float time = 0.5f);
 		float getCurrentPosition();
 
 		float reverse(float angle);

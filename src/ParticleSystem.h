@@ -19,8 +19,6 @@
 // STL
 #include <list>
 
-using std::list;
-
 // Boost
 #include <boost/shared_ptr.hpp>
 
@@ -80,7 +78,7 @@ namespace love
 		Vector pos;
 
 		// Contains all particles
-		list<particle> particles;
+		std::list<particle> particles;
 
 		// lifetime
 		float lifetime;
@@ -165,7 +163,7 @@ namespace love
 
 		int getNumParticles() const;
 
-		const list<particle> & getParticles() const;
+		const std::list<particle> & getParticles() const;
 		const pSprite & getSprite() const;
 		const pAnimatedColor & getColor() const;
 		bool isAdditive() const;

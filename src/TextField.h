@@ -26,7 +26,7 @@ namespace love
 		 * @param text Text which is to be in the TextField.
 		 * @brief Constructor. Initiates the variables.
 		 **/
-		TextField(const string & text = "");
+		TextField(const std::string & text = "");
 
 		/**
 		 * @brief Deconstructor. Does nothing.
@@ -62,13 +62,13 @@ namespace love
 		 * @param text The text in the text field.
 		 * @brief Sets the text of the text field.
 		 **/
-		virtual void setText(const string & text);
+		virtual void setText(const std::string & text);
 
 		/**
 		 * @param text The new name.
 		 * @brief Sets the name of the text field (for event handling).
 		 **/
-		virtual void setName(const string & name);
+		virtual void setName(const std::string & name);
 
 		/**
 		 * @param text The new position.
@@ -128,13 +128,13 @@ namespace love
 		 * @return The text in the TextField.
 		 * @brief Returns the text in the TextField.
 		 **/
-		virtual const string & getText();
+		virtual const std::string & getText();
 
 		/**
 		 * @return The TextField's name.
 		 * @brief Returns the TextField's name.
 		 **/
-		virtual const string & getName();
+		virtual const std::string & getName();
 
 		/**
 		 * @return The position.

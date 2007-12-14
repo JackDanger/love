@@ -18,8 +18,6 @@
 // Boost
 #include <boost/shared_ptr.hpp>
 
-using std::vector;
-
 namespace love
 {
 
@@ -39,7 +37,7 @@ namespace love
 		// The first four points form a curve, then the 
 		// last of the four first, and the three next form a 
 		// curve, and so on.
-		vector<Vector> points;
+		std::vector<Vector> points;
 
 		// Number of Beziers.
 		int num;
@@ -56,7 +54,7 @@ namespace love
 		**/
 		~Bezier();
 
-		const vector<Vector> & getPoints() const;
+		const std::vector<Vector> & getPoints() const;
 
 		void first(float x1, float y1, 
 			float x2, float y2, 

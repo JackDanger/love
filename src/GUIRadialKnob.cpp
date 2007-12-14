@@ -8,6 +8,7 @@
 #include "Core.h"
 #include "Mouse.h"
 
+using std::string;
 
 #define PI 3.14159265
 #define TWOPI PI*2

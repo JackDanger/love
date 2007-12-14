@@ -18,8 +18,6 @@
 #include <map>
 #include <vector>
 
-using namespace love;
-
 /**
 * @brief NeoFontTexGame 
 * @version 1.0

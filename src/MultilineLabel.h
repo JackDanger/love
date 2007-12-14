@@ -2,9 +2,6 @@
 #define LOVE_MULTILINE_LABEL_H
 
 #include "Label.h"
-#include <vector>
-
-using std::vector;
 
 namespace love
 {
@@ -19,14 +16,14 @@ namespace love
 	class MultilineLabel : public Label
 	{
 	protected:
-		vector<string> lines;
+		std::vector<std::string> lines;
 
 	public:
 		/**
 		 * @param caption The label's caption.
 		 * @brief Constructor. Initializes the variables and aligns the caption to the middle of the label.
 		 **/
-		MultilineLabel(const string & caption = "");
+		MultilineLabel(const std::string & caption = "");
 
 		/**
 		 * @brief Deconstructor. Does nothing.
@@ -37,7 +34,7 @@ namespace love
 		 * @param caption The text in the multiline label.
 		 * @brief Sets the caption.
 		 **/
-		virtual void setCaption(const string & caption);
+		virtual void setCaption(const std::string & caption);
 
 		/**
 		 * @return The new height.

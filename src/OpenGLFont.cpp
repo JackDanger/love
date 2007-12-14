@@ -3,6 +3,8 @@
 #include "love.h"
 #include "AbstractFile.h"
 
+using std::string;
+
 namespace love
 {
 	inline int OpenGLFont::next_p2(int num)

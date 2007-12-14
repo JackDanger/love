@@ -4,6 +4,9 @@
 #include "Parameters.h"
 #include "PhysFSFile.h"
 
+using std::string;
+using std::vector;
+
 namespace love
 {
 

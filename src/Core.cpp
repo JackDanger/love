@@ -25,6 +25,10 @@
 
 #include <cstdarg>
 
+using std::list;
+using std::string;
+using std::vector;
+
 namespace love 
 {
 

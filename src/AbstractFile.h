@@ -33,10 +33,10 @@ namespace love
 	protected:
 
 		// source
-		string source;
+		std::string source;
 
 		// filename
-		string filename;
+		std::string filename;
 
 		// The actual file data
 		char * data;
@@ -51,7 +51,7 @@ namespace love
 		* @param source The source from which to load the file. (Archive or directory)
 		* @param filename The relative filepath of the file to load from the source.
 		**/
-		AbstractFile(const string & source, const string & filename);
+		AbstractFile(const std::string & source, const std::string & filename);
 
 		/**
 		* @brief Destructor.
@@ -62,14 +62,14 @@ namespace love
 		* @brief Gets source.
 		* @return The source from which we are loading files.
 		**/
-		const string & getSource() const;
+		const std::string & getSource() const;
 
 
 		/**
 		* @brief Gets filename.
 		* @return The filename of the file we are loading.
 		**/
-		const string & getFilename() const;
+		const std::string & getFilename() const;
 
 
 		/**

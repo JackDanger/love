@@ -62,8 +62,8 @@ namespace love
 		**/
 		virtual pAbstractMusic getMusic(pAbstractFile file) const = 0;
 
-		pAbstractSound getSound(const string & filename) const;
-		pAbstractMusic getMusic(const string & filename) const;
+		pAbstractSound getSound(const std::string & filename) const;
+		pAbstractMusic getMusic(const std::string & filename) const;
 
 		/**
 		* @brief Checks if audio is playing or not.

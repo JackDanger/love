@@ -1,5 +1,7 @@
 #include "Label.h"
 
+using std::string;
+
 namespace love
 {
 	Label::Label(const string & caption) : gcn::Label(caption)

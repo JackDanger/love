@@ -11,8 +11,6 @@
 
 #include <boost/shared_ptr.hpp>
 
-using std::string;
-
 namespace love
 {
 	class GUIText : public gcn::Font

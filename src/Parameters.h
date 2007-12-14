@@ -8,9 +8,6 @@
 
 #include "AbstractDevice.h"
 
-using std::map;
-using std::string;
-
 namespace love
 {
 	
@@ -30,15 +27,15 @@ namespace love
 		int argc;
 		char ** argv;
 
-		map<string, string> data;
+		std::map<std::string, std::string> data;
 
 	public:
 
 		Parameters(int argc, char ** argv);
 		int init();
 
-		bool exists(string key);
-		string get(string key);
+		bool exists(std::string key);
+		std::string get(std::string key);
 
 	};
 

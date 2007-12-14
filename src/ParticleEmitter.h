@@ -2,7 +2,7 @@
 #define LOVE_PARTICLE_EMITTER_H
 
 #include <vector>
-#include <map>
+//#include <map>
 #include <cmath>
 #include <ctime>
 
@@ -10,9 +10,6 @@
 #include "Entity.h"
 #include "ScriptableParticle.h"
 #include "Renderable.h"
-
-using std::vector;
-using std::map;
 
 struct lua_State;
 
@@ -33,7 +30,7 @@ namespace love
 		Container<Sprite> * sprites;
 
 		Container<ScriptableParticle> models; //objects of particles which should be emitted
-		vector<ScriptableParticle> particles; //the particles that have been emitted
+		std::vector<ScriptableParticle> particles; //the particles that have been emitted
 		int particle; //which particle was emitted
 		int mode; //the mode
 		float delay; //how much time should pass before a new particle is emitted

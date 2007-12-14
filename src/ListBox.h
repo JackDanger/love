@@ -33,7 +33,7 @@ namespace love
 		virtual void setWidth(int width);
 		virtual void setHeight(int height);
 		virtual void setBorderSize(unsigned int size);
-		virtual void setName(const string & name);
+		virtual void setName(const std::string & name);
 
 		virtual void setBackgroundColor(const pAbstractColor & color);
 		virtual void setSelectionColor(const pAbstractColor & color);
@@ -45,7 +45,7 @@ namespace love
 		virtual int getWidth();
 		virtual int getHeight();
 		virtual unsigned int getBorderSize();
-		virtual const string & getName();
+		virtual const std::string & getName();
 
 		virtual pAbstractColor getBackgroundColor();
 		virtual pAbstractColor getSelectionColor();
@@ -56,12 +56,12 @@ namespace love
 
 		virtual void adjustSize();
 
-		virtual void add(const string & text);
+		virtual void add(const std::string & text);
 		virtual void remove(int i);
 		virtual void clear();
-		virtual string getElementAt(int i);
+		virtual std::string getElementAt(int i);
 		virtual int getSelected();
-		virtual string getSelectedElement();
+		virtual std::string getSelectedElement();
 		virtual int getNumberOfElements();
 
 		virtual void draw(gcn::Graphics * graphics);

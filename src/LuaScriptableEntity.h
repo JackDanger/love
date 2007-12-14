@@ -13,13 +13,10 @@
 #include "Scriptable.h"
 
 // STL
-#include <vector>
+//#include <vector>
 
 // Boost
 #include <boost/shared_ptr.hpp>
-
-using std::vector;
-using std::string;
 
 struct lua_State;
 

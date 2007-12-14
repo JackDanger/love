@@ -6,6 +6,8 @@
 #include "ScrollMenu.h"
 #include "WindowMenu.h"
 
+using std::string;
+
 namespace love
 {
 	AbstractMenu::AbstractMenu(pAbstractFont font, pAbstractColor color, int type)

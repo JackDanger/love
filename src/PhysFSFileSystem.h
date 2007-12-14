@@ -15,9 +15,6 @@
 #include <string>
 #include <vector>
 
-using std::string;
-using std::vector;
-
 // Boost
 #include <boost/shared_ptr.hpp>
 
@@ -78,21 +75,21 @@ namespace love
 		* @param file The the filepath relative to the source.
 		* @return The new AbstractFile. (Unloaded)
 		**/
-		virtual pAbstractFile getFile(const string & source, const string & file) const;
+		virtual pAbstractFile getFile(const std::string & source, const std::string & file) const;
 
 		/**
 		* @brief Gets a new AbstractFile, relative to base directory.
 		* @param file The the filepath relative to the base directory.
 		* @return The new AbstractFile. (Unloaded)
 		**/
-		virtual pAbstractFile getBaseFile(const string & file) const;
+		virtual pAbstractFile getBaseFile(const std::string & file) const;
 
 		/**
 		* @brief Gets a new AbstractFile, relative to user directory.
 		* @param file The the filepath relative to the user directory.
 		* @return The new AbstractFile. (Unloaded)
 		**/
-		virtual pAbstractFile getUserFile(const string & file) const;
+		virtual pAbstractFile getUserFile(const std::string & file) const;
 
 		/**
 		* @brief Gets a list of entries in the specified file (or dir).
@@ -100,7 +97,7 @@ namespace love
 		* @param file The file (or dir) to list entries for.
 		* @return A list of entries (files, directories) in the given source.
 		**/
-		virtual vector<string> getList(const string & source, const string & file);
+		virtual std::vector<std::string> getList(const std::string & source, const std::string & file);
 
 		/**
 		* @brief Checks if a file exists in the given source.
@@ -109,7 +106,7 @@ namespace love
 		* @return True if file exists, false otherwise.
 		* @note Does not differentiate between directories and files.
 		**/
-		virtual bool exists(const string & source, const string & file) const;
+		virtual bool exists(const std::string & source, const std::string & file) const;
 
 
 		/**
@@ -118,7 +115,7 @@ namespace love
 		* @param file The "file" to check.
 		* @return True if the "file" indeed is a file. False if it's a directory, or non-existent.
 		**/
-		virtual bool isFile(const string & source, const string & file);
+		virtual bool isFile(const std::string & source, const std::string & file);
 
 		/**
 		* @brief Checks if a "file" really is a directory.
@@ -126,7 +123,7 @@ namespace love
 		* @param file The "file" to check.
 		* @return True if the "file" is a directory, false if it's a file or non-existent.
 		**/
-		virtual bool isDir(const string & source, const string & file);
+		virtual bool isDir(const std::string & source, const std::string & file);
 
 
 	private:
@@ -136,14 +133,14 @@ namespace love
 		* @param path The path to add.
 		* @return True on success, false otherwise.
 		**/
-		bool add(const string & path) const;
+		bool add(const std::string & path) const;
 
 		/**
 		* @brief Removes the path from the current PhysFS seatch path.
 		* @param path The path to remove.
 		* @return True on success, false otherwise.
 		**/
-		bool remove(const string & path) const;
+		bool remove(const std::string & path) const;
 
 	};
 

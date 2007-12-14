@@ -22,10 +22,8 @@
 #include "AbstractMusic.h"
 
 // STL
-
 #include <map>
-using std::map;
-using std::string;
+
 // Boost
 #include <boost/shared_ptr.hpp>
 
@@ -51,8 +49,8 @@ namespace love
 
 		Container<Game> * games;
 
-		map<string, pAbstractImage> images;
-		map<string, pAbstractFont> fonts;
+		std::map<std::string, pAbstractImage> images;
+		std::map<std::string, pAbstractFont> fonts;
 
 
 

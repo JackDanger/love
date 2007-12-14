@@ -1,5 +1,7 @@
 #include "Scriptable.h"
 
+using std::string;
+
 namespace love
 {
 

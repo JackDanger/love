@@ -21,9 +21,6 @@
 #include <IL/ilut.h>
 #include <string>
 
-// Using
-using std::string;
-
 namespace love
 {
 
@@ -54,7 +51,7 @@ namespace love
 		* @brief Gets filename.
 		* @return filename.
 		**/
-		const string & getFilename() const;
+		const std::string & getFilename() const;
 
 		int load();
 

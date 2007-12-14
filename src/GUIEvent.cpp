@@ -33,7 +33,7 @@ namespace love
 		source = widget;
 	}
 
-	void GUIEvent::setName(string name)
+	void GUIEvent::setName(std::string name)
 	{
 		this->name = name;
 	}

@@ -1,5 +1,7 @@
 #include "DropDown.h"
 
+using std::string;
+
 namespace love
 {
 	int DropDown::getItemHeight()

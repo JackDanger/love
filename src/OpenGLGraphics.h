@@ -47,7 +47,7 @@ namespace love
 		// Inherited from AbstractGraphics
 		virtual pAbstractImage getImage(pAbstractFile file) const;
 		virtual pAbstractFont getFont(pAbstractFile file, int size) const;
-		virtual pAbstractFont getImageFont(pAbstractFile file, const string & glyphs) const;
+		virtual pAbstractFont getImageFont(pAbstractFile file, const std::string & glyphs) const;
 
 
 		/**

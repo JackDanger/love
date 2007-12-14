@@ -1,6 +1,8 @@
 #include "Game.h"
 #include "love.h"
 
+using std::string;
+
 namespace love
 {
 

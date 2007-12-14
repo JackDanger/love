@@ -1,7 +1,7 @@
 #include "Parameters.h"
 #include "love.h"
 
-
+using std::string;
 
 namespace love
 {

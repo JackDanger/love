@@ -20,7 +20,7 @@ namespace love
 	{
 	protected:
 		pAbstractImage charImage; // a pointer to an image
-		string glyphs; // the list of glyphs
+		std::string glyphs; // the list of glyphs
 		int coordinates[MAX_CHARS]; // to hold the x-position of every glyph
 
 		/**
@@ -36,7 +36,7 @@ namespace love
 		 * @param glyphs A list of the characters as they appear in the image (example: " ABCD")
 		 * @brief The default constructor. Constructs.
 		 **/
-		OpenGLImageFont(pAbstractFile file, const string & glyphs);
+		OpenGLImageFont(pAbstractFile file, const std::string & glyphs);
 
 		/**
 		 * @brief The deconstructor. Calls unload()
@@ -49,7 +49,7 @@ namespace love
 		 * @param y The y-coordinate.
 		 * @brief Prints the text at the set position.
 		 **/
-		virtual void print(string text, float x = 0, float y = 0);
+		virtual void print(std::string text, float x = 0, float y = 0);
 
 		/**
 		 * @param character A character.

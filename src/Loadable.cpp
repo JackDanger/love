@@ -1,5 +1,7 @@
 #include "Loadable.h"
 
+using std::string;
+
 namespace love
 {
 	Loadable::Loadable() : loaded(false)
@@ -21,7 +23,7 @@ namespace love
 		this->parent = parent;
 	}
 
-	void Loadable::setLoadDescription(string description)
+	void Loadable::setLoadDescription(std::string description)
 	{
 		this->description = description;
 	}

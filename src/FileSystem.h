@@ -16,8 +16,6 @@
 // Boost
 #include <boost/shared_ptr.hpp>
 
-using std::string;
-
 namespace love
 {
 
@@ -52,7 +50,7 @@ namespace love
 		* @note Can be a directory (usually the game directory) or the 
 		* filename to a .zip or .7z file.
 		**/
-		void setSource(const string & element);
+		void setSource(const std::string & element);
 
 
 		/**
@@ -67,7 +65,7 @@ namespace love
 		* @return True if file exists, false otherwise. Will also true if a directory exists
 		* with the specified filename.
 		**/
-		bool exists(const string & file);
+		bool exists(const std::string & file);
 
 	};
 

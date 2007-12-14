@@ -3,6 +3,8 @@
 #include "AnimatedColor.h"
 #include "love.h"
 
+using std::list;
+
 const float pi = 3.14159265f;
 const float to_rad = (pi/180.0f);
 

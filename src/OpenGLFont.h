@@ -13,8 +13,6 @@
 
 #include <stdexcept>
 
-using std::string;
-
 namespace love
 {
 		
@@ -84,7 +82,7 @@ namespace love
 		 * @param y The y-coordinate.
 		 * @brief Prints the text at the set position.
 		 **/
-		void print(string text, float x = 0, float y = 0);
+		void print(std::string text, float x = 0, float y = 0);
 
 		/**
 		 * @param character A character.

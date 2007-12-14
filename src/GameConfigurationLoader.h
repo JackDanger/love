@@ -17,8 +17,6 @@
 // Boost
 #include <boost/shared_ptr.hpp>
 
-using std::string;
-
 namespace love
 {
 
@@ -41,14 +39,14 @@ namespace love
 		Configuration * config;
 
 		// The source for the game. (Directory or archive file)
-		string source;
+		std::string source;
 
 	public:
 
 		/**
 		* @brief Contructs an empty GameConfigurationLoader.
 		**/
-		GameConfigurationLoader(const string & source = "");
+		GameConfigurationLoader(const std::string & source = "");
 
 		/**
 		* @brief Destructor.

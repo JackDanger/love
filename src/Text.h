@@ -9,9 +9,6 @@
 #include "Color.h"
 #include "Updateable.h"
 
-using std::string;
-using std::vector;
-
 namespace love
 {
 		/**
@@ -28,7 +25,7 @@ namespace love
 		// define ^.^
 		const static int MAX_SIZE = 5000; //who needs more space than this?
 
-		vector<string> lines; //the lines of text
+		std::vector<std::string> lines; //the lines of text
 		AbstractColor * color; //the current color
 		AbstractFont * font; //the current font
 		pColor defaultColor;
@@ -40,7 +37,7 @@ namespace love
 		 * @param text A formatted text which will be split into lines.
 		 * @brief Parses the passed text into lines by searching for '\n' characters.
 		 **/
-		void createLines(const string & text);
+		void createLines(const std::string & text);
 
 		/**
 		 * @param font The current font. Used to determine the width of the lines of text.
@@ -49,7 +46,7 @@ namespace love
 		 * @brief Parses the passed text into lines by checking if the width of the text is too long and
 		 *        searching for '\n' characters.
 		 **/
-		void createLines(AbstractFont * font, float limit, const string & text);
+		void createLines(AbstractFont * font, float limit, const std::string & text);
 
 		/**
 		 * @brief Outputs the text by calling the Font class.
@@ -97,9 +94,9 @@ namespace love
 		 * @param color The desired color.
 		 * @brief A quicker alternative to printf.
 		 **/
-		void print(AbstractFont * font, AbstractColor * color, const string & text);
+		void print(AbstractFont * font, AbstractColor * color, const std::string & text);
 		void print(AbstractFont * font, AbstractColor * color, const char * text);
-		void print(const string & text);
+		void print(const std::string & text);
 		void print(const char * text);
 
 		/**
@@ -109,7 +106,7 @@ namespace love
 		 * @brief The only function which takes the coordinates where the text will be
 		 *		  outputted and is the one used in LUA.
 		 **/
-		void print(float x, float y, const string & text);
+		void print(float x, float y, const std::string & text);
 		void print(float x, float y, const char * text, AbstractFont * font = 0, AbstractColor * color = 0);
 
 		/**

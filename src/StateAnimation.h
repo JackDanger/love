@@ -12,8 +12,6 @@
 #include "FrameAnimation.h"
 #include <vector>
 
-using namespace std;
-
 namespace love
 {
 
@@ -40,7 +38,7 @@ namespace love
 		FrameAnimation * currentAnim;
 
 		// This vector holds all the FrameAnimations
-		vector<FrameAnimation> animations;
+		std::vector<FrameAnimation> animations;
 
 	public:
 	

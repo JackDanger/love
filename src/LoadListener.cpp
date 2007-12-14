@@ -1,12 +1,9 @@
 #include "LoadListener.h"
 
-
 namespace love
 {
-
 	LoadListener::LoadListener() : parentLoadListener(0)
 	{
-
 	}
 
 	LoadListener::~LoadListener()

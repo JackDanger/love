@@ -40,7 +40,7 @@ namespace love
 		virtual void setOrientation(unsigned int orientation);
 
 		virtual void setValue(double value);
-		virtual void setName(const string & name);
+		virtual void setName(const std::string & name);
 
 		virtual void setBackgroundColor(const pAbstractColor & color);
 		virtual void setMarkerImage(const pAbstractImage & image);
@@ -59,7 +59,7 @@ namespace love
 		virtual unsigned int getOrientation();
 
 		virtual double getValue();
-		virtual const string & getName();
+		virtual const std::string & getName();
 
 		virtual pAbstractColor getBackgroundColor();
 		virtual pAbstractImage getMarkerImage();

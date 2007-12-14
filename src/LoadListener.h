@@ -12,13 +12,10 @@
 #include "Listener.h"
 
 // STL
-#include <string>
+//#include <string>
 
 // Boost
 #include <boost/shared_ptr.hpp>
-
-// Using
-using std::string;
 
 namespace love 
 {

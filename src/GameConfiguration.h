@@ -19,8 +19,6 @@
 // Boost
 #include <boost/shared_ptr.hpp>
 
-using std::string;
-
 namespace love
 {
 
@@ -41,10 +39,10 @@ namespace love
 	protected:
 
 		// title
-		string title;
+		std::string title;
 
 		// author
-		string author;
+		std::string author;
 
 		// whether to disable pause menu at [escape]
 		bool disableEscape;
@@ -71,25 +69,25 @@ namespace love
 		* @brief Gets title.
 		* @return title.
 		**/
-		const string & getTitle() const;
+		const std::string & getTitle() const;
 
 		/**
 		* @brief Sets title.
 		* @param title 
 		**/
-		void setTitle(string title);
+		void setTitle(std::string title);
 
 		/**
 		* @brief Gets author.
 		* @return author.
 		**/
-		const string & getAuthor() const;
+		const std::string & getAuthor() const;
 
 		/**
 		* @brief Sets author.
 		* @param author 
 		**/
-		void setAuthor(string author);
+		void setAuthor(std::string author);
 
 		/**
 		* @brief Gets escape disabling.

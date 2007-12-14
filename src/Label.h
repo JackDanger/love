@@ -24,7 +24,7 @@ namespace love
 		 * @param caption The label's caption.
 		 * @brief Constructor. Initializes the variables and aligns the caption to the middle of the label.
 		 **/
-		Label(const string & caption = "");
+		Label(const std::string & caption = "");
 
 		/**
 		 * @brief Deconstructor. Does nothing.
@@ -60,7 +60,7 @@ namespace love
 		 * @param caption The text in the label.
 		 * @brief Sets the caption of the label.
 		 **/
-		virtual void setCaption(const string & caption);
+		virtual void setCaption(const std::string & caption);
 
 		/**
 		 * @param color An AbstractColor.
@@ -114,7 +114,7 @@ namespace love
 		 * @return The current caption.
 		 * @brief Returns the Label's caption.
 		 **/
-		virtual const string & getCaption();
+		virtual const std::string & getCaption();
 
 		/**
 		 * @return An AbstractColor.

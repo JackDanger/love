@@ -1,5 +1,7 @@
 #include "GameControlEvent.h"
 
+using std::string;
+
 namespace love
 {
 

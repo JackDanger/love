@@ -5,6 +5,8 @@
 #include "love.h"
 #include "love_keys.h"
 
+using std::string;
+
 namespace love
 {
 	TextField::TextField(const string & text) : gcn::TextField(text)

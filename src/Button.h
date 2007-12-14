@@ -3,8 +3,6 @@
 
 #include "GUIElement.h"
 
-using std::string;
-
 namespace love
 {
 	/**
@@ -33,7 +31,7 @@ namespace love
 		 * @param caption The caption of the button.
 		 * @brief Constructor. Initializes the variables and aligns the caption to the middle of the button.
 		 **/
-		Button(const string & caption);
+		Button(const std::string & caption);
 
 		/**
 		 * @brief Deconstructor. Does nothing.
@@ -69,13 +67,13 @@ namespace love
 		 * @param caption The text in the button.
 		 * @brief Sets the caption of the button.
 		 **/
-		virtual void setCaption(const string & caption);
+		virtual void setCaption(const std::string & caption);
 
 		/**
 		 * @param name The new name.
 		 * @brief Sets the name of the button (for event handling).
 		 **/
-		virtual void setName(const string & name);
+		virtual void setName(const std::string & name);
 
 		/**
 		 * @param alignment The horizontal alignment (left, right, center).
@@ -165,13 +163,13 @@ namespace love
 		 * @return The caption in the button.
 		 * @brief Returns the button's caption.
 		 **/
-		virtual const string & getCaption();
+		virtual const std::string & getCaption();
 
 		/**
 		 * @return The button's name.
 		 * @brief Returns the button's name.
 		 **/
-		virtual const string & getName();
+		virtual const std::string & getName();
 
 		/**
 		 * @return An AbstractColor.

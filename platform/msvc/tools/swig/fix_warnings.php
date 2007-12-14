@@ -13,7 +13,12 @@ $t .= "#pragma warning ( disable : 4244)\n";
 $t .= "#pragma warning ( disable : 4102)\n";
 $t .= "#pragma warning ( disable : 4800)\n";
 $t .= "#endif\n";
-$t .= "\n\n" . $c;
+$t .= "\n"
+    . "#include <list>\n"
+    . "#include <string\n"
+    . "using std::list\n"
+    . "using std::string\n";
+$t .= "\n" . $c;
 
 // And then enable warnings
 

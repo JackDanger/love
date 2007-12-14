@@ -4,8 +4,6 @@
 #include "AbstractColor.h"
 #include "Container.h"
 
-using std::vector;
-
 namespace love
 {
 	/**
@@ -21,8 +19,8 @@ namespace love
 	protected:
 
 		// Updated this to use pColor for great automatic cleanup pleasure.
-		vector<pAbstractColor> colors;
-		vector<float> times;
+		std::vector<pAbstractColor> colors;
+		std::vector<float> times;
 		float total; //the maximum time requried to gradient through the colors
 		float elapsed; //the amount of time that has passed
 		int mode;

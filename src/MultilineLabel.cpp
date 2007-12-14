@@ -1,5 +1,8 @@
 #include "MultilineLabel.h"
 
+using std::string;
+using std::vector;
+
 namespace love
 {
 	MultilineLabel::MultilineLabel(const string & caption) : Label(caption)

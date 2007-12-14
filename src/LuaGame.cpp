@@ -22,6 +22,7 @@ extern "C"
 }
 #endif
 
+using std::string;
 
 namespace love
 {

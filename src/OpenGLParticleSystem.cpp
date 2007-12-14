@@ -6,6 +6,8 @@
 const float pi = 3.14159265f;
 const float to_rad = (pi/180.0f);
 
+using std::list;
+
 namespace love
 {
 

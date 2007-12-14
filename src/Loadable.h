@@ -17,8 +17,6 @@
 // Boost
 #include <boost/shared_ptr.hpp>
 
-using std::string;
-
 namespace love
 {
 
@@ -41,7 +39,7 @@ namespace love
 		LoadListener * parent;
 
 		// A description of what this task is.
-		string description;
+		std::string description;
 
 	protected:
 
@@ -79,13 +77,13 @@ namespace love
 		*
 		* For the use of loading screens, etc.
 		**/
-		void setLoadDescription(string description);
+		void setLoadDescription(std::string description);
 
 		/**
 		* @brief Gets a description for this task.
 		* @return A description for this task.
 		**/
-		const string getLoadDescription() const;
+		const std::string getLoadDescription() const;
 
 		bool isLoaded() const;
 

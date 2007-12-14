@@ -14,6 +14,7 @@
 #include "AbstractFile.h"
 #include "UIGame.h"
 
+using std::string;
 
 #ifdef __cplusplus
 extern "C" 

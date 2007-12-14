@@ -4,6 +4,8 @@
 #include "love.h"
 #include "AbstractFileSystem.h"
 
+using std::string;
+
 namespace love
 {
 	

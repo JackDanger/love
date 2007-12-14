@@ -2,6 +2,9 @@
 #include "Loadable.h"
 #include "love.h"
 
+using std::queue;
+using std::string;
+
 namespace love
 {
 	Loader::Loader() : completedTasks(0), totalTasks(0)

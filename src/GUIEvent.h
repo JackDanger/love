@@ -6,8 +6,6 @@
 #include <string>
 #include <guichan.hpp>
 
-using std::string;
-
 namespace love
 {
 
@@ -24,7 +22,7 @@ namespace love
 	private:
 
 		gcn::Widget * source;
-		string name;
+		std::string name;
 
 	public:
 
@@ -59,7 +57,7 @@ namespace love
 		* @brief Sets the widget name.
 		* @param name
 		**/
-		void setName(string name);
+		void setName(std::string name);
 
 
 	};

@@ -3,6 +3,8 @@
 #include "love.h"
 #include "AbstractImageDevice.h"
 
+using std::string;
+
 namespace love
 {
 	void OpenGLImageFont::renderCharacter(char character)

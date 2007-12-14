@@ -1,5 +1,7 @@
 #include "GUIList.h"
 
+using std::string;
+
 namespace love
 {
 	int GUIList::getNumberOfElements()

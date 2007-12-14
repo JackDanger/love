@@ -24,8 +24,6 @@
 #include <boost/shared_ptr.hpp>
 #include <guichan.hpp>
 
-using std::vector;
-
 namespace love
 {
 	class GUIText;
@@ -41,7 +39,7 @@ namespace love
 	{
 	protected:
 		pAbstractImage background;
-		vector<pGUIElement> children; // you are all my children
+		std::vector<pGUIElement> children; // you are all my children
 
 		int menuType; // used for adding/removing the menu from teh GUIContainer
 		int type;
@@ -126,18 +124,18 @@ namespace love
 
 		virtual boost::shared_ptr<AbstractMenu> addMenu(int type, int width = 0, int height = 0);
 		virtual boost::shared_ptr<AbstractMenu> addScrollMenu(int type, int width = 0, int height = 0);
-		virtual boost::shared_ptr<AbstractMenu> addWindowMenu(int type, const string & caption = "", int width = 0, int height = 0);
-		virtual pLabel addLabel(const string & caption, int width = 0, int height = 0);
-		virtual pMultilineLabel addMultilineLabel(const string & caption, int width = 0, int height = 0);
+		virtual boost::shared_ptr<AbstractMenu> addWindowMenu(int type, const std::string & caption = "", int width = 0, int height = 0);
+		virtual pLabel addLabel(const std::string & caption, int width = 0, int height = 0);
+		virtual pMultilineLabel addMultilineLabel(const std::string & caption, int width = 0, int height = 0);
 		virtual pLabel addImage(const pAbstractImage & image);
-		virtual pButton addButton(const string & name, const string & caption, int width = 0, int height = 0);
-		virtual pTextField addTextField(const string & name, const string & text = "", int width = 0, int height = 0);
-		virtual pDropDown addDropDown(const string & name, int width = 0, int height = 0);
-		virtual pRadioButton addRadioButton(const string & name, const string & caption = "", int width = 0, int height = 0);
-		virtual pCheckBox addCheckBox(const string & name, const string & caption = "", int width = 0, int height = 0);
-		virtual pSlider addSlider(const string & name, unsigned int orientation = Slider::LOVE_SLIDER_HORIZONTAL, double scaleStart = 0, double scaleEnd = 1, int width = 0, int height = 0);
-		virtual pListBox addListBox(const string & name, int width = 0, int height = 0);
-		virtual pTextBox addTextBox(const string & name, int width = 0, int height = 0);
+		virtual pButton addButton(const std::string & name, const std::string & caption, int width = 0, int height = 0);
+		virtual pTextField addTextField(const std::string & name, const std::string & text = "", int width = 0, int height = 0);
+		virtual pDropDown addDropDown(const std::string & name, int width = 0, int height = 0);
+		virtual pRadioButton addRadioButton(const std::string & name, const std::string & caption = "", int width = 0, int height = 0);
+		virtual pCheckBox addCheckBox(const std::string & name, const std::string & caption = "", int width = 0, int height = 0);
+		virtual pSlider addSlider(const std::string & name, unsigned int orientation = Slider::LOVE_SLIDER_HORIZONTAL, double scaleStart = 0, double scaleEnd = 1, int width = 0, int height = 0);
+		virtual pListBox addListBox(const std::string & name, int width = 0, int height = 0);
+		virtual pTextBox addTextBox(const std::string & name, int width = 0, int height = 0);
 	};
 
 	typedef boost::shared_ptr<AbstractMenu> pAbstractMenu;

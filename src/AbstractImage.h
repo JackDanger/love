@@ -21,9 +21,6 @@
 #include <IL/ilut.h>
 #include <string>
 
-// Using
-using std::string;
-
 namespace love
 {
 	/**

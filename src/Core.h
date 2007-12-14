@@ -115,7 +115,7 @@ namespace love
 		// If so, should quit the engine upon game quit.
 		bool runningExternalGame;
 
-		list<pLoadable> persistents;
+		std::list<pLoadable> persistents;
 
 
 	public:
@@ -231,7 +231,7 @@ namespace love
 		* and identifying the game in general).
 		* @param game A pointer to the new game.
 		**/
-		void addGame(const string & name, Game * game);
+		void addGame(const std::string & name, Game * game);
 
 		/**
 		* @brief Starts or resumes a game.
@@ -239,7 +239,7 @@ namespace love
 		* @param dmchange Whether the method should check for display mode changes or not.
 		* @return LOVE_OK if no errors. 
 		**/
-		int startGame(const string & name, bool dmchange = true);
+		int startGame(const std::string & name, bool dmchange = true);
 
 		/**
 		* @brief Suspends the current game, and resumes the main menu.

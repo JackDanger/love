@@ -14,7 +14,6 @@
 
 // STL
 #include <string>
-using std::string;
 
 // Boost
 
@@ -32,18 +31,17 @@ extern "C"
 
 namespace love
 {
-
 	class AbstractFile;
 
 	void lualove_init(lua_State * L);
 	void lualove_close(lua_State * L);
 
-	bool lualove_loaddir(lua_State * L, const string & path);
+	bool lualove_loaddir(lua_State * L, const std::string & path);
 	bool lualove_load(lua_State * L, pAbstractFile file);
-	bool lualove_load(lua_State * L, const string & filename);
+	bool lualove_load(lua_State * L, const std::string & filename);
 
-	bool lualove_is_function(lua_State * L, const string & tablename, const string & functionname);
-	bool lualove_is_function(lua_State * L, const string & functionname);
+	bool lualove_is_function(lua_State * L, const std::string & tablename, const std::string & functionname);
+	bool lualove_is_function(lua_State * L, const std::string & functionname);
 
 	void lualove_check_functions(lua_State * L, Scriptable * scriptable, int mask = 0);
 
@@ -63,18 +61,18 @@ namespace love
 
 	const char * lualove_get_error(lua_State * L);
 	void lualove_handle_error(lua_State * L, int state);
-	void lualove_check_error(lua_State * L, int status, const string & info);
+	void lualove_check_error(lua_State * L, int status, const std::string & info);
 
 	void lualove_push_number(lua_State * L, lua_Number number);
-	void lualove_push_global_number(lua_State * L, const string & name, lua_Number number);
+	void lualove_push_global_number(lua_State * L, const std::string & name, lua_Number number);
 	void lualove_push_pointer(lua_State * L, void * ptr, int type);
-	void lualove_push_global_pointer(lua_State * L, void * ptr, const string & name, int type);
+	void lualove_push_global_pointer(lua_State * L, void * ptr, const std::string & name, int type);
 
-	void lualove_call_load(lua_State * L, void * ptr, const string & chunk, int type);
+	void lualove_call_load(lua_State * L, void * ptr, const std::string & chunk, int type);
 
 
-	void lualove_call_update(lua_State * L, void * ptr, const string & chunk, int type, float dt);
-	void lualove_call_render(lua_State * L, void * ptr, const string & chunk, int type);
+	void lualove_call_update(lua_State * L, void * ptr, const std::string & chunk, int type, float dt);
+	void lualove_call_render(lua_State * L, void * ptr, const std::string & chunk, int type);
 	void lualove_call_event(lua_State * L, Scriptable * scriptable, void * event_ptr, int type);
 
 	void lualove_call_load_noarg(lua_State * L, Scriptable * scriptable);
@@ -85,14 +83,10 @@ namespace love
 	void lualove_call_mousepressed_noarg(lua_State *L, Scriptable * scriptable, float x, float y, int state);
 	void lualove_call_mousereleased_noarg(lua_State *L, Scriptable * scriptable, float x, float y, int state);
 
-	void lualove_create_table(lua_State * L, const string & name);
-	void lualove_push_chunk_number(lua_State * L, const string & name, lua_Number number);
+	void lualove_create_table(lua_State * L, const std::string & name);
+	void lualove_push_chunk_number(lua_State * L, const std::string & name, lua_Number number);
 	void lualove_push_all_globals(lua_State *L);
 	void lualove_bind_globals();
-
-
-
-
 } // love
 
 #endif

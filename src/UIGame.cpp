@@ -8,6 +8,8 @@
 #include "AbstractFileSystem.h"
 #include "DisplayMode.h"
 
+using std::map;
+using std::string;
 using boost::dynamic_pointer_cast;
 
 namespace love

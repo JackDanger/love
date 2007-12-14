@@ -1,5 +1,7 @@
 #include "TextBox.h"
 
+using std::string;
+
 namespace love
 {
 	TextBox::TextBox(const string & text) : gcn::TextBox(text)

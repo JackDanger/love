@@ -17,8 +17,6 @@
 // Boost
 #include <boost/shared_ptr.hpp>
 
-using std::deque;
-
 namespace love
 {
 
@@ -54,7 +52,7 @@ namespace love
 		int numAverage;
 
 		// Vector with the last numAverage elements
-		deque<float> lastValues;
+		std::deque<float> lastValues;
 
 	protected:
 

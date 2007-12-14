@@ -7,6 +7,8 @@
 // DevIL
 #include <IL/ilut.h>
 
+using std::string;
+
 namespace love
 {
 	

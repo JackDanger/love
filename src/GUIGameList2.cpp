@@ -15,6 +15,9 @@
 #define TWOPI PI*2
 #define DEG PI/180
 
+using std::string;
+using std::vector;
+
 namespace love
 {
 

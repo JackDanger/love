@@ -1,6 +1,7 @@
 #include "Timer.h"
-
 #include "love.h"
+
+using std::deque;
 
 namespace love
 {

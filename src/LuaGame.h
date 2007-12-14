@@ -26,8 +26,6 @@ extern "C"
 	#include "lauxlib.h"
 }
 
-using std::set;
-
 namespace love
 {
 
@@ -47,7 +45,7 @@ namespace love
 		lua_State * L;
 
 		// A list of all included files.
-		set<string> included;
+		std::set<std::string> included;
 
 		// The graphics contexct.
 		AbstractGraphics * gfx;
@@ -58,7 +56,7 @@ namespace love
 		* @brief Contructs an empty LuaGame.
 		* @param source The source for the game. Can be directory or archive file. (.love only)
 		**/
-		LuaGame(const string & source);
+		LuaGame(const std::string & source);
 
 		/**
 		* @brief Destructor.

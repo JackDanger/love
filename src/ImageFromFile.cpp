@@ -3,10 +3,10 @@
 
 #include "AbstractFile.h"
 
+using std::string;
+
 namespace love
 {
-
-
 	ImageFromFile::ImageFromFile(AbstractFile * file) : Resource(file)
 	{
 	}

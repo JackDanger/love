@@ -16,7 +16,7 @@ namespace love
 	private:
 
 		Mix_Music *music;
-		string filename;
+		std::string filename;
 
 		int volume;
 		float pauseCount;

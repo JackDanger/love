@@ -13,19 +13,11 @@
 #include "AbstractImage.h"
 
 // STL
-#include <string>
+//#include <string>
 #include <vector>
-
-using std::vector;
-using std::string;
 
 namespace love
 {
-
-		
-	
-	
-
 	/**
 	* @class FrameAnimation
 	* @version 1.0
@@ -65,7 +57,7 @@ namespace love
 		pAbstractImage image;
 
 		// Holds all the frames
-		vector<frame> frames;
+		std::vector<frame> frames;
 
 		// Start/stop
 		bool running;

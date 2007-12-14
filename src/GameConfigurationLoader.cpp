@@ -9,6 +9,8 @@
 #include "AbstractFileSystem.h"
 #include "DefaultConfiguration.h"
 
+using std::string;
+
 namespace love
 {
 

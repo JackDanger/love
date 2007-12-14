@@ -21,9 +21,6 @@
 // Boost
 #include <boost/shared_ptr.hpp>
 
-using std::string;
-using std::queue;
-
 namespace love 
 {
 
@@ -40,7 +37,7 @@ namespace love
 	private:
 
 		// Jobs
-		queue<pLoadable> loadQueue;
+		std::queue<pLoadable> loadQueue;
 
 		// 
 		int completedTasks;
@@ -63,7 +60,7 @@ namespace love
 		void loadStateChanged();
 
 		// Overriding
-		const string getLoadDescription() const;
+		const std::string getLoadDescription() const;
 
 		int load();
 

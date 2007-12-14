@@ -9,6 +9,8 @@
 #include "OpenGLFont.h"
 #include "OpenGLImageFont.h"
 
+using std::string;
+
 namespace love
 {
 	OpenGLGraphics::OpenGLGraphics()

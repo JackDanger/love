@@ -8,7 +8,7 @@ namespace love
 		setType(LOVE_TYPE_MESSAGE_EVENT);
 	}
 
-	MessageEvent::MessageEvent(string message)
+	MessageEvent::MessageEvent(std::string message)
 	{
 		setType(LOVE_TYPE_MESSAGE_EVENT);
 		this->message = message;

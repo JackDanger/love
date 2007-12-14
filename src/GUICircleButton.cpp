@@ -8,6 +8,8 @@
 #include "Core.h"
 #include "Mouse.h"
 
+using std::string;
+
 namespace love
 {
 

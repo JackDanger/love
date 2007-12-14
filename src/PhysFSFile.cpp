@@ -4,6 +4,8 @@
 #include "Core.h"
 #include "Console.h"
 
+using std::string;
+
 namespace love
 {
 

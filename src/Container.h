@@ -16,10 +16,6 @@
 #include <vector>
 #include <iterator>
 
-using std::map;
-using std::string;
-using boost::shared_ptr;
-
 namespace love 
 {
 
@@ -38,14 +34,14 @@ namespace love
 	private:
 
 		// Holds all the data
-		map< string, shared_ptr<T> > data;
+		std::map<std::string, boost::shared_ptr<T> > data;
 
 		// Internal iterator
-		typename map< string, shared_ptr<T> >::iterator iter;
+		typename std::map<std::string, boost::shared_ptr<T> >::iterator iter;
 
 	public:
 		
-		typedef typename map< string, shared_ptr<T> >::iterator t_iterator;
+		typedef typename std::map<std::string, boost::shared_ptr<T> >::iterator t_iterator;
 	
 		/**
 		* @brief Checks whether the next iterated element exists.
@@ -65,7 +61,7 @@ namespace love
 		* @brief Gets the current pointed-to element;
 		* @return A reference to the next pointed-to element.
 		**/
-		shared_ptr<T> &  value(); 
+		boost::shared_ptr<T> &  value(); 
 
 		/**
 		* @brief Gets the underlying pointer of the current pointed-to element.
@@ -77,13 +73,13 @@ namespace love
 		* @brief 
 		* @return The current iterator postion.
 		**/
-		typename map< string, shared_ptr<T> >::iterator & getIter();
+		typename std::map<std::string, boost::shared_ptr<T> >::iterator & getIter();
 
 		/**
 		* @brief Gets the key to the current pointed-to element.
 		* @return A reference to the next key to the pointed-to element.
 		**/
-		const string & key(); 
+		const std::string & key(); 
 
 		/**
 		* @brief Gets the key to the current pointed-to element as a char array.
@@ -95,7 +91,7 @@ namespace love
 		* @brief Removes an element.
 		* @param key The key to the element you want to remove.
 		**/
-		void erase(const string & key);
+		void erase(const std::string & key);
 
 		/**
 		* @brief Removes all elements.
@@ -122,21 +118,21 @@ namespace love
 		* @param key The identifier for the element.
 		* @return A referene to the element.
 		**/
-		shared_ptr<T> & operator[] (const string & key);
+		boost::shared_ptr<T> & operator[] (const std::string & key);
 
 		/**
 		* @brief Checks whether an element exists
 		* @param key The key of the element.
 		* @return True if the element is found, false otherwise.
 		**/
-		bool contains(const string & key) const;
+		bool contains(const std::string & key) const;
 
 		/**
 		* @brief Provides direct access to an element.
 		* @param t A pointer to the new element.
 		* @return A referene to the new element.
 		**/
-		shared_ptr<T> & create(const string & key, T * t);
+		boost::shared_ptr<T> & create(const std::string & key, T * t);
 
 		int size() const;
 
@@ -148,7 +144,7 @@ namespace love
 	**/
 
 	template <class T>
-	typename map< string, shared_ptr<T> >::iterator & Container<T>::getIter()
+	typename std::map<std::string, boost::shared_ptr<T> >::iterator & Container<T>::getIter()
 	{
 		return iter;
 	}
@@ -168,7 +164,7 @@ namespace love
 	}
 
 	template <class T>
-	shared_ptr<T> &  Container<T>::value()
+	boost::shared_ptr<T> &  Container<T>::value()
 	{
 		return iter->second;
 	}
@@ -180,7 +176,7 @@ namespace love
 	}
 
 	template <class T>
-	const string & Container<T>::key()
+	const std::string & Container<T>::key()
 	{
 		return iter->first;
 	}
@@ -192,7 +188,7 @@ namespace love
 	}
 
 	template <class T>
-	void Container<T>::erase(const string & key)
+	void Container<T>::erase(const std::string & key)
 	{
 		data.erase(key);
 	}
@@ -223,21 +219,21 @@ namespace love
 
 
 	template <class T>
-	shared_ptr<T> & Container<T>::operator[] (const string & key)
+	boost::shared_ptr<T> & Container<T>::operator[] (const std::string & key)
 	{
 		// Return element in std::map
 		return data[key];
 	}
 
 	template <class T>
-	bool Container<T>::contains(const string & key) const
+	bool Container<T>::contains(const std::string & key) const
 	{
 		return (data.find(key) != data.end());
 	}
 
 	
 	template <class T>
-	shared_ptr<T> & Container<T>::create(const string & key, T * t)
+	boost::shared_ptr<T> & Container<T>::create(const std::string & key, T * t)
 	{
 		
 		if(t == 0)

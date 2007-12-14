@@ -1,5 +1,7 @@
 #include "ListBox.h"
 
+using std::string;
+
 namespace love
 {
 	ListBox::ListBox(GUIList * list) : gcn::ListBox()

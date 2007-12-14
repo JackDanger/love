@@ -18,8 +18,6 @@
 // Boost
 #include <boost/shared_ptr.hpp>
 
-using std::vector;
-
 namespace love
 {
 
@@ -36,7 +34,7 @@ namespace love
 	private:
 
 		// displayModes
-		vector<pDisplayMode> displayModes;
+		std::vector<pDisplayMode> displayModes;
 
 		// currentDisplayMode
 		pDisplayMode currentDisplayMode;
@@ -53,7 +51,7 @@ namespace love
 		* @brief Gets displayModes.
 		* @return displayModes.
 		**/
-		const vector<pDisplayMode> & getDisplayModes() const;
+		const std::vector<pDisplayMode> & getDisplayModes() const;
 
 		/**
 		* @brief Gets currentDisplayMode.

@@ -1,5 +1,7 @@
 #include "Slider.h"
 
+using std::string;
+
 namespace love
 {
 	Slider::Slider(double scaleEnd) : gcn::Slider(scaleEnd)

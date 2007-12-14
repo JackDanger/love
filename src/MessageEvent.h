@@ -17,8 +17,6 @@
 // Boost
 #include <boost/shared_ptr.hpp>
 
-using std::string;
-
 namespace love
 {
 
@@ -35,7 +33,7 @@ namespace love
 	private:
 
 		// message
-		string message;
+		std::string message;
 
 	public:
 
@@ -44,7 +42,7 @@ namespace love
 		**/
 		MessageEvent();
 
-		MessageEvent(string message);
+		MessageEvent(std::string message);
 
 		virtual ~MessageEvent();
 

@@ -1,5 +1,7 @@
 #include "CheckBox.h"
 
+using std::string;
+
 namespace love
 {
 	CheckBox::CheckBox(const string & caption) : gcn::CheckBox(caption)

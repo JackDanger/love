@@ -18,9 +18,6 @@
 // Boost
 #include <boost/shared_ptr.hpp>
 
-using std::map;
-using std::string;
-
 namespace love
 {
 
@@ -36,7 +33,7 @@ namespace love
 	{
 	private:
 
-		map<string, int> globals;
+		std::map<std::string, int> globals;
 
 	public:
 

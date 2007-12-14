@@ -6,7 +6,9 @@
 #include "Core.h"
 #include "AbstractFileSystem.h"
 
-using std::vsprintf;
+using std::string;
+using std::vector;
+//using std::vsprintf;
 
 namespace love
 {

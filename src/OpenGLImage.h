@@ -57,7 +57,7 @@ namespace love
 		**/
 		void unload();
 
-		virtual string toString() const;
+		virtual std::string toString() const;
 		
 	private:
 		

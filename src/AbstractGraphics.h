@@ -26,9 +26,6 @@
 // Boost
 #include <boost/shared_ptr.hpp>
 
-using std::string;
-using std::vector;
-
 namespace love
 {
 
@@ -73,11 +70,11 @@ namespace love
 
 		virtual pAbstractImage getImage(pAbstractFile file) const = 0;
 		virtual pAbstractFont getFont(pAbstractFile file, int size) const = 0;
-		virtual pAbstractFont getImageFont(pAbstractFile file, const string & glyphs) const = 0;
+		virtual pAbstractFont getImageFont(pAbstractFile file, const std::string & glyphs) const = 0;
 
-		pAbstractImage getImage(const string & filename) const;
-		pAbstractFont getFont(const string & filename, int size) const;
-		pAbstractFont getImageFont(const string & filename, const string & glyphs) const;
+		pAbstractImage getImage(const std::string & filename) const;
+		pAbstractFont getFont(const std::string & filename, int size) const;
+		pAbstractFont getImageFont(const std::string & filename, const std::string & glyphs) const;
 
 
 		/**
@@ -219,7 +216,7 @@ namespace love
 		* @param limit The size limit (for word-wrapping).
 		* @param align The alignment (left, right, center).
 		**/
-		virtual void draw(const string & str, float x = 0, float y = 0, float limit = 0, int align = 1) const;
+		virtual void draw(const std::string & str, float x = 0, float y = 0, float limit = 0, int align = 1) const;
 
 		/**
 		* @brief Draws a line from [x1,y1] to [x2,y2].

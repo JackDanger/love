@@ -3,8 +3,6 @@
 
 namespace love
 {
-
-
 	FrameAnimation::FrameAnimation() : running(false), cfi(0), timeBuffer(0)
 	{
 		setType(LOVE_TYPE_FRAME_ANIMATION);

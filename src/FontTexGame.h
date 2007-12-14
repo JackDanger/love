@@ -31,13 +31,9 @@
 #include <guichan/opengl/openglsdlimageloader.hpp>
 
 // STL
-#include <string>
-#include <map>
-#include <vector>
-
-using std::map;
-using std::vector;
-using std::string;
+//#include <string>
+//#include <map>
+//#include <vector>
 
 namespace love {
 

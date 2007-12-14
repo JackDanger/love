@@ -9,6 +9,8 @@
 #include <sstream>
 #include "Timer.h"
 
+using std::string;
+
 namespace love
 {
 	

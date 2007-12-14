@@ -16,9 +16,6 @@
 #include <string>
 #include <vector>
 
-using std::string;
-using std::vector;
-
 // Boost
 #include <boost/shared_ptr.hpp>
 
@@ -41,10 +38,10 @@ namespace love
 		// The base directory. This is usually where
 		// the application can be run from, but can be configured to
 		// be other places.
-		string base;
+		std::string base;
 
 		// The user home directory. Empty string means that 
-		string user;
+		std::string user;
 
 	public:
 
@@ -60,21 +57,21 @@ namespace love
 		* @param file The the filepath relative to the source.
 		* @return The new AbstractFile. (Unloaded)
 		**/
-		virtual pAbstractFile getFile(const string & source, const string & file) const = 0;
+		virtual pAbstractFile getFile(const std::string & source, const std::string & file) const = 0;
 
 		/**
 		* @brief Gets a new AbstractFile, relative to base directory.
 		* @param file The the filepath relative to the base directory.
 		* @return The new AbstractFile. (Unloaded)
 		**/
-		virtual pAbstractFile getBaseFile(const string & file) const = 0;
+		virtual pAbstractFile getBaseFile(const std::string & file) const = 0;
 
 		/**
 		* @brief Gets a new AbstractFile, relative to user directory.
 		* @param file The the filepath relative to the user directory.
 		* @return The new AbstractFile. (Unloaded)
 		**/
-		virtual pAbstractFile getUserFile(const string & file) const = 0;
+		virtual pAbstractFile getUserFile(const std::string & file) const = 0;
 
 		/**
 		* @brief Gets a list of entries in the specified file (or dir).
@@ -82,7 +79,7 @@ namespace love
 		* @param file The file (or dir) to list entries for.
 		* @return A list of entries (files, directories) in the given source.
 		**/
-		virtual vector<string> getList(const string & source, const string & file) = 0;
+		virtual std::vector<std::string> getList(const std::string & source, const std::string & file) = 0;
 
 		/**
 		* @brief Checks if a file exists in the given source.
@@ -91,7 +88,7 @@ namespace love
 		* @return True if file exists, false otherwise.
 		* @note Does not differentiate between directories and files.
 		**/
-		virtual bool exists(const string & source, const string & file) const = 0;
+		virtual bool exists(const std::string & source, const std::string & file) const = 0;
 
 		/**
 		* @brief Checks if a file really is a file (and not a dir).
@@ -99,7 +96,7 @@ namespace love
 		* @param file The "file" to check.
 		* @return True if the "file" indeed is a file. False if it's a directory, or non-existent.
 		**/
-		virtual bool isFile(const string & source, const string & file) = 0;
+		virtual bool isFile(const std::string & source, const std::string & file) = 0;
 
 		/**
 		* @brief Checks if a "file" really is a directory.
@@ -107,19 +104,19 @@ namespace love
 		* @param file The "file" to check.
 		* @return True if the "file" is a directory, false if it's a file or non-existent.
 		**/
-		virtual bool isDir(const string & source, const string & file) = 0;
+		virtual bool isDir(const std::string & source, const std::string & file) = 0;
 
 		/**
 		* @brief Get the current base directory.
 		* @return The current base directory.
 		**/
-		const string & getBase() const;
+		const std::string & getBase() const;
 
 		/**
 		* @brief Gets the current user directory.
 		* @return The current user directory.
 		**/
-		const string & getUser() const;
+		const std::string & getUser() const;
 
 	};
 

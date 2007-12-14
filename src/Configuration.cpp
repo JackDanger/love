@@ -3,6 +3,13 @@
 #include "love.h"
 #include "AbstractFile.h"
 
+using std::ifstream;
+using std::istream;
+using std::istringstream;
+using std::map;
+using std::ofstream;
+using std::string;
+
 //not a part of the actual class, just here to help
 string trim(string s, string drop = " ")
 {
@@ -224,7 +231,7 @@ namespace love
 
 	void Configuration::write()
 	{
-		ofstream file(filepath.c_str(), ios::trunc);
+		ofstream file(filepath.c_str(), std::ios::trunc);
 		if(!file)
 		{
 			core->error("Configuration: ERROR! Could not write to file '%s'.\n", filepath.c_str());

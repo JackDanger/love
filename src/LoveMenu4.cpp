@@ -17,10 +17,10 @@
 #include "DisplayMode.h"
 #include "GameConfiguration.h"
 
-
+using std::map;
+using std::string;
+using std::vector;
 using boost::dynamic_pointer_cast;
-
-
 
 namespace love
 {

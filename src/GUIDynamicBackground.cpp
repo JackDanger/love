@@ -1,5 +1,6 @@
 #include "GUIDynamicBackground.h"
 
+using std::vector;
 
 namespace love
 {
