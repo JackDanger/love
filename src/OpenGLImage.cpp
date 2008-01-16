@@ -43,14 +43,14 @@ namespace love
 			glTexCoord2f(1.0,0.0); glVertex2f(textureWidth,0);
 		glEnd();
 
-		glDisable(GL_TEXTURE_2D);
+
 	}
 
 	void OpenGLImage::render(float x, float y) const
 	{
 		glPushMatrix();
-		//glTranslatef(floor(x), floor(y), 0);
 		glTranslatef(x, y, 0);
+		glTranslatef(-center_x, -center_y, 0);
 		render();
 		glPopMatrix();
 	}
@@ -78,6 +78,25 @@ namespace love
 		glDisable(GL_TEXTURE_2D);
 	}
 
+	void OpenGLImage::render(float x, float y, float angle, float sx, float sy) const
+	{
+		glEnable(GL_TEXTURE_2D);
+
+		glPushMatrix();
+		glTranslatef(x, y, 0);
+		glRotatef(angle, 0, 0, 1.0f);
+		glScalef(sx, sy, 1.0f);
+		glTranslatef(-center_x, -center_y, 0);
+		glBindTexture(GL_TEXTURE_2D,texture);
+		glBegin(GL_QUADS);
+			glTexCoord2f(0.0,0.0); glVertex2f(0,0);
+			glTexCoord2f(0.0,1.0); glVertex2f(0,textureHeight);
+			glTexCoord2f(1.0,1.0); glVertex2f(textureWidth,textureHeight);
+			glTexCoord2f(1.0,0.0); glVertex2f(textureWidth,0);
+		glEnd();
+		glPopMatrix();
+	}
+
 	bool OpenGLImage::load()
 	{	
 
@@ -103,6 +122,9 @@ namespace love
 
 		this->width			= (float)ilGetInteger(IL_IMAGE_WIDTH);
 		this->height		= (float)ilGetInteger(IL_IMAGE_HEIGHT);
+
+		center_x = this->width/2.0f;
+		center_y = this->height/2.0f;
 
 		this->textureWidth = width;
 		this->textureHeight = height;

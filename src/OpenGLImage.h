@@ -49,6 +49,7 @@ namespace love
 		void render() const;
 		void render(float x, float y) const;
 		void render(float x, float y, float width, float height) const;
+		void render(float x, float y, float angle, float sx, float sy) const;
 
 		// From Image.
 		//void render(vec2f * vertices, vec2f * texels) const = 0;

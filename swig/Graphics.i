@@ -22,7 +22,17 @@ namespace love
 {
 	void draw(const pImage & sprite, float x, float y) const
 	{
-		sprite->render(x - sprite->getWidth()/2.0f, y - sprite->getHeight()/2.0f);
+		sprite->render(x, y);
+	}
+	
+	void draw(const pImage & sprite, float x, float y, float angle, float s = 1.0f) const
+	{
+		sprite->render(x, y, angle, s, s);
+	}
+	
+	void draw(const pImage & sprite, float x, float y, float angle, float sx, float sy) const
+	{
+		sprite->render(x, y, angle, sx, sy);
 	}
 	
 	void draw(const pParticlesystem & system) const

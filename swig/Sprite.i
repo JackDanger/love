@@ -10,6 +10,7 @@ namespace love
 		float getAlpha() const;
 		void setAlpha(float alpha);
 		virtual void update(float dt) = 0;
+		void setCenter(float x, float y);
 	};
 	
 	typedef boost::shared_ptr<Sprite> pSprite;

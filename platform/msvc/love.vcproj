@@ -253,6 +253,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\love_text.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\love_version.cpp"
 				>
 			</File>
@@ -464,6 +468,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\love_mouse.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_text.h"
 				>
 			</File>
 			<File

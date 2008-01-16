@@ -68,7 +68,14 @@ namespace love
 		apply(color); // Set current color.
 
 		if(font != 0)
-			font->print(std::string(str), x, y);
+		{
+			std::string text(str);
+
+			if(text.find("\n") == std::string::npos)
+				font->print(std::string(str), x, y);
+			//else
+			// Do awesome text processing.
+		}
 	}
 
 } // love

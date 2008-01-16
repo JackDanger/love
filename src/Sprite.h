@@ -36,6 +36,9 @@ namespace love
 		// The alpha value for rendering transparencies.
 		float alpha;
 
+		// The position of the center. (0, 0) = top left.
+		float center_x, center_y;
+
 	public:
 
 		/**
@@ -65,6 +68,11 @@ namespace love
 		* @param alpha The new alpha value. Range: 0-1.
 		**/
 		void setAlpha(float alpha);
+
+		/**
+		* Sets the center of the sprite. (The "center").
+		**/
+		void setCenter(float x, float y);
 
 		/**
 		* Binds the hardware texture associated with this Sprite.
@@ -97,6 +105,16 @@ namespace love
 		* @param height The height of the subsprite.
 		**/
 		virtual void render(float x, float y, float width, float height) const = 0;
+
+		/**
+		* Draws the sprite with scale and rotation.
+		* @param x Position on x-axis.
+		* @param y Position on y-axis.
+		* @param angle The angle of the rotation. (0 = normal)
+		* @param sx Scaling factor in the x-direction.
+		* @param sy Scaling factor in the y-direction.
+		**/
+		virtual void render(float x, float y, float angle, float sx, float sy) const = 0;
 
 	}; // Sprite
 
