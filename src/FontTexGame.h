@@ -1,95 +1,58 @@
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
-#ifndef FONT_TEX_GAME_PONG_GAME_H
-#define FONT_TEX_GAME_PONG_GAME_H
+#ifndef FONT_TEX_GAME_H
+#define FONT_TEX_GAME_H
 
+#include "using_gl.h"
+#include "using_graphics.h"
+#include "using_audio.h"
 
 // LOVE
 #include "Game.h"
-#include "AbstractFont.h"
-#include "Text.h"
-#include "SmoothAnimatedColor.h"
-#include "ImageFromFile.h"
-#include "FrameAnimation.h"
-#include "Loader.h"
-#include "LoadListener.h"
-#include "Configuration.h"
-#include "Actor.h"
-#include "Particle.h"
-#include "ParticleEmitter.h"
 
-#include "Sound.h"
-#include "Music.h"
-
-#include "AnimatedColor.h"
-
-#include "GUIText.h"
-#include "Menu.h"
-
-#include <guichan.hpp>
-#include <guichan/sdl.hpp>
-#include <guichan/opengl.hpp>
-#include <guichan/opengl/openglsdlimageloader.hpp>
-
-// STL
-//#include <string>
-//#include <map>
-//#include <vector>
-
-namespace love {
-
-/**
-* @brief FontTexGame 
-* @version 1.0
-* @since 1.0
-* @author Anders Ruud
-* @date 2006-09-01
-* @brief 
-**/
-class FontTexGame : public love::Game
+namespace love 
 {
-private:
-
-//sounds shit
-public:
-
 
 	/**
-	* @brief Creates a new FontTexGame object.
+	* The legendary FontTexGame. The one and only pure C++
+	* test game that will never die. Ever.
+	*
+	* @author Anders Ruud
+	* @date 2006-09-01
 	**/
-	FontTexGame();
+	class FontTexGame : public Game
+	{
+	private:
+	public:
 
-	~FontTexGame();
+		float x, y;
+		pImage img;
+		pFont font;
+		pParticlesystem psys;
+		pSound sound;
+		pMusic music;
 
-	/**
-	* @brief Initializes the game.
-	**/
-	int init();
+		/**
+		* @brief Creates a new FontTexGame object.
+		**/
+		FontTexGame();
 
-	/**
-	* @brief Renders the entire game once.
-	**/
-	void render();
+		virtual ~FontTexGame();
 
-	/**
-	* @brief Updates the entire game.
-	* @param dt The time since last frame (in seconds).
-	**/
-	void update(float dt);
+		// From Game.
+		bool load();
+		void unload();
+		void update(float dt);
+		void render();
+		void keyPressed(int key);
 
-	int load();
-	void unload();
-
-	/**
-	* @brief Called when a key is pressed.
-	* @param key The ASCII key code.
-	**/
-	void keyPressed(int key);
-
-	void reloadGraphics();
-
-};
+	}; // FontTexGame
 
 } // love
 
-#endif
-
+#endif // FONT_TEX_GAME_H

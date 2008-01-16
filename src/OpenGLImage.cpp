@@ -1,8 +1,11 @@
 #include "OpenGLImage.h"
-#include "AbstractImage.h"
-#include "AbstractFile.h"
-#include "love.h"
-#include "Core.h"
+
+#include <cmath>
+
+// LOVE
+#include "love_math.h"
+#include "File.h"
+#include "using_gl.h"
 
 // DevIL
 #include <IL/ilut.h>
@@ -12,26 +15,77 @@ using std::string;
 namespace love
 {
 	
-	OpenGLImage::OpenGLImage(pAbstractFile file) : Resource(file)
+	OpenGLImage::OpenGLImage(pFile file) : Image(file), image(0), texture(0)
 	{
-
 	}
 	
 	OpenGLImage::~OpenGLImage()
 	{
-		if(core->isVerbose())
-			printf("[-.-] - Destroyed! - [%s]\n", toString().c_str());
 		unload();
 	}
 
-	int OpenGLImage::load()
+	void OpenGLImage::bind() const
+	{
+		glBindTexture(GL_TEXTURE_2D,texture);
+	}
+
+	void OpenGLImage::render() const
+	{
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D,texture);
+
+		//glColor3f(1, 1, 1);
+
+		glBegin(GL_QUADS);
+			glTexCoord2f(0.0,0.0); glVertex2f(0,0);
+			glTexCoord2f(0.0,1.0); glVertex2f(0,textureHeight);
+			glTexCoord2f(1.0,1.0); glVertex2f(textureWidth,textureHeight);
+			glTexCoord2f(1.0,0.0); glVertex2f(textureWidth,0);
+		glEnd();
+
+		glDisable(GL_TEXTURE_2D);
+	}
+
+	void OpenGLImage::render(float x, float y) const
+	{
+		glPushMatrix();
+		//glTranslatef(floor(x), floor(y), 0);
+		glTranslatef(x, y, 0);
+		render();
+		glPopMatrix();
+	}
+
+	void OpenGLImage::render(float x, float y, float width, float height) const
+	{
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D,texture);
+
+		float xTex = x/(float)textureWidth;
+		float yTex = y/(float)textureHeight;
+
+		float wTex = width/(float)textureWidth;
+		float hTex = height/(float)textureHeight;
+
+		glColor3f(1, 1, 1);
+
+		glBegin(GL_QUADS);
+			glTexCoord2f(xTex,yTex);				glVertex2i(0,0);
+			glTexCoord2f(xTex,yTex+hTex);			glVertex2i(0,(int)height);
+			glTexCoord2f(xTex+wTex,yTex+hTex);		glVertex2i((int)width,(int)height);
+			glTexCoord2f(xTex+wTex,yTex);			glVertex2i((int)width,0);
+		glEnd();
+
+		glDisable(GL_TEXTURE_2D);
+	}
+
+	bool OpenGLImage::load()
 	{	
 
 		//printf("Loading OGLImage, LOEL %s -> %s\n", file->getSource().c_str(), file->getFilename().c_str());
 
 		// Load image data into memory
 		if(!file->load())
-			return LOVE_ERROR;
+			return false;
 
 		// Generate DevIL image.
 		ilGenImages(1, &image);
@@ -50,8 +104,8 @@ namespace love
 		this->width			= (float)ilGetInteger(IL_IMAGE_WIDTH);
 		this->height		= (float)ilGetInteger(IL_IMAGE_HEIGHT);
 
-		this->actualWidth = width;
-		this->actualHeight = height;
+		this->textureWidth = width;
+		this->textureHeight = height;
 
 		ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
 
@@ -69,7 +123,7 @@ namespace love
 
 		// @todo Warning. This desperado-GL_RGBA8'ing might cause severe failure on
 		// someone's computer.
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)actualWidth, (GLsizei)actualHeight, 0, 
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)textureWidth, (GLsizei)textureHeight, 0, 
 			ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_TYPE), ilGetData());
 
 		//texture = ilutGLBindTexImage();
@@ -89,33 +143,22 @@ namespace love
 
 		file->unload();
 
-		return LOVE_OK;
+		return true;
 
 	}
 
 	void OpenGLImage::unload()
 	{
-
-		// Delete texture.
+		// Delete the hardware texture.
 		glDeleteTextures(1, &texture);
-
-		//printf("Image \"%s\" Unloaded!\n", file->getFilename().c_str());
-	}
-
-	int OpenGLImage::twoPower(int num) const
-	{
-		int temp = 1;
-		while(temp < num)
-			temp *= 2;
-		return temp;
 	}
 
 	void OpenGLImage::padTwoPower()
 	{
 
 		// Get twopower of width and height
-		ILuint width	= twoPower((int)this->width);
-		ILuint height	= twoPower((int)this->height);
+		ILuint width	= power_of_two((int)this->width);
+		ILuint height	= power_of_two((int)this->height);
 
 		// No change needed?
 		if(width == this->width && height == this->height)
@@ -176,16 +219,11 @@ namespace love
 		ilTexImage(width, height, depth, bpp, format, type, (ILvoid*)d);
 
 		// Set new "real" dimensions
-		this->actualWidth = (float)width;
-		this->actualHeight = (float)height;
+		this->textureWidth = (float)width;
+		this->textureHeight = (float)height;
 
 		// Cleanup
 		delete [] d;
-	}
-
-	string OpenGLImage::toString() const
-	{
-		return "OpenGLImage: " + file->getFilename();
 	}
 	
 } // love

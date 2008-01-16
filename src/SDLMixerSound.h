@@ -1,20 +1,17 @@
-/**
-* @file SDLMixerSound.h
-* @author Michael Enger
-* @date 2007-08-19
-* @brief Contains definition for class SDLMixerSound.
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
 #ifndef LOVE_SDLMIXERSOUND_H 
 #define LOVE_SDLMIXERSOUND_H 
 
 // LOVE
-#include "AbstractSound.h"
+#include "Sound.h"
 
 // STL
-
-// Boost
-#include <boost/shared_ptr.hpp>
 
 // SDL_mixer
 #include <SDL_mixer.h>
@@ -23,14 +20,11 @@ namespace love
 {
 
 	/**
-	* @class SDLMixerSound
-	* @version 1.0
-	* @since 1.0
+	* 
 	* @author Michael Enger
 	* @date 2007-08-19
-	* @brief 
 	**/
-	class SDLMixerSound : public AbstractSound
+	class SDLMixerSound : public Sound
 	{
 	private:
 	
@@ -40,41 +34,22 @@ namespace love
 	public:
 	
 		/**
-		* @brief Constructs an empty SDLMixerSound.
+		* Creates a new sound from the given file.
 		**/
-		SDLMixerSound(pAbstractFile file);
+		SDLMixerSound(pFile file);
 		
-		/**
-		* @brief Destructor.
-		**/
 		virtual ~SDLMixerSound();
 
-		/**
-		* @brief Plays the sound.
-		* @param loop The number of loops. Default is 0, -1 for forever.
-		**/
-		virtual void play(int loop = 0);
+		// From Sound.
+		void play(int loop = 1);
+		void setVolume(float volume);
 
-		/**
-		* @brief Sets the volume for this sound.
-		* @param volume The volume from 0.0 - 1.0.
-		**/
-		virtual void setVolume(float volume);
-
-		/**
-		 * @brief Loads the sound file.
-		 **/
-		int load();
-
-		/**
-		 * @brief Unloads the sound file.
-		 **/
+		// From resource
+		bool load();
 		void unload();
 		
 	}; // SDLMixerSound
 	
-	typedef boost::shared_ptr<SDLMixerSound> pSDLMixerSound;
-	
 } // love
 
-#endif
+#endif // LOVE_SDLMIXERSOUND_H

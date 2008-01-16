@@ -1,78 +1,58 @@
-#ifndef LOVE_SOUND_H
-#define LOVE_SOUND_H
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
-#include <SDL_mixer.h>
-#include "Loadable.h"
-#include "Updateable.h"
-#include "Object.h"
+#ifndef LOVE_SOUND_H 
+#define LOVE_SOUND_H 
+
+// LOVE
 #include "Resource.h"
+
+// STL
+
+// Boost
+#include <boost/shared_ptr.hpp>
 
 namespace love
 {
-	
-	class AbstractFile;
 
 	/**
-	* @class Sound
-	* @version 1.0
-	* @since 1.0
-	* @author Michael Enger
-	* @date 2007-08-1
-	* @brief A class to contain all the information about a sound file, for playback later.
+	* Abstract Sound class.
+	* 
+	* @author Anders Ruud
+	* @date 2007-08-19
 	**/
-	class Sound : public Object, public Loadable, public Resource
+	class Sound : public Resource
 	{
 	private:
-
-		Mix_Chunk * sound;
-		std::string filename;
-		int channel;
-		int volume;
-
 	public:
+	
 		/**
-		 * @param filename Path to a sound file.
-		 * @brief Initializes the variables.
-		 **/
-		Sound(AbstractFile * file);
+		* Constructs a new Sound from the given file.
+		**/
+		Sound(pFile file);
+	
+		virtual ~Sound();
 
 		/**
-		 * @brief Does nothing.
-		 **/
-		~Sound();
+		* Play the Sound.
+		* @param loop The number of loops. Default 1 (play once), 0 is forever.
+		**/
+		virtual void play(int loop = 1) = 0;
 
 		/**
-		 * @return The volume the sound will be played at (0-128)
-		 * @brief Returns the volume.
-		 **/
-		int getVolume();
-
-		/**
-		 * @brief Plays the sound on any available channel and (if successful) sets the volume of that channel.
-		 **/
-		void play();
-
-		/**
-		 * @param volume A new volume value.
-		 * @breif Sets the volume the sound file will be played at, cannot be lower than 0 or higher than 128.
-		 **/
-		void setVolume(int volume);
-
-		/**
-		 * @brief Loads the sound file from memory.
-		 **/
-		int load();
-
-		/**
-		 * @brief Does nothing.
-		 **/
-		void unload();
-
-		// Static methods
-		static void stopAll();
-	};
+		* Sets the volume of the sound.
+		* @param volume The volume from 0.0 - 1.0.
+		**/
+		virtual void setVolume(float volume) = 0;
+		
+	}; // Sound
 
 	typedef boost::shared_ptr<Sound> pSound;
-}
+	
+} // love
 
-#endif
+#endif // LOVE_SOUND_H

@@ -2,9 +2,5 @@
 
 namespace love
 {
-
-	Vector::~Vector()
-	{
-	}
-
+	// Implementation in header.
 }

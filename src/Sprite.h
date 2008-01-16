@@ -1,18 +1,14 @@
-/**
-* @file Sprite.h
-* @author Anders Ruud
-* @date 2006-10-26
-* @brief Contains definition for class Sprite.
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
 #ifndef LOVE_SPRITE_H
 #define LOVE_SPRITE_H
 
 // LOVE
-#include "AbstractEntity.h"
-#include "Loadable.h"
-
-// STL
 
 // Boost
 #include <boost/shared_ptr.hpp>
@@ -20,35 +16,20 @@
 namespace love
 {
 
-	typedef struct
-	{
-		float xTex;
-		float yTex;
-		float wTex;
-		float hTex;
-
-		float width;
-		float height;
-
-		// Distance to center of sprite.
-		float top;
-		float left;
-
-	} renderinfo;
-
-
 	/**
-	* @class Sprite
-	* @version 1.0
-	* @since 1.0
-	* @author 
+	* Sprite is an abstraction over static Images and (non-static) Animations. 
+	* It exist so that Images and Animations can be used interchangeably in 
+	* other objects.
+	*
+	* @author Anders Ruud
 	* @date 2007-05-18
-	* @brief 
 	**/
-	class Sprite : public AbstractEntity, public Loadable
+	class Sprite
 	{
 	protected:
 
+		// The width and height of the Sprite. (These are not
+		// fixed. Animation, for instance, may change them every frame).
 		float width;
 		float height;
 
@@ -58,77 +39,69 @@ namespace love
 	public:
 
 		/**
-		* @brief Contructs an empty Sprite.
+		* Constructs a Sprite with width = 0, height = 0, and alpha = 1.0.
 		**/
 		Sprite();
+
 		virtual ~Sprite();
 
 		/**
-		* @brief Gets the current width of the Sprite. (May change every frame.)
-		* @return The current width of the Sprite.
+		* Gets the current width of the Sprite. (May change every frame.)
 		**/
 		float getWidth() const;
 
 		/**
-		* @brief Gets the current height of the Sprite. (May change every frame.)
-		* @return The current height of the Sprite.
+		* Gets the current height of the Sprite. (May change every frame.)
 		**/
 		float getHeight() const;
 
 		/**
-		* @brief Gets the current alpha value.
-		* @return The current alpha value.
+		* Gets the current alpha value.
 		**/
 		float getAlpha() const;
 
 		/**
-		* @brief Sets the current alpha value.
-		* @param alpha The new alpha value.
+		* Sets the current alpha value.
+		* @param alpha The new alpha value. Range: 0-1.
 		**/
 		void setAlpha(float alpha);
 
-		// For "performance" rendering
-		virtual void bind();
-		virtual void beginRender();
-		virtual void sendVertices();
-		virtual void endRender();
-
-		virtual renderinfo getRenderInfo() = 0;
-		virtual renderinfo getRenderInfo(float x, float y, float width, float height) = 0;
-		
-		virtual void render();
-
-		virtual void render(float x, float y);
-		
 		/**
-		* @brief Renders sprite onto the the quad given by the vertices.
-		* Vertices must be in counter clockwise order.
-		*
-		* @param x1 X-coordinate of first point.
-		* @param y1 Y-coordinate of first point.
-		* @param x2 X-coordinate of second point.
-		* @param y2 Y-coordinate of second point.
-		* @param x3 X-coordinate of third point.
-		* @param y3 Y-coordinate of third point.
-		* @param x4 X-coordinate of fourth point.
-		* @param y4 Y-coordinate of fourth point.
+		* Binds the hardware texture associated with this Sprite.
 		**/
-		virtual void renderQuad(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4);
+		virtual void bind() const = 0;
 
 		/**
-		* @brief Render only part of the sprite.
-		* @param x X-coordinate of the top-left corner.
-		* @param y Y-coordinate of the top-left corner.
-		* @param width The width of the rendered area.
-		* @param height The height of the rendered area.
+		* Updates the state of the Sprite.
+		* @param dt Time since last update.
 		**/
-		virtual void render(float x, float y, float width, float height);
+		virtual void update(float dt) = 0;
 
+		/**
+		* Render the sprite at (0, 0).
+		**/
+		virtual void render() const = 0;
 
-	};
+		/**
+		* Render sprite at some position.
+		* @param x Position on x-axis.
+		* @param y Position on y-axis.
+		**/
+		virtual void render(float x, float y) const = 0;
+
+		/**
+		* Render a subsprite.
+		* @param x Position on x-axis.
+		* @param y Position on y-axis.
+		* @param width The width of the subsprite.
+		* @param height The height of the subsprite.
+		**/
+		virtual void render(float x, float y, float width, float height) const = 0;
+
+	}; // Sprite
 
 	typedef boost::shared_ptr<Sprite> pSprite;
 
 } // love
 
-#endif
+#endif // LOVE_SPRITE_H

@@ -1,61 +1,53 @@
-/**
-* Part of Project LOVE.
-* See http://love.sourceforge.net
-* Licence: ZLIB
-* Copyright © LOVE Development Team
-* 
-* @file Resource.h
-* @author Anders Ruud
-* @date 2007-08-18
-* @brief Contains definition for class Resource.
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
 #ifndef LOVE_RESOURCE_H
 #define LOVE_RESOURCE_H
 
 // LOVE
-#include "AbstractFile.h"
-
-// STL
-
-// Boost
-#include <boost/shared_ptr.hpp>
+#include "File.h"
 
 namespace love
 {
 
-	// Forward declarations.
-	class AbstractFile;
-
 	/**
-	* @class Resource
-	* @version 1.0
-	* @since 1.0
+	* A resource is something which is loaded from a file.
+	*
 	* @author Anders Ruud
 	* @date 2007-08-18
-	* @brief A resource is something which is loaded from a file.
 	**/
 	class Resource
 	{
 	protected:
 
 		// The file this resource is loaded from.
-		pAbstractFile file;
+		pFile file;
 
 	public:
 
-		Resource();
+		/**
+		* Constructs a resource from the specified file.
+		**/
+		Resource(pFile file);
+
+		virtual ~Resource();
 
 		/**
-		* @brief Contructs an empty Resource.
-		**/
-		Resource(pAbstractFile file);
+		* Reads the file
+		**/ 
+		virtual bool load() = 0;
+		bool reload();
 
-	};
+	protected:
 
-	typedef boost::shared_ptr<Resource> pResource;
+		virtual void unload() = 0;
+
+	}; // Resource
 
 } // love
 
-#endif
-
+#endif // LOVE_RESOURCE_H

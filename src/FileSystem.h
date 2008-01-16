@@ -1,76 +1,121 @@
-/**
-* @file FileSystem.h
-* @author Anders Ruud
-* @date 2007-07-31
-* @brief Contains definition for class FileSystem.
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
 #ifndef LOVE_FILESYSTEM_H
 #define LOVE_FILESYSTEM_H
 
 // LOVE
+#include "Device.h"
+#include "File.h"
 
-// STL
+// STD
 #include <string>
-
-// Boost
-#include <boost/shared_ptr.hpp>
+#include <vector>
 
 namespace love
 {
 
 	/**
-	* @class FileSystem
-	* @version 1.0
-	* @since 1.0
+	* Filesystem abstraction.
+	* 
 	* @author Anders Ruud
-	* @date 2007-07-31
-	* @brief 
+	* @date 2007-08-16
 	**/
-	class FileSystem
+	class Filesystem : public Device
 	{
-	private:
+		friend bool init(int argc, char* argv[]);
+
+	protected:
+
+		// The base directory. This is usually where
+		// the application can be run from, but can be configured to
+		// be other places.
+		std::string base;
+
+		// The user home directory. Empty string means that 
+		std::string user;
 
 	public:
 
 		/**
-		* @brief Contructs an empty FileSystem.
+		* @brief Contructs an empty Filesystem.
 		**/
-		FileSystem();
-		
-		/**
-		* @brief Destructor.
-		**/
-		virtual ~FileSystem();
+		Filesystem();
 
+		virtual ~Filesystem();		
 
 		/**
-		* @brief Sets the source for reading files.
-		* @param element The archive filename or directory.
-		* @note Can be a directory (usually the game directory) or the 
-		* filename to a .zip or .7z file.
+		* Gets a new File.
+		* @param source The source from which to load the file.
+		* @param file The the filepath relative to the source.
 		**/
-		void setSource(const std::string & element);
-
+		virtual pFile getFile(const std::string & source, const std::string & file) const = 0;
 
 		/**
-		* @brief Removes the current source.
-		* @return True if successful, false otherwise. Fails if there are open file pointers.
+		* Gets a new File, relative to base directory.
+		* @param file The the filepath relative to the base directory.
 		**/
-		bool clearSource();
-
+		virtual pFile getBaseFile(const std::string & file) const = 0;
 
 		/**
-		* @brief Checks if a file with the specified filename exists. 
-		* @return True if file exists, false otherwise. Will also true if a directory exists
-		* with the specified filename.
+		* Gets a new File, relative to user directory.
+		* @param file The the filepath relative to the user directory.
 		**/
-		bool exists(const std::string & file);
+		virtual pFile getUserFile(const std::string & file) const = 0;
 
-	};
+		/**
+		* Gets a list of entries in the specified file (or dir).
+		* @param source The source where the file (or dir) resides.
+		* @param file The file (or dir) to list entries for.
+		**/
+		virtual std::vector<std::string> getList(const std::string & source, const std::string & file) = 0;
 
-	typedef boost::shared_ptr<FileSystem> pFileSystem;
+		/**
+		* Checks if a file exists in the given source.
+		* @param source The source where the file resides.
+		* @param file The file to check for.
+		* @note Does not differentiate between directories and files.
+		**/
+		virtual bool exists(const std::string & source, const std::string & file) const = 0;
+
+		/**
+		* Checks if a file exists.
+		* @param file The filename.
+		**/
+		virtual bool exists(const std::string & file) const = 0;
+
+		/**
+		* Checks if a file really is a file (and not a dir).
+		* @param source The source where the "file" resides.
+		* @param file The "file" to check.
+		* @return True if the "file" indeed is a file. False if it's a directory, or non-existent.
+		**/
+		virtual bool isFile(const std::string & source, const std::string & file) = 0;
+
+		/**
+		* Checks if a "file" really is a directory.
+		* @param source The source where the "file" resides.
+		* @param file The "file" to check.
+		* @return True if the "file" is a directory, false if it's a file or non-existent.
+		**/
+		virtual bool isDir(const std::string & source, const std::string & file) = 0;
+
+		/**
+		* Get the current base directory.
+		**/
+		const std::string & getBase() const;
+
+		/**
+		* Gets the current user directory.
+		**/
+		const std::string & getUser() const;
+
+	}; // Filesystem
 
 } // love
 
-#endif
+#endif // LOVE_FILESYSTEM_H

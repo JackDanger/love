@@ -1,13 +1,6 @@
 #include "Matrix.h"
-#include <cmath>
 
 namespace love 
 {
-
-	Matrix::~Matrix()
-	{
-
-	}
-
-
+	// Implementation in header.
 }

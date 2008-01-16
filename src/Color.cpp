@@ -1,42 +1,42 @@
 #include "Color.h"
 
+#include <string>
+
 namespace love
 {
-	Color::Color()
+	Color::Color(int r, int g, int b, int a) 
+		: red(r), green(g), blue(b), alpha(a)
 	{
-		red = blue = green = alpha = 255;
 	}
-
-	Color::Color(int code)
-	{
-		red = (code & 0xFF0000) >> 16;
-		green = (code & 0x00FF00) >> 8;
-		blue = code & 0x0000FF;
-		alpha = 255;
-	}
-
-	Color::Color(int red, int green, int blue, int alpha)
-	{
-		this->red		= red;
-		this->green		= green;
-		this->blue		= blue;
-		this->alpha		= alpha;
-	}
-
-	/*Color::Color(float red, float green, float blue, float alpha)
-	{
-		this->red = (int)(red * 255);
-		this->green = (int)(green * 255);
-		this->blue = (int)(blue * 255);
-		this->alpha = (int)(alpha * 255);
-	}*/
 
 	Color::~Color()
-	{}
+	{
+	}
+
+	int Color::getRed() const
+	{
+		return red;
+	}
+
+	int Color::getGreen() const
+	{
+		return green;
+	}
+
+	int Color::getBlue() const
+	{
+		return blue;
+	}
+
+	int Color::getAlpha() const
+	{
+		return alpha;
+	}
 
 	void Color::update(float dt)
-	{}
+	{
+		// Nothing happens.
+	}
 
-	void Color::setColor(float t)
-	{}
-}
+} // love
+

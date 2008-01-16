@@ -5,13 +5,12 @@ namespace love
 
 	SDLTimer::SDLTimer(): currTime(0), prevTime(0), prevFpsUpdate(0)
 	{
-		
 	}
 
 	SDLTimer::~SDLTimer()
 	{
 	}
-	
+
 	float SDLTimer::getDelta()
 	{
 		
@@ -28,9 +27,9 @@ namespace love
 		float dt = (currTime - prevTime)/1000.0f;
 
 		// Update FPS?
-		if((currTime - prevFpsUpdate)/1000.0f > getFpsUpdateFrequency())
+		if((currTime - prevFpsUpdate)/1000.0f > fpsUpdateFrequency)
 		{
-			setFps(frames/getFpsUpdateFrequency());
+			fps = frames/fpsUpdateFrequency;
 			prevFpsUpdate = currTime;
 			frames = 0;
 		}
@@ -41,5 +40,15 @@ namespace love
 		return dt;
 	}
 
+	void SDLTimer::startBenchmark()
+	{
+		bench_start = SDL_GetTicks();
+	}
+
+	float SDLTimer::endBenchmark()
+	{
+		bench_end = SDL_GetTicks();
+		return (bench_end - bench_start)/1000.0f;
+	}
 
 }// love

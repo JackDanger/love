@@ -1,7 +1,8 @@
 #include "OpenGLFont.h"
-#include "Core.h"
-#include "love.h"
-#include "AbstractFile.h"
+
+// LOVE
+#include "using_gl.h"
+#include "using_error.h"
 
 using std::string;
 
@@ -34,20 +35,15 @@ namespace love
 		glPopAttrib();
 	}
 
-	void OpenGLFont::createOpenGLFont(const char * OpenGLFontpath, unsigned int size)
-	{
-
-	}
-
 	void OpenGLFont::createList(FT_Face face, unsigned short character)
 	{
 		if( FT_Load_Glyph(face, FT_Get_Char_Index(face, character), FT_LOAD_DEFAULT) )
-			core->error("OpenGLFont Loading Error: FT_Load_Glyph failed.");
+			error("OpenGLFont Loading Error: FT_Load_Glyph failed.");
 			//throw std::runtime_error("FT_Load_Glyph failed");
 
 		FT_Glyph glyph;
 		if( FT_Get_Glyph(face->glyph, &glyph) )
-			core->error("OpenGLFont Loading Error: FT_Get_Glyph failed.");
+			error("OpenGLFont Loading Error: FT_Get_Glyph failed.");
 			//throw std::runtime_error("FT_Get_Glyph failed");
 
 		FT_Glyph_To_Bitmap(&glyph, FT_RENDER_MODE_NORMAL, 0, 1);
@@ -108,7 +104,7 @@ namespace love
 		FT_Done_Glyph(glyph);
 	}
 
-	OpenGLFont::OpenGLFont(pAbstractFile file, int size) : AbstractFont(file, size)
+	OpenGLFont::OpenGLFont(pFile file, int size) : Font(file, size)
 	{
 	}	
 
@@ -159,12 +155,12 @@ namespace love
 		return temp;
 	}
 
-	int OpenGLFont::load()
+	bool OpenGLFont::load()
 	{
 
 		// Load file
 		if(!file->load())
-			return LOVE_ERROR;
+			return false;
 
 
 		textures = new GLuint[MAX_CHARS];
@@ -172,7 +168,7 @@ namespace love
 
 		FT_Library library;
 		if( FT_Init_FreeType(&library) )
-			core->error("OpenGLFont Loading Error: FT_Init_FreeType failed.");
+			error("OpenGLFont Loading Error: FT_Init_FreeType failed.");
 			//throw std::runtime_error("FT_Init_FreeType failed");
 
 		FT_Face face;
@@ -181,7 +177,7 @@ namespace love
 								file->getSize(),      /* size in bytes        */
 								0,         /* face_index           */
 								&face ))
-			core->error("OpenGLFont Loading Error: FT_New_Face failed (there is probably a problem with your OpenGLFont file).");
+			error("OpenGLFont Loading Error: FT_New_Face failed (there is probably a problem with your OpenGLFont file).");
 			//throw std::runtime_error("FT_New_Face failed (there is probably a problem with your OpenGLFont file)");
 
 		FT_Set_Char_Size(face, size << 6, size << 6, 96, 96);
@@ -195,9 +191,12 @@ namespace love
 		FT_Done_FreeType(library); //all done
 
 		//printf("Loading OpenGLFont: %s (%i px)\n", file->getFilename().c_str(), size);
+		//file->unload();
+
+		// Free data.
 		file->unload();
 
-		return LOVE_OK;
+		return true;
 	}
 
 	void OpenGLFont::unload()
@@ -205,6 +204,11 @@ namespace love
 		//printf("Unoading OpenGLFont: %s (%i px)\n", file->getFilename().c_str(), size);
 		glDeleteLists(list, MAX_CHARS);
 		glDeleteTextures(MAX_CHARS, textures);
+
+		// Cleanup plz.
+		delete [] textures;
+		textures = 0;
+		list = 0;
 	}
 
 }

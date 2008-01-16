@@ -1,39 +1,42 @@
-/**
-* @file OpenGLParticleSystem.h
-* @author Anders Ruud
-* @date 2007-08-13
-* @brief Contains definition for class OpenGLParticleSystem.
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
-#ifndef LOVE_OpenGLParticleSystem_H
-#define LOVE_OpenGLParticleSystem_H
+#ifndef LOVE_OPENGL_PARTICLE_SYSTEM_H
+#define LOVE_OPENGL_PARTICLE_SYSTEM_H
 
 // LOVE
-#include "ParticleSystem.h"
+#include "Particlesystem.h"
 
 namespace love
 {
 
 	/**
-	* @class OpenGLParticleSystem
-	* @brief 
+	* OpenGL implementaiton of particle system renderer. 
+	*
+	* @author Anders Ruud
+	* @date 2007-08-13
 	**/
-	class OpenGLParticleSystem : public ParticleSystem
+	class OpenGLParticleSystem : public Particlesystem
 	{
 	protected:
-
 	public:
 
+		
 		OpenGLParticleSystem();
+
 		virtual ~OpenGLParticleSystem();
 
-		virtual void render();
-		virtual void render(float x, float y);
-	};
+		// From Particlesystem
+		void render() const;
+		void render(float x, float y) const;
 
-	typedef boost::shared_ptr<OpenGLParticleSystem> pOpenGLParticleSystem;
+	}; // OpenGLParticleSystem
 
 } // love
 
-#endif
+#endif // LOVE_OPENGL_PARTICLE_SYSTEM_H
 

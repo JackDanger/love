@@ -1,33 +1,28 @@
-/**
-* @file SDLTimer.h
-* @author Anders Ruud
-* @date 2006-10-21
-* @brief Contains definition for class SDLTimer.
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
 #ifndef LOVE_SDLTIMER_H
 #define LOVE_SDLTIMER_H
 
+// SDL
 #include "SDL/SDL.h"
 
 // LOVE
 #include "Timer.h"
 
-// STL
-
-// Boost
-#include <boost/shared_ptr.hpp>
 
 namespace love
 {
 
 	/**
-	* @class SDLTimer
-	* @version 1.0
-	* @since 1.0
+	* SDL Timer class.
+	*
 	* @author Anders Ruud
 	* @date 2006-10-21
-	* @brief 
 	**/
 	class SDLTimer : public Timer
 	{
@@ -37,24 +32,26 @@ namespace love
 		Uint32 prevTime;
 		Uint32 prevFpsUpdate;
 
+		// Benchmark variables
+		Uint32 bench_start;
+		Uint32 bench_end;
+
 	public:
 
 		/**
-		* @brief Contructs an empty SDLTimer.
+		* Constructs a new SDLTImer.
 		**/
 		SDLTimer();
+
 		virtual ~SDLTimer();
-	
-		/**
-		* @brief Gets seconds since last call to this method.
-		* @return Seconds since last call to this method.
-		**/
+
+		// From Timer.
 		float getDelta();
+		void startBenchmark();
+		float endBenchmark();
 
-	};
-
-	typedef boost::shared_ptr<SDLTimer> pSDLTimer;
+	}; // SDLTimer
 
 } // love
 
-#endif
+#endif // LOVE_SDLTIMER_H

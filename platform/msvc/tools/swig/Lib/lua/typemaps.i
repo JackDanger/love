@@ -58,6 +58,8 @@ or provide a %apply statement
 %{  lua_pushnumber(L, (lua_Number) *$1); SWIG_arg++;%}
 %typemap(in) TYPE *INOUT = TYPE *INPUT;
 %typemap(argout) TYPE *INOUT = TYPE *OUTPUT;
+%typemap(in) TYPE &OUTPUT = TYPE *OUTPUT;
+%typemap(argout) TYPE &OUTPUT = TYPE *OUTPUT;
 %typemap(in) TYPE &INOUT = TYPE *INPUT;
 %typemap(argout) TYPE &INOUT = TYPE *OUTPUT;
 // const version (the $*ltype is the basic number without ptr or const's)
@@ -67,12 +69,15 @@ or provide a %apply statement
 %enddef
 
 // now the code
-SWIG_NUMBER_TYPEMAP(int); SWIG_NUMBER_TYPEMAP(unsigned int);
-SWIG_NUMBER_TYPEMAP(short); SWIG_NUMBER_TYPEMAP(unsigned short);
-SWIG_NUMBER_TYPEMAP(long); SWIG_NUMBER_TYPEMAP(unsigned long);
+SWIG_NUMBER_TYPEMAP(int); SWIG_NUMBER_TYPEMAP(unsigned int); SWIG_NUMBER_TYPEMAP(signed int);
+SWIG_NUMBER_TYPEMAP(short); SWIG_NUMBER_TYPEMAP(unsigned short); SWIG_NUMBER_TYPEMAP(signed short);
+SWIG_NUMBER_TYPEMAP(long); SWIG_NUMBER_TYPEMAP(unsigned long); SWIG_NUMBER_TYPEMAP(signed long);
 SWIG_NUMBER_TYPEMAP(float);
 SWIG_NUMBER_TYPEMAP(double);
 SWIG_NUMBER_TYPEMAP(enum SWIGTYPE);
+// also for long longs's
+SWIG_NUMBER_TYPEMAP(long long); SWIG_NUMBER_TYPEMAP(unsigned long long); SWIG_NUMBER_TYPEMAP(signed long long);
+
 // note we dont do char, as a char* is probably a string not a ptr to a single char
 
 /* -----------------------------------------------------------------------------
@@ -170,7 +175,7 @@ int SWIG_read_NAME_num_array(lua_State* L,int index,TYPE *array,int size);
 %{
 
 #ifdef __cplusplus	/* generic alloc/dealloc fns*/
-#define SWIG_ALLOC_ARRAY(TYPE,LEN) 	new (TYPE)[LEN]
+#define SWIG_ALLOC_ARRAY(TYPE,LEN) 	new TYPE[LEN]
 #define SWIG_FREE_ARRAY(PTR)		if(PTR){delete[] PTR;}
 #else
 #define SWIG_ALLOC_ARRAY(TYPE,LEN) 	(TYPE *)malloc(LEN*sizeof(TYPE))
@@ -490,4 +495,38 @@ void SWIG_write_ptr_array(lua_State* L,void **array,int size,swig_type_info *typ
 %typemap(argout) (SWIGTYPE** INOUT,int)
 %{	SWIG_write_ptr_array(L,(void**)$1,$2,$*1_descriptor,0); SWIG_arg++; %}
 %typemap(freearg) (SWIGTYPE**INOUT,int)=(SWIGTYPE**INPUT,int);
+
+/* -----------------------------------------------------------------------------
+ *                          Pointer-Pointer typemaps
+ * ----------------------------------------------------------------------------- */
+/*
+This code is to deal with the issue for pointer-pointer's
+In particular for factory methods.
+
+for example take the following code segment:
+
+struct iMath;    // some structure
+int Create_Math(iMath** pptr); // its factory (assume it mallocs)
+
+to use it you might have the following C code:
+
+iMath* ptr;
+int ok;
+ok=Create_Math(&ptr);
+// do things with ptr
+//...
+free(ptr);
+
+With the following SWIG code
+%apply SWIGTYPE** OUTPUT{iMath **pptr };
+
+You can get natural wrappering in Lua as follows:
+ok,ptr=Create_Math() -- ptr is a iMath* which is returned with the int
+ptr=nil -- the iMath* will be GC'ed as normal
+*/
+
+%typemap(in,numinputs=0) SWIGTYPE** OUTPUT ($*ltype temp)
+%{  $1 = &temp; %}
+%typemap(argout) SWIGTYPE** OUTPUT
+%{SWIG_NewPointerObj(L,*$1,$*descriptor,1); SWIG_arg++; %}
 

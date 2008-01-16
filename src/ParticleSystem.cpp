@@ -1,17 +1,19 @@
-#include "ParticleSystem.h"
+#include "Particlesystem.h"
+
+// LOVE
+#include "love_math.h"
+
+
+
+// STD
 #include <cmath>
-#include "AnimatedColor.h"
-#include "love.h"
 
 using std::list;
-
-const float pi = 3.14159265f;
-const float to_rad = (pi/180.0f);
 
 namespace love
 {
 
-	ParticleSystem::ParticleSystem() : additive(true), lifetime(-1), age(0), linger(0), spawnBuffer(0)
+	Particlesystem::Particlesystem() : additive(true), lifetime(-1), age(0), linger(0), spawnBuffer(0)
 	{
 		// Init members
 		fillInterval(direction, 0, 360);
@@ -26,16 +28,16 @@ namespace love
 
 	}
 
-	ParticleSystem::~ParticleSystem()
+	Particlesystem::~Particlesystem()
 	{
 	}
 
-	float ParticleSystem::getT(particle & p) const
+	float Particlesystem::getT(particle & p) const
 	{
 		return p.age/p.life;
 	}
 
-	Vector ParticleSystem::getPosition(particle & p) const
+	Vector Particlesystem::getPosition(particle & p) const
 	{
 
 		// Get gravity.
@@ -55,7 +57,7 @@ namespace love
 		return pos + p.speed * t + acc * t * t;
 	}
 
-	void ParticleSystem::estimateStart(particle & p)
+	void Particlesystem::estimateStart(particle & p)
 	{
 		// Get gravity.
 		Vector gravity(0, p.gravity);
@@ -76,7 +78,7 @@ namespace love
 		p.pos = pos + p.speed * t + acc * t * t;		
 	}
 
-	void ParticleSystem::displace(particle & p, float dt)
+	void Particlesystem::displace(particle & p, float dt)
 	{
 		// Get gravity.
 		Vector gravity(0, p.gravity);
@@ -97,13 +99,13 @@ namespace love
 
 	}
 
-	float ParticleSystem::getScalar(interval & i) const
+	float Particlesystem::getScalar(interval & i) const
 	{
 		float r = ((float)(rand() % 100))/100.0f;
 		return i.min + i.delta * r;
 	}
 
-	interval ParticleSystem::getInterval(interval & i) const
+	interval Particlesystem::getInterval(interval & i) const
 	{
 		interval t;
 		t.min = i.min;
@@ -113,7 +115,7 @@ namespace love
 		return t;
 	}
 
-	void ParticleSystem::fillInterval(interval & i, float min, float max, float var)
+	void Particlesystem::fillInterval(interval & i, float min, float max, float var)
 	{
 		i.min = min;
 		i.max = max;
@@ -121,22 +123,12 @@ namespace love
 		i.var = var;
 	}
 
-	Vector ParticleSystem::getDirection(float angle) const
+	Vector Particlesystem::getDirection(float angle) const
 	{
 		return Vector(sin(angle * to_rad), cos(angle * to_rad));
 	}
 
-	int ParticleSystem::load()
-	{
-		return LOVE_OK;
-	}
-
-	void ParticleSystem::unload()
-	{
-		
-	}
-
-	void ParticleSystem::spawn(float age)
+	void Particlesystem::spawn(float age)
 	{
 
 		// Add one particle
@@ -162,205 +154,186 @@ namespace love
 		particles.push_back(p);
 	}
 
-	void ParticleSystem::setAutostart(bool autoStart)
+	void Particlesystem::setAutostart(bool autoStart)
 	{
 		if(!autoStart)
 			age = lifetime;
 	}
 
-	int ParticleSystem::getNumParticles() const
+	int Particlesystem::getNumParticles() const
 	{
 		return (int)particles.size();
 	}
 
-	const list<particle> & ParticleSystem::getParticles() const
+	const list<particle> & Particlesystem::getParticles() const
 	{
 		return particles;
 	}
 
-	const pSprite & ParticleSystem::getSprite() const
+	const pSprite & Particlesystem::getSprite() const
 	{
 		return sprite;
 	}
 
-	const pAnimatedColor & ParticleSystem::getColor() const
-	{
-		return color;
-	}
-
-	bool ParticleSystem::isAdditive() const
+	bool Particlesystem::isAdditive() const
 	{
 		return additive;
 	}
 
-	void ParticleSystem::reset()
+	void Particlesystem::reset()
 	{
 		age = 0;
 		spawnBuffer = 0;
 	}
 
-	void ParticleSystem::setPosition(float x, float y)
+	void Particlesystem::setPosition(float x, float y)
 	{
 		pos.setX(x);
 		pos.setY(y);
 	}
 
-	float ParticleSystem::getLifetime() const
+	float Particlesystem::getLifetime() const
 	{
 		return lifetime;
 	}
 
-	void ParticleSystem::setLifetime(float lifetime)
+	void Particlesystem::setLifetime(float lifetime)
 	{
 		this->lifetime = lifetime;
 	}
 
-	void ParticleSystem::setLinger(float linger)
+	void Particlesystem::setLinger(float linger)
 	{
 		this->linger = linger;
 	}
 
-	float ParticleSystem::getLinger()
+	float Particlesystem::getLinger()
 	{
 		return linger;
 	}
 
-	float ParticleSystem::getAge() const
+	float Particlesystem::getAge() const
 	{
 		return age;
 	}
 
-	bool ParticleSystem::isDead() const
+	bool Particlesystem::isDead() const
 	{
 		if(lifetime == -1) return false;
 
 		return age >= lifetime + linger;
 	}
 
-	bool ParticleSystem::isActive() const
+	bool Particlesystem::isActive() const
 	{
 		if(lifetime == -1) return false;
 
 		return age >= lifetime;
 	}
 
-	void ParticleSystem::setSprite(const pSprite * sprite)
+	void Particlesystem::setSprite(pSprite sprite)
 	{
-		this->sprite = *sprite;
+		this->sprite = sprite;
 	}
 
-	void ParticleSystem::setSprite(const pAbstractImage * sprite)
-	{
-		this->sprite = (pSprite)(*sprite);
-	}
-
-	void ParticleSystem::setSprite(const pFrameAnimation * sprite)
-	{
-		this->sprite = (pSprite)(*sprite);
-	}
-
-	void ParticleSystem::setAdditiveBlending(bool additive)
+	void Particlesystem::setAdditiveBlending(bool additive)
 	{
 		this->additive = additive;
 	}
 
-	void ParticleSystem::setParticlesPerSecond(float particlesPerSecond)
+	void Particlesystem::setParticlesPerSecond(float particlesPerSecond)
 	{
 		this->particlesPerSecond = particlesPerSecond;
 		this->spawnFreq = 1.0f/particlesPerSecond;
 	}
 
-	void ParticleSystem::addColor(int r, int g, int b, int a, float time)
+
+	void Particlesystem::addColor(int r, int g, int b, int a, float time)
 	{
-		color->addColor(r, g, b, a, time);
+		this->color->addColor(r, g, b, a, time);
 	}
 
-	void ParticleSystem::addColor(const pAbstractColor * color, float time)
-	{
-		this->color->addColor(color, time);
-	}
-
-	void ParticleSystem::setDirection(float min, float max, float var)
+	void Particlesystem::setDirection(float min, float max, float var)
 	{
 		fillInterval(direction, min, max, var);
 	}
 
-	void ParticleSystem::setDirection(float m)
+	void Particlesystem::setDirection(float m)
 	{
 		fillInterval(direction, m, m);
 	}
 
-	void ParticleSystem::setStartSpeed(float min, float max, float var)
+	void Particlesystem::setStartSpeed(float min, float max, float var)
 	{
 		fillInterval(startSpeed, min, max, var);
 	}
 
-	void ParticleSystem::setStartSpeed(float m)
+	void Particlesystem::setStartSpeed(float m)
 	{
 		fillInterval(startSpeed, m, m);
 	}
 
-	void ParticleSystem::setGravity(float min, float max, float var)
+	void Particlesystem::setGravity(float min, float max, float var)
 	{
 		fillInterval(gravity, min, max, var);
 	}
 
-	void ParticleSystem::setGravity(float m)
+	void Particlesystem::setGravity(float m)
 	{
 		fillInterval(gravity, m, m);
 	}
 
-	void ParticleSystem::setRadialAcc(float min, float max, float var)
+	void Particlesystem::setRadialAcc(float min, float max, float var)
 	{
 		fillInterval(radialAcc, min, max, var);
 	}
 
-	void ParticleSystem::setRadialAcc(float m)
+	void Particlesystem::setRadialAcc(float m)
 	{
 		fillInterval(radialAcc, m, m);
 	}
 
-	void ParticleSystem::setTangentialAcc(float min, float max, float var)
+	void Particlesystem::setTangentialAcc(float min, float max, float var)
 	{
 		fillInterval(tangentialAcc, min, max, var);
 	}
 
-	void ParticleSystem::setTangentialAcc(float m)
+	void Particlesystem::setTangentialAcc(float m)
 	{
 		fillInterval(tangentialAcc, m, m);
 	}
 
-	void ParticleSystem::setParticleLifetime(float min, float max, float var)
+	void Particlesystem::setParticleLifetime(float min, float max, float var)
 	{
 		fillInterval(particleLifetime, min, max, var);
 	}
 
-	void ParticleSystem::setParticleLifetime(float m)
+	void Particlesystem::setParticleLifetime(float m)
 	{
 		fillInterval(particleLifetime, m, m);
 	}
 
-	void ParticleSystem::setParticleSize(float min, float max, float var)
+	void Particlesystem::setParticleSize(float min, float max, float var)
 	{
 		fillInterval(particleSize, min, max, var);
 	}
 
-	void ParticleSystem::setParticleSize(float m)
+	void Particlesystem::setParticleSize(float m)
 	{
 		fillInterval(particleSize, m, m);
 	}
 
-	void ParticleSystem::setParticleSpin(float min, float max, float var)
+	void Particlesystem::setParticleSpin(float min, float max, float var)
 	{
 		fillInterval(particleSpin, min, max, var);
 	}
 
-	void ParticleSystem::setParticleSpin(float m)
+	void Particlesystem::setParticleSpin(float m)
 	{
 		fillInterval(particleSpin, m, m);
 	}
 
-	void ParticleSystem::update(float dt)
+	void Particlesystem::update(float dt)
 	{
 		
 		spawnBuffer += dt;

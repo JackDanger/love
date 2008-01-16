@@ -1,134 +1,60 @@
-/**
-* @file Mouse.h
-* @author Anders Ruud
-* @date 2006-12-01
-* @brief Contains definition for class Mouse.
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
 #ifndef LOVE_MOUSE_H
 #define LOVE_MOUSE_H
 
 // LOVE
-#include "love_mouse.h"
-#include "MouseListener.h"
-#include "MouseMotionListener.h"
-#include "AbstractDevice.h"
-
-// STL
-
-// Boost
-#include <boost/shared_ptr.hpp>
+#include "Device.h"
 
 namespace love
 {
 
 	/**
-	* @class Mouse
-	* @version 1.0
-	* @since 1.0
+	* Abstract Mouse device class.
+	*
 	* @author Anders Ruud
 	* @date 2006-12-01
-	* @brief 
 	**/
-	class Mouse : public AbstractDevice, public MouseListener, public MouseMotionListener
+	class Mouse : public Device
 	{
-	private:
-
-		// buttons
-		int buttons;
-
-		// x
-		float x;
-
-		// y
-		float y;
-
-		// 
-		bool visible;
-
-
+	protected:
 	public:
 
-		/**
-		* @brief Contructs an empty Mouse.
-		**/
-		Mouse();
 		virtual ~Mouse();
 
-
+		/**
+		* Gets current mouse position on x-axis.
+		**/
+		virtual float getX() const = 0;
 
 		/**
-		* @brief Inits the mouse.
+		* Gets current mouse position on x-axis.
 		**/
-		int init();
+		virtual float getY() const = 0;
 
 		/**
-		* @brief Gets buttons.
-		* @return buttons.
+		* Checks if a mouse button is pressed.
 		**/
-		int getButtons() const;
-
+		virtual bool isDown(int button) const = 0;
 
 		/**
-		* @brief Sets buttons.
-		* @param buttons 
+		* Hides/shows the Mouse.
+		* @param visible True = visible, false = invisible.
 		**/
-		void setButtons(int buttons);
-
+		virtual void setVisible(bool visible) = 0;
 
 		/**
-		* @brief Gets x.
-		* @return x.
+		* Returns true if the mouse is visible, false otherwise.
 		**/
-		float getX() const;
+		virtual bool isVisible() const = 0;
 
-
-		/**
-		* @brief Sets x.
-		* @param x 
-		**/
-		void setX(float x);
-
-
-		/**
-		* @brief Gets y.
-		* @return y.
-		**/
-		float getY() const;
-
-
-		/**
-		* @brief Sets y.
-		* @param y 
-		**/
-		void setY(float y);
-
-		/**
-		* 
-		* 
-		**/
-		void mousePressed(float x, float y, int state);
-
-		/**
-		* 
-		* 
-		**/
-		void mouseReleased(float x, float y, int state);
-
-		void mouseMoved(float x, float y);
-
-
-		void setVisible(bool visible);
-		bool isVisible() const;
-
-		bool isDown(int button) const;
-
-
-	};
-
-	typedef boost::shared_ptr<Mouse> pMouse;
+	}; // Mouse
 
 } // love
 
-#endif
-
+#endif // LOVE_MOUSE_H

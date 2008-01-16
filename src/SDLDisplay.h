@@ -1,38 +1,33 @@
-/**
-* @file SDLDisplay.h
-* @author Anders Ruud
-* @date 2007-08-17
-* @brief Contains definition for class SDLDisplay.
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
 #ifndef LOVE_SDL_DISPLAY_H
 #define LOVE_SDL_DISPLAY_H
 
 // LOVE
-#include "AbstractDisplay.h"
-#include "DisplayMode.h"
+#include "Display.h"
 
-// STL
-#include <string>
-
-// Boost
-#include <boost/shared_ptr.hpp>
-
-// SDL
-#include "SDL.h"
+// Forward declaring this.
+struct SDL_VideoInfo;
 
 namespace love
 {
 
+	// Forward declarations.
+	class Graphics;
+
 	/**
-	* @class SDLDisplay
-	* @version 1.0
-	* @since 1.0
+	* The SDL display device. For now, this also implies 
+	* OpenGL rendering context.
+	*
 	* @author Anders Ruud
 	* @date 2007-08-17
-	* @brief 
 	**/
-	class SDLDisplay : public AbstractDisplay
+	class SDLDisplay : public Display
 	{
 	private:
 
@@ -41,64 +36,19 @@ namespace love
 
 	public:
 
-		/**
-		* @brief Contructs an empty SDLDisplay.
-		**/
-		SDLDisplay();
 		virtual ~SDLDisplay();
 
-		/**
-		* @brief Inits the Display.
-		* @return LOVE_OK if no errors.
-		**/
-		virtual int init();
+		// From Device.
+		bool init(int argc, char* argv[]);
+		void quit();
 
-		/**
-		* @brief Checks if a display mode is supported.
-		* @param displayMode The DisplayMode to check.
-		* @returns 0 if supported, -1 on total fail, or a number representing 
-		* a supported color depth for the given resolution. (If any)
-		**/ 
-		virtual int isSupported(DisplayMode displayMode);
+		// From Display.
+		int isSupported(const display_mode & dm);
+		int tryChange(const display_mode & dm);
+		Graphics * getGraphics() const;
 
-		/**
-		* @brief Tries to change the display mode.
-		* @param displayMode The DisplayMode to change to.
-		* @return 0 if success, -1 on total fail, or another number representing 
-		* the amount of color bits we got.
-		**/
-		virtual int tryChange(DisplayMode displayMode);
-
-		/**
-		* @brief Gets a graphics context that is compatible with the current display.
-		* @return A graphics context.
-		**/
-		AbstractGraphics * getGraphics() const;
-
-		/**
-		* @brief Gets the width of the current display mode.
-		* @return The width of the current display mode.
-		**/
-		int getWidth() const;
-
-		/**
-		* @brief Gets the height of the current display mode.
-		* @return The height of the current display mode.
-		**/
-		int getHeight() const;
-
-		/**
-		* @brief Generates a caption for the window.
-		* @return The caption for the window.
-		**/
-		std::string makeCaption() const;
-
-
-	};
-
-	typedef boost::shared_ptr<SDLDisplay> pSDLDisplay;
+	}; // SDLDisplay
 
 } // love
 
-#endif
-
+#endif // LOVE_SDL_DISPLAY_H

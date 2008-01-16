@@ -1,7 +1,6 @@
 #include "Configuration.h"
-#include "Core.h"
-#include "love.h"
-#include "AbstractFile.h"
+
+#include "File.h"
 
 using std::ifstream;
 using std::istream;
@@ -19,11 +18,8 @@ string trim(string s, string drop = " ")
 
 namespace love
 {
-	Configuration::Configuration(string filepath) : filepath(filepath)
-	{
-	}
 
-	Configuration::Configuration(pAbstractFile file) : Resource(file), filepath("")
+	Configuration::Configuration(pFile file) : Resource(file), filepath("")
 	{
 	}
 
@@ -32,7 +28,7 @@ namespace love
 		unload();
 	}
 
-	int Configuration::load()
+	bool Configuration::load()
 	{
 		string temp, key, value;
 		int index ,line;
@@ -55,8 +51,8 @@ namespace love
 		
 		if(!ifs)
 		{
-			core->error("Configuration: ERROR! Could not read file '%s'.\n", filepath.c_str());
-			return LOVE_ERROR;
+			printf("Configuration: ERROR! Could not read file '%s'.\n", filepath.c_str());
+			return false;
 		}
 
 		line = 0;
@@ -65,7 +61,7 @@ namespace love
 			line++;
 			index = (int)temp.find_first_of('=', 0);
 			if(index == (int)string::npos)
-				core->printf("Configuration (Line %d): Unrecognized command: \"%s\"\n", line, temp.c_str());
+				printf("Configuration (Line %d): Unrecognized command: \"%s\"\n", line, temp.c_str());
 			if(index != (int)string::npos && temp.find_first_of('#', 0) != 0 && trim(temp).size() != 0)
 			{
 				key = trim(temp.substr(0, index));
@@ -80,13 +76,13 @@ namespace love
 					value.replace(i, src.size(), dest);
 				}
 
-				if(exists(key) && core->isVerbose())
-					core->printf("Configuration: Overwriting config entry '%s'.\n", key.c_str());
+				if(exists(key))
+					printf("Configuration: Overwriting config entry '%s'.\n", key.c_str());
 				data[key] = value;
 			}
 		}
 
-		return LOVE_OK;
+		return true;
 	}
 
 	void Configuration::unload()
@@ -180,19 +176,14 @@ namespace love
 			return false;
 	}
 
-	void Configuration::addString(string key, string value)
+	void Configuration::add(string key, string value)
 	{
 		std::stringstream ss;
 		ss << "\"" << value << "\"";
 		data[key] = ss.str();
 	}
 
-	void Configuration::add(string key, string value)
-	{
-		addString(key, value);
-	}
-
-	void Configuration::addBool(string key, bool value)
+	void Configuration::add(string key, bool value)
 	{
 		if(value)
 			data[key] = "true";
@@ -200,24 +191,7 @@ namespace love
 			data[key] = "false";
 	}
 
-	void Configuration::add(string key, bool value)
-	{
-		addBool(key, value);
-	}
-
-	void Configuration::addFloat(string key, float value)
-	{
-		std::stringstream ss;
-		ss << value;
-		data[key] = ss.str();
-	}
-
 	void Configuration::add(string key, float value)
-	{
-		addFloat(key, value);
-	}
-
-	void Configuration::addInt(string key, int value)
 	{
 		std::stringstream ss;
 		ss << value;
@@ -226,7 +200,9 @@ namespace love
 
 	void Configuration::add(string key, int value)
 	{
-		addInt(key, value);
+		std::stringstream ss;
+		ss << value;
+		data[key] = ss.str();
 	}
 
 	void Configuration::write()
@@ -234,7 +210,7 @@ namespace love
 		ofstream file(filepath.c_str(), std::ios::trunc);
 		if(!file)
 		{
-			core->error("Configuration: ERROR! Could not write to file '%s'.\n", filepath.c_str());
+			printf("Configuration: ERROR! Could not write to file '%s'.\n", filepath.c_str());
 			return;
 		}
 

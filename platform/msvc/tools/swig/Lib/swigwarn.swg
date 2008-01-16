@@ -21,7 +21,7 @@
  * numbers in this file.
  * ----------------------------------------------------------------------------- */
 
-/* $Header: /cvsroot/swig/SWIG/Source/Include/swigwarn.h,v 1.39 2006/03/06 22:50:56 wsfulton Exp $ */
+/* $Id: swigwarn.h 9906 2007-08-17 20:42:19Z wsfulton $ */
 
 
 %define SWIGWARN_NONE 0 %enddef
@@ -188,6 +188,7 @@
 %define SWIGWARN_LANG_OVERLOAD_IGNORED 516 %enddef
 %define SWIGWARN_LANG_DIRECTOR_ABSTRACT 517 %enddef
 %define SWIGWARN_LANG_PORTABILITY_FILENAME 518 %enddef
+%define SWIGWARN_LANG_TEMPLATE_METHOD_IGNORE 519 %enddef
 
 /* -- Reserved (600-799) -- */
 
@@ -229,6 +230,7 @@
 %define SWIGWARN_CSHARP_TYPEMAP_CSCONSTRUCT_UNDEF 843 %enddef
 %define SWIGWARN_CSHARP_EXCODE 844 %enddef
 %define SWIGWARN_CSHARP_CANTHROW 845 %enddef
+%define SWIGWARN_CSHARP_NO_DIRECTORCONNECT_ATTR 846 %enddef
 
 
 %define SWIGWARN_MODULA3_TYPEMAP_TYPE_UNDEF 850 %enddef
@@ -245,15 +247,12 @@
 
 /* please leave 850-869 free for Modula 3 */
 
+%define SWIGWARN_PHP4_MULTIPLE_INHERITANCE 870 %enddef
+%define SWIGWARN_PHP4_UNKNOWN_PRAGMA 871 %enddef
 
 /* please leave 870-889 free for Php */
-%define SWIGWARN_PHP4_MULTIPLE_INHERITANCE 870 %enddef
-
 
 
 /* Feel free to claim any number in this space that's not currently being used. Just make sure you
    add an entry here */
-
-
-
 

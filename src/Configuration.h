@@ -1,43 +1,48 @@
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
+
 #ifndef LOVE_CONFIGURATION_H
 #define LOVE_CONFIGURATION_H
 
+// LOVE
+#include "Resource.h"
+
+// STD
 #include <string>
 #include <vector>
 #include <fstream>
 #include <sstream>
 #include <map>
-#include <boost/shared_ptr.hpp>
 
-#include "Resource.h"
-#include "Loadable.h"
 
 namespace love
 {
 	/**
-	* @class Configuration
-	* @version 1.0
-	* @since 1.0
+	* Handles the config files that accompanies every game.
+	*
 	* @author Michael Enger
 	* @date 2007-03-03
-	* @brief Handles the config files that accompanies every game.
 	**/
-	class Configuration : public Resource, public Loadable
+	class Configuration : public Resource
 	{
 	private:
 		std::map<std::string, std::string> data; // the configuration data
 		std::string filepath; // path to a file to load
 
 	public:
+
 		/**
 		 * @param filepath The path to the config file.
 		 * @brief Sets the local private filepath variable.
 		 **/
-		Configuration();
-		Configuration(std::string filepath);
-		Configuration(pAbstractFile file);
+		Configuration(pFile file);
 		~Configuration();
 
-		virtual int load();
+		virtual bool load();
 		virtual void unload();
 
 		/**
@@ -108,7 +113,6 @@ namespace love
 		 * @param value The string itself.
 		 * @brief If the key does not already exist in the list, it is replaced by the new value
 		 **/
-		void addString(std::string key, std::string value);
 		void add(std::string key, std::string value);
 
 		/**
@@ -116,7 +120,6 @@ namespace love
 		 * @param value The boolean itself.
 		 * @brief If the key does not already exist in the list, it is replaced by the new value
 		 **/
-		void addBool(std::string key, bool value);
 		void add(std::string key, bool value);
 
 		/**
@@ -124,7 +127,6 @@ namespace love
 		 * @param value The number itself.
 		 * @brief If the key does not already exist in the list, it is replaced by the new value
 		 **/
-		void addFloat(std::string key, float value);
 		void add(std::string key, float value);
 
 		/**
@@ -132,16 +134,15 @@ namespace love
 		 * @param value The number itself.
 		 * @brief If the key does not already exist in the list, it is replaced by the new value
 		 **/
-		void addInt(std::string key, int value);
 		void add(std::string key, int value);
 
 		/**
 		 * @brief Writes the config keys and values to a file.
 		 **/
 		void write();
-	};
 
-	typedef boost::shared_ptr<Configuration> pConfiguration;
-}
+	}; // Configuration
 
-#endif
+} // love
+
+#endif // LOVE_CONFIGURATION_H

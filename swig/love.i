@@ -1,105 +1,19 @@
-// File: love.i
+/* File : love.i */
 %module love
 
-// Include constants
-%include love_constants.i
-
-// Ignore things here.
-%ignore love::Scriptable;
-%ignore love::Loadable;
-%ignore love::Entity.h;
-%ignore love::VisualEntity.h;
-%ignore love::Renderable.h;
-%ignore love::Listener.h;
-%ignore love::MouseListener.h;
-%ignore love::KeyListener.h;
-
-// Do not generate default constructors.
-%nodefaultctor;
-
-// Headers
-%{
-
-#include "love.h"
-#include "lualove_globals.h"
-
-#include "ObjectFactory.h"
-#include "AbstractGraphics.h"
-#include "AbstractAudio.h"
-
-#include "AbstractState.h"
-#include "ActorState.h"
-#include "ScriptableActorState.h"
-#include "Actor.h"
-
-#include "Particle.h"
-#include "ScriptableParticle.h"
-#include "ParticleEmitter.h"
-
-#include "AbstractColor.h"
-#include "Color.h"
-#include "AnimatedColor.h"
-#include "AbstractFont.h"
-#include "AbstractFont.h"
-#include "Text.h"
-
-#include "love_globals.h"
-#include "Container.h"
-#include "Object.h"
-#include "Vector.h"
-#include "Listener.h"
-#include "MouseListener.h"
-#include "KeyListener.h"
-#include "Updateable.h"
-#include "Renderable.h"
-#include "AbstractEntity.h"
-#include "Entity.h"
-#include "VisualEntity.h"
-#include "ParticleSystem.h"
-
-#include "AbstractSound.h" 
-#include "AbstractMusic.h"
-#include "AbstractDisplay.h"
-
-#include "Keyboard.h"
-#include "Mouse.h"
-
-#include "Game.h"
-#include "LuaGame.h"
-#include "Timer.h"
-#include "DisplayMode.h"
-
-#include "AbstractImage.h"
-#include "FrameAnimation.h"
-
-#include "Padded.h"
-#include "GUIElement.h"
-#include "Button.h"
-#include "DropDown.h"
-#include "Label.h"
-#include "MultilineLabel.h"
-#include "TextField.h"
-#include "RadioButton.h"
-#include "CheckBox.h"
-#include "Slider.h"
-#include "ListBox.h"
-#include "TextBox.h"
-#include "AbstractMenu.h"
-//#include "Menu.h"
-#include "GUIContainer.h"
-//#include "AbstractGUI.h"
-
-#include "Bezier.h"
-
-#include "GUIEvent.h"
-#include "MessageEvent.h"
-
-using namespace love;
-
-
+%runtime %{
 %}
 
-// SWIG needs this to wrap boost::shared_ptr.
+%header %{
+%}
+
+%wrapper %{
+%}
+
+%init %{
+%}
+
+// Wrap boost::shared_ptr.
 namespace boost {
   template<class T> class shared_ptr
   {
@@ -108,85 +22,35 @@ namespace boost {
   };
 }
 
+%include Color.i
 
-%include "Updateable.i"
+%include Device.i
 
-// Big daddy superclass.
-%include "Object.i"
+// Graphical
+%include Font.i
+%include Sprite.i
+%include Image.i
+%include Particlesystem.i
+%include Graphics.i
 
-// Input devices
-%include "Keyboard.i"
-%include "Mouse.i"
+// Audio
+%include Sound.i
+%include Music.i
+%include Audio.i
 
-// Graphics, etc
-%include "AbstractEntity.i"
-%include "Sprite.i"
-%include "AbstractImage.i"
-%include "FrameAnimation.i"
-%include "AbstractFont.h"
-%include "AbstractColor.h"
+// Filesystem
+%include Filesystem.i
 
-// GUI
-%include "Padded.h"
-%include "GUIElement.i"
-%include "Button.i"
-%include "DropDown.i"
-%include "Label.i"
-%include "MultilineLabel.i"
-%include "TextField.i"
-%include "RadioButton.i"
-%include "CheckBox.i"
-%include "Slider.i"
-%include "ListBox.i"
-%include "TextBox.i"
-%include "AbstractMenu.i"
-//%include "Menu.h" // AbstractMenu should take care of all Menu needs
-%include "GUIContainer.i"
-//%include "AbstractGUI.h" // This is (apparently) not needed. Uncomment if death occurs.
+%include Timer.i
+%include Mouse.i
+%include Keyboard.i
 
-%include "ParticleSystem.h"
+// Constants
+%include love_constants.i
 
-%include "Timer.h"
-%include "DisplayMode.h"
+// Global "devices".
+// These eventually end up as love.graphics, love.audio, etc.
+%include love_devices.i
 
-%include "LuaGame.h"
-
-// Visuals
-%include "AbstractDisplay.h"
-%include "AbstractGraphics.i"
-
-// Sound
-%include "AbstractSound.i"
-%include "AbstractMusic.i"
-%include "AbstractAudio.i"
-
-%include "ObjectFactory.h"
-
-%include "Event.h"
-%include "GUIEvent.h"
-%include "MessageEvent.h"
-
-// Holds all the love.-interfaces.
-// (love.graphics, love.audio, etc)
-%include "lualove_globals.h"
-
-%template(SmartDisplay) boost::shared_ptr<love::AbstractDisplay>;
-%template(SmartAbstractColor) boost::shared_ptr<love::AbstractColor>;
-// %template(SmartColor) boost::shared_ptr<love::Color>;
-%template(SmartAbstractFont) boost::shared_ptr<love::AbstractFont>;
-// %template(SmartFont) boost::shared_ptr<love::Font>;
-%template(SmartParticleSystem) boost::shared_ptr<love::ParticleSystem>;
-%template(SmartBezier) boost::shared_ptr<love::Bezier>;
-// GUI stuff
-%template(SmartMenu) boost::shared_ptr<love::AbstractMenu>;
-%template(SmartLabel) boost::shared_ptr<love::Label>;
-%template(SmartMultilineLabel) boost::shared_ptr<love::MultilineLabel>;
-%template(SmartButton) boost::shared_ptr<love::Button>;
-%template(SmartTextField) boost::shared_ptr<love::TextField>;
-%template(SmartDropDown) boost::shared_ptr<love::DropDown>;
-%template(SmartRadioButton) boost::shared_ptr<love::RadioButton>;
-%template(SmartCheckBox) boost::shared_ptr<love::CheckBox>;
-%template(SmartSlider) boost::shared_ptr<love::Slider>;
-%template(SmartListBox) boost::shared_ptr<love::ListBox>;
-%template(SmartTextBox) boost::shared_ptr<love::TextBox>;
-
+// love.objects
+%include objects.i

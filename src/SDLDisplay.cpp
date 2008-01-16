@@ -1,38 +1,29 @@
 #include "SDLDisplay.h"
-#include "love.h"
-#include "DisplayModeListener.h"
+
+// LOVE
+#include "love_version.h"
 #include "OpenGLGraphics.h"
+#include "using_gl.h"
 
-#include "SDL/SDL.h"
-#include "GLee.h"
-#include "SDL/SDL_opengl.h"
-#include "SDL_image.h"
-
+// STD
 #include <sstream>
-#include <string>
-
-using std::stringstream;
-using std::string;
 
 namespace love
 {
-
-	SDLDisplay::SDLDisplay()
-	{
-	}
-
+	
 	SDLDisplay::~SDLDisplay()
 	{
+		quit();
 	}
 
-	int SDLDisplay::init()
+	bool SDLDisplay::init(int argc, char* argv[])
 	{
 	
 		// Try to init SDL_video subsystem
 		if(SDL_InitSubSystem(SDL_INIT_VIDEO) < 0)
 		{
 			printf("Could not init SDL_VIDEO: %s\n", SDL_GetError());
-			return LOVE_ERROR;
+			return false;
 		}
 
 		// Get the video info 
@@ -41,42 +32,45 @@ namespace love
 		if(!video)
 		{
 			printf("Could not get video information: %s\n", SDL_GetError());
-			return LOVE_ERROR;
+			return false;
 		}
 
 		// Set caption
-		SDL_WM_SetCaption(makeCaption().c_str(), 0);
+		std::string title = "LOVE ";
+		title += version_string();
+		SDL_WM_SetCaption(title.c_str(), 0);
 
-		// Set window icon.
-		//SDL_Surface* icon = IMG_Load("love16x16.png");
-		//SDL_WM_SetIcon(icon, NULL);
-
-		return LOVE_OK;
+		return true;
 	}
 
-	int SDLDisplay::isSupported(DisplayMode displayMode)
+	void SDLDisplay::quit()
+	{
+		SDL_QuitSubSystem(SDL_INIT_VIDEO);		
+	}
+
+	int SDLDisplay::isSupported(const display_mode & dm)
 	{
 
-		Uint32 sdlflags = displayMode.isFullscreen() ? (SDL_OPENGL | SDL_FULLSCREEN) : SDL_OPENGL;
+		Uint32 sdlflags = dm.fullscreen ? (SDL_OPENGL | SDL_FULLSCREEN) : SDL_OPENGL;
 
 		// Check if mode is supported
-		int bpp = SDL_VideoModeOK(displayMode.getWidth(), displayMode.getHeight(), displayMode.getColorDepth(), sdlflags);
+		int bpp = SDL_VideoModeOK(dm.width, dm.height, dm.color_depth, sdlflags);
 
 		if(bpp == 0)
 		{
 			printf("Video mode is not supported.");
-			return LOVE_ERROR;
+			return -1;
 		}
 
 		// Check if mode is supported
-		if(bpp == displayMode.getColorDepth())
-			return LOVE_OK;
+		if(bpp == dm.color_depth)
+			return 0;
 
 		// Otherwise, return the color depth
 		return bpp;
 	}
 
-	int SDLDisplay::tryChange(DisplayMode displayMode)
+	int SDLDisplay::tryChange(const display_mode & dm)
 	{
 
 		// Set GL attributes
@@ -84,29 +78,29 @@ namespace love
 		SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 0);
 		SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 0);
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-		//SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, (displayMode.isVsync() ? 1 : 0));
-		SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
+		SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, (dm.vsync ? 1 : 0));
+		//SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
 
 		// FSAA
-		if(displayMode.getFSAA() > 0)
+		if(dm.fsaa > 0)
 		{
 			SDL_GL_SetAttribute( SDL_GL_MULTISAMPLEBUFFERS, 1 ) ;
-			SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, displayMode.getFSAA() ) ;
+			SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, dm.fsaa ) ;
 		}
 
 		// Fullscreen?
-		Uint32 sdlflags = displayMode.isFullscreen() ? (SDL_OPENGL | SDL_FULLSCREEN) : SDL_OPENGL;
+		Uint32 sdlflags = dm.fullscreen ? (SDL_OPENGL | SDL_FULLSCREEN) : SDL_OPENGL;
 
 
 		// Have SDL set the video mode.
-		if(SDL_SetVideoMode(displayMode.getWidth(), displayMode.getHeight(), displayMode.getColorDepth(), sdlflags ) == 0)
+		if(SDL_SetVideoMode(dm.width, dm.height, dm.color_depth, sdlflags ) == 0)
 		{
 			printf("Could not set video mode: %s\n", SDL_GetError());
-			return LOVE_ERROR;
+			return 1;
 		}
 
 		// Check if FSAA failed or not
-		if(displayMode.getFSAA() > 0)
+		if(dm.fsaa > 0)
 		{
 			int buffers;
 			int samples;
@@ -115,7 +109,7 @@ namespace love
 			glGetIntegerv( GL_SAMPLES_ARB, & samples ) ;
 
 			// Don't fail because of this, but issue a warning.
-			if ( ! buffers || (samples != displayMode.getFSAA()))
+			if ( ! buffers || (samples != dm.fsaa))
 				printf("Warning, quality setting failed! (Result: buffers: %i, samples: %i)\n", buffers, samples);
 		}
 
@@ -139,60 +133,29 @@ namespace love
 		glEnable(GL_TEXTURE_2D);	
 
 		// Set the viewport to top-left corner
-		glViewport(0,0, displayMode.getWidth(), displayMode.getHeight());
+		glViewport(0,0, dm.width, dm.height);
 
 		// Reset the projection matrix
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 
 		// Set up orthographic view (no depth)
-		glOrtho(0.0, displayMode.getWidth(),displayMode.getHeight(),0.0, -1.0, 1.0);
+		glOrtho(0.0, dm.width,dm.height,0.0, -1.0, 1.0);
 
 		// Reset modelview matrix
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 
 		// Set the new display mode as the current display mode
-		currentDisplayMode = displayMode;
+		current = dm;
 
-		// Let the listener know that we changed mode
-		if(listener != 0) 
-			listener->displayModeChanged();
-
-		return LOVE_OK;
+		return 0;
 
 	}
 
-
-	AbstractGraphics * SDLDisplay::getGraphics() const
+	Graphics * SDLDisplay::getGraphics() const
 	{
 		return new OpenGLGraphics();
 	}
-
-	int SDLDisplay::getWidth() const
-	{
-		return currentDisplayMode.getWidth();
-	}
-
-	int SDLDisplay::getHeight() const
-	{
-		return currentDisplayMode.getHeight();
-	}
-
-	std::string SDLDisplay::makeCaption() const
-	{
-		// Create caption
-		stringstream s;
-		s << "LOVE ";
-		s << LOVE_MAJOR_VERSION;
-		s << ".";
-		s << LOVE_MINOR_VERSION;
-		s << ".";
-		s << LOVE_REVISION;
-		s << "b";
-		
-		return s.str();
-	}
-
 
 }// love

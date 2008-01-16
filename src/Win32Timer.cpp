@@ -1,5 +1,7 @@
 #include "Win32Timer.h"
 
+#include <stdio.h>
+
 namespace love
 {
 
@@ -37,9 +39,9 @@ namespace love
 		float seconds =  ((float)currentTime.QuadPart - (float)s_lastTime.QuadPart) / (float)pc_frequency.QuadPart;
 
 		// Update FPS?
-		if(((float)currentTime.QuadPart - (float)prev_fps_update.QuadPart) / (float)pc_frequency.QuadPart > getFpsUpdateFrequency())
+		if(((float)currentTime.QuadPart - (float)prev_fps_update.QuadPart) / (float)pc_frequency.QuadPart > fpsUpdateFrequency)
 		{
-			setFps(frames/getFpsUpdateFrequency());
+			fps = frames/fpsUpdateFrequency;
 			prev_fps_update = currentTime;
 			frames = 0;
 		}
@@ -53,6 +55,19 @@ namespace love
 
 		return seconds;
 	}
+
+	void Win32Timer::startBenchmark()
+	{
+		QueryPerformanceCounter(&bench_start);
+	}
+
+	float Win32Timer::endBenchmark()
+	{
+		QueryPerformanceCounter(&bench_end);
+		return ((float)bench_end.QuadPart - (float)bench_start.QuadPart) / (float)pc_frequency.QuadPart;
+		
+	}
+
 
 
 }// love

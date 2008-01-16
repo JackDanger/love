@@ -9,91 +9,46 @@
 #define LOVE_SDLMIXERMUSIC_H 
 
 // LOVE
-#include "AbstractMusic.h"
-
-// STL
-
-// Boost
-#include <boost/shared_ptr.hpp>
+#include "Music.h"
 
 // SDL_mixer
 #define USE_RWOPS
-#include "SDL_mixer.h"
+#include <SDL_mixer.h>
 
 namespace love
 {
 
-	class AbstractFile;
-
 	/**
-	* @class SDLMixerMusic
-	* @version 1.0
-	* @since 1.0
+	* 
 	* @author Michael Enger
 	* @date 2007-08-19
-	* @brief 
 	**/
-	class SDLMixerMusic : public AbstractMusic
+	class SDLMixerMusic : public Music
 	{
 	private:
 	
 		// The music data used by SDL_mixer
-		Mix_Music * music;
+		_Mix_Music * music;
 
 	public:
 	
 		/**
-		* @brief Constructs an empty SDLMixerMusic.
+		* Creates new Music from the given file.
 		**/
-		SDLMixerMusic(pAbstractFile file);
+		SDLMixerMusic(pFile file);
 		
-		/**
-		* @brief Destructor.
-		**/
 		virtual ~SDLMixerMusic();
 
-		/**
-		* @brief Plays the music.
-		* @param loop Amount of loops. Default is forever.
-		**/
-		void play(int loop = -1);
+		// From Music
+		void play(int loop = 1);
 
-		/**
-		* @brief Pauses music playback.
-		**/
-		void pause();
-
-		/**
-		* @brief Resumes music playback.
-		**/
-		void resume();
-
-		/**
-		* @brief Stops music playback.
-		**/
-		void stop();
-
-		/**
-		* @brief Rewinds the music.
-		**/
-		void rewind();
-
-		/**
-		* @brief Loads the music.
-		* @return LOVE_OK if no errors.
-		**/
-		int load();
-
-		/**
-		* @brief Unloads the music.
-		**/
+		// From Resource.
+		bool load();
 		void unload();
 
 		
 	}; // SDLMixerMusic
 	
-	typedef boost::shared_ptr<SDLMixerMusic> pSDLMixerMusic;
-	
 } // love
 
-#endif
+#endif // LOVE_SDLMIXERMUSIC_H

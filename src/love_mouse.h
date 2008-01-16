@@ -1,12 +1,14 @@
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
+
+// Contains mouse globals.
+
 #ifndef LOVE_MOUSE_GLOBALS_H
 #define LOVE_MOUSE_GLOBALS_H
-
-/**  
-* @file love_mouse.h
-* @brief Contains mouse related globals.
-* @date 2006-12-01
-* @author Anders Ruud
-**/    
 
 namespace love  
 {    
@@ -15,11 +17,12 @@ namespace love
 	{
 		LOVE_MOUSE_LEFT = 1,
 		LOVE_MOUSE_MIDDLE = 2,
-		LOVE_MOUSE_RIGHT = 4,
-		LOVE_MOUSE_WHEELUP = 8,
-		LOVE_MOUSE_WHEELDOWN = 16
+		LOVE_MOUSE_RIGHT = 3,
+		LOVE_MOUSE_WHEELUP = 4,
+		LOVE_MOUSE_WHEELDOWN = 5, 
+		LOVE_MOUSE_NUM
 	};
 
 } // love
 
-#endif
+#endif // LOVE_MOUSE_GLOBALS_H

@@ -1,9 +1,8 @@
 #include "AnimatedColor.h"
-#include "Color.h"
 
 namespace love
 {
-	AnimatedColor::AnimatedColor(int mode)
+	AnimatedColor::AnimatedColor(int mode) : Color(255, 255, 255, 255)
 	{
 		//current = Color(0xFFFFFF);
 		red = blue = green = alpha = 255;
@@ -39,8 +38,6 @@ namespace love
 
 		temp = (temp - elapsed) / times[cur];
 
-		temp = map(temp);
-
 		int next = cur;
 		if(cur == (int)colors.size() - 1)
 			next = 0;
@@ -48,10 +45,10 @@ namespace love
 			next = next + 1;
 
 		//int red, green, blue, alpha;
-		red = (int)(colors[next]->getRed() + ((colors[cur]->getRed() - colors[next]->getRed()) * temp));
-		green = (int)(colors[next]->getGreen() + ((colors[cur]->getGreen() - colors[next]->getGreen()) * temp));
-		blue = (int)(colors[next]->getBlue() + ((colors[cur]->getBlue() - colors[next]->getBlue()) * temp));
-		alpha = (int)(colors[next]->getAlpha() + ((colors[cur]->getAlpha() - colors[next]->getAlpha()) * temp));
+		red = (int)(colors[next].getRed() + ((colors[cur].getRed() - colors[next].getRed()) * temp));
+		green = (int)(colors[next].getGreen() + ((colors[cur].getGreen() - colors[next].getGreen()) * temp));
+		blue = (int)(colors[next].getBlue() + ((colors[cur].getBlue() - colors[next].getBlue()) * temp));
+		alpha = (int)(colors[next].getAlpha() + ((colors[cur].getAlpha() - colors[next].getAlpha()) * temp));
 
 		//current.setColor(red, green, blue, alpha);
 	}
@@ -62,10 +59,10 @@ namespace love
 
 		if(elapsed > (total - times[times.size()-1]))
 		{
-			red = colors[colors.size()-1]->getRed();
-			green = colors[colors.size()-1]->getGreen();
-			blue = colors[colors.size()-1]->getBlue();
-			alpha = colors[colors.size()-1]->getAlpha();
+			red = colors[colors.size()-1].getRed();
+			green = colors[colors.size()-1].getGreen();
+			blue = colors[colors.size()-1].getBlue();
+			alpha = colors[colors.size()-1].getAlpha();
 			stop();
 			return;
 		}
@@ -84,8 +81,6 @@ namespace love
 
 		temp = (temp - elapsed) / times[cur];
 
-		temp = map(temp);
-
 		int next = cur;
 		if(cur == (int)colors.size() - 1)
 			next = 0;
@@ -93,10 +88,10 @@ namespace love
 			next = next + 1;
 
 		//int red, green, blue, alpha;
-		red = (int)(colors[next]->getRed() + ((colors[cur]->getRed() - colors[next]->getRed()) * temp));
-		green = (int)(colors[next]->getGreen() + ((colors[cur]->getGreen() - colors[next]->getGreen()) * temp));
-		blue = (int)(colors[next]->getBlue() + ((colors[cur]->getBlue() - colors[next]->getBlue()) * temp));
-		alpha = (int)(colors[next]->getAlpha() + ((colors[cur]->getAlpha() - colors[next]->getAlpha()) * temp));
+		red = (int)(colors[next].getRed() + ((colors[cur].getRed() - colors[next].getRed()) * temp));
+		green = (int)(colors[next].getGreen() + ((colors[cur].getGreen() - colors[next].getGreen()) * temp));
+		blue = (int)(colors[next].getBlue() + ((colors[cur].getBlue() - colors[next].getBlue()) * temp));
+		alpha = (int)(colors[next].getAlpha() + ((colors[cur].getAlpha() - colors[next].getAlpha()) * temp));
 
 		//current.setColor(red, green, blue, alpha);
 	}
@@ -137,8 +132,6 @@ namespace love
 
 		temp = (temp - elapsed) / times[cur];
 
-		temp = map(temp);
-
 		int next = cur;
 		if(direction)
 		{
@@ -153,30 +146,25 @@ namespace love
 		}
 
 		//int red, green, blue, alpha;
-		red = (int)(colors[next]->getRed() + ((colors[cur]->getRed() - colors[next]->getRed()) * temp));
-		green = (int)(colors[next]->getGreen() + ((colors[cur]->getGreen() - colors[next]->getGreen()) * temp));
-		blue = (int)(colors[next]->getBlue() + ((colors[cur]->getBlue() - colors[next]->getBlue()) * temp));
-		alpha = (int)(colors[next]->getAlpha() + ((colors[cur]->getAlpha() - colors[next]->getAlpha()) * temp));
+		red = (int)(colors[next].getRed() + ((colors[cur].getRed() - colors[next].getRed()) * temp));
+		green = (int)(colors[next].getGreen() + ((colors[cur].getGreen() - colors[next].getGreen()) * temp));
+		blue = (int)(colors[next].getBlue() + ((colors[cur].getBlue() - colors[next].getBlue()) * temp));
+		alpha = (int)(colors[next].getAlpha() + ((colors[cur].getAlpha() - colors[next].getAlpha()) * temp));
 
 		//current.setColor(red, green, blue, alpha);
 	}
 
-	float AnimatedColor::map(float t)
-	{
-		return t;
-	}
-
-	void AnimatedColor::addColor(const pAbstractColor * color, float time)
+	void AnimatedColor::addColor(const pColor & color, float time)
 	{
 		if(colors.size() == 0)
 		{
-			red = (*color)->getRed();
-			green = (*color)->getGreen();
-			blue = (*color)->getBlue();
-			alpha = (*color)->getAlpha();
+			red = (*color.get()).getRed();
+			green = (*color.get()).getGreen();
+			blue = (*color.get()).getBlue();
+			alpha = (*color.get()).getAlpha();
 		}
 
-		colors.push_back((*color));
+		colors.push_back((*color.get()));
 		times.push_back(time);
 
 		total = 0;
@@ -194,8 +182,7 @@ namespace love
 			alpha = a;
 		}
 
-		pColor clr(new Color(r, g, b, a));
-		colors.push_back(clr);
+		colors.push_back(Color(r, g, b, a));
 		times.push_back(time);
 
 		total = 0;
@@ -203,13 +190,13 @@ namespace love
 			total += times[i];
 	}
 
-	pAbstractColor AnimatedColor::getColor()
+	pColor AnimatedColor::getColor()
 	{
 		pColor temp(new Color(red, green, blue, alpha));
 		return temp;
 	}
 
-	pAbstractColor AnimatedColor::getColor(float time)
+	pColor AnimatedColor::getColor(float time)
 	{
 		//clamp t
 		time = (time < 0) ? 0 : time;
@@ -239,8 +226,6 @@ namespace love
 
 		temp = (temp - elap) / times[cur];
 
-		temp = map(temp);
-
 		next = cur;
 		if(cur == (int)colors.size() - 1)
 			next = next;
@@ -248,10 +233,10 @@ namespace love
 			next = next + 1;
 
 		//int red, green, blue, alpha;
-		color->setRed( (int)(colors[next]->getRed() + ((colors[cur]->getRed() - colors[next]->getRed()) * temp)) );
-		color->setGreen( (int)(colors[next]->getGreen() + ((colors[cur]->getGreen() - colors[next]->getGreen()) * temp)) );
-		color->setBlue( (int)(colors[next]->getBlue() + ((colors[cur]->getBlue() - colors[next]->getBlue()) * temp)) );
-		color->setAlpha( (int)(colors[next]->getAlpha() + ((colors[cur]->getAlpha() - colors[next]->getAlpha()) * temp)) );
+		color->red = (int)(colors[next].getRed() + ((colors[cur].getRed() - colors[next].getRed()) * temp));
+		color->green = (int)(colors[next].getGreen() + ((colors[cur].getGreen() - colors[next].getGreen()) * temp));
+		color->blue = (int)(colors[next].getBlue() + ((colors[cur].getBlue() - colors[next].getBlue()) * temp));
+		color->alpha = (int)(colors[next].getAlpha() + ((colors[cur].getAlpha() - colors[next].getAlpha()) * temp));
 
 		return color;
 	}
@@ -277,10 +262,10 @@ namespace love
 		elapsed = 0;
 		if(colors.size() != 0)
 		{
-			red = colors[0]->getRed();
-			green = colors[0]->getGreen();
-			blue = colors[0]->getBlue();
-			alpha = colors[0]->getAlpha();
+			red = colors[0].getRed();
+			green = colors[0].getGreen();
+			blue = colors[0].getBlue();
+			alpha = colors[0].getAlpha();
 		}
 		direction = true;
 	}
@@ -289,10 +274,10 @@ namespace love
 	{
 		if(colors.size() == 1) //only one color?
 		{
-			red = colors[0]->getRed(); //then no gradient for you
-			green = colors[0]->getGreen();
-			blue = colors[0]->getBlue();
-			alpha = colors[0]->getAlpha();
+			red = colors[0].getRed(); //then no gradient for you
+			green = colors[0].getGreen();
+			blue = colors[0].getBlue();
+			alpha = colors[0].getAlpha();
 			return;
 		}
 
@@ -313,54 +298,5 @@ namespace love
 		default:
 			loop(dt);
 		}
-	}
-
-	void AnimatedColor::setColor(float t)
-	{
-		// Clamp t
-		t = (t < 0) ? 0 : t;
-		t = (t > 1) ? 1 : t;
-
-		if(t == 1.0f)
-		{
-			this->red = colors.back()->getRed();
-			this->green = colors.back()->getRed();
-			this->blue = colors.back()->getRed();
-			this->alpha = colors.back()->getRed();
-			return;
-		}
-
-		// This t value corresponds to this much time
-		float total = (this->total - times[times.size()-1]);
-		float time = total * t;
-		float min = 0;
-		float max = 0;
-
-		// Which color segment are we on?
-
-		int size = (int)times.size() - 1;
-
-		for(int i=0;i<size;i++)
-		{
-			max += times[i];
-			
-			if(time >= min && time <= max)
-			{
-				// Found it ... find dt for this color segment
-				float dt = time/max;
-
-				// Calculate color
-				this->red = (int)(colors[i]->getRed() + (colors[i+1]->getRed() - colors[i]->getRed()) * dt);
-				this->green = (int)(colors[i]->getGreen() + (colors[i+1]->getGreen() - colors[i]->getGreen()) * dt);
-				this->blue = (int)(colors[i]->getBlue() + (colors[i+1]->getBlue() - colors[i]->getBlue()) * dt);
-				this->alpha = (int)(colors[i]->getAlpha() + (colors[i+1]->getAlpha() - colors[i]->getAlpha()) * dt);
-
-				return;
-			}
-
-			min = max;
-
-		}
-
 	}
 }

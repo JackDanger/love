@@ -1,63 +1,63 @@
 #include "Display.h"
 
-using std::vector;
-
 namespace love
 {
-
-	Display::Display()
-	{
-	}
-
+	
 	Display::~Display()
 	{
 	}
 
-	const vector<pDisplayMode> & Display::getDisplayModes() const
+	const display_mode & Display::getCurrent() const
 	{
-		return displayModes;
+		return current;
 	}
 
-	const pDisplayMode & Display::getCurrentDisplayMode() const
+	int Display::toggleVSync()
 	{
-		return currentDisplayMode;
+		display_mode d = current;
+		d.vsync = !current.vsync;
+		return tryChange(d);
 	}
 
-	void Display::setCurrentDisplayMode(pDisplayMode currentDisplayMode)
+	int Display::toggleFullscreen()
 	{
-		this->currentDisplayMode = currentDisplayMode;
+		display_mode d = current;
+		d.fullscreen = !current.fullscreen;
+		return tryChange(d);
 	}
 
-
-	void Display::queueMode(pDisplayMode displayMode)
+	int Display::tryChange(int width, int height, int clr, bool fullscreen, bool vsync, int fsaa)
 	{
-		displayModes.push_back(displayMode);
+		display_mode dm;
+		dm.width = width;
+		dm.height = height;
+		dm.color_depth = clr;
+		dm.fullscreen = fullscreen;
+		dm.vsync = vsync;
+		dm.fsaa = fsaa;
+		return tryChange(dm);
 	}
 
-	void Display::queueMode(int width, int height, int colorDepth, bool fullscreen, bool vsync)
+	int Display::tryResize(const display_mode & dm)
 	{
-		pDisplayMode pdm(new DisplayMode(width, height, colorDepth, fullscreen, vsync));
-		displayModes.push_back(pdm);
+		display_mode d = current;
+		d.width = dm.width;
+		d.height = dm.height;
+		d.fullscreen = current.fullscreen;
+		d.vsync = current.vsync;
+		d.fsaa = current.fsaa;
+		return tryChange(d);
 	}
 
 	int Display::getWidth() const
 	{
-		return currentDisplayMode->getWidth();
+		return current.width;
 	}
 
 	int Display::getHeight() const
 	{
-		return currentDisplayMode->getHeight();
+		return current.height;
 	}
 
-	int Display::getColorDepth() const
-	{
-		return currentDisplayMode->getColorDepth();
-	}
-
-	bool Display::isFullscreen() const
-	{
-		return currentDisplayMode->isFullscreen();
-	}
 
 }// love

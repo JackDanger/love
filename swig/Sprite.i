@@ -1,10 +1,15 @@
+%{#include "Sprite.h"%}
+
 namespace love
 {
-	class Sprite : public AbstractEntity, public Loadable
+	class Sprite
 	{
 	public:
-	float getWidth() const;
-	float getHeight() const;
+		float getWidth() const;
+		float getHeight() const;
+		float getAlpha() const;
+		void setAlpha(float alpha);
+		virtual void update(float dt) = 0;
 	};
 	
 	typedef boost::shared_ptr<Sprite> pSprite;

@@ -12,7 +12,7 @@
  * structures together.
  *
  * The generated swig_type_info structures are assigned staticly to an initial 
- * array. We just loop though that array, and handle each type individually.
+ * array. We just loop through that array, and handle each type individually.
  * First we lookup if this type has been already loaded, and if so, use the
  * loaded structure instead of the generated one. Then we have to fill in the
  * cast linked list. The cast data is initially stored in something like a
@@ -50,32 +50,49 @@ extern "C" {
 #define SWIGRUNTIME_DEBUG
 #endif
 
+
 SWIGRUNTIME void
 SWIG_InitializeModule(void *clientdata) {
   size_t i;
-  swig_module_info *module_head;
-  static int init_run = 0;
+  swig_module_info *module_head, *iter;
+  int found;
 
   clientdata = clientdata;
 
-  if (init_run) return;
-  init_run = 1;
-
-  /* Initialize the swig_module */
-  swig_module.type_initial = swig_type_initial;
-  swig_module.cast_initial = swig_cast_initial;
+  /* check to see if the circular list has been setup, if not, set it up */
+  if (swig_module.next==0) {
+    /* Initialize the swig_module */
+    swig_module.type_initial = swig_type_initial;
+    swig_module.cast_initial = swig_cast_initial;
+    swig_module.next = &swig_module;
+  }
 
   /* Try and load any already created modules */
   module_head = SWIG_GetModule(clientdata);
-  if (module_head) {
+  if (!module_head) {
+    /* This is the first module loaded for this interpreter */
+    /* so set the swig module into the interpreter */
+    SWIG_SetModule(clientdata, &swig_module);
+    module_head = &swig_module;
+  } else {
+    /* the interpreter has loaded a SWIG module, but has it loaded this one? */
+    found=0;
+    iter=module_head;
+    do {
+      if (iter==&swig_module) {
+        found=1;
+        break;
+      }
+      iter=iter->next;
+    } while (iter!= module_head);
+
+    /* if the is found in the list, then all is done and we may leave */
+    if (found) return;
+    /* otherwise we must add out module into the list */
     swig_module.next = module_head->next;
     module_head->next = &swig_module;
-  } else {
-    /* This is the first module loaded */
-    swig_module.next = &swig_module;
-    SWIG_SetModule(clientdata, &swig_module);
   }
-		 
+
   /* Now work on filling in swig_module.types */
 #ifdef SWIGRUNTIME_DEBUG
   printf("SWIG_InitializeModule: size %d\n", swig_module.size);

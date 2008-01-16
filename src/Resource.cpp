@@ -1,15 +1,20 @@
 #include "Resource.h"
-#include "AbstractFile.h"
 
 namespace love
 {
 
-	Resource::Resource()
+	Resource::Resource(pFile file) : file(file)
 	{
 	}
 
-	Resource::Resource(pAbstractFile file) : file(file)
+	Resource::~Resource()
 	{
+	}
+
+	bool Resource::reload()
+	{
+		unload();
+		return load();
 	}
 
 }// love

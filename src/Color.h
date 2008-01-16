@@ -1,60 +1,72 @@
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
+
 #ifndef LOVE_COLOR_H
 #define LOVE_COLOR_H
 
-#include "AbstractColor.h"
+// Boost
+#include <boost/shared_ptr.hpp>
 
 namespace love
 {
 	/**
-	 * @class Color
-	 * @version 1.0
-	 * @since 1.0
+	 * Bah.
+	 * 
 	 * @author Michael Enger
-	 * @date 2006-08-16
-	 * @brief The class for handling static colors.
+	 * @date 2007-05-22
 	 **/
-	class Color : public AbstractColor
+	class Color
 	{
+		friend class AnimatedColor;
+
+	protected:
+
+		// Color components. (0-255)
+		int red, green, blue, alpha;
+		
 	public:
-		/**
-		 * @brief Initializes all the variables with a value of 255 (which results in an opaque white).
-		 **/
-		Color();
 
 		/**
-		 * @param code The color code (in the syntax: 0xRRGGBB).
-		 * @brief Initializes all the variables with the values derived from the color code and with alpha being 255.
+		 * Creates a new color with the specified component values.
+		 * Values must be unsigned bytes. (0-255).
 		 **/
-		Color(int code);
+		Color(int r, int g, int b, int a);
+
+		virtual ~Color();
 
 		/**
-		 * @param red The amount of red.
-		 * @param green The amount of green.
-		 * @param blue The amount of blue.
-		 * @param alpah The amount of alpha.
-		 * @brief Initializes all the variables with the appropriate values.
+		 * Returns the amount of red in the color.
 		 **/
-		Color(int red, int green, int blue, int alpha = 255);
+		int getRed() const;
 
 		/**
-		 * @brief Does nothing.
+		 * Returns the amount of green in the color.
 		 **/
-		~Color();
+		int getGreen() const;
 
 		/**
-		 * @brief Sets the color using function value t.
-		 * @param t A value of 0 to 1 representing the start and the end of the dynamic color.
+		 * Returns the amount of blue in the color.
 		 **/
-		virtual void setColor(float t);
+		int getBlue() const;
 
 		/**
-		 * @param dt The elapsed time (in milliseconds).
-	 	 * @brief Does nothing.
+		 * Returns the amount of alpha.
+		 **/
+		int getAlpha() const;
+
+		/**
+		 * Updates the color.
 	 	 **/
 		virtual void update(float dt);
-	};
+
+	}; // Color
 
 	typedef boost::shared_ptr<Color> pColor;
-}
 
-#endif
+} // love
+
+#endif // LOVE_COLOR_H

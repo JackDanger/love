@@ -1,8 +1,6 @@
 /* -----------------------------------------------------------------------------
  * swig.swg
  *
- * $Header: /cvsroot/swig/SWIG/Lib/swig.swg,v 1.81 2006/03/01 23:30:36 marcelomatus Exp $
- *
  * Common macro definitions for various SWIG directives.  This file is always 
  * included at the top of each input file.
  * ----------------------------------------------------------------------------- */
@@ -159,7 +157,9 @@
 #define %clearnovaluewrapper %feature("novaluewrapper","")
 
 /* Contract support - Experimental and undocumented */
-#define %contract    %feature("contract")
+#define %contract      %feature("contract")
+#define %nocontract    %feature("contract","0")
+#define %clearcontract %feature("contract","")
 
 /* Macro for setting a dynamic cast function */
 %define DYNAMIC_CAST(mangle,func)
@@ -286,7 +286,7 @@ static int NAME(TYPE x) {
 
 %define %$ispublic       "match$access"="public"  %enddef
 %define %$isprotected    "match$access"="protected"  %enddef
-%define %$isprivate      "match$access"="public"  %enddef
+%define %$isprivate      "match$access"="private"  %enddef
 
 %define %$ismemberget    "match$memberget"="1"  %enddef
 %define %$ismemberset    "match$memberset"="1"  %enddef
@@ -351,16 +351,16 @@ namespace std {
 %typemap(memberin) char * {
   if ($1) delete [] $1;
   if ($input) {
-     $1 = ($1_type) (new char[strlen($input)+1]);
-     strcpy((char *) $1,$input);
+     $1 = ($1_type) (new char[strlen((const char *)$input)+1]);
+     strcpy((char *)$1, (const char *)$input);
   } else {
      $1 = 0;
   }
 }
 %typemap(memberin,warning=SWIGWARN_TYPEMAP_CHARLEAK_MSG) const char * {
   if ($input) {
-     $1 = ($1_type) (new char[strlen($input)+1]);
-     strcpy((char *) $1,$input);
+     $1 = ($1_type) (new char[strlen((const char *)$input)+1]);
+     strcpy((char *)$1, (const char *)$input);
   } else {
      $1 = 0;
   }
@@ -368,51 +368,51 @@ namespace std {
 %typemap(globalin) char * {
   if ($1) delete [] $1;
   if ($input) {
-     $1 = ($1_type) (new char[strlen($input)+1]);
-     strcpy((char *) $1,$input);
+     $1 = ($1_type) (new char[strlen((const char *)$input)+1]);
+     strcpy((char *)$1, (const char *)$input);
   } else {
      $1 = 0;
   }
 }
 %typemap(globalin,warning=SWIGWARN_TYPEMAP_CHARLEAK_MSG) const char * {
   if ($input) {
-     $1 = ($1_type) (new char[strlen($input)+1]);
-     strcpy((char *) $1,$input);
+     $1 = ($1_type) (new char[strlen((const char *)$input)+1]);
+     strcpy((char *)$1, (const char *)$input);
   } else {
      $1 = 0;
   }
 }
 #else
 %typemap(memberin) char * {
-  if ($1) free((char*)$1);
+  if ($1) free((char *)$1);
   if ($input) {
-     $1 = ($1_type) malloc(strlen($input)+1);
-     strcpy((char*)$1,$input);
+     $1 = ($1_type) malloc(strlen((const char *)$input)+1);
+     strcpy((char *)$1, (const char *)$input);
   } else {
      $1 = 0;
   }
 }
 %typemap(memberin,warning=SWIGWARN_TYPEMAP_CHARLEAK_MSG) const char * {
   if ($input) {
-     $1 = ($1_type) malloc(strlen($input)+1);
-     strcpy((char*)$1,$input);
+     $1 = ($1_type) malloc(strlen((const char *)$input)+1);
+     strcpy((char *)$1, (const char *)$input);
   } else {
      $1 = 0;
   }
 }
 %typemap(globalin) char * {
-  if ($1) free((char*)$1);
+  if ($1) free((char *)$1);
   if ($input) {
-     $1 = ($1_type) malloc(strlen($input)+1);
-     strcpy((char*)$1,$input);
+     $1 = ($1_type) malloc(strlen((const char *)$input)+1);
+     strcpy((char *)$1, (const char *)$input);
   } else {
      $1 = 0;
   }
 }
 %typemap(globalin,warning=SWIGWARN_TYPEMAP_CHARLEAK_MSG) const char * {
   if ($input) {
-     $1 = ($1_type) malloc(strlen($input)+1);
-     strcpy((char*)$1,$input);
+     $1 = ($1_type) malloc(strlen((const char *)$input)+1);
+     strcpy((char *)$1, (const char *)$input);
   } else {
      $1 = 0;
   }
@@ -423,22 +423,22 @@ namespace std {
 /* Character array handling */
 
 %typemap(memberin) char [ANY] {
-  if ($input) strncpy($1,$input,$1_dim0);
+  if ($input) strncpy((char *)$1, (const char *)$input, $1_dim0);
   else $1[0] = 0;
 }
 
 %typemap(globalin) char [ANY] {
-  if ($input) strncpy($1,$input,$1_dim0);
+  if ($input) strncpy((char *)$1, (const char *)$input, $1_dim0);
   else $1[0] = 0;
 }
 
 %typemap(memberin) char [] {
-  if ($input) strcpy($1,$input);
+  if ($input) strcpy((char *)$1, (const char *)$input);
   else $1[0] = 0;
 }
 
 %typemap(globalin) char [] {
-  if ($input) strcpy($1,$input);
+  if ($input) strcpy((char *)$1, (const char *)$input);
   else $1[0] = 0;
 }
 
@@ -539,6 +539,8 @@ namespace std {
 %define SWIG_TYPECHECK_MULTISET     200    %enddef
 %define SWIG_TYPECHECK_MAP          210    %enddef
 %define SWIG_TYPECHECK_MULTIMAP     220    %enddef
+%define SWIG_TYPECHECK_STACK        230    %enddef
+%define SWIG_TYPECHECK_QUEUE        240    %enddef
 
 %define SWIG_TYPECHECK_BOOL_ARRAY        1015    %enddef
 %define SWIG_TYPECHECK_INT8_ARRAY        1025    %enddef
@@ -630,7 +632,7 @@ namespace std {
 #ifdef __cplusplus
 %insert("runtime") %{
 #ifdef __cplusplus
-template<class T> class SwigValueWrapper {
+template<typename T> class SwigValueWrapper {
     T *tt;
 public:
     SwigValueWrapper() : tt(0) { }
@@ -642,7 +644,21 @@ public:
     T *operator&() { return tt; }
 private:
     SwigValueWrapper& operator=(const SwigValueWrapper<T>& rhs);
-};
+};%}
+
+/*
+ * SwigValueInit() is a generic initialisation solution as the following approach:
+ * 
+ *       T c_result = T();
+ * 
+ * doesn't compile for all types for example:
+ * 
+ *       unsigned int c_result = unsigned int();
+ */
+%insert("runtime") %{
+template <typename T> T SwigValueInit() {
+  return T();
+}
 #endif
 %}
 #endif

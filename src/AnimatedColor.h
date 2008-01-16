@@ -1,25 +1,41 @@
-#ifndef LOVE_ANIMATE_COLOR_H
-#define LOVE_ANIMATE_COLOR_H
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
-#include "AbstractColor.h"
-#include "Container.h"
+#ifndef LOVE_ANIMATED_COLOR_H
+#define LOVE_ANIMATED_COLOR_H
+
+// LOVE
+#include "Color.h"
+
+// STD
+#include <vector>
 
 namespace love
 {
+
+	// Animation modes.
+	enum
+	{
+		LOVE_ANIMATED_COLOR_LOOP = 1,
+		LOVE_ANIMATED_COLOR_PLAY_ONCE,
+		LOVE_ANIMATED_COLOR_BOUNCE
+	};
+
 	/**
-	* @class AnimateColor
-	* @version 1.0
-	* @since 1.0
+	* A class for creating gradient colors.
+	*
 	* @author Michael Enger
 	* @date 2007-05-18
-	* @brief A class for creating gradient colors.
 	**/
-	class AnimatedColor : public AbstractColor
+	class AnimatedColor : public Color
 	{
 	protected:
 
-		// Updated this to use pColor for great automatic cleanup pleasure.
-		std::vector<pAbstractColor> colors;
+		std::vector<Color> colors;
 		std::vector<float> times;
 		float total; //the maximum time requried to gradient through the colors
 		float elapsed; //the amount of time that has passed
@@ -45,12 +61,7 @@ namespace love
 	 	 **/
 		void bounce(float dt);
 
-		virtual float map(float t);
-
 	public:
-		const static int LOVE_ANIMATED_COLOR_LOOP = 1;
-		const static int LOVE_ANIMATED_COLOR_PLAY_ONCE = 2;
-		const static int LOVE_ANIMATED_COLOR_BOUNCE = 3;
 
 		/**
 		 * @param colors A pointer to a Container of colors.
@@ -58,17 +69,14 @@ namespace love
 	 	 **/
 		AnimatedColor(int mode = LOVE_ANIMATED_COLOR_LOOP);
 
-		/**
-	 	 * @brief Does nothing.
-	 	 **/
-		~AnimatedColor();
+		virtual ~AnimatedColor();
 
 		/**
 		 * @param color A pointer to a Color object.
 		 * @param time The amount of time associated with the color.
 	 	 * @brief Adds a color to the color list. If this is the first color then it sets it as the current color.
 	 	 **/
-		void addColor(const pAbstractColor * color, float time);
+		void addColor(const pColor & color, float time);
 
 		/**
 		* @brief Adds a color directly.
@@ -84,14 +92,14 @@ namespace love
 		 * @return A Color object.
 		 * @brief Creates a Color object of the current color.
 		 **/
-		pAbstractColor getColor();
+		pColor getColor();
 
 		/**
 		 * @param How much time to have passed (0 = no time, 1 = all time).
 		 * @return A Color object.
 		 * @brief Creates a Color object of the color.
 		 **/
-		pAbstractColor getColor(float time);
+		pColor getColor(float time);
 
 		/**
 		 * @param mode The desired mode.
@@ -100,31 +108,25 @@ namespace love
 		void setMode(int mode);
 
 		/**
-	 	 * @brief Starts the animator.
+	 	 * Starts the animator.
 	 	 **/
 		void play();
 
 		/**
-	 	 * @brief Stops the animator.
+	 	 * Stops the animator.
 	 	 **/
 		void stop();
 
 		/**
-	 	 * @brief Resets all variables.
+	 	 * Resets all variables.
 	 	 **/
 		void reset();
 
 		/**
-		 * @param dt The elapsed time (in milliseconds).
-	 	 * @brief Calls the appropriate function determined by the mode.
+		 * Calls the appropriate function determined by the mode.
 	 	 **/
 		void update(float dt);
 
-		/**
-		 * @param t The time.
-	 	 * @brief Sets the current color as the color which would occur at the passed time.
-	 	 **/
-		virtual void setColor(float t);
 	};
 
 	typedef boost::shared_ptr<AnimatedColor> pAnimatedColor;

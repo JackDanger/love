@@ -1,16 +1,17 @@
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
+
+// Contains keyboard symbols. 
+
 #ifndef LOVE_KEYS_H
 #define LOVE_KEYS_H
 
-/**  
-* @file love_keys.h
-* @brief Contains virtual key symbols.  
-* @date 2006-10-30  
-* @author Anders Ruud
-**/    
-
 namespace love  
 {    
-
 	enum 
 	{
 		LOVE_KEY_UNKNOWN		= 0,
@@ -262,9 +263,9 @@ namespace love
 		/* Add any other keys here */
 
 		LOVE_KEY_LAST
-	};
+
+	}; // enum
 
 } // love
 
-#endif
-
+#endif // LOVE_KEYS_H

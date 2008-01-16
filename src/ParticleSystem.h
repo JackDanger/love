@@ -1,20 +1,17 @@
-/**
-* @file ParticleSystem.h
-* @author Anders Ruud
-* @date 2007-08-13
-* @brief Contains definition for class ParticleSystem.
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
-#ifndef LOVE_PARTICLESYSTEM_H
-#define LOVE_PARTICLESYSTEM_H
+#ifndef LOVE_PARTICLE_SYSTEM_H
+#define LOVE_PARTICLE_SYSTEM_H
 
 // LOVE
-#include "AbstractEntity.h"
+#include "AnimatedColor.h"
 #include "Sprite.h"
 #include "Vector.h"
-#include "Loadable.h"
-#include "FrameAnimation.h"
-#include "AnimatedColor.h"
 
 // STL
 #include <list>
@@ -24,17 +21,16 @@
 
 namespace love
 {
-	class AbstractColor;
 
-	typedef struct 
+	struct interval
 	{
 		float min;
 		float max;
 		float delta;
 		float var;
-	} interval;
+	};
 
-	typedef struct
+	struct particle
 	{
 
 		Vector pos;
@@ -56,18 +52,17 @@ namespace love
 		
 		interval size;
 
-	} particle;
+	};
 
 
 	/**
-	* @class ParticleSystem
-	* @version 1.0
-	* @since 1.0
+	* Basic particle system class.
+	* @todo Should not be <list>-based. >.<
+	*
 	* @author Anders Ruud
 	* @date 2007-08-13
-	* @brief 
 	**/
-	class ParticleSystem : public AbstractEntity, public Loadable
+	class Particlesystem
 	{
 	protected:
 
@@ -137,22 +132,11 @@ namespace love
 	public:
 
 		/**
-		* @brief Contructs an empty ParticleSystem.
+		* Contructs a new Particlesystem.
 		**/
-		ParticleSystem();
-		virtual ~ParticleSystem();
+		Particlesystem();
 
-		/**
-		* @brief Loads the ParticleSystem.
-		* Should be called after all variables are set.
-		**/
-		int load();
-
-		/**
-		* @brief Supposed to free resources used by the ParticleSystem.
-		* )As of right now, the ParticleSystem uses no resources.)
-		**/
-		void unload();
+		virtual ~Particlesystem();
 
 		/**
 		* @brief Spawns a single particle after the preset rules.
@@ -165,15 +149,14 @@ namespace love
 
 		const std::list<particle> & getParticles() const;
 		const pSprite & getSprite() const;
-		const pAnimatedColor & getColor() const;
 		bool isAdditive() const;
 
 		void reset();
 
 		/**
-		* @brief Sets the position of the ParticleSystem.
-		* @param x The x-coordinate of the ParticleSystem.
-		* @param y The y-coordinate of the ParticleSystem.
+		* @brief Sets the position of the Particlesystem.
+		* @param x The x-coordinate of the Particlesystem.
+		* @param y The y-coordinate of the Particlesystem.
 		**/
 		void setPosition(float x, float y);
 
@@ -233,7 +216,7 @@ namespace love
 		* @brief Gets color.
 		* @return color.
 		**/
-		//AbstractColor getColor();
+		//Color getColor();
 
 		
 
@@ -241,13 +224,9 @@ namespace love
 		* @brief Sets color.
 		* @param color 
 		**/
-		void addColor(int r, int g, int b, int a, float time = 1.0f);
-		void addColor(const pAbstractColor * color, float time = 1.0f);
+		void addColor(int r, int g, int b, int a = 255, float time = 1.0f);
 
-		// Note: using pointers so SWIG won't go anal.
-		void setSprite(const pSprite * sprite);
-		void setSprite(const pAbstractImage * image);
-		void setSprite(const pFrameAnimation * anim);
+		void setSprite(pSprite sprite);
 
 		void setAdditiveBlending(bool additive);
 
@@ -278,17 +257,14 @@ namespace love
 
 
 		virtual void update(float dt);
-		virtual void render() = 0;
-
-		// added by mike (called by the AbstractGraphics::draw(ParticleSystem, x, y) function
-		virtual void render(float x, float y) = 0;
+		virtual void render() const = 0;
+		virtual void render(float x, float y) const = 0;
 
 
-	};
+	}; // Particlesystem
 
-	typedef boost::shared_ptr<ParticleSystem> pParticleSystem;
+	typedef boost::shared_ptr<Particlesystem> pParticlesystem;
 
 } // love
 
-#endif
-
+#endif // LOVE_PARTICLE_SYSTEM_H

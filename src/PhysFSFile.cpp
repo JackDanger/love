@@ -1,15 +1,12 @@
 #include "PhysFSFile.h"
-#include "physfs.h"
-#include "love.h"
-#include "Core.h"
-#include "Console.h"
+#include <physfs.h>
 
 using std::string;
 
 namespace love
 {
 
-	PhysFSFile::PhysFSFile(const string & source, const string & filename) : AbstractFile(source, filename)
+	PhysFSFile::PhysFSFile(const string & source, const string & filename) : File(source, filename)
 	{
 		this->data = 0;
 		this->size = 0;
@@ -19,7 +16,7 @@ namespace love
 	{
 	}
 
-	int PhysFSFile::load()
+	bool PhysFSFile::load()
 	{
 		
 		// Sets the specified source as search path. Can be 
@@ -29,7 +26,7 @@ namespace love
 		if(!added)
 		{
 			fail();
-			return LOVE_ERROR;
+			return false;
 		}
 
 		// Check if the file we want exists
@@ -40,7 +37,7 @@ namespace love
 		{
 			removeSource();
 			fail();
-			return LOVE_ERROR;
+			return false;
 		}
 
 		// Open file for read.
@@ -61,7 +58,7 @@ namespace love
 		{
 			removeSource();
 			fail();
-			return LOVE_ERROR;
+			return false;
 		}
 
 		// Okay, done with file. Close it. 
@@ -71,23 +68,22 @@ namespace love
 		if(!closed)
 		{
 			fail();
-			return LOVE_ERROR;
+			return false;
 		}
 
 		// Remove source
 		removeSource();
 
 		// Notify plz
-		if(core->isVerbose())
-			core->printf(" + LOADED \"%s\"\n",(source + "\" -> \"" + filename).c_str());
+		//printf(" + LOADED \"%s\"\n",(source + "\" -> \"" + filename).c_str());
 
 
-		return LOVE_OK;
+		return true;
 	}
 
 	void PhysFSFile::fail()
 	{
-		core->error("Could not load file \"%s\" from \"%s\": %s\n", filename.c_str(), source.c_str(), PHYSFS_getLastError());
+		printf("Could not load file \"%s\" from \"%s\": %s\n", filename.c_str(), source.c_str(), PHYSFS_getLastError());
 	}
 
 	void PhysFSFile::removeSource()
@@ -102,18 +98,5 @@ namespace love
 			return;
 		}
 	}
-
-	void PhysFSFile::unload()
-	{
-		if(data != 0)
-		{
-			if(core->isVerbose())
-				core->printf(" - UNLOAD \"%s\"\n", (source + "\" -> \"" + filename).c_str());
-			delete data;
-		}
-
-		data = 0;
-	}
-
 
 }// love

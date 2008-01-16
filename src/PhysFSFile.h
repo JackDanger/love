@@ -1,74 +1,49 @@
-/**
-* @file PhysFSFile.h
-* @author Anders Ruud
-* @date 2007-08-05
-* @brief Contains definition for class PhysFSFile.
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
 #ifndef LOVE_PHYSFS_FILE_H
 #define LOVE_PHYSFS_FILE_H
 
 // LOVE
-#include "AbstractFile.h"
-
-// STL
-
-// Boost
-#include <boost/shared_ptr.hpp>
+#include "File.h"
 
 namespace love
 {
 
 	/**
-	* @class PhysFSFile
-	* @version 1.0
-	* @since 1.0
+	* File implementation using PhysFS.
+	* 
 	* @author Anders Ruud
 	* @date 2007-08-05
-	* @brief 
 	**/
-	class PhysFSFile : public AbstractFile
+	class PhysFSFile : public File
 	{
 	private:
 	public:
 
 		/**
-		* @brief Constructs an PhysFSFile with the given source and filename.
+		* Constructs an PhysFSFile with the given source and filename.
 		* @param source The source from which to load the file. (Archive or directory)
 		* @param filename The relative filepath of the file to load from the source.
 		**/
 		PhysFSFile(const std::string & source, const std::string & filename);
 
-		/**
-		* @brief Destructor. Calls unload().
-		**/ 
 		virtual ~PhysFSFile();
 
-
-		/**
-		* @brief Loads the PhysFSFile.
-		* @returns LOVE_OK on success.
-		**/
-		int load();
-
-		/**
-		* @brief Unloads the PhysFSFile. (Frees the memory used)
-		**/
-		void unload();
-
-		
+		// From file.
+		bool load();
 
 	private:
 
 		void fail();
 		void removeSource();
 
-
-	};
-
-	typedef boost::shared_ptr<PhysFSFile> pPhysFSFile;
+	}; // PhysFSFile
 
 } // love
 
-#endif
-
+#endif // LOVE_PHYSFS_FILE_H

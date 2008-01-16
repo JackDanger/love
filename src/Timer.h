@@ -1,183 +1,74 @@
-/**
-* @file Timer.h
-* @author Anders Ruud
-* @date 2006-10-21
-* @brief Contains definition for class Timer.
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
 #ifndef LOVE_TIMER_H
 #define LOVE_TIMER_H
 
 // LOVE
-#include "AbstractDevice.h"
-
-// STL
-#include <deque>
-
-// Boost
-#include <boost/shared_ptr.hpp>
+#include "Device.h"
 
 namespace love
 {
 
 	/**
-	* @class Timer
-	* @version 1.0
-	* @since 1.0
+	* Superclass for all timers.
+	* 
 	* @author Anders Ruud
 	* @date 2006-10-21
-	* @brief 
 	**/
-	class Timer : public AbstractDevice
+	class Timer : public Device
 	{
-	private:
-
-		// fps
-		float fps;
-
-		// fpsUpdateFrequency
-		float fpsUpdateFrequency;
-
-		// lockedFps
-		float lockedFps;
-
-		// maxFps
-		float maxFps;
-
-		// minFps
-		float minFps;
-
-		// The number of previous time deltas to take
-		// the average of.
-		int numAverage;
-
-		// Vector with the last numAverage elements
-		std::deque<float> lastValues;
-
 	protected:
 
+		// Updated with a certain frequency.
+		float fps;
+
+		// The frequency by which to update the FPS.
+		float fpsUpdateFrequency;
+
 		// Frames since last FPS update.
-		unsigned int frames;
+		int frames;
 
 	public:
 
 		/**
-		* @brief Contructs an empty Timer.
+		* Inits some member variables.
 		**/
 		Timer();
+
 		virtual ~Timer();
 
-		/**
-		* @brief Starts timer.
-		**/
-		virtual int init();
+		// From Device.
+		bool init(int argc, char* argv[]);
+		void quit();
 		
 		/**
-		* @brief Gets seconds since last call to this method.
-		* @return Seconds since last call to this method.
+		* Gets seconds since last call to this method.
 		**/
 		virtual float getDelta() = 0;
 
 		/**
-		* @brief Gets frames.
-		* @return frames.
+		* Resets benchmarking variables.
 		**/
-		unsigned int getFrames() const;
-
+		virtual void startBenchmark() = 0;
 
 		/**
-		* @brief Sets frames.
-		* @param frames 
+		* Returns the time since startBenchmark was last called.
 		**/
-		void setFrames(unsigned int frames);
-
+		virtual float endBenchmark() = 0;
 
 		/**
-		* @brief Gets fpsUpdateFrequency.
-		* @return fpsUpdateFrequency.
-		**/
-		float getFpsUpdateFrequency() const;
-
-
-		/**
-		* @brief Sets fpsUpdateFrequency.
-		* @param fpsUpdateFrequency 
-		**/
-		void setFpsUpdateFrequency(float fpsUpdateFrequency);
-
-
-		/**
-		* @brief Gets fps.
-		* @return fps.
+		* Gets the FPS.
 		**/
 		float getFps() const;
 
 
-		/**
-		* @brief Sets fps.
-		* @param fps 
-		**/
-		void setFps(float fps);
-
-
-		/**
-		* @brief Gets lockedFps.
-		* @return lockedFps.
-		**/
-		float getLockedFps() const;
-
-
-		/**
-		* @brief Sets lockedFps.
-		* @param lockedFps 
-		**/
-		void setLockedFps(float lockedFps);
-
-
-		/**
-		* @brief Gets maxFps.
-		* @return maxFps.
-		**/
-		float getMaxFps() const;
-
-
-		/**
-		* @brief Sets maxFps.
-		* @param maxFps 
-		**/
-		void setMaxFps(float maxFps);
-
-
-		/**
-		* @brief Gets minFps.
-		* @return minFps.
-		**/
-		float getMinFps() const;
-
-
-		/**
-		* @brief Sets minFps.
-		* @param minFps 
-		**/
-		void setMinFps(float minFps);
-
-		/**
-		* @brief Adds a new value to the previous values vector.
-		* @param dt The new value to add.
-		**/
-		void addValue(float dt);
-
-		/**
-		* @brief Calculates average of the numAverage last values. 
-		* @return The average of the numAverage last values.
-		**/
-		float getAverage() const;
-
-
-	};
-
-	typedef boost::shared_ptr<Timer> pTimer;
+	}; // Timer
 
 } // love
 
-#endif
+#endif // LOVE_TIMER_H

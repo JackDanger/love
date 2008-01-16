@@ -1,37 +1,43 @@
-#ifndef LOVE_OpenGLFont_H
-#define LOVE_OpenGLFont_H
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
-#include "AbstractFont.h"
+#ifndef LOVE_OPENGL_FONT_H
+#define LOVE_OPENGL_FONT_H
 
-#include "love_gl.h"
+// LOVE
+#include "Font.h"
+
+// FreeType2
 #include <ft2build.h>
 #include <freetype/freetype.h>
 #include <freetype/ftglyph.h>
 #include <freetype/ftoutln.h>
 #include <freetype/fttrigon.h>
-#include <string>
 
-#include <stdexcept>
+// STD
+#include <string>
 
 namespace love
 {
-		
-	class AbstractFile;
 
 	/**
-	* @class OpenGLFont
-	* @version 2.0
-	* @since 1.0
+	* A class to handle OpenGLFonts. Uses the library FreeType2 
+	* (available here: http://www.freetype.org/) and takes use of both 
+	* their local documentation and Sven's experience.
+	*
 	* @author Michael Enger (with great help from Sven C. Olsen) 
 	* @date 2007-01-15
-	* @brief A class to handle OpenGLFonts. Uses the library FreeType2 (available here: http://www.freetype.org/) and takes use of both their local documentation and Sven's experience.
 	**/
-	class OpenGLFont : public AbstractFont
+	class OpenGLFont : public Font
 	{
 	protected:
 		
-		GLuint * textures;
-		GLuint list;
+		unsigned int * textures;
+		unsigned int list;
 
 		/**
 		 * @param num The number to be 2powered.
@@ -50,13 +56,6 @@ namespace love
 		inline void popProjectionMatrix();
 
 		/**
-		 * @param OpenGLFontpath A file path to the OpenGLFont.
-		 * @param size The size of the OpenGLFont.
-		 * @brief Initializes FreeType and creates the OpenGLFont by calling createList for every character (up to MAX_CHARS).
-		 **/
-		void createOpenGLFont(const char * OpenGLFontpath, unsigned int size);
-
-		/**
 		 * @param face The FT_Face containing information about the character.
 		 * @param character The character in question.
 		 * @brief Creates an OpenGL display list for the character (for speedy execution).
@@ -69,7 +68,7 @@ namespace love
 		 * @param size The size of the OpenGLFont.
 		 * @brief Simply appens OpenGLFontname to the path of the OpenGLFonts folder and calles createOpenGLFont.
 		 **/
-		OpenGLFont(pAbstractFile file, int size);
+		OpenGLFont(pFile file, int size);
 
 		/**
 		 * @brief Clears the display lists and the textures.
@@ -105,11 +104,11 @@ namespace love
 		 **/
 		float getLineWidth(const char * line);
 
-		virtual int load();
-		virtual void unload();
-	};
+		bool load();
+		void unload();
 
-	typedef boost::shared_ptr<OpenGLFont> pOpenGLFont;
-}
+	}; // OpenGLFont
 
-#endif
+} // love
+
+#endif // LOVE_OPENGL_FONT_H

@@ -1,32 +1,34 @@
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
+
 #ifndef LOVE_MATRIX_H
 #define LOVE_MATRIX_H
 
+// STD
 #include <cmath>
-
-#include "Object.h"
 
 namespace love 
 {
 
 	/**
-	* @class Matrix
-	* @version 2.0
-	* @since 1.0
-	* @author Anders Ruud
-	* @date 2006-04-26
-	* @brief Basic 2x2 Matrix class.
-	*
+	* Basic 2x2 Matrix class.
 	* | e0 e2 |
 	* | e1 e3 |
+	* 
+	* @author Anders Ruud
+	* @date 2006-04-26
 	**/
 	class Matrix
 	{
 	private:
 
-		/** 
-		* The elements of a 2x2 Matrix
-		**/
-		
+		// The elements of a 2x2 Matrix
+		// | e0 e2 |
+		// | e1 e3 |
 		float e0, e1, e2, e3;
 
 
@@ -51,9 +53,6 @@ namespace love
 		* @param rad The angle from which to create the Matrix.
 		**/
 		Matrix(float rad);
-
-		~Matrix();
-
 
 		/**
 		* @brief Checks whether two Matrices are equal.
@@ -136,7 +135,7 @@ namespace love
 		float get2() const;
 		float get3() const;
 
-	};
+	}; // Matrix
 
 	/**
 	* Inline methods must be in header.
@@ -255,10 +254,7 @@ namespace love
 	{
 		return e3;
 	}
-	
-
-	typedef boost::shared_ptr<Matrix> pMatrix;
 
 }// namespace love
 
-#endif
+#endif // LOVE_MATRIX_H

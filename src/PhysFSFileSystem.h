@@ -1,95 +1,66 @@
-/**
-* @file PhysFSFileSystem.h
-* @author Anders Ruud
-* @date 2007-08-16
-* @brief Contains definition for class PhysFSFileSystem.
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
 #ifndef LOVE_PHYSFS_FILESYSTEM_H
 #define LOVE_PHYSFS_FILESYSTEM_H
 
 // LOVE
-#include "AbstractFileSystem.h"
-
-// STL
-#include <string>
-#include <vector>
-
-// Boost
-#include <boost/shared_ptr.hpp>
-
+#include "Filesystem.h"
 
 namespace love
 {
-	// Forward declarations
-	class AbstractFile;
 
 	/**
-	* @class PhysFSFileSystem
-	* @version 1.0
-	* @since 1.0
+	* A filesystem implementation using PhysFS.
+	*
 	* @author Anders Ruud
 	* @date 2007-08-16
-	* @brief A filesystem implementation using PhysFS.
 	**/
-	class PhysFSFileSystem : public AbstractFileSystem
+	class PhysFSFilesystem : public Filesystem
 	{
-
 	private:
-
-		// Command line arguments
-		int argc;
-		char ** argv;
-
 	public:
 
 
 		/**
-		* @brief Constructs a new PhysFSFileSystem.
-		* @param argc The number of command line arguments.
-		* @param argv The command line arguments.
+		* Constructs a new PhysFSFilesystem.
 		**/
-		PhysFSFileSystem(int argc, char ** argv);
+		PhysFSFilesystem();
 
 		/**
 		* @brief Destructor.
 		**/
-		virtual ~PhysFSFileSystem();	
+		virtual ~PhysFSFilesystem();	
+
+		// From Device
+		bool init(int argc, char* argv[]);
+		void quit();
 
 		/**
-		* @brief Inits the PhysFSFileSystem. 
-		* @return Returns LOVE_OK if no errors.
-		**/
-		int init();
-
-		/**
-		* @brief Configure the system with pre-parsed parameters.
-		* @param parameters Pointer to the parameters.
-		* @return LOVE_OK if no errors.
-		**/
-		int configure(Parameters * parameters);
-
-		/**
-		* @brief Gets a new AbstractFile.
+		* @brief Gets a new File.
 		* @param source The source from which to load the file.
 		* @param file The the filepath relative to the source.
-		* @return The new AbstractFile. (Unloaded)
+		* @return The new File. (Unloaded)
 		**/
-		virtual pAbstractFile getFile(const std::string & source, const std::string & file) const;
+		virtual pFile getFile(const std::string & source, const std::string & file) const;
 
 		/**
-		* @brief Gets a new AbstractFile, relative to base directory.
+		* @brief Gets a new File, relative to base directory.
 		* @param file The the filepath relative to the base directory.
-		* @return The new AbstractFile. (Unloaded)
+		* @return The new File. (Unloaded)
 		**/
-		virtual pAbstractFile getBaseFile(const std::string & file) const;
+		virtual pFile getBaseFile(const std::string & file) const;
 
 		/**
-		* @brief Gets a new AbstractFile, relative to user directory.
+		* @brief Gets a new File, relative to user directory.
 		* @param file The the filepath relative to the user directory.
-		* @return The new AbstractFile. (Unloaded)
+		* @return The new File. (Unloaded)
 		**/
-		virtual pAbstractFile getUserFile(const std::string & file) const;
+		virtual pFile getUserFile(const std::string & file) const;
 
 		/**
 		* @brief Gets a list of entries in the specified file (or dir).
@@ -108,6 +79,7 @@ namespace love
 		**/
 		virtual bool exists(const std::string & source, const std::string & file) const;
 
+		bool exists(const std::string & file) const;
 
 		/**
 		* @brief Checks if a file really is a file (and not a dir).
@@ -142,11 +114,8 @@ namespace love
 		**/
 		bool remove(const std::string & path) const;
 
-	};
-
-	typedef boost::shared_ptr<PhysFSFileSystem> pPhysFSFileSystem;
+	}; // PhysFSFilesystem
 
 } // love
 
-#endif
-
+#endif // LOVE_PHYSFS_FILESYSTEM_H

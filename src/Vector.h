@@ -1,15 +1,16 @@
-/**
-* @file Vector.h
-* @brief Contains definition of class Vector.
-* @date 2006-05-13
-* @author Anders Ruud
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
-#include <cmath>
+// LOVE
 #include "Matrix.h"
 
-// boost
-#include <boost/shared_ptr.hpp>
+// STD
+#include <cmath>
+
 
 
 #ifndef LOVE_VECTOR_H
@@ -21,21 +22,17 @@ namespace love
 
 
 	/**
-	* @class Vector
-	* @version 1.0
-	* @since 1.0
+	* 2D Vector class.
+	* 
 	* @author Anders Ruud
 	* @date 2006-05-13
-	* @brief A Vector is an mathematical entity which posesses the attributes 
-	* of a Point and a Vector.
 	**/
 	class Vector
 	{
 	private:
 
-		// The position/size of the Vector.
-		float x;
-		float y;
+		// The components.
+		float x, y;
 
 	public:
 
@@ -50,8 +47,6 @@ namespace love
 		* @param y The y position/dimension.
 		**/
 		Vector(float x, float y);
-
-		~Vector();
 
 		/**
 		* @brief Gets the length of the Vector.
@@ -343,10 +338,7 @@ namespace love
 	{
 		this->y = y;
 	}
-	
-	// Typedefs
-	typedef boost::shared_ptr<Vector> pVector;
 
-}//love
+} //love
 
-#endif
+#endif// LOVE_VECTOR_H

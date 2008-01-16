@@ -1,12 +1,10 @@
 #include "SDLMixerSound.h"
-#include "AbstractFile.h"
-#include "Core.h"
-#include "love.h"
+
 
 namespace love
 {
 	
-	SDLMixerSound::SDLMixerSound(pAbstractFile file) : AbstractSound(file)
+	SDLMixerSound::SDLMixerSound(pFile file) : Sound(file)
 	{
 	}
 	
@@ -17,7 +15,7 @@ namespace love
 
 	void SDLMixerSound::play(int loop)
 	{
-		Mix_PlayChannel(-1, sound, loop);
+		Mix_PlayChannel(-1, sound, loop - 1);
 	}
 
 	void SDLMixerSound::setVolume(float volume)
@@ -25,26 +23,27 @@ namespace love
 		Mix_VolumeChunk(sound, (int)(MIX_MAX_VOLUME*volume));
 	}
 
-	int SDLMixerSound::load()
+	bool SDLMixerSound::load()
 	{
 		if(!file->load())
-			return LOVE_ERROR;
+			return false;
 
 		// Create SDL_RWops
 		SDL_RWops * rw = SDL_RWFromMem(file->getData(), file->getSize());
 
 		if( !(sound = Mix_LoadWAV_RW(rw, 1)) )
 		{
-			core->error("Unable to create sound: %s\n", Mix_GetError());
-			//printf("Unable to create sound: %s\n", Mix_GetError());
-			return LOVE_ERROR;
+			printf("Unable to create sound: %s\n", Mix_GetError());
+			return false;
 		}
 
-		return LOVE_OK;
+		return true;
 	}
 
 	void SDLMixerSound::unload()
 	{
+		Mix_FreeChunk(sound);
+		sound = 0;
 		file->unload();
 	}
 	

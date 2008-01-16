@@ -1,75 +1,39 @@
-/**
-* @file Keyboard.h
-* @brief Contains definition of class Keyboard.
-* @date 2006-03-12
-* @author Anders Ruud
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
 #ifndef LOVE_KEYBOARD_H
 #define LOVE_KEYBOARD_H
 
-#include "KeyListener.h"
-#include "AbstractDevice.h"
+// LOVE
+#include "Device.h"
 
 namespace love
 {
 
-
 	/**
-	* @class Keyboard
-	* @version 1.0
-	* @since 1.0
+	* Abstract keyboard class.
+	*
 	* @author Anders Ruud
 	* @date 2006-03-12
-	* @brief Can be used to keep track of the keyboard state.
 	**/
-	class Keyboard : public AbstractDevice, public KeyListener
+	class Keyboard : public Device
 	{
 	private:
-
-		// The number of key states we need to 
-		// represent the state on a keyboard.
-		const static int NUM_KEYS = 1024;
-
-		// Our keyboard state.
-		bool keys[NUM_KEYS];
-
 	public:
 
+		virtual ~Keyboard();
 
 		/**
-		* @brief Creates a new Keyboard object.
+		* Checks whether a key is down or not.
 		**/
-		Keyboard();
-		~Keyboard();
+		virtual bool isDown(int key) const = 0;
 
-		/**
-		* @brief Inits the Keyboard.
-		**/
-		int init();
-
-		/**
-		* @brief Changes the state of the keyboard.
-		* @param key The ASCII keycode of the pressed key.
-		**/
-		void keyPressed(int key);
-
-		/**
-		* @brief Changes the state of the keyboard.
-		* @param key The ASCII keycode of the released key.
-		**/
-		void keyReleased(int key);
-
-		/**
-		* @brief Checks whether a key is currently down.
-		* @param key The keycode of the key we want to check.
-		* @return True if the key is down, false otherwise.
-		**/
-		bool isDown(int key);
-	};
-
-	typedef boost::shared_ptr<Keyboard> pKeyboard;
+	}; // Keyboard
 
 }// love
 
-#endif
+#endif // LOVE_KEYBOARD_H

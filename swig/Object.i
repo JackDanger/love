@@ -1,6 +1,0 @@
-namespace love
-{
-	class Object
-	{
-	};
-}

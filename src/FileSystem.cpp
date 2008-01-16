@@ -1,16 +1,28 @@
-#include "FileSystem.h"
-//#include "physfs.h"
+#include "Filesystem.h"
+
+using std::string;
 
 namespace love
 {
 
-	FileSystem::FileSystem()
+	Filesystem::Filesystem()
 	{
 	}
 
-	FileSystem::~FileSystem()
+	Filesystem::~Filesystem()
 	{
 	}
+
+	const string & Filesystem::getBase() const
+	{
+		return base;
+	}
+
+	const string & Filesystem::getUser() const
+	{
+		return user;
+	}
+
 
 
 }// love

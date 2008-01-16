@@ -1,17 +1,17 @@
+%{#include "Mouse.h"%}
+
 namespace love
 {
-	class Mouse : public AbstractDevice, public MouseListener, public MouseMotionListener
+
+	class Mouse : public Device
 	{
-	public:
-
-		int getButtons() const;
-		float getX() const;
-		float getY() const;
-		void setVisible(bool visible);
-		bool isVisible() const;
-		bool isDown(int button) const;
-
-
+	protected:	
+	public:				
+		virtual float getX() const = 0;
+		virtual float getY() const = 0;
+		virtual bool isDown(int button) const = 0;
+		virtual void setVisible(bool visible) = 0;
+		virtual bool isVisible() const = 0;
 	};
-
+	
 }

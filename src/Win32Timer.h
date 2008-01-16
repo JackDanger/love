@@ -1,9 +1,9 @@
-/**
-* @file Win32Timer.h
-* @author Anders Ruud
-* @date 2006-10-21
-* @brief Contains definition for class Win32Timer.
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
 #ifndef LOVE_WIN32TIMER_H
 #define LOVE_WIN32TIMER_H
@@ -13,21 +13,17 @@
 // LOVE
 #include "Timer.h"
 
-// STL
-
-// Boost
-#include <boost/shared_ptr.hpp>
+// STD
+#include <vector>
 
 namespace love
 {
 
 	/**
-	* @class Win32Timer
-	* @version 1.0
-	* @since 1.0
+	* Windows specific timer class.
+	*
 	* @author Anders Ruud
 	* @date 2006-10-21
-	* @brief 
 	**/
 	class Win32Timer : public Timer
 	{
@@ -39,24 +35,24 @@ namespace love
 		LARGE_INTEGER pc_last;
 		LARGE_INTEGER prev_fps_update;
 
+		// Data for one benchmark.
+		LARGE_INTEGER bench_start;
+		LARGE_INTEGER bench_end;
+
 	public:
 
-		/**
-		* @brief Contructs a new Win32Timer.
-		**/
 		Win32Timer();
+
 		virtual ~Win32Timer();
 
-		/**
-		* @brief Gets seconds since last call to this method.
-		* @return Seconds since last call to this method.
-		**/
+		
+		// From Timer
 		float getDelta();
+		void startBenchmark();
+		float endBenchmark();
 
-	};
-
-	typedef boost::shared_ptr<Win32Timer> pWin32Timer;
+	}; // Win32Timer
 
 } // love
 
-#endif
+#endif // LOVE_WIN32TIMER_H

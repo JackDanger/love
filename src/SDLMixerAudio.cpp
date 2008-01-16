@@ -1,25 +1,20 @@
 #include "SDLMixerAudio.h"
-#include "SDL_mixer.h"
-#include "love.h"
-#include "Core.h"
 
+// LOVE
 #include "SDLMixerSound.h"
 #include "SDLMixerMusic.h"
+
+#include <SDL_mixer.h>
 
 namespace love
 {
 	
-	SDLMixerAudio::SDLMixerAudio()
-	{
-	}
-	
 	SDLMixerAudio::~SDLMixerAudio()
 	{
-		// Close the audio device.
-		Mix_CloseAudio();
+		quit();
 	}
 
-	int SDLMixerAudio::init()
+	bool SDLMixerAudio::init(int argc, char* argv[])
 	{
 		int bits=0;
 		int audio_rate,audio_channels,
@@ -34,30 +29,41 @@ namespace love
 
 		if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,audio_buffers)<0)
 		{
-			core->error("SDLMixerAudio: Unable to open audio!");
+			printf("SDLMixerAudio: Unable to open audio!");
 			//printf("Unable to open audio!\n");
-			return LOVE_ERROR;
+			return false;
 		}
 
 		Mix_AllocateChannels(32);
 
 		Mix_QuerySpec(&audio_rate, &audio_format, &audio_channels);
 		bits=audio_format&0xFF;
-		core->printf("Opened audio at %d Hz %d bit %s, %d bytes audio buffer\n", audio_rate,
-				bits, audio_channels>1?"stereo":"mono", audio_buffers );
+		//printf("[INIT] Audio (SDL_mixer)\n - Opened audio at %d Hz %d bit %s\n - %d bytes audio buffer\n", audio_rate,
+		//		bits, audio_channels>1?"stereo":"mono", audio_buffers );
 
-		return LOVE_OK;
+		Mix_Volume(-1,MIX_MAX_VOLUME);
+		Mix_VolumeMusic(MIX_MAX_VOLUME);
+
+		return true;
 	}
 
-	pAbstractSound SDLMixerAudio::getSound(pAbstractFile file) const
+	void SDLMixerAudio::quit()
 	{
-		pAbstractSound tmp(new SDLMixerSound(file));
+		// Close the audio device.
+		Mix_CloseAudio();
+
+		//printf("[QUIT] Audio\n");
+	}
+
+	pSound SDLMixerAudio::getSound(pFile file) const
+	{
+		pSound tmp(new SDLMixerSound(file));
 		return tmp;
 	}
 	
-	pAbstractMusic SDLMixerAudio::getMusic(pAbstractFile file) const
+	pMusic SDLMixerAudio::getMusic(pFile file) const
 	{
-		pAbstractMusic tmp(new SDLMixerMusic(file));
+		pMusic tmp(new SDLMixerMusic(file));
 		return tmp;
 	}
 
@@ -123,12 +129,12 @@ namespace love
 		Mix_VolumeMusic((int)(MIX_MAX_VOLUME * volume));
 	}
 
-	void SDLMixerAudio::play(pAbstractSound sound, int loop, int channel) const
+	void SDLMixerAudio::play(pSound sound, int loop, int channel) const
 	{
 		sound->play(loop);
 	}
 
-	void SDLMixerAudio::play(pAbstractMusic music, int loop) const
+	void SDLMixerAudio::play(pMusic music, int loop) const
 	{
 		music->play(loop);
 	}

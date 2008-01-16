@@ -1,72 +1,67 @@
-/**
-* @file OpenGLImage.h
-* @author Anders Ruud
-* @date 2007-08-19
-* @brief Contains definition for class OpenGLImage.
-**/
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright © 2006-2008 LOVE Development Team
+*/
 
-#ifndef LOVE_OpenGLImage_H 
-#define LOVE_OpenGLImage_H 
+#ifndef LOVE_OPENGL_IMAGE_H 
+#define LOVE_OPENGL_IMAGE_H 
 
 // LOVE
-#include "AbstractImage.h"
-#include "Resource.h"
+#include "Image.h"
 
 // STL
-
-// Boost
-#include <boost/shared_ptr.hpp>
 
 namespace love
 {
 
-	class AbstractFile;
-
 	/**
-	* @class OpenGLImage
-	* @version 1.0
-	* @since 1.0
+	* OpenGL-specific image loader and renderer. Uses DevIL image
+	* library for support for all relevant formats.
+	* 
 	* @author Anders Ruud
 	* @date 2007-08-19
-	* @brief 
 	**/
-	class OpenGLImage : public AbstractImage, public Resource
+	class OpenGLImage : public Image
 	{
 	private:
 	
+		// DevIL image identifier.
+		unsigned int image;
+
+		// OpenGL texture identifier.
+		unsigned int texture;
+
 	public:
 	
 		/**
-		* @brief Constructs an empty OpenGLImage.
+		* Creates a new OpenGLImage. Not that anything is ready to use
+		* before load is called.
+		* @param file The file from which to load the image.
 		**/
-		OpenGLImage(pAbstractFile file);
+		OpenGLImage(pFile file);
 		
-		/**
-		* @brief Destructor.
-		**/
 		virtual ~OpenGLImage();
 
-		/**
-		* @brief Loads the image.
-		* @return LOVE_OK if no errors.
-		**/
-		int load();
+		// From Sprite.
+		void bind() const;
+		void render() const;
+		void render(float x, float y) const;
+		void render(float x, float y, float width, float height) const;
 
-		/**
-		* @brief Unloads the image.
-		**/
+		// From Image.
+		//void render(vec2f * vertices, vec2f * texels) const = 0;
+		
+		// From Resource
+		bool load();
+
+	protected:
+
+		// From Resource
 		void unload();
-
-		virtual std::string toString() const;
 		
 	private:
-		
-		/**
-		* @brief Converts a number to the nearest power of two. (ceil)
-		* @param num The number to convert.
-		* @return The converted number.
-		**/
-		int twoPower(int num) const;
 
 		/**
 		* @brief Pads the image to a power of two texture.
@@ -77,8 +72,6 @@ namespace love
 		
 	}; // OpenGLImage
 	
-	typedef boost::shared_ptr<OpenGLImage> pOpenGLImage;
-	
 } // love
 
-#endif
+#endif // LOVE_OPENGL_IMAGE_H

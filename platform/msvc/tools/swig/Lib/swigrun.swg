@@ -7,7 +7,7 @@
 
 /* This should only be incremented when either the layout of swig_type_info changes,
    or for whatever reason, the runtime changes incompatibly */
-#define SWIG_RUNTIME_VERSION "2"
+#define SWIG_RUNTIME_VERSION "3"
 
 /* define SWIG_TYPE_TABLE_NAME as "SWIG_TYPE_TABLE" */
 #ifdef SWIG_TYPE_TABLE
@@ -230,7 +230,7 @@ SWIG_TypeNameComp(const char *f1, const char *l1,
     while ((*f2 == ' ') && (f2 != l2)) ++f2;
     if (*f1 != *f2) return (*f1 > *f2) ? 1 : -1;
   }
-  return (l1 - f1) - (l2 - f2);
+  return (int)((l1 - f1) - (l2 - f2));
 }
 
 /*

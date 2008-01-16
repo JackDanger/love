@@ -1,8 +1,7 @@
-#include "PhysFSFileSystem.h"
-#include "physfs.h"
-#include "love.h"
-#include "Parameters.h"
+#include "PhysFSFilesystem.h"
 #include "PhysFSFile.h"
+#include <physfs.h>
+
 
 using std::string;
 using std::vector;
@@ -10,64 +9,60 @@ using std::vector;
 namespace love
 {
 
-	PhysFSFileSystem::PhysFSFileSystem(int argc, char ** argv) : argc(argc)
-	{
-		this->argv = argv;
-	}
-
-	PhysFSFileSystem::~PhysFSFileSystem()
+	PhysFSFilesystem::PhysFSFilesystem()
 	{
 	}
 
-	pAbstractFile PhysFSFileSystem::getFile(const string & source, const string & file) const
+	PhysFSFilesystem::~PhysFSFilesystem()
 	{
-		pAbstractFile tmp(new PhysFSFile(source, file));
+		quit();
+	}
+
+	pFile PhysFSFilesystem::getFile(const string & source, const string & file) const
+	{
+		pFile tmp(new PhysFSFile(source, file));
 		return tmp;
 	}
 
-	pAbstractFile PhysFSFileSystem::getBaseFile(const string & file) const
+	pFile PhysFSFilesystem::getBaseFile(const string & file) const
 	{
-		pAbstractFile tmp(new PhysFSFile(this->base, file));
+		pFile tmp(new PhysFSFile(this->base, file));
 		return tmp;
 	}
 
-	pAbstractFile PhysFSFileSystem::getUserFile(const string & file) const
+	pFile PhysFSFilesystem::getUserFile(const string & file) const
 	{
-		pAbstractFile tmp(new PhysFSFile(this->user, file));
+		pFile tmp(new PhysFSFile(this->user, file));
 		return tmp;
 	}
 
-	int PhysFSFileSystem::init()
+	bool PhysFSFilesystem::init(int argc, char* argv[])
 	{
 
 		// Initialize PhysFS
 		if(!PHYSFS_init(argv[0]))
 		{
 			printf("Could not init PhysFS!\n");
-			return LOVE_ERROR;
+			return false;
 		}
 
 		// Set base and user dir
-		this->base = string(PHYSFS_getBaseDir());
-		this->user = string(PHYSFS_getUserDir());
-			
-		return LOVE_OK;
+		base = string(PHYSFS_getBaseDir());
+		user = string(PHYSFS_getUserDir());
+
+		return true;
 	}
 
-	int PhysFSFileSystem::configure(Parameters * parameters)
+	void PhysFSFilesystem::quit()
 	{
-		
-		if(parameters->exists("--base"))
-			this->base = parameters->get("--base");
-
-		if(parameters->exists("--user"))
-			this->user = parameters->get("--user");
-
-
-		return LOVE_OK;
+		if(!PHYSFS_deinit())
+		{
+			//@todo: error
+			return;
+		}
 	}
 
-	vector<string> PhysFSFileSystem::getList(const string & source, const string & file)
+	vector<string> PhysFSFilesystem::getList(const string & source, const string & file)
 	{
 
 		vector<string> file_list;
@@ -91,7 +86,7 @@ namespace love
 		return file_list;
 	}
 
-	bool PhysFSFileSystem::exists(const string & source, const string & file) const
+	bool PhysFSFilesystem::exists(const string & source, const string & file) const
 	{
 		// Add source.
 		add(source);
@@ -105,7 +100,17 @@ namespace love
 		return (existence != 0);
 	}
 
-	bool PhysFSFileSystem::isFile(const string & source, const string & file)
+	bool PhysFSFilesystem::exists(const std::string & file) const
+	{
+		bool exists = add(file);
+
+		if(exists)
+			remove(file);
+
+		return exists;
+	}
+
+	bool PhysFSFilesystem::isFile(const string & source, const string & file)
 	{
 		bool is_file = true;
 
@@ -127,7 +132,7 @@ namespace love
 
 	}
 
-	bool PhysFSFileSystem::isDir(const string & source, const string & file)
+	bool PhysFSFilesystem::isDir(const string & source, const string & file)
 	{
 		bool dir = false;
 
@@ -148,7 +153,7 @@ namespace love
 		return dir;
 	}
 
-	bool PhysFSFileSystem::add(const string & path) const
+	bool PhysFSFilesystem::add(const string & path) const
 	{
 		// Try to add the source.
 		if(!PHYSFS_addToSearchPath(path.c_str(), 1))
@@ -160,7 +165,7 @@ namespace love
 		return true;
 	}
 
-	bool PhysFSFileSystem::remove(const string & path) const
+	bool PhysFSFilesystem::remove(const string & path) const
 	{
 	
 		// Try to remove source.

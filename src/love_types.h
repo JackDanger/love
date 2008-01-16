@@ -1,5 +1,5 @@
 /**
-* @file types.h
+* @file love_types.h
 * @author Anders Ruud
 * @date 2006-08-02
 * @brief Contains identifiers for all types.
