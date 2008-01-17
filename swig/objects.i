@@ -36,6 +36,14 @@ namespace love
 			tmp->load();
 			return tmp;
 		}
+
+		pFont newImageFont(const char * filename, const char * glyphs)
+		{
+			pFile file(filesystem->getFile(game->getSource(), std::string(filename)));
+			pFont tmp(graphics->getImageFont(file, glyphs));
+			tmp->load();
+			return tmp;
+		}
 		
 		pSound newSound(const char * filename)
 		{

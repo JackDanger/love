@@ -279,7 +279,20 @@
           small = love.objects:newFont("SomeAwesomeZeldaFont.ttf", 8);
         </example>
       </function>
-
+	 
+	 <function name="newImageFont" brief="Creates a new font by loading a specifically formatted image.">
+	   An image font is created by having a series of characters set next to each other in a horizontal row.
+	   Between all the characters and on the left and right sides should be a dividing line consisting of a single color
+	   (which is not found in the actual characters themselves).[br /]
+	   This [a href="gfx/imagefont.png"]example image[/a] is consiting of black and white glyphs on a pink background (background can be transparent)
+	   where they are separated by yellow lines. The yellow will be used in determining where each character begins and ends.
+	   <param name="filename" brief="The filepath to the image file." />
+        <param name="glyphs" brief="A list of the characters as they are in the image." />
+	   <returns type="Font" brief="A Font object containing the font data." />
+	   <example name="Add the example font.">
+		example = love.objects:newImageFont("imagefont.png", " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&amp;`'*#=[]&quot;");
+	   </example>
+      </function>
 
     </device>
 
@@ -967,5 +980,6 @@
       </example>
 
     </constants>
+
   </section>
 </document>
