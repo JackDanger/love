@@ -4,6 +4,9 @@
 #include "using_gl.h"
 #include "using_error.h"
 
+// Including Math (for ceil)
+#include <math.h>
+
 using std::string;
 
 namespace love
@@ -114,12 +117,12 @@ namespace love
 	}
 	
 
-	void OpenGLFont::print(string text, float x, float y)
+	void OpenGLFont::print(string text, float x, float y) const
 	{
 		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
 
-		glTranslatef(x, y, 0.0f);
+		glTranslatef(ceil(x), ceil(y), 0.0f);
 		GLuint OpenGLFont = list;
 		glListBase(OpenGLFont);
 		glCallLists((int)text.length(), GL_UNSIGNED_BYTE, text.c_str());
@@ -128,7 +131,7 @@ namespace love
 		glPopMatrix();
 	}
 
-	void OpenGLFont::print(char character, float x, float y)
+	void OpenGLFont::print(char character, float x, float y) const
 	{
 		glPushMatrix();
 		glTranslatef(x, y, 0.0f);
@@ -138,12 +141,12 @@ namespace love
 		glPopMatrix();
 	}
 
-	float OpenGLFont::getLineHeight()
+	float OpenGLFont::getLineHeight() const
 	{
 		return ((float)size) * 1.5f;
 	}
 
-	float OpenGLFont::getLineWidth(const char * line)
+	float OpenGLFont::getLineWidth(const char * line) const
 	{
 		float temp = 0;
 
@@ -153,6 +156,11 @@ namespace love
 		}
 
 		return temp;
+	}
+	
+	float OpenGLFont::getWidth(const char character) const
+	{
+		return widths[(int)character];
 	}
 
 	bool OpenGLFont::load()
@@ -209,6 +217,6 @@ namespace love
 		delete [] textures;
 		textures = 0;
 		list = 0;
-	}
+	}	
 
 }

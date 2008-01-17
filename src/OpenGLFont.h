@@ -2,7 +2,7 @@
 * LOVE: Totally Awesome 2D Gaming.
 * Website: http://love.sourceforge.net
 * Licence: ZLIB/libpng
-* Copyright © 2006-2008 LOVE Development Team
+* Copyright ï¿½ 2006-2008 LOVE Development Team
 */
 
 #ifndef LOVE_OPENGL_FONT_H
@@ -81,7 +81,7 @@ namespace love
 		 * @param y The y-coordinate.
 		 * @brief Prints the text at the set position.
 		 **/
-		void print(std::string text, float x = 0, float y = 0);
+		void print(std::string text, float x = 0, float y = 0) const;
 
 		/**
 		 * @param character A character.
@@ -89,20 +89,27 @@ namespace love
 		 * @param y The y-coordinate.
 		 * @brief Prints the character at the set position.
 		 **/
-		void print(char character, float x = 0, float y = 0);
+		void print(char character, float x = 0, float y = 0) const;
 
 		/**
 		 * @return The height of the OpenGLFont.
 		 * @brief Returns the size of the OpenGLFont multiplied by 1.5
 		 **/
-		float getLineHeight();
+		float getLineHeight() const;
 
 		/**
 		 * @param line A line of text.
 		 * @return The width of the passed string.
 		 * @brief Adds all the widths and glyph shifting values together to return the width of the line of text.
 		 **/
-		float getLineWidth(const char * line);
+		float getLineWidth(const char * line) const;
+		
+		/**
+		 * @param character A character.
+		 * @return The width of the passed character.
+		 * @brief Returns the width of the passed character as it is referenced in the widths array.
+		 **/
+		float getWidth(const char character) const;
 
 		bool load();
 		void unload();

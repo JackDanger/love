@@ -2,7 +2,7 @@
 * LOVE: Totally Awesome 2D Gaming.
 * Website: http://love.sourceforge.net
 * Licence: ZLIB/libpng
-* Copyright © 2006-2008 LOVE Development Team
+* Copyright ï¿½ 2006-2008 LOVE Development Team
 */
 
 #ifndef LOVE_GRAPHICS_H 
@@ -14,7 +14,9 @@
 #include "Font.h"
 #include "Particlesystem.h"
 #include "Color.h"
-#include "Font.h"
+//#include "Font.h"
+
+#include "love_align.h"
 
 namespace love
 {
@@ -41,7 +43,7 @@ namespace love
 
 		// The current font used for rendering text.
 		pFont font;
-
+		
 	public:
 	
 		Graphics();
@@ -111,6 +113,11 @@ namespace love
 		* Draw text on screen.
 		**/
 		void draw(const char * str, float x, float y) const;
+
+		/**
+		* Draw formatted text on screen
+		**/
+		void draw(const char * str, float x, float y, int wrap, int align = LOVE_ALIGN_LEFT) const;
 				
 	}; // Graphics
 	

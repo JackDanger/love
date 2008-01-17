@@ -43,13 +43,13 @@ namespace love
 		psys->setTangentialAcc(1000);
 		psys->setRadialAcc(-2000);
 
-		sound = audio->getSound("splash.wav");
-		sound->load();
-		sound->play(1);
+		//sound = audio->getSound("splash.wav");
+		//sound->load();
+		//sound->play(1);
 
-		music = audio->getMusic("intermission.mp3");
-		music->load();
-		music->play();
+		//music = audio->getMusic("intermission.mp3");
+		//music->load();
+		//music->play();
 
 		return true;
 	}
@@ -74,9 +74,10 @@ namespace love
 
 		img->render(x, y);
 
-		glColor3f(1, 1, 0);
-
-		font->print("This is a test. Are we the great testoor?", 100, 100);
+		graphics->setColor(255,255,0);
+		graphics->setFont(font);
+		//graphics->draw("This is a test. Are we the great testoor?", 100, 100, 100, 1);
+		graphics->draw("AReallyLongThingOfDoomOfGayFuck. This is\na\ntest. Are we the great testoor?", 100, 100, 100, 2);
 
 
 

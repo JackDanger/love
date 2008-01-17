@@ -105,9 +105,9 @@ namespace love
 		}
 		else
 		{
-			//game = new FontTexGame();
-			printf("Usage: love [item]\n - [item] may be an archive file or directory ^.^\n\n");
-			return false;
+			game = new FontTexGame();
+			//printf("Usage: love [item]\n - [item] may be an archive file or directory ^.^\n\n");
+			//return false;
 		}
 
 		// Setup display.
