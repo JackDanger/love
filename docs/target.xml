@@ -456,7 +456,7 @@
         <param name="string" brief="A text string." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
-        <param name="limit" brief="The max line width (in pixels)." />
+        <param name="wrap" brief="The max line width (in pixels)." />
       </function>
 
       <function name="draw" brief="Draws text on screen, with word wrap, line breaks, and alignment.">
@@ -469,9 +469,9 @@
         <param name="string" brief="A text string." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
-        <param name="limit" brief="The max line width (in pixels)." />
-        <param name="align" brief="How the text should be aligned. love.align_left, 
-        love.align_right or love.align_center" />
+        <param name="wrap" brief="The max line width (in pixels)." />
+        <param name="align" brief="How the text should be aligned (love.align_left, 
+        love.align_right or love.align_center)." />
       </function>
 
       <function name="draw" brief="Draws an Image on screen.">

@@ -13,6 +13,7 @@ namespace love
 		void setColor(int r, int g, int b, int a = 255);
 		void setFont(pFont font);
 		void draw(const char * str, float x, float y) const;
+		void draw(const char * str, float x, float y, int wrap, int align = 1);
 	};
 	
 }
