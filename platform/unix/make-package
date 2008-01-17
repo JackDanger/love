@@ -1,0 +1,17 @@
+#!/bin/bash
+if [ -z "$2" ]; then
+	echo "Syntax:  ./make-package <package> <version>"
+	echo "Example: ./make-package deb 0.1.1"
+	exit 0
+fi
+if [ "$1" == "deb" ]; then
+	cd ../../
+	make
+	strip love
+	cd platform/unix/
+	ln ../../love deb/usr/bin/love
+	dpkg -b deb love-$2.deb
+	rm -f deb/usr/bin/love
+else
+	echo "Unknown package type: $1"
+fi

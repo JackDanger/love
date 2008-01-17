@@ -1,6 +1,6 @@
 TARGET = love
 BINDIR = .
-OBJDIR = platform/unix
+OBJDIR = obj
 SRCDIR = src
 OBJ = $(OBJDIR)/AnimatedColor.o \
 $(OBJDIR)/Audio.o \
