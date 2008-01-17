@@ -141,28 +141,6 @@ namespace love
 		glPopMatrix();
 	}
 
-	float OpenGLFont::getLineHeight() const
-	{
-		return ((float)size) * 1.5f;
-	}
-
-	float OpenGLFont::getLineWidth(const char * line) const
-	{
-		float temp = 0;
-
-		for(unsigned int i = 0; i < strlen(line); i++)
-		{
-			temp += widths[(int)line[i]];
-		}
-
-		return temp;
-	}
-	
-	float OpenGLFont::getWidth(const char character) const
-	{
-		return widths[(int)character];
-	}
-
 	bool OpenGLFont::load()
 	{
 

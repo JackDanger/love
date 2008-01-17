@@ -98,6 +98,12 @@ namespace love
 		* current graphics context.
 		**/
 		virtual pFont getFont(pFile file, int size) const = 0;
+		
+		/**
+		 * Gets an ImageFont object that is compatible with the 
+		 * current graphics context.
+		 **/
+		virtual pFont getImageFont(pFile file, std::string glyphs) const = 0;
 
 		/**
 		* Gets a Particlesystem object that is compatible with the 
@@ -108,14 +114,25 @@ namespace love
 		// Convenience functions. Base source is assumed.
 		pImage getImage(const std::string & filename) const;
 		pFont getFont(const std::string & filename, int size) const;
+		pFont getImageFont(const std::string & filename, std::string glyphs) const;
 
 		/**
-		* Draw text on screen.
+		* Draw text on screen at the specified coordiantes (automatically breaks \n characters).
+		*
+		* @param str A string of text.
+		* @param x The x-coordiante.
+		* @param y The y-coordiante.
 		**/
 		void draw(const char * str, float x, float y) const;
 
 		/**
-		* Draw formatted text on screen
+		* Draw formatted text on screen at the specified coordinates.
+		*
+		* @param str A string of text.
+		* @param x The x-coordinate.
+		* @param y The y-coordinate.
+		* @param wrap The maximum width of the text area.
+		* @param align Where to align the text.
 		**/
 		void draw(const char * str, float x, float y, int wrap, int align = LOVE_ALIGN_LEFT) const;
 				

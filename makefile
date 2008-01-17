@@ -31,6 +31,7 @@ $(OBJDIR)/Music.o \
 $(OBJDIR)/OpenGLFont.o \
 $(OBJDIR)/OpenGLGraphics.o \
 $(OBJDIR)/OpenGLImage.o \
+$(OBJDIR)/OpenGLImageFont.o \
 $(OBJDIR)/OpenGLParticleSystem.o \
 $(OBJDIR)/Particlesystem.o \
 $(OBJDIR)/PhysFSFile.o \

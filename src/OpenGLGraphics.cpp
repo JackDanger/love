@@ -4,6 +4,7 @@
 #include "using_gl.h"
 #include "OpenGLImage.h"
 #include "OpenGLFont.h"
+#include "OpenGLImageFont.h"
 #include "OpenGLParticleSystem.h"
 
 // DevIL
@@ -55,6 +56,12 @@ namespace love
 	pFont OpenGLGraphics::getFont(pFile file, int size) const
 	{
 		pFont tmp (new OpenGLFont(file, size));
+		return tmp;
+	}
+	
+	pFont OpenGLGraphics::getImageFont(pFile file, std::string glyphs) const
+	{
+		pFont tmp (new OpenGLImageFont(file, glyphs));
 		return tmp;
 	}
 

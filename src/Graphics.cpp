@@ -62,6 +62,12 @@ namespace love
 		pFile file = filesystem->getBaseFile(filename);
 		return getFont(file, size);
 	}
+	
+	pFont Graphics::getImageFont(const std::string & filename, std::string glyphs) const
+	{
+		pFile file = filesystem->getBaseFile(filename);
+		return getImageFont(file, glyphs);
+	}
 
 	void Graphics::draw(const char * str, float x, float y) const
 	{
@@ -82,7 +88,7 @@ namespace love
 				{
 					if(str[i] == '\n')
 					{
-						font->print(text, x, y + (lines * font->getLineHeight()));
+						font->print(text, x, y + (lines * font->getHeight()));
 						text = "";
 						lines++;
 					}
@@ -91,7 +97,7 @@ namespace love
 				}
 				
 				if(text != "") // Print the last text (if applicable).
-					font->print(text, x, y + (lines * font->getLineHeight()));
+					font->print(text, x, y + (lines * font->getHeight()));
 			}
 		}
 	}
@@ -113,19 +119,19 @@ namespace love
 					switch(align)
 					{
 						case LOVE_ALIGN_LEFT:
-							font->print(text, x, y + (lines * font->getLineHeight()));
+							font->print(text, x, y + (lines * font->getHeight()));
 							break;
 							
 						case LOVE_ALIGN_RIGHT:
-							font->print(text, (x + (wrap - font->getWidth(text))), y + (lines * font->getLineHeight()));
+							font->print(text, (x + (wrap - font->getWidth(text))), y + (lines * font->getHeight()));
 							break;
 							
 						case LOVE_ALIGN_CENTER:
-							font->print(text, (x + ((wrap - font->getWidth(text)) / 2)), y + (lines * font->getLineHeight()));
+							font->print(text, (x + ((wrap - font->getWidth(text)) / 2)), y + (lines * font->getHeight()));
 							break;
 							
 						default: // A copy of the left align code. Kept separate in case an error message is wanted.
-							font->print(text, x, y + (lines * font->getLineHeight()));
+							font->print(text, x, y + (lines * font->getHeight()));
 							break;
 					}	
 					text = "";
@@ -144,19 +150,19 @@ namespace love
 						switch(align)
 						{
 							case LOVE_ALIGN_LEFT:
-								font->print(temp, x, y + (lines * font->getLineHeight()));
+								font->print(temp, x, y + (lines * font->getHeight()));
 								break;
 							
 							case LOVE_ALIGN_RIGHT:
-								font->print(temp, (x + (wrap - font->getWidth(temp))), y + (lines * font->getLineHeight()));
+								font->print(temp, (x + (wrap - font->getWidth(temp))), y + (lines * font->getHeight()));
 								break;
 							
 							case LOVE_ALIGN_CENTER:
-								font->print(temp, (x + ((wrap - font->getWidth(temp)) / 2)), y + (lines * font->getLineHeight()));
+								font->print(temp, (x + ((wrap - font->getWidth(temp)) / 2)), y + (lines * font->getHeight()));
 								break;
 							
 							default: // A copy of the left align code. Kept separate in case an error message is wanted.
-								font->print(temp, x, y + (lines * font->getLineHeight()));
+								font->print(temp, x, y + (lines * font->getHeight()));
 								break;
 						}	
 						
@@ -174,19 +180,19 @@ namespace love
 				switch(align)
 				{
 					case LOVE_ALIGN_LEFT:
-						font->print(text, x, y + (lines * font->getLineHeight()));
+						font->print(text, x, y + (lines * font->getHeight()));
 						break;
 							
 					case LOVE_ALIGN_RIGHT:
-						font->print(text, (x + (wrap - font->getWidth(text))), y + (lines * font->getLineHeight()));
+						font->print(text, (x + (wrap - font->getWidth(text))), y + (lines * font->getHeight()));
 						break;
 							
 					case LOVE_ALIGN_CENTER:
-						font->print(text, (x + ((wrap - font->getWidth(text)) / 2)), y + (lines * font->getLineHeight()));
+						font->print(text, (x + ((wrap - font->getWidth(text)) / 2)), y + (lines * font->getHeight()));
 						break;
 							
 					default: // A copy of the left align code. Kept separate in case an error message is wanted.
-						font->print(text, x, y + (lines * font->getLineHeight()));
+						font->print(text, x, y + (lines * font->getHeight()));
 						break;
 				}	
 			}

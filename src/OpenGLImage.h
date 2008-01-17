@@ -2,7 +2,7 @@
 * LOVE: Totally Awesome 2D Gaming.
 * Website: http://love.sourceforge.net
 * Licence: ZLIB/libpng
-* Copyright © 2006-2008 LOVE Development Team
+* Copyright ï¿½ 2006-2008 LOVE Development Team
 */
 
 #ifndef LOVE_OPENGL_IMAGE_H 
@@ -59,8 +59,6 @@ namespace love
 		
 		// From Resource
 		bool load();
-
-	protected:
 
 		// From Resource
 		void unload();

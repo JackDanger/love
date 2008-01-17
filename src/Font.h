@@ -26,50 +26,56 @@ namespace love
 
 	public:
 		static const unsigned int MAX_CHARS = 256;
-		int widths[MAX_CHARS]; //to hold the width of every char
+		// The widths of each character.
+		int widths[MAX_CHARS];
 
+		/**
+		* Default constructor.
+		*
+		* @param file The file containing the OpenGLFont data.
+		* @param size The size of the OpenGLFont.
+		**/
 		Font(pFile file, int size);
+		
 		virtual ~Font();
 
 		/**
+		* Prints the text at the designated position.
+		*
 		* @param text A string.
 		* @param x The x-coordinate.
 		* @param y The y-coordinate.
-		* @brief Prints the text at the set position.
 		**/
 		virtual void print(std::string text, float x = 0, float y = 0) const = 0;
 
 		/**
+		* Prints the character at the designated position.
+		*
 		* @param character A character.
 		* @param x The x-coordinate.
 		* @param y The y-coordinate.
-		* @brief Prints the character at the set position.
 		**/
 		virtual void print(char character, float x = 0, float y = 0)const  = 0;
 
 		/**
-		* @return The height of the font.
-		* @brief Returns the height of the font.
+		* Returns the height of the font.
 		**/
-		virtual float getLineHeight() const = 0;
 		virtual float getHeight() const;
 
 		/**
+		* Returns the width of the passed string.
+		*
 		* @param line A line of text.
-		* @return The width of the passed string.
-		* @brief Returns the width of the passed string.
 		**/
-		virtual float getLineWidth(const char * line) const = 0;
-		virtual float getWidth(const char * line) const;
-		virtual float getLineWidth(const std::string & line) const;
 		virtual float getWidth(const std::string & line) const;
+		virtual float getWidth(const char * line) const;
 		
 		/**
+		* Returns the width of the passed character.
+		*
 		* @param character A character.
-		* @return The width of the passed character.
-		* @brief Returns the width of the passed character.
 		**/
-		virtual float getWidth(const char character) const = 0;
+		virtual float getWidth(const char character) const;
 
 	}; // Font
 

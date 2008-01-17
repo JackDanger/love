@@ -29,6 +29,9 @@ namespace love
 
 		pImage particle = graphics->getImage("part1.png");
 		particle->load();
+		
+		imgfont = graphics->getImageFont("rpgfont.png", " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&`'*#=[]\"");
+		imgfont->load();
 
 		psys = graphics->getParticlesystem();
 		psys->addColor(255, 255, 255);
@@ -72,15 +75,15 @@ namespace love
 
 		psys->render();
 
-		img->render(x, y);
+		img->render(0, 0, 50, 50);
 
 		graphics->setColor(255,255,0);
 		graphics->setFont(font);
 		//graphics->draw("This is a test. Are we the great testoor?", 100, 100, 100, 1);
-		graphics->draw("AReallyLongThingOfDoomOfGayFuck. This is\na\ntest. Are we the great testoor?", 100, 100, 100, 2);
-
-
-
+		graphics->draw("AReallyLongThingOfDoomOfGayFuck. This is\na\ntest. Are we the great testoor?", x, y, 100, 2);
+		
+		imgfont->print("DELICIOUS CAKE 5000: This is an image font, btw!", 100, 100);
+		
 	}
 
 	void FontTexGame::keyPressed(int key)
