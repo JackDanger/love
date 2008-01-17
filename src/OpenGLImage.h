@@ -52,7 +52,10 @@ namespace love
 		void render(float x, float y, float angle, float sx, float sy) const;
 
 		// From Image.
-		//void render(vec2f * vertices, vec2f * texels) const = 0;
+		bool readData();
+		rgba * getData() const;
+		bool toHardware();
+		void freeData();
 		
 		// From Resource
 		bool load();

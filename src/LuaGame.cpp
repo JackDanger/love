@@ -78,6 +78,9 @@ namespace love
 	{
 		// Close Lua state.
 		vm.close();
+
+		// Clear included files.
+		included.clear();
 	}
 
 	void LuaGame::render()

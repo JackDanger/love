@@ -16,12 +16,17 @@ namespace love
 	const float two_pi = 2*pi;
 	const float to_rad = (pi/180.0f);
 
+	// 2D-vector.
+	struct vec2 { float x, y; };
+
 	/**
 	* Finds the closest power-of-two number to i, that is bigger
 	* or equal to i. 
 	* @param i The number to find the power-of-two number for.
 	**/
 	int power_of_two(int i);
+
+
 
 } // love
 

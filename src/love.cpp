@@ -197,7 +197,17 @@ namespace love
 	void key_pressed(int key)
 	{
 		if(key == LOVE_KEY_ESCAPE)
+		{
 			quit();
+			return;
+		}
+
+		// Reload the game.
+		if(keyboard->isDown(LOVE_KEY_LCTRL) && key == LOVE_KEY_r)
+		{
+			game->reload();
+			return;
+		}
 
 		game->keyPressed(key);
 	}

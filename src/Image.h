@@ -15,6 +15,13 @@
 namespace love
 {
 
+	// Pixel format structures. Luminance-Alpha and RGB(A).
+	// These might be useful to subclasses that need to convert images
+	// to power-of-two textures, and need to work with pixel data in general.
+	struct la { unsigned char l, a; };
+	struct rgb { unsigned char r, g, b; };
+	struct rgba { unsigned char r, g, b, a; };
+
 	/**
 	* An Image is a Sprite that is always
 	* rendered the same way on the screen.
@@ -60,6 +67,34 @@ namespace love
 
 		virtual ~Image();
 
+		// Note: load() (in subclasses) should just contain 
+		// these method calls:
+		// readData()
+		// toHardware()
+		// freeData()
+
+		/**
+		* Read the data from the file.
+		**/
+		virtual bool readData() = 0;
+
+		/**
+		* Gets a pointer to the pixel data. The size
+		* can be retrieved using getWidth/getHeight.
+		**/
+		virtual rgba * getData() const = 0;
+
+		/**
+		* Converts the image data to a hardware texture.
+		* Also performs power-of-two conversions if needed.
+		**/
+		virtual bool toHardware() = 0;
+
+		/**
+		* Frees the "local" image data.
+		**/
+		virtual void freeData() = 0;
+
 		// From Sprite.
 		// Overriding this here. Images are not supposed to 
 		// change over time.
@@ -75,13 +110,6 @@ namespace love
 	};
 
 	typedef boost::shared_ptr<Image> pImage;
-
-	// Pixel format structures. Luminance-Alpha and RGB(A).
-	// These might be useful to subclasses that need to convert images
-	// to power-of-two textures, and need to work with pixel data in general.
-	struct la { unsigned char l, a; };
-	struct rgb { unsigned char r, g, b; };
-	struct rgba { unsigned char r, g, b, a; };
 
 } // love
 

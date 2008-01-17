@@ -97,11 +97,8 @@ namespace love
 		glPopMatrix();
 	}
 
-	bool OpenGLImage::load()
-	{	
-
-		//printf("Loading OGLImage, LOEL %s -> %s\n", file->getSource().c_str(), file->getFilename().c_str());
-
+	bool OpenGLImage::readData()
+	{
 		// Load image data into memory
 		if(!file->load())
 			return false;
@@ -113,7 +110,6 @@ namespace love
 		ilBindImage(image);
 
 		// Try to load the image.
-		
 		ILboolean success = ilLoadL(IL_TYPE_UNKNOWN, (void*)file->getData(), file->getSize());
 
 		// Check for errors
@@ -131,10 +127,19 @@ namespace love
 
 		ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
 
+		return true;
+	}
+
+	rgba * OpenGLImage::getData() const
+	{
+		return (rgba *)ilGetData();
+	}
+
+	bool OpenGLImage::toHardware()
+	{
 		padTwoPower();
 
 		// Pass on to OGL
-
 		glGenTextures(1,&texture);
 		glBindTexture(GL_TEXTURE_2D, texture);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -143,36 +148,52 @@ namespace love
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-		// @todo Warning. This desperado-GL_RGBA8'ing might cause severe failure on
-		// someone's computer.
+		// @todo Warning. GL_RGBA8 might fail.
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)textureWidth, (GLsizei)textureHeight, 0, 
 			ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_TYPE), ilGetData());
 
-		//texture = ilutGLBindTexImage();
-
 		// Check for errors
 		if(texture == 0) 
+		{
 			printf("Image error: could not create OGL texture.");
-
-
-		//@todo Add inheritable "manipulate" functoihw.n.
-
-		// Delete DevIL-data (no longer needed)
-		ilDeleteImages(1, &image);
-
-
-		//printf("Image \"%s\" loaded!\n", file->getFilename().c_str());
-
-		file->unload();
+			return false;
+		}
 
 		return true;
+	}
 
+	void OpenGLImage::freeData()
+	{
+		// Delete DevIL-data (no longer needed)
+		ilDeleteImages(1, &image);
+		
+		// Unload the file.
+		file->unload();
+	}
+
+	bool OpenGLImage::load()
+	{	
+		// Read file.
+		if(!readData())
+			return false;
+
+		// Send to hardware
+		if(!toHardware())
+			return false;
+
+		// Free local data.
+		freeData();
+
+		// HW texture will be removed in unload.
+
+		return true;
 	}
 
 	void OpenGLImage::unload()
 	{
 		// Delete the hardware texture.
-		glDeleteTextures(1, &texture);
+		if(texture != 0)
+			glDeleteTextures(1, &texture);
 	}
 
 	void OpenGLImage::padTwoPower()

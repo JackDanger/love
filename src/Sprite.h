@@ -28,6 +28,12 @@ namespace love
 	{
 	protected:
 
+		// Texture coordinates.
+		float texels[4][2];
+
+		// The four vertices of the quad.
+		float vertices[4][2];
+
 		// The width and height of the Sprite. (These are not
 		// fixed. Animation, for instance, may change them every frame).
 		float width;
