@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="opengl32.lib glu32.lib odbc32.lib odbccp32.lib sdl_DMT.lib sdlmain_DMT.lib physfs.lib DevIL.lib ILU.lib ILUT.lib freetype.lib lua5.1.lib SDL_mixer.lib"
+				AdditionalDependencies="opengl32.lib glu32.lib odbc32.lib odbccp32.lib sdl_DMT.lib sdlmain_DMT.lib physfs.lib DevIL.lib ILU.lib ILUT.lib freetype.lib lua5.1_mt.lib SDL_mixer.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="lib"
 				GenerateDebugInformation="true"
@@ -137,7 +137,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="opengl32.lib glu32.lib odbc32.lib odbccp32.lib sdl_MT.lib SDLmain_MT.lib physfs.lib DevIL.lib ILU.lib ILUT.lib freetype.lib lua5.1.lib SDL_mixer.lib"
+				AdditionalDependencies="opengl32.lib glu32.lib odbc32.lib odbccp32.lib sdl_MT.lib SDLmain_MT.lib physfs.lib DevIL.lib ILU.lib ILUT.lib freetype.lib lua5.1_mt.lib SDL_mixer.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="lib"
 				GenerateDebugInformation="true"

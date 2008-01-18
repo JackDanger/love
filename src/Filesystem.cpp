@@ -23,6 +23,4 @@ namespace love
 		return user;
 	}
 
-
-
 }// love

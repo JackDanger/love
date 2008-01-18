@@ -2,6 +2,9 @@
 #include "PhysFSFile.h"
 #include <physfs.h>
 
+// boost
+#include <boost/filesystem/operations.hpp>
+#include <boost/filesystem/path.hpp>
 
 using std::string;
 using std::vector;
@@ -47,7 +50,9 @@ namespace love
 		}
 
 		// Set base and user dir
-		base = string(PHYSFS_getBaseDir());
+		//base = string(PHYSFS_getBaseDir()); // Using boost::filesystem instead.
+		boost::filesystem::path full_path( boost::filesystem::current_path() );
+		base = full_path.native_directory_string() + "\\";
 		user = string(PHYSFS_getUserDir());
 
 		return true;

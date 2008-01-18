@@ -70,6 +70,9 @@ namespace love
 		* Test area begins here.
 		*****************************************/
 
+		// Print full path.
+		printf(" * Full path is: %s\n", filesystem->getBase().c_str());
+
 		// Check arguments.
 		std::string arg_base = get_arg(argc, argv, "-b");
 		std::string arg_game = get_arg_game(argc, argv);
