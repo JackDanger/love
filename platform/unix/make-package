@@ -9,9 +9,15 @@ if [ "$1" == "deb" ]; then
 	make
 	strip love
 	cd platform/unix/
+	mkdir deb
+	mkdir deb/DEBIAN
+	sed "s/%VERSION%/$2/" < debian > deb/DEBIAN/control
+	mkdir deb/usr
+	mkdir deb/usr/bin
 	ln ../../love deb/usr/bin/love
 	dpkg -b deb love-$2.deb
-	rm -f deb/usr/bin/love
+	rm -rf deb
 else
 	echo "Unknown package type: $1"
+	echo "Valid types: deb"
 fi
