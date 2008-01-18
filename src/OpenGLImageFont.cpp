@@ -107,11 +107,11 @@ namespace love
 			
 			if(positions[pos] != -1)
 			{
-				image->render(positions[pos], 0, widths[pos], size);
-				glTranslatef(widths[pos], 0.0f, 0.0f);
+				image->render((float)positions[pos], 0, (float)widths[pos], (float)size);
+				glTranslatef((float)widths[pos], 0.0f, 0.0f);
 			}
 			else // in case the character is not found
-				glTranslatef(widths[(int)' '], 0.0f, 0.0f);
+				glTranslatef((float)widths[(int)' '], 0.0f, 0.0f);
 		}
 		
 		glPopMatrix();
@@ -139,7 +139,7 @@ namespace love
 		
 		glColor4ub(255,255,255,255); // should this be removed?
 			
-		image->render(positions[pos], 0, widths[pos], size);
+		image->render((float)positions[pos], 0, (float)widths[pos], (float)size);
 		
 		glPopMatrix();
 		

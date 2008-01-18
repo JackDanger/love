@@ -35,6 +35,6 @@ namespace love
 	
 	float Font::getWidth(const char character) const
 	{
-		return widths[(int)character];
+		return (float)widths[(int)character];
 	}
 }

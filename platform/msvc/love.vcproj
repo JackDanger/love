@@ -348,6 +348,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\OpenGLImageFont.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\OpenGLParticleSystem.cpp"
 					>
 				</File>
@@ -555,6 +559,10 @@
 				</File>
 				<File
 					RelativePath="..\..\src\OpenGLImage.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\OpenGLImageFont.h"
 					>
 				</File>
 				<File

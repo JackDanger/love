@@ -82,7 +82,7 @@ namespace love
 		//graphics->draw("This is a test. Are we the great testoor?", 100, 100, 100, 1);
 		graphics->draw("AReallyLongThingOfDoomOfGayFuck. This is\na\ntest. Are we the great testoor?", x, y, 100, 2);
 		
-		imgfont->print("DELICIOUS CAKE 5000: This is an image font, btw!", 100, 100);
+		imgfont->print("Are you liek kidding me?", 100, 100);
 		
 	}
 
