@@ -13,7 +13,6 @@ namespace love
 		ss << LOVE_MINOR_VERSION;
 		ss << ".";
 		ss << LOVE_REVISION;
-		ss << "a";
 		return ss.str();
 	}
 }

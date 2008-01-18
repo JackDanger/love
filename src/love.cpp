@@ -42,7 +42,7 @@ namespace love
 
 	bool init(int argc, char* argv[])
 	{
-		printf("LOVE %s - Now with more Santa-power.\n\n", version_string().c_str());
+		printf("LOVE %s - Now with More Mini-Moose (tm).\n\n", version_string().c_str());
 
 		if(!display->init(argc, argv))
 			return false;
@@ -71,7 +71,7 @@ namespace love
 		*****************************************/
 
 		// Print full path.
-		printf(" * Full path is: %s\n", filesystem->getBase().c_str());
+		//printf(" * Full path is: %s\n", filesystem->getBase().c_str());
 
 		// Check arguments.
 		std::string arg_base = get_arg(argc, argv, "-b");
@@ -108,11 +108,12 @@ namespace love
 		}
 		else
 		{
-			game = new FontTexGame();
-			//printf("Usage: love [item]\n - [item] may be an archive file or directory ^.^\n\n");
-			//return false;
+			//game = new FontTexGame();
+			printf("Usage: love [FILE]\n");
+			printf("\nExamples:\n  love demo01.love\n  love /home/nyan/mygame\n\n");
+			return false;
+		
 		}
-
 		// Setup display.
 		if(conf != 0)
 		{

@@ -4,7 +4,7 @@ Section: games
 Priority: optional
 Architecture: i386
 Essential: no
-Depends: libdevil1c2, libfreetype6, libgl1-mesa-glx, liblua5.1-0, libphysfs-1.0-0, libsdl1.2debian, libsdl-mixer1.2
+Depends: libdevil1c2, libfreetype6, libgl1-mesa-glx, liblua5.1-0, libphysfs-1.0-0, libsdl1.2debian, libsdl-mixer1.2, libboost-filesystem1.34.1
 Maintainer: Tommy Nguyen [tn0502@hotmail.com]
 Provides: love
 Description: LOVE is a free 2D game engine that will utilize the Lua scripting language to create games.

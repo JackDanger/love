@@ -52,7 +52,7 @@ $(OBJDIR)/Vector.o
 
 CC = g++
 CFLAGS = -g -O0 -Wall -Wno-unused-label -fno-strict-aliasing
-LDFLAGS = -lGL -lGLU -lIL -lILU -lILUT -lSDL -lSDL_mixer -llua5.1 -lphysfs -lfreetype
+LDFLAGS = -lGL -lGLU -lIL -lILU -lILUT -lSDL -lSDL_mixer -llua5.1 -lphysfs -lfreetype -lboost_filesystem
 INCLUDES = -I/usr/include/freetype2 -I/usr/include/lua5.1 -I/usr/include/SDL
 
 default: $(TARGET)
