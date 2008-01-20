@@ -116,6 +116,10 @@ namespace love
 		unload();
 	}
 	
+	float OpenGLFont::getHeight() const
+	{
+		return ((float)size) * 1.5f;
+	}
 
 	void OpenGLFont::print(string text, float x, float y) const
 	{

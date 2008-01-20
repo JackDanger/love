@@ -80,18 +80,19 @@ namespace love
 
 
 		// From Font
-		void print(std::string text, float x = 0, float y = 0) const;
-		void print(char character, float x = 0, float y = 0) const;
+		virtual float getHeight() const;
+		virtual void print(std::string text, float x = 0, float y = 0) const;
+		virtual void print(char character, float x = 0, float y = 0) const;
 
 		/**
 		* Loads the file and creates a series of display lists.
 		**/
-		bool load();
+		virtual bool load();
 		
 		/**
 		* Deletes the display lists and any texture information.
 		**/
-		void unload();
+		virtual void unload();
 
 	}; // OpenGLFont
 

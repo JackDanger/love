@@ -13,7 +13,7 @@ namespace love
 
 	float Font::getHeight() const
 	{
-		return ((float)size) * 1.5f;
+		return size;
 	}
 	
 	float Font::getWidth(const std::string & line) const

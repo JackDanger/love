@@ -29,16 +29,15 @@ namespace love
 	protected:
 		// The formatted image.
 		pImage image;
+		
+		// List of glyphs.
 		std::string glyphs;
+		
 		// The position of each character.
 		int positions[MAX_CHARS];
 		
-		/**
-		 * Creates an OpenGL display list for the character (for speedy execution).
-		 *
-		 * @param character The character in question.
-		 **/
-		void createList(unsigned short character);
+		// OpenGL display lists.
+		unsigned int list;
 
 	public:
 		/**
@@ -56,18 +55,35 @@ namespace love
 
 
 		// From Font
-		void print(std::string text, float x = 0, float y = 0) const;
-		void print(char character, float x = 0, float y = 0) const;
+		virtual void print(std::string text, float x = 0, float y = 0) const;
+		virtual void print(char character, float x = 0, float y = 0) const;
 
 		/**
 		* Loads the file and creates a series of display lists.
 		**/
-		bool load();
+		virtual bool load();
 		
 		/**
 		* Deletes the display lists and any texture information.
 		**/
-		void unload();
+		virtual void unload();
+	
+	protected:
+		/**
+		 * Creates an OpenGL display list for the character (for speedy execution).
+		 *
+		 * @param character The character in question.
+		 * @param num The position of the character in the glyph list (so that the display lists count from 0 to glyphs.size()-1
+		 *            independent of the position of the characters).
+		 **/
+		void createList(unsigned short character, unsigned int num);
+		
+		/**
+		 * Returns the closest number to num which is a power of two.
+		 *
+		 * @param num The number to be 2powered.
+		 **/
+		inline int next_p2(int num);
 
 	}; // OpenGLImageFont
 

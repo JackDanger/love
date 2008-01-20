@@ -79,10 +79,11 @@ namespace love
 
 		graphics->setColor(255,255,0);
 		graphics->setFont(font);
-		//graphics->draw("This is a test. Are we the great testoor?", 100, 100, 100, 1);
-		graphics->draw("AReallyLongThingOfDoomOfGayFuck. This is\na\ntest. Are we the great testoor?", x, y, 100, 2);
+		graphics->draw("This is a test. Are we the great testoor?", 100, 100, 200, love::LOVE_ALIGN_CENTER);
+		graphics->setFont(imgfont);
+		graphics->draw("AReallyLongThingOfDoomOfGayFuck. This is\na\ntest. Are we the great testoor?", x, 100, 100, love::LOVE_ALIGN_RIGHT);
 		
-		imgfont->print("Are you liek kidding me?", 100, 100);
+		imgfont->print('A', 100, 200);
 		
 	}
 

@@ -6,79 +6,13 @@
 #include "using_filesystem.h"
 #include "using_graphics.h"
 
+// Including Math (for ceil)
+#include <math.h>
+
 using std::string;
 
 namespace love
-{
-	void OpenGLImageFont::createList(unsigned short character)
-	{
-		/*if( FT_Load_Glyph(face, FT_Get_Char_Index(face, character), FT_LOAD_DEFAULT) )
-			error("OpenGLFont Loading Error: FT_Load_Glyph failed.");
-			//throw std::runtime_error("FT_Load_Glyph failed");
-
-		FT_Glyph glyph;
-		if( FT_Get_Glyph(face->glyph, &glyph) )
-			error("OpenGLFont Loading Error: FT_Get_Glyph failed.");
-			//throw std::runtime_error("FT_Get_Glyph failed");
-
-		FT_Glyph_To_Bitmap(&glyph, FT_RENDER_MODE_NORMAL, 0, 1);
-		FT_BitmapGlyph bitmap_glyph = (FT_BitmapGlyph)glyph;
-
-		FT_Bitmap& bitmap = bitmap_glyph->bitmap; //just to make things easier
-
-		widths[character] = face->glyph->advance.x >> 6;
-		int w = next_p2(bitmap.width);
-		int h = next_p2(bitmap.rows);
-
-		GLubyte* expandedData = new GLubyte[ 2 * w * h];
-
-		for(int j = 0; j < h; j++) for(int i = 0; i < w; i++)
-		{
-			expandedData[2 * (i + j * w)] = MAX_CHARS-1;
-			expandedData[2 * (i + j * w) + 1] = (i >= bitmap.width || j >= bitmap.rows) ? 0 : bitmap.buffer[i + bitmap.width * j];
-		}
-
-		glBindTexture(GL_TEXTURE_2D, textures[character]);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-
-		// Rude adds:
-		// (You're welcome, Mike.)
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, expandedData);
-
-
-
-		delete [] expandedData; //no longer needed
-
-		glNewList(list + character, GL_COMPILE);
-
-			glBindTexture(GL_TEXTURE_2D, textures[character]);
-
-			glPushMatrix();
-
-			glTranslatef((float)bitmap_glyph->left, -(float)bitmap_glyph->top, 0);
-			//glTranslatef(0, (float)bitmap_glyph->top-bitmap.rows, 0);
-
-			float x=(float)bitmap.width / (float)w, y=(float)bitmap.rows / (float)h;
-			
-			glBegin(GL_QUADS);
-			glTexCoord2d(0, 0); glVertex2f(0, 0);
-			glTexCoord2d(0, y); glVertex2f(0, (float)bitmap.rows);
-			glTexCoord2d(x, y); glVertex2f((float)bitmap.width, (float)bitmap.rows);
-			glTexCoord2d(x, 0); glVertex2f((float)bitmap.width, 0);
-			glEnd();
-			glPopMatrix();
-	
-			glTranslatef((float)(face->glyph->advance.x >> 6) ,0,0);
-			
-		glEndList();
-		
-		FT_Done_Glyph(glyph);*/
-	}
-	
+{	
 	OpenGLImageFont::OpenGLImageFont(pFile file, std::string glyphs) : Font(file, 0)
 	{
 		this->glyphs = glyphs;
@@ -94,10 +28,8 @@ namespace love
 	{
 		unsigned int pos;
 		
-		//image->render(x, y);
-		
 		glPushMatrix();
-		glTranslatef(x, y, 0.0f);
+		glTranslatef(ceil(x), ceil(y), 0.0f);
 		
 		glColor4ub(255,255,255,255); // should this be removed?
 		
@@ -143,11 +75,14 @@ namespace love
 		
 		glPopMatrix();
 		
-		/*glPushMatrix();
+		/*glEnable(GL_TEXTURE_2D);
+		glPushMatrix();
 		glTranslatef(x, y, 0.0f);
 		GLuint OpenGLFont = list;
 		glListBase(OpenGLFont);
-		glCallList(character);
+		for(unsigned int i = 0; i < glyphs.size(); i++)
+			if(glyphs[i] == character)
+				glCallList(i);
 		glPopMatrix();*/
 	}
 
@@ -157,7 +92,6 @@ namespace love
 		rgba * pixels = image->getData();
 		
 		// Reading image data begins
-		
 		size = (int)image->getHeight();
 		
 		for(unsigned int i = 0; i < MAX_CHARS; i++) positions[i] = -1;
@@ -189,11 +123,18 @@ namespace love
 			else
 				width++;
 		}
-		
 		// Reading image data ends.
-
+		
+		
+		// Create display lists
+		
 		image->toHardware();
 		image->freeData();
+		
+		//list = glGenLists(glyphs.size());
+
+		for(unsigned int i = 0; i < glyphs.size(); i++)
+			;//createList(glyphs[i], i);
 
 		return true;
 	}
@@ -201,6 +142,90 @@ namespace love
 	void OpenGLImageFont::unload()
 	{
 		image->unload();
-	}	
+		
+		//glDeleteLists(list, glyphs.size()); // and only remove as much space as used
+	}
+	
+	void OpenGLImageFont::createList(unsigned short character, unsigned int num)
+	{
+		glNewList(list + num, GL_COMPILE);
 
+		image->render((float)positions[character], 0, (float)widths[character], (float)size);
+		
+		glTranslatef(widths[character] ,0,0);
+
+		glEndList();
+		/*if( FT_Load_Glyph(face, FT_Get_Char_Index(face, character), FT_LOAD_DEFAULT) )
+		error("OpenGLFont Loading Error: FT_Load_Glyph failed.");
+			//throw std::runtime_error("FT_Load_Glyph failed");
+
+		FT_Glyph glyph;
+		if( FT_Get_Glyph(face->glyph, &glyph) )
+		error("OpenGLFont Loading Error: FT_Get_Glyph failed.");
+			//throw std::runtime_error("FT_Get_Glyph failed");
+
+		FT_Glyph_To_Bitmap(&glyph, FT_RENDER_MODE_NORMAL, 0, 1);
+		FT_BitmapGlyph bitmap_glyph = (FT_BitmapGlyph)glyph;
+
+		FT_Bitmap& bitmap = bitmap_glyph->bitmap; //just to make things easier
+
+		widths[character] = face->glyph->advance.x >> 6;
+		int w = next_p2(bitmap.width);
+		int h = next_p2(bitmap.rows);
+
+		GLubyte* expandedData = new GLubyte[ 2 * w * h];
+
+		for(int j = 0; j < h; j++) for(int i = 0; i < w; i++)
+		{
+		expandedData[2 * (i + j * w)] = MAX_CHARS-1;
+		expandedData[2 * (i + j * w) + 1] = (i >= bitmap.width || j >= bitmap.rows) ? 0 : bitmap.buffer[i + bitmap.width * j];
+	}
+
+		glBindTexture(GL_TEXTURE_2D, textures[character]);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+		// Rude adds:
+		// (You're welcome, Mike.)
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, expandedData);
+
+
+
+		delete [] expandedData; //no longer needed
+
+		glNewList(list + character, GL_COMPILE);
+
+		glBindTexture(GL_TEXTURE_2D, textures[character]);
+
+		glPushMatrix();
+
+		glTranslatef((float)bitmap_glyph->left, -(float)bitmap_glyph->top, 0);
+			//glTranslatef(0, (float)bitmap_glyph->top-bitmap.rows, 0);
+
+		float x=(float)bitmap.width / (float)w, y=(float)bitmap.rows / (float)h;
+			
+		glBegin(GL_QUADS);
+		glTexCoord2d(0, 0); glVertex2f(0, 0);
+		glTexCoord2d(0, y); glVertex2f(0, (float)bitmap.rows);
+		glTexCoord2d(x, y); glVertex2f((float)bitmap.width, (float)bitmap.rows);
+		glTexCoord2d(x, 0); glVertex2f((float)bitmap.width, 0);
+		glEnd();
+		glPopMatrix();
+	
+		glTranslatef((float)(face->glyph->advance.x >> 6) ,0,0);
+			
+		glEndList();
+		
+		FT_Done_Glyph(glyph);*/
+	}
+	
+	inline int OpenGLImageFont::next_p2(int num)
+	{
+		int powered = 2;
+		while(powered < num) powered <<= 1;
+		return powered;
+	}
 }
