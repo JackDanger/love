@@ -138,10 +138,14 @@ namespace love
 	void OpenGLFont::print(char character, float x, float y) const
 	{
 		glPushMatrix();
+		glEnable(GL_TEXTURE_2D);
+		
 		glTranslatef(x, y, 0.0f);
 		GLuint OpenGLFont = list;
 		glListBase(OpenGLFont);
-		glCallList(character);
+		glCallList(list + (int)character);
+		
+		glDisable(GL_TEXTURE_2D);
 		glPopMatrix();
 	}
 

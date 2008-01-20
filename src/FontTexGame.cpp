@@ -83,6 +83,7 @@ namespace love
 		graphics->setFont(imgfont);
 		graphics->draw("AReallyLongThingOfDoomOfGayFuck. This is\na\ntest. Are we the great testoor?", x, 100, 100, love::LOVE_ALIGN_RIGHT);
 		
+		font->print('A', 100, 250);
 		imgfont->print('A', 100, 200);
 		
 	}

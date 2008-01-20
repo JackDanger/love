@@ -26,7 +26,9 @@ namespace love
 
 	void OpenGLImageFont::print(string text, float x, float y) const
 	{
-		unsigned int pos;
+		// Old, non-display-list code kept here for archiving (remove after testing heavily).
+		
+		/*unsigned int pos;
 		
 		glPushMatrix();
 		glTranslatef(ceil(x), ceil(y), 0.0f);
@@ -46,9 +48,9 @@ namespace love
 				glTranslatef((float)widths[(int)' '], 0.0f, 0.0f);
 		}
 		
-		glPopMatrix();
+		glPopMatrix();*/
 		
-		/*glPushMatrix();
+		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
 
 		glTranslatef(ceil(x), ceil(y), 0.0f);
@@ -57,12 +59,14 @@ namespace love
 		glCallLists((int)text.length(), GL_UNSIGNED_BYTE, text.c_str());
 
 		glDisable(GL_TEXTURE_2D);
-		glPopMatrix();*/
+		glPopMatrix();
 	}
 
 	void OpenGLImageFont::print(char character, float x, float y) const
 	{
-		unsigned int pos = (unsigned int)character;
+		// Old, non-display-list code kept here for archiving (remove after testing heavily).
+		
+		/*unsigned int pos = (unsigned int)character;
 		
 		if(pos > MAX_CHARS || positions[pos] == -1) return;
 		
@@ -73,21 +77,24 @@ namespace love
 			
 		image->render((float)positions[pos], 0, (float)widths[pos], (float)size);
 		
-		glPopMatrix();
-		
-		/*glEnable(GL_TEXTURE_2D);
+		glPopMatrix();*/
+
 		glPushMatrix();
-		glTranslatef(x, y, 0.0f);
+		glEnable(GL_TEXTURE_2D);
+
+		glTranslatef(ceil(x), ceil(y), 0.0f);
 		GLuint OpenGLFont = list;
 		glListBase(OpenGLFont);
-		for(unsigned int i = 0; i < glyphs.size(); i++)
-			if(glyphs[i] == character)
-				glCallList(i);
-		glPopMatrix();*/
+		glCallList(list + (int)character);
+
+		glDisable(GL_TEXTURE_2D);
+		glPopMatrix();
 	}
 
 	bool OpenGLImageFont::load()
 	{		
+		fprintf(stderr, "loading imagefont ");
+		
 		image->readData();
 		rgba * pixels = image->getData();
 		
@@ -127,14 +134,15 @@ namespace love
 		
 		
 		// Create display lists
-		
 		image->toHardware();
 		image->freeData();
 		
-		//list = glGenLists(glyphs.size());
+		list = glGenLists(MAX_CHARS);
+		
+		glEnable(GL_TEXTURE_2D);
 
-		for(unsigned int i = 0; i < glyphs.size(); i++)
-			;//createList(glyphs[i], i);
+		for(unsigned int i = 0; i < MAX_CHARS; i++)
+			createList(glyphs[i], i);
 
 		return true;
 	}
@@ -143,83 +151,21 @@ namespace love
 	{
 		image->unload();
 		
-		//glDeleteLists(list, glyphs.size()); // and only remove as much space as used
+		glDeleteLists(list, MAX_CHARS);
 	}
 	
 	void OpenGLImageFont::createList(unsigned short character, unsigned int num)
 	{
-		glNewList(list + num, GL_COMPILE);
-
-		image->render((float)positions[character], 0, (float)widths[character], (float)size);
-		
-		glTranslatef(widths[character] ,0,0);
-
-		glEndList();
-		/*if( FT_Load_Glyph(face, FT_Get_Char_Index(face, character), FT_LOAD_DEFAULT) )
-		error("OpenGLFont Loading Error: FT_Load_Glyph failed.");
-			//throw std::runtime_error("FT_Load_Glyph failed");
-
-		FT_Glyph glyph;
-		if( FT_Get_Glyph(face->glyph, &glyph) )
-		error("OpenGLFont Loading Error: FT_Get_Glyph failed.");
-			//throw std::runtime_error("FT_Get_Glyph failed");
-
-		FT_Glyph_To_Bitmap(&glyph, FT_RENDER_MODE_NORMAL, 0, 1);
-		FT_BitmapGlyph bitmap_glyph = (FT_BitmapGlyph)glyph;
-
-		FT_Bitmap& bitmap = bitmap_glyph->bitmap; //just to make things easier
-
-		widths[character] = face->glyph->advance.x >> 6;
-		int w = next_p2(bitmap.width);
-		int h = next_p2(bitmap.rows);
-
-		GLubyte* expandedData = new GLubyte[ 2 * w * h];
-
-		for(int j = 0; j < h; j++) for(int i = 0; i < w; i++)
-		{
-		expandedData[2 * (i + j * w)] = MAX_CHARS-1;
-		expandedData[2 * (i + j * w) + 1] = (i >= bitmap.width || j >= bitmap.rows) ? 0 : bitmap.buffer[i + bitmap.width * j];
-	}
-
-		glBindTexture(GL_TEXTURE_2D, textures[character]);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-
-		// Rude adds:
-		// (You're welcome, Mike.)
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, expandedData);
-
-
-
-		delete [] expandedData; //no longer needed
-
 		glNewList(list + character, GL_COMPILE);
 
-		glBindTexture(GL_TEXTURE_2D, textures[character]);
-
-		glPushMatrix();
-
-		glTranslatef((float)bitmap_glyph->left, -(float)bitmap_glyph->top, 0);
-			//glTranslatef(0, (float)bitmap_glyph->top-bitmap.rows, 0);
-
-		float x=(float)bitmap.width / (float)w, y=(float)bitmap.rows / (float)h;
-			
-		glBegin(GL_QUADS);
-		glTexCoord2d(0, 0); glVertex2f(0, 0);
-		glTexCoord2d(0, y); glVertex2f(0, (float)bitmap.rows);
-		glTexCoord2d(x, y); glVertex2f((float)bitmap.width, (float)bitmap.rows);
-		glTexCoord2d(x, 0); glVertex2f((float)bitmap.width, 0);
-		glEnd();
-		glPopMatrix();
-	
-		glTranslatef((float)(face->glyph->advance.x >> 6) ,0,0);
-			
-		glEndList();
+		if(positions[character] != -1)
+		{
+			image->render((float)positions[character], 0, (float)widths[character], (float)size);
 		
-		FT_Done_Glyph(glyph);*/
+			glTranslatef(widths[character] ,0,0);
+		}
+
+		glEndList();
 	}
 	
 	inline int OpenGLImageFont::next_p2(int num)

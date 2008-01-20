@@ -55,7 +55,7 @@ namespace love
 		* @param x The x-coordinate.
 		* @param y The y-coordinate.
 		**/
-		virtual void print(char character, float x = 0, float y = 0)const  = 0;
+		virtual void print(char character, float x = 0, float y = 0) const  = 0;
 
 		/**
 		* Returns the height of the font.
