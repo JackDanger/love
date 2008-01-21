@@ -66,7 +66,7 @@ namespace love
 		float wTex = width/(float)textureWidth;
 		float hTex = height/(float)textureHeight;
 
-		glColor3f(1, 1, 1);
+		//glColor3f(1, 1, 1);
 
 		glBegin(GL_QUADS);
 			glTexCoord2f(xTex,yTex);				glVertex2i(0,0);
@@ -81,18 +81,38 @@ namespace love
 	void OpenGLImage::render(float x, float y, float angle, float sx, float sy) const
 	{
 		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D,texture);
 
 		glPushMatrix();
 		glTranslatef(x, y, 0);
 		glRotatef(angle, 0, 0, 1.0f);
 		glScalef(sx, sy, 1.0f);
 		glTranslatef(-center_x, -center_y, 0);
-		glBindTexture(GL_TEXTURE_2D,texture);
 		glBegin(GL_QUADS);
 			glTexCoord2f(0.0,0.0); glVertex2f(0,0);
 			glTexCoord2f(0.0,1.0); glVertex2f(0,textureHeight);
 			glTexCoord2f(1.0,1.0); glVertex2f(textureWidth,textureHeight);
 			glTexCoord2f(1.0,0.0); glVertex2f(textureWidth,0);
+		glEnd();
+		glPopMatrix();
+	}
+
+	void OpenGLImage::render(const float * vertices, const float * texels, float x, float y, 
+		float angle, float sx, float sy, float cx, float cy) const
+	{
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D,texture);
+
+		glPushMatrix();
+		glTranslatef(x, y, 0);
+		glRotatef(angle, 0, 0, 1.0f);
+		glScalef(sx, sy, 1.0f);
+		glTranslatef(cx, cy, 0);
+		glBegin(GL_QUADS);
+			glTexCoord2f(texels[0],texels[1]); glVertex2f(vertices[0],vertices[1]);
+			glTexCoord2f(texels[2],texels[3]); glVertex2f(vertices[2],vertices[3]);
+			glTexCoord2f(texels[4],texels[5]); glVertex2f(vertices[4],vertices[5]);
+			glTexCoord2f(texels[6],texels[7]); glVertex2f(vertices[6],vertices[7]);
 		glEnd();
 		glPopMatrix();
 	}

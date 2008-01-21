@@ -162,7 +162,7 @@ namespace love
 		{
 			image->render((float)positions[character], 0, (float)widths[character], (float)size);
 		
-			glTranslatef(widths[character] ,0,0);
+			glTranslatef((float)widths[character] ,0,0);
 		}
 
 		glEndList();

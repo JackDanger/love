@@ -2,7 +2,7 @@
 * LOVE: Totally Awesome 2D Gaming.
 * Website: http://love.sourceforge.net
 * Licence: ZLIB/libpng
-* Copyright © 2006-2008 LOVE Development Team
+* Copyright (c) 2006-2008 LOVE Development Team
 */
 
 #ifndef FONT_TEX_GAME_H
@@ -14,6 +14,7 @@
 
 // LOVE
 #include "Game.h"
+#include "Animation.h"
 
 namespace love 
 {
@@ -30,8 +31,9 @@ namespace love
 	private:
 	public:
 
-		float x, y;
+		float x, y, r;
 		pImage img;
+		pAnimation animation;
 		pFont font;
 		pFont imgfont;
 		pParticlesystem psys;

@@ -2,7 +2,7 @@
 * LOVE: Totally Awesome 2D Gaming.
 * Website: http://love.sourceforge.net
 * Licence: ZLIB/libpng
-* Copyright © 2006-2008 LOVE Development Team
+* Copyright (c) 2006-2008 LOVE Development Team
 */
 
 #ifndef LOVE_IMAGE_H
@@ -32,7 +32,7 @@ namespace love
 	class Image : public Sprite, public Resource
 	{
 		// Friend classes.
-		//friend class Animation;
+		friend class Animation;
 
 	protected:
 
@@ -102,10 +102,23 @@ namespace love
 
 		/**
 		* Render the Image as a quad specified by the parameters.
-		* @param vertices The vertices of the quad.
-		* @param texels The texture coordinates of each vertex.
+		* @param vertices The vertices of the quad. (Array size of 8 is assumed).
+		* @param texels The texture coordinates of each vertex. (Array size of 8 is assumed).
+		* @param x The position on the x-axis.
+		* @param y The position on the y-axis.
+		* @param angle The angle of rotation.
+		* @param sx Scale factor along the x-axis.
+		* @param sy Scale factor along the y-axis.
 		**/
-		//virtual void render(vec2f * vertices, vec2f * texels) const = 0;
+		virtual void render(const float * vertices, const float * texels, float x, float y, 
+			float angle, float sx, float sy, float cx, float cy) const = 0;
+
+		// From Sprite.
+		virtual void render() const = 0;
+		virtual void render(float x, float y) const = 0;
+		virtual void render(float x, float y, float width, float height) const = 0;
+		virtual void render(float x, float y, float angle, float sx, float sy) const = 0;
+
 
 	};
 

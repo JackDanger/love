@@ -2,7 +2,7 @@
 * LOVE: Totally Awesome 2D Gaming.
 * Website: http://love.sourceforge.net
 * Licence: ZLIB/libpng
-* Copyright � 2006-2008 LOVE Development Team
+* Copyright (c) 2006-2008 LOVE Development Team
 */
 
 #ifndef LOVE_OPENGL_IMAGE_H 
@@ -52,6 +52,8 @@ namespace love
 		void render(float x, float y, float angle, float sx, float sy) const;
 
 		// From Image.
+		void render(const float * vertices, const float * texels, float x, float y, float angle, 
+			float sx, float sy, float cx, float cy) const;
 		bool readData();
 		rgba * getData() const;
 		bool toHardware();

@@ -2,7 +2,7 @@
 * LOVE: Totally Awesome 2D Gaming.
 * Website: http://love.sourceforge.net
 * Licence: ZLIB/libpng
-* Copyright © 2006-2008 LOVE Development Team
+* Copyright (c) 2006-2008 LOVE Development Team
 */
 
 #ifndef LOVE_SPRITE_H
@@ -27,12 +27,6 @@ namespace love
 	class Sprite
 	{
 	protected:
-
-		// Texture coordinates.
-		float texels[4][2];
-
-		// The four vertices of the quad.
-		float vertices[4][2];
 
 		// The width and height of the Sprite. (These are not
 		// fixed. Animation, for instance, may change them every frame).
