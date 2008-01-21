@@ -185,6 +185,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\Animation.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Audio.cpp"
 				>
 			</File>
@@ -392,6 +396,10 @@
 			>
 			<File
 				RelativePath="..\..\src\AnimatedColor.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\Animation.h"
 				>
 			</File>
 			<File

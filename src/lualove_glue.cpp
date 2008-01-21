@@ -1475,30 +1475,32 @@ SWIG_Lua_InstallConstants(lua_State* L, swig_lua_const_info constants[]) {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_boost__shared_ptrTlove__Color_t swig_types[0]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Font_t swig_types[1]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Image_t swig_types[2]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Music_t swig_types[3]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Particlesystem_t swig_types[4]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Sound_t swig_types[5]
-#define SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t swig_types[6]
-#define SWIGTYPE_p_love__Audio swig_types[7]
-#define SWIGTYPE_p_love__Color swig_types[8]
-#define SWIGTYPE_p_love__Device swig_types[9]
-#define SWIGTYPE_p_love__Filesystem swig_types[10]
-#define SWIGTYPE_p_love__Font swig_types[11]
-#define SWIGTYPE_p_love__Graphics swig_types[12]
-#define SWIGTYPE_p_love__Image swig_types[13]
-#define SWIGTYPE_p_love__Keyboard swig_types[14]
-#define SWIGTYPE_p_love__Mouse swig_types[15]
-#define SWIGTYPE_p_love__Music swig_types[16]
-#define SWIGTYPE_p_love__ObjectFactory swig_types[17]
-#define SWIGTYPE_p_love__Particlesystem swig_types[18]
-#define SWIGTYPE_p_love__Sound swig_types[19]
-#define SWIGTYPE_p_love__Sprite swig_types[20]
-#define SWIGTYPE_p_love__Timer swig_types[21]
-static swig_type_info *swig_types[23];
-static swig_module_info swig_module = {swig_types, 22, 0, 0, 0, 0};
+#define SWIGTYPE_p_boost__shared_ptrTlove__Animation_t swig_types[0]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Color_t swig_types[1]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Font_t swig_types[2]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Image_t swig_types[3]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Music_t swig_types[4]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Particlesystem_t swig_types[5]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Sound_t swig_types[6]
+#define SWIGTYPE_p_boost__shared_ptrTlove__Sprite_t swig_types[7]
+#define SWIGTYPE_p_love__Animation swig_types[8]
+#define SWIGTYPE_p_love__Audio swig_types[9]
+#define SWIGTYPE_p_love__Color swig_types[10]
+#define SWIGTYPE_p_love__Device swig_types[11]
+#define SWIGTYPE_p_love__Filesystem swig_types[12]
+#define SWIGTYPE_p_love__Font swig_types[13]
+#define SWIGTYPE_p_love__Graphics swig_types[14]
+#define SWIGTYPE_p_love__Image swig_types[15]
+#define SWIGTYPE_p_love__Keyboard swig_types[16]
+#define SWIGTYPE_p_love__Mouse swig_types[17]
+#define SWIGTYPE_p_love__Music swig_types[18]
+#define SWIGTYPE_p_love__ObjectFactory swig_types[19]
+#define SWIGTYPE_p_love__Particlesystem swig_types[20]
+#define SWIGTYPE_p_love__Sound swig_types[21]
+#define SWIGTYPE_p_love__Sprite swig_types[22]
+#define SWIGTYPE_p_love__Timer swig_types[23]
+static swig_type_info *swig_types[25];
+static swig_module_info swig_module = {swig_types, 24, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1526,6 +1528,7 @@ SWIGINTERN char const *love_Color___str__(love::Color *self){
 #include "Font.h"
 #include "Sprite.h"
 #include "Image.h"
+#include "Animation.h"
 #include "Particlesystem.h"
 SWIGINTERN void love_Particlesystem_setSprite__SWIG_1(love::Particlesystem *self,love::pImage sprite){
 		self->setSprite(sprite);
@@ -1540,10 +1543,19 @@ SWIGINTERN void love_Graphics_draw__SWIG_4(love::Graphics const *self,love::pIma
 SWIGINTERN void love_Graphics_draw__SWIG_6(love::Graphics const *self,love::pImage const &sprite,float x,float y,float angle,float sx,float sy){
 		sprite->render(x, y, angle, sx, sy);
 	}
-SWIGINTERN void love_Graphics_draw__SWIG_7(love::Graphics const *self,love::pParticlesystem const &system){
+SWIGINTERN void love_Graphics_draw__SWIG_7(love::Graphics const *self,love::pAnimation const &sprite,float x,float y){
+		sprite->render(x, y);
+	}
+SWIGINTERN void love_Graphics_draw__SWIG_8(love::Graphics const *self,love::pAnimation const &sprite,float x,float y,float angle,float s=1.0){
+		sprite->render(x, y, angle, s, s);
+	}
+SWIGINTERN void love_Graphics_draw__SWIG_10(love::Graphics const *self,love::pAnimation const &sprite,float x,float y,float angle,float sx,float sy){
+		sprite->render(x, y, angle, sx, sy);
+	}
+SWIGINTERN void love_Graphics_draw__SWIG_11(love::Graphics const *self,love::pParticlesystem const &system){
 		system->render();
 	}
-SWIGINTERN void love_Graphics_draw__SWIG_8(love::Graphics const *self,love::pParticlesystem const &system,float x,float y){
+SWIGINTERN void love_Graphics_draw__SWIG_12(love::Graphics const *self,love::pParticlesystem const &system,float x,float y){
 		system->render(x, y);
 	}
 #include "Sound.h"
@@ -1655,6 +1667,18 @@ namespace love
 		pParticlesystem newParticlesystem()
 		{
 			pParticlesystem tmp = graphics->getParticlesystem();
+			return tmp;
+		}
+		
+		pAnimation newAnimation(pImage image)
+		{
+			pAnimation tmp(new Animation(image));
+			return tmp;
+		}
+		
+		pAnimation newAnimation(pImage image, float fw, float fh, float delay, int num = 0)
+		{
+			pAnimation tmp(new Animation(image, fw, fh, delay, num));
 			return tmp;
 		}
 		
@@ -3049,6 +3073,731 @@ static swig_lua_attribute swig_boost_shared_ptr_Sl_love_Image_Sg__attributes[] =
 static swig_lua_class *swig_boost_shared_ptr_Sl_love_Image_Sg__bases[] = {0};
 static char *swig_boost_shared_ptr_Sl_love_Image_Sg__base_names[] = {0};
 static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_Image_Sg_ = { "SmartImage", &SWIGTYPE_p_boost__shared_ptrTlove__Image_t,0, swig_delete_SmartImage, swig_boost_shared_ptr_Sl_love_Image_Sg__methods, swig_boost_shared_ptr_Sl_love_Image_Sg__attributes, swig_boost_shared_ptr_Sl_love_Image_Sg__bases, swig_boost_shared_ptr_Sl_love_Image_Sg__base_names };
+
+static int _wrap_Animation_addFrame(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Animation *arg1 = (love::Animation *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  
+  SWIG_check_num_args("addFrame",6,6)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("addFrame",1,"love::Animation *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("addFrame",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("addFrame",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("addFrame",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("addFrame",5,"float");
+  if(!lua_isnumber(L,6)) SWIG_fail_arg("addFrame",6,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__Animation,0))){
+    SWIG_fail_ptr("Animation_addFrame",1,SWIGTYPE_p_love__Animation);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  arg6 = (float)lua_tonumber(L, 6);
+  (arg1)->addFrame(arg2,arg3,arg4,arg5,arg6);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Animation_setMode(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Animation *arg1 = (love::Animation *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("setMode",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMode",1,"love::Animation *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMode",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__Animation,0))){
+    SWIG_fail_ptr("Animation_setMode",1,SWIGTYPE_p_love__Animation);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setMode(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Animation_play(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Animation *arg1 = (love::Animation *) 0 ;
+  
+  SWIG_check_num_args("play",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("play",1,"love::Animation *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__Animation,0))){
+    SWIG_fail_ptr("Animation_play",1,SWIGTYPE_p_love__Animation);
+  }
+  
+  (arg1)->play();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Animation_stop(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Animation *arg1 = (love::Animation *) 0 ;
+  
+  SWIG_check_num_args("stop",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("stop",1,"love::Animation *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__Animation,0))){
+    SWIG_fail_ptr("Animation_stop",1,SWIGTYPE_p_love__Animation);
+  }
+  
+  (arg1)->stop();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Animation_reset(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Animation *arg1 = (love::Animation *) 0 ;
+  
+  SWIG_check_num_args("reset",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("reset",1,"love::Animation *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__Animation,0))){
+    SWIG_fail_ptr("Animation_reset",1,SWIGTYPE_p_love__Animation);
+  }
+  
+  (arg1)->reset();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Animation_seek(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Animation *arg1 = (love::Animation *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("seek",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("seek",1,"love::Animation *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("seek",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__Animation,0))){
+    SWIG_fail_ptr("Animation_seek",1,SWIGTYPE_p_love__Animation);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->seek(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Animation_getCurrentFrame(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Animation *arg1 = (love::Animation *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getCurrentFrame",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getCurrentFrame",1,"love::Animation const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__Animation,0))){
+    SWIG_fail_ptr("Animation_getCurrentFrame",1,SWIGTYPE_p_love__Animation);
+  }
+  
+  result = (int)((love::Animation const *)arg1)->getCurrentFrame();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Animation_setDelay(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Animation *arg1 = (love::Animation *) 0 ;
+  int arg2 ;
+  float arg3 ;
+  
+  SWIG_check_num_args("setDelay",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setDelay",1,"love::Animation *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setDelay",2,"int");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setDelay",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__Animation,0))){
+    SWIG_fail_ptr("Animation_setDelay",1,SWIGTYPE_p_love__Animation);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (arg1)->setDelay(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_Animation(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Animation *arg1 = (love::Animation *) 0 ;
+  
+  SWIG_check_num_args("love::Animation::~Animation",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("love::Animation::~Animation",1,"love::Animation *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__Animation,0))){
+    SWIG_fail_ptr("delete_Animation",1,SWIGTYPE_p_love__Animation);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_Animation(void *obj) {
+love::Animation *arg1 = (love::Animation *) obj;
+delete arg1;
+}
+static swig_lua_method swig_love_Animation_methods[] = {
+    {"addFrame", _wrap_Animation_addFrame}, 
+    {"setMode", _wrap_Animation_setMode}, 
+    {"play", _wrap_Animation_play}, 
+    {"stop", _wrap_Animation_stop}, 
+    {"reset", _wrap_Animation_reset}, 
+    {"seek", _wrap_Animation_seek}, 
+    {"getCurrentFrame", _wrap_Animation_getCurrentFrame}, 
+    {"setDelay", _wrap_Animation_setDelay}, 
+    {0,0}
+};
+static swig_lua_attribute swig_love_Animation_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_love_Animation_bases[] = {0,0};
+static char *swig_love_Animation_base_names[] = {"love::Sprite *",0};
+static swig_lua_class _wrap_class_love_Animation = { "Animation", &SWIGTYPE_p_love__Animation,0, swig_delete_Animation, swig_love_Animation_methods, swig_love_Animation_attributes, swig_love_Animation_bases, swig_love_Animation_base_names };
+
+static int _wrap_SmartAnimation___deref__(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  love::Animation *result = 0 ;
+  
+  SWIG_check_num_args("operator ->",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("operator ->",1,"boost::shared_ptr<love::Animation > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation___deref__",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  result = (love::Animation *)((boost::shared_ptr<love::Animation > const *)arg1)->operator ->();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love__Animation,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_SmartAnimation(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  
+  SWIG_check_num_args("boost::shared_ptr<(love::Animation)>::~shared_ptr<(love::Animation)>",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("boost::shared_ptr<(love::Animation)>::~shared_ptr<(love::Animation)>",1,"boost::shared_ptr<love::Animation > *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("delete_SmartAnimation",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAnimation_addFrame(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  
+  SWIG_check_num_args("addFrame",6,6)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("addFrame",1,"boost::shared_ptr<love::Animation > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("addFrame",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("addFrame",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("addFrame",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("addFrame",5,"float");
+  if(!lua_isnumber(L,6)) SWIG_fail_arg("addFrame",6,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation_addFrame",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  arg6 = (float)lua_tonumber(L, 6);
+  (*arg1)->addFrame(arg2,arg3,arg4,arg5,arg6);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAnimation_setMode(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("setMode",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMode",1,"boost::shared_ptr<love::Animation > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMode",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation_setMode",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setMode(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAnimation_play(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  
+  SWIG_check_num_args("play",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("play",1,"boost::shared_ptr<love::Animation > *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation_play",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  (*arg1)->play();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAnimation_stop(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  
+  SWIG_check_num_args("stop",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("stop",1,"boost::shared_ptr<love::Animation > *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation_stop",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  (*arg1)->stop();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAnimation_reset(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  
+  SWIG_check_num_args("reset",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("reset",1,"boost::shared_ptr<love::Animation > *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation_reset",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  (*arg1)->reset();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAnimation_seek(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("seek",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("seek",1,"boost::shared_ptr<love::Animation > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("seek",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation_seek",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->seek(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAnimation_getCurrentFrame(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getCurrentFrame",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getCurrentFrame",1,"boost::shared_ptr<love::Animation > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation_getCurrentFrame",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  result = (int)(*arg1)->getCurrentFrame();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAnimation_setDelay(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  int arg2 ;
+  float arg3 ;
+  
+  SWIG_check_num_args("setDelay",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setDelay",1,"boost::shared_ptr<love::Animation > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setDelay",2,"int");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setDelay",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation_setDelay",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (*arg1)->setDelay(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAnimation_getWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getWidth",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getWidth",1,"boost::shared_ptr<love::Animation > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation_getWidth",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  result = (float)(*arg1)->getWidth();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAnimation_getHeight(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getHeight",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getHeight",1,"boost::shared_ptr<love::Animation > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation_getHeight",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  result = (float)(*arg1)->getHeight();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAnimation_getAlpha(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getAlpha",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getAlpha",1,"boost::shared_ptr<love::Animation > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation_getAlpha",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  result = (float)(*arg1)->getAlpha();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAnimation_setAlpha(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setAlpha",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setAlpha",1,"boost::shared_ptr<love::Animation > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setAlpha",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation_setAlpha",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setAlpha(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAnimation_update(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("update",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("update",1,"boost::shared_ptr<love::Animation > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("update",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation_update",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->update(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAnimation_setCenter(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  
+  SWIG_check_num_args("setCenter",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setCenter",1,"boost::shared_ptr<love::Animation > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setCenter",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setCenter",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation_setCenter",1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (*arg1)->setCenter(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_SmartAnimation(void *obj) {
+boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_boost_shared_ptr_Sl_love_Animation_Sg__methods[] = {
+    {"__deref__", _wrap_SmartAnimation___deref__}, 
+    {"addFrame", _wrap_SmartAnimation_addFrame}, 
+    {"setMode", _wrap_SmartAnimation_setMode}, 
+    {"play", _wrap_SmartAnimation_play}, 
+    {"stop", _wrap_SmartAnimation_stop}, 
+    {"reset", _wrap_SmartAnimation_reset}, 
+    {"seek", _wrap_SmartAnimation_seek}, 
+    {"getCurrentFrame", _wrap_SmartAnimation_getCurrentFrame}, 
+    {"setDelay", _wrap_SmartAnimation_setDelay}, 
+    {"getWidth", _wrap_SmartAnimation_getWidth}, 
+    {"getHeight", _wrap_SmartAnimation_getHeight}, 
+    {"getAlpha", _wrap_SmartAnimation_getAlpha}, 
+    {"setAlpha", _wrap_SmartAnimation_setAlpha}, 
+    {"update", _wrap_SmartAnimation_update}, 
+    {"setCenter", _wrap_SmartAnimation_setCenter}, 
+    {0,0}
+};
+static swig_lua_attribute swig_boost_shared_ptr_Sl_love_Animation_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_boost_shared_ptr_Sl_love_Animation_Sg__bases[] = {0};
+static char *swig_boost_shared_ptr_Sl_love_Animation_Sg__base_names[] = {0};
+static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_Animation_Sg_ = { "SmartAnimation", &SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0, swig_delete_SmartAnimation, swig_boost_shared_ptr_Sl_love_Animation_Sg__methods, swig_boost_shared_ptr_Sl_love_Animation_Sg__attributes, swig_boost_shared_ptr_Sl_love_Animation_Sg__bases, swig_boost_shared_ptr_Sl_love_Animation_Sg__base_names };
 
 static int _wrap_Particlesystem_setAutostart(lua_State* L) {
   int SWIG_arg = -1;
@@ -8130,6 +8879,172 @@ fail:
 static int _wrap_Graphics_draw__SWIG_7(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
+  love::pAnimation *arg2 = 0 ;
+  float arg3 ;
+  float arg4 ;
+  
+  SWIG_check_num_args("draw",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("draw",1,"love::Graphics const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("draw",2,"love::pAnimation const &");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("draw",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("draw",4,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__Graphics,0))){
+    SWIG_fail_ptr("Graphics_draw",1,SWIGTYPE_p_love__Graphics);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("Graphics_draw",2,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  love_Graphics_draw__SWIG_7((love::Graphics const *)arg1,(boost::shared_ptr<love::Animation > const &)*arg2,arg3,arg4);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Graphics_draw__SWIG_8(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Graphics *arg1 = (love::Graphics *) 0 ;
+  love::pAnimation *arg2 = 0 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  
+  SWIG_check_num_args("draw",6,6)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("draw",1,"love::Graphics const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("draw",2,"love::pAnimation const &");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("draw",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("draw",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("draw",5,"float");
+  if(!lua_isnumber(L,6)) SWIG_fail_arg("draw",6,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__Graphics,0))){
+    SWIG_fail_ptr("Graphics_draw",1,SWIGTYPE_p_love__Graphics);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("Graphics_draw",2,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  arg6 = (float)lua_tonumber(L, 6);
+  love_Graphics_draw__SWIG_8((love::Graphics const *)arg1,(boost::shared_ptr<love::Animation > const &)*arg2,arg3,arg4,arg5,arg6);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Graphics_draw__SWIG_9(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Graphics *arg1 = (love::Graphics *) 0 ;
+  love::pAnimation *arg2 = 0 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  
+  SWIG_check_num_args("draw",5,5)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("draw",1,"love::Graphics const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("draw",2,"love::pAnimation const &");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("draw",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("draw",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("draw",5,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__Graphics,0))){
+    SWIG_fail_ptr("Graphics_draw",1,SWIGTYPE_p_love__Graphics);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("Graphics_draw",2,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  love_Graphics_draw__SWIG_8((love::Graphics const *)arg1,(boost::shared_ptr<love::Animation > const &)*arg2,arg3,arg4,arg5);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Graphics_draw__SWIG_10(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Graphics *arg1 = (love::Graphics *) 0 ;
+  love::pAnimation *arg2 = 0 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
+  
+  SWIG_check_num_args("draw",7,7)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("draw",1,"love::Graphics const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("draw",2,"love::pAnimation const &");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("draw",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("draw",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("draw",5,"float");
+  if(!lua_isnumber(L,6)) SWIG_fail_arg("draw",6,"float");
+  if(!lua_isnumber(L,7)) SWIG_fail_arg("draw",7,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__Graphics,0))){
+    SWIG_fail_ptr("Graphics_draw",1,SWIGTYPE_p_love__Graphics);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0))){
+    SWIG_fail_ptr("Graphics_draw",2,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t);
+  }
+  
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  arg6 = (float)lua_tonumber(L, 6);
+  arg7 = (float)lua_tonumber(L, 7);
+  love_Graphics_draw__SWIG_10((love::Graphics const *)arg1,(boost::shared_ptr<love::Animation > const &)*arg2,arg3,arg4,arg5,arg6,arg7);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Graphics_draw__SWIG_11(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Graphics *arg1 = (love::Graphics *) 0 ;
   love::pParticlesystem *arg2 = 0 ;
   
   SWIG_check_num_args("draw",2,2)
@@ -8145,7 +9060,7 @@ static int _wrap_Graphics_draw__SWIG_7(lua_State* L) {
     SWIG_fail_ptr("Graphics_draw",2,SWIGTYPE_p_boost__shared_ptrTlove__Particlesystem_t);
   }
   
-  love_Graphics_draw__SWIG_7((love::Graphics const *)arg1,(boost::shared_ptr<love::Particlesystem > const &)*arg2);
+  love_Graphics_draw__SWIG_11((love::Graphics const *)arg1,(boost::shared_ptr<love::Particlesystem > const &)*arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -8158,7 +9073,7 @@ fail:
 }
 
 
-static int _wrap_Graphics_draw__SWIG_8(lua_State* L) {
+static int _wrap_Graphics_draw__SWIG_12(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
   love::pParticlesystem *arg2 = 0 ;
@@ -8182,7 +9097,7 @@ static int _wrap_Graphics_draw__SWIG_8(lua_State* L) {
   
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
-  love_Graphics_draw__SWIG_8((love::Graphics const *)arg1,(boost::shared_ptr<love::Particlesystem > const &)*arg2,arg3,arg4);
+  love_Graphics_draw__SWIG_12((love::Graphics const *)arg1,(boost::shared_ptr<love::Particlesystem > const &)*arg2,arg3,arg4);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -8222,7 +9137,7 @@ static int _wrap_Graphics_draw(lua_State* L) {
         }
       }
       if (_v) {
-        return _wrap_Graphics_draw__SWIG_7(L);
+        return _wrap_Graphics_draw__SWIG_11(L);
       }
     }
   }
@@ -8273,6 +9188,40 @@ static int _wrap_Graphics_draw(lua_State* L) {
     if (_v) {
       {
         void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Animation_t, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_Graphics_draw__SWIG_7(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Graphics, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
         if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Particlesystem_t, 0)) {
           _v = 0;
         } else {
@@ -8288,7 +9237,7 @@ static int _wrap_Graphics_draw(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_Graphics_draw__SWIG_8(L);
+            return _wrap_Graphics_draw__SWIG_12(L);
           }
         }
       }
@@ -8318,6 +9267,45 @@ static int _wrap_Graphics_draw(lua_State* L) {
           }
           if (_v) {
             return _wrap_Graphics_draw__SWIG_0(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Graphics, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Animation_t, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_Graphics_draw__SWIG_9(L);
+            }
           }
         }
       }
@@ -8452,6 +9440,50 @@ static int _wrap_Graphics_draw(lua_State* L) {
     }
     if (_v) {
       {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Animation_t, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              {
+                _v = lua_isnumber(L,argv[5]);
+              }
+              if (_v) {
+                return _wrap_Graphics_draw__SWIG_8(L);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Graphics, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
         _v = lua_isstring(L,argv[1]);
       }
       if (_v) {
@@ -8520,6 +9552,55 @@ static int _wrap_Graphics_draw(lua_State* L) {
                 }
                 if (_v) {
                   return _wrap_Graphics_draw__SWIG_6(L);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 7) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Graphics, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Animation_t, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              {
+                _v = lua_isnumber(L,argv[5]);
+              }
+              if (_v) {
+                {
+                  _v = lua_isnumber(L,argv[6]);
+                }
+                if (_v) {
+                  return _wrap_Graphics_draw__SWIG_10(L);
                 }
               }
             }
@@ -10417,6 +11498,258 @@ fail:
 }
 
 
+static int _wrap_ObjectFactory_newAnimation__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
+  love::pImage arg2 ;
+  love::pAnimation result;
+  love::pImage *argp2 ;
+  
+  SWIG_check_num_args("newAnimation",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("newAnimation",1,"love::ObjectFactory *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("newAnimation",2,"love::pImage");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__ObjectFactory,0))){
+    SWIG_fail_ptr("ObjectFactory_newAnimation",1,SWIGTYPE_p_love__ObjectFactory);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_boost__shared_ptrTlove__Image_t,0))){
+    SWIG_fail_ptr("ObjectFactory_newAnimation",2,SWIGTYPE_p_boost__shared_ptrTlove__Image_t);
+  }
+  arg2 = *argp2;
+  
+  result = (arg1)->newAnimation(arg2);
+  SWIG_arg=0;
+  {
+    love::pAnimation * resultptr = new love::pAnimation((love::pAnimation &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ObjectFactory_newAnimation__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
+  love::pImage arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  int arg6 ;
+  love::pAnimation result;
+  love::pImage *argp2 ;
+  
+  SWIG_check_num_args("newAnimation",6,6)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("newAnimation",1,"love::ObjectFactory *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("newAnimation",2,"love::pImage");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("newAnimation",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("newAnimation",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("newAnimation",5,"float");
+  if(!lua_isnumber(L,6)) SWIG_fail_arg("newAnimation",6,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__ObjectFactory,0))){
+    SWIG_fail_ptr("ObjectFactory_newAnimation",1,SWIGTYPE_p_love__ObjectFactory);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_boost__shared_ptrTlove__Image_t,0))){
+    SWIG_fail_ptr("ObjectFactory_newAnimation",2,SWIGTYPE_p_boost__shared_ptrTlove__Image_t);
+  }
+  arg2 = *argp2;
+  
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  arg6 = (int)lua_tonumber(L, 6);
+  result = (arg1)->newAnimation(arg2,arg3,arg4,arg5,arg6);
+  SWIG_arg=0;
+  {
+    love::pAnimation * resultptr = new love::pAnimation((love::pAnimation &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ObjectFactory_newAnimation__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
+  love::pImage arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  love::pAnimation result;
+  love::pImage *argp2 ;
+  
+  SWIG_check_num_args("newAnimation",5,5)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("newAnimation",1,"love::ObjectFactory *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("newAnimation",2,"love::pImage");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("newAnimation",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("newAnimation",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("newAnimation",5,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love__ObjectFactory,0))){
+    SWIG_fail_ptr("ObjectFactory_newAnimation",1,SWIGTYPE_p_love__ObjectFactory);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_boost__shared_ptrTlove__Image_t,0))){
+    SWIG_fail_ptr("ObjectFactory_newAnimation",2,SWIGTYPE_p_boost__shared_ptrTlove__Image_t);
+  }
+  arg2 = *argp2;
+  
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  result = (arg1)->newAnimation(arg2,arg3,arg4,arg5);
+  SWIG_arg=0;
+  {
+    love::pAnimation * resultptr = new love::pAnimation((love::pAnimation &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ObjectFactory_newAnimation(lua_State* L) {
+  int argc;
+  int argv[7]={
+    1,2,3,4,5,6,7
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__ObjectFactory, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Image_t, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_ObjectFactory_newAnimation__SWIG_0(L);
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__ObjectFactory, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Image_t, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_ObjectFactory_newAnimation__SWIG_2(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__ObjectFactory, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Image_t, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              {
+                _v = lua_isnumber(L,argv[5]);
+              }
+              if (_v) {
+                return _wrap_ObjectFactory_newAnimation__SWIG_1(L);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'ObjectFactory_newAnimation'");
+  lua_error(L);return 0;
+}
+
+
 static int _wrap_delete_ObjectFactory(lua_State* L) {
   int SWIG_arg = -1;
   love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
@@ -10454,6 +11787,7 @@ static swig_lua_method swig_love_ObjectFactory_methods[] = {
     {"newSound", _wrap_ObjectFactory_newSound}, 
     {"newMusic", _wrap_ObjectFactory_newMusic}, 
     {"newParticlesystem", _wrap_ObjectFactory_newParticlesystem}, 
+    {"newAnimation", _wrap_ObjectFactory_newAnimation}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_ObjectFactory_attributes[] = {
@@ -10706,6 +12040,10 @@ static void *_p_love__AudioTo_p_love__Device(void *x) {
 static void *_p_love__ImageTo_p_love__Sprite(void *x) {
     return (void *)((love::Sprite *)  ((love::Image *) x));
 }
+static void *_p_love__AnimationTo_p_love__Sprite(void *x) {
+    return (void *)((love::Sprite *)  ((love::Animation *) x));
+}
+static swig_type_info _swigt__p_boost__shared_ptrTlove__Animation_t = {"_p_boost__shared_ptrTlove__Animation_t", "love::pAnimation *|boost::shared_ptr<love::Animation > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Animation_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Color_t = {"_p_boost__shared_ptrTlove__Color_t", "boost::shared_ptr<love::Color > *|love::pColor *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Color_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Font_t = {"_p_boost__shared_ptrTlove__Font_t", "love::pFont *|boost::shared_ptr<love::Font > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Font_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Image_t = {"_p_boost__shared_ptrTlove__Image_t", "love::pImage *|boost::shared_ptr<love::Image > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Image_Sg_, 0};
@@ -10713,6 +12051,7 @@ static swig_type_info _swigt__p_boost__shared_ptrTlove__Music_t = {"_p_boost__sh
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Particlesystem_t = {"_p_boost__shared_ptrTlove__Particlesystem_t", "boost::shared_ptr<love::Particlesystem > *|love::pParticlesystem *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Particlesystem_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Sound_t = {"_p_boost__shared_ptrTlove__Sound_t", "boost::shared_ptr<love::Sound > *|love::pSound *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Sound_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrTlove__Sprite_t = {"_p_boost__shared_ptrTlove__Sprite_t", "boost::shared_ptr<love::Sprite > *|love::pSprite *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_Sprite_Sg_, 0};
+static swig_type_info _swigt__p_love__Animation = {"_p_love__Animation", "love::Animation *", 0, 0, (void*)&_wrap_class_love_Animation, 0};
 static swig_type_info _swigt__p_love__Audio = {"_p_love__Audio", "love::Audio *", 0, 0, (void*)&_wrap_class_love_Audio, 0};
 static swig_type_info _swigt__p_love__Color = {"_p_love__Color", "love::Color *", 0, 0, (void*)&_wrap_class_love_Color, 0};
 static swig_type_info _swigt__p_love__Device = {"_p_love__Device", "love::Device *", 0, 0, (void*)&_wrap_class_love_Device, 0};
@@ -10730,6 +12069,7 @@ static swig_type_info _swigt__p_love__Sprite = {"_p_love__Sprite", "love::Sprite
 static swig_type_info _swigt__p_love__Timer = {"_p_love__Timer", "love::Timer *", 0, 0, (void*)&_wrap_class_love_Timer, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__p_boost__shared_ptrTlove__Animation_t,
   &_swigt__p_boost__shared_ptrTlove__Color_t,
   &_swigt__p_boost__shared_ptrTlove__Font_t,
   &_swigt__p_boost__shared_ptrTlove__Image_t,
@@ -10737,6 +12077,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_boost__shared_ptrTlove__Particlesystem_t,
   &_swigt__p_boost__shared_ptrTlove__Sound_t,
   &_swigt__p_boost__shared_ptrTlove__Sprite_t,
+  &_swigt__p_love__Animation,
   &_swigt__p_love__Audio,
   &_swigt__p_love__Color,
   &_swigt__p_love__Device,
@@ -10754,6 +12095,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_love__Timer,
 };
 
+static swig_cast_info _swigc__p_boost__shared_ptrTlove__Animation_t[] = {  {&_swigt__p_boost__shared_ptrTlove__Animation_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__Color_t[] = {  {&_swigt__p_boost__shared_ptrTlove__Color_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__Font_t[] = {  {&_swigt__p_boost__shared_ptrTlove__Font_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__Image_t[] = {  {&_swigt__p_boost__shared_ptrTlove__Image_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -10761,6 +12103,7 @@ static swig_cast_info _swigc__p_boost__shared_ptrTlove__Music_t[] = {  {&_swigt_
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__Particlesystem_t[] = {  {&_swigt__p_boost__shared_ptrTlove__Particlesystem_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__Sound_t[] = {  {&_swigt__p_boost__shared_ptrTlove__Sound_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrTlove__Sprite_t[] = {  {&_swigt__p_boost__shared_ptrTlove__Sprite_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love__Animation[] = {  {&_swigt__p_love__Animation, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Audio[] = {  {&_swigt__p_love__Audio, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Color[] = {  {&_swigt__p_love__Color, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Device[] = {  {&_swigt__p_love__Audio, _p_love__AudioTo_p_love__Device, 0, 0},  {&_swigt__p_love__Mouse, _p_love__MouseTo_p_love__Device, 0, 0},  {&_swigt__p_love__Keyboard, _p_love__KeyboardTo_p_love__Device, 0, 0},  {&_swigt__p_love__Graphics, _p_love__GraphicsTo_p_love__Device, 0, 0},  {&_swigt__p_love__Filesystem, _p_love__FilesystemTo_p_love__Device, 0, 0},  {&_swigt__p_love__Device, 0, 0, 0},  {&_swigt__p_love__Timer, _p_love__TimerTo_p_love__Device, 0, 0},{0, 0, 0, 0}};
@@ -10774,10 +12117,11 @@ static swig_cast_info _swigc__p_love__Music[] = {  {&_swigt__p_love__Music, 0, 0
 static swig_cast_info _swigc__p_love__ObjectFactory[] = {  {&_swigt__p_love__ObjectFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Particlesystem[] = {  {&_swigt__p_love__Particlesystem, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Sound[] = {  {&_swigt__p_love__Sound, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_love__Sprite[] = {  {&_swigt__p_love__Image, _p_love__ImageTo_p_love__Sprite, 0, 0},  {&_swigt__p_love__Sprite, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love__Sprite[] = {  {&_swigt__p_love__Image, _p_love__ImageTo_p_love__Sprite, 0, 0},  {&_swigt__p_love__Sprite, 0, 0, 0},  {&_swigt__p_love__Animation, _p_love__AnimationTo_p_love__Sprite, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love__Timer[] = {  {&_swigt__p_love__Timer, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__p_boost__shared_ptrTlove__Animation_t,
   _swigc__p_boost__shared_ptrTlove__Color_t,
   _swigc__p_boost__shared_ptrTlove__Font_t,
   _swigc__p_boost__shared_ptrTlove__Image_t,
@@ -10785,6 +12129,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_boost__shared_ptrTlove__Particlesystem_t,
   _swigc__p_boost__shared_ptrTlove__Sound_t,
   _swigc__p_boost__shared_ptrTlove__Sprite_t,
+  _swigc__p_love__Animation,
   _swigc__p_love__Audio,
   _swigc__p_love__Color,
   _swigc__p_love__Device,

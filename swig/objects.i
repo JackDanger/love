@@ -67,6 +67,18 @@ namespace love
 			return tmp;
 		}
 		
+		pAnimation newAnimation(pImage image)
+		{
+			pAnimation tmp(new Animation(image));
+			return tmp;
+		}
+		
+		pAnimation newAnimation(pImage image, float fw, float fh, float delay, int num = 0)
+		{
+			pAnimation tmp(new Animation(image, fw, fh, delay, num));
+			return tmp;
+		}
+		
 	};
 	
 	/**

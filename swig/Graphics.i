@@ -21,6 +21,11 @@ namespace love
 // Extensions
 %extend love::Graphics 
 {
+
+	/**
+	* Image
+	**/
+
 	void draw(const pImage & sprite, float x, float y) const
 	{
 		sprite->render(x, y);
@@ -35,6 +40,26 @@ namespace love
 	{
 		sprite->render(x, y, angle, sx, sy);
 	}
+	
+	/**
+	* Animation
+	**/
+
+	void draw(const pAnimation & sprite, float x, float y) const
+	{
+		sprite->render(x, y);
+	}
+	
+	void draw(const pAnimation & sprite, float x, float y, float angle, float s = 1.0f) const
+	{
+		sprite->render(x, y, angle, s, s);
+	}
+	
+	void draw(const pAnimation & sprite, float x, float y, float angle, float sx, float sy) const
+	{
+		sprite->render(x, y, angle, sx, sy);
+	}
+
 	
 	void draw(const pParticlesystem & system) const
 	{

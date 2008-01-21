@@ -30,6 +30,7 @@ namespace boost {
 %include Font.i
 %include Sprite.i
 %include Image.i
+%include Animation.i
 %include Particlesystem.i
 %include Graphics.i
 
