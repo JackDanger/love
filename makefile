@@ -3,8 +3,10 @@ BINDIR = .
 OBJDIR = obj
 SRCDIR = src
 OBJ = $(OBJDIR)/AnimatedColor.o \
+$(OBJDIR)/Animation.o \
 $(OBJDIR)/Audio.o \
 $(OBJDIR)/Color.o \
+$(OBJDIR)/Button.o \
 $(OBJDIR)/balance.o \
 $(OBJDIR)/Configuration.o \
 $(OBJDIR)/Device.o \
@@ -21,6 +23,7 @@ $(OBJDIR)/love.o \
 $(OBJDIR)/love_arg.o \
 $(OBJDIR)/love_math.o \
 $(OBJDIR)/love_version.o \
+$(OBJDIR)/Label.o \
 $(OBJDIR)/LuaGame.o \
 $(OBJDIR)/lualove_glue.o \
 $(OBJDIR)/LuaVM.o \
@@ -48,7 +51,8 @@ $(OBJDIR)/SDLTimer.o \
 $(OBJDIR)/Sound.o \
 $(OBJDIR)/Sprite.o \
 $(OBJDIR)/Timer.o \
-$(OBJDIR)/Vector.o 
+$(OBJDIR)/Vector.o \
+$(OBJDIR)/Widget.o
 
 CC = g++
 CFLAGS = -g -O0 -Wall -Wno-unused-label -fno-strict-aliasing

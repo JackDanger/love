@@ -9,6 +9,7 @@
 #define LOVE_LABEL_H
 
 // LOVE
+#include <string>
 #include "Widget.h"
 
 namespace love
