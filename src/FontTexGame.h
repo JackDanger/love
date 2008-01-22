@@ -15,6 +15,8 @@
 // LOVE
 #include "Game.h"
 #include "Animation.h"
+#include "Label.h"
+#include "Button.h"
 
 namespace love 
 {
@@ -39,6 +41,8 @@ namespace love
 		pParticlesystem psys;
 		pSound sound;
 		pMusic music;
+		pLabel label;
+		pButton button;
 
 		/**
 		* @brief Creates a new FontTexGame object.

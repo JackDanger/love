@@ -11,10 +11,10 @@
 #include "SDLMouse.h"
 #include "SDLKeyboard.h"
 
+
 #ifdef W32
 #include "Win32Timer.h"
 #endif
-
 
 // STD
 #include <cmath>
@@ -110,6 +110,7 @@ namespace love
 						mouse_released(e.button.x, e.button.y, e.button.button);
 						break;
 					case SDL_MOUSEMOTION:
+						//mouse_moved(e.motion.x, e.motion.y);
 						break;
 					case SDL_QUIT:
 						platform_free();

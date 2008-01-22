@@ -5,7 +5,7 @@
 * Copyright (c) 2006-2008 LOVE Development Team
 */
 
-// This file contains what is needed to the Timer.
+// This file contains what is needed to access the Timer.
 
 #ifndef LOVE_USING_TIMER_H
 #define LOVE_USING_TIMER_H

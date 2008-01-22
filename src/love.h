@@ -76,6 +76,7 @@ namespace love
 	void key_released(int key);
 	void mouse_pressed(float x, float y, int button);
 	void mouse_released(float x, float y, int button);
+	void mouse_moved(float x, float y);
 
 } // love
 

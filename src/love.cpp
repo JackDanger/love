@@ -1,5 +1,6 @@
 #include "love.h"
 
+
 // LOVE
 #include "platform.h"
 #include "love_keys.h"
@@ -14,6 +15,7 @@
 #include "Filesystem.h"
 #include "Mouse.h"
 #include "Keyboard.h"
+#include "Widget.h"
 
 #include "Configuration.h"
 
@@ -64,7 +66,6 @@ namespace love
 
 		if(!keyboard->init(argc, argv))
 			return false;
-
 
 		/*****************************************
 		* Test area begins here.
@@ -214,21 +215,30 @@ namespace love
 		}
 
 		game->keyPressed(key);
+		Widget::distributeKeyPressed(key);
 	}
 
 	void key_released(int key)
 	{
 		game->keyReleased(key);
+		Widget::distributeKeyReleased(key);
 	}
 
 	void mouse_pressed(float x, float y, int button)
 	{
 		game->mousePressed(x, y, button);
+		Widget::distributeMousePressed(x, y, button);
 	}
 
 	void mouse_released(float x, float y, int button)
 	{
 		game->mouseReleased(x, y, button);
+		Widget::distributeMouseReleased(x, y, button);
+	}
+
+	void mouse_moved(float x, float y)
+	{
+		Widget::distributeMouseMoved(x, y);
 	}
 
 }// love
