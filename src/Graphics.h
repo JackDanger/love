@@ -111,10 +111,15 @@ namespace love
 		**/
 		virtual pParticlesystem getParticlesystem() const = 0;
 
+		// If rude doesn't want these here, then he can remove them.. tehy are used when using custom fonts/colors in the widgets
+		pFont getCurrentFont() const;
+		pColor getCurrentBackgroundColor() const;
+		pColor getCurrentColor() const;
+		
 		// Convenience functions. Base source is assumed.
 		pImage getImage(const std::string & filename) const;
 		pFont getFont(const std::string & filename, int size) const;
-		pFont getImageFont(const std::string & filename, std::string glyphs) const;
+		pFont getImageFont(const std::string & filename, const std::string & glyphs) const;
 
 		/**
 		* Draw text on screen at the specified coordiantes (automatically breaks \n characters).
@@ -135,6 +140,9 @@ namespace love
 		* @param align Where to align the text.
 		**/
 		void draw(const char * str, float x, float y, int wrap, int align = LOVE_ALIGN_LEFT) const;
+		
+		// Added for the sake of the widget... you can kill if so desired
+		virtual void drawRectangle(float x, float y, float width, float height) const = 0;
 				
 	}; // Graphics
 	

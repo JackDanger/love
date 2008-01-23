@@ -50,6 +50,21 @@ namespace love
 	{
 		this->font = font;
 	}
+	
+	pFont Graphics::getCurrentFont() const
+	{
+		return font;
+	}
+	
+	pColor Graphics::getCurrentBackgroundColor() const
+	{
+		return background;
+	}
+	
+	pColor Graphics::getCurrentColor() const
+	{
+		return color;
+	}
 
 	pImage Graphics::getImage(const std::string & filename) const
 	{
@@ -63,7 +78,7 @@ namespace love
 		return getFont(file, size);
 	}
 	
-	pFont Graphics::getImageFont(const std::string & filename, std::string glyphs) const
+	pFont Graphics::getImageFont(const std::string & filename, const std::string & glyphs) const
 	{
 		pFile file = filesystem->getBaseFile(filename);
 		return getImageFont(file, glyphs);
@@ -88,7 +103,7 @@ namespace love
 				{
 					if(str[i] == '\n')
 					{
-						font->print(text, x, y + (lines * font->getHeight()));
+						font->print(text, x, y + (lines * font->getHeight() * 1.25));
 						text = "";
 						lines++;
 					}
@@ -97,9 +112,11 @@ namespace love
 				}
 				
 				if(text != "") // Print the last text (if applicable).
-					font->print(text, x, y + (lines * font->getHeight()));
+					font->print(text, x, y + (lines * font->getHeight() * 1.25));
 			}
 		}
+		
+		apply(pColor(new Color(255,255,255,255))); // to clear the set color
 	}
 	
 	void Graphics::draw(const char * str, float x, float y, int wrap, int align) const
@@ -119,15 +136,15 @@ namespace love
 					switch(align)
 					{
 						case LOVE_ALIGN_LEFT:
-							font->print(text, x, y + (lines * font->getHeight()));
+							font->print(text, x, y + (lines * font->getHeight() * 1.25));
 							break;
 							
 						case LOVE_ALIGN_RIGHT:
-							font->print(text, (x + (wrap - font->getWidth(text))), y + (lines * font->getHeight()));
+							font->print(text, (x + (wrap - font->getWidth(text))), y + (lines * font->getHeight() * 1.25));
 							break;
 							
 						case LOVE_ALIGN_CENTER:
-							font->print(text, (x + ((wrap - font->getWidth(text)) / 2)), y + (lines * font->getHeight()));
+							font->print(text, (x + ((wrap - font->getWidth(text)) / 2)), y + (lines * font->getHeight() * 1.25));
 							break;
 							
 						default: // A copy of the left align code. Kept separate in case an error message is wanted.
@@ -150,15 +167,15 @@ namespace love
 						switch(align)
 						{
 							case LOVE_ALIGN_LEFT:
-								font->print(temp, x, y + (lines * font->getHeight()));
+								font->print(temp, x, y + (lines * font->getHeight() * 1.25));
 								break;
 							
 							case LOVE_ALIGN_RIGHT:
-								font->print(temp, (x + (wrap - font->getWidth(temp))), y + (lines * font->getHeight()));
+								font->print(temp, (x + (wrap - font->getWidth(temp))), y + (lines * font->getHeight() * 1.25));
 								break;
 							
 							case LOVE_ALIGN_CENTER:
-								font->print(temp, (x + ((wrap - font->getWidth(temp)) / 2)), y + (lines * font->getHeight()));
+								font->print(temp, (x + ((wrap - font->getWidth(temp)) / 2)), y + (lines * font->getHeight() * 1.25));
 								break;
 							
 							default: // A copy of the left align code. Kept separate in case an error message is wanted.
@@ -180,15 +197,15 @@ namespace love
 				switch(align)
 				{
 					case LOVE_ALIGN_LEFT:
-						font->print(text, x, y + (lines * font->getHeight()));
+						font->print(text, x, y + (lines * font->getHeight() * 1.25));
 						break;
 							
 					case LOVE_ALIGN_RIGHT:
-						font->print(text, (x + (wrap - font->getWidth(text))), y + (lines * font->getHeight()));
+						font->print(text, (x + (wrap - font->getWidth(text))), y + (lines * font->getHeight() * 1.25));
 						break;
 							
 					case LOVE_ALIGN_CENTER:
-						font->print(text, (x + ((wrap - font->getWidth(text)) / 2)), y + (lines * font->getHeight()));
+						font->print(text, (x + ((wrap - font->getWidth(text)) / 2)), y + (lines * font->getHeight() * 1.25));
 						break;
 							
 					default: // A copy of the left align code. Kept separate in case an error message is wanted.
@@ -197,6 +214,8 @@ namespace love
 				}	
 			}
 		}
+		
+		apply(pColor(new Color(255,255,255,255))); // to clear the set color
 	}
 
 } // love

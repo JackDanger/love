@@ -71,4 +71,19 @@ namespace love
 		return tmp;
 	}
 	
+	// And here too
+	void OpenGLGraphics::drawRectangle(float x, float y, float width, float height) const
+	{
+		glPushMatrix();
+			glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
+			glBegin(GL_QUADS);
+				glVertex2f(x+width, y);
+				glVertex2f(x,y);
+				glVertex2f(x,y+height);
+				glVertex2f(x+width,y+height);
+			glEnd();
+			glColor4ub(255,255,255,255);
+		glPopMatrix();
+	}
+	
 } // love

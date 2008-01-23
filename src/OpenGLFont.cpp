@@ -118,7 +118,7 @@ namespace love
 	
 	float OpenGLFont::getHeight() const
 	{
-		return ((float)size) * 1.5f;
+		return ((float)size) * 1.2f;
 	}
 
 	void OpenGLFont::print(string text, float x, float y) const
@@ -126,7 +126,7 @@ namespace love
 		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
 
-		glTranslatef(ceil(x), ceil(y), 0.0f);
+		glTranslatef(ceil(x), ceil(y + getHeight()), 0.0f); // + getHeight() to make the x,y coordiantes the top left corner
 		GLuint OpenGLFont = list;
 		glListBase(OpenGLFont);
 		glCallLists((int)text.length(), GL_UNSIGNED_BYTE, text.c_str());
@@ -140,7 +140,7 @@ namespace love
 		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
 		
-		glTranslatef(x, y, 0.0f);
+		glTranslatef(ceil(x), ceil(y + getHeight()), 0.0f);
 		GLuint OpenGLFont = list;
 		glListBase(OpenGLFont);
 		glCallList(list + (int)character);

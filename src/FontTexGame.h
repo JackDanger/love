@@ -13,6 +13,7 @@
 #include "using_audio.h"
 
 // LOVE
+#include "Color.h"
 #include "Game.h"
 #include "Animation.h"
 #include "Label.h"
@@ -34,6 +35,7 @@ namespace love
 	public:
 
 		float x, y, r;
+		pColor red, green, blue;
 		pImage img;
 		pAnimation animation;
 		pFont font;
@@ -42,6 +44,7 @@ namespace love
 		pSound sound;
 		pMusic music;
 		pLabel label;
+		pLabel label2;
 		pButton button;
 
 		/**

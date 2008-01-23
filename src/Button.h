@@ -18,15 +18,16 @@ namespace love
 	class Button : public Widget
 	{
 	private:
-		std::string text;
+		//std::string text;
 		pImage up, down, hover;
 		int state;
-		float width, height;
+		//float width, height;
 	public:
 
 		Button(std::string text, pImage up, pImage down, pImage hover);
 		virtual ~Button();
 
+		// From Widget
 		void update(float dt);
 		void render() const;
 		void mousePressed(float x, float y, int button);
@@ -42,4 +43,3 @@ namespace love
 } // love
 
 #endif // LOVE_BUTTON_H
-

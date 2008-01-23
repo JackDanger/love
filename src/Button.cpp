@@ -6,10 +6,11 @@ namespace love
 {
 
 	Button::Button(std::string text, pImage up, pImage down, pImage hover) 
-		: Widget(true, false), text(text), state(0), up(up), down(down), hover(hover)
+		: Widget(true, false), state(0), up(up), down(down), hover(hover)
 	{
 		width = 79;
 		height = 21;
+		this->text = text;
 	}
 
 	Button::~Button()

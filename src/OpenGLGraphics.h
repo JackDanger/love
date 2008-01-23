@@ -43,6 +43,8 @@ namespace love
 		pFont getFont(pFile file, int size) const;
 		pFont getImageFont(pFile file, std::string glyphs) const;
 		pParticlesystem getParticlesystem() const;
+		// Remember to remove it here too
+		void drawRectangle(float x, float y, float width, float height) const;
 
 
 	}; // OpenGLGraphics

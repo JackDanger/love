@@ -53,6 +53,8 @@ namespace love
 		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
 
+		glColor4ub(255,255,255,255); // should this be removed?
+		
 		glTranslatef(ceil(x), ceil(y), 0.0f);
 		GLuint OpenGLFont = list;
 		glListBase(OpenGLFont);
@@ -81,6 +83,8 @@ namespace love
 
 		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
+		
+		glColor4ub(255,255,255,255); // should this be removed?
 
 		glTranslatef(ceil(x), ceil(y), 0.0f);
 		GLuint OpenGLFont = list;
@@ -92,9 +96,7 @@ namespace love
 	}
 
 	bool OpenGLImageFont::load()
-	{		
-		fprintf(stderr, "loading imagefont ");
-		
+	{
 		image->readData();
 		rgba * pixels = image->getData();
 		

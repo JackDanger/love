@@ -9,7 +9,7 @@
 #define LOVE_LABEL_H
 
 // LOVE
-#include <string>
+#include "Image.h"
 #include "Widget.h"
 
 namespace love
@@ -18,12 +18,19 @@ namespace love
 	class Label : public Widget
 	{
 	private:
-		std::string text;
+		pImage backgroundImage;
+		
 	public:
 
 		Label(std::string text);
 		virtual ~Label();
+		
+		void setBackgroundImage(const pImage & image);
+		pImage getBackgroundImage() const;
 
+		// From Widget.
+		void adjustSize();
+		void adjustContent();
 		void update(float dt);
 		void render() const;
 		void mousePressed(float x, float y, int button);
@@ -39,4 +46,3 @@ namespace love
 } // love
 
 #endif // LOVE_LABEL_H
-
