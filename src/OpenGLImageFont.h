@@ -69,14 +69,6 @@ namespace love
 		virtual void unload();
 	
 	protected:
-		/**
-		 * Creates an OpenGL display list for the character (for speedy execution).
-		 *
-		 * @param character The character in question.
-		 * @param num The position of the character in the glyph list (so that the display lists count from 0 to glyphs.size()-1
-		 *            independent of the position of the characters).
-		 **/
-		void createList(unsigned short character, unsigned int num);
 		
 		/**
 		 * Returns the closest number to num which is a power of two.

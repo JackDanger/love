@@ -144,7 +144,20 @@ namespace love
 		glEnable(GL_TEXTURE_2D);
 
 		for(unsigned int i = 0; i < MAX_CHARS; i++)
-			createList(glyphs[i], i);
+		{
+			glNewList(list + i, GL_COMPILE);
+
+			if(positions[i] != -1)
+			{
+				image->render((float)positions[i], 0, (float)widths[i], (float)size);
+		
+				glTranslatef((float)widths[i] ,0,0);
+			}
+			else
+				glTranslatef((float)widths[(int)' '] ,0,0); // empty character are replaced with a whitespace
+
+			glEndList();
+		}
 
 		return true;
 	}
@@ -154,20 +167,6 @@ namespace love
 		image->unload();
 		
 		glDeleteLists(list, MAX_CHARS);
-	}
-	
-	void OpenGLImageFont::createList(unsigned short character, unsigned int num)
-	{
-		glNewList(list + character, GL_COMPILE);
-
-		if(positions[character] != -1)
-		{
-			image->render((float)positions[character], 0, (float)widths[character], (float)size);
-		
-			glTranslatef((float)widths[character] ,0,0);
-		}
-
-		glEndList();
 	}
 	
 	inline int OpenGLImageFont::next_p2(int num)
