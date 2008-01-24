@@ -17,8 +17,8 @@ namespace love
 		
 		pImage newImage(const char * filename)
 		{
-			pFile file(filesystem->getFile(game->getSource(), std::string(filename)));
-			pImage img(graphics->getImage(file));
+			pFile file(filesystem->newFile(game->getSource(), std::string(filename)));
+			pImage img(graphics->newImage(file));
 			img->load();
 			return img;
 		}
@@ -31,53 +31,54 @@ namespace love
 		
 		pFont newFont(const char * filename, int size)
 		{
-			pFile file(filesystem->getFile(game->getSource(), std::string(filename)));
-			pFont tmp(graphics->getFont(file, size));
+			pFile file(filesystem->newFile(game->getSource(), std::string(filename)));
+			pFont tmp(graphics->newFont(file, size));
 			tmp->load();
 			return tmp;
 		}
 
 		pFont newImageFont(const char * filename, const char * glyphs)
 		{
-			pFile file(filesystem->getFile(game->getSource(), std::string(filename)));
-			pFont tmp(graphics->getImageFont(file, glyphs));
+			pFile file(filesystem->newFile(game->getSource(), std::string(filename)));
+			pFont tmp(graphics->newImageFont(file, glyphs));
 			tmp->load();
 			return tmp;
 		}
 		
 		pSound newSound(const char * filename)
 		{
-			pFile file(filesystem->getFile(game->getSource(), std::string(filename)));
-			pSound tmp(audio->getSound(file));
+			pFile file(filesystem->newFile(game->getSource(), std::string(filename)));
+			pSound tmp(audio->newSound(file));
 			tmp->load();
 			return tmp;			
 		}
 		
 		pMusic newMusic(const char * filename)
 		{
-			pFile file(filesystem->getFile(game->getSource(), std::string(filename)));
-			pMusic tmp(audio->getMusic(file));
+			pFile file(filesystem->newFile(game->getSource(), std::string(filename)));
+			pMusic tmp(audio->newMusic(file));
 			tmp->load();
 			return tmp;		
 		}
 		
 		pParticlesystem newParticlesystem()
 		{
-			pParticlesystem tmp = graphics->getParticlesystem();
+			pParticlesystem tmp = graphics->newParticlesystem();
 			return tmp;
 		}
 		
-		pAnimation newAnimation(pImage image)
+		pAnimation newAnimation(const pImage * image)
 		{
-			pAnimation tmp(new Animation(image));
+			pAnimation tmp(new Animation(*image));
 			return tmp;
 		}
 		
-		pAnimation newAnimation(pImage image, float fw, float fh, float delay, int num = 0)
+		pAnimation newAnimation(const pImage * image, float fw, float fh, float delay, int num = 0)
 		{
-			pAnimation tmp(new Animation(image, fw, fh, delay, num));
+			pAnimation tmp(new Animation(*image, fw, fh, delay, num));
 			return tmp;
 		}
+		
 		
 	};
 	

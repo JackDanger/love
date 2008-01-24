@@ -153,7 +153,7 @@ namespace love
 
 	}
 
-	Graphics * SDLDisplay::getGraphics() const
+	Graphics * SDLDisplay::newGraphics() const
 	{
 		return new OpenGLGraphics();
 	}

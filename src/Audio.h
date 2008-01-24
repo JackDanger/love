@@ -35,16 +35,16 @@ namespace love
 		/**
 		* Gets a sound that is compatible with the current sound device.
 		**/
-		virtual pSound getSound(pFile file) const = 0;
+		virtual pSound newSound(pFile file) const = 0;
 		
 		/**
 		* Gets music that is compatible with the current sound device.
 		**/
-		virtual pMusic getMusic(pFile file) const = 0;
+		virtual pMusic newMusic(pFile file) const = 0;
 
 		// Convenience functions. Base source is assumed.
-		pSound getSound(const std::string & filename) const;
-		pMusic getMusic(const std::string & filename) const;
+		pSound newSound(const std::string & filename) const;
+		pMusic newMusic(const std::string & filename) const;
 
 		/**
 		* Checks if audio is playing or not.

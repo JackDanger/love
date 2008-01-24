@@ -36,8 +36,8 @@ namespace love
 		void quit();
 
 		// From Audio
-		pSound getSound(pFile file) const;
-		pMusic getMusic(pFile file) const;
+		pSound newSound(pFile file) const;
+		pMusic newMusic(pFile file) const;
 		bool isPlaying() const;
 		bool isPaused() const;
 		void pause() const;

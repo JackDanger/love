@@ -20,9 +20,10 @@ namespace love
 	bool LuaVM::open()
 	{
 		L = lua_open();
+		//luaopen_love(L);
+		//int SWIG_init(lua_State* L)
 		luaL_openlibs(L);
-		luaopen_love(L);
-
+		Love_Init(L);
 		return true;
 	}
 

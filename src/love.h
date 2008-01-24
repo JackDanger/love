@@ -11,6 +11,9 @@
 #define LOVE_DEBUG _DEBUG
 #define LOVE_VERBOSE LOVE_DEBUG
 
+// STD
+#include <string>
+
 namespace love
 {
 
@@ -65,9 +68,19 @@ namespace love
 	void quit();
 
 	/** 
-	* Issue an error using printf format.
+	* Display an error. (Halts execution).
 	**/
-	void error(const char * text, ...);
+	void error(const std::string & str);
+
+	/**
+	* Displays a warning. (Does not halt execution).
+	**/
+	void warning(const std::string & str);
+
+	/**
+	* Displays an info message.
+	**/
+	void info(const std::string & str);
 
 	/// Event handlers.
 	void update(float dt);

@@ -34,9 +34,9 @@ namespace love
 	void OpenGLGraphics::clear() const
 	{
 		// Clear color bit, etc
-		glClearColor(	(float)background->getRed()/255.0f,
-						(float)background->getGreen()/255.0f,
-						(float)background->getBlue()/255.0f, 
+		glClearColor(	(float)states.back().background->getRed()/255.0f,
+						(float)states.back().background->getGreen()/255.0f,
+						(float)states.back().background->getBlue()/255.0f, 
 						1); 
 		glClear(GL_COLOR_BUFFER_BIT);
 		glLoadIdentity();
@@ -47,25 +47,25 @@ namespace love
 		glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
 	}
 
-	pImage OpenGLGraphics::getImage(pFile file) const
+	pImage OpenGLGraphics::newImage(pFile file) const
 	{
 		pImage tmp (new OpenGLImage(file));
 		return tmp;
 	}
 
-	pFont OpenGLGraphics::getFont(pFile file, int size) const
+	pFont OpenGLGraphics::newFont(pFile file, int size) const
 	{
 		pFont tmp (new OpenGLFont(file, size));
 		return tmp;
 	}
 	
-	pFont OpenGLGraphics::getImageFont(pFile file, std::string glyphs) const
+	pFont OpenGLGraphics::newImageFont(pFile file, std::string glyphs) const
 	{
 		pFont tmp (new OpenGLImageFont(file, glyphs));
 		return tmp;
 	}
 
-	pParticlesystem OpenGLGraphics::getParticlesystem() const
+	pParticlesystem OpenGLGraphics::newParticlesystem() const
 	{
 		pParticlesystem tmp(new OpenGLParticleSystem());
 		return tmp;
@@ -74,6 +74,7 @@ namespace love
 	// And here too
 	void OpenGLGraphics::drawRectangle(float x, float y, float width, float height) const
 	{
+		const pColor & color = states.back().color;
 		glPushMatrix();
 			glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
 			glBegin(GL_QUADS);

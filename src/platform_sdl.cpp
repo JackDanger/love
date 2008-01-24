@@ -34,7 +34,7 @@ namespace love
 
 		// Create devices.
 		display = new SDLDisplay();
-		graphics = display->getGraphics();
+		graphics = display->newGraphics();
 		audio = new SDLMixerAudio();
 		timer = new SDLTimer();
 		//timer = new Win32Timer();
@@ -63,6 +63,9 @@ namespace love
 		delete mouse;
 		delete keyboard;
 
+#ifdef LOVE_BALANCE
+		balance_print();
+#endif
 		// Quit SDL.
 		SDL_Quit();
 	}

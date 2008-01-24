@@ -1,7 +1,8 @@
 #include "LuaGame.h"
 
-#include "using_error.h"
+#include "using_output.h"
 #include "using_filesystem.h"
+#include "using_graphics.h"
 
 namespace love
 {
@@ -26,11 +27,15 @@ namespace love
 			return;
 
 		// File is not already included. Include.
-		pFile file = filesystem->getFile(source, filename);
+		pFile file = filesystem->newFile(source, filename);
 
 		if(!vm.load(file))
 		{
-			printf("Could not load file: %s.\n", file->getFilename().c_str());
+			std::stringstream ss;
+			ss << "Could not load file: ";
+			ss << file->getFilename();
+			ss << std::endl;
+			error(ss.str());
 			return;
 		}
 
@@ -41,6 +46,11 @@ namespace love
 
 	bool LuaGame::load()
 	{
+		// Set up a graphics state.
+		graphics->push();
+		graphics->setColor(255, 255, 255, 255);
+		graphics->setBackgroundColor(0, 0, 0);
+
 		// Open Lua state.
 		if(!vm.open())
 		{
@@ -49,10 +59,10 @@ namespace love
 		}
 
 		// Read mail file.
-		pFile main = filesystem->getFile(source, "main.lua");
+		pFile main = filesystem->newFile(source, "main.lua");
 		if(!vm.load(main))
 		{
-			printf("Could not load main Lua file.\n");
+			error("Could not load main Lua file.\n");
 			return false;
 		}
 
@@ -81,6 +91,9 @@ namespace love
 
 		// Clear included files.
 		included.clear();
+
+		// Pop graphics state.
+		graphics->pop();
 	}
 
 	void LuaGame::render()

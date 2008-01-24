@@ -100,7 +100,7 @@ namespace love
 		* Gets a graphics context that is compatible with the current display.
 		* A graphics context.
 		**/
-		virtual Graphics * getGraphics() const = 0;
+		virtual Graphics * newGraphics() const = 0;
 
 		/**
 		* Gets the width of the current display mode.

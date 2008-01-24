@@ -2,6 +2,8 @@
 #include "PhysFSFile.h"
 #include <physfs.h>
 
+#include "using_output.h"
+
 // boost
 #include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/path.hpp>
@@ -21,19 +23,19 @@ namespace love
 		quit();
 	}
 
-	pFile PhysFSFilesystem::getFile(const string & source, const string & file) const
+	pFile PhysFSFilesystem::newFile(const string & source, const string & file) const
 	{
 		pFile tmp(new PhysFSFile(source, file));
 		return tmp;
 	}
 
-	pFile PhysFSFilesystem::getBaseFile(const string & file) const
+	pFile PhysFSFilesystem::newBaseFile(const string & file) const
 	{
 		pFile tmp(new PhysFSFile(this->base, file));
 		return tmp;
 	}
 
-	pFile PhysFSFilesystem::getUserFile(const string & file) const
+	pFile PhysFSFilesystem::newUserFile(const string & file) const
 	{
 		pFile tmp(new PhysFSFile(this->user, file));
 		return tmp;
@@ -45,7 +47,7 @@ namespace love
 		// Initialize PhysFS
 		if(!PHYSFS_init(argv[0]))
 		{
-			printf("Could not init PhysFS!\n");
+			error("Could not init PhysFS!");
 			return false;
 		}
 
@@ -163,7 +165,11 @@ namespace love
 		// Try to add the source.
 		if(!PHYSFS_addToSearchPath(path.c_str(), 1))
 		{
-			printf("PhysFS error when adding source \"%s\": %s\n", path.c_str(), PHYSFS_getLastError());	
+			std::stringstream ss;
+			ss << "PhysFS error when adding source "; 
+			ss << path; ss << ". ";
+			ss << PHYSFS_getLastError();
+			error(ss.str());
 			return false;
 		}
 
@@ -176,7 +182,11 @@ namespace love
 		// Try to remove source.
 		if(!PHYSFS_removeFromSearchPath(path.c_str()))
 		{
-			printf("PhysFS error when removing source \"%s\": %s\n", path.c_str(), PHYSFS_getLastError());	
+			std::stringstream ss;
+			ss << "PhysFS error when removing source "; 
+			ss << path; ss << ". ";
+			ss << PHYSFS_getLastError();
+			error(ss.str());
 			return false;
 		}
 

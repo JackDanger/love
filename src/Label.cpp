@@ -36,8 +36,8 @@ namespace love
 		}
 		else
 		{
-			width = graphics->getCurrentFont()->getWidth(text) + paddingLeft + paddingRight;
-			height = graphics->getCurrentFont()->getHeight() + paddingTop + paddingBottom;
+			width = graphics->getFont()->getWidth(text) + paddingLeft + paddingRight;
+			height = graphics->getFont()->getHeight() + paddingTop + paddingBottom;
 		}
 		
 		if(backgroundImage != 0)
@@ -63,12 +63,12 @@ namespace love
 				break;
 					
 			case love::LOVE_ALIGN_RIGHT:
-				innerx += width - graphics->getCurrentFont()->getWidth(text) - paddingRight;
+				innerx += width - graphics->getFont()->getWidth(text) - paddingRight;
 				break;
 					
 			default:
 			case love::LOVE_ALIGN_CENTER:
-				innerx += (width / 2) - (graphics->getCurrentFont()->getWidth(text) / 2);
+				innerx += (width / 2) - (graphics->getFont()->getWidth(text) / 2);
 				break;
 		}
 			
@@ -79,12 +79,12 @@ namespace love
 				break;
 					
 			case love::LOVE_ALIGN_BOTTOM:
-				innery += height - graphics->getCurrentFont()->getHeight() - paddingBottom;
+				innery += height - graphics->getFont()->getHeight() - paddingBottom;
 				break;
 					
 			default:
 			case love::LOVE_ALIGN_CENTER:
-				innery += (height / 2) - (graphics->getCurrentFont()->getHeight() / 2);
+				innery += (height / 2) - (graphics->getFont()->getHeight() / 2);
 				break;
 		}
 	}
@@ -95,8 +95,8 @@ namespace love
 
 	void Label::render() const
 	{
-		pColor tempColor = graphics->getCurrentColor();
-		pFont tempFont = graphics->getCurrentFont();		
+		pColor tempColor = graphics->getColor();
+		pFont tempFont = graphics->getFont();		
 		
 		if(backgroundColor != 0)
 		{
@@ -112,7 +112,7 @@ namespace love
 		if(backgroundImage != 0)
 			backgroundImage->render(x, y);
 		
-		graphics->draw(text.c_str(), (int)innerx, (int)innery);
+		graphics->draw(text.c_str(), floor(innerx), floor(innery));
 		
 		// reinstate the status quo
 		graphics->setColor(tempColor);

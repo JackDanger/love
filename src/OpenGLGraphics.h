@@ -39,10 +39,10 @@ namespace love
 		// From Graphics.
 		void clear() const;
 		void apply(const pColor & color) const;
-		pImage getImage(pFile file) const;
-		pFont getFont(pFile file, int size) const;
-		pFont getImageFont(pFile file, std::string glyphs) const;
-		pParticlesystem getParticlesystem() const;
+		pImage newImage(pFile file) const;
+		pFont newFont(pFile file, int size) const;
+		pFont newImageFont(pFile file, std::string glyphs) const;
+		pParticlesystem newParticlesystem() const;
 		// Remember to remove it here too
 		void drawRectangle(float x, float y, float width, float height) const;
 

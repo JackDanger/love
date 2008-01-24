@@ -12,7 +12,8 @@ namespace love
 		{0, 0, "Sound"}, 
 		{0, 0, "Music"},
 		{0, 0, "File"}, 
-		{0, 0, "Resource"} 
+		{0, 0, "Resource"}, 
+		{0, 0, "Animation"}
 	};
 
 	void balance_inc(int type)

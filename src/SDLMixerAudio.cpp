@@ -55,13 +55,13 @@ namespace love
 		//printf("[QUIT] Audio\n");
 	}
 
-	pSound SDLMixerAudio::getSound(pFile file) const
+	pSound SDLMixerAudio::newSound(pFile file) const
 	{
 		pSound tmp(new SDLMixerSound(file));
 		return tmp;
 	}
 	
-	pMusic SDLMixerAudio::getMusic(pFile file) const
+	pMusic SDLMixerAudio::newMusic(pFile file) const
 	{
 		pMusic tmp(new SDLMixerMusic(file));
 		return tmp;

@@ -59,9 +59,9 @@ namespace love
 // Extensions
 %extend love::Particlesystem 
 {
-	void setSprite(pImage sprite)
+	void setSprite(const pImage * sprite)
 	{
-		self->setSprite(sprite);
+		self->setSprite(*sprite);
 	}
 
 }

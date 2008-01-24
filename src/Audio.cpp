@@ -12,16 +12,16 @@ namespace love
 	{
 	}
 
-	pSound Audio::getSound(const string & filename) const
+	pSound Audio::newSound(const string & filename) const
 	{
-		pFile file = filesystem->getBaseFile(filename);
-		return getSound(file);
+		pFile file = filesystem->newBaseFile(filename);
+		return newSound(file);
 	}
 
-	pMusic Audio::getMusic(const string & filename) const
+	pMusic Audio::newMusic(const string & filename) const
 	{
-		pFile file = filesystem->getBaseFile(filename);
-		return getMusic(file);
+		pFile file = filesystem->newBaseFile(filename);
+		return newMusic(file);
 	}
 
 } // love

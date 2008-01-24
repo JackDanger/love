@@ -1,6 +1,8 @@
 #include "PhysFSFile.h"
 #include <physfs.h>
 
+#include "using_output.h"
+
 using std::string;
 
 namespace love
@@ -83,7 +85,12 @@ namespace love
 
 	void PhysFSFile::fail()
 	{
-		printf("Could not load file \"%s\" from \"%s\": %s\n", filename.c_str(), source.c_str(), PHYSFS_getLastError());
+		std::stringstream ss;
+		ss << "Could not load ";
+		ss << filename; ss << " from ";
+		ss << source; ss << ". ";
+		ss << PHYSFS_getLastError();
+		error(ss.str());
 	}
 
 	void PhysFSFile::removeSource()

@@ -25,17 +25,17 @@ namespace love
 		green.reset<Color>(new Color(0,255,0,255));
 		blue.reset<Color>(new Color(0,0,255,255));
 		
-		font = graphics->getFont("Vera.ttf", 8);
+		font = graphics->newFont("Vera.ttf", 8);
 		font->load();
 		graphics->setFont(font);
 		
-		imgfont = graphics->getImageFont("rpgfont.png", " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&`'*#=[]\"");
+		imgfont = graphics->newImageFont("rpgfont.png", " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&`'*#=[]\"");
 		imgfont->load();
 		//graphics->setFont(imgfont);
 
-		pImage up = graphics->getImage("button_default.png"); up->load(); up->setCenter(0, 0);
-		pImage down = graphics->getImage("button_pressed.png"); down->load(); down->setCenter(0, 0);
-		pImage hover = graphics->getImage("button_hover.png"); hover->load(); hover->setCenter(0, 0);
+		pImage up = graphics->newImage("button_default.png"); up->load(); up->setCenter(0, 0);
+		pImage down = graphics->newImage("button_pressed.png"); down->load(); down->setCenter(0, 0);
+		pImage hover = graphics->newImage("button_hover.png"); hover->load(); hover->setCenter(0, 0);
 
 		button.reset<Button>(new Button("Apply", up, down, hover));
 		button->setPosition(300, 300);

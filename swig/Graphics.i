@@ -7,11 +7,8 @@ namespace love
 	{
 	protected:	
 	public:				
-		void setBackgroundColor(pColor color);
 		void setBackgroundColor(int r, int g, int b);
-		void setColor(pColor color);
 		void setColor(int r, int g, int b, int a = 255);
-		void setFont(pFont font);
 		void draw(const char * str, float x, float y) const;
 		void draw(const char * str, float x, float y, int wrap, int align = 1);
 	};
@@ -22,52 +19,71 @@ namespace love
 %extend love::Graphics 
 {
 
+	void setBackgroundColor(const pColor * color) 
+	{
+		self->setBackgroundColor(*color);
+	}
+	
+	void setColor(const pColor * color)
+	{
+		self->setColor(*color);
+	}
+	
+	void setFont(const pFont * font)
+	{
+		self->setFont(*font);
+	}
+
 	/**
 	* Image
 	**/
 
-	void draw(const pImage & sprite, float x, float y) const
+	void draw(const pImage * sprite, float x, float y)
 	{
-		sprite->render(x, y);
+		(*sprite)->render(x, y);
 	}
 	
-	void draw(const pImage & sprite, float x, float y, float angle, float s = 1.0f) const
+	void draw(const pImage * sprite, float x, float y, float angle, float s = 1.0f)
 	{
-		sprite->render(x, y, angle, s, s);
+		(*sprite)->render(x, y, angle, s, s);
 	}
 	
-	void draw(const pImage & sprite, float x, float y, float angle, float sx, float sy) const
+	void draw(const pImage * sprite, float x, float y, float angle, float sx, float sy)
 	{
-		sprite->render(x, y, angle, sx, sy);
+		(*sprite)->render(x, y, angle, sx, sy);
 	}
 	
 	/**
 	* Animation
 	**/
 
-	void draw(const pAnimation & sprite, float x, float y) const
+	void draw(const pAnimation * sprite, float x, float y)
 	{
-		sprite->render(x, y);
+		(*sprite)->render(x, y);
 	}
 	
-	void draw(const pAnimation & sprite, float x, float y, float angle, float s = 1.0f) const
+	void draw(const pAnimation * sprite, float x, float y, float angle, float s = 1.0f)
 	{
-		sprite->render(x, y, angle, s, s);
+		(*sprite)->render(x, y, angle, s, s);
 	}
 	
-	void draw(const pAnimation & sprite, float x, float y, float angle, float sx, float sy) const
+	void draw(const pAnimation * sprite, float x, float y, float angle, float sx, float sy)
 	{
-		sprite->render(x, y, angle, sx, sy);
+		(*sprite)->render(x, y, angle, sx, sy);
 	}
 
-	
-	void draw(const pParticlesystem & system) const
+	/**
+	* Particlesystem
+	**/
+
+	void draw(const pParticlesystem * system)
 	{
-		system->render();
+		(*system)->render();
 	}
 	
-	void draw(const pParticlesystem & system, float x, float y) const
+	void draw(const pParticlesystem * system, float x, float y)
 	{
-		system->render(x, y);
+		(*system)->render(x, y);
 	}
+	
 }

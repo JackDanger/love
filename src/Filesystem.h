@@ -53,19 +53,19 @@ namespace love
 		* @param source The source from which to load the file.
 		* @param file The the filepath relative to the source.
 		**/
-		virtual pFile getFile(const std::string & source, const std::string & file) const = 0;
+		virtual pFile newFile(const std::string & source, const std::string & file) const = 0;
 
 		/**
 		* Gets a new File, relative to base directory.
 		* @param file The the filepath relative to the base directory.
 		**/
-		virtual pFile getBaseFile(const std::string & file) const = 0;
+		virtual pFile newBaseFile(const std::string & file) const = 0;
 
 		/**
 		* Gets a new File, relative to user directory.
 		* @param file The the filepath relative to the user directory.
 		**/
-		virtual pFile getUserFile(const std::string & file) const = 0;
+		virtual pFile newUserFile(const std::string & file) const = 0;
 
 		/**
 		* Gets a list of entries in the specified file (or dir).

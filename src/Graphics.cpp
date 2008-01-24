@@ -2,91 +2,110 @@
 
 // LOVE
 #include "using_filesystem.h"
+#include "using_display.h"
+#include "using_output.h"
 
 namespace love
 {
 	
 	Graphics::Graphics()
 	{
-		background.reset<Color>(new Color(0, 0, 0, 255));
-		color.reset<Color>(new Color(255, 255, 255, 255));
 	}
 
 	Graphics::~Graphics()
 	{
 	}
 
+	void Graphics::push()
+	{
+		graphics_state s;
+		states.push_back(s);
+	}
+
+	void Graphics::pop()
+	{
+		if(states.empty())
+		{
+			error("Tried to pop from an empty states stack.");
+			return;
+		}
+
+		states.pop_back();
+	}
+
 	int Graphics::getWidth() const
 	{
-		return width;
+		return display->getWidth();
 	}
 
 	int Graphics::getHeight() const
 	{
-		return height;
+		return display->getHeight();
 	}
 
 	void Graphics::setBackgroundColor(pColor color)
 	{
-		this->background = color;
+		states.back().background = color;
 	}
 
 	void Graphics::setBackgroundColor(int r, int g, int b)
 	{
-		this->background.reset<Color>(new Color(r, g, b, 255));
+		states.back().background.reset<Color>(new Color(r, g, b, 255));
 	}
 
 	void Graphics::setColor(pColor color)
 	{
-		this->color = color;
+		states.back().color = color;
 	}
 
 	void Graphics::setColor(int r, int g, int b, int a)
 	{
-		this->color.reset<Color>(new Color(r, g, b, a));
+		states.back().color.reset<Color>(new Color(r, g, b, a));
 	}
 
 	void Graphics::setFont(pFont font)
 	{
-		this->font = font;
+		states.back().font = font;
 	}
 	
-	pFont Graphics::getCurrentFont() const
+	pFont Graphics::getFont() const
 	{
-		return font;
+		return states.back().font;
 	}
 	
-	pColor Graphics::getCurrentBackgroundColor() const
+	pColor Graphics::getBackgroundColor() const
 	{
-		return background;
+		return states.back().background;
 	}
 	
-	pColor Graphics::getCurrentColor() const
+	pColor Graphics::getColor() const
 	{
-		return color;
+		return states.back().color;
 	}
 
-	pImage Graphics::getImage(const std::string & filename) const
+	pImage Graphics::newImage(const std::string & filename) const
 	{
-		pFile file = filesystem->getBaseFile(filename);
-		return getImage(file);
+		pFile file = filesystem->newBaseFile(filename);
+		return newImage(file);
 	}
 
-	pFont Graphics::getFont(const std::string & filename, int size) const
+	pFont Graphics::newFont(const std::string & filename, int size) const
 	{
-		pFile file = filesystem->getBaseFile(filename);
-		return getFont(file, size);
+		pFile file = filesystem->newBaseFile(filename);
+		return newFont(file, size);
 	}
 	
-	pFont Graphics::getImageFont(const std::string & filename, const std::string & glyphs) const
+	pFont Graphics::newImageFont(const std::string & filename, const std::string & glyphs) const
 	{
-		pFile file = filesystem->getBaseFile(filename);
-		return getImageFont(file, glyphs);
+		pFile file = filesystem->newBaseFile(filename);
+		return newImageFont(file, glyphs);
 	}
 
 	void Graphics::draw(const char * str, float x, float y) const
 	{
-		apply(color); // Set current color.
+		apply(states.back().color); // Set current color.
+
+		const pFont & font = states.back().font;
 
 		if(font != 0)
 		{
@@ -121,7 +140,9 @@ namespace love
 	
 	void Graphics::draw(const char * str, float x, float y, int wrap, int align) const
 	{
-		apply(color); // Set current color.
+		apply(states.back().color); // Set current color.
+
+		const pFont & font = states.back().font;
 
 		if(font != 0)
 		{

@@ -23,8 +23,8 @@ namespace boost {
 }
 
 %include Color.i
-
 %include Device.i
+
 
 // Graphical
 %include Font.i
@@ -33,6 +33,7 @@ namespace boost {
 %include Animation.i
 %include Particlesystem.i
 %include Graphics.i
+
 
 // Audio
 %include Sound.i
@@ -48,6 +49,8 @@ namespace boost {
 
 // Constants
 %include love_constants.i
+
+
 
 // Global "devices".
 // These eventually end up as love.graphics, love.audio, etc.

@@ -13,10 +13,11 @@
 
 // SWIG
 extern "C" {
-	int extern luaopen_love(lua_State * L);
+	extern int luaopen_love(lua_State * L);
+	extern int Love_Init(lua_State * L);
 }
 
 // SWIG/lualove
-void extern lualove_push_pointer(lua_State * L, void * ptr, int type, int own);
+extern void lualove_push_pointer(lua_State * L, void * ptr, int type, int own);
 
 #endif // LOVE_LUA_GLUE_H

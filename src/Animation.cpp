@@ -177,7 +177,7 @@ namespace love
 
 	void Animation::render() const
 	{
-		if(!playing || frames.size() <= 0)
+		if(frames.size() <= 0)
 			return;
 
 		const frame & f = frames[current];
@@ -186,7 +186,7 @@ namespace love
 
 	void Animation::render(float x, float y) const
 	{
-		if(!playing || frames.size() <= 0)
+		if(frames.size() <= 0)
 			return;
 
 		const frame & f = frames[current];
@@ -195,7 +195,7 @@ namespace love
 
 	void Animation::render(float x, float y, float width, float height) const
 	{
-		if(!playing || frames.size() <= 0)
+		if(frames.size() <= 0)
 			return;
 
 		// Recalculate texture coordinates?
@@ -203,7 +203,7 @@ namespace love
 
 	void Animation::render(float x, float y, float angle, float sx, float sy) const
 	{
-		if(!playing || frames.size() <= 0)
+		if(frames.size() <= 0)
 			return;
 
 		const frame & f = frames[current];

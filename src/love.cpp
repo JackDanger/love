@@ -21,11 +21,13 @@
 
 // Games.
 #include "FontTexGame.h"
+#include "NoGame.h"
 #include "LuaGame.h"
 
 // STD
 #include <stdio.h>
 #include <cstdarg>
+
 
 namespace love
 {
@@ -101,7 +103,7 @@ namespace love
 			// Read config file.
 			if(filesystem->exists(game_src, "game.conf"))
 			{
-				pFile file = filesystem->getFile(game_src, "game.conf");
+				pFile file = filesystem->newFile(game_src, "game.conf");
 				conf = new Configuration(file);
 				if(!conf->load()) printf("Could not load config file");
 			}
@@ -109,7 +111,7 @@ namespace love
 		}
 		else
 		{
-			game = new FontTexGame();
+			game = new NoGame();
 			//printf("Usage: love [FILE]\n");
 			//printf("\nExamples:\n  love demo01.love\n  love /home/nyan/mygame\n\n");
 			//return false;
@@ -160,29 +162,24 @@ namespace love
 		platform_quit();
 	}
 
-	void error(const char * text, ...)
+	void error(const std::string & str)
 	{
-		bool buffer_overrun;
-		int buffer_size = 1024;
-		char *ftext;
-		va_list	ap;
+		printf("Error: %s\n", str.c_str());
 
-		va_start(ap, text);
-		do
-		{
-			ftext = new char[buffer_size];
-			buffer_overrun = vsnprintf(ftext, buffer_size, text, ap) < 0;
-			if (buffer_overrun)
-			{
-				delete[] ftext;
-				buffer_size *= 2;
-			}
-		} while (buffer_overrun);
-		va_end(ap);
+		// Error should not cause quit, but as long as we have
+		// no GUI, it's better than let the code keep running
+		// after an error.
+		quit();
+	}
 
-		std::string s(ftext);
-		delete[] ftext;
-		puts(s.substr(0, s.length() - 1).c_str());
+	void warning(const std::string & str)
+	{
+		printf("Warning: %s\n", str.c_str());
+	}
+
+	void info(const std::string & str)
+	{
+		printf(str.c_str());
 	}
 
 	void update(float dt)
@@ -211,6 +208,7 @@ namespace love
 		if(keyboard->isDown(LOVE_KEY_LCTRL) && key == LOVE_KEY_r)
 		{
 			game->reload();
+			printf("Reloaded.\n");
 			return;
 		}
 

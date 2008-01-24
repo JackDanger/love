@@ -14,12 +14,26 @@
 #include "Font.h"
 #include "Particlesystem.h"
 #include "Color.h"
-//#include "Font.h"
-
 #include "love_align.h"
+
+// STD
+#include <vector>
 
 namespace love
 {
+
+	/**
+	* Represents a set of "current" resources. The idea is that
+	* classes can push/pop graphics_states.
+	**/
+	struct graphics_state
+	{
+		// Back/Foreground color.
+		pColor color, background;
+
+		// Current font.
+		pFont font;
+	};
 
 	/**
 	* This class serves as an abstraction over graphics contexts.
@@ -32,23 +46,26 @@ namespace love
 	{
 	protected:
 
-		// Size of graphics context.
-		int width, height;
-
-		// Background color.
-		pColor background;
-
-		// Foreground color. (Text, primitives.
-		pColor color;
-
-		// The current font used for rendering text.
-		pFont font;
+		// The list of graphics states. Note that most
+		// of the code assumes that at least one state is
+		// available.
+		std::vector<graphics_state> states;
 		
 	public:
 	
 		Graphics();
 
 		virtual ~Graphics();
+
+		/**
+		* Pushes a graphics state.
+		**/
+		void push();
+
+		/**
+		* Pops a graphics state.
+		**/
+		void pop();
 
 		/**
 		* Clears the screen using the background color.
@@ -91,35 +108,35 @@ namespace love
 		* Gets an Image object that is compatible with the 
 		* current graphics context.
 		**/
-		virtual pImage getImage(pFile file) const = 0;
+		virtual pImage newImage(pFile file) const = 0;
 
 		/**
 		* Gets a Font object that is compatible with the 
 		* current graphics context.
 		**/
-		virtual pFont getFont(pFile file, int size) const = 0;
+		virtual pFont newFont(pFile file, int size) const = 0;
 		
 		/**
 		 * Gets an ImageFont object that is compatible with the 
 		 * current graphics context.
 		 **/
-		virtual pFont getImageFont(pFile file, std::string glyphs) const = 0;
+		virtual pFont newImageFont(pFile file, std::string glyphs) const = 0;
 
 		/**
 		* Gets a Particlesystem object that is compatible with the 
 		* current graphics context.
 		**/
-		virtual pParticlesystem getParticlesystem() const = 0;
+		virtual pParticlesystem newParticlesystem() const = 0;
 
-		// If rude doesn't want these here, then he can remove them.. tehy are used when using custom fonts/colors in the widgets
-		pFont getCurrentFont() const;
-		pColor getCurrentBackgroundColor() const;
-		pColor getCurrentColor() const;
+		// Rude wants them here.
+		pFont getFont() const;
+		pColor getBackgroundColor() const;
+		pColor getColor() const;
 		
 		// Convenience functions. Base source is assumed.
-		pImage getImage(const std::string & filename) const;
-		pFont getFont(const std::string & filename, int size) const;
-		pFont getImageFont(const std::string & filename, const std::string & glyphs) const;
+		pImage newImage(const std::string & filename) const;
+		pFont newFont(const std::string & filename, int size) const;
+		pFont newImageFont(const std::string & filename, const std::string & glyphs) const;
 
 		/**
 		* Draw text on screen at the specified coordiantes (automatically breaks \n characters).

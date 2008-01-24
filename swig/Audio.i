@@ -12,8 +12,20 @@ namespace love
 		virtual void stop() const = 0;
 		virtual void resume() const = 0;
 		virtual void setVolume(float volume) const = 0;
-		virtual void play(pSound sound, int loop = 1, int channel = -1) const = 0;
-		virtual void play(pMusic music, int loop = 1) const = 0;
 		
 	};
+}
+
+// Extensions
+%extend love::Audio 
+{
+	void play(const pSound * sound, int loop = 1, int channel = -1)
+	{
+		self->play(*sound, loop, channel);
+	}
+	
+	void play(const pMusic * music, int loop = 1)
+	{
+		self->play(*music, loop);
+	}
 }

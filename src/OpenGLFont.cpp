@@ -2,7 +2,7 @@
 
 // LOVE
 #include "using_gl.h"
-#include "using_error.h"
+#include "using_output.h"
 
 // Including Math (for ceil)
 #include <math.h>

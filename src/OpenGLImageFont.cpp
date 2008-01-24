@@ -2,7 +2,7 @@
 
 // LOVE
 #include "using_gl.h"
-#include "using_error.h"
+#include "using_output.h"
 #include "using_filesystem.h"
 #include "using_graphics.h"
 
@@ -16,7 +16,7 @@ namespace love
 	OpenGLImageFont::OpenGLImageFont(pFile file, std::string glyphs) : Font(file, 0)
 	{
 		this->glyphs = glyphs;
-		image = graphics->getImage(file);
+		image = graphics->newImage(file);
 	}	
 
 	OpenGLImageFont::~OpenGLImageFont()

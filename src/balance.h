@@ -21,6 +21,7 @@ namespace love
 		LOVE_MUSIC, 
 		LOVE_FILE, 
 		LOVE_RESOURCE,
+		LOVE_ANIMATION,
 		LOVE_BALANCE_SIZE
 	};
 

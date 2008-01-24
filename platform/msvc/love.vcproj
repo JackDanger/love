@@ -277,6 +277,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\NoGame.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Particlesystem.cpp"
 				>
 			</File>
@@ -529,6 +533,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\NoGame.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Particlesystem.h"
 				>
 			</File>
@@ -624,7 +632,7 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\using_error.h"
+					RelativePath="..\..\src\using_display.h"
 					>
 				</File>
 				<File
@@ -645,6 +653,10 @@
 				</File>
 				<File
 					RelativePath="..\..\src\using_mouse.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\using_output.h"
 					>
 				</File>
 				<File
