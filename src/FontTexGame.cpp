@@ -21,60 +21,43 @@ namespace love
 
 	bool FontTexGame::load()
 	{
-		red.reset<Color>(new Color(255,0,0,255));
-		green.reset<Color>(new Color(0,255,0,255));
-		blue.reset<Color>(new Color(0,0,255,255));
+		graphics->push();
 		
-		font = graphics->newFont("Vera.ttf", 8);
-		font->load();
+		graphics->setBackgroundColor(255, 255, 255);
+		graphics->setColor(246, 9, 104, 255);
+		
+		font = graphics->newFont("Vera.ttf", 15); font->load();
+		
+		img = graphics->newImage("button_pressed.png"); img->load();
+		
 		graphics->setFont(font);
-		
-		imgfont = graphics->newImageFont("rpgfont.png", " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&`'*#=[]\"");
-		imgfont->load();
-		//graphics->setFont(imgfont);
-
-		pImage up = graphics->newImage("button_default.png"); up->load(); up->setCenter(0, 0);
-		pImage down = graphics->newImage("button_pressed.png"); down->load(); down->setCenter(0, 0);
-		pImage hover = graphics->newImage("button_hover.png"); hover->load(); hover->setCenter(0, 0);
-
-		button.reset<Button>(new Button("Apply", up, down, hover));
-		button->setPosition(300, 300);
-
-		label.reset<Label>(new Label("Img Label"));
-		label->setPosition(50, 50);
-		label->setBackgroundImage(down);	
-		label->adjustSize();
-		
-		label2.reset<Label>(new Label("left-aligned and padded label"));
-		label2->setPosition(175, 50);
-		label2->setPadding(10);
-		label2->adjustSize();
-		label2->setWidth(300);
-		label2->setBackgroundColor(green);
-		label2->setColor(blue);
-		label2->setAlignment(love::LOVE_ALIGN_LEFT);
-		label2->setVerticalAlignment(love::LOVE_ALIGN_TOP);
 
 		return true;
 	}
 
 	void FontTexGame::unload()
 	{
+		graphics->pop();
 	}
 
 	void FontTexGame::update(float dt)
 	{
-		r += 90 * dt;
-		label->update(dt);
-		label2->update(dt);
-		button->update(dt);
 	}
 
 	void FontTexGame::render()
 	{
-		label->render();
-		label2->render();
-		button->render();
+		graphics->draw("THIS. IS. PRIMITIVE SHAPES!!!!!!!", 0, 40, 800, love::LOVE_ALIGN_CENTER);
+		
+		graphics->drawLine(200, 200, -50, 0, 50, 0);
+		
+		graphics->drawTriangle(400, 200, -50, 50, 50, 50, 0, -50, 2);
+		graphics->fillTriangle(600, 200, -50, 50, 50, 50, 0, -50);
+		
+		graphics->drawQuad(100, 400, -50, 50, -50, -50, 50, -50, 50, 50);
+		graphics->fillQuad(300, 400, -50, -50, -50, 50, 50, 50, 50, -50);
+		
+		graphics->drawCircle(500, 400, 50, 10, 3);
+		graphics->fillCircle(700, 400, 50, 30);
 	}
 
 	void FontTexGame::keyPressed(int key)

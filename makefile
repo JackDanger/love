@@ -31,6 +31,7 @@ $(OBJDIR)/main.o \
 $(OBJDIR)/Matrix.o \
 $(OBJDIR)/Mouse.o \
 $(OBJDIR)/Music.o \
+$(OBJDIR)/NoGame.o \
 $(OBJDIR)/OpenGLFont.o \
 $(OBJDIR)/OpenGLGraphics.o \
 $(OBJDIR)/OpenGLImage.o \

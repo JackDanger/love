@@ -71,17 +71,127 @@ namespace love
 		return tmp;
 	}
 	
-	// And here too
-	void OpenGLGraphics::drawRectangle(float x, float y, float width, float height) const
+	void OpenGLGraphics::drawLine(float xpos, float ypos, float x1, float y1, float x2, float y2, float lineWidth) const
 	{
 		const pColor & color = states.back().color;
 		glPushMatrix();
+			glLineWidth(lineWidth);
+			glTranslatef(xpos, ypos, 0.0f);
+			glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
+			glBegin(GL_LINES);
+				glVertex2f(x1, y1);
+				glVertex2f(x2, y2);
+			glEnd();
+			glColor4ub(255,255,255,255);
+		glPopMatrix();
+	}
+	
+	void OpenGLGraphics::drawTriangle(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float lineWidth) const
+	{
+		const pColor & color = states.back().color;
+		glPushMatrix();
+			glLineWidth(lineWidth);
+			glTranslatef(xpos, ypos, 0.0f);
+			glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
+			glBegin(GL_LINE_LOOP);
+				glVertex2f(x1, y1);
+				glVertex2f(x2, y2);
+				glVertex2f(x3, y3);
+			glEnd();
+			glColor4ub(255,255,255,255);
+		glPopMatrix();
+	}
+	
+	void OpenGLGraphics::fillTriangle(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3) const
+	{
+		const pColor & color = states.back().color;
+		glPushMatrix();
+			glTranslatef(xpos, ypos, 0.0f);
+			glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
+			glBegin(GL_TRIANGLES);
+				glVertex2f(x1, y1);
+				glVertex2f(x2, y2);
+				glVertex2f(x3, y3);
+			glEnd();
+			glColor4ub(255,255,255,255);
+		glPopMatrix();
+	}
+	
+	void OpenGLGraphics::drawQuad(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float lineWidth) const
+	{
+		const pColor & color = states.back().color;
+		glPushMatrix();
+			glLineWidth(lineWidth);
+			glTranslatef(xpos, ypos, 0.0f);
+			glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
+			glBegin(GL_LINE_LOOP);
+				glVertex2f(x1, y1);
+				glVertex2f(x2, y2);
+				glVertex2f(x3, y3);
+				glVertex2f(x4, y4);
+			glEnd();
+			glColor4ub(255,255,255,255);
+		glPopMatrix();
+	}
+	
+	void OpenGLGraphics::fillQuad(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const
+	{
+		const pColor & color = states.back().color;
+		glPushMatrix();
+			glTranslatef(xpos, ypos, 0.0f);
 			glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
 			glBegin(GL_QUADS);
-				glVertex2f(x+width, y);
+				glVertex2f(x1, y1);
+				glVertex2f(x2, y2);
+				glVertex2f(x3, y3);
+				glVertex2f(x4, y4);
+			glEnd();
+			glColor4ub(255,255,255,255);
+		glPopMatrix();
+	}
+	
+	void OpenGLGraphics::drawCircle(float xpos, float ypos, float radius, float points, float lineWidth) const
+	{
+		const pColor & color = states.back().color;
+		float angle_radians, x, y;
+		int angle_shift = (int)(360 / points);
+  
+		glPushMatrix();
+			glLineWidth(lineWidth);
+			glTranslatef(xpos, ypos, 0.0f);
+			glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
+			glBegin(GL_LINE_LOOP);
+			for (int angle = 0; angle < 365; angle += angle_shift)
+			{
+				angle_radians = angle * (float)3.14159 / (float)180;
+				x = radius * (float)cos(angle_radians);
+				y = radius * (float)sin(angle_radians);
 				glVertex2f(x,y);
-				glVertex2f(x,y+height);
-				glVertex2f(x+width,y+height);
+			}
+			glEnd();
+			glColor4ub(255,255,255,255);
+		glPopMatrix();
+	}
+	
+	void OpenGLGraphics::fillCircle(float xpos, float ypos, float radius, float points) const
+	{
+		const pColor & color = states.back().color;
+		float angle, x, y;
+		int angle_shift = (int)(360 / points);
+  
+		glPushMatrix();
+			glTranslatef(xpos, ypos, 0.0f);
+			glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha()); 
+			glBegin(GL_TRIANGLE_FAN);
+			glVertex2f(0.0f, 0.0f);	
+			for(int i = 0; i < 365; i+= angle_shift)
+			{
+				angle = (float)(((double)i) / 57.29577957795135);	
+				x = radius * (float)sin((double)angle);
+				y = radius * (float)cos((double)angle);
+									
+				glVertex2f(x,y);
+			}
 			glEnd();
 			glColor4ub(255,255,255,255);
 		glPopMatrix();

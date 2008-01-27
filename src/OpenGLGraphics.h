@@ -43,8 +43,13 @@ namespace love
 		pFont newFont(pFile file, int size) const;
 		pFont newImageFont(pFile file, std::string glyphs) const;
 		pParticlesystem newParticlesystem() const;
-		// Remember to remove it here too
-		void drawRectangle(float x, float y, float width, float height) const;
+		void drawLine(float xpos, float ypos, float x1, float y1, float x2, float y2, float lineWidth = 1) const;
+		void drawTriangle(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float lineWidth = 1) const;
+		void fillTriangle(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3) const;
+		void drawQuad(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float lineWidth = 1) const;
+		void fillQuad(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const;
+		void drawCircle(float xpos, float ypos, float radius, float points = 10, float lineWidth = 1) const;
+		void fillCircle(float xpos, float ypos, float radius, float points = 10) const;
 
 
 	}; // OpenGLGraphics

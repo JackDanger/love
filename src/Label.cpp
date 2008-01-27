@@ -101,7 +101,7 @@ namespace love
 		if(backgroundColor != 0)
 		{
 			graphics->setColor(backgroundColor);
-			graphics->drawRectangle(x, y, width, height);
+			graphics->fillQuad(x, y, 0, 0, 0, height, width, height, width, 0);
 			graphics->setColor(tempColor);
 		}
 		if(color != 0)

@@ -159,7 +159,13 @@ namespace love
 		void draw(const char * str, float x, float y, int wrap, int align = LOVE_ALIGN_LEFT) const;
 		
 		// Added for the sake of the widget... you can kill if so desired
-		virtual void drawRectangle(float x, float y, float width, float height) const = 0;
+		virtual void drawLine(float xpos, float ypos, float x1, float y1, float x2, float y2, float lineWidth = 1) const = 0;
+		virtual void drawTriangle(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float lineWidth = 1) const = 0;
+		virtual void fillTriangle(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3) const = 0;
+		virtual void drawQuad(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float lineWidth = 1) const = 0;
+		virtual void fillQuad(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const = 0;
+		virtual void drawCircle(float xpos, float ypos, float radius, float points = 10, float lineWidth = 1) const = 0;
+		virtual void fillCircle(float xpos, float ypos, float radius, float points = 10) const = 0;
 				
 	}; // Graphics
 	
