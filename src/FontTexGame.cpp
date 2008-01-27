@@ -48,7 +48,7 @@ namespace love
 	{
 		graphics->draw("THIS. IS. PRIMITIVE SHAPES!!!!!!!", 0, 40, 800, love::LOVE_ALIGN_CENTER);
 		
-		graphics->drawLine(200, 200, -50, 0, 50, 0);
+		graphics->drawLine(200, 200, -50, 0, 50, 0, 2);
 		
 		graphics->drawTriangle(400, 200, -50, 50, 50, 50, 0, -50, 2);
 		graphics->fillTriangle(600, 200, -50, 50, 50, 50, 0, -50);

@@ -199,13 +199,100 @@ namespace love
 		**/
 		void draw(const char * str, float x, float y, int wrap, int align = LOVE_ALIGN_LEFT) const;
 		
-		// Added for the sake of the widget... you can kill if so desired
+		/**
+		* Draws a line from (x1,y1) to (x2,y2) relative to the point (xpos,ypos).
+		*
+		* @param xpos The x-coordinate center of the shape.
+		* @param ypos The y-coordinate center of the shape.
+		* @param x1 The first relative x-coordinate.
+		* @param y1 The first relative y-coordinate.
+		* @param x2 The second relative x-coordinate.
+		* @param y2 The second relative y-coordinate.
+		* @param lineWidth The width of the drawn line.
+		**/
 		virtual void drawLine(float xpos, float ypos, float x1, float y1, float x2, float y2, float lineWidth = 1) const = 0;
+		
+		/**
+		* Draws a triangle around the point (xpos,ypos) determined from the three relative coordinates.
+		*
+		* @param xpos The x-coordinate center of the shape.
+		* @param ypos The y-coordinate center of the shape.
+		* @param x1 The first relative x-coordinate.
+		* @param y1 The first relative y-coordinate.
+		* @param x2 The second relative x-coordinate.
+		* @param y2 The second relative y-coordinate.
+		* @param x3 The third relative x-coordinate.
+		* @param y3 The third relative y-coordinate.
+		* @param lineWidth The width of the drawn line.
+		**/
 		virtual void drawTriangle(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float lineWidth = 1) const = 0;
+		
+		/**
+		* Fills a triangle around the point (xpos,ypos) determined from the three relative coordinates.
+		*
+		* @param xpos The x-coordinate center of the shape.
+		* @param ypos The y-coordinate center of the shape.
+		* @param x1 The first relative x-coordinate.
+		* @param y1 The first relative y-coordinate.
+		* @param x2 The second relative x-coordinate.
+		* @param y2 The second relative y-coordinate.
+		* @param x3 The third relative x-coordinate.
+		* @param y3 The third relative y-coordinate.
+		**/
 		virtual void fillTriangle(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3) const = 0;
+		
+		/**
+		* Draws a quad around the point (xpos,ypos) determined from the four relative coordinates.
+		*
+		* @param xpos The x-coordinate center of the shape.
+		* @param ypos The y-coordinate center of the shape.
+		* @param x1 The first relative x-coordinate.
+		* @param y1 The first relative y-coordinate.
+		* @param x2 The second relative x-coordinate.
+		* @param y2 The second relative y-coordinate.
+		* @param x3 The third relative x-coordinate.
+		* @param y3 The third relative y-coordinate.
+		* @param x4 The fourth relative x-coordinate.
+		* @param y4 The fourth relative y-coordinate.
+		* @param lineWidth The width of the drawn line.
+		**/
 		virtual void drawQuad(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float lineWidth = 1) const = 0;
+		
+		/**
+		* Fills a quad around the point (xpos,ypos) determined from the four relative coordinates.
+		*
+		* @param xpos The x-coordinate center of the shape.
+		* @param ypos The y-coordinate center of the shape.
+		* @param x1 The first relative x-coordinate.
+		* @param y1 The first relative y-coordinate.
+		* @param x2 The second relative x-coordinate.
+		* @param y2 The second relative y-coordinate.
+		* @param x3 The third relative x-coordinate.
+		* @param y3 The third relative y-coordinate.
+		* @param x4 The fourth relative x-coordinate.
+		* @param y4 The fourth relative y-coordinate.
+		**/
 		virtual void fillQuad(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const = 0;
+		
+		/**
+		* Draws a circle around the point (xpos,ypos).
+		*
+		* @param xpos The x-coordinate center of the shape.
+		* @param ypos The y-coordinate center of the shape.
+		* @param radius The radius of the circle.
+		* @param points The amount of points to use when drawing the circle.
+		* @param lineWidth The width of the drawn line.
+		**/
 		virtual void drawCircle(float xpos, float ypos, float radius, float points = 10, float lineWidth = 1) const = 0;
+		
+		/**
+		* Fills a circle around the point (xpos,ypos).
+		*
+		* @param xpos The x-coordinate center of the shape.
+		* @param ypos The y-coordinate center of the shape.
+		* @param radius The radius of the circle.
+		* @param points The amount of points to use when drawing the circle.
+		**/
 		virtual void fillCircle(float xpos, float ypos, float radius, float points = 10) const = 0;
 				
 	}; // Graphics

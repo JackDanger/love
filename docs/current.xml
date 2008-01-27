@@ -392,6 +392,195 @@
         <param name="sx" brief="The scale factor along the x-axis." />
         <param name="sy" brief="The scale factor along the y-axis." />
       </function>
+	 
+      <separator />
+
+      <function name="drawLine" brief="Draws a line from the point (x1,y1) to the point (x2,y2).">
+        The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the (x1,y1) and (x2,y2) coordinates are relative to that position.
+        <param name="xpos" brief="The position on the x-axis." />
+        <param name="ypos" brief="The position on the y-axis." />
+        <param name="x1" brief="The first relative x-coordinate." />
+        <param name="y1" brief="The first relative y-coordinate." />
+        <param name="x2" brief="The second relative x-coordinate." />
+        <param name="y2" brief="The second relative y-coordinate." />
+        <example name="Draws a horizontal line.">
+          love.graphics:drawLine(100, 100, -50, 0, 50, 0);
+        </example>
+      </function>
+
+      <function name="drawLine" brief="Draws a line from the point (x1,y1) to the point (x2,y2) with a certain thickness.">
+        The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the (x1,y1) and (x2,y2) coordinates are relative to that position.
+        <param name="xpos" brief="The position on the x-axis." />
+        <param name="ypos" brief="The position on the y-axis." />
+        <param name="x1" brief="The first relative x-coordinate." />
+        <param name="y1" brief="The first relative y-coordinate." />
+        <param name="x2" brief="The second relative x-coordinate." />
+        <param name="y2" brief="The second relative y-coordinate." />
+        <param name="width" brief="The width of the drawn line (minimum: 1)." />
+        <example name="Draws a thick horizontal line.">
+          love.graphics:drawLine(100, 100, -50, 0, 50, 0, 5); -- very thick
+        </example>
+        <example name="Draws a slightly thick diagonal line.">
+          love.graphics:drawLine(100, 100, -50, -50, 50, 50, 2); -- slightly thick
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="drawTriangle" brief="Draws a triangle using lines between the points (x1,y1), (x2,y2) and (x3, y3).">
+        The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the other coordinates are relative to that position.
+        <param name="xpos" brief="The position on the x-axis." />
+        <param name="ypos" brief="The position on the y-axis." />
+        <param name="x1" brief="The first relative x-coordinate." />
+        <param name="y1" brief="The first relative y-coordinate." />
+        <param name="x2" brief="The second relative x-coordinate." />
+        <param name="y2" brief="The second relative y-coordinate." />
+        <param name="x3" brief="The third relative x-coordinate." />
+        <param name="y3" brief="The third relative y-coordinate." />
+        <example name="Draws a triangle.">
+          love.graphics:drawTriangle(100, 100, -50, 50, 50, 50, 0, -50);
+        </example>
+      </function>
+
+      <function name="drawTriangle" brief="Draws a triangle using lines of a determined thickness between the points (x1,y1), (x2,y2) and (x3, y3).">
+        The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the other coordinates are relative to that position.
+        <param name="xpos" brief="The position on the x-axis." />
+        <param name="ypos" brief="The position on the y-axis." />
+        <param name="x1" brief="The first relative x-coordinate." />
+        <param name="y1" brief="The first relative y-coordinate." />
+        <param name="x2" brief="The second relative x-coordinate." />
+        <param name="y2" brief="The second relative y-coordinate." />
+        <param name="x3" brief="The third relative x-coordinate." />
+        <param name="y3" brief="The third relative y-coordinate." />
+        <param name="width" brief="The width of the drawn lines (minimum: 1)." />
+        <example name="Draws a triangle.">
+          love.graphics:drawTriangle(100, 100, -50, 50, 50, 50, 0, -50, 2); -- slightly thick lines
+        </example>
+      </function>
+
+      <function name="fillTriangle" brief="Draws a filled triangle determined by the points (x1,y1), (x2,y2) and (x3, y3).">
+        The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the other coordinates are relative to that position.[br /]
+        [b]WARNING:[/b] The points must be set in a counter-clockwise order or the shape will not be drawn.
+        <param name="xpos" brief="The position on the x-axis." />
+        <param name="ypos" brief="The position on the y-axis." />
+        <param name="x1" brief="The first relative x-coordinate." />
+        <param name="y1" brief="The first relative y-coordinate." />
+        <param name="x2" brief="The second relative x-coordinate." />
+        <param name="y2" brief="The second relative y-coordinate." />
+        <param name="x3" brief="The third relative x-coordinate." />
+        <param name="y3" brief="The third relative y-coordinate." />
+        <example name="Draws a triangle.">
+          love.graphics:fillTriangle(100, 100, -50, 50, 50, 50, 0, -50);
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="drawQuad" brief="Draws a quadrilateral using lines between the points (x1,y1), (x2,y2), (x3, y3) and (x4, y4).">
+        The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the other coordinates are relative to that position.
+        <param name="xpos" brief="The position on the x-axis." />
+        <param name="ypos" brief="The position on the y-axis." />
+        <param name="x1" brief="The first relative x-coordinate." />
+        <param name="y1" brief="The first relative y-coordinate." />
+        <param name="x2" brief="The second relative x-coordinate." />
+        <param name="y2" brief="The second relative y-coordinate." />
+        <param name="x3" brief="The third relative x-coordinate." />
+        <param name="y3" brief="The third relative y-coordinate." />
+        <param name="x4" brief="The fourth relative x-coordinate." />
+        <param name="y4" brief="The fourth relative y-coordinate." />
+        <example name="Draws a rectangle.">
+          love.graphics:drawQuad(100, 100, -50, 50, -50, -50, 50, -50, 50, 50);
+        </example>
+      </function>
+
+      <function name="drawQuad" brief="Draws a quadrilateral using lines of a determined thickness between the points (x1,y1), (x2,y2), (x3, y3) and (x4, y4).">
+        The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the other coordinates are relative to that position.
+        <param name="xpos" brief="The position on the x-axis." />
+        <param name="ypos" brief="The position on the y-axis." />
+        <param name="x1" brief="The first relative x-coordinate." />
+        <param name="y1" brief="The first relative y-coordinate." />
+        <param name="x2" brief="The second relative x-coordinate." />
+        <param name="y2" brief="The second relative y-coordinate." />
+        <param name="x3" brief="The third relative x-coordinate." />
+        <param name="y3" brief="The third relative y-coordinate." />
+        <param name="x4" brief="The fourth relative x-coordinate." />
+        <param name="y4" brief="The fourth relative y-coordinate." />
+        <param name="width" brief="The width of the drawn lines (minimum: 1)." />
+        <example name="Draws a rectangle with slightly thick lines.">
+          love.graphics:drawQuad(100, 100, -50, 50, -50, -50, 50, -50, 50, 50, 3); -- slightly thick lines
+        </example>
+      </function>
+
+      <function name="fillQuad" brief="Draws a filled quadrilateral determined by the the points (x1,y1), (x2,y2), (x3, y3) and (x4, y4).">
+        The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the other coordinates are relative to that position.
+        [b]WARNING:[/b] The points must be set in a counter-clockwise order or the shape will not be drawn.
+        <param name="xpos" brief="The position on the x-axis." />
+        <param name="ypos" brief="The position on the y-axis." />
+        <param name="x1" brief="The first relative x-coordinate." />
+        <param name="y1" brief="The first relative y-coordinate." />
+        <param name="x2" brief="The second relative x-coordinate." />
+        <param name="y2" brief="The second relative y-coordinate." />
+        <param name="x3" brief="The third relative x-coordinate." />
+        <param name="y3" brief="The third relative y-coordinate." />
+        <param name="x4" brief="The fourth relative x-coordinate." />
+        <param name="y4" brief="The fourth relative y-coordinate." />
+        <example name="Draws a rectangle.">
+          love.graphics:fillQuad(100, 100, -50, 50, -50, -50, 50, -50, 50, 50);
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="drawCircle" brief="Draws a circle using lines around the point (xpos, ypos).">
+        [i]Note:[/i] The circle will be drawn using 10 points.
+        <param name="xpos" brief="The position on the x-axis." />
+        <param name="ypos" brief="The position on the y-axis." />
+        <param name="radius" brief="The radius of the circle." />
+        <example name="Draws a circle.">
+          love.graphics:drawCircle(100, 100, 50);
+        </example>
+      </function>
+
+      <function name="drawCircle" brief="Draws a circle using lines around the point (xpos, ypos).">
+        <param name="xpos" brief="The position on the x-axis." />
+        <param name="ypos" brief="The position on the y-axis." />
+        <param name="radius" brief="The radius of the circle." />
+        <param name="points" brief="The amount of points to use when drawing the circle." />
+        <example name="Draws a smooth circle.">
+          love.graphics:drawCircle(100, 100, 50, 30);
+        </example>
+      </function>
+
+      <function name="drawCircle" brief="Draws a circle using lines around the point (xpos, ypos).">
+        <param name="xpos" brief="The position on the x-axis." />
+        <param name="ypos" brief="The position on the y-axis." />
+        <param name="radius" brief="The radius of the circle." />
+        <param name="points" brief="The amount of points to use when drawing the circle." />
+        <param name="width" brief="The width of the drawn lines (minimum: 1)." />
+        <example name="Draws a smooth circle with thick lines.">
+          love.graphics:drawCircle(100, 100, 50, 30, 4); -- thick lines
+        </example>
+      </function>
+
+      <function name="fillCircle" brief="Draws a filled circle around the point (xpos, ypos).">
+        [i]Note:[/i] The circle will be drawn using 10 points.
+        <param name="xpos" brief="The position on the x-axis." />
+        <param name="ypos" brief="The position on the y-axis." />
+        <param name="radius" brief="The radius of the circle." />
+        <example name="Draws a circle.">
+          love.graphics:fillCircle(100, 100, 50);
+        </example>
+      </function>
+
+      <function name="fillCircle" brief="Draws a filled circle around the point (xpos, ypos).">
+        <param name="xpos" brief="The position on the x-axis." />
+        <param name="ypos" brief="The position on the y-axis." />
+        <param name="radius" brief="The radius of the circle." />
+        <param name="points" brief="The amount of points to use when drawing the circle." />
+        <example name="Draws a smooth circle.">
+          love.graphics:fillCircle(100, 100, 50, 30);
+        </example>
+      </function>
 
     </device>
 

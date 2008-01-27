@@ -59,9 +59,9 @@ namespace love
 	void OpenGLGraphics::setBlendMode(int mode)
 	{
 
-		if(mode = LOVE_BLEND_ADDITIVE)
+		if(mode == LOVE_BLEND_ADDITIVE)
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-		else if(mode = LOVE_BLEND_NORMAL)
+		else if(mode == LOVE_BLEND_NORMAL)
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		Graphics::setBlendMode(mode);
@@ -103,7 +103,7 @@ namespace love
 				glVertex2f(x1, y1);
 				glVertex2f(x2, y2);
 			glEnd();
-			glColor4ub(255,255,255,255);
+			//glColor4ub(255,255,255,255);
 		glPopMatrix();
 		glEnable(GL_TEXTURE_2D);
 	}
@@ -121,7 +121,7 @@ namespace love
 				glVertex2f(x2, y2);
 				glVertex2f(x3, y3);
 			glEnd();
-			glColor4ub(255,255,255,255);
+			//glColor4ub(255,255,255,255);
 		glPopMatrix();
 		glEnable(GL_TEXTURE_2D);
 	}
@@ -138,7 +138,7 @@ namespace love
 				glVertex2f(x2, y2);
 				glVertex2f(x3, y3);
 			glEnd();
-			glColor4ub(255,255,255,255);
+			//glColor4ub(255,255,255,255);
 		glPopMatrix();
 		glEnable(GL_TEXTURE_2D);
 	}
@@ -157,7 +157,7 @@ namespace love
 				glVertex2f(x3, y3);
 				glVertex2f(x4, y4);
 			glEnd();
-			glColor4ub(255,255,255,255);
+			//glColor4ub(255,255,255,255);
 		glPopMatrix();
 		glEnable(GL_TEXTURE_2D);
 	}
@@ -175,7 +175,7 @@ namespace love
 				glVertex2f(x3, y3);
 				glVertex2f(x4, y4);
 			glEnd();
-			glColor4ub(255,255,255,255);
+			//glColor4ub(255,255,255,255);
 		glPopMatrix();
 		glEnable(GL_TEXTURE_2D);
 	}
@@ -201,7 +201,7 @@ namespace love
 				glVertex2f(x,y);
 			}
 			glEnd();
-			glColor4ub(255,255,255,255);
+			//glColor4ub(255,255,255,255);
 		glPopMatrix();
 		glEnable(GL_TEXTURE_2D);
 	}
@@ -227,7 +227,7 @@ namespace love
 				glVertex2f(x,y);
 			}
 			glEnd();
-			glColor4ub(255,255,255,255);
+			//glColor4ub(255,255,255,255);
 		glPopMatrix();
 		glEnable(GL_TEXTURE_2D);
 	}
