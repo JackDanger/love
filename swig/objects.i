@@ -1,7 +1,5 @@
 %{
-
-
-
+#include "using_graphics.h"
 %}
 
 %inline %{

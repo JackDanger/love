@@ -1400,7 +1400,10 @@ SWIGINTERN char const *love_Color___str__(love::Color *self){
 SWIGINTERN void love_Particlesystem_setSprite__SWIG_1(love::Particlesystem *self,love::pImage const *sprite){
 		self->setSprite(*sprite);
 	}
+
+#include "using_graphics.h"
 #include "Graphics.h"
+
 SWIGINTERN void love_Graphics_setBackgroundColor__SWIG_1(love::Graphics *self,love::pColor const *color){
 		self->setBackgroundColor(*color);
 	}
@@ -1411,27 +1414,35 @@ SWIGINTERN void love_Graphics_setFont(love::Graphics *self,love::pFont const *fo
 		self->setFont(*font);
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_3(love::Graphics *self,love::pImage const *sprite,float x,float y){
+		love::graphics->applyColorMode();
 		(*sprite)->render(x, y);
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_4(love::Graphics *self,love::pImage const *sprite,float x,float y,float angle,float s=1.0f){
+		love::graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, s, s);
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_6(love::Graphics *self,love::pImage const *sprite,float x,float y,float angle,float sx,float sy){
+		love::graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, sx, sy);
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_7(love::Graphics *self,love::pAnimation const *sprite,float x,float y){
+		love::graphics->applyColorMode();
 		(*sprite)->render(x, y);
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_8(love::Graphics *self,love::pAnimation const *sprite,float x,float y,float angle,float s=1.0f){
+		love::graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, s, s);
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_10(love::Graphics *self,love::pAnimation const *sprite,float x,float y,float angle,float sx,float sy){
+		love::graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, sx, sy);
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_11(love::Graphics *self,love::pParticlesystem const *system){
+		love::graphics->applyColorMode();
 		(*system)->render();
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_12(love::Graphics *self,love::pParticlesystem const *system,float x,float y){
+		love::graphics->applyColorMode();
 		(*system)->render(x, y);
 	}
 #include "Sound.h"
@@ -1486,9 +1497,7 @@ namespace love
 } // love
 
 
-
-
-
+#include "using_graphics.h"
 
 
 

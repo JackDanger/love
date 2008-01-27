@@ -280,12 +280,13 @@ namespace love
 			graphics->deactivateSmoothLines();
 			for(int i = 0; i != borderSize; i++)
 			{
+				float i_f = (float)i;
 				// done manually to circumvent an opengl drawing issue
-				graphics->drawLine(x, y, -i, -i, width + (i+1), -i); // top
-				graphics->drawLine(x, y, -i, -i, -i, height + i); // left
-				graphics->drawLine(x, y, width + i, -i, width + i, height + i); // right
-				graphics->drawLine(x, y, -i, height + i, width + i, height + i); // bottom
-				//graphics->drawQuad(x, y, -i, -i, -i, height + i, width + i, height + i, width + i, -i, 1);
+				graphics->drawLine(x, y, -i_f, -i_f, width + (i_f+1), -i_f); // top
+				graphics->drawLine(x, y, -i_f, -i_f, -i_f, height + i_f); // left
+				graphics->drawLine(x, y, width + i_f, -i_f, width + i_f, height + i_f); // right
+				graphics->drawLine(x, y, -i_f, height + i_f, width + i_f, height + i_f); // bottom
+				//graphics->drawQuad(x, y, -i_f, -i_f, -i_f, height + i_f, width + i_f, height + i_f, width + i_f, -i_f, 1);
 			}
 			graphics->activateSmoothLines();
 			
