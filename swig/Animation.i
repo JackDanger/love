@@ -14,6 +14,8 @@ namespace love
 		void seek(int frame);
 		int getCurrentFrame() const;
 		void setDelay(int frame, float delay);
+		void setSpeed(float speed);
+		float getSpeed() const;
 	};
 	
 	typedef boost::shared_ptr<Animation> pAnimation;

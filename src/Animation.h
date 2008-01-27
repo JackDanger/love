@@ -68,7 +68,11 @@ namespace love
 		// "Left over"-time.
 		float timeBuffer;
 
+		// Used for bounce mode.
 		int direction;
+
+		// Overall speed. (1 = normal).
+		float speed;
 
 	public:
 
@@ -134,6 +138,16 @@ namespace love
 		* Sets the delay after a frame.
 		**/
 		void setDelay(int frame, float delay);
+
+		/**
+		* Sets the overall animation speed.
+		**/
+		void setSpeed(float speed);
+
+		/**
+		* Gets the overall animation speed.
+		**/
+		float getSpeed() const;
 
 		// From Sprite
 		void bind() const;

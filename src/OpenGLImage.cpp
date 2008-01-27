@@ -60,7 +60,7 @@ namespace love
 	void OpenGLImage::render(float x, float y, float width, float height) const
 	{
 
-		graphics->cleanColor();
+		//graphics->cleanColor();
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,texture);

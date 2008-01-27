@@ -2784,6 +2784,44 @@ fail:
 }
 
 
+static int _wrap_Animation_setSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Animation *arg1 = (love::Animation *) 0 ;
+  float arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Animation *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Animation,0,1,"Animation_setSpeed");
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setSpeed(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Animation_getSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Animation *arg1 = (love::Animation *) 0 ;
+  float result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Animation *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Animation,0,1,"Animation_getSpeed");
+  result = (float)((love::Animation const *)arg1)->getSpeed();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_delete_Animation(lua_State* L) {
   int SWIG_arg = -1;
   love::Animation *arg1 = (love::Animation *) 0 ;
@@ -2815,6 +2853,8 @@ static swig_lua_method swig_love_Animation_methods[] = {
     {"seek", _wrap_Animation_seek}, 
     {"getCurrentFrame", _wrap_Animation_getCurrentFrame}, 
     {"setDelay", _wrap_Animation_setDelay}, 
+    {"setSpeed", _wrap_Animation_setSpeed}, 
+    {"getSpeed", _wrap_Animation_getSpeed}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_Animation_attributes[] = {
@@ -3023,6 +3063,44 @@ fail:
 }
 
 
+static int _wrap_SmartAnimation_setSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  float arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(boost::shared_ptr<love::Animation > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0,1,"SmartAnimation_setSpeed");
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setSpeed(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartAnimation_getSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
+  float result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(boost::shared_ptr<love::Animation > *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0,1,"SmartAnimation_getSpeed");
+  result = (float)(*arg1)->getSpeed();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartAnimation_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr<love::Animation > *arg1 = (boost::shared_ptr<love::Animation > *) 0 ;
@@ -3154,6 +3232,8 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_Animation_Sg__methods[] = {
     {"seek", _wrap_SmartAnimation_seek}, 
     {"getCurrentFrame", _wrap_SmartAnimation_getCurrentFrame}, 
     {"setDelay", _wrap_SmartAnimation_setDelay}, 
+    {"setSpeed", _wrap_SmartAnimation_setSpeed}, 
+    {"getSpeed", _wrap_SmartAnimation_getSpeed}, 
     {"getWidth", _wrap_SmartAnimation_getWidth}, 
     {"getHeight", _wrap_SmartAnimation_getHeight}, 
     {"getAlpha", _wrap_SmartAnimation_getAlpha}, 
@@ -11110,6 +11190,8 @@ static const struct luaL_reg swig_commands[] = {
     { "Animation_seek", _wrap_Animation_seek},
     { "Animation_getCurrentFrame", _wrap_Animation_getCurrentFrame},
     { "Animation_setDelay", _wrap_Animation_setDelay},
+    { "Animation_setSpeed", _wrap_Animation_setSpeed},
+    { "Animation_getSpeed", _wrap_Animation_getSpeed},
     { "delete_Animation", _wrap_delete_Animation},
     { "SmartAnimation___deref__", _wrap_SmartAnimation___deref__},
     { "delete_SmartAnimation", _wrap_delete_SmartAnimation},
@@ -11121,6 +11203,8 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartAnimation_seek", _wrap_SmartAnimation_seek},
     { "SmartAnimation_getCurrentFrame", _wrap_SmartAnimation_getCurrentFrame},
     { "SmartAnimation_setDelay", _wrap_SmartAnimation_setDelay},
+    { "SmartAnimation_setSpeed", _wrap_SmartAnimation_setSpeed},
+    { "SmartAnimation_getSpeed", _wrap_SmartAnimation_getSpeed},
     { "SmartAnimation_getWidth", _wrap_SmartAnimation_getWidth},
     { "SmartAnimation_getHeight", _wrap_SmartAnimation_getHeight},
     { "SmartAnimation_getAlpha", _wrap_SmartAnimation_getAlpha},

@@ -5,7 +5,7 @@
 namespace love
 {
 	Animation::Animation(pImage image) : image(image), mode(1), current(0), playing(true),
-		timeBuffer(0), direction(1)
+		timeBuffer(0), direction(1), speed(1.0f)
 	{
 	}
 
@@ -110,6 +110,16 @@ namespace love
 			delays[frames[0].post_delay] = delay;
 	}
 
+	void Animation::setSpeed(float speed)
+	{
+		this->speed = speed;
+	}
+
+	float Animation::getSpeed() const
+	{
+		return speed;
+	}
+
 	void Animation::bind() const
 	{
 		image->bind();
@@ -123,7 +133,7 @@ namespace love
 		if(frames.size() <= 0)
 			return;
 
-		timeBuffer += dt;
+		timeBuffer += (dt * speed);
 
 		int next;
 		float d;
