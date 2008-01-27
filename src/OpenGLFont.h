@@ -80,7 +80,7 @@ namespace love
 
 
 		// From Font
-		virtual float getHeight() const;
+		//virtual float getHeight() const;
 		virtual void print(std::string text, float x = 0, float y = 0) const;
 		virtual void print(char character, float x = 0, float y = 0) const;
 

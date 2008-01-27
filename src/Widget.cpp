@@ -1,16 +1,20 @@
 #include "Widget.h"
 
+#include "using_graphics.h"
+
 namespace love
 {
 
 	std::list<Widget *> Widget::keylisteners;
 	std::list<Widget *> Widget::mouselisteners;
 
-	Widget::Widget() : mouse(false), keyboard(false), paddingTop(0), paddingBottom(0), paddingLeft(0), paddingRight(0), align(love::LOVE_ALIGN_CENTER), valign(love::LOVE_ALIGN_CENTER), innerx(0), innery(0)
+	Widget::Widget() : mouse(false), keyboard(false), paddingTop(0), paddingBottom(0), paddingLeft(0), paddingRight(0),
+				align(love::LOVE_ALIGN_CENTER), valign(love::LOVE_ALIGN_CENTER), borderSize(0), innerx(0), innery(0)
 	{
 	}
 
-	Widget::Widget(bool mouse, bool keyboard) : mouse(mouse), keyboard(keyboard), paddingTop(0), paddingBottom(0), paddingLeft(0), paddingRight(0), align(love::LOVE_ALIGN_CENTER), valign(love::LOVE_ALIGN_CENTER), innerx(0), innery(0)
+	Widget::Widget(bool mouse, bool keyboard) : mouse(mouse), keyboard(keyboard), paddingTop(0), paddingBottom(0), paddingLeft(0), paddingRight(0),
+				align(love::LOVE_ALIGN_CENTER), valign(love::LOVE_ALIGN_CENTER), borderSize(0), innerx(0), innery(0)
 	{
 		if(mouse)
 			Widget::mouselisteners.push_back(this);
@@ -89,9 +93,29 @@ namespace love
 	{
 		return height;
 	}
+	
+	void Widget::setBorderSize(int size)
+	{
+		borderSize = size > 0 ? size : 0;
+	}
+	
+	int Widget::getBorderSize() const
+	{
+		return borderSize;
+	}
+	
+	void Widget::adjustWidth()
+	{
+	}
+	
+	void Widget::adjustHeight()
+	{
+	}
 		
 	void Widget::adjustSize()
 	{
+		adjustWidth();
+		adjustHeight();
 	}
 	
 	void Widget::adjustContent()
@@ -240,6 +264,33 @@ namespace love
 	int Widget::getRightPadding() const
 	{
 		return paddingRight;
+	}
+	
+	void Widget::drawBorder() const
+	{
+		if(borderSize != 0)
+		{
+			graphics->push();
+			
+			if(borderColor != 0)
+				graphics->setColor(borderColor);
+			else if(color != 0)
+				graphics->setColor(color);
+			
+			graphics->deactivateSmoothLines();
+			for(int i = 0; i != borderSize; i++)
+			{
+				// done manually to circumvent an opengl drawing issue
+				graphics->drawLine(x, y, -i, -i, width + (i+1), -i); // top
+				graphics->drawLine(x, y, -i, -i, -i, height + i); // left
+				graphics->drawLine(x, y, width + i, -i, width + i, height + i); // right
+				graphics->drawLine(x, y, -i, height + i, width + i, height + i); // bottom
+				//graphics->drawQuad(x, y, -i, -i, -i, height + i, width + i, height + i, width + i, -i, 1);
+			}
+			graphics->activateSmoothLines();
+			
+			graphics->pop();
+		}
 	}
 	
 

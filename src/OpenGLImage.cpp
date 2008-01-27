@@ -32,7 +32,7 @@ namespace love
 
 	void OpenGLImage::render() const
 	{
-		graphics->applyColorMode();
+		//graphics->applyColorMode();
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,texture);
@@ -57,7 +57,7 @@ namespace love
 
 	void OpenGLImage::render(float x, float y, float width, float height) const
 	{
-		graphics->applyColorMode();
+		//graphics->applyColorMode();
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,texture);
@@ -80,7 +80,7 @@ namespace love
 
 	void OpenGLImage::render(float x, float y, float angle, float sx, float sy) const
 	{
-		graphics->applyColorMode();
+		//graphics->applyColorMode();
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,texture);
@@ -102,7 +102,7 @@ namespace love
 	void OpenGLImage::render(const float * vertices, const float * texels, float x, float y, 
 		float angle, float sx, float sy, float cx, float cy) const
 	{
-		graphics->applyColorMode();
+		//graphics->applyColorMode();
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,texture);

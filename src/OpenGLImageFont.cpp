@@ -73,7 +73,7 @@ namespace love
 				if(width != 0) //this means we have found the end of our current image
 				{
 					if((unsigned int)glyphs[current] > MAX_CHARS)
-						printf("Error reading image font: Character '%c' is out of range.\n", glyphs[current]);
+						printf("Error reading image font '%s': Character '%c' is out of range.", file->getFilename().c_str(), glyphs[current]);
 					else
 					{
 						widths[(int)glyphs[current]] = width;

@@ -27,32 +27,43 @@ namespace love
 		return backgroundImage;
 	}
 
-	void Label::adjustSize()
+	void Label::adjustWidth()
 	{
+		graphics->push();
+		
 		if(font != 0)
-		{
-			width = font->getWidth(text) + paddingLeft + paddingRight;
-			height = font->getHeight() + paddingTop + paddingBottom;
-		}
-		else
-		{
-			width = graphics->getFont()->getWidth(text) + paddingLeft + paddingRight;
-			height = graphics->getFont()->getHeight() + paddingTop + paddingBottom;
-		}
+			graphics->setFont(font);
 		
-		if(backgroundImage != 0)
-		{
-			if(backgroundImage->getWidth() > width)
-				width = backgroundImage->getWidth();
-			if(backgroundImage->getHeight() > height)
-				height = backgroundImage->getHeight();
-		}
+		width = graphics->getFont()->getWidth(text) + paddingLeft + paddingRight;
 		
-		adjustContent();
+		if(backgroundImage != 0 && backgroundImage->getWidth() > width)
+			width = backgroundImage->getWidth();
+		
+		graphics->pop();
+	}
+	
+	void Label::adjustHeight()
+	{
+		graphics->push();
+		
+		if(font != 0)
+			graphics->setFont(font);
+		
+		height = graphics->getFont()->getHeight() + paddingTop + paddingBottom;
+		
+		if(backgroundImage != 0 && backgroundImage->getHeight() > height)
+			height = backgroundImage->getHeight();
+		
+		graphics->pop();
 	}
 	
 	void Label::adjustContent()
 	{
+		graphics->push();
+		
+		if(font != 0)
+			graphics->setFont(font);
+		
 		innerx = x;
 		innery = y;
 		
@@ -87,6 +98,8 @@ namespace love
 				innery += (height / 2) - (graphics->getFont()->getHeight() / 2);
 				break;
 		}
+		
+		graphics->pop();
 	}
 
 	void Label::update(float dt)
@@ -95,17 +108,23 @@ namespace love
 
 	void Label::render() const
 	{
-		pColor tempColor = graphics->getColor();
-		pFont tempFont = graphics->getFont();		
+		graphics->push();
 		
 		if(backgroundColor != 0)
 		{
+			graphics->push();
+			
 			graphics->setColor(backgroundColor);
 			graphics->fillQuad(x, y, 0, 0, 0, height, width, height, width, 0);
-			graphics->setColor(tempColor);
+			
+			graphics->pop();
 		}
+		
+		drawBorder();
+		
 		if(color != 0)
 			graphics->setColor(color);
+		
 		if(font != 0)
 			graphics->setFont(font);
 		
@@ -115,8 +134,7 @@ namespace love
 		graphics->draw(text.c_str(), floor(innerx), floor(innery));
 		
 		// reinstate the status quo
-		graphics->setColor(tempColor);
-		graphics->setFont(tempFont);
+		graphics->pop();
 	}
 
 	void Label::mousePressed(float x, float y, int button)

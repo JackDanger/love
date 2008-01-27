@@ -178,6 +178,10 @@ namespace love
 		pImage newImage(const std::string & filename) const;
 		pFont newFont(const std::string & filename, int size) const;
 		pFont newImageFont(const std::string & filename, const std::string & glyphs) const;
+		
+		// Mike's convenience functions
+		virtual void activateSmoothLines() = 0;
+		virtual void deactivateSmoothLines() = 0;
 
 		/**
 		* Draw text on screen at the specified coordiantes (automatically breaks \n characters).

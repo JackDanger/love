@@ -38,6 +38,7 @@ namespace love
 		float x, y, width, height;
 		int paddingTop, paddingBottom, paddingLeft, paddingRight;
 		int align, valign;
+		int borderSize;
 		
 		// The internal position of the content (based on padding and alignment)
 		float innerx, innery;
@@ -46,6 +47,7 @@ namespace love
 		pFont font;
 		pColor color;
 		pColor backgroundColor;
+		pColor borderColor;
 		
 		// All widgets have a text aspect
 		std::string text;
@@ -135,9 +137,31 @@ namespace love
 		float getHeight() const;
 		
 		/**
+		* Sets the size of the widget's border.
+		*
+		* @param size The new size.
+		**/
+		void setBorderSize(int size);
+		
+		/**
+		* Returns the size of the widget's border.
+		**/
+		int getBorderSize() const;
+		
+		/**
+		* Automatically adjusts the width of the widget in respect to the contents.
+		**/
+		virtual void adjustWidth();
+		
+		/**
+		* Automatically adjusts the height of the widget in respect to the contents.
+		**/
+		virtual void adjustHeight();
+		
+		/**
 		* Automatically adjusts the size of the widget in respect to the contents.
 		**/
-		virtual void adjustSize();
+		void adjustSize();
 		
 		/**
 		* Automatically adjusts the content of the widget in respect to the size, padding and alignment.
@@ -281,6 +305,11 @@ namespace love
 		* Gets the right padding.
 		**/
 		int getRightPadding() const;
+		
+		/**
+		* Draws the border of the widget.
+		**/
+		void drawBorder() const;
 		
 		/**
 		* Updates all the children of this widget.

@@ -152,7 +152,7 @@ namespace love
 			glTranslatef(xpos, ypos, 0.0f);
 			glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
 			glBegin(GL_LINE_LOOP);
-				glVertex2f(x1, y1);
+				glVertex2f(x1, y1);				
 				glVertex2f(x2, y2);
 				glVertex2f(x3, y3);
 				glVertex2f(x4, y4);
@@ -230,6 +230,16 @@ namespace love
 			//glColor4ub(255,255,255,255);
 		glPopMatrix();
 		glEnable(GL_TEXTURE_2D);
+	}
+	
+	void OpenGLGraphics::activateSmoothLines()
+	{
+		glEnable(GL_LINE_SMOOTH);
+	}
+	
+	void OpenGLGraphics::deactivateSmoothLines()
+	{
+		glDisable(GL_LINE_SMOOTH);
 	}
 	
 } // love

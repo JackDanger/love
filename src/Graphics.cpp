@@ -19,8 +19,15 @@ namespace love
 	void Graphics::push()
 	{
 		graphics_state s;
-		s.color_mode = LOVE_BLEND_NORMAL;
-		s.blend_mode = LOVE_COLOR_NORMAL;
+		
+		if(!states.empty())
+			s = states.back();
+		else
+		{
+			s.color_mode = LOVE_BLEND_NORMAL;
+			s.blend_mode = LOVE_COLOR_NORMAL;			
+		}
+
 		states.push_back(s);
 	}
 

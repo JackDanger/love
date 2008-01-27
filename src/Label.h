@@ -47,7 +47,8 @@ namespace love
 		pImage getBackgroundImage() const;
 
 		// From Widget.
-		void adjustSize();
+		void adjustWidth();
+		void adjustHeight();
 		void adjustContent();
 		void update(float dt);
 		void render() const;

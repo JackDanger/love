@@ -51,16 +51,19 @@ namespace love
 
 	void draw(const pImage * sprite, float x, float y)
 	{
+		graphics->applyColorMode();
 		(*sprite)->render(x, y);
 	}
 	
 	void draw(const pImage * sprite, float x, float y, float angle, float s = 1.0f)
 	{
+		graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, s, s);
 	}
 	
 	void draw(const pImage * sprite, float x, float y, float angle, float sx, float sy)
 	{
+		graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, sx, sy);
 	}
 	
@@ -70,16 +73,19 @@ namespace love
 
 	void draw(const pAnimation * sprite, float x, float y)
 	{
+		graphics->applyColorMode();
 		(*sprite)->render(x, y);
 	}
 	
 	void draw(const pAnimation * sprite, float x, float y, float angle, float s = 1.0f)
 	{
+		graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, s, s);
 	}
 	
 	void draw(const pAnimation * sprite, float x, float y, float angle, float sx, float sy)
 	{
+		graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, sx, sy);
 	}
 
@@ -89,11 +95,13 @@ namespace love
 
 	void draw(const pParticlesystem * system)
 	{
+		graphics->applyColorMode();
 		(*system)->render();
 	}
 	
 	void draw(const pParticlesystem * system, float x, float y)
 	{
+		graphics->applyColorMode();
 		(*system)->render(x, y);
 	}
 	
