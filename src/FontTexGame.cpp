@@ -24,13 +24,13 @@ namespace love
 		graphics->push();
 		
 		graphics->setBackgroundColor(255, 255, 255);
-		graphics->setColor(246, 9, 104, 255);
+		graphics->setColor(246, 9, 104, 100);
 		
 		font = graphics->newFont("Vera.ttf", 15); font->load();
 		
-		img = graphics->newImage("button_pressed.png"); img->load();
+		imgfont = graphics->newImageFont("rpgfont.png", " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&`'*#=[]\""); imgfont->load();
 		
-		graphics->setFont(font);
+		graphics->setFont(imgfont);
 
 		return true;
 	}

@@ -47,7 +47,7 @@ namespace love
 		glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
 	}
 
-	void OpenGLGraphics::cleanColor() const
+	void OpenGLGraphics::applyColorMode() const
 	{
 		int color_mode = getColorMode();
 		if(color_mode == LOVE_COLOR_NORMAL)

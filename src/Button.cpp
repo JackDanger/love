@@ -6,7 +6,7 @@ namespace love
 {
 
 	Button::Button(const std::string & text,const  pImage & up,const  pImage & down,const  pImage & hover) 
-		: Widget(true, false), state(0), up(up), down(down), hover(hover)
+		: Widget(true, false), up(up), down(down), hover(hover), state(0)
 	{
 		width = 79;
 		height = 21;

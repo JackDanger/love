@@ -26,34 +26,8 @@ namespace love
 
 	void OpenGLImageFont::print(string text, float x, float y) const
 	{
-		// Old, non-display-list code kept here for archiving (remove after testing heavily).
-		
-		/*unsigned int pos;
-		
-		glPushMatrix();
-		glTranslatef(ceil(x), ceil(y), 0.0f);
-		
-		glColor4ub(255,255,255,255); // should this be removed?
-		
-		for(unsigned int i = 0; i != text.size(); i++)
-		{
-			pos = (unsigned int)text[i];
-			
-			if(positions[pos] != -1)
-			{
-				image->render((float)positions[pos], 0, (float)widths[pos], (float)size);
-				glTranslatef((float)widths[pos], 0.0f, 0.0f);
-			}
-			else // in case the character is not found
-				glTranslatef((float)widths[(int)' '], 0.0f, 0.0f);
-		}
-		
-		glPopMatrix();*/
-
 		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
-
-		glColor4ub(255,255,255,255); // should this be removed?
 		
 		glTranslatef(ceil(x), ceil(y), 0.0f);
 		GLuint OpenGLFont = list;
@@ -66,25 +40,8 @@ namespace love
 
 	void OpenGLImageFont::print(char character, float x, float y) const
 	{
-		// Old, non-display-list code kept here for archiving (remove after testing heavily).
-		
-		/*unsigned int pos = (unsigned int)character;
-		
-		if(pos > MAX_CHARS || positions[pos] == -1) return;
-		
-		glPushMatrix();
-		glTranslatef(x, y, 0.0f);
-		
-		glColor4ub(255,255,255,255); // should this be removed?
-			
-		image->render((float)positions[pos], 0, (float)widths[pos], (float)size);
-		
-		glPopMatrix();*/
-
 		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
-		
-		glColor4ub(255,255,255,255); // should this be removed?
 
 		glTranslatef(ceil(x), ceil(y), 0.0f);
 		GLuint OpenGLFont = list;

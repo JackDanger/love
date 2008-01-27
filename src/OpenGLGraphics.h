@@ -39,7 +39,7 @@ namespace love
 		// From Graphics.
 		void clear() const;
 		void apply(const pColor & color) const;
-		void cleanColor() const;
+		void applyColorMode() const;
 		void setBlendMode(int mode);
 		pImage newImage(pFile file) const;
 		pFont newFont(pFile file, int size) const;

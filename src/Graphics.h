@@ -86,7 +86,7 @@ namespace love
 		* Applies white if color_mode = normal, or the current 
 		* color if color_mode = modulate.
 		**/
-		virtual void cleanColor() const = 0;
+		virtual void applyColorMode() const = 0;
 
 		/**
 		* Gets the width of the graphics context.
