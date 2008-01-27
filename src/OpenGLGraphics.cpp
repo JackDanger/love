@@ -47,6 +47,26 @@ namespace love
 		glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
 	}
 
+	void OpenGLGraphics::cleanColor() const
+	{
+		int color_mode = getColorMode();
+		if(color_mode == LOVE_COLOR_NORMAL)
+			glColor4f(1, 1, 1, 1);
+		else if(color_mode == LOVE_COLOR_MODULATE)
+			apply(states.back().color);
+	}
+
+	void OpenGLGraphics::setBlendMode(int mode)
+	{
+
+		if(mode = LOVE_BLEND_ADDITIVE)
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+		else if(mode = LOVE_BLEND_NORMAL)
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		Graphics::setBlendMode(mode);
+	}
+
 	pImage OpenGLGraphics::newImage(pFile file) const
 	{
 		pImage tmp (new OpenGLImage(file));
@@ -73,6 +93,7 @@ namespace love
 	
 	void OpenGLGraphics::drawLine(float xpos, float ypos, float x1, float y1, float x2, float y2, float lineWidth) const
 	{
+		glDisable(GL_TEXTURE_2D);
 		const pColor & color = states.back().color;
 		glPushMatrix();
 			glLineWidth(lineWidth);
@@ -84,10 +105,12 @@ namespace love
 			glEnd();
 			glColor4ub(255,255,255,255);
 		glPopMatrix();
+		glEnable(GL_TEXTURE_2D);
 	}
 	
 	void OpenGLGraphics::drawTriangle(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float lineWidth) const
 	{
+		glDisable(GL_TEXTURE_2D);
 		const pColor & color = states.back().color;
 		glPushMatrix();
 			glLineWidth(lineWidth);
@@ -100,10 +123,12 @@ namespace love
 			glEnd();
 			glColor4ub(255,255,255,255);
 		glPopMatrix();
+		glEnable(GL_TEXTURE_2D);
 	}
 	
 	void OpenGLGraphics::fillTriangle(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3) const
 	{
+		glDisable(GL_TEXTURE_2D);
 		const pColor & color = states.back().color;
 		glPushMatrix();
 			glTranslatef(xpos, ypos, 0.0f);
@@ -115,10 +140,12 @@ namespace love
 			glEnd();
 			glColor4ub(255,255,255,255);
 		glPopMatrix();
+		glEnable(GL_TEXTURE_2D);
 	}
 	
 	void OpenGLGraphics::drawQuad(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float lineWidth) const
 	{
+		glDisable(GL_TEXTURE_2D);
 		const pColor & color = states.back().color;
 		glPushMatrix();
 			glLineWidth(lineWidth);
@@ -132,10 +159,12 @@ namespace love
 			glEnd();
 			glColor4ub(255,255,255,255);
 		glPopMatrix();
+		glEnable(GL_TEXTURE_2D);
 	}
 	
 	void OpenGLGraphics::fillQuad(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const
 	{
+		glDisable(GL_TEXTURE_2D);
 		const pColor & color = states.back().color;
 		glPushMatrix();
 			glTranslatef(xpos, ypos, 0.0f);
@@ -148,14 +177,17 @@ namespace love
 			glEnd();
 			glColor4ub(255,255,255,255);
 		glPopMatrix();
+		glEnable(GL_TEXTURE_2D);
 	}
 	
 	void OpenGLGraphics::drawCircle(float xpos, float ypos, float radius, float points, float lineWidth) const
 	{
+
 		const pColor & color = states.back().color;
 		float angle_radians, x, y;
 		int angle_shift = (int)(360 / points);
   
+		glDisable(GL_TEXTURE_2D);
 		glPushMatrix();
 			glLineWidth(lineWidth);
 			glTranslatef(xpos, ypos, 0.0f);
@@ -171,6 +203,7 @@ namespace love
 			glEnd();
 			glColor4ub(255,255,255,255);
 		glPopMatrix();
+		glEnable(GL_TEXTURE_2D);
 	}
 	
 	void OpenGLGraphics::fillCircle(float xpos, float ypos, float radius, float points) const
@@ -179,6 +212,7 @@ namespace love
 		float angle, x, y;
 		int angle_shift = (int)(360 / points);
   
+		glDisable(GL_TEXTURE_2D);
 		glPushMatrix();
 			glTranslatef(xpos, ypos, 0.0f);
 			glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha()); 
@@ -195,6 +229,7 @@ namespace love
 			glEnd();
 			glColor4ub(255,255,255,255);
 		glPopMatrix();
+		glEnable(GL_TEXTURE_2D);
 	}
 	
 } // love

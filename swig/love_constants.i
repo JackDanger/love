@@ -2,6 +2,7 @@
 %{
 
 #include "love_mouse.h"
+#include "love_blend.h"
 
 %}
 
@@ -191,3 +192,11 @@
 /**
 * Event types.
 **/
+
+/**
+* Blend and color modes.
+**/
+%constant const int blend_normal = love::LOVE_BLEND_NORMAL;
+%constant const int blend_additive = love::LOVE_BLEND_ADDITIVE;
+%constant const int color_normal = love::LOVE_COLOR_NORMAL;
+%constant const int color_modulate = love::LOVE_COLOR_MODULATE;

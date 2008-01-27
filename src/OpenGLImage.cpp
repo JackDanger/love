@@ -6,6 +6,7 @@
 #include "love_math.h"
 #include "File.h"
 #include "using_gl.h"
+#include "using_graphics.h"
 
 // DevIL
 #include <IL/ilut.h>
@@ -31,10 +32,11 @@ namespace love
 
 	void OpenGLImage::render() const
 	{
+
+		graphics->cleanColor();
+
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,texture);
-
-		//glColor3f(1, 1, 1);
 
 		glBegin(GL_QUADS);
 			glTexCoord2f(0.0,0.0); glVertex2f(0,0);
@@ -57,6 +59,9 @@ namespace love
 
 	void OpenGLImage::render(float x, float y, float width, float height) const
 	{
+
+		graphics->cleanColor();
+
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,texture);
 
@@ -65,8 +70,6 @@ namespace love
 
 		float wTex = width/(float)textureWidth;
 		float hTex = height/(float)textureHeight;
-
-		//glColor3f(1, 1, 1);
 
 		glBegin(GL_QUADS);
 			glTexCoord2f(xTex,yTex);				glVertex2i(0,0);
@@ -80,6 +83,9 @@ namespace love
 
 	void OpenGLImage::render(float x, float y, float angle, float sx, float sy) const
 	{
+
+		graphics->cleanColor();
+
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,texture);
 
@@ -100,6 +106,9 @@ namespace love
 	void OpenGLImage::render(const float * vertices, const float * texels, float x, float y, 
 		float angle, float sx, float sy, float cx, float cy) const
 	{
+
+		graphics->cleanColor();
+
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,texture);
 

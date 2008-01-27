@@ -18,6 +18,10 @@ namespace love
 		void fillQuad(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) const;
 		void drawCircle(float xpos, float ypos, float radius, float points = 10, float lineWidth = 1) const;
 		void fillCircle(float xpos, float ypos, float radius, float points = 10) const;
+		virtual void setBlendMode(int mode);
+		int getBlendMode() const;
+		void setColorMode(int mode);
+		int getColorMode() const;
 	};
 	
 }

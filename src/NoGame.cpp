@@ -48,13 +48,15 @@ namespace love
 
 	void NoGame::render()
 	{
-		float w = 256.0f;
+		int w = 256;
+		float width = (float)graphics->getWidth();
+		float height = (float)graphics->getHeight();
 		graphics->setFont(big);
 		std::string s = "LOVE ";
 		s += version_string();
-		graphics->draw(s.c_str(), (float)graphics->getWidth()/2.0f - w/2.0f, (float)graphics->getHeight()/2.0f - 50.0f, w, LOVE_ALIGN_CENTER);
+		graphics->draw(s.c_str(), width /2.0f - w/2.0f, height /2.0f - 50.0f, w, LOVE_ALIGN_CENTER);
 		graphics->setFont(small);
-		graphics->draw("Now with More Mini Moose (tm).", (float)graphics->getWidth()/2.0f - w/2.0f, (float)graphics->getHeight()/2.0f - 20.0f, w, LOVE_ALIGN_CENTER);
+		graphics->draw("Now with More Mini Moose (tm).", width/2.0f - w/2.0f, height/2.0f - 20.0f, w, LOVE_ALIGN_CENTER);
 	}
 
 	void NoGame::keyPressed(int key)

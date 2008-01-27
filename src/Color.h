@@ -22,6 +22,7 @@ namespace love
 	class Color
 	{
 		friend class AnimatedColor;
+		friend class Graphics;
 
 	protected:
 

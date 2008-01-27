@@ -15,6 +15,8 @@
 #include "Particlesystem.h"
 #include "Color.h"
 #include "love_align.h"
+#include "love_blend.h"
+
 
 // STD
 #include <vector>
@@ -33,6 +35,9 @@ namespace love
 
 		// Current font.
 		pFont font;
+
+		// The current blend and color mode.
+		int blend_mode, color_mode;
 	};
 
 	/**
@@ -78,6 +83,12 @@ namespace love
 		virtual void apply(const pColor & color) const = 0;
 
 		/**
+		* Applies white if color_mode = normal, or the current 
+		* color if color_mode = modulate.
+		**/
+		virtual void cleanColor() const = 0;
+
+		/**
 		* Gets the width of the graphics context.
 		**/
 		int getWidth() const;
@@ -86,6 +97,26 @@ namespace love
 		* Gets the height of the graphics context.
 		**/
 		int getHeight() const;
+
+		/**
+		* Sets the current blend mode.
+		**/
+		virtual void setBlendMode(int mode);
+
+		/**
+		* Gets the current blend mode.
+		**/
+		int getBlendMode() const;
+
+		/**
+		* Sets the current color mode.
+		**/
+		void setColorMode(int mode);
+
+		/**
+		* Gets the current color mode.
+		**/
+		int getColorMode() const;
 
 		/**
 		* Sets the background Color. 
@@ -98,6 +129,16 @@ namespace love
 		**/
 		void setColor(pColor color);
 		void setColor(int r, int g, int b, int a = 255);
+
+		/**
+		* Sets the alpha component of the current color.
+		**/
+		void setAlpha(int a);
+
+		/**
+		* Gets the alpha component of the current color.
+		**/
+		int getAlpha() const;
 
 		/**
 		* Sets the current font.

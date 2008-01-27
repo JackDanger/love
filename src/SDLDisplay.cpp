@@ -122,6 +122,10 @@ namespace love
 		// "Normal" blending
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+		// Enable line smoothing.
+		glEnable (GL_LINE_SMOOTH);
+		glHint (GL_LINE_SMOOTH_HINT, GL_NICEST);
+
 		// Cull backface
 		glEnable(GL_CULL_FACE);		// Enable face culling (no need to render surfaces we can't see
 		glCullFace(GL_BACK);		// Do not render back face.

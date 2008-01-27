@@ -505,6 +505,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\love_blend.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\love_keys.h"
 				>
 			</File>

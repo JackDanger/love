@@ -39,6 +39,8 @@ namespace love
 		// From Graphics.
 		void clear() const;
 		void apply(const pColor & color) const;
+		void cleanColor() const;
+		void setBlendMode(int mode);
 		pImage newImage(pFile file) const;
 		pFont newFont(pFile file, int size) const;
 		pFont newImageFont(pFile file, std::string glyphs) const;

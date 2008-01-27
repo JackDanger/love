@@ -25,7 +25,7 @@
 #include "LuaGame.h"
 
 // STD
-#include <stdio.h>
+#include <iostream>
 #include <cstdarg>
 
 
@@ -92,20 +92,24 @@ namespace love
 
 			if(!filesystem->exists(game_src))
 			{
-				printf("Game does not exist! (Gamesrc: %s)\n", game_src.c_str());
+				std::cerr << "Game does not exist! (Gamesrc: " << game_src << ")" << std::endl;
 				return false;
 			}
 
 			game = new LuaGame(game_src);
 
-			printf(" * Opening game %s\n", arg_game.c_str());
+			std::cout << " * Opening game " << arg_game << std::endl;
 
 			// Read config file.
 			if(filesystem->exists(game_src, "game.conf"))
 			{
 				pFile file = filesystem->newFile(game_src, "game.conf");
 				conf = new Configuration(file);
-				if(!conf->load()) printf("Could not load config file");
+				if(!conf->load())
+				{
+					std::cerr << "Could not load config file." << std::endl;
+					return false;
+				}
 			}
 
 		}

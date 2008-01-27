@@ -19,6 +19,8 @@ namespace love
 	void Graphics::push()
 	{
 		graphics_state s;
+		s.color_mode = LOVE_BLEND_NORMAL;
+		s.blend_mode = LOVE_COLOR_NORMAL;
 		states.push_back(s);
 	}
 
@@ -43,6 +45,26 @@ namespace love
 		return display->getHeight();
 	}
 
+	void Graphics::setBlendMode(int mode)
+	{
+		states.back().blend_mode = mode;
+	}
+
+	int Graphics::getBlendMode() const
+	{
+		return states.back().blend_mode;
+	}
+
+	void Graphics::setColorMode(int mode)
+	{
+		states.back().color_mode = mode;
+	}
+
+	int Graphics::getColorMode() const
+	{
+		return states.back().color_mode;
+	}
+
 	void Graphics::setBackgroundColor(pColor color)
 	{
 		states.back().background = color;
@@ -61,6 +83,16 @@ namespace love
 	void Graphics::setColor(int r, int g, int b, int a)
 	{
 		states.back().color.reset<Color>(new Color(r, g, b, a));
+	}
+
+	void Graphics::setAlpha(int a)
+	{
+		states.back().color->alpha = a;
+	}
+
+	int Graphics::getAlpha() const
+	{
+		return states.back().color->alpha;
 	}
 
 	void Graphics::setFont(pFont font)
@@ -122,7 +154,7 @@ namespace love
 				{
 					if(str[i] == '\n')
 					{
-						font->print(text, x, y + (lines * font->getHeight() * 1.25));
+						font->print(text, x, y + (lines * font->getHeight() * 1.25f));
 						text = "";
 						lines++;
 					}
@@ -131,7 +163,7 @@ namespace love
 				}
 				
 				if(text != "") // Print the last text (if applicable).
-					font->print(text, x, y + (lines * font->getHeight() * 1.25));
+					font->print(text, x, y + (lines * font->getHeight() * 1.25f));
 			}
 		}
 		
@@ -157,15 +189,15 @@ namespace love
 					switch(align)
 					{
 						case LOVE_ALIGN_LEFT:
-							font->print(text, x, y + (lines * font->getHeight() * 1.25));
+							font->print(text, x, y + (lines * font->getHeight() * 1.25f));
 							break;
 							
 						case LOVE_ALIGN_RIGHT:
-							font->print(text, (x + (wrap - font->getWidth(text))), y + (lines * font->getHeight() * 1.25));
+							font->print(text, (x + (wrap - font->getWidth(text))), y + (lines * font->getHeight() * 1.25f));
 							break;
 							
 						case LOVE_ALIGN_CENTER:
-							font->print(text, (x + ((wrap - font->getWidth(text)) / 2)), y + (lines * font->getHeight() * 1.25));
+							font->print(text, (x + ((wrap - font->getWidth(text)) / 2)), y + (lines * font->getHeight() * 1.25f));
 							break;
 							
 						default: // A copy of the left align code. Kept separate in case an error message is wanted.
@@ -188,15 +220,15 @@ namespace love
 						switch(align)
 						{
 							case LOVE_ALIGN_LEFT:
-								font->print(temp, x, y + (lines * font->getHeight() * 1.25));
+								font->print(temp, x, y + (lines * font->getHeight() * 1.25f));
 								break;
 							
 							case LOVE_ALIGN_RIGHT:
-								font->print(temp, (x + (wrap - font->getWidth(temp))), y + (lines * font->getHeight() * 1.25));
+								font->print(temp, (x + (wrap - font->getWidth(temp))), y + (lines * font->getHeight() * 1.25f));
 								break;
 							
 							case LOVE_ALIGN_CENTER:
-								font->print(temp, (x + ((wrap - font->getWidth(temp)) / 2)), y + (lines * font->getHeight() * 1.25));
+								font->print(temp, (x + ((wrap - font->getWidth(temp)) / 2)), y + (lines * font->getHeight() * 1.25f));
 								break;
 							
 							default: // A copy of the left align code. Kept separate in case an error message is wanted.
@@ -218,15 +250,15 @@ namespace love
 				switch(align)
 				{
 					case LOVE_ALIGN_LEFT:
-						font->print(text, x, y + (lines * font->getHeight() * 1.25));
+						font->print(text, x, y + (lines * font->getHeight() * 1.25f));
 						break;
 							
 					case LOVE_ALIGN_RIGHT:
-						font->print(text, (x + (wrap - font->getWidth(text))), y + (lines * font->getHeight() * 1.25));
+						font->print(text, (x + (wrap - font->getWidth(text))), y + (lines * font->getHeight() * 1.25f));
 						break;
 							
 					case LOVE_ALIGN_CENTER:
-						font->print(text, (x + ((wrap - font->getWidth(text)) / 2)), y + (lines * font->getHeight() * 1.25));
+						font->print(text, (x + ((wrap - font->getWidth(text)) / 2)), y + (lines * font->getHeight() * 1.25f));
 						break;
 							
 					default: // A copy of the left align code. Kept separate in case an error message is wanted.
