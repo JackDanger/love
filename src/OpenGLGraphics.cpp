@@ -2,6 +2,7 @@
 
 // LOVE
 #include "using_gl.h"
+#include "love_math.h"
 #include "OpenGLImage.h"
 #include "OpenGLFont.h"
 #include "OpenGLImageFont.h"
@@ -182,26 +183,20 @@ namespace love
 	
 	void OpenGLGraphics::drawCircle(float xpos, float ypos, float radius, float points, float lineWidth) const
 	{
-
 		const pColor & color = states.back().color;
-		float angle_radians, x, y;
-		int angle_shift = (int)(360 / points);
+		if(points <= 0) points = 1;
+		float angle_shift = (two_pi / points);
   
 		glDisable(GL_TEXTURE_2D);
 		glPushMatrix();
-			glLineWidth(lineWidth);
 			glTranslatef(xpos, ypos, 0.0f);
-			glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
+			glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha()); 
 			glBegin(GL_LINE_LOOP);
-			for (int angle = 0; angle < 365; angle += angle_shift)
-			{
-				angle_radians = angle * (float)3.14159 / (float)180;
-				x = radius * (float)cos(angle_radians);
-				y = radius * (float)sin(angle_radians);
-				glVertex2f(x,y);
-			}
+
+			for(float i = 0; i < two_pi; i+= angle_shift)
+				glVertex2f(radius * sin(i),radius * cos(i));
+
 			glEnd();
-			//glColor4ub(255,255,255,255);
 		glPopMatrix();
 		glEnable(GL_TEXTURE_2D);
 	}
@@ -209,25 +204,19 @@ namespace love
 	void OpenGLGraphics::fillCircle(float xpos, float ypos, float radius, float points) const
 	{
 		const pColor & color = states.back().color;
-		float angle, x, y;
-		int angle_shift = (int)(360 / points);
+		if(points <= 0) points = 1;
+		float angle_shift = (two_pi / points);
   
 		glDisable(GL_TEXTURE_2D);
 		glPushMatrix();
 			glTranslatef(xpos, ypos, 0.0f);
 			glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha()); 
 			glBegin(GL_TRIANGLE_FAN);
-			glVertex2f(0.0f, 0.0f);	
-			for(int i = 0; i < 365; i+= angle_shift)
-			{
-				angle = (float)(((double)i) / 57.29577957795135);	
-				x = radius * (float)sin((double)angle);
-				y = radius * (float)cos((double)angle);
-									
-				glVertex2f(x,y);
-			}
+
+			for(float i = 0; i < two_pi; i+= angle_shift)
+				glVertex2f(radius * sin(i),radius * cos(i));
+
 			glEnd();
-			//glColor4ub(255,255,255,255);
 		glPopMatrix();
 		glEnable(GL_TEXTURE_2D);
 	}
