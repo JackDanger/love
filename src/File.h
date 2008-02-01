@@ -41,6 +41,15 @@ namespace love
 		// The size of the data
 		unsigned long size;
 
+		/**
+		 * Constructor used by MemoryFile alone.
+		 * @param source	The source from which the file is loaded
+		 * @param filename	The name of the file loaded
+		 * @param data		The actual data loaded
+		 * @param size		The size of the loaded data
+		 **/
+		File(const std::string & source, const std::string & filename, char *data, const unsigned long size);
+
 	public:
 
 		/**

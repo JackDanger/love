@@ -6,19 +6,34 @@ int main(int argc, char *argv[])
 {
 	if (argc > 1)
 	{
-		resources_cpp.open("Resources.cpp");
-		resources_h.open("Resources.h");
+		resources_h.open("resources.h");
+		resources_h
+			<< "#ifndef LOVE_RESOURCES_H\n"
+			<< "#define LOVE_RESOURCES_H\n\n"
+			<< "#include <vector>\n"
+			<< "#include \"MemoryFile.h\"\n\n"
+			<< "namespace love\n"
+			<< "{\n";
+		resources_cpp.open("resources.cpp");
+		resources_cpp
+			<< "#include \"resources.h\"\n\n"
+			<< "namespace love\n"
+			<< "{\n";
 		for (int i = 1; i < argc; i++)
 		{
 			// use boost::filesystem to list all the files (in v2 maybe)
 			load(argv[i]);
 		}
+		resources_cpp << "}\n";
 		resources_cpp.close();
+		resources_h
+			<< "}\n\n"
+			<< "#endif\n";
 		resources_h.close();
 	}
 
 	else
-		printf("ResHax-5Million v1.0\n- made with LÖVE ^.^\n\nUsage: reshax-5million [file1] [file2] [and so on...]\n");
+		printf("ResHax-5Million v1.0a\n- now empowered by rubber piggies\n\nUsage: reshax-5million [file1] [file2] [and so on...]\n");
 }
 
 void load(string file)
@@ -53,40 +68,34 @@ void write(string file, int size, char *data)
 	char buffer[8];
 	size--;
 
-	// removes directory
+	// removes directory from file path
 	size_t found;
 	found = file.find_last_of('/');
 	if (found != string::npos)
 		file = file.substr(found + 1);
 
+	string var (file);
 	// replaces dashes and dots (in UNIX only)
-#ifndef WIN32
-	found = file.find_first_of(" !\"#$%&'()*+,-.@[]", 0);
+	#ifndef WIN32
+	found = var.find_first_of(" !\"#$%&'()*+,-.@[]", 0);
 	while (found != string::npos)
 	{
-		file[found] = '_';
-		found = file.find_first_of(" !\"#$%&'()*+,-.@[]", found);
+		var[found] = '_';
+		found = var.find_first_of(" !\"#$%&'()*+,-.@[]", found);
 	}
-#endif
+	#endif
 
-	string var = "char ";
-	var += file;
-	var += "[] = {";
-	resources_cpp << var.c_str();
+	resources_cpp << "\tchar " << var << "_data[" << size << "] = {";
 	for (int i = 0; i < size; i++)
 	{
 		sprintf(buffer, "%d,", data[i]);
 		resources_cpp << buffer;
-		if (i % 30 == 0)
+		if (i != 0 && i % 30 == 0)
 			resources_cpp << "\n\t";
 	}
-	sprintf(buffer, "%d};\n\n", data[size]);
-	resources_cpp << buffer;
+	sprintf(buffer, "%d};\n", data[size]);
+	resources_cpp << buffer << "\tpFile " << var.c_str() << "(new MemoryFile(" << var << "_data, " << size << ", \"" << file.c_str() << "\"));\n\n";
 
-	var = "extern char ";
-	var += file;
-	var += "[];\n";
-	resources_h << var;
-
+	resources_h << "\textern pFile " << var << ";\n";
 	printf(" is haxed\n");
 }

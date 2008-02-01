@@ -4,6 +4,10 @@ using std::string;
 
 namespace love
 {
+	File::File(const string & source, const string & filename, char *data, const unsigned long size)
+		: source(source), filename(filename), data(data), size(size)
+	{
+	}
 
 	File::File(const string & source, const string & filename) 
 		: source(source), filename(filename), data(0), size(0)

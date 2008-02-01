@@ -29,6 +29,7 @@ $(OBJDIR)/lualove_glue.o \
 $(OBJDIR)/LuaVM.o \
 $(OBJDIR)/main.o \
 $(OBJDIR)/Matrix.o \
+$(OBJDIR)/MemoryFile.o \
 $(OBJDIR)/Mouse.o \
 $(OBJDIR)/Music.o \
 $(OBJDIR)/NoGame.o \
