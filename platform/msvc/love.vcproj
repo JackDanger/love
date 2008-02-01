@@ -269,6 +269,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\MemoryFile.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Mouse.cpp"
 				>
 			</File>
@@ -286,6 +290,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Resource.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\resources.cpp"
 				>
 			</File>
 			<File
@@ -509,6 +517,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\love_defaults.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\love_keys.h"
 				>
 			</File>
@@ -526,6 +538,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Matrix.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\MemoryFile.h"
 				>
 			</File>
 			<File

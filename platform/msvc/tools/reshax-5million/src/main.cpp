@@ -44,7 +44,7 @@ void load(string file)
 		printf("Haxing %s", file.c_str());
 		
 		int size = (int)fs.tellg();
-		char buff[size];
+		char * buff = new char[size];
 		fs.seekg(0, ios::beg);
 		fs.read(buff, size);
 #ifndef WIN32
@@ -58,6 +58,7 @@ void load(string file)
 		write(file, size, buff);
 #endif
 		fs.close();
+		delete [] buff;
 	}
 	else
 		printf("Hax does not liek '%s'\n", file.c_str());
@@ -66,7 +67,7 @@ void load(string file)
 void write(string file, int size, char *data)
 {
 	char buffer[8];
-	size--;
+	//size--;
 
 	// removes directory from file path
 	size_t found;
@@ -76,17 +77,17 @@ void write(string file, int size, char *data)
 
 	string var (file);
 	// replaces dashes and dots (in UNIX only)
-	#ifndef WIN32
+	//#ifndef WIN32
 	found = var.find_first_of(" !\"#$%&'()*+,-.@[]", 0);
 	while (found != string::npos)
 	{
 		var[found] = '_';
 		found = var.find_first_of(" !\"#$%&'()*+,-.@[]", found);
 	}
-	#endif
+	//#endif
 
-	resources_cpp << "\tchar " << var << "_data[" << size << "] = {";
-	for (int i = 0; i < size; i++)
+	resources_cpp << "\tstatic char " << var << "_data[" << size << "] = {";
+	for (int i = 0; i < size - 1; i++)
 	{
 		sprintf(buffer, "%d,", data[i]);
 		resources_cpp << buffer;

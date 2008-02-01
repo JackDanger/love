@@ -3,6 +3,7 @@
 
 #include "love_mouse.h"
 #include "love_blend.h"
+#include "love_defaults.h"
 
 %}
 
@@ -200,3 +201,8 @@
 %constant const int blend_additive = love::LOVE_BLEND_ADDITIVE;
 %constant const int color_normal = love::LOVE_COLOR_NORMAL;
 %constant const int color_modulate = love::LOVE_COLOR_MODULATE;
+
+/**
+* Defauts.
+**/
+%constant const int default_font = love::LOVE_DEFAULT_FONT;

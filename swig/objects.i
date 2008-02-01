@@ -1,5 +1,7 @@
 %{
 #include "using_graphics.h"
+#include "love_defaults.h"
+#include "resources.h"
 %}
 
 %inline %{
@@ -30,6 +32,18 @@ namespace love
 		pFont newFont(const char * filename, int size)
 		{
 			pFile file(filesystem->newFile(game->getSource(), std::string(filename)));
+			pFont tmp(graphics->newFont(file, size));
+			tmp->load();
+			return tmp;
+		}
+		
+		pFont newFont(int i, int size)
+		{
+			pFile file;
+			
+			if(i == LOVE_DEFAULT_FONT)
+				file = Vera_ttf;
+			
 			pFont tmp(graphics->newFont(file, size));
 			tmp->load();
 			return tmp;
