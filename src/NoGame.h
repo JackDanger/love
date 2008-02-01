@@ -11,6 +11,7 @@
 // LOVE
 #include "Game.h"
 #include "Font.h"
+#include "Image.h"
 #include "AnimatedColor.h"
 
 namespace love 
@@ -27,7 +28,13 @@ namespace love
 	{
 	private:
 		pFont big, small;
-		pAnimatedColor color;
+		pImage logo_big, logo_small, mini_moose;
+
+		// Mini-moose angle.
+		float moose_angle;
+		float flashb, flashi;
+		bool render_nogame;
+
 	public:
 
 		NoGame();

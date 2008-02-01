@@ -70,7 +70,7 @@ namespace love
 		for(int i =0;i<LOVE_CALLBACK_SIZE;i++) callbacks[i] = false;
 		if(vm.isFunction("load")) callbacks[LOVE_CALLBACK_LOAD] = true;
 		if(vm.isFunction("update")) callbacks[LOVE_CALLBACK_UPDATE] = true;
-		if(vm.isFunction("render")) callbacks[LOVE_CALLBACK_RENDER] = true;
+		if(vm.isFunction("draw")) callbacks[LOVE_CALLBACK_DRAW] = true;
 		if(vm.isFunction("keypressed")) callbacks[LOVE_CALLBACK_KEYPRESSED] = true;
 		if(vm.isFunction("keyreleased")) callbacks[LOVE_CALLBACK_KEYRELEASED] = true;
 		if(vm.isFunction("mousepressed")) callbacks[LOVE_CALLBACK_MOUSEPRESSED] = true;
@@ -98,8 +98,8 @@ namespace love
 
 	void LuaGame::render()
 	{
-		if(callbacks[LOVE_CALLBACK_RENDER])
-			vm.call("render");
+		if(callbacks[LOVE_CALLBACK_DRAW])
+			vm.call("draw");
 	}
 
 	void LuaGame::update(float dt)

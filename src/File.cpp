@@ -4,13 +4,13 @@ using std::string;
 
 namespace love
 {
-	File::File(const string & source, const string & filename, char *data, const unsigned long size)
-		: source(source), filename(filename), data(data), size(size)
+	File::File(const string & source, const string & filename, char *data, const unsigned long size, bool compiled)
+		: source(source), filename(filename), data(data), size(size), compiled(compiled)
 	{
 	}
 
 	File::File(const string & source, const string & filename) 
-		: source(source), filename(filename), data(0), size(0)
+		: source(source), filename(filename), data(0), size(0), compiled(false)
 	{
 	}
 
@@ -41,7 +41,7 @@ namespace love
 
 	void File::unload()
 	{
-		if(data != 0)
+		if(data != 0 && !compiled)
 			delete data;
 
 		data = 0;

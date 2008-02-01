@@ -115,10 +115,10 @@ namespace love
 		}
 		else
 		{
-			//game = new NoGame();
-			game = new FontTexGame();
-			//printf("Usage: love [FILE]\n");
-			//printf("\nExamples:\n  love demo01.love\n  love /home/nyan/mygame\n\n");
+			game = new NoGame();
+			//game = new FontTexGame();
+			printf("Usage: love [FILE]\n");
+			printf("\nExamples:\n  love demo01.love\n  love /home/nyan/mygame\n\n");
 			//return false;
 		
 		}

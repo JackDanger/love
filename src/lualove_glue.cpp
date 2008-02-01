@@ -1472,6 +1472,7 @@ SWIGINTERN void love_Filesystem_include(love::Filesystem *self,char const *file)
 
 #include "love_mouse.h"
 #include "love_blend.h"
+#include "love_defaults.h"
 
 
 
@@ -1498,6 +1499,8 @@ namespace love
 
 
 #include "using_graphics.h"
+#include "love_defaults.h"
+#include "resources.h"
 
 
 
@@ -1527,6 +1530,18 @@ namespace love
 		pFont newFont(const char * filename, int size)
 		{
 			pFile file(filesystem->newFile(game->getSource(), std::string(filename)));
+			pFont tmp(graphics->newFont(file, size));
+			tmp->load();
+			return tmp;
+		}
+		
+		pFont newFont(int i, int size)
+		{
+			pFile file;
+			
+			if(i == LOVE_DEFAULT_FONT)
+				file = Vera_ttf;
+			
 			pFont tmp(graphics->newFont(file, size));
 			tmp->load();
 			return tmp;
@@ -10723,7 +10738,7 @@ static int _wrap_ObjectFactory_newColor(lua_State* L) {
 }
 
 
-static int _wrap_ObjectFactory_newFont(lua_State* L) {
+static int _wrap_ObjectFactory_newFont__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -10748,6 +10763,95 @@ static int _wrap_ObjectFactory_newFont(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
+}
+
+
+static int _wrap_ObjectFactory_newFont__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  love::ObjectFactory *arg1 = (love::ObjectFactory *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  love::pFont result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(love::ObjectFactory *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__ObjectFactory,0,1,"ObjectFactory_newFont");
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  result = (arg1)->newFont(arg2,arg3);
+  SWIG_arg=0;
+  {
+    love::pFont * resultptr;
+    resultptr = new love::pFont((love::pFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrTlove__Font_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ObjectFactory_newFont(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__ObjectFactory, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_ObjectFactory_newFont__SWIG_1(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__ObjectFactory, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_ObjectFactory_newFont__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'ObjectFactory_newFont'");
+  lua_error(L);return 0;
 }
 
 
@@ -11334,7 +11438,7 @@ static const struct luaL_reg swig_commands[] = {
     { "timer_get", _wrap_timer_get},
     { "ObjectFactory_newImage", _wrap_ObjectFactory_newImage},
     { "ObjectFactory_newColor",_wrap_ObjectFactory_newColor},
-    { "ObjectFactory_newFont", _wrap_ObjectFactory_newFont},
+    { "ObjectFactory_newFont",_wrap_ObjectFactory_newFont},
     { "ObjectFactory_newImageFont", _wrap_ObjectFactory_newImageFont},
     { "ObjectFactory_newSound", _wrap_ObjectFactory_newSound},
     { "ObjectFactory_newMusic", _wrap_ObjectFactory_newMusic},
@@ -11516,6 +11620,7 @@ static swig_lua_const_info swig_constants[] = {
 { SWIG_LUA_INT,     (char *)"blend_additive", (long) love::LOVE_BLEND_ADDITIVE, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"color_normal", (long) love::LOVE_COLOR_NORMAL, 0, 0, 0},
 { SWIG_LUA_INT,     (char *)"color_modulate", (long) love::LOVE_COLOR_MODULATE, 0, 0, 0},
+{ SWIG_LUA_INT,     (char *)"default_font", (long) love::LOVE_DEFAULT_FONT, 0, 0, 0},
     {0,0,0,0,0,0}
 };
 

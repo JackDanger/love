@@ -248,8 +248,13 @@ namespace love
 		rgba * s = (rgba *)ilGetData();
 
 		// Fill entire texture
-		for(unsigned int i=0;i<width*height;i++) 
+		for(unsigned int i=0;i<width*height;i++)
+		{
 			d[i].a = 0;
+			d[i].r = 61;
+			d[i].g = 51;
+			d[i].b = 251;
+		}
 
 		for(int y=0;y<this->height;y++)
 		{
