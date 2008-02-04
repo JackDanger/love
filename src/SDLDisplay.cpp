@@ -162,4 +162,9 @@ namespace love
 		return new OpenGLGraphics();
 	}
 
+	void SDLDisplay::setTitle(const std::string & title) const
+	{
+		SDL_WM_SetCaption(title.c_str(), 0);
+	}
+
 }// love

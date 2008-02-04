@@ -10084,24 +10084,6 @@ static swig_lua_attribute swig_love_Filesystem_attributes[] = {
 static swig_lua_class *swig_love_Filesystem_bases[] = {&_wrap_class_love_Device,0};
 swig_lua_class _wrap_class_love_Filesystem = { "Filesystem", &SWIGTYPE_p_love__Filesystem,0, swig_delete_Filesystem, swig_love_Filesystem_methods, swig_love_Filesystem_attributes, swig_love_Filesystem_bases };
 
-static int _wrap_Timer_getDelta(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Timer *arg1 = (love::Timer *) 0 ;
-  float result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Timer *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Timer,0,1,"Timer_getDelta");
-  result = (float)(arg1)->getDelta();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_Timer_startBenchmark(lua_State* L) {
   int SWIG_arg = -1;
   love::Timer *arg1 = (love::Timer *) 0 ;
@@ -10178,7 +10160,6 @@ love::Timer *arg1 = (love::Timer *) obj;
 delete arg1;
 }
 static swig_lua_method swig_love_Timer_methods[] = {
-    {"getDelta", _wrap_Timer_getDelta}, 
     {"startBenchmark", _wrap_Timer_startBenchmark}, 
     {"endBenchmark", _wrap_Timer_endBenchmark}, 
     {"getFps", _wrap_Timer_getFps}, 
@@ -11411,7 +11392,6 @@ static const struct luaL_reg swig_commands[] = {
     { "delete_Audio", _wrap_delete_Audio},
     { "Filesystem_include", _wrap_Filesystem_include},
     { "delete_Filesystem", _wrap_delete_Filesystem},
-    { "Timer_getDelta", _wrap_Timer_getDelta},
     { "Timer_startBenchmark", _wrap_Timer_startBenchmark},
     { "Timer_endBenchmark", _wrap_Timer_endBenchmark},
     { "Timer_getFps", _wrap_Timer_getFps},

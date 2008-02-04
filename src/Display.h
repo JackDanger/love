@@ -12,6 +12,7 @@
 #include "Device.h"
 
 // STL
+#include <string>
 
 namespace love
 {
@@ -111,6 +112,12 @@ namespace love
 		* Gets the height of the current display mode.
 		**/
 		int getHeight() const;
+
+		/**
+		* Sets the window title.
+		**/
+		virtual void setTitle(const std::string & title) const = 0;
+
 
 	}; // Display
 

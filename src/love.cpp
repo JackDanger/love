@@ -135,6 +135,9 @@ namespace love
 			printf(" * %s (%ix%i-%s)\n", conf->getString("title").c_str(), width, height, fs ? "fullscreen" : "windowed");
 			display->tryChange(width, height, 32, fs);
 
+			// Set Display title.
+			display->setTitle(conf->getString("title"));
+
 			delete conf;
 
 		}else display->tryChange(800, 600);

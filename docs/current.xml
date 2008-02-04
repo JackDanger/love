@@ -219,10 +219,55 @@
         <param name="filename" brief="The filepath to the image file." />
         <returns type="Image" brief="An Image object containing the display data." />
         <example name="Add an image.">
-          picture = love.objects:newImage("picture.jpg");
+          picture = love.objects:newImage("picture.jpg")
         </example>
       </function>
 
+      <separator />
+
+      <function name="newAnimation" brief="Creates an Animation.">
+        <param name="image" brief="The source Image for the Animation."/>
+        <returns type="Animation" brief="An Animation object with no frames." />
+        <example>
+          image = love.objects:newImage("image.png")
+          anim = love.objects:newAnimation(image)
+        </example>
+      
+      </function>
+
+      <function name="newAnimation" brief="Creates an Animation." >
+
+        This method assumes that
+
+        [ol]
+        [li]The frames are all of equal size[/li]
+        [li]The frames are ordered from top-left to bottom-right[/li]
+        [li]The frame size fx*fh must also fit with the width and height of the source image.[/li]
+        [/ol]
+
+        <param name="image" brief="The source Image for the Animation."/>
+        <param name="fw" brief="The width of each frame."/>
+        <param name="fh" brief="The height of each frame."/>
+        <param name="delay" brief="The delay (seconds) between each frame."/>
+        <param name="frames" brief="The number of frames to include. (0 = all)" />
+        <returns type="Animation" />
+        <example>
+          -- * We have a source Image of total size 128x64.
+          -- * Each frame is 32x32, which means that two rows with four
+          --   frames each.
+          -- * We want all the frames of the source Image to be included
+          --   in the Animation.
+
+          src = love.objcets:newImage("animation_src.png")
+          
+          -- Frame size: 32x32
+          -- Number of frames: all (0)
+          -- Delay between each frame: 0.1 seconds.
+          animation = love.objects:newImage(src, 32, 32, 0.1, 0)
+
+        </example>
+      </function>
+        
       <separator />
 
       <function name="newSound" brief="Loads a sound file.">

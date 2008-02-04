@@ -46,6 +46,7 @@ namespace love
 		int isSupported(const display_mode & dm);
 		int tryChange(const display_mode & dm);
 		Graphics * newGraphics() const;
+		void setTitle(const std::string & title) const;
 
 	}; // SDLDisplay
 
