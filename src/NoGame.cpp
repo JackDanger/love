@@ -50,7 +50,7 @@ namespace love
 
 	void NoGame::update(float dt)
 	{
-		moose_angle += pi/50.0f;
+		moose_angle += pi * dt;
 		flashb += dt;
 		if(flashb >= flashi)
 		{
@@ -61,8 +61,6 @@ namespace love
 
 	void NoGame::render()
 	{
-
-		int w = 256;
 		float width = (float)graphics->getWidth();
 		float height = (float)graphics->getHeight();
 

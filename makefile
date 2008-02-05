@@ -43,6 +43,7 @@ $(OBJDIR)/PhysFSFile.o \
 $(OBJDIR)/PhysFSFilesystem.o \
 $(OBJDIR)/platform_sdl.o \
 $(OBJDIR)/Resource.o \
+$(OBJDIR)/resources.o \
 $(OBJDIR)/SDLDisplay.o \
 $(OBJDIR)/SDLKeyboard.o \
 $(OBJDIR)/SDLMixerAudio.o \
