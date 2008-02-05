@@ -10,7 +10,7 @@ namespace love
 	}
 
 	Animation::Animation(pImage image, float fw, float fh, float delay, int num) : 
-	image(image), mode(1), current(0), playing(true), timeBuffer(0), direction(1)
+	image(image), mode(1), current(0), playing(true), timeBuffer(0), direction(1), speed(1.0f)
 	{
 		// Generate frames.
 		int w = (int)(image->getWidth()/fw);

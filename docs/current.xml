@@ -183,7 +183,7 @@
       [tab /]message = "Yharrr, Why hello thaarrrr!"
       end
 
-      function render()
+      function draw()
       [tab /]love.graphics:draw(message, 100, 100)
       end
       [/lua]
@@ -408,6 +408,25 @@
         <param name="y" brief="The position on the y-axis." />
       </function>
 
+      <function name="draw" brief="Draws text on screen, with word wrap.">
+        Draws text in the current color, with word wrap.
+        <param name="string" brief="A text string." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+        <param name="limit" brief="Wrap the line after this many horizontal pixels." />
+      </function>
+
+      <function name="draw" brief="Draws text on screen, with word wrap and alignment.">
+        Draws text in the current color, with word wrap and alignment.
+        <param name="string" brief="A text string." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+        <param name="limit" brief="Wrap the line after this many horizontal pixels." />
+        <param name="align" brief="love.align_left/center/right" />
+      </function>
+
+      <separator />
+      
       <function name="draw" brief="Draws an Image on screen.">
         <param name="image" brief="An Image object." />
         <param name="x" brief="The position on the x-axis." />
@@ -440,7 +459,7 @@
 	 
       <separator />
 
-      <function name="drawLine" brief="Draws a line from the point (x1,y1) to the point (x2,y2).">
+      <function name="drawLine" brief="Draws a line between the two points.">
         The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the (x1,y1) and (x2,y2) coordinates are relative to that position.
         <param name="xpos" brief="The position on the x-axis." />
         <param name="ypos" brief="The position on the y-axis." />
@@ -453,7 +472,7 @@
         </example>
       </function>
 
-      <function name="drawLine" brief="Draws a line from the point (x1,y1) to the point (x2,y2) with a certain thickness.">
+      <function name="drawLine" brief="Draws a line between the two points with a certain thickness.">
         The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the (x1,y1) and (x2,y2) coordinates are relative to that position.
         <param name="xpos" brief="The position on the x-axis." />
         <param name="ypos" brief="The position on the y-axis." />
@@ -472,7 +491,7 @@
 
       <separator />
 
-      <function name="drawTriangle" brief="Draws a triangle using lines between the points (x1,y1), (x2,y2) and (x3, y3).">
+      <function name="drawTriangle" brief="Draws a triangle using lines between the points.">
         The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the other coordinates are relative to that position.
         <param name="xpos" brief="The position on the x-axis." />
         <param name="ypos" brief="The position on the y-axis." />
@@ -487,7 +506,7 @@
         </example>
       </function>
 
-      <function name="drawTriangle" brief="Draws a triangle using lines of a determined thickness between the points (x1,y1), (x2,y2) and (x3, y3).">
+      <function name="drawTriangle" brief="Draws a triangle using lines of a determined thickness between the points.">
         The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the other coordinates are relative to that position.
         <param name="xpos" brief="The position on the x-axis." />
         <param name="ypos" brief="The position on the y-axis." />
@@ -503,7 +522,7 @@
         </example>
       </function>
 
-      <function name="fillTriangle" brief="Draws a filled triangle determined by the points (x1,y1), (x2,y2) and (x3, y3).">
+      <function name="fillTriangle" brief="Draws a filled triangle determined by the points.">
         The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the other coordinates are relative to that position.[br /]
         [b]WARNING:[/b] The points must be set in a counter-clockwise order or the shape will not be drawn.
         <param name="xpos" brief="The position on the x-axis." />
@@ -521,7 +540,7 @@
 
       <separator />
 
-      <function name="drawQuad" brief="Draws a quadrilateral using lines between the points (x1,y1), (x2,y2), (x3, y3) and (x4, y4).">
+      <function name="drawQuad" brief="Draws a quadrilateral using lines between the points.">
         The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the other coordinates are relative to that position.
         <param name="xpos" brief="The position on the x-axis." />
         <param name="ypos" brief="The position on the y-axis." />
@@ -538,7 +557,7 @@
         </example>
       </function>
 
-      <function name="drawQuad" brief="Draws a quadrilateral using lines of a determined thickness between the points (x1,y1), (x2,y2), (x3, y3) and (x4, y4).">
+      <function name="drawQuad" brief="Draws a quadrilateral using lines of a determined thickness between the points.">
         The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the other coordinates are relative to that position.
         <param name="xpos" brief="The position on the x-axis." />
         <param name="ypos" brief="The position on the y-axis." />
@@ -556,7 +575,7 @@
         </example>
       </function>
 
-      <function name="fillQuad" brief="Draws a filled quadrilateral determined by the the points (x1,y1), (x2,y2), (x3, y3) and (x4, y4).">
+      <function name="fillQuad" brief="Draws a filled quadrilateral determined by the the points.">
         The xpos and ypos coordinates denote the absolute position of the shape on the screen whereas the other coordinates are relative to that position.
         [b]WARNING:[/b] The points must be set in a counter-clockwise order or the shape will not be drawn.
         <param name="xpos" brief="The position on the x-axis." />
@@ -576,7 +595,7 @@
 
       <separator />
 
-      <function name="drawCircle" brief="Draws a circle using lines around the point (xpos, ypos).">
+      <function name="drawCircle" brief="Draws a circle using lines around the center point.">
         [i]Note:[/i] The circle will be drawn using 10 points.
         <param name="xpos" brief="The position on the x-axis." />
         <param name="ypos" brief="The position on the y-axis." />
@@ -586,7 +605,7 @@
         </example>
       </function>
 
-      <function name="drawCircle" brief="Draws a circle using lines around the point (xpos, ypos).">
+      <function name="drawCircle" brief="Draws a circle using lines around the center point.">
         <param name="xpos" brief="The position on the x-axis." />
         <param name="ypos" brief="The position on the y-axis." />
         <param name="radius" brief="The radius of the circle." />
@@ -596,7 +615,7 @@
         </example>
       </function>
 
-      <function name="drawCircle" brief="Draws a circle using lines around the point (xpos, ypos).">
+      <function name="drawCircle" brief="Draws a circle using lines around the center point.">
         <param name="xpos" brief="The position on the x-axis." />
         <param name="ypos" brief="The position on the y-axis." />
         <param name="radius" brief="The radius of the circle." />
@@ -607,7 +626,7 @@
         </example>
       </function>
 
-      <function name="fillCircle" brief="Draws a filled circle around the point (xpos, ypos).">
+      <function name="fillCircle" brief="Draws a filled circle around the center point.">
         [i]Note:[/i] The circle will be drawn using 10 points.
         <param name="xpos" brief="The position on the x-axis." />
         <param name="ypos" brief="The position on the y-axis." />
@@ -617,7 +636,7 @@
         </example>
       </function>
 
-      <function name="fillCircle" brief="Draws a filled circle around the point (xpos, ypos).">
+      <function name="fillCircle" brief="Draws a filled circle around the center point.">
         <param name="xpos" brief="The position on the x-axis." />
         <param name="ypos" brief="The position on the y-axis." />
         <param name="radius" brief="The radius of the circle." />
@@ -625,6 +644,43 @@
         <example name="Draws a smooth circle.">
           love.graphics:fillCircle(100, 100, 50, 30);
         </example>
+      </function>
+
+      <separator />
+
+      <function name="setBlendMode" brief="Sets the blending mode.">
+        The blending mode controls the way transparent elements blend together.
+        <param name="mode" brief="The blending mode." />
+
+        <example>
+          function draw()
+
+          [tab /]-- Set awesome additive blending.
+          [tab /]love.graphics:setBlendMode(love.blend_additive)
+
+          [tab /]love.graphics:draw(image, ... ) -- etc
+
+          end
+        </example>
+        
+      </function>
+
+      <function name="setColorMode" brief="Sets the color mode.">
+        The color mode controls how the current color affects elements.
+        <param name="mode" brief="The color mode." />
+
+        <example>
+          function draw()
+
+          [tab /]-- Enable color modulation. Images and animations will 
+          [tab /]-- will be affected by the current color.
+          [tab /]love.graphics:setColorMode(love.color_modulate)
+
+          [tab /]love.graphics:draw(image, ... ) -- etc
+
+          end
+        </example>
+        
       </function>
 
     </device>
@@ -777,32 +833,113 @@
       </function>
     </device> 
     
-    <!-- <device name="love.gui">
-      Does that mean this device does not officially exist for first release?
-    </device>
-    <device name="love.filesystem">
-
-      <function name="include" brief="Reads and runs Lua code from a file." >
-        <param name="filename" brief="The filename/path to the Lua-file." />
-      </function>
-
-      <separator />
-
-      <function name="open" brief="Opens a file for reading/writing." >
-        <param name="filename" brief="The filename of the file to open." />
-        <param name="mode" brief="A string indicating access level. &quot;r&quot; for read, &quot;w&quot; for write. " />
-        <returns type="File" brief="A File object, or nil if unsuccessful." />
-      </function>
-      <function name="close" brief="Closes an open file.">
-        <param name="file" brief="The File object to close." />
-      </function>
-
-    </device> -->
 
   </section>
 
   <section name="Types" has="List of types">
 
+    <!-- :::::::::::::::::::::::::: ANIMATION :::::::::::::::::::::::::: -->
+
+    <type name="Animation" brief="Represents a frame-by-frame animation.">
+      Remember that Animations must be updated each frame. (See example)
+      
+      <function name="addFrame">
+        <param name="x" brief="The position of the frame along the x-axis." />
+        <param name="y" brief="The position of the frame along the y-axis." />
+        <param name="w" brief="The width of the frame." />
+        <param name="h" brief="The height of the frame." />
+        <param name="delay" brief="The delay in seconds after the frame. " />
+      </function>
+
+      <function  name="setMode" brief="Sets the animation mode.">
+        <param name="mode" brief="The animation mode." />
+      </function>
+
+      <separator />
+      
+      <function name="play" brief="Starts the Animation.">
+        </function>
+
+      <function name="stop" brief="Stops the Animation">
+      </function>
+
+      <function name="reset" brief="Sets the current frame to the first frame and resets timer." >
+        
+      </function>
+
+      <separator />
+
+      <function name="seek" brief="Sets the current frame.">
+        <param name="frame" brief="The frame number. (0 = first)" />
+      </function>
+      
+      <function name="getCurrentFrame" brief="Gets the current frame number">
+        <returns type="number" brief="The frame number, where 0 is the first frame."/>
+      </function>
+
+      <separator />
+
+      <function name="setDelay" brief="Sets the delay of a specific frame." >
+        <param name="frame" brief="The frame number." />
+        <param name="delay" brief="The new delay for the frame." />
+      </function>
+
+      <separator />
+
+      <function name="setSpeed" brief="Sets the overall speed of the Animation.">
+        <param name="speed" brief="Speed factor, where a value of 1 means normal speed." />
+      </function>
+
+      <function name="getSpeed" brief="Returns the current speed of the Animation.">
+        <returns type="number" brief="The speed factor, where a value of 1 means normal speed." />
+      </function>
+
+      <separator />
+
+      <function name="getWidth" brief="Gets the width of the current frame.">
+        <returns type="number">The width of the current frame in pixels.</returns>
+      </function>
+
+      <function name="getHeight" brief="Gets the height of the current frame.">
+        <returns type="number">The height of the current frame in pixels.</returns>
+      </function>
+
+      <separator />
+
+      <function name="setCenter" brief="Changes the center of the Animation.">
+
+        For instance, a 128x64 animation (assuming all frames have equal size), will have a default center at [64,32] (the actual
+        center). If you want the animation to rotate around its top-left corner, you set
+        the center to [0,0].
+
+        <param name="x" brief="The position of the center along the x-axis." />
+        <param name="y" brief="The position of the center along the y-axis." />
+      </function>
+
+      <separator />
+
+      <function name="update" brief="Updates the Animation">
+        Note that this must be called every frame for the Animation to run. See the example.
+        <param name="dt" brief="The time since last update." />
+      </function>
+      
+      <example>
+        function load()
+        [tab /]src = love.objects:newImage("source.png")
+        [tab /]anim = love.objects:newAnimation(src, 32, 32, 0.1, 0)
+        [tab /]anim:play()
+        end
+
+        function update(dt)
+        [tab /]anim:update(dt)
+        end
+
+        function draw()
+        [tab /]love.graphics:draw(anim, 50, 50)
+        end
+      </example>
+    </type>
+    
     <!-- :::::::::::::::::::::::::: COLOR :::::::::::::::::::::::::: -->
 
     <type name="Color" brief="An object containing color information.">
@@ -965,10 +1102,17 @@
         end
       </example>
     </function>
-    <function name="render" brief="Called each timestep right after update.">
+    <function name="draw" brief="Called each timestep right after update.">
       This is where you should draw things onto the screen.
       <example name="Drawing stuff on screen">
-        function render()
+
+        function load()
+        [tab /]-- Set font.
+        [tab /]font = love.objects:newFont(love.default_font, 10)
+        [tab /]love.graphics:setFont(font)
+        end
+
+        function draw()
         [tab /]-- Draw a message on screen.
         [tab /]love.graphics:draw("Hello LOVE", 100, 100)
         end
@@ -1188,6 +1332,13 @@
       <separator />
       <constant name="love.event_message" brief="A message event." />
       <constant name="love.event_gui" brief="A GUI event." />
+      <separator />
+      <constant name="love.blend_normal" brief="Normal blendig mode." />
+      <constant name="love.blend_additive" brief="Additive blending mode." />
+      <constant name="love.color_normal" brief="Normal color mode." />
+      <constant name="love.color_modulate" brief="Modulation color mode." />
+      <separator />
+      <constant name="love.default_font" brief="The default font (Vera)." />
     </constants>
 
     <constants name="Config files" brief="How to create config files." has="List of attributes">
@@ -1215,6 +1366,26 @@
       </example>
 
     </constants>
+
+    <page name="Keyboard shortcuts">
+
+      [div class="subchapter"]
+      [div class="title"]
+      Keyboard shortcuts
+      [/div]
+      [div class="text"]
+      At the moment there are a grand whopping two shortcuts:
+
+      [ul]
+      [li]Esc - Exits LÖVE immediately.[/li]
+      [li]Ctrl+R - Reloads the current game.[/li]
+      [/ul]
+      
+      [/div]
+      [/div]
+
+
+    </page>
 
   </section>
 </document>

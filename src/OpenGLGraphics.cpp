@@ -55,6 +55,13 @@ namespace love
 			glColor4f(1, 1, 1, 1);
 		else if(color_mode == LOVE_COLOR_MODULATE)
 			apply(states.back().color);
+
+		// Slight hax.
+		if(states.back().blend_mode == LOVE_BLEND_ADDITIVE)
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+		else //(mode == LOVE_BLEND_NORMAL)
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	}
 
 	void OpenGLGraphics::setBlendMode(int mode)
@@ -62,7 +69,7 @@ namespace love
 
 		if(mode == LOVE_BLEND_ADDITIVE)
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-		else if(mode == LOVE_BLEND_NORMAL)
+		else //(mode == LOVE_BLEND_NORMAL)
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		Graphics::setBlendMode(mode);
