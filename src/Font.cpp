@@ -2,7 +2,7 @@
 
 namespace love
 {
-	Font::Font(pFile file, int size)  : Resource(file), size(size)
+	Font::Font(pFile file, int size)  : Resource(file), size(size), lineHeight(1)
 	{
 		for(unsigned int i = 0; i < MAX_CHARS; i++) widths[i] = 0;
 	}
@@ -36,5 +36,15 @@ namespace love
 	float Font::getWidth(const char character) const
 	{
 		return (float)widths[(int)character];
+	}
+
+	void Font::setLineHeight(float height)
+	{
+		this->lineHeight = height;
+	}
+
+	float Font::getLineHeight() const
+	{
+		return lineHeight;
 	}
 }

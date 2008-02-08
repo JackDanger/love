@@ -29,15 +29,16 @@ namespace love
 			return c;
 		}
 		
-		pFont newFont(const char * filename, int size)
+		pFont newFont(const char * filename, int size, float lineHeight = 1.0f)
 		{
 			pFile file(filesystem->newFile(game->getSource(), std::string(filename)));
 			pFont tmp(graphics->newFont(file, size));
 			tmp->load();
+			tmp->setLineHeight(lineHeight);
 			return tmp;
 		}
 		
-		pFont newFont(int i, int size)
+		pFont newFont(int i, int size, float lineHeight = 1.0f)
 		{
 			pFile file;
 			
@@ -46,14 +47,16 @@ namespace love
 			
 			pFont tmp(graphics->newFont(file, size));
 			tmp->load();
+			tmp->setLineHeight(lineHeight);
 			return tmp;
 		}
 
-		pFont newImageFont(const char * filename, const char * glyphs)
+		pFont newImageFont(const char * filename, const char * glyphs, float lineHeight = 1.0f)
 		{
 			pFile file(filesystem->newFile(game->getSource(), std::string(filename)));
 			pFont tmp(graphics->newImageFont(file, glyphs));
 			tmp->load();
+			tmp->setLineHeight(lineHeight);
 			return tmp;
 		}
 		

@@ -23,6 +23,7 @@ namespace love
 	{
 	protected:
 		int size;
+		float lineHeight;
 
 	public:
 		static const unsigned int MAX_CHARS = 256;
@@ -76,6 +77,17 @@ namespace love
 		* @param character A character.
 		**/
 		virtual float getWidth(const char character) const;
+
+		/**
+		* Sets the line height (which should be a number to multiply the font size by, example: line height = 1.2 and size = 12 means that rendered line height = 12*1.2)
+		* @param height The new line height.
+		**/
+		void setLineHeight(float height);
+
+		/**
+		* Returns the line height.
+		**/
+		virtual float getLineHeight() const;
 
 	}; // Font
 

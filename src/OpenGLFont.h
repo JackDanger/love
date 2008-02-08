@@ -83,6 +83,7 @@ namespace love
 		//virtual float getHeight() const;
 		virtual void print(std::string text, float x = 0, float y = 0) const;
 		virtual void print(char character, float x = 0, float y = 0) const;
+		virtual float getLineHeight() const;
 
 		/**
 		* Loads the file and creates a series of display lists.

@@ -144,6 +144,11 @@ namespace love
 		glPopMatrix();
 	}
 
+	float OpenGLFont::getLineHeight() const
+	{
+		return Font::getLineHeight() * 1.4f;
+	}
+
 	bool OpenGLFont::load()
 	{
 
