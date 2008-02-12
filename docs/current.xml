@@ -764,7 +764,7 @@
       <separator />
 
       <function name="setVolume" brief="Changes the master volume.">
-        <param name="volume" brief="A number from 0 (min) to 100 (max)." />
+        <param name="volume" brief="A number between 0 (min) and 1 (max)." />
       </function>
 
       <see name="Sound" />
