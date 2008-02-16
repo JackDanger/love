@@ -7,7 +7,7 @@
 #include "using_graphics.h"
 
 // Including Math (for ceil)
-#include <math.h>
+//#include <math.h>
 
 using std::string;
 
@@ -29,7 +29,7 @@ namespace love
 		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
 		
-		glTranslatef(ceil(x), ceil(y), 0.0f);
+		glTranslatef(x, y, 0.0f);
 		GLuint OpenGLFont = list;
 		glListBase(OpenGLFont);
 		glCallLists((int)text.length(), GL_UNSIGNED_BYTE, text.c_str());
@@ -43,7 +43,7 @@ namespace love
 		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
 
-		glTranslatef(ceil(x), ceil(y), 0.0f);
+		glTranslatef(x, y, 0.0f);
 		GLuint OpenGLFont = list;
 		glListBase(OpenGLFont);
 		glCallList(list + (int)character);
