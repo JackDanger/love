@@ -46,6 +46,7 @@ namespace love
 		virtual ~SDLTimer();
 
 		// From Timer.
+		void update();
 		float getDelta();
 		void startBenchmark();
 		float endBenchmark();

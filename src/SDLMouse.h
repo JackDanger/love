@@ -34,6 +34,9 @@ namespace love
 		// From Mouse.
 		float getX() const;
 		float getY() const;
+		void setX(float x);
+		void setY(float y);
+		void setPosition(float x, float y);
 		bool isDown(int button) const;
 		void setVisible(bool visible);
 		bool isVisible() const;

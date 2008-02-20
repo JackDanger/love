@@ -1414,35 +1414,30 @@ SWIGINTERN void love_Graphics_setFont(love::Graphics *self,love::pFont const *fo
 		self->setFont(*font);
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_3(love::Graphics *self,love::pImage const *sprite,float x,float y){
-		love::graphics->applyColorMode();
 		(*sprite)->render(x, y);
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_4(love::Graphics *self,love::pImage const *sprite,float x,float y,float angle,float s=1.0f){
-		love::graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, s, s);
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_6(love::Graphics *self,love::pImage const *sprite,float x,float y,float angle,float sx,float sy){
-		love::graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, sx, sy);
 	}
+SWIGINTERN void love_Graphics_drawSection(love::Graphics *self,love::pImage const *sprite,float x,float y,float w,float h){
+		(*sprite)->render(x, y, w, h);
+	}
 SWIGINTERN void love_Graphics_draw__SWIG_7(love::Graphics *self,love::pAnimation const *sprite,float x,float y){
-		love::graphics->applyColorMode();
 		(*sprite)->render(x, y);
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_8(love::Graphics *self,love::pAnimation const *sprite,float x,float y,float angle,float s=1.0f){
-		love::graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, s, s);
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_10(love::Graphics *self,love::pAnimation const *sprite,float x,float y,float angle,float sx,float sy){
-		love::graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, sx, sy);
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_11(love::Graphics *self,love::pParticlesystem const *system){
-		love::graphics->applyColorMode();
 		(*system)->render();
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_12(love::Graphics *self,love::pParticlesystem const *system,float x,float y){
-		love::graphics->applyColorMode();
 		(*system)->render(x, y);
 	}
 #include "Sound.h"
@@ -8378,24 +8373,6 @@ fail:
 }
 
 
-static int _wrap_Graphics_getBlendMode(lua_State* L) {
-  int SWIG_arg = -1;
-  love::Graphics *arg1 = (love::Graphics *) 0 ;
-  int result;
-  
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Graphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Graphics,0,1,"Graphics_getBlendMode");
-  result = (int)((love::Graphics const *)arg1)->getBlendMode();
-  SWIG_arg=0;
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_Graphics_setColorMode(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
@@ -8416,14 +8393,32 @@ fail:
 }
 
 
-static int _wrap_Graphics_getColorMode(lua_State* L) {
+static int _wrap_Graphics_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
   int result;
   
   if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
-  arg1=(love::Graphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Graphics,0,1,"Graphics_getColorMode");
-  result = (int)((love::Graphics const *)arg1)->getColorMode();
+  arg1=(love::Graphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Graphics,0,1,"Graphics_getWidth");
+  result = (int)((love::Graphics const *)arg1)->getWidth();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Graphics_getHeight(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Graphics *arg1 = (love::Graphics *) 0 ;
+  int result;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  arg1=(love::Graphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Graphics,0,1,"Graphics_getHeight");
+  result = (int)((love::Graphics const *)arg1)->getHeight();
   SWIG_arg=0;
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
@@ -8772,6 +8767,38 @@ static int _wrap_Graphics_draw__SWIG_6(lua_State* L) {
   arg6 = (float)lua_tonumber(L, 6);
   arg7 = (float)lua_tonumber(L, 7);
   love_Graphics_draw__SWIG_6(arg1,(boost::shared_ptr<love::Image > const *)arg2,arg3,arg4,arg5,arg6,arg7);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Graphics_drawSection(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Graphics *arg1 = (love::Graphics *) 0 ;
+  love::pImage *arg2 = (love::pImage *) 0 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
+  if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
+  if(!lua_isnumber(L,6)) SWIG_fail_arg(6);
+  arg1=(love::Graphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Graphics,0,1,"Graphics_drawSection");
+  arg2=(love::pImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__Image_t,0,2,"Graphics_drawSection");
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  arg6 = (float)lua_tonumber(L, 6);
+  love_Graphics_drawSection(arg1,(boost::shared_ptr<love::Image > const *)arg2,arg3,arg4,arg5,arg6);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -9486,12 +9513,13 @@ static swig_lua_method swig_love_Graphics_methods[] = {
     {"drawCircle", _wrap_Graphics_drawCircle}, 
     {"fillCircle", _wrap_Graphics_fillCircle}, 
     {"setBlendMode", _wrap_Graphics_setBlendMode}, 
-    {"getBlendMode", _wrap_Graphics_getBlendMode}, 
     {"setColorMode", _wrap_Graphics_setColorMode}, 
-    {"getColorMode", _wrap_Graphics_getColorMode}, 
+    {"getWidth", _wrap_Graphics_getWidth}, 
+    {"getHeight", _wrap_Graphics_getHeight}, 
     {"setBackgroundColor", _wrap_Graphics_setBackgroundColor}, 
     {"setColor", _wrap_Graphics_setColor}, 
     {"setFont", _wrap_Graphics_setFont}, 
+    {"drawSection", _wrap_Graphics_drawSection}, 
     {"draw", _wrap_Graphics_draw}, 
     {0,0}
 };
@@ -10349,6 +10377,69 @@ fail:
 }
 
 
+static int _wrap_Mouse_setX(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Mouse *arg1 = (love::Mouse *) 0 ;
+  float arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Mouse *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Mouse,0,1,"Mouse_setX");
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setX(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Mouse_setY(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Mouse *arg1 = (love::Mouse *) 0 ;
+  float arg2 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  arg1=(love::Mouse *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Mouse,0,1,"Mouse_setY");
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setY(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Mouse_setPosition(lua_State* L) {
+  int SWIG_arg = -1;
+  love::Mouse *arg1 = (love::Mouse *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg(1);
+  if(!lua_isnumber(L,2)) SWIG_fail_arg(2);
+  if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
+  arg1=(love::Mouse *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Mouse,0,1,"Mouse_setPosition");
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (arg1)->setPosition(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_delete_Mouse(lua_State* L) {
   int SWIG_arg = -1;
   love::Mouse *arg1 = (love::Mouse *) 0 ;
@@ -10377,6 +10468,9 @@ static swig_lua_method swig_love_Mouse_methods[] = {
     {"isDown", _wrap_Mouse_isDown}, 
     {"setVisible", _wrap_Mouse_setVisible}, 
     {"isVisible", _wrap_Mouse_isVisible}, 
+    {"setX", _wrap_Mouse_setX}, 
+    {"setY", _wrap_Mouse_setY}, 
+    {"setPosition", _wrap_Mouse_setPosition}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_Mouse_attributes[] = {
@@ -11670,12 +11764,13 @@ static const struct luaL_reg swig_commands[] = {
     { "Graphics_drawCircle",_wrap_Graphics_drawCircle},
     { "Graphics_fillCircle",_wrap_Graphics_fillCircle},
     { "Graphics_setBlendMode", _wrap_Graphics_setBlendMode},
-    { "Graphics_getBlendMode", _wrap_Graphics_getBlendMode},
     { "Graphics_setColorMode", _wrap_Graphics_setColorMode},
-    { "Graphics_getColorMode", _wrap_Graphics_getColorMode},
+    { "Graphics_getWidth", _wrap_Graphics_getWidth},
+    { "Graphics_getHeight", _wrap_Graphics_getHeight},
     { "Graphics_setBackgroundColor",_wrap_Graphics_setBackgroundColor},
     { "Graphics_setColor",_wrap_Graphics_setColor},
     { "Graphics_setFont", _wrap_Graphics_setFont},
+    { "Graphics_drawSection", _wrap_Graphics_drawSection},
     { "Graphics_draw",_wrap_Graphics_draw},
     { "delete_Graphics", _wrap_delete_Graphics},
     { "Sound_setVolume", _wrap_Sound_setVolume},
@@ -11705,6 +11800,9 @@ static const struct luaL_reg swig_commands[] = {
     { "Mouse_isDown", _wrap_Mouse_isDown},
     { "Mouse_setVisible", _wrap_Mouse_setVisible},
     { "Mouse_isVisible", _wrap_Mouse_isVisible},
+    { "Mouse_setX", _wrap_Mouse_setX},
+    { "Mouse_setY", _wrap_Mouse_setY},
+    { "Mouse_setPosition", _wrap_Mouse_setPosition},
     { "delete_Mouse", _wrap_delete_Mouse},
     { "Keyboard_isDown", _wrap_Keyboard_isDown},
     { "delete_Keyboard", _wrap_delete_Keyboard},

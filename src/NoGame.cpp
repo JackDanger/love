@@ -1,11 +1,14 @@
 #include "NoGame.h"
 
 #include "using_graphics.h"
+#include "using_timer.h"
 #include "love_version.h"
 
 #include "love_math.h"
 #include "resources.h"
 #include <cmath>
+
+#include <sstream>
 
 namespace love 
 {
@@ -36,9 +39,16 @@ namespace love
 
 		logo_big = graphics->newImage(logo256x128_png); logo_big->load();
 		logo_small = graphics->newImage(logo128x64_png); logo_small->load();
-		mini_moose = graphics->newImage(mini_moose_png); mini_moose->load();
+
+		mini_moose = graphics->newImage("moose.png"); 
+		mini_moose->readData();
+		//mini_moose->addAlphaBorder(true);
+		mini_moose->extendAlpha();
+		mini_moose->toHardware();
+		mini_moose->freeData();
 
 		graphics->setColor(255, 255, 255, 255);
+		timer->setCap(10);
 
 		return true;
 	}
@@ -86,7 +96,15 @@ namespace love
 		std::string s = "";
 		s += version_string();
 		s += "\nMini-Moose";
-		graphics->draw(s.c_str(), width - 210, height - 35, 200,  LOVE_ALIGN_RIGHT);
+		//graphics->draw(s.c_str(), width - 210, height - 35, 200,  LOVE_ALIGN_RIGHT);
+
+		std::stringstream ss;
+		ss << "FPS: ";
+		ss << timer->getFps();
+		ss << ", ";
+		ss << timer->dt;
+
+		graphics->draw(ss.str().c_str(), width - 410, height - 35, 200,  LOVE_ALIGN_LEFT);
 	}
 
 	void NoGame::keyPressed(int key)

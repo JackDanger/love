@@ -38,6 +38,21 @@ namespace love
 		virtual float getY() const = 0;
 
 		/**
+		* Sets the mouse position along the x-axis.
+		**/
+		virtual void setX(float x) = 0;
+
+		/**
+		* Sets the mouse position along the y-axis.
+		**/
+		virtual void setY(float y) = 0;
+
+		/**
+		* Sets the mouse position.
+		**/
+		virtual void setPosition(float x, float y) = 0;
+
+		/**
 		* Checks if a mouse button is pressed.
 		**/
 		virtual bool isDown(int button) const = 0;

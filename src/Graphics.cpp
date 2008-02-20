@@ -22,11 +22,6 @@ namespace love
 		
 		if(!states.empty())
 			s = states.back();
-		else
-		{
-			s.color_mode = LOVE_BLEND_NORMAL;
-			s.blend_mode = LOVE_COLOR_NORMAL;			
-		}
 
 		states.push_back(s);
 	}
@@ -52,74 +47,24 @@ namespace love
 		return display->getHeight();
 	}
 
-	void Graphics::setBlendMode(int mode)
-	{
-		states.back().blend_mode = mode;
-	}
-
-	int Graphics::getBlendMode() const
-	{
-		return states.back().blend_mode;
-	}
-
-	void Graphics::setColorMode(int mode)
-	{
-		states.back().color_mode = mode;
-	}
-
-	int Graphics::getColorMode() const
-	{
-		return states.back().color_mode;
-	}
-
 	void Graphics::setBackgroundColor(pColor color)
 	{
-		states.back().background = color;
-	}
-
-	void Graphics::setBackgroundColor(int r, int g, int b)
-	{
-		states.back().background.reset<Color>(new Color(r, g, b, 255));
+		this->setBackgroundColor(color->red, color->green, color->blue);
 	}
 
 	void Graphics::setColor(pColor color)
 	{
-		states.back().color = color;
-	}
-
-	void Graphics::setColor(int r, int g, int b, int a)
-	{
-		states.back().color.reset<Color>(new Color(r, g, b, a));
-	}
-
-	void Graphics::setAlpha(int a)
-	{
-		states.back().color->alpha = a;
-	}
-
-	int Graphics::getAlpha() const
-	{
-		return states.back().color->alpha;
+		this->setColor(color->red, color->green, color->blue, color->alpha);
 	}
 
 	void Graphics::setFont(pFont font)
 	{
 		states.back().font = font;
 	}
-	
+
 	pFont Graphics::getFont() const
 	{
 		return states.back().font;
-	}
-	
-	pColor Graphics::getBackgroundColor() const
-	{
-		return states.back().background;
-	}
-	
-	pColor Graphics::getColor() const
-	{
-		return states.back().color;
 	}
 
 	pImage Graphics::newImage(const std::string & filename) const
@@ -142,8 +87,6 @@ namespace love
 
 	void Graphics::draw(const char * str, float x, float y) const
 	{
-		apply(states.back().color); // Set current color.
-
 		const pFont & font = states.back().font;
 
 		if(font != 0)
@@ -173,14 +116,10 @@ namespace love
 					font->print(text, x, y + (lines * font->getHeight() * font->getLineHeight()));
 			}
 		}
-		
-		apply(pColor(new Color(255,255,255,255))); // to clear the set color
 	}
 	
 	void Graphics::draw(const char * str, float x, float y, int wrap, int align) const
 	{
-		apply(states.back().color); // Set current color.
-
 		const pFont & font = states.back().font;
 
 		if(font != 0)
@@ -276,8 +215,6 @@ namespace love
 				}	
 			}
 		}
-		
-		apply(pColor(new Color(255,255,255,255))); // to clear the set color
 	}
 
 } // love

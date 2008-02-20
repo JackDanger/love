@@ -30,14 +30,8 @@ namespace love
 	**/
 	struct graphics_state
 	{
-		// Back/Foreground color.
-		pColor color, background;
-
 		// Current font.
 		pFont font;
-
-		// The current blend and color mode.
-		int blend_mode, color_mode;
 	};
 
 	/**
@@ -78,17 +72,6 @@ namespace love
 		virtual void clear() const = 0;
 
 		/**
-		* Applies the color as the current color.
-		**/
-		virtual void apply(const pColor & color) const = 0;
-
-		/**
-		* Applies white if color_mode = normal, or the current 
-		* color if color_mode = modulate.
-		**/
-		virtual void applyColorMode() const = 0;
-
-		/**
 		* Gets the width of the graphics context.
 		**/
 		int getWidth() const;
@@ -101,49 +84,34 @@ namespace love
 		/**
 		* Sets the current blend mode.
 		**/
-		virtual void setBlendMode(int mode);
-
-		/**
-		* Gets the current blend mode.
-		**/
-		int getBlendMode() const;
+		virtual void setBlendMode(int mode) = 0;
 
 		/**
 		* Sets the current color mode.
 		**/
-		void setColorMode(int mode);
-
-		/**
-		* Gets the current color mode.
-		**/
-		int getColorMode() const;
+		virtual void setColorMode(int mode) = 0;
 
 		/**
 		* Sets the background Color. 
 		**/
 		void setBackgroundColor(pColor color);
-		void setBackgroundColor(int r, int g, int b);
+		virtual void setBackgroundColor(int r, int g, int b) = 0;
 
 		/**
 		* Sets the foreground color.
 		**/
 		void setColor(pColor color);
-		void setColor(int r, int g, int b, int a = 255);
-
-		/**
-		* Sets the alpha component of the current color.
-		**/
-		void setAlpha(int a);
-
-		/**
-		* Gets the alpha component of the current color.
-		**/
-		int getAlpha() const;
+		virtual void setColor(int r, int g, int b, int a = 255) = 0;
 
 		/**
 		* Sets the current font.
 		**/
 		void setFont(pFont font);
+
+		/**
+		* Gets the current Font.
+		**/
+		pFont getFont() const;
 
 		/**
 		* Gets an Image object that is compatible with the 
@@ -168,11 +136,6 @@ namespace love
 		* current graphics context.
 		**/
 		virtual pParticlesystem newParticlesystem() const = 0;
-
-		// Rude wants them here.
-		pFont getFont() const;
-		pColor getBackgroundColor() const;
-		pColor getColor() const;
 		
 		// Convenience functions. Base source is assumed.
 		pImage newImage(const std::string & filename) const;

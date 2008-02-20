@@ -33,6 +33,21 @@ namespace love
 		return (float)y;
 	}
 
+	void SDLMouse::setX(float x)
+	{
+		SDL_WarpMouse((int)x, (int)getY());
+	}
+
+	void SDLMouse::setY(float y)
+	{
+		SDL_WarpMouse((int)getX(), (int)y);
+	}
+
+	void SDLMouse::setPosition(float x, float y)
+	{
+		SDL_WarpMouse((int)x, (int)y);
+	}
+
 	bool SDLMouse::isDown(int button) const
 	{
 		return (SDL_GetMouseState(0, 0) & SDL_BUTTON(button)) != 0;

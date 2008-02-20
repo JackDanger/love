@@ -11,6 +11,29 @@ namespace love
 	{
 	}
 
+	void SDLTimer::update()
+	{
+		// If there's no cap, just update the value.
+		if(max <= 0)
+		{
+			this->dt = getDelta();
+			return;
+		}
+
+		// There is a cap:
+		float diff = max - dt;
+
+		if(diff > 0)
+		{
+			// Wait a little.
+			SDL_Delay((int)(diff * 1000.0f));
+			this->dt = getDelta();
+			return;
+		}
+
+		this->dt =  getDelta();
+	}
+
 	float SDLTimer::getDelta()
 	{
 		

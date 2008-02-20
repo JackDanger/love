@@ -16,9 +16,9 @@
 namespace love  
 {  
 	enum { 
-		LOVE_MAJOR_VERSION = 0, 
-		LOVE_MINOR_VERSION = 2, 
-		LOVE_REVISION = 0
+		LOVE_MAJOR_VERSION = 0,
+		LOVE_MINOR_VERSION = 2,
+		LOVE_REVISION = 1
 	};
 
 	/**

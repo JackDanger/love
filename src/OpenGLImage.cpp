@@ -297,5 +297,97 @@ namespace love
 		// Cleanup
 		delete [] d;
 	}
+
+	bool pixel_in_range(rgba * data, int width, int height, int x, int y)
+	{
+		return (x >= 0 && y >= 0 && x < width && y < height);
+	}
+
+	void pixel_commit(rgba & source, int & r, int & g, int & b, int & counter)
+	{
+		if(source.a != 0)
+		{
+			counter++;
+			r += source.r;
+			g += source.g;
+			b += source.b;
+		}
+	}
+
+	void pixel_average_area(rgba * data, int width, int height, int x, int y)
+	{
+		int p = 0; // Number of neighbor pixels with alpha != 0
+		int r = 0, g = 0, b = 0;
+
+		if(pixel_in_range(data, width, height, x-1, y-1)) pixel_commit(data[(y-1)*width+(x-1)], r, g, b, p);
+		if(pixel_in_range(data, width, height, x, y-1)) pixel_commit(data[(y-1)*width+(x)], r, g, b, p);
+		if(pixel_in_range(data, width, height, x+1, y-1)) pixel_commit(data[(y-1)*width+(x+1)], r, g, b, p);
+		if(pixel_in_range(data, width, height, x-1, y)) pixel_commit(data[(y)*width+(x-1)], r, g, b, p);
+		if(pixel_in_range(data, width, height, x+1, y)) pixel_commit(data[(y)*width+(x+1)], r, g, b, p);
+		if(pixel_in_range(data, width, height, x-1, y+1)) pixel_commit(data[(y+1)*width+(x-1)], r, g, b, p);
+		if(pixel_in_range(data, width, height, x, y+1)) pixel_commit(data[(y+1)*width+(x)], r, g, b, p);
+		if(pixel_in_range(data, width, height, x+1, y+1))pixel_commit(data[(y+1)*width+(x+1)], r, g, b, p);
+
+		if(p == 0) p = 1;
+
+		data[y*width+x].r = r/p;
+		data[y*width+x].g = g/p;
+		data[y*width+x].b = b/p;
+
+	}
+
+	void OpenGLImage::extendAlpha()
+	{
+		// Get key data
+		ILuint width	= ilGetInteger(IL_IMAGE_WIDTH);
+		ILuint height	= ilGetInteger(IL_IMAGE_HEIGHT);
+		ILuint depth	= ilGetInteger(IL_IMAGE_DEPTH);
+		ILuint bpp		= ilGetInteger(IL_IMAGE_BPP);
+		ILuint type		= ilGetInteger(IL_IMAGE_TYPE);
+		ILuint format	= ilGetInteger(IL_IMAGE_FORMAT);
+		ILuint origin	= ilGetInteger(IL_IMAGE_ORIGIN);
+
+		// Source
+		rgba * s = (rgba *)ilGetData();
+
+		for(int y=0;y<this->height;y++)
+		{
+			for(int x=0;x<this->width;x++)
+			{
+				if(s[y*width+x].a == 0)
+				{
+					pixel_average_area(s, width, height, x, y);
+				}
+			}
+		}
+
+	}
+
+	void OpenGLImage::addAlphaBorder(bool overwrite)
+	{
+		if(!overwrite)
+		{
+			// Extend image here.
+			// Update size.
+		}
+
+		ILuint width	= ilGetInteger(IL_IMAGE_WIDTH);
+		ILuint height	= ilGetInteger(IL_IMAGE_HEIGHT);
+
+		rgba * s = (rgba *)ilGetData();
+
+		// Overwrite the outer border.
+		for(int i = 0;i<(int)width;i++)
+		{
+			s[i].a = 0;
+			s[(height-1)*width + i].a = 0;
+		}
+
+		for(int i = 0;i<(int)height;i++)
+		{
+			s[height*i].a = 0;
+			s[(height*i)+width-1].a = 0;
+		}
+	}
 	
 } // love

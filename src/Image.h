@@ -119,6 +119,18 @@ namespace love
 		virtual void render(float x, float y, float width, float height) const = 0;
 		virtual void render(float x, float y, float angle, float sx, float sy) const = 0;
 
+		/**
+		* Extends color data one pixel into the area where alpha = 0.
+		* This makes images artifact-free when rotated, stretched, etc.
+		**/
+		virtual void extendAlpha() = 0;
+
+		/**
+		* Creates a border of transparent pixels around the Image.
+		* @param overwrite False will pad the Image, thus resizing it; true
+		* will keep the Image size and overwrite the pixels instead.
+		**/
+		virtual void addAlphaBorder(bool overwrite = false) = 0;
 
 	};
 

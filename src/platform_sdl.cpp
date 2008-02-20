@@ -11,11 +11,6 @@
 #include "SDLMouse.h"
 #include "SDLKeyboard.h"
 
-
-#ifdef W32
-#include "Win32Timer.h"
-#endif
-
 // STD
 #include <cmath>
 
@@ -37,7 +32,6 @@ namespace love
 		graphics = display->newGraphics();
 		audio = new SDLMixerAudio();
 		timer = new SDLTimer();
-		//timer = new Win32Timer();
 		filesystem = new PhysFSFilesystem();
 		mouse = new SDLMouse();
 		keyboard = new SDLKeyboard();
@@ -63,9 +57,6 @@ namespace love
 		delete mouse;
 		delete keyboard;
 
-#ifdef LOVE_BALANCE
-		balance_print();
-#endif
 		// Quit SDL.
 		SDL_Quit();
 	}
@@ -84,11 +75,11 @@ namespace love
 		while(1)
 		{
 
-			// Get the time since last time.
-			float dt = timer->getDelta();
+			// Update the timer.
+			timer->update();
 
 			// Update everything.
-			update(dt);
+			update(timer->dt);
 
 			// Render everything.
 			render();

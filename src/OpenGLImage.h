@@ -65,14 +65,28 @@ namespace love
 		// From Resource
 		void unload();
 		
-	private:
+		/**
+		* Extends color data one pixel into the area where alpha = 0.
+		* This makes images artifact-free when rotated, stretched, etc.
+		**/
+		void extendAlpha();
 
 		/**
-		* @brief Pads the image to a power of two texture.
+		* Creates a border of transparent pixels around the Image.
+		* @param overwrite False will pad the Image, thus resizing it; true
+		* will keep the Image size and overwrite the pixels instead.
+		**/
+		void addAlphaBorder(bool overwrite = false);
+
+	private:
+
+		// Optional optimizations.
+
+		/**
+		* Pads the image to a power of two texture.
 		* Useful for < OGL2.0, which only supports these.
 		**/
 		void padTwoPower();
-
 		
 	}; // OpenGLImage
 	

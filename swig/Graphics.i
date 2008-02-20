@@ -22,9 +22,9 @@ namespace love
 		void drawCircle(float xpos, float ypos, float radius, float points = 10, float lineWidth = 1) const;
 		void fillCircle(float xpos, float ypos, float radius, float points = 10) const;
 		virtual void setBlendMode(int mode);
-		int getBlendMode() const;
 		void setColorMode(int mode);
-		int getColorMode() const;
+		int getWidth() const;
+		int getHeight() const;
 	};
 	
 }
@@ -54,20 +54,22 @@ namespace love
 
 	void draw(const pImage * sprite, float x, float y)
 	{
-		love::graphics->applyColorMode();
 		(*sprite)->render(x, y);
 	}
 	
 	void draw(const pImage * sprite, float x, float y, float angle, float s = 1.0f)
 	{
-		love::graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, s, s);
 	}
 	
 	void draw(const pImage * sprite, float x, float y, float angle, float sx, float sy)
 	{
-		love::graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, sx, sy);
+	}
+	
+	void drawSection( const pImage * sprite, float x, float y, float w, float h )
+	{
+		(*sprite)->render(x, y, w, h);
 	}
 	
 	/**
@@ -76,19 +78,16 @@ namespace love
 
 	void draw(const pAnimation * sprite, float x, float y)
 	{
-		love::graphics->applyColorMode();
 		(*sprite)->render(x, y);
 	}
 	
 	void draw(const pAnimation * sprite, float x, float y, float angle, float s = 1.0f)
 	{
-		love::graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, s, s);
 	}
 	
 	void draw(const pAnimation * sprite, float x, float y, float angle, float sx, float sy)
 	{
-		love::graphics->applyColorMode();
 		(*sprite)->render(x, y, angle, sx, sy);
 	}
 
@@ -98,13 +97,11 @@ namespace love
 
 	void draw(const pParticlesystem * system)
 	{
-		love::graphics->applyColorMode();
 		(*system)->render();
 	}
 	
 	void draw(const pParticlesystem * system, float x, float y)
 	{
-		love::graphics->applyColorMode();
 		(*system)->render(x, y);
 	}
 	

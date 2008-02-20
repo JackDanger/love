@@ -2,7 +2,7 @@
 
 namespace love
 {
-	Timer::Timer() : fps(0), fpsUpdateFrequency(1.0f)
+	Timer::Timer() : fps(0), fpsUpdateFrequency(1.0f), frames(0), max(0), max_buffer(0), dt(0)
 	{
 	}
 
@@ -24,6 +24,17 @@ namespace love
 	float Timer::getFps() const
 	{
 		return fps;
+	}
+
+	void Timer::setCap(float fps)
+	{
+		max = 1.0f/fps;
+		max_buffer = 0;
+	}
+
+	float Timer::getCap() const
+	{
+		return max;
 	}
 
 }// love

@@ -22,6 +22,10 @@ namespace love
 	**/
 	class Timer : public Device
 	{
+		// Friend functions
+		friend int platform_loop();
+		friend class NoGame;
+
 	protected:
 
 		// Updated with a certain frequency.
@@ -32,6 +36,13 @@ namespace love
 
 		// Frames since last FPS update.
 		int frames;
+
+		// Millisecond timer cap (in seconds).
+		float max;
+		float max_buffer;
+
+		// The current timestep.
+		float dt;
 
 	public:
 
@@ -46,6 +57,12 @@ namespace love
 		bool init(int argc, char* argv[]);
 		void quit();
 		
+		/**
+		* Updates the timer. This method may sleep if FPS
+		* capping is enabled.
+		**/
+		virtual void update() = 0;
+
 		/**
 		* Gets seconds since last call to this method.
 		**/
@@ -65,6 +82,16 @@ namespace love
 		* Gets the FPS.
 		**/
 		float getFps() const;
+
+		/**
+		* Sets the current max frame rate.
+		**/
+		void setCap(float fps);
+
+		/**
+		* Gets the current max framerate.
+		**/
+		float getCap() const;
 
 
 	}; // Timer
