@@ -4,7 +4,11 @@ namespace love
 {
 	Font::Font(pFile file, int size)  : Resource(file), size(size), lineHeight(1)
 	{
-		for(unsigned int i = 0; i < MAX_CHARS; i++) widths[i] = 0;
+		for(unsigned int i = 0; i < MAX_CHARS; i++)
+		{
+			widths[i] = 0;
+			spacing[i] = 0;
+		}
 	}
 
 	Font::~Font()
@@ -20,10 +24,11 @@ namespace love
 	{
 		float temp = 0;
 
-		for(unsigned int i = 0; i < line.size(); i++)
+		for(unsigned int i = 0; i < line.size() - 1; i++)
 		{
-			temp += widths[(int)line[i]];
+			temp += widths[(int)line[i]] + spacing[(int)line[i]];
 		}
+		temp += widths[(int)line[line.size() - 1]]; // the last character's spacing isn't counted
 
 		return temp;
 	}

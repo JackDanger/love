@@ -29,6 +29,7 @@ namespace love
 		static const unsigned int MAX_CHARS = 256;
 		// The widths of each character.
 		int widths[MAX_CHARS];
+		int spacing[MAX_CHARS];
 
 		/**
 		* Default constructor.

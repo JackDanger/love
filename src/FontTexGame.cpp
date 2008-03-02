@@ -30,7 +30,7 @@ namespace love
 		green.reset<Color>(new Color(0,255,0,255));
 		blue.reset<Color>(new Color(0,0,255,255));
 		
-		font = graphics->newFont("Vera.ttf", 15); font->load();
+		//font = graphics->newFont("Vera.ttf", 15); font->load();
 		
 		imgfont = graphics->newImageFont("rpgfont.png", " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&`'*#=[]\""); imgfont->load();
 		
@@ -38,7 +38,7 @@ namespace love
 		
 		label.reset<Label>(new Label("Assbunny"));
 		label->setPosition(100,100);
-		label->setFont(font);
+		//label->setFont(font);
 		label->setBackgroundColor(blue);
 		label->setColor(red);
 		label->adjustHeight();
@@ -60,7 +60,7 @@ namespace love
 
 	void FontTexGame::render()
 	{
-		graphics->draw("THIS. IS\nPRIMITIVE SHAPES!!!!!!!", 0, 40, 800, love::LOVE_ALIGN_CENTER);
+		graphics->draw("THIS. IS.\nPRIMITIVE SHAPES!!!!!!!", 0, 40, 800, love::LOVE_ALIGN_CENTER);
 		
 		graphics->drawLine(200, 200, -50, 0, 50, 0, 2);
 		

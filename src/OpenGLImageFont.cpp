@@ -6,9 +6,6 @@
 #include "using_filesystem.h"
 #include "using_graphics.h"
 
-// Including Math (for ceil)
-//#include <math.h>
-
 using std::string;
 
 namespace love
@@ -65,12 +62,13 @@ namespace love
 		rgba spacer = pixels[0];
 		unsigned int current = 0;
 		int width = 0;
+		int space = 0;
 		
 		for(int i = 1; i != (int)image->getWidth(); i++)
 		{			
 			if(spacer.r == pixels[i].r && spacer.g == pixels[i].g && spacer.b == pixels[i].b && spacer.a == pixels[i].a)
 			{
-				if(width != 0) //this means we have found the end of our current image
+				if(width != 0) // this means we have found the end of our current character
 				{
 					if((unsigned int)glyphs[current] > MAX_CHARS)
 						printf("Error reading image font '%s': Character '%c' is out of range.", file->getFilename().c_str(), glyphs[current]);
@@ -81,15 +79,44 @@ namespace love
 					}
 					
 					width = 0;
-					current++;
-					if(current == glyphs.size()) // just to end it when the last character is found
-						i = (int)image->getWidth() - 1;
+					//space++; // start counting the spacing
 				}
+				space++;
 			}
 			else
+			{
+				if(space != 0) // this means we have found the end of our spacing
+				{
+					if((unsigned int)spacing[current] > MAX_CHARS)
+						printf("Error reading image font '%s': Character '%c' is out of range.", file->getFilename().c_str(), glyphs[current]);
+					else
+						spacing[(int)glyphs[current]] = space;
+
+					current++;
+					if(current == glyphs.size())
+						i = (int)image->getWidth() - 1; // just to end it when the last character is found
+
+					space = 0;
+					//width++; // start counting the width
+				}
 				width++;
+			}
 		}
 		// Reading image data ends.
+
+
+		// Alpha optimizing
+		for(int i = 0; i != image->getHeight() * image->getWidth(); i++)
+		{			
+			if(spacer.r == pixels[i].r && spacer.g == pixels[i].g && spacer.b == pixels[i].b && spacer.a == pixels[i].a)
+			{
+				pixels[i].r = 0;
+				pixels[i].g = 0;
+				pixels[i].b = 0;
+				pixels[i].a = 0;
+			}
+		}
+
 		
 		
 		// Create display lists
@@ -108,10 +135,10 @@ namespace love
 			{
 				image->render((float)positions[i], 0, (float)widths[i], (float)size);
 		
-				glTranslatef((float)widths[i] ,0,0);
+				glTranslatef((float)widths[i] + (float)spacing[i], 0, 0);
 			}
 			else
-				glTranslatef((float)widths[(int)' '] ,0,0); // empty character are replaced with a whitespace
+				glTranslatef((float)widths[(int)' '], 0, 0); // empty character are replaced with a whitespace
 
 			glEndList();
 		}
