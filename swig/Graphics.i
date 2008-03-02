@@ -13,7 +13,7 @@ namespace love
 		void setBackgroundColor(int r, int g, int b);
 		void setColor(int r, int g, int b, int a = 255);
 		void draw(const char * str, float x, float y) const;
-		void draw(const char * str, float x, float y, int wrap, int align = 1) const;
+		void drawf(const char * str, float x, float y, int wrap, int align = 1) const;
 		void drawLine(float xpos, float ypos, float x1, float y1, float x2, float y2, float lineWidth = 1) const;
 		void drawTriangle(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3, float lineWidth = 1) const;
 		void fillTriangle(float xpos, float ypos, float x1, float y1, float x2, float y2, float x3, float y3) const;

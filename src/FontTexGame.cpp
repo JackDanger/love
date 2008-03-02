@@ -60,7 +60,7 @@ namespace love
 
 	void FontTexGame::render()
 	{
-		graphics->draw("THIS. IS.\nPRIMITIVE SHAPES!!!!!!!", 0, 40, 800, love::LOVE_ALIGN_CENTER);
+		graphics->drawf("THIS. IS.\nPRIMITIVE SHAPES!!!!!!!", 0, 40, 800, love::LOVE_ALIGN_CENTER);
 		
 		graphics->drawLine(200, 200, -50, 0, 50, 0, 2);
 		

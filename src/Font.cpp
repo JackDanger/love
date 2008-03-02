@@ -22,6 +22,7 @@ namespace love
 	
 	float Font::getWidth(const std::string & line) const
 	{
+		if(line.size() == 0) return 0;
 		float temp = 0;
 
 		for(unsigned int i = 0; i < line.size() - 1; i++)

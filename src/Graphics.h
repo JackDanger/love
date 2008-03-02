@@ -164,7 +164,7 @@ namespace love
 		* @param wrap The maximum width of the text area.
 		* @param align Where to align the text.
 		**/
-		void draw(const char * str, float x, float y, int wrap, int align = LOVE_ALIGN_LEFT) const;
+		void drawf(const char * str, float x, float y, int wrap, int align = LOVE_ALIGN_LEFT) const;
 		
 		/**
 		* Draws a line from (x1,y1) to (x2,y2) relative to the point (xpos,ypos).

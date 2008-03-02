@@ -436,7 +436,7 @@
         <param name="y" brief="The position on the y-axis." />
       </function>
 
-      <function name="draw" brief="Draws text on screen, with word wrap.">
+      <function name="drawf" brief="Draws formatted text on screen, with word wrap.">
         Draws text in the current color, with word wrap.
         <param name="string" brief="A text string." />
         <param name="x" brief="The position on the x-axis." />
@@ -444,7 +444,7 @@
         <param name="limit" brief="Wrap the line after this many horizontal pixels." />
       </function>
 
-      <function name="draw" brief="Draws text on screen, with word wrap and alignment.">
+      <function name="drawf" brief="Draws formatted text on screen, with word wrap and alignment.">
         Draws text in the current color, with word wrap and alignment.
         <param name="string" brief="A text string." />
         <param name="x" brief="The position on the x-axis." />

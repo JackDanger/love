@@ -87,7 +87,7 @@ namespace love
 		if(render_nogame)
 		{
 			graphics->setFont(big);
-			graphics->draw("No Game", (width-300)/2.0f, height/2.0f + 200, 300, LOVE_ALIGN_CENTER);
+			graphics->drawf("No Game", (width-300)/2.0f, height/2.0f + 200, 300, LOVE_ALIGN_CENTER);
 		}
 
 		graphics->setFont(small);
@@ -104,7 +104,7 @@ namespace love
 		ss << ", ";
 		ss << timer->dt;
 
-		graphics->draw(ss.str().c_str(), width - 410, height - 35, 200,  LOVE_ALIGN_LEFT);
+		graphics->drawf(ss.str().c_str(), width - 410, height - 35, 200,  LOVE_ALIGN_LEFT);
 	}
 
 	void NoGame::keyPressed(int key)

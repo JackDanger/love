@@ -1413,31 +1413,31 @@ SWIGINTERN void love_Graphics_setColor__SWIG_2(love::Graphics *self,love::pColor
 SWIGINTERN void love_Graphics_setFont(love::Graphics *self,love::pFont const *font){
 		self->setFont(*font);
 	}
-SWIGINTERN void love_Graphics_draw__SWIG_3(love::Graphics *self,love::pImage const *sprite,float x,float y){
+SWIGINTERN void love_Graphics_draw__SWIG_1(love::Graphics *self,love::pImage const *sprite,float x,float y){
 		(*sprite)->render(x, y);
 	}
-SWIGINTERN void love_Graphics_draw__SWIG_4(love::Graphics *self,love::pImage const *sprite,float x,float y,float angle,float s=1.0f){
+SWIGINTERN void love_Graphics_draw__SWIG_2(love::Graphics *self,love::pImage const *sprite,float x,float y,float angle,float s=1.0f){
 		(*sprite)->render(x, y, angle, s, s);
 	}
-SWIGINTERN void love_Graphics_draw__SWIG_6(love::Graphics *self,love::pImage const *sprite,float x,float y,float angle,float sx,float sy){
+SWIGINTERN void love_Graphics_draw__SWIG_4(love::Graphics *self,love::pImage const *sprite,float x,float y,float angle,float sx,float sy){
 		(*sprite)->render(x, y, angle, sx, sy);
 	}
 SWIGINTERN void love_Graphics_drawSection(love::Graphics *self,love::pImage const *sprite,float x,float y,float w,float h){
 		(*sprite)->render(x, y, w, h);
 	}
-SWIGINTERN void love_Graphics_draw__SWIG_7(love::Graphics *self,love::pAnimation const *sprite,float x,float y){
+SWIGINTERN void love_Graphics_draw__SWIG_5(love::Graphics *self,love::pAnimation const *sprite,float x,float y){
 		(*sprite)->render(x, y);
 	}
-SWIGINTERN void love_Graphics_draw__SWIG_8(love::Graphics *self,love::pAnimation const *sprite,float x,float y,float angle,float s=1.0f){
+SWIGINTERN void love_Graphics_draw__SWIG_6(love::Graphics *self,love::pAnimation const *sprite,float x,float y,float angle,float s=1.0f){
 		(*sprite)->render(x, y, angle, s, s);
 	}
-SWIGINTERN void love_Graphics_draw__SWIG_10(love::Graphics *self,love::pAnimation const *sprite,float x,float y,float angle,float sx,float sy){
+SWIGINTERN void love_Graphics_draw__SWIG_8(love::Graphics *self,love::pAnimation const *sprite,float x,float y,float angle,float sx,float sy){
 		(*sprite)->render(x, y, angle, sx, sy);
 	}
-SWIGINTERN void love_Graphics_draw__SWIG_11(love::Graphics *self,love::pParticlesystem const *system){
+SWIGINTERN void love_Graphics_draw__SWIG_9(love::Graphics *self,love::pParticlesystem const *system){
 		(*system)->render();
 	}
-SWIGINTERN void love_Graphics_draw__SWIG_12(love::Graphics *self,love::pParticlesystem const *system,float x,float y){
+SWIGINTERN void love_Graphics_draw__SWIG_10(love::Graphics *self,love::pParticlesystem const *system,float x,float y){
 		(*system)->render(x, y);
 	}
 #include "Sound.h"
@@ -7238,7 +7238,7 @@ fail:
 }
 
 
-static int _wrap_Graphics_draw__SWIG_1(lua_State* L) {
+static int _wrap_Graphics_drawf__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -7253,13 +7253,13 @@ static int _wrap_Graphics_draw__SWIG_1(lua_State* L) {
   if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
   if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
   if(!lua_isnumber(L,6)) SWIG_fail_arg(6);
-  arg1=(love::Graphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Graphics,0,1,"Graphics_draw");
+  arg1=(love::Graphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Graphics,0,1,"Graphics_drawf");
   arg2 = (char*)lua_tostring(L, 2);
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
   arg5 = (int)lua_tonumber(L, 5);
   arg6 = (int)lua_tonumber(L, 6);
-  ((love::Graphics const *)arg1)->draw((char const *)arg2,arg3,arg4,arg5,arg6);
+  ((love::Graphics const *)arg1)->drawf((char const *)arg2,arg3,arg4,arg5,arg6);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -7270,7 +7270,7 @@ fail:
 }
 
 
-static int _wrap_Graphics_draw__SWIG_2(lua_State* L) {
+static int _wrap_Graphics_drawf__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -7283,12 +7283,12 @@ static int _wrap_Graphics_draw__SWIG_2(lua_State* L) {
   if(!lua_isnumber(L,3)) SWIG_fail_arg(3);
   if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
   if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
-  arg1=(love::Graphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Graphics,0,1,"Graphics_draw");
+  arg1=(love::Graphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Graphics,0,1,"Graphics_drawf");
   arg2 = (char*)lua_tostring(L, 2);
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
   arg5 = (int)lua_tonumber(L, 5);
-  ((love::Graphics const *)arg1)->draw((char const *)arg2,arg3,arg4,arg5);
+  ((love::Graphics const *)arg1)->drawf((char const *)arg2,arg3,arg4,arg5);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -7296,6 +7296,92 @@ static int _wrap_Graphics_draw__SWIG_2(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
+}
+
+
+static int _wrap_Graphics_drawf(lua_State* L) {
+  int argc;
+  int argv[7]={
+    1,2,3,4,5,6,7
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 5) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Graphics, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_Graphics_drawf__SWIG_1(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Graphics, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              {
+                _v = lua_isnumber(L,argv[5]);
+              }
+              if (_v) {
+                return _wrap_Graphics_drawf__SWIG_0(L);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'Graphics_drawf'");
+  lua_error(L);return 0;
 }
 
 
@@ -8655,7 +8741,7 @@ fail:
 }
 
 
-static int _wrap_Graphics_draw__SWIG_3(lua_State* L) {
+static int _wrap_Graphics_draw__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
   love::pImage *arg2 = (love::pImage *) 0 ;
@@ -8670,7 +8756,7 @@ static int _wrap_Graphics_draw__SWIG_3(lua_State* L) {
   arg2=(love::pImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__Image_t,0,2,"Graphics_draw");
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
-  love_Graphics_draw__SWIG_3(arg1,(boost::shared_ptr<love::Image > const *)arg2,arg3,arg4);
+  love_Graphics_draw__SWIG_1(arg1,(boost::shared_ptr<love::Image > const *)arg2,arg3,arg4);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -8681,7 +8767,7 @@ fail:
 }
 
 
-static int _wrap_Graphics_draw__SWIG_4(lua_State* L) {
+static int _wrap_Graphics_draw__SWIG_2(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
   love::pImage *arg2 = (love::pImage *) 0 ;
@@ -8702,7 +8788,7 @@ static int _wrap_Graphics_draw__SWIG_4(lua_State* L) {
   arg4 = (float)lua_tonumber(L, 4);
   arg5 = (float)lua_tonumber(L, 5);
   arg6 = (float)lua_tonumber(L, 6);
-  love_Graphics_draw__SWIG_4(arg1,(boost::shared_ptr<love::Image > const *)arg2,arg3,arg4,arg5,arg6);
+  love_Graphics_draw__SWIG_2(arg1,(boost::shared_ptr<love::Image > const *)arg2,arg3,arg4,arg5,arg6);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -8713,7 +8799,7 @@ fail:
 }
 
 
-static int _wrap_Graphics_draw__SWIG_5(lua_State* L) {
+static int _wrap_Graphics_draw__SWIG_3(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
   love::pImage *arg2 = (love::pImage *) 0 ;
@@ -8731,7 +8817,7 @@ static int _wrap_Graphics_draw__SWIG_5(lua_State* L) {
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
   arg5 = (float)lua_tonumber(L, 5);
-  love_Graphics_draw__SWIG_4(arg1,(boost::shared_ptr<love::Image > const *)arg2,arg3,arg4,arg5);
+  love_Graphics_draw__SWIG_2(arg1,(boost::shared_ptr<love::Image > const *)arg2,arg3,arg4,arg5);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -8742,7 +8828,7 @@ fail:
 }
 
 
-static int _wrap_Graphics_draw__SWIG_6(lua_State* L) {
+static int _wrap_Graphics_draw__SWIG_4(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
   love::pImage *arg2 = (love::pImage *) 0 ;
@@ -8766,7 +8852,7 @@ static int _wrap_Graphics_draw__SWIG_6(lua_State* L) {
   arg5 = (float)lua_tonumber(L, 5);
   arg6 = (float)lua_tonumber(L, 6);
   arg7 = (float)lua_tonumber(L, 7);
-  love_Graphics_draw__SWIG_6(arg1,(boost::shared_ptr<love::Image > const *)arg2,arg3,arg4,arg5,arg6,arg7);
+  love_Graphics_draw__SWIG_4(arg1,(boost::shared_ptr<love::Image > const *)arg2,arg3,arg4,arg5,arg6,arg7);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -8809,7 +8895,7 @@ fail:
 }
 
 
-static int _wrap_Graphics_draw__SWIG_7(lua_State* L) {
+static int _wrap_Graphics_draw__SWIG_5(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
   love::pAnimation *arg2 = (love::pAnimation *) 0 ;
@@ -8824,7 +8910,7 @@ static int _wrap_Graphics_draw__SWIG_7(lua_State* L) {
   arg2=(love::pAnimation *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__Animation_t,0,2,"Graphics_draw");
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
-  love_Graphics_draw__SWIG_7(arg1,(boost::shared_ptr<love::Animation > const *)arg2,arg3,arg4);
+  love_Graphics_draw__SWIG_5(arg1,(boost::shared_ptr<love::Animation > const *)arg2,arg3,arg4);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -8835,7 +8921,7 @@ fail:
 }
 
 
-static int _wrap_Graphics_draw__SWIG_8(lua_State* L) {
+static int _wrap_Graphics_draw__SWIG_6(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
   love::pAnimation *arg2 = (love::pAnimation *) 0 ;
@@ -8856,7 +8942,7 @@ static int _wrap_Graphics_draw__SWIG_8(lua_State* L) {
   arg4 = (float)lua_tonumber(L, 4);
   arg5 = (float)lua_tonumber(L, 5);
   arg6 = (float)lua_tonumber(L, 6);
-  love_Graphics_draw__SWIG_8(arg1,(boost::shared_ptr<love::Animation > const *)arg2,arg3,arg4,arg5,arg6);
+  love_Graphics_draw__SWIG_6(arg1,(boost::shared_ptr<love::Animation > const *)arg2,arg3,arg4,arg5,arg6);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -8867,7 +8953,7 @@ fail:
 }
 
 
-static int _wrap_Graphics_draw__SWIG_9(lua_State* L) {
+static int _wrap_Graphics_draw__SWIG_7(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
   love::pAnimation *arg2 = (love::pAnimation *) 0 ;
@@ -8885,7 +8971,7 @@ static int _wrap_Graphics_draw__SWIG_9(lua_State* L) {
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
   arg5 = (float)lua_tonumber(L, 5);
-  love_Graphics_draw__SWIG_8(arg1,(boost::shared_ptr<love::Animation > const *)arg2,arg3,arg4,arg5);
+  love_Graphics_draw__SWIG_6(arg1,(boost::shared_ptr<love::Animation > const *)arg2,arg3,arg4,arg5);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -8896,7 +8982,7 @@ fail:
 }
 
 
-static int _wrap_Graphics_draw__SWIG_10(lua_State* L) {
+static int _wrap_Graphics_draw__SWIG_8(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
   love::pAnimation *arg2 = (love::pAnimation *) 0 ;
@@ -8920,7 +9006,7 @@ static int _wrap_Graphics_draw__SWIG_10(lua_State* L) {
   arg5 = (float)lua_tonumber(L, 5);
   arg6 = (float)lua_tonumber(L, 6);
   arg7 = (float)lua_tonumber(L, 7);
-  love_Graphics_draw__SWIG_10(arg1,(boost::shared_ptr<love::Animation > const *)arg2,arg3,arg4,arg5,arg6,arg7);
+  love_Graphics_draw__SWIG_8(arg1,(boost::shared_ptr<love::Animation > const *)arg2,arg3,arg4,arg5,arg6,arg7);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -8931,7 +9017,7 @@ fail:
 }
 
 
-static int _wrap_Graphics_draw__SWIG_11(lua_State* L) {
+static int _wrap_Graphics_draw__SWIG_9(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
   love::pParticlesystem *arg2 = (love::pParticlesystem *) 0 ;
@@ -8940,7 +9026,7 @@ static int _wrap_Graphics_draw__SWIG_11(lua_State* L) {
   if(!lua_isuserdata(L,2)) SWIG_fail_arg(2);
   arg1=(love::Graphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Graphics,0,1,"Graphics_draw");
   arg2=(love::pParticlesystem *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__Particlesystem_t,0,2,"Graphics_draw");
-  love_Graphics_draw__SWIG_11(arg1,(boost::shared_ptr<love::Particlesystem > const *)arg2);
+  love_Graphics_draw__SWIG_9(arg1,(boost::shared_ptr<love::Particlesystem > const *)arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -8951,7 +9037,7 @@ fail:
 }
 
 
-static int _wrap_Graphics_draw__SWIG_12(lua_State* L) {
+static int _wrap_Graphics_draw__SWIG_10(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
   love::pParticlesystem *arg2 = (love::pParticlesystem *) 0 ;
@@ -8966,7 +9052,7 @@ static int _wrap_Graphics_draw__SWIG_12(lua_State* L) {
   arg2=(love::pParticlesystem *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__Particlesystem_t,0,2,"Graphics_draw");
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
-  love_Graphics_draw__SWIG_12(arg1,(boost::shared_ptr<love::Particlesystem > const *)arg2,arg3,arg4);
+  love_Graphics_draw__SWIG_10(arg1,(boost::shared_ptr<love::Particlesystem > const *)arg2,arg3,arg4);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -9004,7 +9090,7 @@ static int _wrap_Graphics_draw(lua_State* L) {
         }
       }
       if (_v) {
-        return _wrap_Graphics_draw__SWIG_11(L);
+        return _wrap_Graphics_draw__SWIG_9(L);
       }
     }
   }
@@ -9036,7 +9122,7 @@ static int _wrap_Graphics_draw(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_Graphics_draw__SWIG_3(L);
+            return _wrap_Graphics_draw__SWIG_1(L);
           }
         }
       }
@@ -9070,7 +9156,7 @@ static int _wrap_Graphics_draw(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_Graphics_draw__SWIG_7(L);
+            return _wrap_Graphics_draw__SWIG_5(L);
           }
         }
       }
@@ -9104,7 +9190,7 @@ static int _wrap_Graphics_draw(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_Graphics_draw__SWIG_12(L);
+            return _wrap_Graphics_draw__SWIG_10(L);
           }
         }
       }
@@ -9152,6 +9238,45 @@ static int _wrap_Graphics_draw(lua_State* L) {
     if (_v) {
       {
         void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Image_t, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_Graphics_draw__SWIG_3(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Graphics, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
         if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Animation_t, 0)) {
           _v = 0;
         } else {
@@ -9171,124 +9296,7 @@ static int _wrap_Graphics_draw(lua_State* L) {
               _v = lua_isnumber(L,argv[4]);
             }
             if (_v) {
-              return _wrap_Graphics_draw__SWIG_9(L);
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Graphics, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Image_t, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            {
-              _v = lua_isnumber(L,argv[4]);
-            }
-            if (_v) {
-              return _wrap_Graphics_draw__SWIG_5(L);
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Graphics, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isstring(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            {
-              _v = lua_isnumber(L,argv[4]);
-            }
-            if (_v) {
-              return _wrap_Graphics_draw__SWIG_2(L);
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 6) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love__Graphics, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Image_t, 0)) {
-          _v = 0;
-        } else {
-          _v = 1;
-        }
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            {
-              _v = lua_isnumber(L,argv[4]);
-            }
-            if (_v) {
-              {
-                _v = lua_isnumber(L,argv[5]);
-              }
-              if (_v) {
-                return _wrap_Graphics_draw__SWIG_4(L);
-              }
+              return _wrap_Graphics_draw__SWIG_7(L);
             }
           }
         }
@@ -9331,7 +9339,7 @@ static int _wrap_Graphics_draw(lua_State* L) {
                 _v = lua_isnumber(L,argv[5]);
               }
               if (_v) {
-                return _wrap_Graphics_draw__SWIG_8(L);
+                return _wrap_Graphics_draw__SWIG_6(L);
               }
             }
           }
@@ -9351,7 +9359,12 @@ static int _wrap_Graphics_draw(lua_State* L) {
     }
     if (_v) {
       {
-        _v = lua_isstring(L,argv[1]);
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrTlove__Image_t, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
       }
       if (_v) {
         {
@@ -9370,7 +9383,7 @@ static int _wrap_Graphics_draw(lua_State* L) {
                 _v = lua_isnumber(L,argv[5]);
               }
               if (_v) {
-                return _wrap_Graphics_draw__SWIG_1(L);
+                return _wrap_Graphics_draw__SWIG_2(L);
               }
             }
           }
@@ -9418,7 +9431,7 @@ static int _wrap_Graphics_draw(lua_State* L) {
                   _v = lua_isnumber(L,argv[6]);
                 }
                 if (_v) {
-                  return _wrap_Graphics_draw__SWIG_6(L);
+                  return _wrap_Graphics_draw__SWIG_4(L);
                 }
               }
             }
@@ -9467,7 +9480,7 @@ static int _wrap_Graphics_draw(lua_State* L) {
                   _v = lua_isnumber(L,argv[6]);
                 }
                 if (_v) {
-                  return _wrap_Graphics_draw__SWIG_10(L);
+                  return _wrap_Graphics_draw__SWIG_8(L);
                 }
               }
             }
@@ -9505,6 +9518,7 @@ love::Graphics *arg1 = (love::Graphics *) obj;
 delete arg1;
 }
 static swig_lua_method swig_love_Graphics_methods[] = {
+    {"drawf", _wrap_Graphics_drawf}, 
     {"drawLine", _wrap_Graphics_drawLine}, 
     {"drawTriangle", _wrap_Graphics_drawTriangle}, 
     {"fillTriangle", _wrap_Graphics_fillTriangle}, 
@@ -11756,6 +11770,7 @@ static const struct luaL_reg swig_commands[] = {
     { "SmartParticlesystem_setParticleSize",_wrap_SmartParticlesystem_setParticleSize},
     { "SmartParticlesystem_setParticleSpin",_wrap_SmartParticlesystem_setParticleSpin},
     { "SmartParticlesystem_update", _wrap_SmartParticlesystem_update},
+    { "Graphics_drawf",_wrap_Graphics_drawf},
     { "Graphics_drawLine",_wrap_Graphics_drawLine},
     { "Graphics_drawTriangle",_wrap_Graphics_drawTriangle},
     { "Graphics_fillTriangle", _wrap_Graphics_fillTriangle},

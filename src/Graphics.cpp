@@ -118,7 +118,7 @@ namespace love
 		}
 	}
 	
-	void Graphics::draw(const char * str, float x, float y, int wrap, int align) const
+	void Graphics::drawf(const char * str, float x, float y, int wrap, int align) const
 	{
 		const pFont & font = states.back().font;
 
