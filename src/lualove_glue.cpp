@@ -1422,7 +1422,7 @@ SWIGINTERN void love_Graphics_draw__SWIG_2(love::Graphics *self,love::pImage con
 SWIGINTERN void love_Graphics_draw__SWIG_4(love::Graphics *self,love::pImage const *sprite,float x,float y,float angle,float sx,float sy){
 		(*sprite)->render(x, y, angle, sx, sy);
 	}
-SWIGINTERN void love_Graphics_drawSection(love::Graphics *self,love::pImage const *sprite,float x,float y,float w,float h){
+SWIGINTERN void love_Graphics_draws(love::Graphics *self,love::pImage const *sprite,float x,float y,float w,float h){
 		(*sprite)->render(x, y, w, h);
 	}
 SWIGINTERN void love_Graphics_draw__SWIG_5(love::Graphics *self,love::pAnimation const *sprite,float x,float y){
@@ -8863,7 +8863,7 @@ fail:
 }
 
 
-static int _wrap_Graphics_drawSection(lua_State* L) {
+static int _wrap_Graphics_draws(lua_State* L) {
   int SWIG_arg = -1;
   love::Graphics *arg1 = (love::Graphics *) 0 ;
   love::pImage *arg2 = (love::pImage *) 0 ;
@@ -8878,13 +8878,13 @@ static int _wrap_Graphics_drawSection(lua_State* L) {
   if(!lua_isnumber(L,4)) SWIG_fail_arg(4);
   if(!lua_isnumber(L,5)) SWIG_fail_arg(5);
   if(!lua_isnumber(L,6)) SWIG_fail_arg(6);
-  arg1=(love::Graphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Graphics,0,1,"Graphics_drawSection");
-  arg2=(love::pImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__Image_t,0,2,"Graphics_drawSection");
+  arg1=(love::Graphics *)SWIG_MustGetPtr(L,1,SWIGTYPE_p_love__Graphics,0,1,"Graphics_draws");
+  arg2=(love::pImage *)SWIG_MustGetPtr(L,2,SWIGTYPE_p_boost__shared_ptrTlove__Image_t,0,2,"Graphics_draws");
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
   arg5 = (float)lua_tonumber(L, 5);
   arg6 = (float)lua_tonumber(L, 6);
-  love_Graphics_drawSection(arg1,(boost::shared_ptr<love::Image > const *)arg2,arg3,arg4,arg5,arg6);
+  love_Graphics_draws(arg1,(boost::shared_ptr<love::Image > const *)arg2,arg3,arg4,arg5,arg6);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -9533,7 +9533,7 @@ static swig_lua_method swig_love_Graphics_methods[] = {
     {"setBackgroundColor", _wrap_Graphics_setBackgroundColor}, 
     {"setColor", _wrap_Graphics_setColor}, 
     {"setFont", _wrap_Graphics_setFont}, 
-    {"drawSection", _wrap_Graphics_drawSection}, 
+    {"draws", _wrap_Graphics_draws}, 
     {"draw", _wrap_Graphics_draw}, 
     {0,0}
 };
@@ -11785,7 +11785,7 @@ static const struct luaL_reg swig_commands[] = {
     { "Graphics_setBackgroundColor",_wrap_Graphics_setBackgroundColor},
     { "Graphics_setColor",_wrap_Graphics_setColor},
     { "Graphics_setFont", _wrap_Graphics_setFont},
-    { "Graphics_drawSection", _wrap_Graphics_drawSection},
+    { "Graphics_draws", _wrap_Graphics_draws},
     { "Graphics_draw",_wrap_Graphics_draw},
     { "delete_Graphics", _wrap_delete_Graphics},
     { "Sound_setVolume", _wrap_Sound_setVolume},

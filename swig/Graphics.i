@@ -67,7 +67,7 @@ namespace love
 		(*sprite)->render(x, y, angle, sx, sy);
 	}
 	
-	void drawSection( const pImage * sprite, float x, float y, float w, float h )
+	void draws( const pImage * sprite, float x, float y, float w, float h )
 	{
 		(*sprite)->render(x, y, w, h);
 	}

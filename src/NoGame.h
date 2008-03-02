@@ -30,6 +30,8 @@ namespace love
 		pFont big, small;
 		pImage logo_big, logo_small, mini_moose;
 
+		std::vector<pImage> images;
+
 		// Mini-moose angle.
 		float moose_angle;
 		float flashb, flashi;

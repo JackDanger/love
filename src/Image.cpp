@@ -4,7 +4,7 @@ namespace love
 {
 
 	Image::Image(pFile file) 
-		: Resource(file), textureWidth(0), textureHeight(0), linger(false)
+		: Resource(file), textureWidth(0), textureHeight(0), linger(false), padding(0)
 	{
 	}
 

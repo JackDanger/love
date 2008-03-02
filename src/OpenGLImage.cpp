@@ -50,7 +50,7 @@ namespace love
 	{
 		glPushMatrix();
 		glTranslatef(x, y, 0);
-		glTranslatef(-center_x, -center_y, 0);
+		glTranslatef(-center_x-padding, -center_y-padding, 0);
 		render();
 		glPopMatrix();
 	}
@@ -89,7 +89,7 @@ namespace love
 		glTranslatef(x, y, 0);
 		glRotatef(angle, 0, 0, 1.0f);
 		glScalef(sx, sy, 1.0f);
-		glTranslatef(-center_x, -center_y, 0);
+		glTranslatef(-center_x-padding, -center_y-padding, 0);
 		glBegin(GL_QUADS);
 			glTexCoord2f(0.0,0.0); glVertex2f(0,0);
 			glTexCoord2f(0.0,1.0); glVertex2f(0,textureHeight);
@@ -140,8 +140,9 @@ namespace love
 		if(!success)
 			printf((const char *)iluErrorString(ilGetError()));
 
-		this->width			= (float)ilGetInteger(IL_IMAGE_WIDTH);
-		this->height		= (float)ilGetInteger(IL_IMAGE_HEIGHT);
+		this->width	= (float)ilGetInteger(IL_IMAGE_WIDTH);
+		this->height = (float)ilGetInteger(IL_IMAGE_HEIGHT);
+		this->origin = ilGetInteger(IL_IMAGE_ORIGIN);
 
 		center_x = this->width/2.0f;
 		center_y = this->height/2.0f;
@@ -220,8 +221,12 @@ namespace love
 			glDeleteTextures(1, &texture);
 	}
 
+	
+
 	void OpenGLImage::padTwoPower()
 	{
+		// Bind the image.
+		ilBindImage(image);
 
 		// Get twopower of width and height
 		ILuint width	= power_of_two((int)this->width);
@@ -236,40 +241,30 @@ namespace love
 		ILuint bpp		= ilGetInteger(IL_IMAGE_BPP);
 		ILuint type		= ilGetInteger(IL_IMAGE_TYPE);
 		ILuint format	= ilGetInteger(IL_IMAGE_FORMAT);
-		ILuint origin	= ilGetInteger(IL_IMAGE_ORIGIN);
 		
 		// Create new data.
-		unsigned int size = width * height * bpp;
+		int size = width * height * bpp;
 
 		// Destination
 		rgba * d = new rgba[size];
 
 		// Source
 		rgba * s = (rgba *)ilGetData();
-
-		// Fill entire texture
-		for(unsigned int i=0;i<width*height;i++)
+		
+		for(int i = 0; i<size; i++)
 		{
+			d[i].r = 0;
+			d[i].g = 0;
+			d[i].b = 0;
 			d[i].a = 0;
-			d[i].r = 61;
-			d[i].g = 51;
-			d[i].b = 251;
 		}
 
 		for(int y=0;y<this->height;y++)
 		{
 			for(int x=0;x<this->width;x++)
-			{
-
-				int si = (int)(y * this->width + x);
-				
-				int dx = x;
-				int dy = height - y;
-
-				if(origin == IL_ORIGIN_UPPER_LEFT)
-					dy = y;
-
-				int di = dy * width + dx;
+			{			
+				int si = ((origin == IL_ORIGIN_LOWER_LEFT) ? (int)this->height - y - 1  : y) * (int)this->width + x;
+				int di = y * width + x;
 
 				d[di].r = s[si].r;
 				d[di].g = s[si].g;
@@ -277,6 +272,9 @@ namespace love
 				d[di].a = s[si].a;
 			}
 		}
+
+		// If origin was lower left, it's flipped by now.
+		origin = IL_ORIGIN_UPPER_LEFT;
 
 		// Delete the old image.
 		ilDeleteImages(1, &image);
@@ -336,16 +334,11 @@ namespace love
 
 	}
 
-	void OpenGLImage::extendAlpha()
+	void OpenGLImage::optimizeAlpha()
 	{
-		// Get key data
-		ILuint width	= ilGetInteger(IL_IMAGE_WIDTH);
-		ILuint height	= ilGetInteger(IL_IMAGE_HEIGHT);
-		ILuint depth	= ilGetInteger(IL_IMAGE_DEPTH);
-		ILuint bpp		= ilGetInteger(IL_IMAGE_BPP);
-		ILuint type		= ilGetInteger(IL_IMAGE_TYPE);
-		ILuint format	= ilGetInteger(IL_IMAGE_FORMAT);
-		ILuint origin	= ilGetInteger(IL_IMAGE_ORIGIN);
+		// Get the width and height of the data.
+		int width	= (int)this->width;
+		int height	= (int)this->height;
 
 		// Source
 		rgba * s = (rgba *)ilGetData();
@@ -363,31 +356,85 @@ namespace love
 
 	}
 
-	void OpenGLImage::addAlphaBorder(bool overwrite)
+	void OpenGLImage::pad(int size)
 	{
-		if(!overwrite)
-		{
-			// Extend image here.
-			// Update size.
-		}
 
-		ILuint width	= ilGetInteger(IL_IMAGE_WIDTH);
-		ILuint height	= ilGetInteger(IL_IMAGE_HEIGHT);
+		padding = size;
+		
+		// Bind the image.
+		ilBindImage(image);
 
+		// Get the width and height of the data.
+		int old_width	= (int)this->width;
+		int old_height	= (int)this->height;
+
+		int new_width = old_width + size*2;
+		int new_height = old_height + size*2;
+
+		ILuint bpp = ilGetInteger(IL_IMAGE_BPP);
+
+		// Destination
+		int new_size = new_width * new_height * bpp;
+		rgba * d = new rgba[new_size];
+
+		// Source
 		rgba * s = (rgba *)ilGetData();
 
-		// Overwrite the outer border.
-		for(int i = 0;i<(int)width;i++)
+		for(int i = 0; i<new_size; i++)
 		{
-			s[i].a = 0;
-			s[(height-1)*width + i].a = 0;
+			d[i].r = 0;
+			d[i].g = 0;
+			d[i].b = 0;
+			d[i].a = 0;
 		}
 
-		for(int i = 0;i<(int)height;i++)
+		for(int x = 0;x<old_width;x++)
 		{
-			s[height*i].a = 0;
-			s[(height*i)+width-1].a = 0;
+			for(int y = 0;y<old_height;y++)
+			{
+				int si = ((origin == IL_ORIGIN_LOWER_LEFT) ? old_height - y - 1  : y)*old_width+x;
+				int di = (y+size)*new_width+(x+size);
+				d[di] = s[si];
+			}
 		}
+
+		// If origin was lower left, it's flipped by now.
+		origin = IL_ORIGIN_UPPER_LEFT;
+
+		// Set the new image data.
+		setPixels(d, new_width, new_height);
+	}
+
+	void OpenGLImage::setPixels(rgba * data, int width, int height)
+	{
+
+		// Bind the image.
+		ilBindImage(image);
+
+		// Get some image data.
+		ILuint depth	= ilGetInteger(IL_IMAGE_DEPTH);
+		ILuint bpp		= ilGetInteger(IL_IMAGE_BPP);
+		ILuint type		= ilGetInteger(IL_IMAGE_TYPE);
+		ILuint format	= ilGetInteger(IL_IMAGE_FORMAT);
+		ILuint origin	= ilGetInteger(IL_IMAGE_ORIGIN);
+		
+		// Delete the old image.
+		ilDeleteImages(1, &image);
+
+		// Generate new DevIL image.
+		ilGenImages(1, &image);
+
+		// Bind the new image.
+		ilBindImage(image);
+
+		// Create the new image
+		ilTexImage(width, height, depth, bpp, format, type, (ILvoid*)data);
+
+		// Set the new image dimensions.
+		this->textureWidth = (float)width;
+		this->textureHeight = (float)height;
+		this->width = (float)width;
+		this->height = (float)height;
 	}
 	
 } // love

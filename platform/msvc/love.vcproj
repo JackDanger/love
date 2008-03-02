@@ -569,22 +569,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\resource.h"
-				>
-			</File>
-			<File
-				RelativePath=".\resource1.h"
-				>
-			</File>
-			<File
-				RelativePath=".\resource2.h"
-				>
-			</File>
-			<File
-				RelativePath=".\resource3.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\Sound.h"
 				>
 			</File>

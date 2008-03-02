@@ -40,15 +40,21 @@ namespace love
 		logo_big = graphics->newImage(logo256x128_png); logo_big->load();
 		logo_small = graphics->newImage(logo128x64_png); logo_small->load();
 
-		mini_moose = graphics->newImage("moose.png"); 
-		mini_moose->readData();
-		//mini_moose->addAlphaBorder(true);
-		mini_moose->extendAlpha();
-		mini_moose->toHardware();
-		mini_moose->freeData();
+		mini_moose = graphics->newImage(mini_moose_png); 
+		mini_moose->load();
+
+	
+		for(int i = 0; i<(int)images.size(); i++)
+		{
+			images[i]->readData();
+			images[i]->pad(1);
+		    images[i]->optimizeAlpha();
+			images[i]->toHardware();
+			images[i]->freeData();
+		}
 
 		graphics->setColor(255, 255, 255, 255);
-		timer->setCap(10);
+		timer->setCap(100);
 
 		return true;
 	}
@@ -81,8 +87,7 @@ namespace love
 		mini_moose->render(mx, my + 65);
 
 		logo_big->render(width/2.0f, height/2.0f - 30);
-		
-		
+
 
 		if(render_nogame)
 		{

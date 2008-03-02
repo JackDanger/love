@@ -48,6 +48,11 @@ namespace love
 		// after load has been called.
 		bool linger;
 
+		// The image's padding.
+		int padding;
+
+		int origin;
+
 	public:
 
 		/**
@@ -123,14 +128,13 @@ namespace love
 		* Extends color data one pixel into the area where alpha = 0.
 		* This makes images artifact-free when rotated, stretched, etc.
 		**/
-		virtual void extendAlpha() = 0;
+		virtual void optimizeAlpha() = 0;
 
 		/**
-		* Creates a border of transparent pixels around the Image.
-		* @param overwrite False will pad the Image, thus resizing it; true
-		* will keep the Image size and overwrite the pixels instead.
+		* Pads the image with a border of transparent
+		* pixels.
 		**/
-		virtual void addAlphaBorder(bool overwrite = false) = 0;
+		virtual void pad(int size = 1) = 0;
 
 	};
 

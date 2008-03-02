@@ -104,20 +104,6 @@ namespace love
 		}
 		// Reading image data ends.
 
-
-		// Alpha optimizing
-		for(int i = 0; i != image->getHeight() * image->getWidth(); i++)
-		{			
-			if(spacer.r == pixels[i].r && spacer.g == pixels[i].g && spacer.b == pixels[i].b && spacer.a == pixels[i].a)
-			{
-				pixels[i].r = 0;
-				pixels[i].g = 0;
-				pixels[i].b = 0;
-				pixels[i].a = 0;
-			}
-		}
-
-		
 		
 		// Create display lists
 		image->toHardware();

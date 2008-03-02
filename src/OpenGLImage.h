@@ -58,6 +58,8 @@ namespace love
 		rgba * getData() const;
 		bool toHardware();
 		void freeData();
+		void optimizeAlpha();
+		void pad(int size = 1);
 		
 		// From Resource
 		bool load();
@@ -65,28 +67,26 @@ namespace love
 		// From Resource
 		void unload();
 		
-		/**
-		* Extends color data one pixel into the area where alpha = 0.
-		* This makes images artifact-free when rotated, stretched, etc.
-		**/
-		void extendAlpha();
-
-		/**
-		* Creates a border of transparent pixels around the Image.
-		* @param overwrite False will pad the Image, thus resizing it; true
-		* will keep the Image size and overwrite the pixels instead.
-		**/
-		void addAlphaBorder(bool overwrite = false);
 
 	private:
-
-		// Optional optimizations.
 
 		/**
 		* Pads the image to a power of two texture.
 		* Useful for < OGL2.0, which only supports these.
 		**/
 		void padTwoPower();
+
+		/**
+		* Replace the current pixel data with this one. Assumes that
+		* the image format, BPP, etc is the same.
+		* @param data The new image data.
+		* @param width The width of the new image data.
+		* @param height The height of the new image data.
+		* 
+		* @note Does not delete the image data, so remember to do 
+		* so yourself.
+		**/
+		void setPixels(rgba * data, int width, int height);
 		
 	}; // OpenGLImage
 	
