@@ -416,7 +416,7 @@ namespace love
 		ILuint bpp		= ilGetInteger(IL_IMAGE_BPP);
 		ILuint type		= ilGetInteger(IL_IMAGE_TYPE);
 		ILuint format	= ilGetInteger(IL_IMAGE_FORMAT);
-		ILuint origin	= ilGetInteger(IL_IMAGE_ORIGIN);
+		//ILuint origin	= ilGetInteger(IL_IMAGE_ORIGIN);
 		
 		// Delete the old image.
 		ilDeleteImages(1, &image);

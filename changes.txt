@@ -1,0 +1,34 @@
+
+LOVE 0.2.0
+----------
+
+  * Added ImageFont
+  * Added Animation
+  * Added text formatting functions
+  * Added setCenter for Image and Animation.
+  * Added methods for rendering of scaled/rotated sprites.
+  * Added the drawing of basic shapes.
+  * Added default font and embedded resources.
+  * Added Ctrl+R for reload.
+  * Added blending and color modes.
+  * Fixed memory usage of Graphics.
+  * Fixed a bug where the set text color would change the color of any images rendered.
+  * Fixed CWD bug.
+  * Fixed titlebar. Game title is now displayed.
+
+
+LOVE 0.1.1
+----------
+
+Initial release!
+
+ * Image loading and rendering.
+ * Sound loading and playing.
+ * Font loading and rendering.
+ * Lua-scriptable games.
+ * Config files.
+ * Stuff is loadable from archive files.
+ * Keyboard, mouse, display, timer, etc. (Basic devices).
+
+
+
