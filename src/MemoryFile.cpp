@@ -23,4 +23,25 @@ namespace love
 	void MemoryFile::unload()
 	{
 	}
+
+	bool MemoryFile::open()
+	{
+		return false;
+	}
+
+	bool MemoryFile::close()
+	{
+		return false;
+	}
+
+	bool MemoryFile::write( std::string data )
+	{
+		return false;
+	}
+
+	const char * MemoryFile::read()
+	{
+		return (const char *)this->data;
+	}
+
 }// love

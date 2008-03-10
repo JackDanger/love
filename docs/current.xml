@@ -404,7 +404,7 @@
         <param name="color" brief="A Color object." />
         <example name="Set the background color as red.">
           red = love.objects:newColor(255, 0, 0);
-          love.graphics:setBackground(red);
+          love.graphics:setBackgroundColor(red);
         </example>
       </function>
 
@@ -414,8 +414,8 @@
         <param name="green" brief="The amount of green." />
         <param name="blue" brief="The amount of blue." />
         <example name="Set the current color as red, then blue.">
-          love.graphics:setBackground(255, 10, 10);
-          love.graphics:setBackground(10, 10, 255);
+          love.graphics:setBackgroundColor(255, 10, 10);
+          love.graphics:setBackgroundColor(10, 10, 255);
         </example>
       </function>
 
@@ -454,37 +454,37 @@
       </function>
 
       <separator />
-      
-      <function name="draw" brief="Draws an Image on screen.">
-        <param name="image" brief="An Image object." />
+
+      <function name="draw" brief="Draws an Image or Animation on screen.">
+        <param name="sprite" brief="An Image or Animation object." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
       </function>
 
-      <function name="draw" brief="Draws a rotated Image on screen.">
-        <param name="image" brief="An Image object." />
+      <function name="draw" brief="Draws a rotated Image or Animation on screen.">
+        <param name="sprite" brief="An Image or Animation object." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
-        <param name="angle" brief="The angle of rotation." />
+        <param name="angle" brief="The angle of rotation (in degrees)." />
       </function>
 
-      <function name="draw" brief="Draws a rotated/scaled Image on screen.">
-        <param name="image" brief="An Image object." />
+      <function name="draw" brief="Draws a rotated/scaled Image or Animation on screen.">
+        <param name="sprite" brief="An Image or Animation object." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
-        <param name="angle" brief="The angle of rotation." />
+        <param name="angle" brief="The angle of rotation (in degrees)." />
         <param name="s" brief="The scale factor." />
       </function>
 
-      <function name="draw" brief="Draws a rotated/scaled Image on screen.">
-        <param name="image" brief="An Image object." />
+      <function name="draw" brief="Draws a rotated/scaled Image or Animation on screen.">
+        <param name="sprite" brief="An Image or Animation object." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
-        <param name="angle" brief="The angle of rotation." />
+        <param name="angle" brief="The angle of rotation (in degrees)." />
         <param name="sx" brief="The scale factor along the x-axis." />
         <param name="sy" brief="The scale factor along the y-axis." />
       </function>
-	 
+
       <separator />
 
       <function name="drawLine" brief="Draws a line between the two points.">
@@ -808,7 +808,7 @@
         <param name="button" brief="A mouse button." />
         <returns type="boolean" brief="Whether the button is down." />
         <example>
-          if love.mouse:mouse:isDown(love.mouse_left) then
+          if love.mouse:isDown(love.mouse_left) then
           [tab /]love.graphics:draw("the left mouse button is being pressed ^.^", 100, 100);
           end
         </example>

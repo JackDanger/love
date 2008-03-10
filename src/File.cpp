@@ -5,12 +5,12 @@ using std::string;
 namespace love
 {
 	File::File(const string & source, const string & filename, char *data, const unsigned long size, bool compiled)
-		: source(source), filename(filename), data(data), size(size), compiled(compiled)
+		: source(source), filename(filename), data(data), size(size), compiled(compiled), mode(LOVE_READ), isOpen(false)
 	{
 	}
 
-	File::File(const string & source, const string & filename) 
-		: source(source), filename(filename), data(0), size(0), compiled(false)
+	File::File(const string & source, const string & filename, int mode) 
+		: source(source), filename(filename), data(0), size(0), compiled(false), mode(mode), isOpen(false)
 	{
 	}
 

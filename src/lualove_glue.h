@@ -14,7 +14,7 @@
 // SWIG
 extern "C" {
 	extern int luaopen_love(lua_State * L);
-	extern int Love_Init(lua_State * L);
+	//extern int Love_Init(lua_State * L);
 }
 
 // SWIG/lualove

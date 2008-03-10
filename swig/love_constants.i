@@ -4,6 +4,7 @@
 #include "love_mouse.h"
 #include "love_blend.h"
 #include "love_defaults.h"
+#include "love_file.h"
 
 %}
 
@@ -201,6 +202,15 @@
 %constant const int blend_additive = love::LOVE_BLEND_ADDITIVE;
 %constant const int color_normal = love::LOVE_COLOR_NORMAL;
 %constant const int color_modulate = love::LOVE_COLOR_MODULATE;
+
+/**
+* File & directory constants.
+**/
+%constant const int write = love::LOVE_WRITE;
+%constant const int read = love::LOVE_READ;
+%constant const int append = love::LOVE_APPEND;
+%constant const int gamedir = love::LOVE_GAMEDIR;
+%constant const int writedir = love::LOVE_WRITEDIR;
 
 /**
 * Defauts.

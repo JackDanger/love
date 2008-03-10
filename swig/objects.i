@@ -94,6 +94,28 @@ namespace love
 			return tmp;
 		}
 		
+		pFile newFile(const char * filename, int mode = LOVE_READ, int src = LOVE_GAMEDIR)
+		{
+		
+			if(mode == LOVE_WRITE)
+			{
+				pFile tmp = filesystem->newWriteFile(std::string(filename));
+				return tmp;	
+			}	
+			else if(mode == LOVE_APPEND)
+			{
+				pFile tmp = filesystem->newAppendFile(std::string(filename));
+				return tmp;				
+			}
+			else // mode == LOVE_READ
+			{
+				pFile tmp = filesystem->newFile( (src == LOVE_GAMEDIR) ? game->getSource() : filesystem->getWriteDirectory(), std::string(filename));
+				tmp->load();
+				return tmp;
+			}
+			
+		}
+		
 		
 	};
 	

@@ -68,7 +68,7 @@ namespace love
 		* 
 		* @param filename The filname and path to the file.
 		**/
-		void include(const std::string & filename);
+		void include(const std::string & filename, int src = LOVE_GAMEDIR);
 		
 		// From Game.
 		bool load();

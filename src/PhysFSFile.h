@@ -11,6 +11,9 @@
 // LOVE
 #include "File.h"
 
+// PhysFS
+#include <physfs.h>
+
 namespace love
 {
 
@@ -23,6 +26,10 @@ namespace love
 	class PhysFSFile : public File
 	{
 	private:
+
+		// PHYSFS File handle.
+		PHYSFS_file * file;
+
 	public:
 
 		/**
@@ -30,12 +37,16 @@ namespace love
 		* @param source The source from which to load the file. (Archive or directory)
 		* @param filename The relative filepath of the file to load from the source.
 		**/
-		PhysFSFile(const std::string & source, const std::string & filename);
+		PhysFSFile(const std::string & source, const std::string & filename, int mode = LOVE_READ);
 
 		virtual ~PhysFSFile();
 
 		// From file.
 		bool load();
+		bool open();
+		bool close();
+		bool write( std::string data );
+		const char * read();
 
 	private:
 

@@ -42,6 +42,7 @@ namespace boost {
 
 // Filesystem
 %include Filesystem.i
+%include File.i
 
 %include Timer.i
 %include Mouse.i

@@ -41,6 +41,18 @@ namespace love
 		return tmp;
 	}
 
+	pFile PhysFSFilesystem::newWriteFile(const std::string & file) const
+	{
+		pFile tmp(new PhysFSFile("", file, LOVE_WRITE));
+		return tmp;
+	}
+
+	pFile PhysFSFilesystem::newAppendFile(const std::string & file) const
+	{
+		pFile tmp(new PhysFSFile("", file, LOVE_APPEND));
+		return tmp;
+	}
+
 	bool PhysFSFilesystem::init(int argc, char* argv[])
 	{
 
@@ -56,6 +68,19 @@ namespace love
 		boost::filesystem::path full_path( boost::filesystem::current_path() );
 		base = full_path.native_directory_string() + "/";
 		user = string(PHYSFS_getUserDir());
+
+		if(!setWriteDirectory(user))
+			return false;
+
+		// Create .love-folder.
+		if(!PHYSFS_mkdir(".love"))
+		{
+			error(std::string(PHYSFS_getLastError()));
+			return false;
+		}
+
+		if(!disableWriteDirectory())
+			return false;
 
 		return true;
 	}
@@ -158,6 +183,64 @@ namespace love
 		remove(source);
 
 		return dir;
+	}
+
+	bool PhysFSFilesystem::setGameDirectory(const std::string id)
+	{
+
+		// Set the love folder as the write directory.
+		if(!setWriteDirectory(user + ".love"))
+			return false;
+
+		// Create the game folder.
+		if(!PHYSFS_mkdir(id.c_str()))
+		{
+			error(std::string(PHYSFS_getLastError()));
+			disableWriteDirectory();
+			return false;
+		}
+
+		// Set this as the new directory.
+		if(!setWriteDirectory(user + ".love/" + id))
+			return false;
+
+		return true;
+	}
+
+	bool PhysFSFilesystem::setWriteDirectory(const std::string dir)
+	{
+		if(!PHYSFS_setWriteDir(dir.c_str()))
+		{
+			error("Could not set write directory. " + std::string(PHYSFS_getLastError()));
+			return false;
+		}		
+		return true;
+	}
+
+	std::string PhysFSFilesystem::getWriteDirectory() const
+	{
+		const char * dir = PHYSFS_getWriteDir();
+
+		if(dir == 0)
+			return "";
+
+		return std::string(dir);
+	}
+
+	bool PhysFSFilesystem::disableWriteDirectory()
+	{
+		if(!PHYSFS_setWriteDir(0))
+		{
+			error("Could not disable write directory. " + std::string(PHYSFS_getLastError()));
+			return false;
+		}
+		return true;
+	}
+
+	std::string PhysFSFilesystem::getLeaf( std::string full )
+	{
+		boost::filesystem::path p(full);
+		return p.leaf();
 	}
 
 	bool PhysFSFilesystem::add(const string & path) const

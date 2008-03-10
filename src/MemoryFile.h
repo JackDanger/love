@@ -38,9 +38,13 @@ namespace love
 
 		~MemoryFile();
 
+		// From File.
 		bool load();
-
 		void unload();
+		bool open();
+		bool close();
+		bool write( std::string data );
+		const char * read();
 
 	}; // MemoryFile
 } // love

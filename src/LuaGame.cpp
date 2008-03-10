@@ -18,8 +18,11 @@ namespace love
 		unload();
 	}
 
-	void LuaGame::include(const std::string & filename)
+	void LuaGame::include(const std::string & filename, int src)
 	{
+
+		std::string source = (src == LOVE_GAMEDIR) ? this->source : filesystem->getWriteDirectory();
+
 		std::string key = source + filename;
 
 		// If file already is included, return
@@ -46,6 +49,12 @@ namespace love
 
 	bool LuaGame::load()
 	{
+		// Set up the correct write directory.
+		std::string game_id = filesystem->getLeaf(source);
+
+		// Set the write directory.
+		filesystem->setGameDirectory(game_id);
+
 		// Set up a graphics state.
 		graphics->push();
 		graphics->setColor(255, 255, 255, 255);
@@ -86,6 +95,9 @@ namespace love
 
 	void LuaGame::unload()
 	{
+		// Clear the write directory.
+		filesystem->disableWriteDirectory();
+
 		// Close Lua state.
 		vm.close();
 

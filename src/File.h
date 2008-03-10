@@ -9,6 +9,7 @@
 #define LOVE_FILE_H
 
 // LOVE
+#include "love_file.h"
 
 // STL
 #include <string>
@@ -44,6 +45,12 @@ namespace love
 		// Whether this is a compiled resource or not.
 		bool compiled;
 
+		// The file-open mode. (Read, ReadWrite, etc)
+		int mode;
+
+		// True if the file is currently open.
+		bool isOpen;
+
 		/**
 		 * Constructor used by MemoryFile alone.
 		 * @param source	The source from which the file is loaded
@@ -61,7 +68,7 @@ namespace love
 		* @param source The source from which to load the file. (Archive or directory)
 		* @param filename The relative filepath of the file to load from the source.
 		**/
-		File(const std::string & source, const std::string & filename);
+		File(const std::string & source, const std::string & filename, int mode = LOVE_READ);
 
 		virtual ~File();
 
@@ -94,6 +101,11 @@ namespace love
 		* Should free anything allocated by load.
 		**/
 		virtual void unload();
+
+		virtual bool open() = 0;
+		virtual bool close() = 0;
+		virtual bool write( std::string data ) = 0;
+		virtual const char * read() = 0;
 
 	}; // File
 

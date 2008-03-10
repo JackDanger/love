@@ -67,6 +67,10 @@ namespace love
 		**/
 		virtual pFile newUserFile(const std::string & file) const = 0;
 
+		virtual pFile newWriteFile(const std::string & file) const = 0;
+		virtual pFile newAppendFile(const std::string & file) const = 0;
+
+
 		/**
 		* Gets a list of entries in the specified file (or dir).
 		* @param source The source where the file (or dir) resides.
@@ -113,6 +117,25 @@ namespace love
 		* Gets the current user directory.
 		**/
 		const std::string & getUser() const;
+
+		virtual bool setGameDirectory(const std::string id) = 0;
+
+		/**
+		* Sets a new write directory.
+		**/
+		virtual bool setWriteDirectory(const std::string dir) = 0;
+
+		virtual std::string getWriteDirectory() const = 0;
+
+		/**
+		* Disables writing of files.
+		**/
+		virtual bool disableWriteDirectory() = 0;
+
+		/**
+		* Extracts the filename from a full path.
+		**/
+		virtual std::string getLeaf( std::string full ) = 0;
 
 	}; // Filesystem
 
