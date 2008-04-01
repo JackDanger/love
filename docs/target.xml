@@ -1,0 +1,1249 @@
+<?xml version='1.0' ?>
+<document version="Version 0.1" >
+
+  <section name="LÖVE Documentation" refer="index">
+
+    <page name="Overview" sym="index">
+
+
+      [div class="subchapter"]
+      [img src="gfx/mini-sun.png" alt="sun" style="float: right;"/]
+      [div class="title"]
+      Welcome
+      [/div]
+      [div class="text"]
+
+
+
+      Welcome to the official LOVE documentation page. Here we have explanations of all the types and objects available for the Lua scripting.
+      This does not describe the inner-workings of the engine itself (but we do have an SVN repository available on SourceForge if that's what you're looking for).
+      To understand anything that's going on it is recommended that you have a little bit of programming experience, but hopefully LOVE is straight-forward and simple
+      enough for even novices to get into game creation.
+      [br /]
+      We believe that thorough documentation is important for the survival of a program so if there is something missing or incorrect, please
+      [a href="http://love.sourceforge.net/?page=contact"]contact us[/a].
+
+      [br /][br /] Some testing: Checkout Licence plz, along with love.graphics, love.audio, etc. Sound, lol; Image, lol; and so forth. Furthermore,
+      it is clear that main.update( dt ), so plz keep that in mind before calling main.load( ).
+      [/div]
+      [div class="break"][/div]
+      [/div]
+
+
+      [div class="subchapter"]
+      [img src="gfx/love-rel.png" alt="LOVE Design" style="float: right;" /]
+      [div class="title"]
+      Design
+      [/div]
+      [div class="text"]
+      LOVE is created around the principle of a pseudo-symbiotic environment. 
+      That's basically a fancy way of saying that LOVE reads the Lua code to generate a working game and 
+      Lua calls LOVE functions to generate a working game. It works like this: 
+      [/div]
+      [div class="break"][/div]
+      [/div]
+
+
+      [div class="subchapter"]
+      [div class="title"]
+      Tutorials
+      [/div]
+      [div class="text"]
+      This page has the bare documentation and, except for the simple examples, contain no actual tutorials.
+      Tutorials are available from the tutorial page on the [a href="http://love.sourceforge.net/?page=documentation"]LOVE website[/a].
+      [/div]
+      [/div]
+
+
+    </page>
+    <page name="Licence">
+
+
+      [div class="subchapter"]
+      [div class="title"]Summary
+      [/div]
+      [div class="text"]
+
+      LOVE is licenced under the terms of the ZLIB licence. This is a short licence to begin with,
+      but for the lazy, here's a summary:
+
+      [ul]
+      [li]Do not claim that you made this software.[/li]
+      [li]Do not make an altered version and claim that it is the original software.[/li]
+      [li]Otherwise, feel free to use this software in any situation, including commercial.[/li]
+      [/ul]
+      [/div]
+      [/div]
+
+      [div class="subchapter"]
+      [div class="title"]
+      ZLIB licence (full)
+      [/div]
+      [div class="text"]
+
+      Copyright © 2007 LOVE Development Team[br /]
+      [br /]
+      This software is provided 'as-is', without any express or implied
+      warranty. In no event will the authors be held liable for any damages
+      arising from the use of this software.[br /]
+      [br /]
+      Permission is granted to anyone to use this software for any purpose,
+      including commercial applications, and to alter it and redistribute it
+      freely, subject to the following restrictions:[br /]
+      [br /]
+      1. The origin of this software must not be misrepresented; you must not
+      claim that you wrote the original software. If you use this software
+      in a product, an acknowledgment in the product documentation would be
+      appreciated but is not required.[br /]
+      [br /]
+      2. Altered source versions must be plainly marked as such, and must not be
+      misrepresented as being the original software.[br /]
+      [br /]
+      3. This notice may not be removed or altered from any source
+      distribution.[br /]
+
+      [/div]
+      [/div]
+
+      <!-- Subchapter start -->
+      [div class="subchapter"]
+      [div class="title"]
+      External libraries
+      [/div]
+      [div class="text"]
+      LOVE uses many libraries, such as SDL, DevIL and FreeType. These all have their own licences.
+      An overview is presented here.
+
+      [ul]
+      [li]SDL ([a href="http://www.opensource.org/licenses/lgpl-license.php"]LGPL[/a])[/li]
+      [li]SDL_mixer ([a href="http://www.opensource.org/licenses/lgpl-license.php"]LGPL[/a])[/li]
+      [li]DevIL ([a href="http://www.opensource.org/licenses/lgpl-license.php"]LGPL[/a])[/li]
+      [li]FreeType 2 ([a href="http://www.freetype.org/FTL.TXT"]FTL[/a])[/li]
+      [li]PhysFS ([a href="http://www.opensource.org/licenses/zlib-license.php"]ZLIB[/a])[/li]
+      [li]Lua ([a href="http://www.opensource.org/licenses/mit-license.html"]MIT[/a])[/li]
+      [/ul]
+
+      [/div]
+      <!-- Subchapter end -->
+
+
+      [/div]
+
+
+    </page>
+    <page name="Credits">
+      [div class="subchapter"]
+      [div class="title"]
+      Creators
+      [/div]
+      [div class="text"]
+      LOVE is created by:[br /]
+      [ul]
+      [li]Anders Ruud[/li]
+      [li]Michael Enger[/li]
+      [/ul]
+      [/div]
+      [/div]
+
+      <!-- Subchapter start -->
+      [div class="subchapter"]
+      [div class="title"]
+      Libraries
+      [/div]
+      [div class="text"]
+      LOVE is built around these libraries, presented here in no particular order:
+
+      [ul]
+      [li][a href="http://libsdl.org/"]SDL[/a] - OS abstraction, mouse input, keyboard input.[/li]
+      [li][a href="http://lua.org/"]Lua[/a] - Scripting.[/li]
+      [li][a href="http://opengl.org/"]OpenGL[/a] - Hardware accelerated graphics.[/li]
+      [li][a href="http://openil.sourceforge.net/"]DevIL[/a] - Image loading.[/li]
+      [li][a href="http://www.freetype.org/"]FreeType 2[/a] - Font loading and rasterization.[/li]
+      [li][a href="http://www.libsdl.org/projects/SDL_mixer/"]SDL_mixer[/a] - Sound loading/playing.[/li]
+      [li][a href="http://icculus.org/physfs/"]PhysicsFS[/a] - Generic file loading + support for archive files.[/li]
+
+      [/ul]
+
+      A behemothic thanks to all of these.
+
+      [/div]
+      <!-- Subchapter end -->
+
+
+    </page>
+    <page name="Docnotes">
+
+
+      <!-- Dude -->
+      [div class="subchapter"]
+      [div class="title"]
+      Dude
+      [/div]
+      [div class="text"]
+      Rude says:
+      [ul]
+      [li]Added File[/li]
+      [li]Added love.filesystem[/li]
+      [li]Added love.objects:newFile[/li]
+      [li]Added getWidth/Height to love.graphics[/li]
+      [li]Removed some render functions here and there[/li]
+      [li]Added moar functions to love.audio[/li]
+      [/ul]
+
+      I don't think File, love.filesystem etc should be in the first release ... must focus on graphics and audio. ^^ [br /][br /]
+      love.audio:play( sound, loop, channel ) should perhaps die, yes. But there must be some way for users to stop specific sounds, hence love.audio:stop( sound ).[br /][br /]
+      Also fixed constants lists, making LOVEDOC II officially complete. \(^_^)/
+
+      [/div]
+      [/div]
+
+
+
+    </page>
+
+  </section>
+
+  <section name="Devices" has="List of devices">
+
+    Devices, such as love.objects totally kick ass. In fact, they kick so much ass that it makes love.graphics, love.audio, love.filesystem, and Music to
+    seem like complete shit in comparison. etc etc
+
+    <device name="love.objects" brief="An interface for creating objects within the game engine such as images or music.">
+
+      <function name="newImage" brief="Loads an image.">
+        <param name="filename" brief="The filepath to the image file. Relative to the game's folder or .love file." />
+        <returns type="Image" brief="An Image object containing the display data." />
+        <example name="Add an image.">
+          picture = love.objects:newImage("picture.jpg");
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="newAnimation" brief="Creates an animation from an image file.">
+        <param name="image" brief="A loaded image file." />
+        <returns type="Animation" brief="An Animation object containing the animation data." />
+        <example name="Add an animation.">
+          picture = love.objects:newImage("animated_picture.jpg");
+          animation = love.objects:newAnimation(picture);
+        </example>
+      </function>
+
+      <function name="newAnimation" brief="Creates an animation from an image file.">
+        Takes an image consisting of a grid of frames for the animation.
+        <param name="image" brief="A loaded image file." />
+        <param name="xf" brief="The amount of frames per row." />
+        <param name="yf" brief="The amount of frames per column." />
+        <param name="fw" brief="The width of each frame." />
+        <param name="fh" brief="The height of each frame." />
+        <param name="delay" brief="The amount of time between each frame (in seconds)." />
+        <returns type="Animation" brief="An Animation object containing the animation data." />
+        <example name="Add an animation.">
+          picture = love.objects:newImage("animated_picture.jpg");
+          animation = love.objects:newAnimation(picture, 4, 3, 100, 75, 0.25);
+        </example>
+        <see name="Image" />
+      </function>
+
+      <separator />
+
+      <function name="newMusic" brief="Loads a music file.">
+        <param name="filename" brief="The filepath to the music file. Relative to the game's folder or .love file." />
+        <returns type="Music" brief="A Music object containing the audio data." />
+        <example name="Add some music.">
+          muzik = love.objects:newMusic("totally_awesome.mp3");
+        </example>
+      </function>
+
+      <function name="newSound" brief="Loads a sound file.">
+        <param name="filename" brief="The filepath to the sound file. Relative to the game's folder or .love file." />
+        <returns type="Sound" brief="A Sound object containing the audio data." />
+        <example name="Add some sounds.">
+          blaster = love.objects:newSound("blast.wav");
+          explosion = love.objects:newSount("boom.wav");
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="newColor" brief="Creates a color.">
+        <param name="red" brief="The amount of red." />
+        <param name="green" brief="The amount of green." />
+        <param name="blue" brief="The amount of blue." />
+        <param name="alpha" brief="The amount of alpha." />
+        <returns type="Color" brief="A Color object containing the color data." />
+        <example name="Add a color.">
+          transparent_pink = love.objects:newColor(246, 9, 104, 150);
+        </example>
+      </function>
+
+      <function name="newColor" brief="Creates a color.">
+        <param name="red" brief="The amount of red." />
+        <param name="green" brief="The amount of green." />
+        <param name="blue" brief="The amount of blue." />
+        <returns type="Color" brief="A Color object containing the color data." />
+        <example name="Add a color.">
+          opaque_pink = love.objects:newColor(246, 9, 104); -- the default alpha value (255) will be used
+        </example>
+      </function>
+
+      <function name="newColor" brief="Creates a color.">
+        <param name="code" brief="A 6-character hexadecimal color code." />
+        <param name="alpha" brief="The amount of alpha." />
+        <returns type="Color" brief="A Color object containing the color data." />
+        <example name="Add a color.">
+          transparent_pink = love.objects:newColor(0xF60968, 150);
+        </example>
+      </function>
+
+      <function name="newColor" brief="Creates a color.">
+        <param name="code" brief="A 6-character hexadecimal color code." />
+        <returns type="Color" brief="A Color object containing the color data." />
+        <example name="Add a color.">
+          opaque_pink = love.objects:newColor(0xF60968); -- the default alpha value (255) will be used
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="newFont" brief="Creates a new font by loading the font file.">
+        Fonts loaded with [url="http://freetype.sourceforge.net/"]FreeType[/url]. For default fonts, use love.default_font as the filename.
+        <param name="filename" brief="The filepath to the font file. Relative to the game's folder or .love file." />
+        <param name="size" brief="The size of the font." />
+        <returns type="Font" brief="A Font object containing the font data." />
+        <example name="Add some fonts.">
+          big = love.objects:newFont("Arial.ttf", 40);
+          small = love.objects:newFont("SomeAwesomeZeldaFont.ttf", 8);
+        </example>
+        <example name="Creating a font using the default font face.">
+          vera = love.objects:newFont(love.default_font, 10);
+        </example>
+      </function>
+
+      <function name="newImageFont" brief="Creates a new font by loading a formatted image image.">
+        The image must contain all the glyphs on a single row reparated by spacing of a certain color.[br /]
+        TODO: Add tutorial.
+        <param name="filename" brief="The filepath to the font file. Relative to the game's folder or .love file." />
+        <param name="glyphs" brief="A list of the glyphs in the same order as they are found in the image." />
+        <returns type="Font" brief="A Font object containing the font data." />
+        <example name="Add some fonts.">
+          big = love.objects:newImageFont("bigfont.png", " ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+          small = love.objects:newImageFont("smallfont.png", " abcdefghijklmnopqrstuvwxyz");
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="newParticleSystem" brief="Creates a new particle system.">
+        This is currenly in BETA. Please do not kill.
+      </function>
+
+      <separator />
+
+      <function name="newFile" brief="Opens a file for reading or writing.">
+        Please see File for information of how files are read and written to.
+        <param name="filename" brief="The filename of the file to open." />
+        <param name="mode" brief="love.read, love.write or love.read_write." />
+        <see name="File" />
+        <see name="love.filesystem" />
+      </function>
+
+      <!-- <function name="newMenu" breif="Creates a new GUI item.">
+        <param name="type" brief="The type of menu setup (default: vertical)." />
+      </function> -->
+
+    </device>
+
+    <device name="love.graphics" brief="Device for drawing all the graphical elements in the game.">
+
+      <function name="setColor" brief="Sets the current color.">
+        <param name="color" brief="A Color object." />
+        <example name="Set the current color as red.">
+          red = love.objects:newColor(0xFF1111);
+          love.graphics:setColor(red);
+        </example>
+      </function>
+	  
+	  <function name="setColor" brief="Sets the current color.">
+        <param name="red" brief="The amount of red." />
+        <param name="green" brief="The amount of green." />
+        <param name="blue" brief="The amount of blue." />
+        <example name="Set the current color as blue.">
+          love.graphics:setColor(10, 10, 255); -- the default alpha value (255) will be used
+        </example>
+      </function>
+
+      <function name="setColor" brief="Sets the current color.">
+        <param name="red" brief="The amount of red." />
+        <param name="green" brief="The amount of green." />
+        <param name="blue" brief="The amount of blue." />
+        <param name="alpha" brief="The amount of alpha." />
+        <example name="Set the current color as transparent red.">
+          love.graphics:setColor(255, 10, 10, 150);
+        </example>
+      </function>
+	  
+	  <function name="setColor" brief="Sets the current color.">
+        <param name="code" brief="A hexadecimal color code." />
+        <example name="Set the current color as blue.">
+          love.graphics:setColor(0x0000FF); -- the default alpha value (255) will be used
+        </example>
+      </function>
+	  
+	  <function name="setColor" brief="Sets the current color.">
+        <param name="code" brief="A hexadecimal color code." />
+		<param name="alpha" brief="The amount of alpha." />
+        <example name="Set the current color as transparent blue.">
+          love.graphics:setColor(0x0000FF, 150);
+        </example>
+      </function>
+
+      <function name="setBackgroundColor" brief="Sets the background color.">
+        Note: The alpha value of the Color will be ignored as the background cannot be transparent.
+        <param name="color" brief="A Color object." />
+        <example name="Set the background color as red.">
+          red = love.objects:newColor(0xFF1111);
+          love.graphics:setBackground(red);
+        </example>
+      </function>
+
+      <function name="setBackgroundColor" brief="Sets the background color.">
+        No alpha value is present as the background cannot be transparent.
+        <param name="red" brief="The amount of red." />
+        <param name="green" brief="The amount of green." />
+        <param name="blue" brief="The amount of blue." />
+        <example name="Set the current color as red, then blue.">
+          love.graphics:setBackground(255, 10, 10);
+          love.graphics:setBackground(10, 10, 255);
+        </example>
+      </function>
+
+      <function name="setFont" brief="Sets the current font.">
+        <param name="font" brief="A Font object." />
+        <example name="Create and set a large font.">
+          big_text = love.objects:newDefaultFont(40);
+          love.graphics:setFont(big_text);
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="getColor" brief="Gets the current color.">
+        <returns type="Color" brief="The current color." />
+      </function>
+
+      <function name="getBackgroundColor" brief="Gets the current background color.">
+        <returns type="Color" brief="The current background color." />
+      </function>
+
+      <function name="getFont" brief="Gets the current font.">
+        <returns type="Font" brief="The current font." />
+      </function>
+
+      <separator />
+
+      <function name="draw" brief="Draws text on screen.">
+        <param name="string" brief="A text string." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+      </function>
+
+      <function name="draw" brief="Draws text on screen, with word wrap and line breaks.">
+
+        Setting the limit when drawing text causes linebreaks (\n) to be visible,
+        and lines to wrap if they exceed the specified limit.
+
+        <param name="string" brief="A text string." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+        <param name="wrap" brief="The max line width (in pixels)." />
+      </function>
+
+      <function name="draw" brief="Draws text on screen, with word wrap, line breaks, and alignment.">
+        Setting the limit when drawing text causes linebreaks (\n) to be visible,
+        and lines to wrap if they exceed the specified limit.[br /]
+        [br /]
+        The align argument specifies how the text should aligned: love.align_left,
+        love.align_right or love.align_center.
+
+        <param name="string" brief="A text string." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+        <param name="wrap" brief="The max line width (in pixels)." />
+        <param name="align" brief="How the text should be aligned (love.align_left, 
+        love.align_right or love.align_center)." />
+      </function>
+
+      <function name="draw" brief="Draws an Image on screen.">
+        <param name="image" brief="An Image object." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+      </function>
+
+      <function name="draw" brief="Draws an Animation on screen.">
+        <param name="animation" brief="An Animation object." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+      </function>
+
+      <function name="draw" brief="Draws a ParticleSystem on screen.">
+        <param name="particlesystem" brief="A ParticleSystem object." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+      </function>
+
+      <separator />
+
+      <function name="draw" brief="Draws a section of an Image on screen.">
+        <param name="image" brief="An Image object." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+        <param name="xs" brief="The position of the section on the x-axis." />
+        <param name="ys" brief="The position of the section on the y-axis." />
+        <param name="w" brief="The width of the section." />
+        <param name="h" brief="The height of the section." />
+      </function>
+
+      <function name="draw" brief="Draws a section of an Animation on screen.">
+        <param name="animation" brief="An Animation object." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+        <param name="xs" brief="The position of the section on the x-axis." />
+        <param name="ys" brief="The position of the section on the y-axis." />
+        <param name="w" brief="The width of the section." />
+        <param name="h" brief="The height of the section." />
+      </function>
+
+      <separator />
+
+      <function name="getWidth" brief="Gets the width of the screen.">
+        <returns type="number" brief="The width of the screen." />
+      </function>
+
+      <function name="getHeight" brief="Gets the height of the screen.">
+        <returns type="number" brief="The height of the screen." />
+      </function>
+
+
+    </device>
+
+    <device name="love.audio" brief="Device for playing audio objects (Music or Sound).">
+
+      Yaaahr, this be the proposed intahrface for love.audio. Some things have been added! -mike
+
+      <function name="play" brief="Plays a sound.">
+        <param name="sound" brief="The sound to play." />
+        The Sound is played a single time, on the first available channel.
+      </function>
+
+      <function name="play" brief="Plays/loops a sound.">
+        <param name="sound" brief="The sound to play." />
+        <param name="loop" brief="The number of times to loop. (0 = play once, -1 = forever)." />
+      </function>
+
+      <function name="play" brief="Plays/loops a sound on a specific channel.">
+        TODO: Not sure if this should be available. I don't think so... things like channel selection will just confuse it up.
+        <param name="sound" brief="The sound to play." />
+        <param name="loop" brief="The number of times to loop. (0 = play once, -1 = forever)." />
+        <param name="channel" brief="The channel number to play the sound on." />
+      </function>
+
+      <function name="stop" brief="Stops a specific sound, if it's playing.">
+        If the sounds is not playing, nothing happens.
+        <param name="sound" brief="The sound to stop." />
+      </function>
+
+      <separator />
+
+      <function name="play" brief="Plays music.">
+        <param name="music" brief="The Music object to play." />
+        Remember that only one Music can play
+        at any time. (See love.audio).
+      </function>
+
+      <function name="play" brief="Plays/loops music.">
+        <param name="music" brief="The Music object to play." />
+        <param name="loop" brief="The number of times to loop. (0 = play once, -1 = forever)." />
+        Remember that only one Music can play
+        at any time. (See love.audio).
+      </function>
+
+      <function name="stop" brief="Stops the Music, if it's playing.">
+        If the specified Music object isn't playing, nothing happens.
+        <param name="music" brief="The Music object to stop." />
+      </function>
+
+      <separator />
+
+      <function name="pause" brief="Pauses all audio playback.">
+      </function>
+
+      <function name="resume" brief="Resumes all audio playback.">
+      </function>
+
+      <function name="stop" brief="Stops all audio playback.">
+      </function>
+
+      <function name="stop" brief="Fades out all audio playback.">
+        <param name="time" brief="The amount of seconds to fade out." />
+      </function>
+
+      <function name="stopSounds" brief="Stops all sounds.">
+        TODO: Not sure if this IS available. ^.^
+      </function>
+
+      <function name="stopMusic" brief="Stops currently playing music, if any.">
+        If no Music is playing, nothing happens.
+      </function>
+
+      <separator />
+
+      <function name="isPlaying" brief="Checks whether (any) audio is playing or not.">
+        <returns type="boolean" brief="True if audio is playing, false otherwise" />
+      </function>
+
+      <function name="isPaused" brief="Checks whether audio playback is paused or not.">
+        <returns type="boolean" brief="True if audio is paused, false otherwise." />
+      </function>
+
+      <separator />
+
+      <function name="setVolume" brief="Changes the master volume.">
+        <param name="volume" brief="A number from 0 (min) to 100 (max)." />
+      </function>
+
+      <function name="getVolume" brief="Gets the master volume.">
+        <returns type="number" brief="A number from 0 (min) to 100 (max)." />
+      </function>
+
+      <see name="Sound" />
+      <see name="Music" />
+
+    </device>
+
+    <device name="love.keyboard" brief="Keeps track of the state of the keyboard.">
+
+      <function name="isDown" brief="Checks whether a certain key is down.">
+        <param name="key" brief="The key in question." />
+        <returns type="boolean" brief="Whether the passed key is pressed down." />
+        <example>
+          if keyboard:isDown('x') then
+          print("x is down");
+          end
+        </example>
+      </function>
+
+    </device>
+
+    <device name="love.mouse" brief="Keeps track of the state of the mouse.">
+
+      <function name="getX" brief="Gets the current x-position of the mouse.">
+        <returns type="number" brief="Current x-position." />
+        <example>
+          text:print(100, 100, "mouse is at: " .. mouse:getX() .. "x" .. mouse:getY());
+        </example>
+      </function>
+
+      <function name="getY" brief="Gets the current y-position of the mouse.">
+        <returns type="number" brief="Current y-position." />
+        <example>
+          text:print(100, 100, "mouse is at: " .. mouse:getX() .. "x" .. mouse:getY());
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="isDown" brief="Checks whether a certain button is down.">
+        <param name="button" brief="A mouse button." />
+        <returns type="boolean" brief="Whether the button is down." />
+        <example>
+          if mouse:isDown(LOVE_MOUSE_LEFT) then
+          text:print(100, 100, "the left mouse button is being pressed ^.^");
+          end
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="hide" brief="Hides the mouse.">
+      </function>
+
+      <function name="show" brief="Shows the mouse.">
+      </function>
+
+    </device>
+
+    <device name="love.filesystem" brief="Handles interactions with the filesystem.">
+
+      See File for general info on file input/output.
+
+      <function name="include" brief="Includes and runs a Lua file.">
+        <param name="filename" brief="The filename of the file to read." />
+      </function>
+      <separator />
+      <function name="write" brief="Writes data to a (writable) file.">
+        <param name="file" brief="The File object to write to." />
+        <param name="data" brief="The data to write to the file." />
+      </function>
+      <function name="write" brief="Writes data to a (writable) file, with the option to append data.">
+        <param name="file" brief="The File object to write to." />
+        <param name="data" brief="The data to write to the file." />
+        <param name="append" brief="True if data should be appended, false to overwrite." />
+      </function>
+      <separator />
+      <see name="File" />
+
+    </device>
+
+    <!-- <device name="love.gui">
+      Does that mean this device does not officially exist for first release?
+    </device>
+    <device name="love.filesystem">
+
+      <function name="include" brief="Reads and runs Lua code from a file." >
+        <param name="filename" brief="The filename/path to the Lua-file." />
+      </function>
+
+      <separator />
+
+      <function name="open" brief="Opens a file for reading/writing." >
+        <param name="filename" brief="The filename of the file to open." />
+        <param name="mode" brief="A string indicating access level. &quot;r&quot; for read, &quot;w&quot; for write. " />
+        <returns type="File" brief="A File object, or nil if unsuccessful." />
+      </function>
+      <function name="close" brief="Closes an open file.">
+        <param name="file" brief="The File object to close." />
+      </function>
+
+    </device> -->
+
+  </section>
+
+  <section name="Types" has="List of types">
+
+    <!-- :::::::::::::::::::::::::: ANIMATION :::::::::::::::::::::::::: -->
+
+    <type name="Animation" brief="Contains the data for an animated image.">
+      Created by calling any of the [b]love.objects:newAnimation()[/b] functions.
+      <see name="love.objects:newAnimation( image )" />
+      <see name="love.objects:newAnimation( image, xf, yf, fw, fh, delay )" />
+
+      <function name="addFrame" brief="Adds a frame by extracting a frame of the assigned image.">
+        <param name="x" brief="x-coordinate within the image." />
+        <param name="y" brief="y-coordinate within the image." />
+        <param name="width" brief="Width of the frame." />
+        <param name="height" brief="Height of the frame." />
+        <param name="delay" brief="Delay after this frame (in seconds)." />
+        <example>
+          -- Loads a sprite sheet and designates it as the frame-animation's source image
+          -- We'll assume that this image is 600x40 pixels
+          sonicanimation = love.objects:newAnimation(love.objects:newImage("sonic.png"));
+
+          -- Creates the first animation frame by creating a sub-image of the source image
+          -- In this case a 40x40 square starting from the top left corner
+          -- And with 0.1 seconds of delay
+          sonicanimation:addFrame(0,0,40,40,0.1);
+
+          -- Now we take a smaller frame from somewhere in the middle of the image
+          sonicanimation:addFrame(420,20,40,20,0.1);
+        </example>
+      </function>
+
+      <function name="addFrames" brief="Automatically adds frames from the source image.">
+        This assumes that all the frames are of the same size and placed in a logical grid and correctly spaced apart.
+        <param name="sizex" brief="How many frames there are per row." />
+        <param name="sizey" brief="The amount of rows." />
+        <param name="width" brief="The width of each frame." />
+        <param name="height" brief="The height of each frame." />
+        <param name="delay" brief="The delay after each frame (in seconds)." />
+        <example>
+          -- Takes an image of an explosion and creates a frame animation with that as its source
+          explosion = love.objects:newAnimation(love.objects:newImage("explosion.png"));
+
+          -- Adds the frames by designating that each of them are 96x96 pixels in size and are arranged
+          -- with 5 frames per rown in 3 rows, giving each frame a 0.17 seconds delay.
+          explosion:addFrames(5, 3, 96, 96, 0.17);
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="start" brief="Starts the animation.">
+      </function>
+
+      <function name="stop" brief="Stops the animation.">
+      </function>
+
+      <function name="delay" brief="Delays the animation.">
+        <param name="t" brief="The amount of seconds to delay the animation." />
+      </function>
+
+      <separator />
+
+    </type>
+
+    <!-- :::::::::::::::::::::::::: COLOR :::::::::::::::::::::::::: -->
+
+    <type name="Color" brief="An object containing color information.">
+      A Color object is created by calling any of the [b]love.objects:newColor()[/b] functions.
+      <see name="love.objects:newColor( red, green, blue, alpha )" />
+      <see name="love.objects:newColor( red, green, blue )" />
+      <see name="love.objects:newColor( code, alpha )" />
+      <see name="love.objects:newColor( code )" />
+
+      <function name="setColor" brief="Sets the current color.">
+        <param name="red" brief="The amount of red." />
+        <param name="green" brief="The amount of green." />
+        <param name="blue" brief="The amount of blue." />
+        <param name="alpha" brief="The amount of alpha." />
+      </function>
+
+      <function name="setColor" brief="Sets the current color.">
+        <param name="red" brief="The amount of red." />
+        <param name="green" brief="The amount of green." />
+        <param name="blue" brief="The amount of blue." />
+      </function>
+
+      <separator />
+
+      <function name="setRed" brief="Sets the amount of red in the color.">
+        <param name="red" brief="The amount of red." />
+      </function>
+
+      <function name="setGreen" brief="Sets the amount of green in the color.">
+        <param name="green" brief="The amount of green." />
+      </function>
+
+      <function name="setBlue" brief="Sets the amount of blue in the color.">
+        <param name="blue" brief="The amount of blue." />
+      </function>
+
+      <function name="setAlpha" brief="Sets the amount of alpha in the color.">
+        <param name="alpha" brief="The amount of alpha." />
+      </function>
+
+      <separator />
+
+      <function name="getRed" brief="Gets the amount of red in the color.">
+        <returns type="number">The amount of red.</returns>
+      </function>
+
+      <function name="getGreen" brief="Gets the amount of green in the color.">
+        <returns type="number">The amount of green.</returns>
+      </function>
+
+      <function name="getBlue" brief="Gets the amount of blue in the color.">
+        <returns type="number">The amount of blue.</returns>
+      </function>
+
+      <function name="getAlpha" brief="Gets the amount of alpha in the color.">
+        <returns type="number">The amount of alpha.</returns>
+      </function>
+
+      <separator />
+
+      <function name="getGradient" brief="Gets a gradient between this color and another.">
+        <param name="other" brief="A pointer to the other Color object." />
+        <param name="amount" brief="How much to gradient (0 is this color, 1 is other color)." />
+        <returns type="Color">A pointer to the gradient color.</returns>
+        <example>
+          red = love.objects:newColor(255, 0, 0);
+          blue = love.objects:newColor(0, 0, 255);
+
+          purple = red:getGradient(blue, 0.5);
+          veryred = red:getGradient(blue, 0.1);
+          veryblue = red:getGradient(blue, 0.9);
+        </example>
+      </function>
+
+    </type>
+
+    <!-- :::::::::::::::::::::::::: FILE :::::::::::::::::::::::::: -->
+
+    <type name="File" brief="A file handle.">
+
+      Please take note of the following regarding reading and writing files:
+
+      [ul]
+      [li]It is not possible to write to the game directory itself.[/li]
+      [li]It is not possible to write to the .love file.[/li]
+      [li]You get a directory on the system where you are allowed write access. This is usually somewhere under the user's home folder.[/li]
+      [li]Calls to love.objects:newFile( filename, mode ) with write mode (love.write or love.read_write) will look for files in the write directory only.[/li]
+      [/ul]
+
+      [ul]
+      [li]It is possible to read all files from the game directory, the .love-file or the dedicated write directory.[/li]
+      [li]Calls to love.objects:newFile( filename, mode ) with read mode (love.read) will look for files in the write directory and the game directory/.love-file.
+      If conflicting filenames exist, the game directory/.love-file has precedence.[/li]
+      [/ul]
+
+      <function name="getFilename" brief="Gets the filename (and path) of the file.">
+        <returns type="string" brief="The path + filename of the file." />
+      </function>
+      <function name="getOrigin" brief="Gets the origin of the file. (Game source or write folder).">
+        <returns type="number" brief="love.game_source if from the game directory or the .love-file, or love.write_directory if from the write directory." />
+      </function>
+
+    </type>
+
+    <!-- :::::::::::::::::::::::::: FONT :::::::::::::::::::::::::: -->
+
+    <type name="Font" brief="Represents a font.">
+      A Font object is created by calling any of the [b]love.objects:newFont()[/b] functions.[br /]
+      <see name="love.objects:newDefaultFont( size )" />
+      <see name="love.objects:newFont( filename, size )" />
+      <see name="love.objects:newImageFont( filename, glyphs )" />
+      <see name="love.graphics:setFont( font )" />
+
+      <function name="getLineHeight" brief="Returns the height of the font.">
+        The height of the font is the size including any spacing; the height which it will need.
+        <returns type="number" brief="The height of the font." />
+      </function>
+
+      <function name="getLineWidth" brief="Returns the width of the line.">
+        Determines the line length. Does not support line-breaks.
+        <param name="line" brief="A line of text." />
+        <returns type="number" brief="The width of the font." />
+      </function>
+    </type>
+
+
+
+    <!-- :::::::::::::::::::::::::: IMAGE :::::::::::::::::::::::::: -->
+
+    <type name="Image" brief="Contains image data. Typically loaded from an image file such as png, gif or jpg.">
+      Images are created using functions in love.objects, and drawn on screen using functions in love.graphics. Images do currently not exist in memory after they are created as GPU textures, thus methods
+      for reading single pixel colors and similar are not available.[br /]
+      [br /]Supported image formats:
+      [ul]
+      [li]PNG[/li]
+      [li]BMP[/li]
+      [li]GIF[/li]
+      [li]JPEG[/li]
+      [li]LBM[/li]
+      [li]PCX[/li]
+      [li]PNM[/li]
+      [li]TGA[/li]
+      [li]XCF[/li]
+      [li]XPM[/li]
+      [li]XV[/li]
+      [li](And probably not TIFF)[/li]
+      [/ul]
+      <see name="love.objects:newImage( filename )" />
+
+      <function name="getWidth" brief="Gets the width of the image.">
+        <returns type="number">The width of the Image in pixels.</returns>
+      </function>
+
+      <function name="getHeight" brief="Gets the height of the image.">
+        <returns type="number">The height of the Image in pixels.</returns>
+      </function>
+    </type>
+
+
+    <!-- :::::::::::::::::::::::::: MUSIC :::::::::::::::::::::::::: -->
+
+    <type name="Music" brief="Contains compressed sound data.">
+
+      Can load the following formats: MP3, OGG, MIDI, XM, MOD,
+      and a variety of other tracker formats.
+
+      Music, unlike Sound, isn't fully decoded and expanded into
+      memory when the game loads; decoding takes place during run-time. See love.audio
+      for details on this.[br /]
+      [br /]
+      Note that the Music object itself has no functions; it is only used as a handle.
+      love.objects is used to create the Music objects, and love.audio is used to play
+      it.
+
+      <see name="Sound" />
+      <see name="love.audio" />
+      <see name="love.objects" />
+      <see name="love.objects:newMusic( filename )" />
+
+    </type>
+
+
+    <!-- :::::::::::::::::::::::::: SOUND :::::::::::::::::::::::::: -->
+
+    <type name="Sound" brief="Contains sound data. Loaded from a sample file.">
+      Can load the following formats: WAVE, OGG, AIFF, RIFF and VOC. Sound is fully
+      expanded into memory when the game loads. This means that if you load a
+      5MB compressed .ogg file as a sound, it would consume ~50MB RAM when fully
+      decompressed. Consider using Music in such cases.[br /]
+      [br /]
+      Note that the Sound object does not contain functions to play itself back;
+      this happens via functions in love.audio.
+
+
+      <function name="setVolume" brief="Sets the volume the sound should be played at.">
+        <param name="volume" brief="The volume (from 0 to 100)." />
+      </function>
+
+      <function name="getVolume" brief="Returns the volume that the sound will be played at.">
+        <returns type="number" brief="The volume (from 0 to 100)." />
+      </function>
+
+      <see name="Music" />
+      <see name="love.audio" />
+      <see name="love.objects" />
+      <see name="love.objects:newSound( filename )" />
+
+
+    </type>
+
+
+  </section>
+
+  <section name="Callbacks" has="List of callbacks">
+    <function name="main.load" brief="Called when the game should load.">
+
+      This function is called exacly once at the beginning of the game. Does this mean I can reference Sound, Image, DropDown and so forth? How about main.update( dt )?
+
+      <example>
+        main = {}
+
+        function main.load() = {
+        [tab /]-- Load stuff here.
+        [tab /]image = love.objects:newImage("image.png");
+        [tab /]sound = love.objects:newSound("effect.wav");
+        }
+      </example>
+    </function>
+
+    <function name="main.update" brief="Called each timestep when the game should be updated.">
+      <param name="dt" brief="The time since last update in seconds." />
+      <example>
+        main = {}
+
+        player = { x = 100, y = 100 }
+
+        function main.update(dt) = {
+        [tab /]-- Move the player horizontally by +200px/second.
+        [tab /]player.x = player.x + 200 * dt
+        }
+      </example>
+    </function>
+    <function name="main.render"></function>
+    <function name="main.event">
+      <param name="e" brief="The event that just happened." />
+    </function>
+    <function name="main.mousepressed">
+      <param name="x" brief="The position of the mouse on the x-axis." />
+      <param name="y" brief="The position of the mouse on the y-axis." />
+      <param name="button" brief="Which button is pressed." />
+    </function>
+    <function name="main.mousereleased">
+      <param name="x" brief="The position of the mouse on the x-axis." />
+      <param name="y" brief="The position of the mouse on the y-axis." />
+      <param name="button" brief="Which button is released." />
+    </function>
+    <function name="main.keypressed">
+      <param name="key" brief="The key code of the pressed key." />
+    </function>
+    <function name="main.keyreleased">
+      <param name="key" brief="The key code of the released key." />
+    </function>
+  </section>
+
+
+  <section name="Miscellaneous" has="List of topics">
+    <constants name="Constants" brief="List of all constants." has="List of constants">
+
+      This is the complete list of constants available in LOVE.
+
+	  <constant name="love.key_unknown" brief="Represents an unknown key" />
+	  <constant name="love.key_first" />
+	  <constant name="love.key_backspace" brief="Backspace key" />
+	  <constant name="love.key_tab" brief="Tab key" />
+	  <constant name="love.key_clear" />
+	  <constant name="love.key_return" brief="Carriage return key" />
+	  <constant name="love.key_pause" brief="Pause key" />
+	  <constant name="love.key_escape" brief="Escape key" />
+	  <constant name="love.key_space" brief="Spacebar key" />
+	  <constant name="love.key_exclaim" brief="! key" />
+	  <constant name="love.key_quotedbl" />
+	  <constant name="love.key_hash" brief="# key" />
+	  <constant name="love.key_dollar" brief="$ key" />
+	  <constant name="love.key_ampersand" brief="&amp; key" />
+	  <constant name="love.key_quote" brief='" key' />
+	  <constant name="love.key_leftparen" brief="( key" />
+	  <constant name="love.key_rightparen" brief=") key" />
+	  <constant name="love.key_asterisk" brief="* key" />
+	  <constant name="love.key_plus" brief="+ key" />
+	  <constant name="love.key_comma" brief=", key" />
+	  <constant name="love.key_minus" brief="- key" />
+	  <constant name="love.key_period" brief=". key" />
+	  <constant name="love.key_slash" brief="/ key" />
+	  <constant name="love.key_0" brief="0 key" />
+	  <constant name="love.key_1" brief="1 key" />
+	  <constant name="love.key_2" brief="2 key" />
+	  <constant name="love.key_3" brief="3 key" />
+	  <constant name="love.key_4" brief="4 key" />
+	  <constant name="love.key_5" brief="5 key" />
+	  <constant name="love.key_6" brief="6 key" />
+	  <constant name="love.key_7" brief="7 key" />
+	  <constant name="love.key_8" brief="8 key" />
+	  <constant name="love.key_9" brief="9 key" />
+	  <constant name="love.key_colon" brief=": key" />
+	  <constant name="love.key_semicolon" brief="; key" />
+	  <constant name="love.key_less" brief="&lt; key" />
+	  <constant name="love.key_equals" brief="= key" />
+	  <constant name="love.key_greater" brief="&gt; key" />
+	  <constant name="love.key_question" brief="? key" />
+	  <constant name="love.key_at" brief="@ key" />
+	  <separator />
+	  <constant name="love.key_leftbracket" brief="[ key" />
+	  <constant name="love.key_backslash" brief="\ key" />
+	  <constant name="love.key_rightbracket" brief="] key" />
+	  <constant name="love.key_caret" brief="^ key" />
+	  <constant name="love.key_underscore" brief="_ key" />
+	  <constant name="love.key_backquote" brief=" key" />
+	  <constant name="love.key_a" brief="A key" />
+	  <constant name="love.key_b" brief="B key" />
+	  <constant name="love.key_c" brief="C key" />
+	  <constant name="love.key_d" brief="D key" />
+	  <constant name="love.key_e" brief="E key" />
+	  <constant name="love.key_f" brief="F key" />
+	  <constant name="love.key_g" brief="G key" />
+	  <constant name="love.key_h" brief="H key" />
+	  <constant name="love.key_i" brief="I key" />
+	  <constant name="love.key_j" brief="J key" />
+	  <constant name="love.key_k" brief="K key" />
+	  <constant name="love.key_l" brief="L key" />
+	  <constant name="love.key_m" brief="M key" />
+	  <constant name="love.key_n" brief="N key" />
+	  <constant name="love.key_o" brief="O key" />
+	  <constant name="love.key_p" brief="P key" />
+	  <constant name="love.key_q" brief="Q key" />
+	  <constant name="love.key_r" brief="R key" />
+	  <constant name="love.key_s" brief="S key" />
+	  <constant name="love.key_t" brief="T key" />
+	  <constant name="love.key_u" brief="U key" />
+	  <constant name="love.key_v" brief="V key" />
+	  <constant name="love.key_w" brief="W key" />
+	  <constant name="love.key_x" brief="X key" />
+	  <constant name="love.key_y" brief="Y key" />
+	  <constant name="love.key_z" brief="Z key" />
+	  <constant name="love.key_delete" brief="Delete key" />
+	  <separator />
+	  <constant name="love.key_kp0" brief="Keypad 0" />
+	  <constant name="love.key_kp1" brief="Keypad 1" />
+	  <constant name="love.key_kp2" brief="Keypad 2" />
+	  <constant name="love.key_kp3" brief="Keypad 3" />
+	  <constant name="love.key_kp4" brief="Keypad 4" />
+	  <constant name="love.key_kp5" brief="Keypad 5" />
+	  <constant name="love.key_kp6" brief="Keypad 6" />
+	  <constant name="love.key_kp7" brief="Keypad 7" />
+	  <constant name="love.key_kp8" brief="Keypad 8" />
+	  <constant name="love.key_kp9" brief="Keypad 9" />
+	  <constant name="love.key_kp_period" brief="Keypad ." />
+	  <constant name="love.key_kp_divide" brief="Keypad /" />
+	  <constant name="love.key_kp_multiply" brief="Keypad *" />
+	  <constant name="love.key_kp_minus" brief="Keypad -" />
+	  <constant name="love.key_kp_plus" brief="Keypad +" />
+	  <constant name="love.key_kp_enter" brief="Keypad enter" />
+	  <constant name="love.key_kp_equals" brief="Keypad =" />
+	  <separator />
+	  <constant name="love.key_up" brief="Up key" />
+	  <constant name="love.key_down" brief="Down key" />
+	  <constant name="love.key_right" brief="Right key" />
+	  <constant name="love.key_left" brief="Left key" />
+	  <constant name="love.key_insert" brief="Insert key" />
+	  <constant name="love.key_home" brief="Home key" />
+	  <constant name="love.key_end" brief="End key" />
+	  <constant name="love.key_pageup" brief="Page Up key" />
+	  <constant name="love.key_pagedown" brief="Page Down key" />
+	  <separator />
+	  <constant name="love.key_f1" brief="F1 key" />
+	  <constant name="love.key_f2" brief="F2 key" />
+	  <constant name="love.key_f3" brief="F3 key" />
+	  <constant name="love.key_f4" brief="F4 key" />
+	  <constant name="love.key_f5" brief="F5 key" />
+	  <constant name="love.key_f6" brief="F6 key" />
+	  <constant name="love.key_f7" brief="F7 key" />
+	  <constant name="love.key_f8" brief="F8 key" />
+	  <constant name="love.key_f9" brief="F9 key" />
+	  <constant name="love.key_f10" brief="F10 key" />
+	  <constant name="love.key_f11" brief="F11 key" />
+	  <constant name="love.key_f12" brief="F12 key" />
+	  <constant name="love.key_f13" brief="F13 key" />
+	  <constant name="love.key_f14" brief="F14 key" />
+	  <constant name="love.key_f15" brief="F15 key" />
+	  <separator />
+	  <constant name="love.key_numlock" brief="Num lock key" />
+	  <constant name="love.key_capslock" brief="Caps lock key" />
+	  <constant name="love.key_scrollock" brief="Scroll lock key" />
+	  <constant name="love.key_rshift" brief="Right shift key" />
+	  <constant name="love.key_lshift" brief="Left shift key" />
+	  <constant name="love.key_rctrl" brief="Right control key" />
+	  <constant name="love.key_lctrl" brief="Left control key" />
+	  <constant name="love.key_ralt" brief="Right alt key" />
+	  <constant name="love.key_lalt" brief="Left alt key" />
+	  <constant name="love.key_rmeta" brief="Right meta key" />
+	  <constant name="love.key_lmeta" brief="Left meta key" />
+	  <constant name="love.key_rsuper" brief="Right super key" />
+	  <constant name="love.key_lsuper" brief="Left super key" />
+	  <constant name="love.key_mode" brief="Mode key" />
+	  <constant name="love.key_compose" brief="Compose key" />
+	  <separator />
+	  <constant name="love.key_help" brief="Help key" />
+	  <constant name="love.key_print" brief="Print key" />
+	  <constant name="love.key_sysreq" brief="System request key" />
+	  <constant name="love.key_break" brief="Break key" />
+	  <constant name="love.key_menu" brief="Menu key" />
+	  <constant name="love.key_power" brief="Power key" />
+	  <constant name="love.key_euro" brief="€ key" />
+	  <constant name="love.key_undo" brief="Undo key" />
+	  <separator />
+      <constant name="love.mouse_left" brief="The left mouse button." />
+	  <constant name="love.mouse_middle" brief="The middle mouse button."  />
+      <constant name="love.mouse_right" brief="The right mouse button."  />
+	  <constant name="love.mouse_wheelup" brief="Mouse wheel scrolled upwards."  />
+	  <constant name="love.mouse_wheeldown" brief="Mouse wheel scrolled downwards."  />
+	  <separator />
+	  <constant name="love.align_left" brief="Align to the left side." />
+	  <constant name="love.align_center" brief="Align in the center (vertically or horizontally)." />
+	  <constant name="love.align_right" brief="Align to the right side." />
+	  <constant name="love.align_top" brief="Align to the top." />
+	  <constant name="love.align_bottom" brief="Align to the bottom." />
+	  <separator />
+	  <constant name="love.mode_loop" brief="Loops continuesly." />
+	  <constant name="love.mode_once" brief="Plays once." />
+	  <constant name="love.mode_bounce" brief="Bounces back and forth." />
+	  <separator />
+	  <constant name="love.event_message" brief="A message event." />
+	  <constant name="love.event_gui" brief="A GUI event." />
+    </constants>
+	
+    <constants name="Config files" brief="How to create config files." has="List of attributes"> 
+
+      Each game should have a config file that specifies game title, author, version, etc. 
+      A full listing of available attributes is presented below. [br /]
+      [br /]
+      All values are optional, but it is highly recommended to at least include title and author.
+
+      <constant name="title" type="string" brief="The game title."/>
+      <constant name="author" type="string" brief="The author of the game."/>
+      <separator />
+      <constant name="width" brief="Display resolution width."/>
+      <constant name="height" brief="Display resolution height."/>
+      <separator />
+      <constant name="love_version" type="string" brief="The LOVE version this game was meant to function with."/>
+
+      
+      <example name="Standard config file.">
+        # Title / author
+        title = "Epic Quest III"
+        author = "Awesome Games"
+        
+        # Display resolution
+        width = 800
+        height = 600
+      </example>
+      
+    </constants>
+  </section>
+
+
+</document>

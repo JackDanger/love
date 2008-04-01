@@ -1,0 +1,68 @@
+
+LOVE 0.2.1
+----------
+ 
+  * Added many functions in love.filesystem.
+  * Added a dedicated save-folder for each game.
+  * Added timer.sleep.
+  * Added line heights to font objects.
+  * Added love.graphics.getWidth/getHeight.
+  * Added scaling and rotation for text.
+  * Added variable spacing to ImageFont.
+  * Added support for variable line quality when drawing primitives.
+  * Added several functions for drawing sections of images. (love.graphics.draws)
+  * Added image optimization function and padding function. 
+  * Added love.graphics.getWidth/Height.
+
+  * Split devices up into actual SWIG-modules. This means that:
+    - Functions are used like this: love.graphics.draw, not love.graphics:draw
+    - love.objects is no more. Objects are created by an appropriate device.
+  * How you draw primitives has been altered.
+  * draw(string, x, y, wrap, align) has become drawf(string, x, y, wrap, align)
+
+  * Changed getFps to getFPS.
+  * Escape is no more ... enter: Alt+F4.
+  * love.filesystem.include has been renamed to love.filesystem.require.  
+  * ImageFonts now consider the spacing as well as the glyph size.
+  * Fixed a massive ImageFont bug which resulted in float-positioning failure.
+  * Fixed a bug when loading fonts where the specified size doesn't represent the true size of the font.
+
+  * Updated DevIL to version 1.6.8-rc2 (Windows)
+  * Updated FreeType to freetype-2.3.5-1 (Windows)
+  * Updated Lua to 5.1.3 (Windows)
+  * Updated SDL to 1.2.13 (Windows)
+  * Removed boost::filesystem.
+
+LOVE 0.2.0
+----------
+
+  * Added ImageFont
+  * Added Animation
+  * Added text formatting functions
+  * Added setCenter for Image and Animation.
+  * Added methods for rendering of scaled/rotated sprites.
+  * Added the drawing of basic shapes.
+  * Added default font and embedded resources.
+  * Added Ctrl+R for reload.
+  * Added blending and color modes.
+  * Fixed memory usage of Graphics.
+  * Fixed a bug where the set text color would change the color of any images rendered.
+  * Fixed CWD bug.
+  * Fixed titlebar. Game title is now displayed.
+
+
+LOVE 0.1.1
+----------
+
+Initial release!
+
+ * Image loading and rendering.
+ * Sound loading and playing.
+ * Font loading and rendering.
+ * Lua-scriptable games.
+ * Config files.
+ * Stuff is loadable from archive files.
+ * Keyboard, mouse, display, timer, etc. (Basic devices).
+
+
+
