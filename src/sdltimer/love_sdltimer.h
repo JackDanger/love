@@ -47,13 +47,13 @@ namespace love_sdltimer
 		* Gets the average FPS for the previous second.
 		**/
 		float DECLSPEC getFPS();
-	}
 
-	/**
-	* Causes execution to sleep for a certain
-	* amout of milliseconds.
-	**/
-	void sleep(int ms);
+		/**
+		* Causes execution to sleep for a certain
+		* amout of milliseconds.
+		**/
+		void DECLSPEC sleep(int ms);
+	}
 
 } // love_sdltimer
 

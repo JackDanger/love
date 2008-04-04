@@ -15,6 +15,7 @@ namespace love
 	
 	// Function typedefs.
 	typedef float (*fptr_getDelta)();
+	typedef float (*fptr_sleep)(int);
 
 	/**
 	* Audio module interface.
@@ -28,6 +29,7 @@ namespace love
 		// Member function pointers.
 		fptr_void step;
 		fptr_getDelta getDelta;
+		fptr_sleep sleep;
 
 		// From Module.
 		bool extra(const std::string & so);

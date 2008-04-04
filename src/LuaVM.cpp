@@ -423,6 +423,20 @@ namespace love
 	* Functions outside LuaVM.
 	**/
 
+	/**
+	* Replaces all occurences of something 
+	**/
+	std::string string_find_replace( std::string haystack, std::string needle, std::string replace)
+	{
+		std::string::size_type found_at = haystack.find( needle );
+		while( std::string::npos != found_at )
+		{
+			haystack.replace( found_at, needle.length(), replace );
+			found_at = haystack.find( needle, found_at + needle.length() );
+		}
+		return haystack;
+	}
+
 	// Calls traceback in case of runtime errors.
 	int lua_runtime_error(lua_State * L)
 	{
@@ -446,9 +460,18 @@ namespace love
 		{
 			// For future reference. msg now holds the complete error message (with stack trace).
 			const char * msg = lua_tostring(L, -1);
-			//lualove_gui_error(msg);
-			//printf(msg);
-			love::error(msg);
+
+			std::string str(msg);
+
+			// Make error message prettier.
+			str = string_find_replace(str, "[string \"", "");
+			str = string_find_replace(str, "stack traceback:", "[box]\nStack traceback:");
+			str = string_find_replace(str, "\t", "");
+			str = string_find_replace(str, ".lua\"]:", ".lua:");
+			str += "\n[/box]\n";
+
+			// Send to love error handler.
+			love::error(str.c_str());
 		}
 
 		return 1;

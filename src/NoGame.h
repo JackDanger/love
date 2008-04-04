@@ -3,20 +3,23 @@
 * Website: http://love.sourceforge.net
 * Licence: ZLIB/libpng
 * Copyright (c) 2006-2008 LOVE Development Team
+* 
+* @author Anders Ruud
+* @date 2008-04-04
 */
 
 #ifndef LOVE_NO_GAME_H
 #define LOVE_NO_GAME_H
 
-#include "Game.h"
+// LOVE
+#include "LuaGame.h"
 
 namespace love
 {
 	/**
-	* @author Anders Ruud
-	* @date 2008-03-29
+	* This game is activated when no game is specified.
 	**/
-	class NoGame : public Game
+	class NoGame : public LuaGame
 	{
 	public:
 
@@ -36,4 +39,4 @@ namespace love
 
 } // love
 
-#endif // LOVE_GAME_H
+#endif // LOVE_NO_GAME_H

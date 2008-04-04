@@ -3,6 +3,9 @@
 * Website: http://love.sourceforge.net
 * Licence: ZLIB/libpng
 * Copyright (c) 2006-2008 LOVE Development Team
+* 
+* @author Anders Ruud
+* @date 2008-03-15
 */
 
 #ifndef LOVE_H
@@ -58,6 +61,17 @@ namespace love
 	* (This does not trigger errors).
 	**/
 	void error(const char * str);
+
+	/**
+	* Pops the top Game off the game stack. If there's 
+	* only one game left on the stack, nothing happens.
+	**/
+	void pop();
+
+	/**
+	* Restarts the Game at the top of the stack.
+	**/
+	void restart();
 
 	/**
 	* Main loop. Events are delegated to the

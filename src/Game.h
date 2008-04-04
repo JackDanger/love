@@ -3,13 +3,16 @@
 * Website: http://love.sourceforge.net
 * Licence: ZLIB/libpng
 * Copyright (c) 2006-2008 LOVE Development Team
+* 
+* @author Anders Ruud
+* @date 2006-03-10
 */
 
 #ifndef LOVE_GAME_H
 #define LOVE_GAME_H
 
-#include "LuaVM.h"
-#include <vector>
+// Boost
+#include <boost/shared_ptr.hpp>
 
 namespace love
 {
@@ -18,42 +21,16 @@ namespace love
 	class Module;
 	class Filesystem;
 
-	// Callback constants.
-	enum
-	{
-		CALLBACK_LOAD, 
-		CALLBACK_UPDATE, 
-		CALLBACK_DRAW, 
-		CALLBACK_KEYPRESSED, 
-		CALLBACK_KEYRELEASED, 
-		CALLBACK_MOUSEPRESSED, 
-		CALLBACK_MOUSERELEASED, 
-		CALLBACK_MOUSEMOVED, 
-		CALLBACK_EVENT, 
-		CALLBACK_SIZE
-	};
-
-
 	/**
-	* @author Anders Ruud
-	* @date 2006-03-10
+	* Abstract Game class.
 	**/
 	class Game
 	{
 		friend bool init(int argc, char* argv[]);
 	protected:
 
+		// Pointer to Filesystem functions.
 		Filesystem * filesystem;
-
-		// The Lua virtual machine. ("LOVE Machine")
-		LuaVM vm;
-
-		// List of present callback functions.
-		bool callbacks[CALLBACK_SIZE];
-
-		// A list of function pointers that provide
-		// Lua interfaces.
-		std::vector<fptr_luaopen> libs;
 
 		// True if console is visible.
 		bool consoleVisible;
@@ -66,30 +43,37 @@ namespace love
 		Game();
 
 		virtual ~Game();
-
-		/**
-		* Adds a Module to the list of required libraries.
-		* (Will be reloaded automatically on reloads).
-		**/
-		bool require(Module & m);
 		
 		/**
 		* Sets the Filesystem pointer.
 		**/
 		void setFilesystem(Filesystem * fs);
 
-		bool isConsoleVisible() const;
+		/**
+		* If this message returns true, the console will be displayed.
+		**/
+		virtual bool isConsoleVisible() const;
+
+		/**
+		* Changes console visibilty.
+		**/
 		void setConsoleVisible(bool visible);
+
+		/**
+		* Adds a Module to the list of required libraries.
+		* (Will be reloaded automatically on reloads).
+		**/
+		virtual bool require(Module & m) = 0;
 
 		/**
 		* Loads the game.
 		**/
-		virtual bool load();
+		virtual bool load() = 0;
 
 		/**
 		* Unloads the game.
 		**/
-		bool unload();
+		virtual bool unload() = 0;
 
 		/**
 		* Calls unload, then load. Returns result from load.
@@ -100,24 +84,24 @@ namespace love
 		* Called each time the Game should be updated.
 		* @param dt The time since last frame.
 		**/
-		void update(float dt);
+		virtual void update(float dt) = 0;
 
 		/**
 		* Called each time the Game should be rendered.
 		**/
-		void draw();
+		virtual void draw() = 0;
 
 		/**
 		* Called when a key is pressed.
 		* @param key The ASCII key code.
 		**/
-		void keyPressed(int key);
+		virtual void keyPressed(int key) = 0;
 
 		/**
 		* Called when a key is released.
 		* @param key The ASCII key code.
 		**/
-		void keyReleased(int key);
+		virtual void keyReleased(int key) = 0;
 
 		/**
 		* Called when the mouse is pressed.
@@ -125,7 +109,7 @@ namespace love
 		* @param y The y-coordinate of the mousepress.
 		* @param button The button that was pressed.
 		**/
-		void mousePressed(int x, int y, int button);
+		virtual void mousePressed(int x, int y, int button) = 0;
 
 		/**
 		* Called when the mouse is released.
@@ -133,16 +117,18 @@ namespace love
 		* @param y The y-coordinate of the mouserelease.
 		* @param button The button that was released.
 		**/
-		void mouseReleased(int x, int y, int button);
+		virtual void mouseReleased(int x, int y, int button) = 0;
 
 		/**
 		* Called every time the mouse is moved.
 		* @param x The current position of the mouse along the x axis.
 		* @param y The current position of the mouse along the y axis.
 		**/
-		void mouseMoved(int xrel, int yrel);
+		virtual void mouseMoved(int xrel, int yrel) = 0;
 
 	}; // Game
+
+	typedef boost::shared_ptr<Game> pGame;
 
 } // love
 

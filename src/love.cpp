@@ -13,26 +13,28 @@
 #include "Audio.h"
 #include "Physics.h"
 
-#include "Game.h"
+
 #include "Exception.h"
 #include "Configuration.h"
 #include "love_arg.h"
 #include "constants.h"
 
+// Games.
+#include "LuaGame.h"
 #include "NoGame.h"
+#include "SuspendGame.h"
 
 #include <SDL.h>
 
 namespace love
 {
 
-	// The stack of games. The pointer to the 
-	// current game is always games.back().
+	// The stack of games.
 	// (Not used currently).
-	std::vector<Game *> games;
+	std::vector<pGame> games;
 
-	// A pointer to the current game->
-	Game * game = 0;
+	// A pointer to the current game.
+	pGame game;
 
 	// List of modules.
 	std::vector<Module *> modules;
@@ -48,22 +50,12 @@ namespace love
 
 	// Module configuration.
 	love_mod::modconf modconf;
-
+	
 	/**
-	void push_game(Game * g)
-	{
-		games.push_back(g);
-		game = g;
-	}
-
-	void pop_game()
-	{
-		if(games.size() < 2)
-			return;
-		games.pop_back();
-		game = games.back();
-	}
+	* Pushes a Game onto the game stack.
+	* @param g The new game to become the current game.
 	**/
+	void push(pGame g);
 
 	bool init(int argc, char* argv[])
 	{
@@ -78,9 +70,11 @@ namespace love
 
 		std::string arg_game = get_arg_game(argc, argv);
 		if(arg_game.empty())
-			game = new NoGame();
+			game.reset<Game>(new NoGame());
 		else
-			game = new Game();
+			game.reset<Game>(new LuaGame());
+
+		push(game);
 
 		// Create module config.
 		modconf.argc = argc;
@@ -235,8 +229,6 @@ namespace love
 	bool quit()
 	{
 
-		delete game;
-
 		// Pop the filesystem state.
 		filesystem.pop();
 
@@ -261,8 +253,28 @@ namespace love
 		std::cout << str << std::endl;
 
 		// Print graphically.
-		//if(graphics.print != 0)
-		//	graphics.print(str);
+		if(graphics.print != 0)
+			graphics.print(str);
+	}
+
+	void string_tokenize(const std::string& str,
+						std::vector<std::string>& tokens,
+						  const std::string& delimiters = " ")
+	{
+		// Skip delimiters at beginning.
+		std::string::size_type lastPos = str.find_first_not_of(delimiters, 0);
+		// Find first "non-delimiter".
+		std::string::size_type pos     = str.find_first_of(delimiters, lastPos);
+
+		while (std::string::npos != pos || std::string::npos != lastPos)
+		{
+			// Found a token, add it to the vector.
+			tokens.push_back(str.substr(lastPos, pos - lastPos));
+			// Skip delimiters.  Note the "not_of"
+			lastPos = str.find_first_not_of(delimiters, pos);
+			// Find next "non-delimiter"
+			pos = str.find_first_of(delimiters, lastPos);
+		}
 	}
 
 	void error(const char * str)
@@ -270,15 +282,50 @@ namespace love
 		std::cerr << "Error was called: " << str << std::endl;
 
 		// Print graphically.
-		/**
 		if(graphics.print != 0)
 		{
-			graphics.print("[box]");
-			graphics.print(str);
-			graphics.print("[/box]");
+			pGame suspend_game(new SuspendGame());
+			if(suspend_game->load())
+				push(suspend_game);
+			else
+				std::cerr << "Could not suspend game." << std::endl;
 			
+			graphics.print("[box]");
+
+			std::string s(str);
+
+			s = "Error: " + s;
+
+			// Tokenize.
+			std::vector<std::string> tokens;
+			string_tokenize(s, tokens, "\n");
+
+			// Print each line individually.
+			for(int i = 0;i<(int)tokens.size(); i++)
+				graphics.print(tokens[i].c_str());
+
+			graphics.print("[/box]");
+			graphics.print("Press C to continue, or press R to restart.");
 		}
-		**/
+	}
+
+	void push(pGame g)
+	{
+		games.push_back(g);
+		game = games.back();
+	}
+
+	void pop()
+	{
+		if(games.size() < 2)
+			return;
+		games.pop_back();
+		game = games.back();
+	}
+
+	void restart()
+	{
+		game->reload();
 	}
 
 	int loop()
@@ -301,8 +348,8 @@ namespace love
 			graphics.clear();
 			game->draw();
 
-			//if(game->isConsoleVisible())
-			//	graphics.draw_console();
+			if(game->isConsoleVisible())
+				graphics.draw_console();
 
 			while(SDL_PollEvent(&e))
 			{
@@ -311,9 +358,20 @@ namespace love
 				switch(e.type)
 				{
 					case SDL_KEYDOWN:
+						
+						game->keyPressed(e.key.keysym.sym);
+
+						if(keyboard.isDown(KEY_LCTRL) && static_cast<int>(e.key.keysym.sym) == static_cast<int>(KEY_c))
+						{
+							print("Continuing.");
+							pop();
+						}						
 
 						if(keyboard.isDown(KEY_LCTRL) && static_cast<int>(e.key.keysym.sym) == static_cast<int>(KEY_r))
+						{
+							print("Restarting.");
 							game->reload();
+						}
 
 						if(keyboard.isDown(KEY_LALT) && static_cast<int>(e.key.keysym.sym) == static_cast<int>(KEY_RETURN))
 						{
@@ -334,8 +392,6 @@ namespace love
 							game->setConsoleVisible(!game->isConsoleVisible());
 						}
 
-
-						game->keyPressed(e.key.keysym.sym);
 						break;
 					case SDL_KEYUP:
 						game->keyReleased(e.key.keysym.sym);

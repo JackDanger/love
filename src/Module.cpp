@@ -20,6 +20,11 @@ namespace love
 	{
 	}
 
+	fptr_luaopen Module::getLuaOpen()
+	{
+		return luaopen;
+	}
+
 	bool Module::init(const std::string & so, love_mod::modconf * conf)
 	{
 		try

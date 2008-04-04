@@ -9,6 +9,7 @@ namespace love
 		{
 			step = getf<fptr_void>(so, "step");
 			getDelta = getf<fptr_getDelta>(so, "getDelta");
+			sleep = getf<fptr_sleep>(so, "sleep");
 		}
 		catch(Exception e)
 		{

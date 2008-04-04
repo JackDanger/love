@@ -44,8 +44,6 @@ namespace love
 	**/
 	class Module
 	{
-		friend class Game;
-
 	protected:
 
 		// Two functions that all modules have.
@@ -64,6 +62,11 @@ namespace love
 		Module();
 
 		virtual ~Module();
+
+		/**
+		* Gets the luaopen-function.
+		**/
+		fptr_luaopen getLuaOpen();
 
 		/**
 		* Inits the Module. Although it's possible to override this method, 
