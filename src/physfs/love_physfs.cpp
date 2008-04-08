@@ -561,4 +561,36 @@ namespace love_physfs
 		return true;
 	}
 
+	int enumerate(lua_State * L)
+	{
+		int n = lua_gettop(L);
+
+		if( n != 1 )
+			return luaL_error(L, "Function requires a single parameter.");
+
+		int type = lua_type(L, 1);
+
+		if(type != LUA_TSTRING)
+			return luaL_error(L, "Function requires parameter of type string.");	
+
+		const char * dir = lua_tostring(L, 1);
+		char **rc = PHYSFS_enumerateFiles(dir);
+		char **i;
+		int index = 1;
+
+		lua_newtable(L);
+
+		for (i = rc; *i != 0; i++)
+		{
+			lua_pushinteger(L, index);
+			lua_pushstring(L, *i);
+			lua_settable(L, -3);
+			index++;
+		}
+			
+		PHYSFS_freeList(rc);
+
+		return 1;
+	}
+
 } // love_physfs

@@ -87,6 +87,41 @@ namespace love_opengl
 	} // extern "C"
 
 	/**
+	* Checks whether a display mode is supported or not. Note
+	* that fullscreen is assumed, because windowed modes are
+	* generally supported regardless of size.
+	* @param width The window width.
+	* @param height The window height.
+	**/
+	bool checkMode(int width, int height, bool fullscreen = true);
+
+	/**
+	* Sets the current display mode.
+	* @param width The window width.
+	* @param height The window height.
+	* @param fullscreen True if fullscreen, false otherwise.
+	* @param vsync True if we should wait for vsync, false otherwise.
+	* @param fsaa Number of full scene anti-aliasing buffer, or 0 for disabled.
+	**/
+	bool setMode(int width, int height, bool fullscreen = true,	bool vsync = true, int fsaa = 0);
+
+
+	/**
+	* This native Lua function gets available modes
+	* from SDL and returns them as a table on the following format:
+	* 
+	* { 
+	*   { width = 800, height = 600 }, 
+	*   { width = 1024, height = 768 },
+	*   ...
+	* }
+	* 
+	* Only fullscreen modes are returned here, as all
+	* window sizes are supported (normally).
+	**/
+	int getModes(lua_State * L);
+
+	/**
 	* Creates a new Color object.
 	**/
 	pColor newColor( int r, int g, int b, int a = 255 );

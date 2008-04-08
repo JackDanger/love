@@ -11,5 +11,4 @@ namespace love_system
 	void restart();
 	void suspend(); 
 	void print(const char * msg);
-
 }

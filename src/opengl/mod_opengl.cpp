@@ -3949,6 +3949,334 @@ static swig_lua_class *swig_boost_shared_ptr_Sl_love_opengl_Animation_Sg__bases[
 static const char *swig_boost_shared_ptr_Sl_love_opengl_Animation_Sg__base_names[] = {0};
 static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_opengl_Animation_Sg_ = { "SmartAnimation", &SWIGTYPE_p_boost__shared_ptrT_love_opengl__Animation_t,0, swig_delete_SmartAnimation, swig_boost_shared_ptr_Sl_love_opengl_Animation_Sg__methods, swig_boost_shared_ptr_Sl_love_opengl_Animation_Sg__attributes, swig_boost_shared_ptr_Sl_love_opengl_Animation_Sg__bases, swig_boost_shared_ptr_Sl_love_opengl_Animation_Sg__base_names };
 
+static int _wrap_checkMode__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int arg2 ;
+  bool arg3 ;
+  bool result;
+  
+  SWIG_check_num_args("love_opengl::checkMode",3,3)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::checkMode",1,"int");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::checkMode",2,"int");
+  if(!lua_isboolean(L,3)) SWIG_fail_arg("love_opengl::checkMode",3,"bool");
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (lua_toboolean(L, 3)!=0);
+  result = (bool)love_opengl::checkMode(arg1,arg2,arg3);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_checkMode__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int arg2 ;
+  bool result;
+  
+  SWIG_check_num_args("love_opengl::checkMode",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::checkMode",1,"int");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::checkMode",2,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (bool)love_opengl::checkMode(arg1,arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_checkMode(lua_State* L) {
+  int argc;
+  int argv[4]={
+    1,2,3,4
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_checkMode__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isboolean(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_checkMode__SWIG_0(L);
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'checkMode'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_setMode__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int arg2 ;
+  bool arg3 ;
+  bool arg4 ;
+  int arg5 ;
+  bool result;
+  
+  SWIG_check_num_args("love_opengl::setMode",5,5)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::setMode",1,"int");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::setMode",2,"int");
+  if(!lua_isboolean(L,3)) SWIG_fail_arg("love_opengl::setMode",3,"bool");
+  if(!lua_isboolean(L,4)) SWIG_fail_arg("love_opengl::setMode",4,"bool");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("love_opengl::setMode",5,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (lua_toboolean(L, 3)!=0);
+  arg4 = (lua_toboolean(L, 4)!=0);
+  arg5 = (int)lua_tonumber(L, 5);
+  result = (bool)love_opengl::setMode(arg1,arg2,arg3,arg4,arg5);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setMode__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int arg2 ;
+  bool arg3 ;
+  bool arg4 ;
+  bool result;
+  
+  SWIG_check_num_args("love_opengl::setMode",4,4)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::setMode",1,"int");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::setMode",2,"int");
+  if(!lua_isboolean(L,3)) SWIG_fail_arg("love_opengl::setMode",3,"bool");
+  if(!lua_isboolean(L,4)) SWIG_fail_arg("love_opengl::setMode",4,"bool");
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (lua_toboolean(L, 3)!=0);
+  arg4 = (lua_toboolean(L, 4)!=0);
+  result = (bool)love_opengl::setMode(arg1,arg2,arg3,arg4);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setMode__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int arg2 ;
+  bool arg3 ;
+  bool result;
+  
+  SWIG_check_num_args("love_opengl::setMode",3,3)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::setMode",1,"int");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::setMode",2,"int");
+  if(!lua_isboolean(L,3)) SWIG_fail_arg("love_opengl::setMode",3,"bool");
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (lua_toboolean(L, 3)!=0);
+  result = (bool)love_opengl::setMode(arg1,arg2,arg3);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setMode__SWIG_3(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int arg2 ;
+  bool result;
+  
+  SWIG_check_num_args("love_opengl::setMode",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::setMode",1,"int");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::setMode",2,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (bool)love_opengl::setMode(arg1,arg2);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setMode(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_setMode__SWIG_3(L);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isboolean(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_setMode__SWIG_2(L);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isboolean(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isboolean(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_setMode__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isboolean(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isboolean(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_setMode__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'setMode'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_toggleFullscreen(lua_State* L) {
+  int SWIG_arg = -1;
+  bool result;
+  
+  SWIG_check_num_args("love_opengl::toggleFullscreen",0,0)
+  result = (bool)love_opengl::toggleFullscreen();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_newColor__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   int arg1 ;
@@ -6858,6 +7186,9 @@ fail:
 #endif
 
 static const struct luaL_reg swig_commands[] = {
+    { "checkMode",_wrap_checkMode},
+    { "setMode",_wrap_setMode},
+    { "toggleFullscreen", _wrap_toggleFullscreen},
     { "newColor",_wrap_newColor},
     { "newImage",_wrap_newImage},
     { "newFont",_wrap_newFont},
@@ -6879,6 +7210,7 @@ static const struct luaL_reg swig_commands[] = {
     { "quad", _wrap_quad},
     { "circle",_wrap_circle},
     { "print", _wrap_print},
+    { "getModes",love_opengl::getModes},
     {0,0}
 };
 

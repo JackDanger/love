@@ -26,6 +26,12 @@ namespace boost {
 
 namespace love_opengl
 {
+
+	// Display mode control.
+	bool checkMode(int width, int height, bool fullscreen = true);
+	bool setMode(int width, int height, bool fullscreen = true,	bool vsync = true, int fsaa = 0);
+	bool toggleFullscreen();
+
 	pColor newColor( int r, int g, int b, int a = 255 );
 	pImage newImage(int image);
 	pImage newImage(const char * filename);
@@ -88,3 +94,5 @@ namespace love_opengl
 	void print(const char * str);	
 	
 }
+
+%native(getModes) int love_opengl::getModes(lua_State * L);

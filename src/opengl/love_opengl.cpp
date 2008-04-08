@@ -326,6 +326,70 @@ namespace love_opengl
 			console.add(text);	
 	}
 
+	bool checkMode(int width, int height, bool fullscreen)
+	{
+		love::display_mode dm;
+		dm.width = width;
+		dm.height = height;
+		dm.fullscreen = fullscreen;
+		dm.color_depth = 32;
+
+		return ( is_supported(dm) == dm.color_depth );
+	}
+
+
+	bool setMode(int width, int height, bool fullscreen, bool vsync, int fsaa)
+	{
+		love::display_mode dm;
+		dm.width = width;
+		dm.height = height;
+		dm.fullscreen = fullscreen;
+		dm.color_depth = 32;
+		dm.vsync = vsync;
+		dm.fsaa = fsaa;
+
+		return try_change(dm);
+	}
+
+	int getModes(lua_State * L)
+	{
+
+		// Windowed:
+
+		SDL_Rect ** modes = SDL_ListModes(0, SDL_OPENGL | SDL_FULLSCREEN);
+
+		if(modes == (SDL_Rect **)0 || modes == (SDL_Rect **)-1)
+			return 0;
+
+		int index = 1;
+
+		lua_newtable(L);
+
+		for(int i=0;modes[i];++i)
+		{
+			lua_pushinteger(L, index);
+			lua_newtable(L);
+
+			// Inner table attribs.
+
+			lua_pushstring(L, "width");
+			lua_pushinteger(L, modes[i]->w);
+			lua_settable(L, -3);
+
+			lua_pushstring(L, "height");
+			lua_pushinteger(L, modes[i]->h);
+			lua_settable(L, -3);
+
+			// Inner table attribs end.
+
+			lua_settable(L, -3);
+
+			index++;
+		}
+
+		return 1;
+	}
+
 	pColor newColor( int r, int g, int b, int a )
 	{
 		pColor c(new Color(r, g, b, a));

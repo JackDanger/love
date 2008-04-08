@@ -241,6 +241,12 @@ namespace love_physfs
 	**/
 	bool seek(pFile & file, int pos);
 
+	/**
+	* This "native" method returns a table of all 
+	* files in a given directory.
+	**/
+	int enumerate(lua_State * L);
+
 } // love_physfs
 
 #endif // LOVE_MOD_PHYSFS_H 

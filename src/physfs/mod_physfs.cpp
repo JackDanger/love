@@ -2191,6 +2191,7 @@ static const struct luaL_reg swig_commands[] = {
     { "eof", _wrap_eof},
     { "tell", _wrap_tell},
     { "seek", _wrap_seek},
+    { "enumerate",love_physfs::enumerate},
     {0,0}
 };
 

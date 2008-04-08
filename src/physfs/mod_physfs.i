@@ -37,3 +37,5 @@ namespace love_physfs
 	int tell(pFile & file);
 	bool seek(pFile & file, int pos);
 }
+
+%native(enumerate) int love_physfs::enumerate(lua_State * L);
