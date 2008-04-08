@@ -9,7 +9,7 @@ $(OBJDIR)/Music.o \
 $(OBJDIR)/Sound.o
 
 CC = g++
-CFLAGS = -g -O2 -Wall -Wno-unused-label -fno-strict-aliasing
+CFLAGS = -g -O2 -Wall
 LDFLAGS = -llua5.1 -lSDL -lSDL_mixer
 INCLUDES = -I/usr/include/lua5.1 -I/usr/include/SDL
 
@@ -20,6 +20,9 @@ $(TARGET): $(OBJ)
 
 $(OBJDIR)/modfs.o: $(SRCDIR)/../modfs.cpp
 	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJDIR)/mod_sdlmixer.o: $(SRCDIR)/mod_sdlmixer.cpp
+	$(CC) -fPIC -g0 -O2 $(INCLUDES) -c $< -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@

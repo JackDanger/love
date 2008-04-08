@@ -24,7 +24,7 @@ $(OBJDIR)/Shape.o \
 $(OBJDIR)/Space.o
 
 CC = g++
-CFLAGS = -g -O2 -Wall -Wno-unused-label -fno-strict-aliasing
+CFLAGS = -g -O2 -Wall
 LDFLAGS = -llua5.1
 INCLUDES = -I/usr/include/lua5.1
 
@@ -37,7 +37,10 @@ $(OBJDIR)/mod.o: $(SRCDIR)/../mod.cpp
 	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJDIR)/chipmunk/%.o: $(SRCDIR)/chipmunk/%.c
-	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) -fPIC -g0 -O2 -Wno-conversion $(INCLUDES) -c $< -o $@
+
+$(OBJDIR)/mod_chipmunk.o: $(SRCDIR)/mod_chipmunk.cpp
+	$(CC) -fPIC -g0 -O2 $(INCLUDES) -c $< -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@

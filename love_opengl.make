@@ -17,7 +17,7 @@ $(OBJDIR)/TrueTypeFont.o \
 $(OBJDIR)/Volatile.o
 
 CC = g++
-CFLAGS = -g -O2 -Wall -Wno-unused-label -fno-strict-aliasing
+CFLAGS = -g -O2 -Wall
 LDFLAGS = -lfreetype -lGL -lGLU -lIL -lILU -lILUT -llua5.1 -lphysfs -lSDL -lSDL_mixer
 INCLUDES = -I/usr/include/freetype2 -I/usr/include/lua5.1 -I/usr/include/SDL
 
@@ -28,6 +28,9 @@ $(TARGET): $(OBJ)
 
 $(OBJDIR)/%.o: $(SRCDIR)/../%.cpp
 	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJDIR)/mod_opengl.o: $(SRCDIR)/mod_opengl.cpp
+	$(CC) -fPIC -g0 -O2 $(INCLUDES) -c $< -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@

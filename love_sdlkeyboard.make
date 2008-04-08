@@ -7,7 +7,7 @@ $(OBJDIR)/mod.o \
 $(OBJDIR)/mod_sdlkeyboard.o
 
 CC = g++
-CFLAGS = -g -O2 -Wall -Wno-unused-label -fno-strict-aliasing
+CFLAGS = -g -O2 -Wall
 LDFLAGS = -llua5.1 -lSDL
 INCLUDES = -I/usr/include/lua5.1 -I/usr/include/SDL
 
@@ -18,6 +18,9 @@ $(TARGET): $(OBJ)
 
 $(OBJDIR)/mod.o: $(SRCDIR)/../mod.cpp
 	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJDIR)/mod_sdlkeyboard.o: $(SRCDIR)/mod_sdlkeyboard.cpp
+	$(CC) -fPIC -g0 -O2 $(INCLUDES) -c $< -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@

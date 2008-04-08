@@ -12,6 +12,7 @@ $(OBJDIR)/Graphics.o \
 $(OBJDIR)/Keyboard.o \
 $(OBJDIR)/love_arg.o \
 $(OBJDIR)/love.o \
+$(OBJDIR)/LuaGame.o \
 $(OBJDIR)/LuaVM.o \
 $(OBJDIR)/main.o \
 $(OBJDIR)/MemoryFile.o \
@@ -20,12 +21,14 @@ $(OBJDIR)/Mouse.o \
 $(OBJDIR)/NoGame.o \
 $(OBJDIR)/Physics.o \
 $(OBJDIR)/Resource.o \
+$(OBJDIR)/SuspendGame.o \
+$(OBJDIR)/System.o \
 $(OBJDIR)/Timer.o \
 $(OBJDIR)/version.o \
 $(OBJDIR)/Volatile.o
 
 CC = g++
-CFLAGS = -g -O2 -Wall -Wno-unused-label -fno-strict-aliasing
+CFLAGS = -g -O2 -Wall
 LDFLAGS = -llua5.1 -lSDL
 INCLUDES = -I/usr/include/lua5.1 -I/usr/include/SDL
 

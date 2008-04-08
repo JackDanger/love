@@ -8,7 +8,7 @@ $(OBJDIR)/mod_physfs.o \
 $(OBJDIR)/modfs.o
 
 CC = g++
-CFLAGS = -g -O2 -Wall -Wno-unused-label -fno-strict-aliasing
+CFLAGS = -g -O2 -Wall
 LDFLAGS = -lboost_filesystem -llua5.1 -lphysfs -lSDL 
 INCLUDES = -I/usr/include/lua5.1 -I/usr/include/SDL
 
@@ -22,6 +22,9 @@ $(OBJDIR)/modfs.o: $(SRCDIR)/../modfs.cpp
 
 $(OBJDIR)/physfs_File.o: $(SRCDIR)/File.cpp
 	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJDIR)/mod_physfs.o: $(SRCDIR)/mod_physfs.cpp
+	$(CC) -fPIC -g0 -O2 $(INCLUDES) -c $< -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@
