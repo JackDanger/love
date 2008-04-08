@@ -23,6 +23,7 @@
 #	define LOVE_MOD_KEYBOARD "love_sdlkeyboard.dll"
 #	define LOVE_MOD_MOUSE "love_sdlmouse.dll"
 #	define LOVE_MOD_AUDIO "love_sdlmixer.dll"
+#	define LOVE_MOD_SYSTEM "love_system.dll"
 #else
 #	define LOVE_LINUX
 #	define LOVE_MOD_PATH "/usr/lib/love/"
@@ -33,6 +34,7 @@
 #	define LOVE_MOD_KEYBOARD "./love_sdlkeyboard.so"
 #	define LOVE_MOD_MOUSE "./love_sdlmouse.so"
 #	define LOVE_MOD_AUDIO "./love_sdlmixer.so"
+#	define LOVE_MOD_SYSTEM "./love_system.so"
 #endif
 
 // STD

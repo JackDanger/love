@@ -169,6 +169,12 @@ namespace love_opengl
 		delete root;
 	}
 
+	void Console::resize(int width, int height)
+	{
+		this->width = width;
+		this->height = height;
+	}
+
 	int Console::getWidth() const
 	{
 		return width;

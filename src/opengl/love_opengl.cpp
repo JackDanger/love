@@ -78,8 +78,6 @@ namespace love_opengl
 		love_mod::setL(s);
 		luaopen_mod_opengl(s);
 		love_mod::do_string("love.graphics = mod_opengl");
-		love_mod::do_string("print = love.graphics.print");
-
 		setColorMode(love::COLOR_NORMAL);
 
 		return true;
@@ -190,6 +188,8 @@ namespace love_opengl
 		// Set the new display mode as the current display mode
 		current = dm;
 
+		console.resize(dm.width, console.getHeight());
+
 		// Create font.
 		if(console_font == 0)
 		{
@@ -261,10 +261,15 @@ namespace love_opengl
 
 	void draw_console()
 	{
-		// Set the font.
+		// "Push" the state.
 		pFont old_font = current_font;
+		glPushAttrib(GL_CURRENT_BIT);
+		
 		current_font = console_font;
 		console.draw(0, current.height);
+
+		// "Pop" the state.
+		glPopAttrib();
 		current_font = old_font;
 	}
 

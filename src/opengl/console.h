@@ -91,6 +91,8 @@ namespace love_opengl
 		Console(int width, int height);
 		~Console();
 
+		void resize(int width, int height);
+
 		int getWidth() const;
 		int getHeight() const;
 

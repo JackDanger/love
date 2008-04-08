@@ -12,12 +12,14 @@
 #include "Mouse.h"
 #include "Audio.h"
 #include "Physics.h"
+#include "System.h"
 
 
 #include "Exception.h"
 #include "Configuration.h"
 #include "love_arg.h"
 #include "constants.h"
+#include "events.h"
 
 // Games.
 #include "LuaGame.h"
@@ -47,6 +49,7 @@ namespace love
 	Mouse mouse;
 	Audio audio;
 	Physics physics;
+	System system;
 
 	// Module configuration.
 	love_mod::modconf modconf;
@@ -91,6 +94,7 @@ namespace love
 		keyboard.init(LOVE_MOD_KEYBOARD, &modconf);
 		mouse.init(LOVE_MOD_MOUSE, &modconf);
 		audio.init(LOVE_MOD_AUDIO, &modconf);
+		system.init(LOVE_MOD_SYSTEM, &modconf);
 
 		// Push filesystem state.
 		filesystem.push();
@@ -103,6 +107,7 @@ namespace love
 		game->require(mouse);
 		game->require(audio);
 		game->require(physics);
+		game->require(system);
 
 		// Give game access to the filesystem.
 		game->setFilesystem(&filesystem);
@@ -167,24 +172,6 @@ namespace love
 		if(conf != 0)
 		{
 
-			// Is this game compatible?
-			std::string version = conf->isString("love_version") ? conf->getString("love_version") : "any";
-			compatible = is_compatible(version.c_str());
-
-			/**
-			* Not yet.
-			if(!compatible)
-			{
-				std::stringstream ss;
-				ss << "Warning: the game \"" << conf->getString("title") <<"\" was not made for this version of LOVE. ";
-				ss << "(This is " << LOVE_VERSION_STR << ". Game requires " << version << ")." << std::endl;
-				graphics.print("[box]");
-				graphics.print(ss.str().c_str());
-				graphics.print("[/box]");
-				game->setConsoleVisible(true);
-			}
-			**/
-
 			int width = conf->getInt("width");
 			int height = conf->getInt("height");
 			bool fs = conf->getBool("fullscreen");
@@ -205,6 +192,21 @@ namespace love
 			// Set Display title.
 			std::string title = conf->getString("title");
 			SDL_WM_SetCaption(title.c_str(), 0);
+
+			// Is this game compatible?
+			std::string version = conf->isString("love_version") ? conf->getString("love_version") : "any";
+			compatible = is_compatible(version.c_str());
+
+			if(!compatible)
+			{
+				std::stringstream ss;
+				ss << "Warning: the game \"" << conf->getString("title") <<"\" was not made for this version of LOVE. ";
+				ss << "(This is " << LOVE_VERSION_STR << ". Game requires " << version << ")." << std::endl;
+				graphics.print("[error]");
+				graphics.print(ss.str().c_str());
+				graphics.print("[/error]");
+				game->setConsoleVisible(true);
+			}
 
 			delete conf;
 
@@ -233,6 +235,7 @@ namespace love
 		filesystem.pop();
 
 		// Quit modules.
+		system.quit();
 		physics.quit();
 		audio.quit();
 		mouse.quit();
@@ -303,7 +306,9 @@ namespace love
 				graphics.print(tokens[i].c_str());
 
 			graphics.print("[/error]");
-			graphics.print("Press C to continue, or press R to restart.");
+			graphics.print("[box]");
+			graphics.print("Press C to continue, R to restart.");
+			graphics.print("[/box]");
 		}
 	}
 
@@ -323,7 +328,21 @@ namespace love
 
 	void restart()
 	{
+		print("Restarting game ... ");
 		game->reload();
+	}
+
+	void suspend()
+	{
+		print("Suspending game ... ");
+		pGame suspend_game(new SuspendGame());
+		if(suspend_game->load())
+			push(suspend_game);
+		else
+			std::cerr << "Could not suspend game." << std::endl;
+		print("[box]");
+		print("Press C to continue, R to restart.");
+		print("[/box]");
 	}
 
 	int loop()
@@ -361,15 +380,15 @@ namespace love
 
 						if(keyboard.isDown(KEY_LCTRL) && static_cast<int>(e.key.keysym.sym) == static_cast<int>(KEY_c))
 						{
-							print("Continuing.");
+							print("Continuing ... ");
 							pop();
-						}						
+						}		
+
+						if(keyboard.isDown(KEY_LCTRL) && static_cast<int>(e.key.keysym.sym) == static_cast<int>(KEY_s))
+							suspend();
 
 						if(keyboard.isDown(KEY_LCTRL) && static_cast<int>(e.key.keysym.sym) == static_cast<int>(KEY_r))
-						{
-							print("Restarting.");
 							game->reload();
-						}
 
 						if(keyboard.isDown(KEY_LALT) && static_cast<int>(e.key.keysym.sym) == static_cast<int>(KEY_RETURN))
 						{
@@ -406,6 +425,13 @@ namespace love
 					case SDL_QUIT:
 						quit();
 						return 0;
+					// Custom events:
+					case EVENT_RESTART:
+						restart();
+						break;
+					case EVENT_SUSPEND:
+						suspend();
+						break;
 					default:
 						break;
 				}
