@@ -222,6 +222,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\LuaGame.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\LuaVM.cpp"
 				>
 			</File>
@@ -247,6 +251,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Resource.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\SuspendGame.cpp"
 				>
 			</File>
 			<File
@@ -328,11 +336,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\Resource.h"
+				RelativePath=".\resource.h"
 				>
 			</File>
 			<File
-				RelativePath=".\resource.h"
+				RelativePath="..\..\src\Resource.h"
 				>
 			</File>
 			<File

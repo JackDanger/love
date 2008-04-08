@@ -290,11 +290,9 @@ namespace love
 			else
 				std::cerr << "Could not suspend game." << std::endl;
 			
-			graphics.print("[box]");
+			graphics.print("[error]");
 
 			std::string s(str);
-
-			s = "Error: " + s;
 
 			// Tokenize.
 			std::vector<std::string> tokens;
@@ -304,7 +302,7 @@ namespace love
 			for(int i = 0;i<(int)tokens.size(); i++)
 				graphics.print(tokens[i].c_str());
 
-			graphics.print("[/box]");
+			graphics.print("[/error]");
 			graphics.print("Press C to continue, or press R to restart.");
 		}
 	}

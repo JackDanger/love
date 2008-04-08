@@ -109,7 +109,7 @@ namespace love_opengl
 		FT_Done_Glyph(glyph);
 	}
 
-	TrueTypeFont::TrueTypeFont(love::pFile file, int size) : Font(file, size)
+	TrueTypeFont::TrueTypeFont(love::pFile file, int size) : Font(file, size), textures(0), list(0)
 	{
 	}	
 
@@ -215,12 +215,14 @@ namespace love_opengl
 
 	void TrueTypeFont::unloadVolatile()
 	{
-		//printf("Unoading TrueTypeFont: %s (%i px)\n", file->getFilename().c_str(), size);
-		glDeleteLists(list, MAX_CHARS);
-		glDeleteTextures(MAX_CHARS, textures);
+		if(list != 0)
+			glDeleteLists(list, MAX_CHARS);
+		if(textures != 0)
+			glDeleteTextures(MAX_CHARS, textures);
 
 		// Cleanup plz.
-		delete [] textures;
+		if(textures != 0)
+			delete [] textures;
 		textures = 0;
 		list = 0;
 	}

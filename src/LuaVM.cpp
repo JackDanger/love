@@ -10,6 +10,7 @@ namespace love
 
 	// Forward declaration.
 	int lua_runtime_error(lua_State * L);
+	std::string string_find_replace( std::string haystack, std::string needle, std::string replace);
 
 	LuaVM::LuaVM()
 	{
@@ -250,8 +251,23 @@ namespace love
 			// Get error message.
 			const char * msg = lua_tostring(L, -1);
 			lua_pop(L, 1);
-			printf("%s\n", msg);
-			//lualove_gui_error(msg);
+
+			std::string str(msg);
+
+			if(result == LUA_ERRSYNTAX)
+				str = "Syntax error: " + str;
+			else if(result == LUA_ERRMEM)
+				str = "Memory allocation error: " + str;
+			else
+				str = "Error: " + str;
+
+			// Make error message prettier.
+			str = string_find_replace(str, "[string \"", "");
+			str = string_find_replace(str, "\t", "");
+			str = string_find_replace(str, ".lua\"]:", ".lua:");
+
+			// Send to love error handler.
+			love::error(str.c_str());
 
 			return false;
 		}
@@ -461,14 +477,14 @@ namespace love
 			// For future reference. msg now holds the complete error message (with stack trace).
 			const char * msg = lua_tostring(L, -1);
 
-			std::string str(msg);
+			std::string str = "Run-time error: " + std::string(msg);
 
 			// Make error message prettier.
 			str = string_find_replace(str, "[string \"", "");
-			str = string_find_replace(str, "stack traceback:", "[box]\nStack traceback:");
+			str = string_find_replace(str, "stack traceback:", "[error]\nStack traceback:");
 			str = string_find_replace(str, "\t", "");
 			str = string_find_replace(str, ".lua\"]:", ".lua:");
-			str += "\n[/box]\n";
+			str += "\n[/error]\n";
 
 			// Send to love error handler.
 			love::error(str.c_str());

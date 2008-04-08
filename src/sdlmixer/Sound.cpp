@@ -2,7 +2,7 @@
 
 namespace love_sdlmixer
 {
-	Sound::Sound(love::pFile file) : love::Resource(file)
+	Sound::Sound(love::pFile file) : love::Resource(file), sound(0)
 	{
 	}
 	
@@ -40,8 +40,11 @@ namespace love_sdlmixer
 
 	void Sound::unload()
 	{
-		Mix_FreeChunk(sound);
-		sound = 0;
+		if(sound != 0)
+		{
+			Mix_FreeChunk(sound);
+			sound = 0;
+		}
 
 		// Unload the file.
 		if(!love_mod::unload(file))

@@ -95,7 +95,7 @@ namespace love_opengl
 		// Draw box.
 		int height = getHeight();
 		int w = c->getWidth();
-		love_opengl::setColor(255, 255, 255, 50);
+		setColor();
 		int pad = PADDING;
 		quad(love::DRAW_FILL, 
 			(float)(x+PADDING), (float)(y-pad), 
@@ -112,6 +112,20 @@ namespace love_opengl
 			accumulated_height += children[i]->getHeight();
 		}
 		return true;
+	}
+
+	void ConsoleBox::setColor() const
+	{
+		love_opengl::setColor(255, 255, 255, 50);		
+	}
+
+	//
+	// ConsoleError.
+	//
+
+	void ConsoleError::setColor() const
+	{
+		love_opengl::setColor(255, 0, 0, 100);				
 	}
 
 	//
@@ -163,6 +177,11 @@ namespace love_opengl
 	int Console::getHeight() const
 	{
 		return height;
+	}
+
+	void Console::push_error()
+	{
+		push(new ConsoleError());
 	}
 
 	void Console::push_box()

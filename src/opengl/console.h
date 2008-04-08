@@ -52,6 +52,13 @@ namespace love_opengl
 		static const int PADDING = 5;
 		int getHeight() const;
 		bool draw(int x, int y, int level, Console * c) const;
+		virtual void setColor() const;
+	};
+
+	class ConsoleError : public ConsoleBox
+	{
+	public:
+		void setColor() const;
 	};
 
 	class ConsoleImage : public ConsoleElement
@@ -87,6 +94,7 @@ namespace love_opengl
 		int getWidth() const;
 		int getHeight() const;
 
+		void push_error();
 		void push_box();
 		void push(ConsoleElement * e);
 		void pop();

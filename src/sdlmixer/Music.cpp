@@ -2,7 +2,7 @@
 
 namespace love_sdlmixer
 {
-	Music::Music(love::pFile file) : Resource(file)
+	Music::Music(love::pFile file) : Resource(file), music(0)
 	{
 	}
 	
@@ -37,8 +37,12 @@ namespace love_sdlmixer
 
 	void Music::unload()
 	{
-		Mix_FreeMusic(music);
-		music = 0;
+		// If this is 0, then it was never loaded.
+		if(music != 0)
+		{
+			Mix_FreeMusic(music);
+			music = 0;
+		}
 
 		// Unload the file.
 		if(!love_mod::unload(file))

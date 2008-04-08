@@ -283,7 +283,12 @@ namespace love_opengl
 			console.push_box();
 			return;
 		}
-		if(text == "[/box]")
+		if(text == "[error]")
+		{
+			console.push_error();
+			return;
+		}
+		if(text == "[/box]" || text == "[/error]")
 		{
 			console.pop();
 			return;

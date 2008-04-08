@@ -108,6 +108,9 @@ namespace love_physfs
 
 	bool unload(love::pFile & file)
 	{
+		if(file == 0)
+			return true;
+
 		if(file->isCompiled())
 			return true; // Never unload compiled files ...
 
@@ -361,7 +364,10 @@ namespace love_physfs
 	pFile newFile(const char * file, int mode)
 	{
 		if(mode == love::FILE_READ && !exists(file))
-			love_mod::runtime_error("File does not exist.\n");
+		{
+			std::string filename(file);
+			love_mod::runtime_error("File " +filename+ " does not exist.\n");
+		}
 
 		pFile f(new File(std::string(file), mode));
 		return f;
