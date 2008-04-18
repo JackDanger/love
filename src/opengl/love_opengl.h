@@ -30,6 +30,7 @@
 #include "Animation.h"
 #include "TrueTypeFont.h"
 #include "ImageFont.h"
+#include "ParticleSystem.h"
 #include "console.h"
 
 /// Creating a separate namespace to avoid conflicts
@@ -181,6 +182,11 @@ namespace love_opengl
 	* Creates an Animation object with generated frames in a grid.
 	**/
 	pAnimation newAnimation(const char * filename, float fw, float fh, float delay, int num = 0);
+
+	/**
+	* Creates a ParticleSystem object with the specified buffer size.
+	**/
+	pParticleSystem newParticleSystem(unsigned int size);
 
 	/**
 	* Gets the width of the current display mode.
@@ -352,6 +358,14 @@ namespace love_opengl
 	* @param sy The scale factor along the y-axis. (1 = normal).
 	**/
 	void draw( const pAnimation & sprite, float x, float y, float angle, float sx, float sy);
+
+	/**
+	* Draws a ParticleSystem at the specified coordinates.
+	* @param system The particle system.
+	* @param x The x-coordinate.
+	* @param y The y-coordinate.
+	**/
+	void draw( const pParticleSystem & system, float x, float y);
 
 	/**
 	* Draws the section (cx, cy, w, h) of an Image at position (x, y).

@@ -218,6 +218,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\opengl\ParticleSystem.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\opengl\resources.cpp"
 				>
 			</File>
@@ -254,6 +258,10 @@
 				</File>
 				<File
 					RelativePath="..\..\..\src\opengl\mod_opengl.i"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\opengl\ParticleSystem.i"
 					>
 				</File>
 				<File
@@ -305,6 +313,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\modfs.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\opengl\ParticleSystem.h"
 				>
 			</File>
 			<File

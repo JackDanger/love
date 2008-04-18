@@ -533,6 +533,13 @@ namespace love_opengl
 		return anim;
 	}
 
+	pParticleSystem newParticleSystem(unsigned int size)
+	{
+		// Create the particle system.
+		pParticleSystem part(new ParticleSystem(size));
+		return part;
+	}
+
 	int getWidth()
 	{
 		return current.width;
@@ -891,6 +898,14 @@ namespace love_opengl
 		}
 
 		sprite->draw(x, y, angle, sx, sy, f);
+	}
+
+	/**
+	* Particle System
+	**/
+	void draw( const pParticleSystem & system, float x, float y)
+	{
+		system->draw(x, y);
 	}
 
 	/**

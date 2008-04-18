@@ -1464,16 +1464,18 @@ SWIG_Lua_InstallConstants(lua_State* L, swig_lua_const_info constants[]) {
 #define SWIGTYPE_p_boost__shared_ptrT_love_opengl__Color_t swig_types[1]
 #define SWIGTYPE_p_boost__shared_ptrT_love_opengl__Font_t swig_types[2]
 #define SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t swig_types[3]
-#define SWIGTYPE_p_boost__shared_ptrT_love_opengl__Sprite_t swig_types[4]
-#define SWIGTYPE_p_boost__shared_ptrT_love_opengl__TrueTypeFont_t swig_types[5]
-#define SWIGTYPE_p_love_opengl__Animation swig_types[6]
-#define SWIGTYPE_p_love_opengl__Color swig_types[7]
-#define SWIGTYPE_p_love_opengl__Font swig_types[8]
-#define SWIGTYPE_p_love_opengl__Image swig_types[9]
-#define SWIGTYPE_p_love_opengl__Sprite swig_types[10]
-#define SWIGTYPE_p_love_opengl__TrueTypeFont swig_types[11]
-static swig_type_info *swig_types[13];
-static swig_module_info swig_module = {swig_types, 12, 0, 0, 0, 0};
+#define SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t swig_types[4]
+#define SWIGTYPE_p_boost__shared_ptrT_love_opengl__Sprite_t swig_types[5]
+#define SWIGTYPE_p_boost__shared_ptrT_love_opengl__TrueTypeFont_t swig_types[6]
+#define SWIGTYPE_p_love_opengl__Animation swig_types[7]
+#define SWIGTYPE_p_love_opengl__Color swig_types[8]
+#define SWIGTYPE_p_love_opengl__Font swig_types[9]
+#define SWIGTYPE_p_love_opengl__Image swig_types[10]
+#define SWIGTYPE_p_love_opengl__ParticleSystem swig_types[11]
+#define SWIGTYPE_p_love_opengl__Sprite swig_types[12]
+#define SWIGTYPE_p_love_opengl__TrueTypeFont swig_types[13]
+static swig_type_info *swig_types[15];
+static swig_module_info swig_module = {swig_types, 14, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1499,6 +1501,7 @@ using namespace love_opengl;
 #include "Sprite.h"
 #include "Image.h"
 #include "Animation.h"
+#include "ParticleSystem.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -3949,6 +3952,430 @@ static swig_lua_class *swig_boost_shared_ptr_Sl_love_opengl_Animation_Sg__bases[
 static const char *swig_boost_shared_ptr_Sl_love_opengl_Animation_Sg__base_names[] = {0};
 static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_opengl_Animation_Sg_ = { "SmartAnimation", &SWIGTYPE_p_boost__shared_ptrT_love_opengl__Animation_t,0, swig_delete_SmartAnimation, swig_boost_shared_ptr_Sl_love_opengl_Animation_Sg__methods, swig_boost_shared_ptr_Sl_love_opengl_Animation_Sg__attributes, swig_boost_shared_ptr_Sl_love_opengl_Animation_Sg__bases, swig_boost_shared_ptr_Sl_love_opengl_Animation_Sg__base_names };
 
+static int _wrap_ParticleSystem_setBufferSize(lua_State* L) {
+  int SWIG_arg = -1;
+  love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
+  unsigned int arg2 ;
+  
+  SWIG_check_num_args("setBufferSize",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setBufferSize",1,"love_opengl::ParticleSystem *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setBufferSize",2,"unsigned int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
+    SWIG_fail_ptr("ParticleSystem_setBufferSize",1,SWIGTYPE_p_love_opengl__ParticleSystem);
+  }
+  
+  arg2 = (unsigned int)lua_tonumber(L, 2);
+  (arg1)->setBufferSize(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParticleSystem_getBufferSize(lua_State* L) {
+  int SWIG_arg = -1;
+  love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
+  unsigned int result;
+  
+  SWIG_check_num_args("getBufferSize",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getBufferSize",1,"love_opengl::ParticleSystem const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
+    SWIG_fail_ptr("ParticleSystem_getBufferSize",1,SWIGTYPE_p_love_opengl__ParticleSystem);
+  }
+  
+  result = (unsigned int)((love_opengl::ParticleSystem const *)arg1)->getBufferSize();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParticleSystem_count(lua_State* L) {
+  int SWIG_arg = -1;
+  love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("count",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("count",1,"love_opengl::ParticleSystem const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
+    SWIG_fail_ptr("ParticleSystem_count",1,SWIGTYPE_p_love_opengl__ParticleSystem);
+  }
+  
+  result = (int)((love_opengl::ParticleSystem const *)arg1)->count();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParticleSystem_isEmpty(lua_State* L) {
+  int SWIG_arg = -1;
+  love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isEmpty",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isEmpty",1,"love_opengl::ParticleSystem const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
+    SWIG_fail_ptr("ParticleSystem_isEmpty",1,SWIGTYPE_p_love_opengl__ParticleSystem);
+  }
+  
+  result = (bool)((love_opengl::ParticleSystem const *)arg1)->isEmpty();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParticleSystem_isFull(lua_State* L) {
+  int SWIG_arg = -1;
+  love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isFull",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isFull",1,"love_opengl::ParticleSystem const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
+    SWIG_fail_ptr("ParticleSystem_isFull",1,SWIGTYPE_p_love_opengl__ParticleSystem);
+  }
+  
+  result = (bool)((love_opengl::ParticleSystem const *)arg1)->isFull();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ParticleSystem_update(lua_State* L) {
+  int SWIG_arg = -1;
+  love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("update",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("update",1,"love_opengl::ParticleSystem *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("update",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
+    SWIG_fail_ptr("ParticleSystem_update",1,SWIGTYPE_p_love_opengl__ParticleSystem);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->update(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_ParticleSystem(lua_State* L) {
+  int SWIG_arg = -1;
+  love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
+  
+  SWIG_check_num_args("love_opengl::ParticleSystem::~ParticleSystem",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("love_opengl::ParticleSystem::~ParticleSystem",1,"love_opengl::ParticleSystem *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
+    SWIG_fail_ptr("delete_ParticleSystem",1,SWIGTYPE_p_love_opengl__ParticleSystem);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_ParticleSystem(void *obj) {
+love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) obj;
+delete arg1;
+}
+static swig_lua_method swig_love_opengl_ParticleSystem_methods[] = {
+    {"setBufferSize", _wrap_ParticleSystem_setBufferSize}, 
+    {"getBufferSize", _wrap_ParticleSystem_getBufferSize}, 
+    {"count", _wrap_ParticleSystem_count}, 
+    {"isEmpty", _wrap_ParticleSystem_isEmpty}, 
+    {"isFull", _wrap_ParticleSystem_isFull}, 
+    {"update", _wrap_ParticleSystem_update}, 
+    {0,0}
+};
+static swig_lua_attribute swig_love_opengl_ParticleSystem_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_love_opengl_ParticleSystem_bases[] = {0};
+static const char *swig_love_opengl_ParticleSystem_base_names[] = {0};
+static swig_lua_class _wrap_class_love_opengl_ParticleSystem = { "ParticleSystem", &SWIGTYPE_p_love_opengl__ParticleSystem,0, swig_delete_ParticleSystem, swig_love_opengl_ParticleSystem_methods, swig_love_opengl_ParticleSystem_attributes, swig_love_opengl_ParticleSystem_bases, swig_love_opengl_ParticleSystem_base_names };
+
+static int _wrap_SmartParticleSystem___deref__(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
+  love_opengl::ParticleSystem *result = 0 ;
+  
+  SWIG_check_num_args("operator ->",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("operator ->",1,"boost::shared_ptr< love_opengl::ParticleSystem > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
+    SWIG_fail_ptr("SmartParticleSystem___deref__",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
+  }
+  
+  result = (love_opengl::ParticleSystem *)((boost::shared_ptr< love_opengl::ParticleSystem > const *)arg1)->operator ->();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love_opengl__ParticleSystem,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_SmartParticleSystem(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
+  
+  SWIG_check_num_args("boost::shared_ptr<(love_opengl::ParticleSystem)>::~shared_ptr<(love_opengl::ParticleSystem)>",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("boost::shared_ptr<(love_opengl::ParticleSystem)>::~shared_ptr<(love_opengl::ParticleSystem)>",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
+    SWIG_fail_ptr("delete_SmartParticleSystem",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartParticleSystem_setBufferSize(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
+  unsigned int arg2 ;
+  
+  SWIG_check_num_args("setBufferSize",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setBufferSize",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setBufferSize",2,"unsigned int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
+    SWIG_fail_ptr("SmartParticleSystem_setBufferSize",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
+  }
+  
+  arg2 = (unsigned int)lua_tonumber(L, 2);
+  (*arg1)->setBufferSize(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartParticleSystem_getBufferSize(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
+  unsigned int result;
+  
+  SWIG_check_num_args("getBufferSize",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getBufferSize",1,"boost::shared_ptr< love_opengl::ParticleSystem > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
+    SWIG_fail_ptr("SmartParticleSystem_getBufferSize",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
+  }
+  
+  result = (unsigned int)(*arg1)->getBufferSize();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartParticleSystem_count(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("count",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("count",1,"boost::shared_ptr< love_opengl::ParticleSystem > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
+    SWIG_fail_ptr("SmartParticleSystem_count",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
+  }
+  
+  result = (int)(*arg1)->count();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartParticleSystem_isEmpty(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isEmpty",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isEmpty",1,"boost::shared_ptr< love_opengl::ParticleSystem > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
+    SWIG_fail_ptr("SmartParticleSystem_isEmpty",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
+  }
+  
+  result = (bool)(*arg1)->isEmpty();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartParticleSystem_isFull(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isFull",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isFull",1,"boost::shared_ptr< love_opengl::ParticleSystem > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
+    SWIG_fail_ptr("SmartParticleSystem_isFull",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
+  }
+  
+  result = (bool)(*arg1)->isFull();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartParticleSystem_update(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("update",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("update",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("update",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
+    SWIG_fail_ptr("SmartParticleSystem_update",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->update(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_SmartParticleSystem(void *obj) {
+boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__methods[] = {
+    {"__deref__", _wrap_SmartParticleSystem___deref__}, 
+    {"setBufferSize", _wrap_SmartParticleSystem_setBufferSize}, 
+    {"getBufferSize", _wrap_SmartParticleSystem_getBufferSize}, 
+    {"count", _wrap_SmartParticleSystem_count}, 
+    {"isEmpty", _wrap_SmartParticleSystem_isEmpty}, 
+    {"isFull", _wrap_SmartParticleSystem_isFull}, 
+    {"update", _wrap_SmartParticleSystem_update}, 
+    {0,0}
+};
+static swig_lua_attribute swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__bases[] = {0};
+static const char *swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__base_names[] = {0};
+static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg_ = { "SmartParticleSystem", &SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0, swig_delete_SmartParticleSystem, swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__methods, swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__attributes, swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__bases, swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__base_names };
+
 static int _wrap_checkMode__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   int arg1 ;
@@ -5070,6 +5497,30 @@ static int _wrap_newAnimation(lua_State* L) {
 }
 
 
+static int _wrap_newParticleSystem(lua_State* L) {
+  int SWIG_arg = -1;
+  unsigned int arg1 ;
+  love_opengl::pParticleSystem result;
+  
+  SWIG_check_num_args("love_opengl::newParticleSystem",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::newParticleSystem",1,"unsigned int");
+  arg1 = (unsigned int)lua_tonumber(L, 1);
+  result = love_opengl::newParticleSystem(arg1);
+  SWIG_arg=0;
+  {
+    love_opengl::pParticleSystem * resultptr = new love_opengl::pParticleSystem((love_opengl::pParticleSystem &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   int result;
@@ -6021,377 +6472,6 @@ fail:
 }
 
 
-static int _wrap_draw(lua_State* L) {
-  int argc;
-  int argv[7]={
-    1,2,3,4,5,6,7
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 3) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          return _wrap_draw__SWIG_4(L);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Animation_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          return _wrap_draw__SWIG_8(L);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      _v = lua_isstring(L,argv[0]);
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          return _wrap_draw__SWIG_0(L);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            return _wrap_draw__SWIG_5(L);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Animation_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            return _wrap_draw__SWIG_9(L);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      _v = lua_isstring(L,argv[0]);
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            return _wrap_draw__SWIG_1(L);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            {
-              _v = lua_isnumber(L,argv[4]);
-            }
-            if (_v) {
-              return _wrap_draw__SWIG_6(L);
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Animation_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            {
-              _v = lua_isnumber(L,argv[4]);
-            }
-            if (_v) {
-              return _wrap_draw__SWIG_10(L);
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    {
-      _v = lua_isstring(L,argv[0]);
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            {
-              _v = lua_isnumber(L,argv[4]);
-            }
-            if (_v) {
-              return _wrap_draw__SWIG_2(L);
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 6) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            {
-              _v = lua_isnumber(L,argv[4]);
-            }
-            if (_v) {
-              {
-                _v = lua_isnumber(L,argv[5]);
-              }
-              if (_v) {
-                return _wrap_draw__SWIG_7(L);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 6) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Animation_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            {
-              _v = lua_isnumber(L,argv[4]);
-            }
-            if (_v) {
-              {
-                _v = lua_isnumber(L,argv[5]);
-              }
-              if (_v) {
-                return _wrap_draw__SWIG_11(L);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 6) {
-    int _v;
-    {
-      _v = lua_isstring(L,argv[0]);
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          {
-            _v = lua_isnumber(L,argv[3]);
-          }
-          if (_v) {
-            {
-              _v = lua_isnumber(L,argv[4]);
-            }
-            if (_v) {
-              {
-                _v = lua_isnumber(L,argv[5]);
-              }
-              if (_v) {
-                return _wrap_draw__SWIG_3(L);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'draw'");
-  lua_error(L);return 0;
-}
-
-
 static int _wrap_draws__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love_opengl::pImage *arg1 = 0 ;
@@ -6923,6 +7003,431 @@ static int _wrap_draws(lua_State* L) {
 }
 
 
+static int _wrap_draw__SWIG_12(lua_State* L) {
+  int SWIG_arg = -1;
+  love_opengl::pParticleSystem *arg1 = 0 ;
+  float arg2 ;
+  float arg3 ;
+  
+  SWIG_check_num_args("love_opengl::draw",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_opengl::draw",1,"love_opengl::pParticleSystem const &");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::draw",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_opengl::draw",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
+    SWIG_fail_ptr("draw",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  love_opengl::draw((boost::shared_ptr< love_opengl::ParticleSystem > const &)*arg1,arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_draw(lua_State* L) {
+  int argc;
+  int argv[7]={
+    1,2,3,4,5,6,7
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_draw__SWIG_4(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Animation_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_draw__SWIG_8(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_draw__SWIG_12(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_draw__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Animation_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_draw__SWIG_9(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_draw__SWIG_5(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_draw__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_draw__SWIG_6(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Animation_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_draw__SWIG_10(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_draw__SWIG_2(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Animation_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              {
+                _v = lua_isnumber(L,argv[5]);
+              }
+              if (_v) {
+                return _wrap_draw__SWIG_11(L);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              {
+                _v = lua_isnumber(L,argv[5]);
+              }
+              if (_v) {
+                return _wrap_draw__SWIG_7(L);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              {
+                _v = lua_isnumber(L,argv[5]);
+              }
+              if (_v) {
+                return _wrap_draw__SWIG_3(L);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'draw'");
+  lua_error(L);return 0;
+}
+
+
 static int _wrap_line(lua_State* L) {
   int SWIG_arg = -1;
   float arg1 ;
@@ -7194,6 +7699,7 @@ static const struct luaL_reg swig_commands[] = {
     { "newFont",_wrap_newFont},
     { "newImageFont",_wrap_newImageFont},
     { "newAnimation",_wrap_newAnimation},
+    { "newParticleSystem", _wrap_newParticleSystem},
     { "getWidth", _wrap_getWidth},
     { "getHeight", _wrap_getHeight},
     { "setColor",_wrap_setColor},
@@ -7203,8 +7709,8 @@ static const struct luaL_reg swig_commands[] = {
     { "setLine",_wrap_setLine},
     { "setFont", _wrap_setFont},
     { "drawf",_wrap_drawf},
-    { "draw",_wrap_draw},
     { "draws",_wrap_draws},
+    { "draw",_wrap_draw},
     { "line", _wrap_line},
     { "triangle", _wrap_triangle},
     { "quad", _wrap_quad},
@@ -7237,12 +7743,14 @@ static swig_type_info _swigt__p_boost__shared_ptrT_love_opengl__Animation_t = {"
 static swig_type_info _swigt__p_boost__shared_ptrT_love_opengl__Color_t = {"_p_boost__shared_ptrT_love_opengl__Color_t", "boost::shared_ptr< love_opengl::Color > *|love_opengl::pColor *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_opengl_Color_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_opengl__Font_t = {"_p_boost__shared_ptrT_love_opengl__Font_t", "love_opengl::pFont *|boost::shared_ptr< love_opengl::Font > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_opengl_Font_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_opengl__Image_t = {"_p_boost__shared_ptrT_love_opengl__Image_t", "love_opengl::pImage *|boost::shared_ptr< love_opengl::Image > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_opengl_Image_Sg_, 0};
+static swig_type_info _swigt__p_boost__shared_ptrT_love_opengl__ParticleSystem_t = {"_p_boost__shared_ptrT_love_opengl__ParticleSystem_t", "boost::shared_ptr< love_opengl::ParticleSystem > *|love_opengl::pParticleSystem *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_opengl__Sprite_t = {"_p_boost__shared_ptrT_love_opengl__Sprite_t", "boost::shared_ptr< love_opengl::Sprite > *|love_opengl::pSprite *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_opengl_Sprite_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_opengl__TrueTypeFont_t = {"_p_boost__shared_ptrT_love_opengl__TrueTypeFont_t", "love_opengl::pTrueTypeFont *|boost::shared_ptr< love_opengl::TrueTypeFont > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_opengl_TrueTypeFont_Sg_, 0};
 static swig_type_info _swigt__p_love_opengl__Animation = {"_p_love_opengl__Animation", "love_opengl::Animation *", 0, 0, (void*)&_wrap_class_love_opengl_Animation, 0};
 static swig_type_info _swigt__p_love_opengl__Color = {"_p_love_opengl__Color", "love_opengl::Color *", 0, 0, (void*)&_wrap_class_love_opengl_Color, 0};
 static swig_type_info _swigt__p_love_opengl__Font = {"_p_love_opengl__Font", "love_opengl::Font *", 0, 0, (void*)&_wrap_class_love_opengl_Font, 0};
 static swig_type_info _swigt__p_love_opengl__Image = {"_p_love_opengl__Image", "love_opengl::Image *", 0, 0, (void*)&_wrap_class_love_opengl_Image, 0};
+static swig_type_info _swigt__p_love_opengl__ParticleSystem = {"_p_love_opengl__ParticleSystem", "love_opengl::ParticleSystem *", 0, 0, (void*)&_wrap_class_love_opengl_ParticleSystem, 0};
 static swig_type_info _swigt__p_love_opengl__Sprite = {"_p_love_opengl__Sprite", "love_opengl::Sprite *", 0, 0, (void*)&_wrap_class_love_opengl_Sprite, 0};
 static swig_type_info _swigt__p_love_opengl__TrueTypeFont = {"_p_love_opengl__TrueTypeFont", "love_opengl::TrueTypeFont *", 0, 0, (void*)&_wrap_class_love_opengl_TrueTypeFont, 0};
 
@@ -7251,12 +7759,14 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_boost__shared_ptrT_love_opengl__Color_t,
   &_swigt__p_boost__shared_ptrT_love_opengl__Font_t,
   &_swigt__p_boost__shared_ptrT_love_opengl__Image_t,
+  &_swigt__p_boost__shared_ptrT_love_opengl__ParticleSystem_t,
   &_swigt__p_boost__shared_ptrT_love_opengl__Sprite_t,
   &_swigt__p_boost__shared_ptrT_love_opengl__TrueTypeFont_t,
   &_swigt__p_love_opengl__Animation,
   &_swigt__p_love_opengl__Color,
   &_swigt__p_love_opengl__Font,
   &_swigt__p_love_opengl__Image,
+  &_swigt__p_love_opengl__ParticleSystem,
   &_swigt__p_love_opengl__Sprite,
   &_swigt__p_love_opengl__TrueTypeFont,
 };
@@ -7265,12 +7775,14 @@ static swig_cast_info _swigc__p_boost__shared_ptrT_love_opengl__Animation_t[] = 
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_opengl__Color_t[] = {  {&_swigt__p_boost__shared_ptrT_love_opengl__Color_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_opengl__Font_t[] = {  {&_swigt__p_boost__shared_ptrT_love_opengl__Font_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_opengl__Image_t[] = {  {&_swigt__p_boost__shared_ptrT_love_opengl__Image_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_boost__shared_ptrT_love_opengl__ParticleSystem_t[] = {  {&_swigt__p_boost__shared_ptrT_love_opengl__ParticleSystem_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_opengl__Sprite_t[] = {  {&_swigt__p_boost__shared_ptrT_love_opengl__Sprite_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_opengl__TrueTypeFont_t[] = {  {&_swigt__p_boost__shared_ptrT_love_opengl__TrueTypeFont_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_opengl__Animation[] = {  {&_swigt__p_love_opengl__Animation, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_opengl__Color[] = {  {&_swigt__p_love_opengl__Color, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_opengl__Font[] = {  {&_swigt__p_love_opengl__Font, 0, 0, 0},  {&_swigt__p_love_opengl__TrueTypeFont, _p_love_opengl__TrueTypeFontTo_p_love_opengl__Font, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_opengl__Image[] = {  {&_swigt__p_love_opengl__Image, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love_opengl__ParticleSystem[] = {  {&_swigt__p_love_opengl__ParticleSystem, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_opengl__Sprite[] = {  {&_swigt__p_love_opengl__Image, _p_love_opengl__ImageTo_p_love_opengl__Sprite, 0, 0},  {&_swigt__p_love_opengl__Sprite, 0, 0, 0},  {&_swigt__p_love_opengl__Animation, _p_love_opengl__AnimationTo_p_love_opengl__Sprite, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_opengl__TrueTypeFont[] = {  {&_swigt__p_love_opengl__TrueTypeFont, 0, 0, 0},{0, 0, 0, 0}};
 
@@ -7279,12 +7791,14 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_boost__shared_ptrT_love_opengl__Color_t,
   _swigc__p_boost__shared_ptrT_love_opengl__Font_t,
   _swigc__p_boost__shared_ptrT_love_opengl__Image_t,
+  _swigc__p_boost__shared_ptrT_love_opengl__ParticleSystem_t,
   _swigc__p_boost__shared_ptrT_love_opengl__Sprite_t,
   _swigc__p_boost__shared_ptrT_love_opengl__TrueTypeFont_t,
   _swigc__p_love_opengl__Animation,
   _swigc__p_love_opengl__Color,
   _swigc__p_love_opengl__Font,
   _swigc__p_love_opengl__Image,
+  _swigc__p_love_opengl__ParticleSystem,
   _swigc__p_love_opengl__Sprite,
   _swigc__p_love_opengl__TrueTypeFont,
 };

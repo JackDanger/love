@@ -23,6 +23,7 @@ namespace boost {
 %include Sprite.i
 %include Image.i
 %include Animation.i
+%include ParticleSystem.i
 
 namespace love_opengl
 {
@@ -44,6 +45,8 @@ namespace love_opengl
 	pAnimation newAnimation(pImage image, float fw, float fh, float delay, int num = 0);
 	pAnimation newAnimation(const char * filename);
 	pAnimation newAnimation(const char * filename, float fw, float fh, float delay, int num = 0);
+	
+	pParticleSystem newParticleSystem(unsigned int size);
 	
 	int getWidth();
 	int getHeight();
@@ -83,6 +86,9 @@ namespace love_opengl
 	void draws( const pImage & sprite, float x, float y, float cx, float cy, float w, float h, float angle, float s);
 	void draws( const pImage & sprite, float x, float y, float cx, float cy, float w, float h, float angle, float sx, float sy);
 	void draws( const pImage & sprite, float x, float y, float cx, float cy, float w, float h, float angle, float sx, float sy, float ox, float oy);
+	
+	// Particle System
+	void draw( const pParticleSystem & system, float x, float y);
 	
 	// Primitives.
 	void line( float x1, float y1, float x2, float y2 );
