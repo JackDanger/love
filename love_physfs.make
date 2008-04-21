@@ -9,7 +9,7 @@ $(OBJDIR)/modfs.o
 
 CC = g++
 CFLAGS = -g -O2 -Wall
-LDFLAGS = -lboost_filesystem -llua5.1 -lphysfs -lSDL 
+LDFLAGS = -llua5.1 -lphysfs -lSDL 
 INCLUDES = -I/usr/include/lua5.1 -I/usr/include/SDL
 
 default: $(TARGET)
