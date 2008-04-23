@@ -330,10 +330,17 @@ namespace love_opengl
 				p->position[1] += p->speed[1] * dt;
 
 				// Update color.
+				const float t = p->life / p->lifetime;
+				p->color[0] = (float)(colorStart->getRed()*(1.0f-t) + colorEnd->getRed() * t)/255.0f;
+				p->color[1] = (float)(colorStart->getGreen()*(1.0f-t) + colorEnd->getGreen() * t)/255.0f;
+				p->color[2] = (float)(colorStart->getBlue()*(1.0f-t) + colorEnd->getBlue() * t)/255.0f;
+				p->color[3] = (float)(colorStart->getAlpha()*(1.0f-t) + colorEnd->getAlpha() * t)/255.0f;
+				/*
 				p->color[0] = colorStart->getRed() + ( (colorEnd->getRed() - colorStart->getRed()) * (p->life / p->lifetime) );
 				p->color[1] = colorStart->getGreen() + ( (colorEnd->getGreen() - colorStart->getGreen()) * (p->life / p->lifetime) );
 				p->color[2] = colorStart->getBlue() + ( (colorEnd->getBlue() - colorStart->getBlue()) * (p->life / p->lifetime) );
 				p->color[3] = colorStart->getAlpha() + ( (colorEnd->getAlpha() - colorStart->getAlpha()) * (p->life / p->lifetime) );
+				**/
 	
 				// Next particle.
 				p++;
