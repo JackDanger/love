@@ -184,9 +184,9 @@ namespace love_opengl
 	pAnimation newAnimation(const char * filename, float fw, float fh, float delay, int num = 0);
 
 	/**
-	* Creates a ParticleSystem object with the specified buffer size.
+	* Creates a ParticleSystem object with the specified buffer size and using the specified sprite.
 	**/
-	pParticleSystem newParticleSystem(unsigned int size);
+	pParticleSystem newParticleSystem(pImage sprite, unsigned int size);
 
 	/**
 	* Gets the width of the current display mode.

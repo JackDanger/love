@@ -533,10 +533,10 @@ namespace love_opengl
 		return anim;
 	}
 
-	pParticleSystem newParticleSystem(unsigned int size)
+	pParticleSystem newParticleSystem(pImage sprite, unsigned int size)
 	{
 		// Create the particle system.
-		pParticleSystem part(new ParticleSystem(size));
+		pParticleSystem part(new ParticleSystem(sprite, size));
 		return part;
 	}
 

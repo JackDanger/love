@@ -13,7 +13,7 @@
 
 // Module
 #include "Color.h"
-#include "Sprite.h"
+#include "Image.h"
 
 // Boost
 #include <boost/shared_ptr.hpp>
@@ -33,6 +33,14 @@ namespace love_opengl
 		float gravity;
 		float radialAcceleration;
 		float tangentialAcceleration;
+
+		float size;
+		float sizeStart;
+		float sizeEnd;
+
+		float rotation;
+		float rotationStart;
+		float rotationEnd;
 
 		float color[4];
 		
@@ -63,6 +71,9 @@ namespace love_opengl
 
 		// Pointer to the end of the memory allocation.
 		particle * pEnd;
+
+		// The sprite to be drawn.
+		pImage sprite;
 
 		// Whether the particle emitter is active.
 		bool active;
@@ -98,20 +109,29 @@ namespace love_opengl
 		float tangentialAccelerationMin;
 		float tangentialAccelerationMax;
 
-		// The color.
+		// Size.
+		float sizeStart;
+		float sizeEnd;
+		float sizeVariation;
+
+		// Rotation.
+		float rotationStart;
+		float rotationEnd;
+		float rotationVariation;
+
+		// Color.
 		pColor colorStart;
 		pColor colorEnd;
-		float colorVariation;
 
 		void add();
 		void remove(particle * p);
 
 	public:
-		//ParticleSystem(pSprite sprite, unsigned int buffer);
+
 		/**
-		* Creates a particle system by allocating space to the particles and initializing all the values.
+		* Creates a particle system with the specified buffersize and sprite.
 		**/
-		ParticleSystem(unsigned int buffer);
+		ParticleSystem(pImage sprite, unsigned int buffer);
 
 		/**
 		* Deletes any allocated memory.
@@ -179,6 +199,38 @@ namespace love_opengl
 		void setTangentialAcceleration(float min, float max = 0);
 
 		/**
+		* Sets the size of the sprite (1.0 being the default size).
+		* @param size The size of the sprite.
+		**/
+		void setSize(float size);
+
+		/**
+		* Sets the size of the sprite upon creation and upon death (1.0 being the default size).
+		* @param start The size of the sprite upon creation
+		* @param end The size of the sprite upon death.
+		**/
+		void setSize(float start, float end);
+
+		/**
+		* Sets the size of the sprite upon creation and upon death (1.0 being the default size) and any variation.
+		* @param start The size of the sprite upon creation
+		* @param end The size of the sprite upon death.
+		* @param variation The amount of variation on the starting size (0 being no variation and 1.0 a random size between start and end).
+		**/
+		void setSize(float start, float end, float variation);
+
+		/**
+		* Sets the amount of variation to the sprite's beginning size (0 being no variation and 1.0 a random size between start and end).
+		* @param variation The amount of variation.
+		**/
+		void setSizeVariation(float variation);
+
+		void setRotation(float rotation);
+		void setRotation(float start, float end);
+		void setRotation(float start, float end, float variation);
+		void setRotationVariation(float variation);
+
+		/**
 		* Sets the color of the particles.
 		* @param color The color.
 		**/
@@ -190,35 +242,6 @@ namespace love_opengl
 		* @param end The color of the particle upon death.
 		**/
 		void setColor(pColor start, pColor end);
-
-		/**
-		* Sets the color of the particles.
-		* @param start The color of the particle when created.
-		* @param end The color of the particle upon death.
-		* @param variation The amount of variation on the starting color (0 means no variation and 1 means random variation between start and end).
-		**/
-		void setColor(pColor start, pColor end, float variation);
-
-		/**
-		* Sets the amount of variation on the starting color (0 means no variation and 1 means random variation between start and end).
-		* @param variation The amount of variation.
-		**/
-		void setColorVariation(float variation);
-
-		/**
-		* Returns the buffer size.
-		**/
-		unsigned int getBufferSize() const;
-
-		/**
-		* Returns the emission rate.
-		**/
-		int getEmissionRate() const;
-
-		/**
-		* Returns the lifetime of the particle emitter.
-		**/
-		float getLifetime() const;
 
 		/**
 		* Returns the amount of particles that are currently active in the system.
