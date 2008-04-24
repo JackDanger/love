@@ -295,8 +295,8 @@
         <param name="size" brief="The size of the font." />
         <returns type="Font" brief="A Font object containing the font data." />
         <example name="Add some fonts.">
-          big = love.graphics.newFont("Vera.ttf", 40);
-          small = love.graphics.newFont("SomeAwesomeZeldaFont.ttf", 8);
+          big = love.graphics.newFont("Vera.ttf", 40)
+          small = love.graphics.newFont("SomeAwesomeZeldaFont.ttf", 8)
         </example>
       </function>
 
@@ -310,7 +310,7 @@
         <param name="glyphs" brief="A list of the characters as they are in the image." />
         <returns type="Font" brief="A Font object containing the font data." />
         <example name="Add the example font.">
-          example = love.graphics.newImageFont("imagefont.png", " ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+          example = love.graphics.newImageFont("imagefont.png", " ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         </example>
       </function>
 
@@ -325,19 +325,29 @@
         <param name="spacing" brief="The spacing factor." />
         <returns type="Font" brief="A Font object containing the font data." />
         <example name="Add the example font with different spacing.">
-          example = love.graphics.newImageFont("imagefont.png", " ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0.5); -- half spacing
-          example = love.graphics.newImageFont("imagefont.png", " ABCDEFGHIJKLMNOPQRSTUVWXYZ", 2); -- double spacing
-		  example = love.graphics.newImageFont("imagefont.png", " ABCDEFGHIJKLMNOPQRSTUVWXYZ", -1); -- negative spacing works too
+          example = love.graphics.newImageFont("imagefont.png", " ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0.5) -- half spacing
+          example = love.graphics.newImageFont("imagefont.png", " ABCDEFGHIJKLMNOPQRSTUVWXYZ", 2) -- double spacing
+		  example = love.graphics.newImageFont("imagefont.png", " ABCDEFGHIJKLMNOPQRSTUVWXYZ", -1) -- negative spacing works too
         </example>
       </function>
+	  
+	  <function name="newParticleSystem" brief="Creates a particle emitter.">
+	   <param name="image" brief="An Image object." />
+	   <param name="buffer" brief="The maximum amount of particles that are allowed by the system." />
+	   <returns type="ParticleSystem" brief="A particle system containing the apporpriate information." />
+	   <example name="Create a simple particle system based on an image.">
+	      image = love.graphics.newImage("particle.png")
+	      part = love.graphics.newParticleSystem(image, 3000) -- max 3000 particles
+	   </example>
+	  </function>
 
       <separator />
 
       <function name="setColor" brief="Sets the current color.">
         <param name="color" brief="A Color object." />
         <example name="Set the current color as red.">
-          red = love.graphics.newColor(255, 0, 0);
-          love.graphics.setColor(red);
+          red = love.graphics.newColor(255, 0, 0)
+          love.graphics.setColor(red)
         </example>
       </function>
 
@@ -346,7 +356,7 @@
         <param name="green" brief="The amount of green." />
         <param name="blue" brief="The amount of blue." />
         <example name="Set the current color as blue.">
-          love.graphics.setColor(10, 10, 255); -- the default alpha value (255) will be used
+          love.graphics.setColor(10, 10, 255) -- the default alpha value (255) will be used
         </example>
       </function>
 
@@ -356,7 +366,7 @@
         <param name="blue" brief="The amount of blue." />
         <param name="alpha" brief="The amount of alpha." />
         <example name="Set the current color as transparent red.">
-          love.graphics.setColor(255, 10, 10, 150);
+          love.graphics.setColor(255, 10, 10, 150)
         </example>
       </function>
 
@@ -364,8 +374,8 @@
         Note: The alpha value of the Color will be ignored as the background cannot be transparent.
         <param name="color" brief="A Color object." />
         <example name="Set the background color as red.">
-          red = love.graphics.newColor(255, 0, 0);
-          love.graphics.setBackgroundColor(red);
+          red = love.graphics.newColor(255, 0, 0)
+          love.graphics.setBackgroundColor(red)
         </example>
       </function>
 
@@ -375,16 +385,16 @@
         <param name="green" brief="The amount of green." />
         <param name="blue" brief="The amount of blue." />
         <example name="Set the current color as red, then blue.">
-          love.graphics.setBackgroundColor(255, 10, 10);
-          love.graphics.setBackgroundColor(10, 10, 255);
+          love.graphics.setBackgroundColor(255, 10, 10)
+          love.graphics.setBackgroundColor(10, 10, 255)
         </example>
       </function>
 
       <function name="setFont" brief="Sets the current font.">
         <param name="font" brief="A Font object." />
         <example name="Create and set a large font.">
-          big_text = love.graphics.newFont("Vera.tff", 30);
-          love.graphics.setFont(big_text);
+          big_text = love.graphics.newFont("Vera.tff", 30)
+          love.graphics.setFont(big_text)
         </example>
       </function>
 	  
@@ -680,6 +690,19 @@
       </function>
 
       <separator />
+	  
+	  <function name="draw" brief="Draws a particle system on screen.">
+        <param name="particlesystem" brief="A ParticleSystem object." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+		<example name="Create and draw a particle system.">
+		  image = love.graphics.newImage("image.png")
+		  part = love.graphics.newParticleSystem(image, 3000) -- max 3000 particles
+		  love.graphics.draw(part, 50, 50)
+		</example>
+      </function>
+	  
+	  <separator />
 
       <function name="line" brief="Draws a line from (x1,y1) to (x2,y2).">
         <param name="x1" brief="First x-coordinate." />
@@ -1475,6 +1498,182 @@
       <see name="Sound" />
       <see name="love.audio" />
       <see name="love.audio.newMusic( filename )" />
+
+    </type>
+	
+	<!-- :::::::::::::::::::::::::: PARTICLE SYSTEM :::::::::::::::::::::::::: -->
+	
+	<type name="ParticleSystem" brief="Contains information for a particle system.">
+	  The particle systems are created and drawn on the screen using functions in love.graphics. They also need to be updated in the update(dt) callback
+	  for you to see any changes in the particles emitted
+      <see name="love.graphics.newParticleSystem( image, buffer )" />
+
+      <method name="setBufferSize" brief="Sets the size of the buffer (the max allowed amount of particles in the system).">
+        <param name="size">The buffer size.</param>
+      </method>
+	  
+	  <separator />
+	  
+	  <method name="setEmissionRate" brief="Sets the amount of particles emitted per second.">
+        <param name="rate">The amount of particles per second.</param>
+      </method>
+
+      <method name="setLifetime" brief="Sets how long the particle system should emitt particles (if -1 then it emitts particles forever).">
+        <param name="life">The lifetime of the emitter (in seconds).</param>
+      </method>
+	  
+	  <separator />
+	  
+	  <method name="setParticleLife" brief="Sets the life of the particles.">
+        <param name="life">The life of the particles (in seconds).</param>
+      </method>
+	  
+	  <method name="setParticleLife" brief="Sets the minimum and maximum life of the particles.">
+        <param name="min">The minumum life of the particles (in seconds).</param>
+		<param name="max">The maximum life of the particles (in seconds).</param>
+      </method>
+	  
+	  <method name="setDirection" brief="Sets the direction the particles will be emitted in.">
+        <param name="direction">The direction of the particles (in radians).</param>
+      </method>
+	  
+	  <method name="setDirection" brief="Sets the direction the particles will be emitted in.">
+        <param name="direction">The direction of the particles (in radians).</param>
+		<param name="spread">The amount of spread (a spread of 0.5 would emitt particles in a range of direction-0.5 to direction+0.5)</param>
+      </method>
+	  
+	  <separator />
+	  
+	  <method name="setSpeed" brief="Sets the speed of the particles.">
+        <param name="speed">The speed (in pixels per second).</param>
+      </method>
+	  
+	  <method name="setSpeed" brief="Sets the minimum and maximum speed of the particles.">
+        <param name="min">The minimum speed (in pixels per second).</param>
+		<param name="max">The maximum speed (in pixels per second).</param>
+      </method>
+	  
+	  <method name="setGravity" brief="Sets the gravity affecting the particles (acceleration along the y-axis).">
+        <param name="gravity">The amount of gravity.</param>
+      </method>
+	  
+	  <method name="setGravity" brief="Sets the minimum and maximum gravity affecting the particles (acceleration along the y-axis).">
+        <param name="min">The minimum gravity.</param>
+		<param name="max">The maximum gravity.</param>
+      </method>
+	  
+	  <method name="setRadialAcceleration" brief="Sets the radial acceleration (acceleration towards the emitter).">
+        <param name="acceleration">The amount of acceleration.</param>
+      </method>
+	  
+	  <method name="setRadialAcceleration" brief="Sets the minimum and maximum radial acceleration (acceleration towards the emitter).">
+        <param name="min">The minimum acceleration.</param>
+		<param name="max">The maximum acceleration.</param>
+      </method>
+	  
+	  <method name="setTangentialAcceleration" brief="Sets the tangential acceleration (acceleration perpendicular to the particle's direction).">
+        <param name="acceleration">The amount of acceleration.</param>
+      </method>
+	  
+	  <method name="setTangentialAcceleration" brief="Sets the minimum and maximum tangential acceleration (acceleration perpendicular to the particle's direction).">
+        <param name="min">The minimum acceleration.</param>
+		<param name="max">The maximum acceleration.</param>
+      </method>
+	  
+	  <separator />
+	  
+	  <method name="setSize" brief="Sets the size of the image (1.0 being normal size).">
+        <param name="size">The size of the image.</param>
+      </method>
+	  
+	  <method name="setSize" brief="Sets the size of the image upon particle creation and death (1.0 being normal size).">
+        <param name="start">The size of the image upon creation.</param>
+		<param name="end">The size of the image upon death.</param>
+      </method>
+	  
+	  <method name="setSize" brief="Sets the size of the image upon particle creation and death and the degree of variation (1.0 being normal size).">
+        <param name="start">The size of the image upon creation.</param>
+		<param name="end">The size of the image upon death.</param>
+		<param name="variation">The degree of variation (0 meaning no variation and 1 meaning full variation between start and end).</param>
+      </method>
+	  
+	  <method name="setSizeVariation" brief="Sets the degree of variation (0 meaning no variation and 1 meaning full variation between start and end).">
+		<param name="variation">The degree of variation.</param>
+      </method>
+	  
+	  <separator />
+	  
+	  <method name="setRotation" brief="Sets the rotation of the image.">
+        <param name="rotation">The rotation of the image (in radians).</param>
+      </method>
+	  
+	  <method name="setRotation" brief="Sets the rotation of the image upon particle creation and death.">
+        <param name="start">The rotation of the image upon creation.</param>
+		<param name="end">The rotation of the image upon death.</param>
+      </method>
+	  
+	  <method name="setRotation" brief="Sets the rotation of the image upon particle creation and death and the degree of variation.">
+        <param name="start">The rotation of the image upon creation.</param>
+		<param name="end">The rotation of the image upon death.</param>
+		<param name="variation">The degree of variation (0 meaning no variation and 1 meaning full variation between start and end).</param>
+      </method>
+	  
+	  <method name="setRotationVariation" brief="Sets the degree of variation (0 meaning no variation and 1 meaning full variation between start and end).">
+		<param name="variation">The degree of variation.</param>
+      </method>
+	  
+	  <separator />
+	  
+	  <method name="setColor" brief="Sets the color of the image (color modulation needs to be activated for it to have any effect).">
+		<param name="color">A Color object.</param>
+		<see name="love.graphics.setColorMode( mode )" />
+      </method>
+	  
+	  <method name="setColor" brief="Sets the color of the image upon creation and death (color modulation needs to be activated for it to have any effect).">
+		<param name="start">A Color object.</param>
+		<param name="end">A Color object.</param>
+		<see name="love.graphics.setColorMode( mode )" />
+      </method>
+	  
+	  <separator />
+	  
+	  <method name="count" brief="Gets the amount of particles that are currently in the system.">
+		<returns type="number">The amount of particles.</returns>
+      </method>
+	  
+	  <separator />
+	  
+	  <method name="start" brief="Starts the particle emitter.">
+      </method>
+	  
+	  <method name="stop" brief="Stops the particle emitter, resetting the lifetime counter.">
+      </method>
+	  
+	  <method name="pause" brief="Pauses the particle emitter.">
+      </method>
+	  
+	  <method name="reset" brief="Resets the particle emitter, removing any existing particles and resetting the lifetime counter.">
+      </method>
+	  
+	  <separator />
+	  
+	  <method name="isActive" brief="Checks whether the particle system is actively emitting particles.">
+		<returns type="boolean">Whether the particle system is active.</returns>
+      </method>
+	  
+	  <method name="isEmpty" brief="Checks whether the particle system is empty of particles.">
+		<returns type="boolean">Whether the particle system is empty.</returns>
+      </method>
+	  
+	  <method name="isFull" brief="Checks whether the particle system is full of particles.">
+		<returns type="boolean">Whether the particle system is full.</returns>
+      </method>
+	  
+	  <separator />
+	  
+	  <method name="update" brief="Updates the particle system; moving, creating and killing particles.">
+		<param name="dt">The amount of time that has passed since last time the function was called.</param>
+      </method>
 
     </type>
 

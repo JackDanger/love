@@ -225,9 +225,31 @@ namespace love_opengl
 		**/
 		void setSizeVariation(float variation);
 
+		/**
+		* Sets the rotation of the sprite.
+		* @param rotation The rotation of the sprite (in radians).
+		**/
 		void setRotation(float rotation);
+
+		/**
+		* Sets the rotation of the sprite upon particle creation and death.
+		* @param start The rotation of the sprite upon creation (in radians).
+		* @param end The rotation of the sprite upon death (in radians).
+		**/
 		void setRotation(float start, float end);
+
+		/**
+		* Sets the rotation of the sprite upon particle creation and death and the variation.
+		* @param start The rotation of the sprite upon creation (in radians).
+		* @param end The rotation of the sprite upon death (in radians).
+		* @param variation The variation of the start rotation (0 being no variation and 1 beign a random rotation between start and end).
+		**/
 		void setRotation(float start, float end, float variation);
+
+		/**
+		* Sets the variation of the start rotation (0 being no variation and 1 beign a random rotation between start and end).
+		* @param variation The variation.
+		**/
 		void setRotationVariation(float variation);
 
 		/**

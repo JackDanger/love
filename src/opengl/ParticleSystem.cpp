@@ -317,6 +317,7 @@ namespace love_opengl
 		if(sprite == 0) return; // just in case of failure
 
 		glPushMatrix();
+		glPushAttrib(GL_CURRENT_BIT);
 
 		glTranslatef(x,y,0.0f);
 
@@ -355,8 +356,7 @@ namespace love_opengl
 		glEnable(GL_TEXTURE_2D);
 		*/
 
-		glColor4ub(255,255,255,255);
-
+		glPopAttrib();
 		glPopMatrix();
 	}
 
