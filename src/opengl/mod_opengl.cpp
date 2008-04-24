@@ -3979,6 +3979,39 @@ fail:
 }
 
 
+static int _wrap_ParticleSystem_setSprite(lua_State* L) {
+  int SWIG_arg = -1;
+  love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
+  love_opengl::pImage arg2 ;
+  love_opengl::pImage *argp2 ;
+  
+  SWIG_check_num_args("setSprite",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSprite",1,"love_opengl::ParticleSystem *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("setSprite",2,"love_opengl::pImage");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
+    SWIG_fail_ptr("ParticleSystem_setSprite",1,SWIGTYPE_p_love_opengl__ParticleSystem);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t,0))){
+    SWIG_fail_ptr("ParticleSystem_setSprite",2,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t);
+  }
+  arg2 = *argp2;
+  
+  (arg1)->setSprite(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_ParticleSystem_setEmissionRate(lua_State* L) {
   int SWIG_arg = -1;
   love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
@@ -5515,6 +5548,7 @@ delete arg1;
 }
 static swig_lua_method swig_love_opengl_ParticleSystem_methods[] = {
     {"setBufferSize", _wrap_ParticleSystem_setBufferSize}, 
+    {"setSprite", _wrap_ParticleSystem_setSprite}, 
     {"setEmissionRate", _wrap_ParticleSystem_setEmissionRate}, 
     {"setLifetime", _wrap_ParticleSystem_setLifetime}, 
     {"setParticleLife", _wrap_ParticleSystem_setParticleLife}, 
@@ -5611,6 +5645,39 @@ static int _wrap_SmartParticleSystem_setBufferSize(lua_State* L) {
   
   arg2 = (unsigned int)lua_tonumber(L, 2);
   (*arg1)->setBufferSize(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartParticleSystem_setSprite(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
+  love_opengl::pImage arg2 ;
+  love_opengl::pImage *argp2 ;
+  
+  SWIG_check_num_args("setSprite",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSprite",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("setSprite",2,"love_opengl::pImage");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
+    SWIG_fail_ptr("SmartParticleSystem_setSprite",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t,0))){
+    SWIG_fail_ptr("SmartParticleSystem_setSprite",2,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t);
+  }
+  arg2 = *argp2;
+  
+  (*arg1)->setSprite(arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -7135,6 +7202,7 @@ delete arg1;
 static swig_lua_method swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__methods[] = {
     {"__deref__", _wrap_SmartParticleSystem___deref__}, 
     {"setBufferSize", _wrap_SmartParticleSystem_setBufferSize}, 
+    {"setSprite", _wrap_SmartParticleSystem_setSprite}, 
     {"setEmissionRate", _wrap_SmartParticleSystem_setEmissionRate}, 
     {"setLifetime", _wrap_SmartParticleSystem_setLifetime}, 
     {"setParticleLife", _wrap_SmartParticleSystem_setParticleLife}, 

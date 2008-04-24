@@ -44,7 +44,8 @@ namespace love_opengl
 
 		float color[4];
 		
-		particle(); // constructor
+		// THIS IS NO LONGER USED
+		//particle(); // constructor
 	};
 
 	/**
@@ -137,6 +138,12 @@ namespace love_opengl
 		* Deletes any allocated memory.
 		**/
 		virtual ~ParticleSystem();
+
+		/**
+		* Sets the sprite used in the particle system.
+		* @param sprite The new sprite.
+		**/
+		void setSprite(pImage sprite);
 
 		/**
 		* Clears the current buffer and allocates the appropriate amount of space for the buffer.

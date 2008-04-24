@@ -7,6 +7,7 @@ namespace love_opengl
 	private:
 	public:
 		void setBufferSize(unsigned int size);
+		void setSprite(pImage sprite);
 		
 		void setEmissionRate(int rate);
 		void setLifetime(float life);

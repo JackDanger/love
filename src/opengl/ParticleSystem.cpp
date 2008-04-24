@@ -7,8 +7,10 @@ namespace love_opengl
 {
 	//
 	// Struct constructor.
+	// NO LONGER USED
 	//
 
+	/*
 	particle::particle()
 	{
 		// life
@@ -47,6 +49,7 @@ namespace love_opengl
 		color[2] = 1;
 		color[3] = 1;
 	}
+	*/
 
 	//
 	// Class functions.
@@ -76,7 +79,8 @@ namespace love_opengl
 	{
 		if(!isFull())
 		{
-			*pLast = particle();
+			// NO LONGER USED (the code below works better)
+			//*pLast = particle();
 
 			float min,max;
 
@@ -87,6 +91,8 @@ namespace love_opengl
 			else
 				pLast->life = (rand() / (float(RAND_MAX)+1)) * (max - min) + min;
 			pLast->lifetime = pLast->life;
+
+			pLast->position[0] = pLast->position[1] = 0;
 
 			min = direction - spread;
 			max = direction + spread;
@@ -137,6 +143,11 @@ namespace love_opengl
 		{
 			*p = *(--pLast);
 		}
+	}
+
+	void ParticleSystem::setSprite(pImage sprite)
+	{
+		this->sprite = sprite;
 	}
 
 	void ParticleSystem::setBufferSize(unsigned int size)
