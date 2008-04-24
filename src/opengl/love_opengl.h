@@ -31,6 +31,7 @@
 #include "TrueTypeFont.h"
 #include "ImageFont.h"
 #include "ParticleSystem.h"
+#include "PointParticleSystem.h"
 #include "console.h"
 
 /// Creating a separate namespace to avoid conflicts
@@ -182,6 +183,8 @@ namespace love_opengl
 	* Creates an Animation object with generated frames in a grid.
 	**/
 	pAnimation newAnimation(const char * filename, float fw, float fh, float delay, int num = 0);
+
+	pParticleSystem newParticleSystem(pImage sprite, unsigned int size, bool awesome);
 
 	/**
 	* Creates a ParticleSystem object with the specified buffer size and using the specified sprite.

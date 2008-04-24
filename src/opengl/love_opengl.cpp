@@ -533,6 +533,13 @@ namespace love_opengl
 		return anim;
 	}
 
+	pParticleSystem newParticleSystem(pImage sprite, unsigned int size, bool awesome)
+	{
+		// Create the particle system.
+		pParticleSystem part(new PointParticleSystem(sprite, size));
+		return part;	
+	}
+
 	pParticleSystem newParticleSystem(pImage sprite, unsigned int size)
 	{
 		// Create the particle system.

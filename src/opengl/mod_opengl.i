@@ -47,6 +47,7 @@ namespace love_opengl
 	pAnimation newAnimation(const char * filename, float fw, float fh, float delay, int num = 0);
 	
 	pParticleSystem newParticleSystem(pImage sprite, unsigned int size);
+	pParticleSystem newParticleSystem(pImage sprite, unsigned int size, bool awesome);
 	
 	int getWidth();
 	int getHeight();

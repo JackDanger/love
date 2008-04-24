@@ -198,6 +198,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\opengl\GLee.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\opengl\Image.cpp"
 				>
 			</File>
@@ -219,6 +223,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\opengl\ParticleSystem.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\opengl\PointParticleSystem.cpp"
 				>
 			</File>
 			<File
@@ -317,6 +325,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\opengl\ParticleSystem.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\opengl\PointParticleSystem.h"
 				>
 			</File>
 			<File

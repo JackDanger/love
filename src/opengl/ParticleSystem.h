@@ -317,7 +317,7 @@ namespace love_opengl
 		* @param x The x-coordinate.
 		* @param y The y-coordinate.
 		**/
-		void draw(float x, float y) const;
+		virtual void draw(float x, float y) const;
 
 		/**
 		* Updates the particle system.
