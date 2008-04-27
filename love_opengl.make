@@ -12,6 +12,7 @@ $(OBJDIR)/love_opengl.o \
 $(OBJDIR)/mod_opengl.o \
 $(OBJDIR)/modfs.o \
 $(OBJDIR)/ParticleSystem.o \
+$(OBJDIR)/PointParticleSystem.o \
 $(OBJDIR)/resources.o \
 $(OBJDIR)/Sprite.o \
 $(OBJDIR)/TrueTypeFont.o \
