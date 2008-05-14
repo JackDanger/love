@@ -7,27 +7,24 @@ extern "C" {
 
 namespace love_chipmunk
 {
-	bool init(love_mod::modconf * conf)
+	bool DECLSPEC module_init(int argc, char ** argv, love::Core * core)
 	{
 		// Init chipmunk.
 		cpInitChipmunk();
-
-		love_mod::setConf(conf);
-		love_mod::report_init("love.physics", "Chipmunk");
 		return true;
 	}
 
-	bool quit()
+	bool DECLSPEC module_quit()
 	{
-		love_mod::report_init("love.physics", "Shutdown");
 		return true;
 	}
 
-	bool luaopen(lua_State * s)
+	bool DECLSPEC module_open(void * vm)
 	{
-		love_mod::setL(s);
-		luaopen_mod_chipmunk(s);
-		love_mod::do_string("love.physics = mod_chipmunk");
+		lua_State * s = (lua_State *)vm;
+		if(s == 0)
+			return false;
+			luaopen_mod_chipmunk(s);
 		return true;
 	}
 
