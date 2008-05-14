@@ -9,7 +9,7 @@
 #define LOVE_SDLMIXER_SOUND_H 
 
 // LOVE
-#include "../modfs.h"
+#include <love/Resource.h>
 
 // SDL_mixer
 #include <SDL_mixer.h>

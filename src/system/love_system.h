@@ -12,7 +12,8 @@
 #define LOVE_MOD_SYSTEM_H
 
 // LOVE
-#include "../mod.h"
+#include <love/mod.h>
+#include <love/Game.h>
 
 // Creating a separate namespace to avoid conflicts
 // with standard library functions.
@@ -24,9 +25,27 @@ namespace love_system
 	extern "C"
 	{
 		// Standard module functions.
-		bool DECLSPEC init(love_mod::modconf * conf);
-		bool DECLSPEC quit();
-		bool DECLSPEC luaopen(lua_State * s);
+		bool DECLSPEC module_init(int argc, char ** argv, love::Core * core);
+		bool DECLSPEC module_quit();
+		bool DECLSPEC module_open(void * vm);
+		/**
+		* This function takes LOVE into suspended mode, 
+		* with the specified error message.
+		* @param msg The message to display in suspended mode.
+		**/
+		void DECLSPEC error(const char * msg);
+
+		/**
+		* A warning does pretty much the same thing as an 
+		* error, but a different error message is shown.
+		* @param msg The message to display in suspended mode.
+		**/
+		void DECLSPEC warning(const char * msg);
+
+		int DECLSPEC include(lua_State * L);
+
+		const love::pGame DECLSPEC & getGame();
+
 	}
 
 	/**
@@ -39,7 +58,7 @@ namespace love_system
 	* Gets the codename for this version. (For fun :)
 	* @return A string containing the codename, such as "Mini-Moose".
 	**/
-	const char * getCodeName();
+	const char * getCodename();
 
 	/**
 	* Get a string representing the current platform.
@@ -51,23 +70,6 @@ namespace love_system
 	* Immediately quits LOVE.
 	**/
 	void exit();
-
-	/**
-	* Immediately restarts the current game.
-	**/
-	void restart();
-
-	/**
-	* Immediately suspends the current game. Should
-	* only be used for development purposes.
-	**/
-	void suspend(); 
-
-	/**
-	* Prints a message graphically and to stdout.
-	* @param msg The message to print.
-	**/
-	void print(const char * msg);
 
 } // love_system
 

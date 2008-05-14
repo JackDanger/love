@@ -35,11 +35,17 @@
 
 #ifdef _MSC_VER
 	#pragma optimize( "g", off )
+#define _CRT_SECURE_NO_WARNINGS
 #endif
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#ifdef _MSC_VER
+#define strlen (int)strlen
+#endif
+
 #include "GLee.h"
 
 #if defined(__APPLE__) || defined(__APPLE_CC__)

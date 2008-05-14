@@ -1,7 +1,6 @@
 #include "ImageFont.h"
 
 #include <SDL_opengl.h>
-#include "love_opengl.h"
 
 using std::string;
 
@@ -10,7 +9,7 @@ namespace love_opengl
 	ImageFont::ImageFont(love::pFile file, std::string glyphs) : Font(file, 0)
 	{
 		this->glyphs = glyphs;
-		image = newImage(file);
+		image.reset<Image>(new Image(file));
 	}	
 
 	ImageFont::~ImageFont()

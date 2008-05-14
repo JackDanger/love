@@ -9,8 +9,11 @@
 #define LOVE_OPENGL_FONT_H
 
 // LOVE
-#include "../Volatile.h"
-#include "../Resource.h"
+#include <love/File.h>
+#include <love/Resource.h>
+
+// Module
+#include "Volatile.h"
 
 namespace love_opengl
 {
@@ -20,7 +23,7 @@ namespace love_opengl
 	* @author Michael Enger
 	* @date 2007-10-03
 	**/
-	class Font : public love::Resource, public love::Volatile
+	class Font : public love::Resource, public Volatile
 	{
 	protected:
 		int size;

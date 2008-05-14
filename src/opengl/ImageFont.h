@@ -8,7 +8,7 @@
 #ifndef LOVE_OPENGL_IMAGE_FONT_H
 #define LOVE_OPENGL_IMAGE_FONT_H
 
-// LOVE
+// Module
 #include "Font.h"
 #include "Image.h"
 

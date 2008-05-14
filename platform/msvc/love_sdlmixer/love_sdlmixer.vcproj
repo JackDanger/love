@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../include;../include/SDL"
+				AdditionalIncludeDirectories="../include;../include/SDL;../../../src/liblove/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;LOVE_SDLMIXER_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,9 +61,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="SDL.lib SDL_mixer.lib lua5.1.lib"
+				AdditionalDependencies="SDL.lib SDL_mixer.lib lua5.1.lib liblove.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="../lib"
+				AdditionalLibraryDirectories="../lib;../debug"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -189,10 +189,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\modfs.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\sdlmixer\Music.cpp"
 				>
 			</File>
@@ -224,10 +220,6 @@
 			>
 			<File
 				RelativePath="..\..\..\src\sdlmixer\love_sdlmixer.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\modfs.h"
 				>
 			</File>
 			<File

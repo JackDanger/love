@@ -1,3 +1,17 @@
+%{#include <love/File.h>%}
+
+%rename(shared_File) love::File;
+
+namespace love
+{
+	class File
+	{
+	};
+	
+	typedef boost::shared_ptr<File> pFile;
+}
+
+
 %{#include "File.h"%}
 
 namespace love_physfs

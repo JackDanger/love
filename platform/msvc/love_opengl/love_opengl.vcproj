@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../include;../include/SDL"
+				AdditionalIncludeDirectories="../include;../include/SDL;../../../src/liblove/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;LOVE_OPENGL_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,10 +61,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="SDL.lib opengl32.lib glu32.lib lua5.1.lib DevIL.lib ILU.lib ILUT.lib freetype.lib"
+				AdditionalDependencies="SDL.lib opengl32.lib glu32.lib lua5.1.lib DevIL.lib ILU.lib ILUT.lib freetype.lib liblove.lib"
 				OutputFile="$(OutDir)\$(ProjectName).dll"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="../lib"
+				AdditionalLibraryDirectories="../lib;../debug"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -190,10 +190,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\opengl\console.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\opengl\Font.cpp"
 				>
 			</File>
@@ -218,10 +214,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\modfs.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\opengl\ParticleSystem.cpp"
 				>
 			</File>
@@ -242,7 +234,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\Volatile.cpp"
+				RelativePath="..\..\..\src\opengl\Volatile.cpp"
 				>
 			</File>
 			<Filter
@@ -296,10 +288,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\opengl\console.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\opengl\Font.h"
 				>
 			</File>
@@ -317,10 +305,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\opengl\love_opengl.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\modfs.h"
 				>
 			</File>
 			<File
@@ -344,7 +328,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\Volatile.h"
+				RelativePath="..\..\..\src\opengl\Volatile.h"
 				>
 			</File>
 			<Filter

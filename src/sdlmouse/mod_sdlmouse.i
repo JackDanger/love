@@ -12,11 +12,6 @@ namespace love_sdlmouse
 	bool isVisible();
 }
 
-/**
-* Mouse button constants.
-**/
-%constant const int left = 1;
-%constant const int middle = 2;
-%constant const int right = 3;
-%constant const int wheelup = 4;
-%constant const int wheeldown = 5;
+%luacode {
+love.mouse = mod_sdlmouse
+}

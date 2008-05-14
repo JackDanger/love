@@ -29,8 +29,8 @@ namespace love_opengl
 {
 
 	// Display mode control.
-	bool checkMode(int width, int height, bool fullscreen = true);
-	bool setMode(int width, int height, bool fullscreen = true,	bool vsync = true, int fsaa = 0);
+	bool checkMode(int width, int height, bool fullscreen);
+	bool setMode(int width, int height, bool fullscreen, bool vsync, int fsaa);
 	bool toggleFullscreen();
 
 	pColor newColor( int r, int g, int b, int a = 255 );
@@ -95,11 +95,11 @@ namespace love_opengl
 	void line( float x1, float y1, float x2, float y2 );
 	void triangle( int type, float x1, float y1, float x2, float y2, float x3, float y3 );
 	void quad( int type, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 );
-	void circle( int type, float x, float y, float radius, int points = 10 );
-	
-	// Console.
-	void print(const char * str);	
-	
+	void circle( int type, float x, float y, float radius, int points = 10 );	
 }
 
 %native(getModes) int love_opengl::getModes(lua_State * L);
+
+%luacode{
+love.graphics = mod_opengl
+}

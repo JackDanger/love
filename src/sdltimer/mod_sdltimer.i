@@ -8,3 +8,7 @@ namespace love_sdltimer
 	float getFPS();	
 	void sleep(int ms);
 }
+
+%luacode {
+love.timer = mod_sdltimer
+}

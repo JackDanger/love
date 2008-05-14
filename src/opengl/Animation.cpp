@@ -104,6 +104,11 @@ namespace love_opengl
 		return current;
 	}
 
+	int Animation::getSize() const
+	{
+		return (int)frames.size();
+	}
+
 	void Animation::setDelay(int frame, float delay)
 	{
 		if(frame >= 0 && frame < (int)frames.size())

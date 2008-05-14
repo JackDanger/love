@@ -10,8 +10,7 @@
 
 
 // LOVE
-#include "../modfs.h"
-#include "../constants.h"
+#include <love/constants.h>
 
 // Module.
 #include "Sprite.h"
@@ -130,6 +129,11 @@ namespace love_opengl
 		* Gets the current frame.
 		**/
 		int getCurrentFrame() const;
+
+		/**
+		* Gets amount of frames.
+		**/
+		int getSize() const;
 
 		/**
 		* Sets the delay after a frame.

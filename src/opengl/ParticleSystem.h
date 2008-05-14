@@ -9,7 +9,7 @@
 #define LOVE_OPENGL_PARTICLE_SYSTEM_H
 
 // LOVE
-#include "../constants.h"
+#include <love/constants.h>
 
 // Module
 #include "Color.h"

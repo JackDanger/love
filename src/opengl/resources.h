@@ -2,7 +2,7 @@
 #define LOVE_RESOURCES_H
 
 #include <vector>
-#include "../MemoryFile.h"
+#include <love/MemoryFile.h>
 
 namespace love
 {

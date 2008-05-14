@@ -9,7 +9,7 @@
 #define LOVE_SDLMIXER_MUSIC_H 
 
 // LOVE
-#include "../modfs.h"
+#include <love/Resource.h>
 
 // SDL_mixer
 #define USE_RWOPS

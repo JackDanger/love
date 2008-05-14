@@ -23,7 +23,7 @@ namespace love_sdlmixer
 
 	bool Sound::load()
 	{
-		if(!love_mod::load(file))
+		if(!file->load())
 			return false;
 
 		// Create SDL_RWops
@@ -31,7 +31,7 @@ namespace love_sdlmixer
 
 		if( !(sound = Mix_LoadWAV_RW(rw, 1)) )
 		{
-			love_mod::runtime_error("Unable to create sound " + std::string(Mix_GetError()));
+			//love_mod::runtime_error("Unable to create sound " + std::string(Mix_GetError()));
 			return false;
 		}
 
@@ -47,8 +47,7 @@ namespace love_sdlmixer
 		}
 
 		// Unload the file.
-		if(!love_mod::unload(file))
-			love_mod::runtime_error("Could not unload file " + file->getFilename() + ".");
+		file->unload();
 	}
 	
 } // love_sdlmixer

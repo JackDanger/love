@@ -29,3 +29,7 @@ namespace love_sdlmixer
 	void play(const pSound & sound, int loop = 1, int channel = -1);
 	void play(const pMusic & music, int loop = 1);
 }
+
+%luacode {
+love.audio = mod_sdlmixer
+}

@@ -1,5 +1,7 @@
 #include "love_sdltimer.h"
 
+// LOVE
+
 // SDL
 #include <SDL.h>
 
@@ -27,34 +29,33 @@ namespace love_sdltimer
 	// The current timestep.
 	float dt = 0;
 
-	bool init(love_mod::modconf * conf)
+	bool module_init(int argc, char ** argv, love::Core * core)
 	{
 		
 		// Init the SDL timer system.
 		if(SDL_InitSubSystem(SDL_INIT_TIMER) < 0)
 		{
-			std::cout << "Could not init SDL_TIMER: " << SDL_GetError() << std::endl;
+			std::cerr << "Could not init SDL_TIMER: " << SDL_GetError() << std::endl;
 			return false;
 		}
-
-		love_mod::setConf(conf);
-		love_mod::report_init("love.timer", "SDL");
-
+		
+		std::cout << "INIT love.timer [" << "SDL" << "]" << std::endl;
 		return true;
 	}
 
-	bool quit()
+	bool module_quit()
 	{
 		SDL_QuitSubSystem(SDL_INIT_TIMER);
-		love_mod::report_init("love.timer", "Shutdown");
+		std::cout << "QUIT love.timer [" << "SDL" << "]" << std::endl;
 		return true;
 	}
 
-	bool luaopen(lua_State * s)
+	bool module_open(void * vm)
 	{
-		love_mod::setL(s);
+		lua_State * s = (lua_State *)vm;
+		if(s == 0)
+			return false;
 		luaopen_mod_sdltimer(s);
-		love_mod::do_string("love.timer = mod_sdltimer");
 		return true;
 	}
 

@@ -10,25 +10,24 @@ extern "C" {
 
 namespace love_sdlmouse
 {
-	bool init(love_mod::modconf * conf)
+	bool module_init(int argc, char ** argv, love::Core * core)
 	{
-		// Standard mod setup.
-		love_mod::setConf(conf);
-		love_mod::report_init("love.mouse", "SDL");
+		std::cout << "INIT love.mouse [" << "SDL" << "]" << std::endl;
 		return true;
 	}
 
-	bool quit()
+	bool module_quit()
 	{
-		love_mod::report_init("love.mouse", "Shutdown");
+		std::cout << "QUIT love.mouse [" << "SDL" << "]" << std::endl;
 		return true;
 	}
 
-	bool luaopen(lua_State * s)
+	bool module_open(void * vm)
 	{
-		love_mod::setL(s);
+		lua_State * s = (lua_State *)vm;
+		if(s == 0)
+			return false;
 		luaopen_mod_sdlmouse(s);
-		love_mod::do_string("love.mouse = mod_sdlmouse");
 		return true;
 	}
 

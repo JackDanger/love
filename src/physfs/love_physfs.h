@@ -8,8 +8,8 @@
 #define LOVE_MOD_PHYSFS_H
 
 // LOVE
-#include "../modfs.h"
-#include "../constants.h"
+#include <love/mod.h>
+#include <love/File.h>
 
 // Module
 #include "File.h"
@@ -28,21 +28,9 @@ namespace love_physfs
 	extern "C"
 	{
 		// Standard module functions.
-		bool DECLSPEC init(love_mod::modconf * conf);
-		bool DECLSPEC quit();
-		bool DECLSPEC luaopen(lua_State * s);
-
-		/**
-		* Helper function that loads a file for internal use.
-		* The the original contents of the shared_ptr is removed, 
-		* only the filename is used to load the file).
-		**/
-		bool DECLSPEC load(love::pFile & file);
-
-		/**
-		* Unloads a file.
-		**/
-		bool DECLSPEC unload(love::pFile & file);
+		bool DECLSPEC module_init(int argc, char ** argv, love::Core * core);
+		bool DECLSPEC module_quit();
+		bool DECLSPEC module_open(void * vm);
 
 		/**
 		* Pushes the filesystem state if possible. All directories
@@ -61,12 +49,12 @@ namespace love_physfs
 		/**
 		* Adds a directory to the search path.
 		**/
-		bool DECLSPEC addDir(const std::string & dir);
+		bool DECLSPEC addDirectory(const std::string & dir);
 
 		/**
 		* Adds the base directory to the search path.
 		**/
-		bool DECLSPEC addBase();
+		bool DECLSPEC addBaseDirectory();
 
 		// Doomed?
 		bool DECLSPEC exists(const std::string & f);
@@ -74,23 +62,20 @@ namespace love_physfs
 		/**
 		* Gets the user home directory.
 		**/ 
-		void DECLSPEC getUserDir(std::string & user);
+		const char DECLSPEC * getUserDirectory();
 
 		/**
 		* Gets the directory from which the application 
 		* was run.
 		**/
-		void DECLSPEC getBaseDir(std::string & base);
+		const char DECLSPEC * getBaseDirectory();
 
 		/**
 		* Setup a save directory for a certain game. 
 		**/
 		bool DECLSPEC setSaveDirectory( const std::string & gameid );
 
-		/**
-		* Gets the leaf node in a full path.
-		**/
-		void DECLSPEC getLeaf( const std::string & full, std::string & leaf);
+		love::pFile DECLSPEC * getFile(const char * filename);
 	}
 
 	/**
@@ -102,6 +87,11 @@ namespace love_physfs
 		std::vector<std::string> search; // Search paths.
 		std::string write; // Write directory.
 	};
+
+	/**
+	* Gets the leaf node in a full path.
+	**/
+	std::string getLeaf(const std::string & full);
 
 	bool error(const std::string & s);
 
@@ -120,23 +110,23 @@ namespace love_physfs
 	/**
 	* Removes a directory from the PhysFS search path.
 	**/
-	bool removeDir(const std::string & dir);
+	bool removeDirectory(const std::string & dir);
 
 	/**
 	* Gets the current write directory, if any. An empty
 	* string will be returned if no directory is set.
 	**/
-	std::string getWriteDir();
+	std::string getWriteDirectory();
 
 	/**
 	* Sets the current write directory.
 	**/
-	bool setWriteDir(const std::string & dir);
+	bool setWriteDirectory(const std::string & dir);
 
 	/**
 	* Disables the write directory.
 	**/
-	bool disableWriteDir();
+	bool disableWriteDirectory();
 
 	/**
 	* Gets the size of a file.

@@ -3,8 +3,8 @@
 #include <SDL_opengl.h>
 
 
-// Including Math (for ceil)
 #include <math.h>
+#include <iostream>
 
 using std::string;
 
@@ -40,13 +40,11 @@ namespace love_opengl
 	void TrueTypeFont::createList(FT_Face face, unsigned short character)
 	{
 		if( FT_Load_Glyph(face, FT_Get_Char_Index(face, character), FT_LOAD_DEFAULT) )
-			love_mod::runtime_error("TrueTypeFont Loading vm->error: FT_Load_Glyph failed.");
-			//throw std::runtime_vm->error("FT_Load_Glyph failed");
+			std::cerr << "TrueTypeFont Loading vm->error: FT_Load_Glyph failed." << std::endl;
 
 		FT_Glyph glyph;
 		if( FT_Get_Glyph(face->glyph, &glyph) )
-			love_mod::runtime_error("TrueTypeFont Loading vm->error: FT_Get_Glyph failed.");
-			//throw std::runtime_vm->error("FT_Get_Glyph failed");
+			std::cerr << "TrueTypeFont Loading vm->error: FT_Get_Glyph failed." << std::endl;
 
 		FT_Glyph_To_Bitmap(&glyph, FT_RENDER_MODE_NORMAL, 0, 1);
 		FT_BitmapGlyph bitmap_glyph = (FT_BitmapGlyph)glyph;
@@ -175,7 +173,7 @@ namespace love_opengl
 
 	bool TrueTypeFont::loadVolatile()
 	{
-		if(!love_mod::load(file))
+		if(!file->load())
 			return false;
 
 		trueHeight = size;
@@ -186,7 +184,7 @@ namespace love_opengl
 
 		FT_Library library;
 		if( FT_Init_FreeType(&library) )
-			love_mod::runtime_error("TrueTypeFont Loading vm->error: FT_Init_FreeType failed.");
+			std::cerr << "TrueTypeFont Loading error: FT_Init_FreeType failed." << std::endl;
 
 		FT_Face face;
 		if( FT_New_Memory_Face( library,
@@ -194,7 +192,7 @@ namespace love_opengl
 								file->getSize(),					/* size in bytes        */
 								0,									/* face_index           */
 								&face ))
-			love_mod::runtime_error("TrueTypeFont Loading vm->error: FT_New_Face failed (there is probably a problem with your font file).");
+			std::cerr << "TrueTypeFont Loading error: FT_New_Face failed (there is probably a problem with your font file)." << std::endl;
 		//FT_Set_Char_Size(face, size << 6, size << 6, 96, 96);
 		FT_Set_Pixel_Sizes(face, size, size);
 
@@ -207,8 +205,7 @@ namespace love_opengl
 		FT_Done_FreeType(library); //all done
 
 		// Free data.
-		if(!love_mod::unload(file))
-			love_mod::runtime_error("Could not unload font file");
+		file->unload();
 
 		return true;
 	}

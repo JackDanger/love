@@ -1,5 +1,9 @@
 #include "love_sdlmixer.h"
 
+// LOVE
+#include <love/Core.h>
+#include <love/Exception.h>
+
 // SDL and friends.
 #include <SDL.h>
 #include <SDL_mixer.h>
@@ -11,8 +15,27 @@ extern "C" {
 
 namespace love_sdlmixer
 {
-	bool init(love_mod::modconf * conf)
+
+	// Function typedefs for functions we will use.
+	typedef love::pFile * (*fptr_getFile)(const char *);
+
+	// Pointer functions from other modules.
+	love::pFile * (*getFile)(const char *) = 0;
+
+	bool module_init(int argc, char ** argv, love::Core * core)
 	{
+
+		// Get function pointers from other modules.
+		try
+		{
+			getFile = (fptr_getFile)core->getf(love::Module::FILESYSTEM, "getFile");
+		}
+		catch(love::Exception exc)
+		{
+			std::cerr << exc.msg() << std::endl;
+			return false;
+		}
+
 		int bits = 0;
 		int audio_rate,audio_channels,audio_buffers=1024;
 		Uint16 audio_format;
@@ -27,48 +50,49 @@ namespace love_sdlmixer
 			return false;
 		}
 
+		// @todo All this must be configurable.
+
 		Mix_AllocateChannels(8);
 		Mix_QuerySpec(&audio_rate, &audio_format, &audio_channels);
 		bits=audio_format&0xFF;
 		Mix_Volume(-1,MIX_MAX_VOLUME);
 		Mix_VolumeMusic(MIX_MAX_VOLUME);
 
-		// Standard mod setup.
-		love_mod::setConf(conf);
-		love_mod::setFilesystem(conf->filesystem);
-		love_mod::report_init("love.audio", "SDL_mixer");
+		std::cout << "INIT love.audio [" << "SDL_mixer" << "]" << std::endl;
 		return true;
 	}
 
-	bool quit()
+	bool module_quit()
 	{
 		Mix_CloseAudio();
-
-		love_mod::report_init("love.audio", "Shutdown");
+		std::cout << "QUIT love.audio [" << "SDL_mixer" << "]" << std::endl;
 		return true;
 	}
 
-	bool luaopen(lua_State * s)
+	bool module_open(void * vm)
 	{
-		love_mod::setL(s);
+		lua_State * s = (lua_State *)vm;
+		if(s == 0)
+			return false;
 		luaopen_mod_sdlmixer(s);
-		love_mod::do_string("love.audio = mod_sdlmixer");
 		return true;
 	}
 
 	pSound newSound(const char * filename)
 	{
-		love::pFile file = love_mod::newFile( filename );
-		pSound sound(new Sound(file));
+		love::pFile * file = getFile(filename);
+		pSound sound(new Sound(*file));
 		sound->load();
+		delete file; // sound has copy of the file at this point.
 		return sound;
 	}
 	
 	pMusic newMusic(const char * filename)
 	{
-		love::pFile file = love_mod::newFile( filename );
-		pMusic music(new Music(file));
+		love::pFile * file = getFile( filename );
+		pMusic music(new Music(*file));
 		music->load();
+		delete file; // music has copy of the file at this point.
 		return music;
 	}
 

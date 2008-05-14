@@ -14,16 +14,14 @@ namespace boost {
   };
 }
 
-%rename(shared_File) love::File;
-%include ../File.i
 %include File.i
 
 
 namespace love_physfs
 {
 	pFile newFile(const char * file, int mode = READ);
-	void require( const char * file );
-	void include( const char * file );
+	//void require( const char * file );
+	//void include( const char * file );
 	bool exists(const char * file);
 	bool isDirectory(const char * file);
 	bool isFile(const char * file);
@@ -39,3 +37,7 @@ namespace love_physfs
 }
 
 %native(enumerate) int love_physfs::enumerate(lua_State * L);
+
+%luacode {
+love.filesystem = mod_physfs
+}

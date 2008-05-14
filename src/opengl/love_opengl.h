@@ -21,8 +21,8 @@
 #define LOVE_MOD_OPENGL_H
 
 // LOVE
-#include "../Graphics.h"
-#include "../modfs.h"
+#include <love/mod.h>
+#include <love/File.h>
 
 // Module files.
 #include "Color.h"
@@ -32,7 +32,7 @@
 #include "ImageFont.h"
 #include "ParticleSystem.h"
 #include "PointParticleSystem.h"
-#include "console.h"
+#include "Volatile.h"
 
 /// Creating a separate namespace to avoid conflicts
 // with standard library functions.
@@ -43,21 +43,28 @@ namespace love_opengl
 	extern "C"
 	{
 		// Standard module functions.
-		bool DECLSPEC init(love_mod::modconf * conf);
-		bool DECLSPEC quit();
-		bool DECLSPEC luaopen(lua_State * s);
+		bool DECLSPEC module_init(int argc, char ** argv, love::Core * core);
+		bool DECLSPEC module_quit();
+		bool DECLSPEC module_open(void * vm);
 
 		/**
-		* Checks if a specific display mode is supported. If it's 
-		* supported, the return value will be the same as the requested
-		* amout of bits per pixel.
+		* Checks whether a display mode is supported or not. Note
+		* that fullscreen is assumed, because windowed modes are
+		* generally supported regardless of size.
+		* @param width The window width.
+		* @param height The window height.
 		**/
-		int DECLSPEC is_supported(const love::display_mode & dm);
+		bool DECLSPEC checkMode(int width, int height, bool fullscreen);
 
 		/**
-		* Checks if a specific display mode is supported.
+		* Sets the current display mode.
+		* @param width The window width.
+		* @param height The window height.
+		* @param fullscreen True if fullscreen, false otherwise.
+		* @param vsync True if we should wait for vsync, false otherwise.
+		* @param fsaa Number of full scene anti-aliasing buffer, or 0 for disabled.
 		**/
-		bool DECLSPEC try_change(const love::display_mode & dm);
+		bool DECLSPEC setMode(int width, int height, bool fullscreen, bool vsync, int fsaa);
 
 		/**
 		* Toggles fullscreen. Note that this also needs to reload the
@@ -87,26 +94,6 @@ namespace love_opengl
 		void DECLSPEC print(const char * str);
 
 	} // extern "C"
-
-	/**
-	* Checks whether a display mode is supported or not. Note
-	* that fullscreen is assumed, because windowed modes are
-	* generally supported regardless of size.
-	* @param width The window width.
-	* @param height The window height.
-	**/
-	bool checkMode(int width, int height, bool fullscreen = true);
-
-	/**
-	* Sets the current display mode.
-	* @param width The window width.
-	* @param height The window height.
-	* @param fullscreen True if fullscreen, false otherwise.
-	* @param vsync True if we should wait for vsync, false otherwise.
-	* @param fsaa Number of full scene anti-aliasing buffer, or 0 for disabled.
-	**/
-	bool setMode(int width, int height, bool fullscreen = true,	bool vsync = true, int fsaa = 0);
-
 
 	/**
 	* This native Lua function gets available modes
@@ -212,6 +199,11 @@ namespace love_opengl
 	void setColor( int r, int g, int b, int a = 255);
 
 	/**
+	* Gets current color.
+	**/
+	pColor getColor();
+
+	/**
 	* Sets the background Color. 
 	**/
 	void setBackgroundColor( const pColor & color );
@@ -222,9 +214,19 @@ namespace love_opengl
 	void setBackgroundColor( int r, int g, int b );
 
 	/**
+	* Gets the current background color.
+	**/
+	pColor getBackgroundColor();
+
+	/**
 	* Sets the current font.
 	**/
 	void setFont( pFont font );
+
+	/**
+	* Gets the current Font.
+	**/
+	pFont getFont();
 
 	/**
 	* Sets the current blend mode.
@@ -235,6 +237,16 @@ namespace love_opengl
 	* Sets the current color mode.
 	**/
 	void setColorMode ( int mode );
+
+	/**
+	* Gets the current blend mode.
+	**/
+	int getBlendMode();
+
+	/**
+	* Gets the current color mode.
+	**/
+	int getColorMode();
 
 	/**
 	* Sets the type of line used to draw primitives.

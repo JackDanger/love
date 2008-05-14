@@ -10,27 +10,26 @@ extern "C" {
 
 namespace love_sdlkeyboard
 {
-	bool init(love_mod::modconf * conf)
+	bool module_init(int argc, char ** argv, love::Core * core)
 	{
-		love_mod::setConf(conf);
-		love_mod::report_init("love.keyboard", "SDL");
+		std::cout << "INIT love.keyboard [" << "SDL" << "]" << std::endl;
 		return true;
 	}
 
-	bool quit()
+	bool module_quit()
 	{
-		love_mod::report_init("love.keyboard", "Shutdown");
+		std::cout << "QUIT love.keyboard [" << "SDL" << "]" << std::endl;
 		return true;
 	}
 
-	bool luaopen(lua_State * s)
+	bool module_open(void * vm)
 	{
-		love_mod::setL(s);
+		lua_State * s = (lua_State *)vm;
+		if(s == 0)
+			return false;
 		luaopen_mod_sdlkeyboard(s);
-		love_mod::do_string("love.keyboard = mod_sdlkeyboard");
 		return true;
 	}
-
 
 	bool isDown(int key)
 	{

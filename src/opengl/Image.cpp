@@ -163,7 +163,7 @@ namespace love_opengl
 
 	bool Image::read()
 	{
-		if(!love_mod::load(file))
+		if(!file->load())
 			return false;
 
 		// Generate DevIL image.
@@ -224,7 +224,7 @@ namespace love_opengl
 		// Check for errors
 		if(texture == 0) 
 		{
-			love_mod::runtime_error("Image error: could not create OGL texture.");
+			//love_mod::runtime_error("Image error: could not create OGL texture.");
 			return false;
 		}
 
@@ -257,8 +257,7 @@ namespace love_opengl
 		ilDeleteImages(1, &image);
 		
 		// Unload the file.
-		if(!love_mod::unload(file))
-			love_mod::runtime_error("Could not unload file " + file->getFilename() + ".");
+		file->unload();
 	}
 
 	bool Image::load()

@@ -9,7 +9,7 @@
 #define LOVE_PHYSFS_FILE_H
 
 // LOVE
-#include "../File.h"
+#include <love/File.h>
 
 // PhysFS
 #include <physfs.h>
@@ -40,6 +40,9 @@ namespace love_physfs
 
 		virtual ~File();
 		
+		bool load();
+		void unload();
+
 		/**
 		* Returns the PhysFS file handle.
 		**/

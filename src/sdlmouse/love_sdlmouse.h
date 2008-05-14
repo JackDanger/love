@@ -15,7 +15,7 @@
 #define LOVE_MOD_SDLMOUSE_H
 
 // LOVE
-#include "../mod.h"
+#include <love/mod.h>
 
 // Creating a separate namespace to avoid conflicts
 // with standard library functions.
@@ -27,9 +27,9 @@ namespace love_sdlmouse
 	extern "C"
 	{
 		// Standard module functions.
-		bool DECLSPEC init(love_mod::modconf * conf);
-		bool DECLSPEC quit();
-		bool DECLSPEC luaopen(lua_State * s);
+		bool DECLSPEC module_init(int argc, char ** argv, love::Core * core);
+		bool DECLSPEC module_quit();
+		bool DECLSPEC module_open(void * vm);
 	}
 
 	/**

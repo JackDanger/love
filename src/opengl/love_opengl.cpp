@@ -1,6 +1,10 @@
 #include "love_opengl.h"
-#include "../constants.h"
-#include "../version.h"
+
+// LOVE
+#include <love/version.h>
+#include <love/constants.h>
+
+// Module.
 #include "resources.h"
 
 // SDL
@@ -25,10 +29,14 @@ namespace love_opengl
 	const SDL_VideoInfo * video;
 
 	// The current display mode.
-	love::display_mode current;
-
-	// The desktop display mode.
-	love::display_mode desktop;
+	struct
+	{
+		int width, height; // The size of the screen.
+		int color_depth; // The color depth of the display mode.
+		bool fullscreen; // Fullscreen (true), or windowed (false).
+		bool vsync; // Vsync enabled (true), or disabled (false).
+		int fsaa; // 0 for no FSAA, otherwise 1, 2 or 4.
+	} current_mode ;
 
 	// The current set font. (Initially not set).
 	pFont current_font;
@@ -36,12 +44,13 @@ namespace love_opengl
 	// The width of the lines used to draw primitives
 	float lineWidth = 1;
 
-	// The Console.
-	Console console(800, 300);
-	pFont console_font;
-	pImage love_logo;
+	// Function typedefs for functions we will use.
+	typedef love::pFile * (*fptr_getFile)(const char *);
 
-	bool init(love_mod::modconf * conf)
+	// Pointer functions from other modules.
+	fptr_getFile getFile = 0;
+
+	bool module_init(int argc, char ** argv, love::Core * core)
 	{
 		// Init the SDL video system.
 		if(SDL_InitSubSystem(SDL_INIT_VIDEO) < 0)
@@ -50,36 +59,31 @@ namespace love_opengl
 			return false;
 		}
 
+		SDL_WM_SetCaption(LOVE_VERSION_FULL_STR, 0);
+
 		// Get the video info 
 		video = SDL_GetVideoInfo();
-
-		// Create desktop video mode.
-		desktop.height = video->current_h;
-		desktop.width = video->current_w;
 
 		// Init DevIL
 		ilInit();
 
-		love_mod::setConf(conf);
-		love_mod::setFilesystem(conf->filesystem);
-		love_mod::report_init("love.graphics", "OpenGL/DevIL");
+		std::cout << "INIT love.graphics [" << "OpenGL/DevIL/FreeType" << "]" << std::endl;
 		return true;
 	}
 
-	bool quit()
+	bool module_quit()
 	{
 		SDL_QuitSubSystem(SDL_INIT_VIDEO);
-		love_mod::report_init("love.graphics", "Shutdown");
+		std::cout << "QUIT love.graphics [" << "OpenGL/DevIL/FreeType" << "]" << std::endl;	
 		return true;
 	}
 
-	bool luaopen(lua_State * s)
+	bool module_open(void * vm)
 	{
-		love_mod::setL(s);
+		lua_State * s = (lua_State *)vm;
+		if(s == 0)
+			return false;
 		luaopen_mod_opengl(s);
-		love_mod::do_string("love.graphics = mod_opengl");
-		setColorMode(love::COLOR_NORMAL);
-
 		return true;
 	}
 
@@ -89,52 +93,44 @@ namespace love_opengl
 		return (f < 0) ? -f : f;
 	}
 
-	int is_supported(const love::display_mode & dm)
+	bool checkMode(int width, int height, bool fullscreen)
 	{
-			Uint32 sdlflags = dm.fullscreen ? (SDL_OPENGL | SDL_FULLSCREEN) : SDL_OPENGL;
+		Uint32 sdlflags = fullscreen ? (SDL_OPENGL | SDL_FULLSCREEN) : SDL_OPENGL;
 
-			// Check if mode is supported
-			int bpp = SDL_VideoModeOK(dm.width, dm.height, dm.color_depth, sdlflags);
+		// Check if mode is supported
+		int bpp = SDL_VideoModeOK(width, height, 32, sdlflags);
 
-			if(bpp == 0)
-			{
-				return 0;
-			}
-
-			// Ok, return the color depth.
-			return bpp;	
+		return (bpp >= 16);	
 	}
 
-	bool try_change(const love::display_mode & dm)
+	bool setMode(int width, int height, bool fullscreen, bool vsync, int fsaa)
 	{
 		// Set GL attributes
 		SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 0);
 		SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 0);
 		SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 0);
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-		SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, (dm.vsync ? 1 : 0));
+		SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, (vsync ? 1 : 0));
 
 		// FSAA
-		if(dm.fsaa > 0)
+		if(fsaa > 0)
 		{
 			SDL_GL_SetAttribute( SDL_GL_MULTISAMPLEBUFFERS, 1 ) ;
-			SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, dm.fsaa ) ;
+			SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, fsaa ) ;
 		}
 
 		// Fullscreen?
-		Uint32 sdlflags = dm.fullscreen ? (SDL_OPENGL | SDL_FULLSCREEN) : SDL_OPENGL;
+		Uint32 sdlflags = fullscreen ? (SDL_OPENGL | SDL_FULLSCREEN) : SDL_OPENGL;
 
 		// Have SDL set the video mode.
-		if(SDL_SetVideoMode(dm.width, dm.height, dm.color_depth, sdlflags ) == 0)
+		if(SDL_SetVideoMode(width, height, 32, sdlflags ) == 0)
 		{
-			std::cout << "Could not set video mode: "  << SDL_GetError() << std::endl;
+			std::cerr << "Could not set video mode: "  << SDL_GetError() << std::endl;
 			return false;
 		}
 
-		SDL_WM_SetCaption("LOVE", 0);
-
 		// Check if FSAA failed or not
-		if(dm.fsaa > 0)
+		if(fsaa > 0)
 		{
 			int buffers;
 			int samples;
@@ -143,7 +139,7 @@ namespace love_opengl
 			glGetIntegerv( GL_SAMPLES_ARB, & samples ) ;
 
 			// Don't fail because of this, but issue a warning.
-			if ( ! buffers || (samples != dm.fsaa))
+			if ( ! buffers || (samples != fsaa))
 				printf("Warning, quality setting failed! (Result: buffers: %i, samples: %i)\n", buffers, samples);
 		}
 
@@ -172,55 +168,39 @@ namespace love_opengl
 		glEnable(GL_TEXTURE_2D);	
 
 		// Set the viewport to top-left corner
-		glViewport(0,0, dm.width, dm.height);
+		glViewport(0,0, width, height);
 
 		// Reset the projection matrix
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 
 		// Set up orthographic view (no depth)
-		glOrtho(0.0, dm.width,dm.height,0.0, -1.0, 1.0);
+		glOrtho(0.0, width, height,0.0, -1.0, 1.0);
 
 		// Reset modelview matrix
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 
-		// Set the new display mode as the current display mode
-		current = dm;
-
-		console.resize(dm.width, console.getHeight());
-
-		// Create font.
-		if(console_font == 0)
-		{
-			console_font.reset<Font>(new TrueTypeFont(love::Vera_ttf, 10));
-			console_font->load();
-		}
-
-		if(love_logo == 0)
-		{
-			love_logo.reset<Image>(new Image(love::logo128x64_png));
-			love_logo->load();
-			love_logo->setCenter(0, love_logo->getHeight());
-			console.add(love_logo);
-			console.add("This is LOVE " LOVE_VERSION_FULL_STR ".");
-		}
-
+		// Set the new display mode as the current display mode.
+		current_mode.width = width;
+		current_mode.height = height;
+		current_mode.color_depth = 32;
+		current_mode.fsaa = fsaa;
+		current_mode.fullscreen = fullscreen;
+		current_mode.vsync = vsync;
 
 		return true;
 	}
 
 	bool toggleFullscreen()
 	{
-		// Create new display mode.
-		love::display_mode dm = current;
-		dm.fullscreen = !current.fullscreen;
+		current_mode.fullscreen = !current_mode.fullscreen;
 
 		// Reload all Volatiles.
-		love::Volatile::unloadAll();
+		Volatile::unloadAll();
 
 		// Special case for fullscreen -> windowed.
-		if( !dm.fullscreen )
+		if( !current_mode.fullscreen )
 		{
 			// Restarting the SDL_VIDEO subsystem was the only thing
 			// that did what I wanted.
@@ -234,14 +214,14 @@ namespace love_opengl
 		}
 
 		// Try to do the change.
-		if(!try_change(dm))
+		if(!setMode(current_mode.width, current_mode.height, current_mode.fullscreen, 
+			current_mode.vsync, current_mode.fsaa))
 			return false;
 
 		bool success = true;
-		success = success && love::Volatile::loadAll();
+		success = success && Volatile::loadAll();
 
 		return success;
-
 	}
 
 	void clear()
@@ -253,102 +233,6 @@ namespace love_opengl
 	void present()
 	{
 		SDL_GL_SwapBuffers();
-	}
-
-	/**
-	* Console.
-	**/
-
-	void draw_console()
-	{
-		// "Push" the state.
-		pFont old_font = current_font;
-		glPushAttrib(GL_CURRENT_BIT);
-		
-		current_font = console_font;
-		console.draw(0, current.height);
-
-		// "Pop" the state.
-		glPopAttrib();
-		current_font = old_font;
-	}
-
-	void print(const char * str)
-	{
-		std::string text(str);
-
-		// Check for "tags".
-		if(text == "LOVE")
-		{
-			console.add(love_logo);
-			return;
-		}
-		if(text == "[box]")
-		{
-			console.push_box();
-			return;
-		}
-		if(text == "[error]")
-		{
-			console.push_error();
-			return;
-		}
-		if(text == "[/box]" || text == "[/error]")
-		{
-			console.pop();
-			return;
-		}
-
-		if(text.find("\n") == std::string::npos)
-		{
-			console.add(text);
-			return;
-		}
-
-		// Normal text with line breaks:
-
-		int lines = 0;
-		text = "";
-		
-		for(unsigned int i = 0; i < std::strlen(str); i++)
-		{
-			if(str[i] == '\n')
-			{
-				console.add(text);
-				text = "";
-				lines++;
-			}
-			else
-				text += str[i];
-		}
-		
-		if(text != "") // Print the last text (if applicable).
-			console.add(text);	
-	}
-
-	bool checkMode(int width, int height, bool fullscreen)
-	{
-		love::display_mode dm;
-		dm.width = width;
-		dm.height = height;
-		dm.fullscreen = fullscreen;
-		dm.color_depth = 32;
-
-		return ( is_supported(dm) == dm.color_depth );
-	}
-
-
-	bool setMode(int width, int height, bool fullscreen, bool vsync, int fsaa)
-	{
-		love::display_mode dm;
-		dm.width = width;
-		dm.height = height;
-		dm.fullscreen = fullscreen;
-		dm.color_depth = 32;
-		dm.vsync = vsync;
-		dm.fsaa = fsaa;
-
-		return try_change(dm);
 	}
 
 	int getModes(lua_State * L)
@@ -415,11 +299,12 @@ namespace love_opengl
 	pImage newImage(const char * filename)
 	{
 
-		love::pFile file = love_mod::newFile(filename);
+		love::pFile * file = getFile(filename);
 
 		// Create and return an image.
-		pImage image(new Image(file));
+		pImage image(new Image(*file));
 		image->load();
+		delete file;
 		return image;
 	}
 
@@ -433,10 +318,11 @@ namespace love_opengl
 
 	pImage newImage(const char * filename, int mode)
 	{
-		love::pFile file = love_mod::newFile(filename);
+		love::pFile * file = getFile(filename);
 
 		// Create the new image.
-		pImage image(new Image(file));
+		pImage image(new Image(*file));
+		delete file;
 
 		switch(mode)
 		{
@@ -473,8 +359,9 @@ namespace love_opengl
 
 	pFont newFont(const char * filename, int size)
 	{
-		love::pFile file = love_mod::newFile(filename);
-		pFont font(new TrueTypeFont(file, size));
+		love::pFile * file = getFile(filename);
+		pFont font(new TrueTypeFont(*file, size));
+		delete file;
 		font->load();
 		return font;
 	}
@@ -483,7 +370,7 @@ namespace love_opengl
 	{
 		
 		// There's only one default font yet, so
-		// the f-integer isn't really checked.
+		// no need to check f.
 
 		pFont font(new TrueTypeFont(love::Vera_ttf, size));
 		font->load();
@@ -492,8 +379,9 @@ namespace love_opengl
 
 	pFont newImageFont(const char * filename, const char * glyphs, float spacing)
 	{
-		love::pFile file = love_mod::newFile(filename);
-		pFont font(new ImageFont(file, std::string(glyphs)));
+		love::pFile * file = getFile(filename);
+		pFont font(new ImageFont(*file, std::string(glyphs)));
+		delete file;
 		font->setSpacing(spacing);
 		font->load();
 		return font;
@@ -549,12 +437,12 @@ namespace love_opengl
 
 	int getWidth()
 	{
-		return current.width;
+		return current_mode.width;
 	}
 
 	int getHeight()
 	{
-		return current.height;
+		return current_mode.height;
 	}
 
 	void setColor( int r, int g, int b, int a)
@@ -567,6 +455,14 @@ namespace love_opengl
 		glColor4ub(color->getRed(), color->getGreen(), color->getBlue(), color->getAlpha());
 	}
 
+	pColor getColor()
+	{
+		float c[4];
+		glGetFloatv(GL_CURRENT_COLOR, c);
+		pColor clr(new Color((int)(255.0f*c[0]), (int)(255.0f*c[1]), (int)(255.0f*c[2]), (int)(255.0f*c[3])));
+		return clr;
+	}
+
 	void setBackgroundColor( int r, int g, int b )
 	{
 		glClearColor( (float)r/255.0f, (float)g/255.0f, (float)b/255.0f, 1.0f);
@@ -577,9 +473,22 @@ namespace love_opengl
 		glClearColor( (float)color->getRed()/255.0f, (float)color->getGreen()/255.0f, (float)color->getBlue()/255.0f, 1.0f);
 	}
 
+	pColor getBackgroundColor()
+	{
+		float c[4];
+		glGetFloatv(GL_COLOR_CLEAR_VALUE, c);
+		pColor clr(new Color((int)(255.0f*c[0]), (int)(255.0f*c[1]), (int)(255.0f*c[2]), (int)(255.0f*c[3])));
+		return clr;
+	}
+
 	void setFont( pFont font )
 	{
 		current_font = font;
+	}
+
+	pFont getFont()
+	{
+		return current_font;
 	}
 
 	void setBlendMode( int mode )
@@ -596,6 +505,29 @@ namespace love_opengl
 			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		else // mode = love::COLOR_NORMAL
 			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+	}
+	
+	int getBlendMode()
+	{
+		int dst, src;
+		glGetIntegerv(GL_BLEND_DST, &dst);
+		glGetIntegerv(GL_BLEND_SRC, &src);
+
+		if(dst == GL_SRC_ALPHA && src == GL_ONE)
+			return love::BLEND_ADDITIVE;
+		else // dst == GL_SRC_ALPHA && src == GL_ONE_MINUS_SRC_ALPHA
+			return love::BLEND_NORMAL;
+	}
+
+	int getColorMode()
+	{
+		int mode;
+		glGetTexEnviv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, &mode);
+
+		if(mode == GL_MODULATE)
+			return love::COLOR_MODULATE;
+		else // // mode == GL_REPLACE
+			return love::COLOR_NORMAL;
 	}
 
 	void setLine( float width, int type )

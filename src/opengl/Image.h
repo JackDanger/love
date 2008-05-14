@@ -9,12 +9,13 @@
 #define LOVE_OPENGL_IMAGE_H 
 
 // LOVE
-#include "../modfs.h"
-#include "../constants.h"
-#include "../Volatile.h"
+#include <love/File.h>
+#include <love/Resource.h>
+#include <love/constants.h>
 
 // Module.
 #include "Sprite.h"
+#include "Volatile.h"
 
 namespace love_opengl
 {
@@ -43,7 +44,7 @@ namespace love_opengl
 	* @author Anders Ruud
 	* @date 2007-08-19
 	**/
-	class Image : public Sprite, public love::Resource, public love::Volatile
+	class Image : public Sprite, public love::Resource, public Volatile
 	{
 	private:
 

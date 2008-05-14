@@ -18,7 +18,7 @@ namespace love_sdlmixer
 
 	bool Music::load()
 	{
-		if(!love_mod::load(file))
+		if(!file->load())
 			return false;
 
 		// Create SDL_RWops
@@ -26,7 +26,7 @@ namespace love_sdlmixer
 
 		if( !(music = Mix_LoadMUS_RW(rw)))
 		{
-			love_mod::runtime_error("Music: Unable to open music file " + file->getFilename() + ":" + std::string( Mix_GetError() ));
+			//love_mod::runtime_error("Music: Unable to open music file " + file->getFilename() + ":" + std::string( Mix_GetError() ));
 			return false;
 		}
 
@@ -45,8 +45,7 @@ namespace love_sdlmixer
 		}
 
 		// Unload the file.
-		if(!love_mod::unload(file))
-			love_mod::runtime_error("Could not unload file " + file->getFilename() + ".");
+		file->unload();
 	}
 	
 } // love_sdlmixer

@@ -34,97 +34,40 @@ namespace love_physfs
 	// Pointer used for file reads.
 	char * buffer = 0;
 
-	// Set of included files.
-	std::set<std::string> included;
-
-	bool init(love_mod::modconf * conf)
+	bool module_init(int argc, char ** argv, love::Core * core)
 	{
-		if(!PHYSFS_init(conf->argv[0]))
-			return error("Could not init PhysFS");
-		love_mod::setConf(conf);
-		love_mod::report_init("love.filesystem", "PhysFS");
+		if(!PHYSFS_init(argv[0]))
+		{
+			std::cerr << "Count not init PhysFS" << std::endl;
+			return false;
+		}
+		std::cout << "INIT love.filesystem [" << "PhysFS" << "]" << std::endl;
+
+		if(!push())
+		{
+			std::cerr << "Could not push filesystem state." << std::endl;
+			return false;
+		}
+
 		return true;
 	}
 
-	bool quit()
+	bool module_quit()
 	{
 		if(!PHYSFS_deinit())
 			return false;
-		love_mod::report_init("love.filesystem", "Shutdown");
+		std::cout << "QUIT love.filesystem [" << "PhysFS" << "]" << std::endl;
 		return true;
 	}
 
-	bool luaopen(lua_State * s)
+	bool module_open(void * vm)
 	{
-		included.clear();
-		love_mod::setL(s);
+		lua_State * s = (lua_State *)vm;
+		if(s == 0)
+			return false;
 		luaopen_mod_physfs(s);
-		love_mod::do_string("love.filesystem = mod_physfs");
 		return true;
 	}
-
-	bool load(love::pFile & file)
-	{
-		if( file->isCompiled() ) 
-			return true; // We're already loaded.
-	
-		// Get the filename.
-		std::string filename = file->getFilename();
-
-		// Clear what's in it.
-		file.reset();
-
-		// Check for file existence.
-		if(!exists(filename.c_str()))
-		{
-			love_mod::runtime_error("File " + filename + " does not exist.");
-			return false;
-		}
-
-		// Create the new file.
-		pFile f = newFile(filename.c_str());
-
-		// Try to open it.
-		if(!open(f))
-			return false;
-		
-		// Okay, get the filesize and allocate that much memory.
-		f->setSize((int)PHYSFS_fileLength(f->getHandle()));
-		f->allocate(f->getSize());
-		
-		// Read the file.
-		if(PHYSFS_read(f->getHandle(), f->getData(), 1, f->getSize()) == -1)
-		{
-			love_mod::runtime_error("Data could not be read from " + filename + ".");
-			close(f);
-			return false;
-		}
-
-		close(f);
-		file = f;
-		return true;
-	
-	}
-
-	bool unload(love::pFile & file)
-	{
-		if(file == 0)
-			return true;
-
-		if(file->isCompiled())
-			return true; // Never unload compiled files ...
-
-		char * data = file->getData();
-
-		if(data != 0)
-		{
-			delete [] data;
-			file->setData(0);
-		}
-
-		return true;
-	}
-
 
 	bool push()
 	{
@@ -164,13 +107,6 @@ namespace love_physfs
 			
 		return true;
 	}
-
-	bool error(const std::string & s)
-	{
-		std::string e(PHYSFS_getLastError());
-		love_mod::runtime_error( s + e );
-		return false;
-	}
 	
 	bool addState( state & s )
 	{
@@ -178,13 +114,13 @@ namespace love_physfs
 		std::vector<std::string>::iterator i = s.search.begin();
 		while( i != s.search.end() )
 		{
-			if(!addDir((*i)))
+			if(!addDirectory((*i)))
 				return false;
 			i++;
 		}
 
 		// Set write directory.
-		if(!setWriteDir(s.write))
+		if(!setWriteDirectory(s.write))
 			return false;
 		return true;
 	}
@@ -195,94 +131,78 @@ namespace love_physfs
 		std::vector<std::string>::iterator i = s.search.begin();
 		while( i != s.search.end() )
 		{
-			if(!removeDir((*i)))
+			if(!removeDirectory((*i)))
 				return false;
 			i++;
 		}
 
 		// Remove write directory.
-		if(!disableWriteDir())
+		if(!disableWriteDirectory())
 			return false;
 		return true;
 	}
 
-	void getUserDir(std::string & user)
+	const char * getUserDirectory()
 	{
-		const char * dir = PHYSFS_getUserDir();
-
-		if(dir == 0) 
-			return;
-		
-		user = std::string(dir);
+		return PHYSFS_getUserDir();
 	}
 
-	void getBaseDir(std::string & base)
+	const char * getBaseDirectory()
 	{
-
 #ifdef WIN32
 		char * buf = _getcwd(0, 0);
 #else
 		char buf[MAXPATHLEN];
 		getcwd(buf, MAXPATHLEN);
 #endif
-
-		if(buf == 0)
-		{
-			base = "";
-			return;
-		}
-		else
-		{
-			base = std::string(buf) + "/";
-		}
-
+		return buf;
 	}
 
 	bool setSaveDirectory( const std::string & gameid )
 	{
 
 		// Get user directory.
-		std::string user;
-		getUserDir(user);
+		std::string user = std::string(getUserDirectory());
 
 		// Create the .love directory.
-		if(!setWriteDir(user))
+		if(!setWriteDirectory(user))
 			return false;
 
 		// Create the love folder.
 		if(!mkdir(".love"))
 		{
 			printf(PHYSFS_getLastError());
-			disableWriteDir();
+			disableWriteDirectory();
 			return false;
 		}
 
 		// Set the love folder as the write directory.
-		if(!setWriteDir(user + ".love"))
+		if(!setWriteDirectory(user + ".love"))
 			return false;
 
 		// Create the game folder.
 		if(!mkdir(gameid.c_str()))
 		{
 			printf(PHYSFS_getLastError());
-			disableWriteDir();
+			disableWriteDirectory();
 			return false;
 		}
 
 		// Set this as the new directory.
-		if(!setWriteDir(user + ".love/" + gameid))
+		if(!setWriteDirectory(user + ".love/" + gameid))
 			return false;
 
 		// Also add this dir to the search path.
-		if(!addDir(user + ".love/" + gameid))
+		if(!addDirectory(user + ".love/" + gameid))
 			return false;
 
 		return true;
 	}
 
-	void getLeaf( const std::string & full, std::string & leaf)
+	std::string getLeaf(const std::string & full)
 	{
 
+		std::string leaf;
 		std::string l = full;
 
 #ifdef WIN32
@@ -305,14 +225,22 @@ namespace love_physfs
 		{
 			// The path is already the leaf.
 			leaf = l;
-			return;
+			return leaf;
 		}
 
 		// Extract leaf.
 		leaf = l.substr(pos+1);
+
+		return leaf;
 	}
 
-	std::string getWriteDir()
+	love::pFile * getFile(const char * filename)
+	{
+		love::pFile * file = new love::pFile(new File(std::string(filename)));
+		return file;
+	}
+
+	std::string getWriteDirectory()
 	{
 		const char * dir = PHYSFS_getUserDir();
 		if(dir == 0)
@@ -320,21 +248,21 @@ namespace love_physfs
 		return std::string(dir);
 	}
 
-	bool setWriteDir(const std::string & dir)
+	bool setWriteDirectory(const std::string & dir)
 	{
 		if(!PHYSFS_setWriteDir(dir.c_str()))
 			return false;
 		return true;
 	}
 
-	bool disableWriteDir()
+	bool disableWriteDirectory()
 	{
 		if(!PHYSFS_setWriteDir(0))
 			return false;
 		return true;
 	}
 
-	bool addDir(const std::string & dir)
+	bool addDirectory(const std::string & dir)
 	{
 		if(!PHYSFS_addToSearchPath(dir.c_str(), 1))
 			return false;
@@ -347,14 +275,13 @@ namespace love_physfs
 		return exists(f.c_str());
 	}
 
-	bool addBase()
+	bool addBaseDirectory()
 	{
-		std::string base;
-		getBaseDir(base);
-		return addDir(base);
+		std::string base = std::string(getBaseDirectory());
+		return addDirectory(base);
 	}
 
-	bool removeDir(const std::string & dir)
+	bool removeDirectory(const std::string & dir)
 	{
 		if(!PHYSFS_removeFromSearchPath(dir.c_str()))
 			return false;
@@ -366,30 +293,25 @@ namespace love_physfs
 		if(mode == love::FILE_READ && !exists(file))
 		{
 			std::string filename(file);
-			love_mod::runtime_error("File " +filename+ " does not exist.\n");
+			//love_mod::runtime_error("File " +filename+ " does not exist.\n");
 		}
 
 		pFile f(new File(std::string(file), mode));
 		return f;
 	}
-
-	void require( const char * file )
+/**
+	// Set 
+	int include( lua_State * L )
 	{
-		std::string s(file);
-		
-		if(included.find(s) != included.end())
-			return;
+		int n = lua_gettop(L);
 
-		// Okay, include it.
-		included.insert(s);
+		if( n != 1 )
+			return luaL_error(L, "Function requires a single parameter.");
 
-		include(file);
-
-	}
+		if(lua_type(L, 1) != LUA_TSTRING)
+			return luaL_error(L, "Function requires parameter of type string.");	
 
 
-	void include( const char * file )
-	{
 		std::string s(file);
 		
 		if(!exists(file))
@@ -398,32 +320,25 @@ namespace love_physfs
 			return;
 		}
 
+		const char * filename = lua_tostring(L, 1);
+
 		love::pFile f(new File(std::string(file)));
+		
+		if(!f->load())
+			return luaL_error(L, "Could not load file.");
 
-		if(!load(f))
-			return;
+		luaL_loadbuffer(L,(const char *)f->getData(), 
+						f->getSize(), filename);
 
-		int result = luaL_loadbuffer (	love_mod::getL(),
-										(const char *)f->getData(), 
-										f->getSize(),
-										f->getFilename().c_str());
+		int result = lua_pcall(L, 0, 0, 0);
 
-		// Could not load file, for some reason.
-		if(result != 0)
-		{
-			// Get error message.
-			const char * msg = lua_tostring(love_mod::getL(), -1);
-			lua_pop(love_mod::getL(), 1);
-			std::cout << msg << std::endl;
-			//lualove_gui_error(msg);
 
-			return;
-		}
 
-		// Run the loaded chunk.
-		int status = love_mod::call(0);
-		love_mod::handle_error(status);
+		return 0;
 	}
+
+**/
+
 
 	bool exists(const char * file)
 	{

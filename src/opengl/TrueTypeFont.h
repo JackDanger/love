@@ -8,9 +8,6 @@
 #ifndef LOVE_OPENGL_TRUETYPE_FONT_H
 #define LOVE_OPENGL_TRUETYPE_FONT_H
 
-// LOVE
-#include "../modfs.h"
-
 // Module
 #include "Font.h"
 
