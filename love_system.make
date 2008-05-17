@@ -3,6 +3,7 @@ BINDIR = bin
 OBJDIR = obj
 SRCDIR = src/system
 OBJ = $(OBJDIR)/love_system.o \
+$(OBJDIR)/LuaGame.o \
 $(OBJDIR)/mod_system.o
 
 CC = g++
@@ -12,7 +13,7 @@ INCLUDES = -I/usr/include/lua5.1 -I/usr/include/SDL -Isrc/liblove/include
 
 default: $(TARGET)
 
-$(TARGET): $(OBJ)
+$(TARGET): $(OBJ) $(BINDIR)/liblove.a
 	$(CC) -shared $(LDFLAGS) -o $(BINDIR)/$@ $^
 
 $(OBJDIR)/mod_system.o: $(SRCDIR)/mod_system.cpp

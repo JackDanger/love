@@ -29,7 +29,7 @@ INCLUDES = -I/usr/include/lua5.1 -Isrc/liblove/include
 
 default: prep $(TARGET)
 
-$(TARGET): $(OBJ)
+$(TARGET): $(OBJ) $(BINDIR)/liblove.a
 	$(CC) -shared $(LDFLAGS) -o $(BINDIR)/$@ $^
 
 $(OBJDIR)/chipmunk/%.o: $(SRCDIR)/chipmunk/%.c

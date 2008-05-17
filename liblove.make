@@ -21,7 +21,6 @@ INCLUDES = -I/usr/include/lua5.1 -I/usr/include/SDL -Isrc/liblove/include
 default: $(TARGET)
 
 $(TARGET): $(OBJ)
-	$(CC) -shared $(LDFLAGS) -o $(BINDIR)/$@.so $^
 	ar crs $(BINDIR)/$@.a $^
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp

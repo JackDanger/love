@@ -12,7 +12,7 @@ INCLUDES = -I/usr/include/lua5.1 -I/usr/include/SDL -Isrc/liblove/include
 
 default: $(TARGET)
 
-$(TARGET): $(OBJ)
+$(TARGET): $(OBJ) $(BINDIR)/liblove.a
 	$(CC) -shared $(LDFLAGS) -o $(BINDIR)/$@ $^
 
 $(OBJDIR)/mod_sdltimer.o: $(SRCDIR)/mod_sdltimer.cpp

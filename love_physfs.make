@@ -8,12 +8,12 @@ $(OBJDIR)/mod_physfs.o
 
 CC = g++
 CFLAGS = -g -O2 -Wall
-LDFLAGS = -llua5.1 -lphysfs -lSDL 
-INCLUDES = -I/usr/include/lua5.1 -I/usr/include/SDL -Isrc/liblove/include
+LDFLAGS = -llua5.1 -lphysfs
+INCLUDES = -I/usr/include/lua5.1 -Isrc/liblove/include
 
 default: $(TARGET)
 
-$(TARGET): $(OBJ)
+$(TARGET): $(OBJ) $(BINDIR)/liblove.a
 	$(CC) -shared $(LDFLAGS) -o $(BINDIR)/$@ $^
 
 $(OBJDIR)/physfs_File.o: $(SRCDIR)/File.cpp

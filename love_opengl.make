@@ -24,7 +24,7 @@ INCLUDES = -I/usr/include/freetype2 -I/usr/include/lua5.1 -I/usr/include/SDL -Is
 
 default: $(TARGET)
 
-$(TARGET): $(OBJ)
+$(TARGET): $(OBJ) $(BINDIR)/liblove.a
 	$(CC) -shared $(LDFLAGS) -o $(BINDIR)/$@ $^
 
 $(OBJDIR)/mod_opengl.o: $(SRCDIR)/mod_opengl.cpp

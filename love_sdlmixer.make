@@ -14,7 +14,7 @@ INCLUDES = -I/usr/include/lua5.1 -I/usr/include/SDL -Isrc/liblove/include
 
 default: $(TARGET)
 
-$(TARGET): $(OBJ)
+$(TARGET): $(OBJ) $(BINDIR)/liblove.a
 	$(CC) -shared $(LDFLAGS) -o $(BINDIR)/$@ $^
 
 $(OBJDIR)/mod_sdlmixer.o: $(SRCDIR)/mod_sdlmixer.cpp

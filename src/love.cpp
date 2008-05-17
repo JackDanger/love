@@ -82,11 +82,12 @@ int main(int argc, char* argv[])
 	// Print welcome message.
 	std::cout << "This is LOVE " << LOVE_VERSION_FULL_STR << "." << std::endl << std::endl;
 
+	if(!core->insmod(argc, argv, LOVE_MOD_TIMER, Module::TIMER)) return 1;
 	// Add modules. (Modules are immediately inited, so the order is important).
 	if(!core->insmod(argc, argv, LOVE_MOD_FILESYSTEM, Module::FILESYSTEM)) return 1;
 	if(!core->insmod(argc, argv, LOVE_MOD_GRAPHICS, Module::GRAPHICS)) return 1;
 	//if(!core->insmod(argc, argv, LOVE_MOD_PHYSICS, Module::PHYSICS)) return 1;
-	if(!core->insmod(argc, argv, LOVE_MOD_TIMER, Module::TIMER)) return 1;
+	
 	if(!core->insmod(argc, argv, LOVE_MOD_KEYBOARD, Module::KEYBOARD)) return 1;
 	if(!core->insmod(argc, argv, LOVE_MOD_MOUSE, Module::MOUSE)) return 1;
 	if(!core->insmod(argc, argv, LOVE_MOD_AUDIO, Module::AUDIO)) return 1;
