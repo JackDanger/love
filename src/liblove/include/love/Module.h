@@ -75,7 +75,7 @@ namespace love
 		/**
 		* Module identifiers.
 		**/
-		static enum
+		enum
 		{
 			FILESYSTEM, 
 			PHYSICS, 

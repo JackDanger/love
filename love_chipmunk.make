@@ -18,7 +18,6 @@ $(OBJDIR)/chipmunk/cpVect.o \
 \
 $(OBJDIR)/Body.o \
 $(OBJDIR)/love_chipmunk.o \
-$(OBJDIR)/mod.o \
 $(OBJDIR)/mod_chipmunk.o \
 $(OBJDIR)/Shape.o \
 $(OBJDIR)/Space.o
@@ -26,21 +25,18 @@ $(OBJDIR)/Space.o
 CC = g++
 CFLAGS = -g -O2 -Wall
 LDFLAGS = -llua5.1
-INCLUDES = -I/usr/include/lua5.1
+INCLUDES = -I/usr/include/lua5.1 -Isrc/liblove/include
 
 default: prep $(TARGET)
 
 $(TARGET): $(OBJ)
-	$(CC) -shared $(CFLAGS) $(LDFLAGS) -o $(BINDIR)/$@ $^
-
-$(OBJDIR)/mod.o: $(SRCDIR)/../mod.cpp
-	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) -shared $(LDFLAGS) -o $(BINDIR)/$@ $^
 
 $(OBJDIR)/chipmunk/%.o: $(SRCDIR)/chipmunk/%.c
-	$(CC) -fPIC -g0 -O2 -Wno-conversion $(INCLUDES) -c $< -o $@
+	$(CC) -fPIC -g0 -O3 -Wno-conversion $(INCLUDES) -c $< -o $@
 
 $(OBJDIR)/mod_chipmunk.o: $(SRCDIR)/mod_chipmunk.cpp
-	$(CC) -fPIC -g0 -O2 $(INCLUDES) -c $< -o $@
+	$(CC) -fPIC -g0 -O3 $(INCLUDES) -c $< -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@

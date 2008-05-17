@@ -4,21 +4,17 @@ OBJDIR = obj
 SRCDIR = src/physfs
 OBJ = $(OBJDIR)/love_physfs.o \
 $(OBJDIR)/physfs_File.o \
-$(OBJDIR)/mod_physfs.o \
-$(OBJDIR)/modfs.o
+$(OBJDIR)/mod_physfs.o
 
 CC = g++
 CFLAGS = -g -O2 -Wall
 LDFLAGS = -llua5.1 -lphysfs -lSDL 
-INCLUDES = -I/usr/include/lua5.1 -I/usr/include/SDL
+INCLUDES = -I/usr/include/lua5.1 -I/usr/include/SDL -Isrc/liblove/include
 
 default: $(TARGET)
 
 $(TARGET): $(OBJ)
-	$(CC) -shared $(CFLAGS) $(LDFLAGS) -o $(BINDIR)/$@ $^
-
-$(OBJDIR)/modfs.o: $(SRCDIR)/../modfs.cpp
-	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) -shared $(LDFLAGS) -o $(BINDIR)/$@ $^
 
 $(OBJDIR)/physfs_File.o: $(SRCDIR)/File.cpp
 	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@

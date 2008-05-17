@@ -61,7 +61,7 @@ namespace love_system
 			fptr_getFile getFile = (fptr_getFile)core->getf(love::Module::FILESYSTEM, "getFile");
 			fptr_exists exists = (fptr_exists)core->getf(love::Module::FILESYSTEM, "exists");
 			//fptr_getLeaf getLeaf = (fptr_getLeaf)core->getf(love::Module::FILESYSTEM, "getLeaf");
-			fptr_setSaveDirectory setSaveDirectory = (fptr_setSaveDirectory)core->getf(love::Module::FILESYSTEM, "setSaveDirectory");
+			//fptr_setSaveDirectory setSaveDirectory = (fptr_setSaveDirectory)core->getf(love::Module::FILESYSTEM, "setSaveDirectory");
 			fptr_getBaseDirectory getBaseDirectory = (fptr_getBaseDirectory)core->getf(love::Module::FILESYSTEM, "getBaseDirectory");
 			fptr_addDirectory addDirectory = (fptr_addDirectory)core->getf(love::Module::FILESYSTEM, "addDirectory");
 			fptr_setMode setMode = (fptr_setMode)core->getf(love::Module::GRAPHICS, "setMode");

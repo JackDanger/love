@@ -32,7 +32,7 @@ namespace love
 		if(handle == 0)
 		{
 			std::string mod_path(LOVE_MOD_PATH);
-			mod_path += so;
+			mod_path += name;
 			handle = SDL_LoadObject(mod_path.c_str());	
 		}
 #endif
