@@ -223,10 +223,8 @@ namespace love_opengl
 
 		// Check for errors
 		if(texture == 0) 
-		{
-			//love_mod::runtime_error("Image error: could not create OGL texture.");
 			return false;
-		}
+		
 
 		// Create texture coordinates.
 		texels[0] = 0;

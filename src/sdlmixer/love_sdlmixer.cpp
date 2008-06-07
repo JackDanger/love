@@ -22,8 +22,11 @@ namespace love_sdlmixer
 	// Pointer functions from other modules.
 	love::pFile * (*getFile)(const char *) = 0;
 
+	love::Core * core = 0;
+
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
+		love_sdlmixer::core = core;
 
 		// Get function pointers from other modules.
 		try
@@ -82,7 +85,12 @@ namespace love_sdlmixer
 	{
 		love::pFile * file = getFile(filename);
 		pSound sound(new Sound(*file));
-		sound->load();
+		if(!sound->load())
+		{
+			std::stringstream err;
+			err << "Could not load sound \"" << filename << "\".";
+			core->error(err.str().c_str());
+		}
 		delete file; // sound has copy of the file at this point.
 		return sound;
 	}
@@ -91,7 +99,12 @@ namespace love_sdlmixer
 	{
 		love::pFile * file = getFile( filename );
 		pMusic music(new Music(*file));
-		music->load();
+		if(!music->load())
+		{
+			std::stringstream err;
+			err << "Could not load music \"" << filename << "\".";
+			core->error(err.str().c_str());
+		}
 		delete file; // music has copy of the file at this point.
 		return music;
 	}

@@ -31,6 +31,7 @@ extern "C" {
 
 // STD
 #include <string>
+#include <sstream>
 #include <iostream>
 
 // LOVE

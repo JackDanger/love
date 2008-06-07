@@ -7,7 +7,12 @@ namespace love_system
 	const char * getVersion();
 	const char * getCodename();
 	const char * getPlatform();
+	void error(const char * msg);
+	void warning(const char * msg);
 	void exit();
+	void suspend();
+	void resume();
+	void restart();
 }
 
 %luacode {

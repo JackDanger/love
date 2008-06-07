@@ -1,10 +1,18 @@
 #include <love/Core.h>
 
+// STD
+#include <iostream>
+
 // LOVE
 #include <love/Exception.h>
 
 namespace love
 {
+
+	Core::Core() : m_error(0)
+	{
+	}
+
 	Core::~Core()
 	{
 		std::map<std::string, pModule>::const_iterator i = modules.begin();
@@ -25,15 +33,15 @@ namespace love
 		if(!m->load())
 			return false;
 
-		// Init the actual module.
-		if(!m->module_init(argc, argv, this))
-			return false;
-
 		// It's loaded, now add it to the map and the array 
 		// (if applicable).
 		if(provides < Module::COUNT)
 			mptr[provides] = m;
 		modules[name] = m;
+
+		// Init the actual module.
+		if(!m->module_init(argc, argv, this))
+			return false;
 
 		return true;
 	}
@@ -76,6 +84,28 @@ namespace love
 			i++;
 		}
 		return true;
+	}
+
+	void Core::error(const char * msg)
+	{
+		// Get the function pointer when called for
+		// the first time.
+		if(m_error == 0)
+		{
+			try
+			{
+				m_error = (void (*)(const char *))getf(Module::SYSTEM, "error");
+			}
+			catch(Exception e)
+			{
+				std::cerr << e.msg() << std::endl;	
+				return;
+			}
+		}
+
+		// Call the function.
+		m_error(msg);
+
 	}
 
 } // love

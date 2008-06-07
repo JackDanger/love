@@ -36,7 +36,15 @@ namespace love
 		// refer to these by the abstract name.
 		pModule mptr[Module::COUNT];
 
+		// Function pointer to error function.
+		void (*m_error)(const char *);
+
 	public:
+
+		/**
+		* Initializes some members.
+		**/
+		Core();
 
 		/**
 		* Calls module_quit on all modules.
@@ -108,6 +116,13 @@ namespace love
 		*           would be the lua_State.
 		**/
 		bool open(void * vm);
+
+		/**
+		* Calls the error function in the system module. This 
+		* will halt the current game and display the error message.
+		* @param msg The message to display.
+		**/
+		void error(const char * msg);
 
 	}; // Core
 

@@ -1,5 +1,8 @@
 #include "love_physfs.h"
 
+// LOVE
+#include <love/Core.h>
+
 // STD
 #include <set>
 #include <string>
@@ -34,8 +37,12 @@ namespace love_physfs
 	// Pointer used for file reads.
 	char * buffer = 0;
 
+	love::Core * core = 0;
+
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
+		love_physfs::core = core;
+
 		if(!PHYSFS_init(argv[0]))
 		{
 			std::cerr << "Count not init PhysFS" << std::endl;
@@ -239,6 +246,7 @@ namespace love_physfs
 		love::pFile * file = new love::pFile(new File(std::string(filename)));
 		return file;
 	}
+	
 
 	std::string getWriteDirectory()
 	{
@@ -292,8 +300,9 @@ namespace love_physfs
 	{
 		if(mode == love::FILE_READ && !exists(file))
 		{
-			std::string filename(file);
-			//love_mod::runtime_error("File " +filename+ " does not exist.\n");
+			std::stringstream err;
+			err << "Could not load file \"" << file << "\". (File does not exist).";
+			core->error(err.str().c_str());			
 		}
 
 		pFile f(new File(std::string(file), mode));
@@ -416,10 +425,16 @@ namespace love_physfs
 	const char * read(pFile & file, int count)
 	{
 		if(file->getHandle() == 0)
-			return false;
+		{
+			std::stringstream err;
+			err << "Could not read from file \"" << file->getFilename() << 
+					"\". File does not appear to be open.";
+			core->error(err.str().c_str());
+			return 0;
+		}
 
 		if(count == -1)
-			count = file->getSize();
+			count = (int)PHYSFS_fileLength(file->getHandle());
 
 		if(buffer != 0)
 		{

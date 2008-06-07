@@ -38,7 +38,8 @@ namespace love_system
 		CALLBACK_KEYRELEASED, 
 		CALLBACK_MOUSEPRESSED, 
 		CALLBACK_MOUSERELEASED, 
-		CALLBACK_MOUSEMOVED, 
+		CALLBACK_MOUSEMOVED,
+		CALLBACK_MESSAGE,
 		CALLBACK_EVENT, 
 		CALLBACK_SIZE
 	};
@@ -56,6 +57,9 @@ namespace love_system
 		// List of present callback functions.
 		bool callbacks[CALLBACK_SIZE];
 
+		// True when loaded.
+		bool loaded;
+
 	public:
 
 		/**
@@ -70,6 +74,7 @@ namespace love_system
 		void unload();
 
 		// From Game.
+		bool isLoaded() const;
 		void update(float dt);
 		void draw();
 		void keyPressed(int key);
@@ -77,6 +82,8 @@ namespace love_system
 		void mousePressed(int x, int y, int button);
 		void mouseReleased(int x, int y, int button);
 		void mouseMoved(int xrel, int yrel);
+
+		void message(const char * msg, int tag);
 
 		// Lua AUX functions.
 

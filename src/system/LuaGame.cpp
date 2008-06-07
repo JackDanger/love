@@ -13,7 +13,7 @@ namespace love_system
 	extern void compile_error(lua_State * L, int status);
 
 	LuaGame::LuaGame(love::pFile file, love::Core * core) 
-		: Game(file), core(core)
+		: Game(file), core(core), loaded(false)
 	{
 	}
 
@@ -54,6 +54,7 @@ namespace love_system
 		if(isFunction("keyreleased")) callbacks[CALLBACK_KEYRELEASED] = true;
 		if(isFunction("mousepressed")) callbacks[CALLBACK_MOUSEPRESSED] = true;
 		if(isFunction("mousereleased")) callbacks[CALLBACK_MOUSERELEASED] = true;
+		if(isFunction("message")) callbacks[CALLBACK_MESSAGE] = true;
 		if(isFunction("event")) callbacks[CALLBACK_EVENT] = true;
 
 		// Call load, if present.
@@ -63,6 +64,7 @@ namespace love_system
 			call(0, 0);
 		}
 
+		loaded = true;
 		return true;
 	}
 
@@ -72,6 +74,12 @@ namespace love_system
 			return;
 		lua_close(L);
 		L = 0;
+		loaded = false;
+	}
+
+	bool LuaGame::isLoaded() const
+	{
+		return loaded;
 	}
 
 	void LuaGame::update(float dt)
@@ -141,6 +149,17 @@ namespace love_system
 		call(2, 0);
 	}
 
+	void LuaGame::message(const char * msg, int tag)
+	{
+		if(!callbacks[CALLBACK_MESSAGE])
+			return;
+		lua_getglobal(L, "message");
+		lua_pushstring(L, msg);
+		lua_pushnumber(L, tag);
+		call(2, 0);
+	}
+
+
 	bool LuaGame::parse(love::pFile file)
 	{
 		if(!file->load())
@@ -151,8 +170,9 @@ namespace love_system
 
 		if(status != 0)
 		{
+			// Important that this returns true, not false.
 			compile_error(L, status);
-			return false;
+			return true;
 		}
 
 		// Run the loaded chunk.
@@ -368,8 +388,16 @@ namespace love_system
 			
 			"line_smooth = 1,"
 			"line_rough = 2,"
+
+			"tag_error = 0,"
+			"tag_warning = 1,"
+			"tag_info = 2,"
+			"tag_command = 3,"
 			
-			"default_font = 0"
+			"default_font = 0,"
+			"default_logo_128 = 1,"
+			"default_logo_256 = 2,"
+			"default_moose = 3,"
 			
 			"}"
 			);

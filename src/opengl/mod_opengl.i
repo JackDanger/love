@@ -54,15 +54,23 @@ namespace love_opengl
 	
 	void setColor( int r, int g, int b, int a = 255);
 	void setColor(const pColor & color);
+	pColor getColor();
+	
 	void setBackgroundColor( int r, int g, int b );
 	void setBackgroundColor( const pColor & color );
+	pColor getBackgroundColor();
 	
 	void setBlendMode( int mode );
 	void setColorMode ( int mode );
 	
+	int getBlendMode();
+	int getColorMode();
+	
 	void setLine( float width, int type = 0 );
 	
 	void setFont( pFont font );
+	pFont getFont();
+	
 	void draw( const char * str, float x, float y );
 	void draw( const char * str, float x, float y, float angle );
 	void draw( const char * str, float x, float y, float angle, float s );

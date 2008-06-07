@@ -51,6 +51,7 @@
 #include <love/Game.h>
 #include <love/Exception.h>
 #include <love/version.h>
+#include <love/events.h>
 
 using namespace love;
 
@@ -163,6 +164,15 @@ int main(int argc, char* argv[])
 					break;
 				case SDL_QUIT:
 					running = false; // Bye bye.
+					break;
+				case EVENT_RESTART:
+					// Restarting must happen here, since we don't want to
+					// be in the middle of a Lua call while restarting.
+					if(!game->reload())
+					{
+						std::cerr << "An error occurred while reloading." << std::endl;
+						running = false;
+					}
 					break;
 				default:
 					break;

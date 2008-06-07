@@ -21,11 +21,21 @@ extern "C" {
 }
 
 #define GAME_MAIN "main.lua"
+#define GAME_ERROR "error.lua"
 #define GAME_CONF "game.conf"
 
 namespace love_system
 {
+	// The game pointed to by this object will be
+	// used in the main update and draw loop.
 	love::pGame current_game;
+
+	// This is the main game. If there are no
+	// errors, this will be the current game.
+	love::pGame main_game;
+
+	// If an error occurs, this game will be called.
+	love::pGame error_game;
 
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
@@ -85,8 +95,16 @@ namespace love_system
 
 			// Get entry point and create game.
 			love::pFile * main = getFile(GAME_MAIN);
-			current_game.reset<love::Game>(new LuaGame(*main, core));
+			main_game.reset<love::Game>(new LuaGame(*main, core));
 			delete main;
+
+			// Also create error game, but load nothing yet.
+			love::pFile * error_main = getFile(GAME_ERROR);
+			error_game.reset<love::Game>(new LuaGame(*error_main, core));
+			delete error_main;
+
+			// The main game is the current game for now.
+			current_game = main_game;
 			
 			// Create default values for the game configuration.
 			gc.add("title", "Untitled Game");
@@ -131,7 +149,7 @@ namespace love_system
 		}
 
 		// Current game should be set at this point.
-		if(current_game != 0 && !current_game->load())
+		if(main_game != 0 && !main_game->load())
 		{
 			std::cerr << "Game could not be loaded." << std::endl;
 			return false;
@@ -158,11 +176,28 @@ namespace love_system
 	void error(const char * msg)
 	{
 		std::cerr << msg << std::endl;
+		suspend();
+		message(msg, love::TAG_ERROR);
 	}
 
 	void warning(const char * msg)
 	{
 		std::cerr << msg << std::endl;
+		suspend();
+		message(msg, love::TAG_WARNING);
+	}
+
+	void message(const char * msg, int tag)
+	{
+		if(error_game == 0 || !error_game->isLoaded())
+			return;
+
+		// Notify error game that state must be stored.
+		pLuaGame e = boost::dynamic_pointer_cast<LuaGame, love::Game>(error_game);
+		if(e != 0)
+		{
+			e->message(msg, tag);
+		}
 	}
 
 	const love::pGame & getGame()
@@ -198,6 +233,45 @@ namespace love_system
 			error("Could not exit.");
 	}
 
+	void suspend()
+	{
+		// Error game must be set.
+		if(error_game == 0)
+		{
+			std::cout << "Error game is not set!" << std::endl;
+			return;
+		}
+
+		// Load the error game if suspended for the first time.
+		if(!error_game->isLoaded())
+		{
+			if(!error_game->load())
+			{
+				std::cout << "Error while loading error game! The irony!" << std::endl;
+				return;
+			}
+		}
+
+		// Notify error game that state must be stored.
+		message("savestate", love::TAG_COMMAND);
+
+		current_game = error_game;
+	}
+
+	void resume()
+	{
+		current_game = main_game;
+	}
+
+	void restart()
+	{
+		SDL_Event e;
+		e.type = love::EVENT_RESTART;
+
+		if( SDL_PushEvent(&e) != 0 )
+			error("Could not restart game.");
+	}
+
 	void compile_error(lua_State * L, int status)
 	{
 		if(status == 0)
@@ -205,14 +279,18 @@ namespace love_system
 
 		// This is the human readable error message.
 		const char * msg = lua_tostring(L, -1);
+
+		std::stringstream ss;
 		
 		switch (status)
 		{
 		case LUA_ERRMEM:
-			std::cerr << "Memory allocation error: " << msg << std::endl;
+			ss << "Memory allocation error: " << msg << std::endl;
+			error(ss.str().c_str());
 			break;
 		case LUA_ERRSYNTAX:
-			std::cerr << "Syntax error: " << msg << std::endl;
+			ss << "Syntax error: " << msg << std::endl;
+			error(ss.str().c_str());
 			break;
 		}
 
@@ -241,7 +319,9 @@ namespace love_system
 		{
 			// msg now holds the complete error message (with stack trace).
 			const char * msg = lua_tostring(L, -1);
-			std::cerr << "Run-time error: " << msg << std::endl;
+			std::stringstream ss;
+			ss << "Run-time error: " << msg << std::endl;
+			error(ss.str().c_str());
 		}
 
 		return 1;

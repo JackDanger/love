@@ -8441,6 +8441,27 @@ static int _wrap_setColor(lua_State* L) {
 }
 
 
+static int _wrap_getColor(lua_State* L) {
+  int SWIG_arg = -1;
+  love_opengl::pColor result;
+  
+  SWIG_check_num_args("love_opengl::getColor",0,0)
+  result = love_opengl::getColor();
+  SWIG_arg=0;
+  {
+    love_opengl::pColor * resultptr = new love_opengl::pColor((love_opengl::pColor &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Color_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_setBackgroundColor__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   int arg1 ;
@@ -8537,6 +8558,27 @@ static int _wrap_setBackgroundColor(lua_State* L) {
 }
 
 
+static int _wrap_getBackgroundColor(lua_State* L) {
+  int SWIG_arg = -1;
+  love_opengl::pColor result;
+  
+  SWIG_check_num_args("love_opengl::getBackgroundColor",0,0)
+  result = love_opengl::getBackgroundColor();
+  SWIG_arg=0;
+  {
+    love_opengl::pColor * resultptr = new love_opengl::pColor((love_opengl::pColor &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Color_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_setBlendMode(lua_State* L) {
   int SWIG_arg = -1;
   int arg1 ;
@@ -8567,6 +8609,42 @@ static int _wrap_setColorMode(lua_State* L) {
   love_opengl::setColorMode(arg1);
   SWIG_arg=0;
   
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getBlendMode(lua_State* L) {
+  int SWIG_arg = -1;
+  int result;
+  
+  SWIG_check_num_args("love_opengl::getBlendMode",0,0)
+  result = (int)love_opengl::getBlendMode();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getColorMode(lua_State* L) {
+  int SWIG_arg = -1;
+  int result;
+  
+  SWIG_check_num_args("love_opengl::getColorMode",0,0)
+  result = (int)love_opengl::getColorMode();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -8672,6 +8750,27 @@ static int _wrap_setFont(lua_State* L) {
   love_opengl::setFont(arg1);
   SWIG_arg=0;
   
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getFont(lua_State* L) {
+  int SWIG_arg = -1;
+  love_opengl::pFont result;
+  
+  SWIG_check_num_args("love_opengl::getFont",0,0)
+  result = love_opengl::getFont();
+  SWIG_arg=0;
+  {
+    love_opengl::pFont * resultptr = new love_opengl::pFont((love_opengl::pFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Font_t,1); SWIG_arg++;
+  }
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -10418,11 +10517,16 @@ static const struct luaL_reg swig_commands[] = {
     { "getWidth", _wrap_getWidth},
     { "getHeight", _wrap_getHeight},
     { "setColor",_wrap_setColor},
+    { "getColor", _wrap_getColor},
     { "setBackgroundColor",_wrap_setBackgroundColor},
+    { "getBackgroundColor", _wrap_getBackgroundColor},
     { "setBlendMode", _wrap_setBlendMode},
     { "setColorMode", _wrap_setColorMode},
+    { "getBlendMode", _wrap_getBlendMode},
+    { "getColorMode", _wrap_getColorMode},
     { "setLine",_wrap_setLine},
     { "setFont", _wrap_setFont},
+    { "getFont", _wrap_getFont},
     { "drawf",_wrap_drawf},
     { "draws",_wrap_draws},
     { "draw",_wrap_draw},

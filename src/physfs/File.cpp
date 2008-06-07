@@ -14,6 +14,7 @@ namespace love_physfs
 
 	File::~File()
 	{
+		unload();
 	}
 
 	bool File::load()
@@ -47,6 +48,7 @@ namespace love_physfs
 		if(data == 0)
 			return;
 		delete[] data;
+		data = 0;
 	}
 
 	PHYSFS_file * File::getHandle()

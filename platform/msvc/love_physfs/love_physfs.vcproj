@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="physfs.lib lua5.1.lib liblove.lib"
+				AdditionalDependencies="physfs.lib lua5.1.lib liblove.lib SDL.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../lib;../debug"
 				GenerateDebugInformation="true"

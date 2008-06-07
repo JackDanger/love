@@ -3,6 +3,8 @@
 // LOVE
 #include <love/version.h>
 #include <love/constants.h>
+#include <love/Exception.h>
+#include <love/Core.h>
 
 // Module.
 #include "resources.h"
@@ -44,18 +46,28 @@ namespace love_opengl
 	// The width of the lines used to draw primitives
 	float lineWidth = 1;
 
-	// Function typedefs for functions we will use.
-	typedef love::pFile * (*fptr_getFile)(const char *);
-
-	// Pointer functions from other modules.
-	fptr_getFile getFile = 0;
+	// Function pointers.
+	love::pFile * (*getFile)(const char *) = 0;
+	love::Core * core = 0;
 
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
+		love_opengl::core = core;
+
 		// Init the SDL video system.
 		if(SDL_InitSubSystem(SDL_INIT_VIDEO) < 0)
 		{
 			std::cout << "Could not init SDL_VIDEO: " << SDL_GetError() << std::endl;
+			return false;
+		}
+
+		try
+		{
+			getFile = (love::pFile * (*)(const char *))core->getf(love::Module::FILESYSTEM, "getFile");
+		}
+		catch(love::Exception exc)
+		{
+			std::cerr << exc.msg() << std::endl;
 			return false;
 		}
 
@@ -298,21 +310,26 @@ namespace love_opengl
 
 	pImage newImage(const char * filename)
 	{
-
 		love::pFile * file = getFile(filename);
-
-		// Create and return an image.
-		pImage image(new Image(*file));
-		image->load();
+		pImage image = newImage(*file);
 		delete file;
 		return image;
 	}
 
 	pImage newImage(love::pFile file)
 	{
-		// Create and return an image.
+		// Create the image file.
 		pImage image(new Image(file));
-		image->load();
+
+		// Load the image. Check for errors.
+		if(!image->load())
+		{
+			std::stringstream ss;
+			ss << "Could not load image \"" << file->getFilename() << "\".";
+
+			// Trigger error.
+			core->error(ss.str().c_str());
+		}
 		return image;
 	}
 
@@ -324,34 +341,30 @@ namespace love_opengl
 		pImage image(new Image(*file));
 		delete file;
 
-		switch(mode)
+		// Read the image.
+		if(!image->read())
+		{	
+			std::stringstream err;
+			err << "Could not load image \"" << filename << "\".";
+			core->error(err.str().c_str());
+			return image;
+		}
+
+		// Optionally pad.
+		if(mode == love::IMAGE_PAD || mode == love::IMAGE_PAD_AND_OPTIMIZE)
+			image->pad();
+
+		// Optionally optimize.
+		if(mode == love::IMAGE_OPTIMIZE || mode == love::IMAGE_PAD_AND_OPTIMIZE)
+			image->optimize();
+
+		// Lock the image.
+		if(!image->lock())
 		{
-		case love::IMAGE_OPTIMIZE:
-			if(!image->read()) 
-				break;
-			image->optimize();
-			if(!image->lock()) 
-				break;
-			break;
-		case love::IMAGE_PAD:
-			if(!image->read()) 
-				break;
-			image->pad();
-			if(!image->lock()) 
-				break;
-			break;
-		case love::IMAGE_PAD_AND_OPTIMIZE:
-			if(!image->read()) 
-				break;
-			image->pad();
-			image->optimize();
-			if(!image->lock()) 
-				break;
-			break;
-		default:
-			// If an unrecognized number is passed:
-			image->load();
-			break;
+			std::stringstream err;
+			err << "Could not lock image \"" << (*file)->getFilename() << "\".";
+			core->error(err.str().c_str());
+			return image;
 		}
 
 		return image;
@@ -362,7 +375,15 @@ namespace love_opengl
 		love::pFile * file = getFile(filename);
 		pFont font(new TrueTypeFont(*file, size));
 		delete file;
-		font->load();
+
+		// Load it and check for errors.
+		if(!font->load())
+		{
+			std::stringstream err;
+			err << "Could not load font \"" << filename << "\".";
+			core->error(err.str().c_str());
+		}
+
 		return font;
 	}
 
@@ -373,7 +394,8 @@ namespace love_opengl
 		// no need to check f.
 
 		pFont font(new TrueTypeFont(love::Vera_ttf, size));
-		font->load();
+		if(!font->load())
+			std::cerr << "Could not load default font!" << std::endl;
 		return font;
 	}
 
@@ -383,7 +405,15 @@ namespace love_opengl
 		pFont font(new ImageFont(*file, std::string(glyphs)));
 		delete file;
 		font->setSpacing(spacing);
-		font->load();
+
+		// Load it and check for errors.
+		if(!font->load())
+		{
+			std::stringstream err;
+			err << "Could not load imagefont \"" << filename << "\".";
+			core->error(err.str().c_str());
+		}
+
 		return font;
 	}
 
@@ -406,6 +436,13 @@ namespace love_opengl
 		// Load the image.
 		pImage img = newImage(filename);
 
+		if(!img->load())
+		{
+			std::stringstream err;
+			err << "Could not load animation \"" << filename << "\".";
+			core->error(err.str().c_str());
+		}
+
 		// Create the animation.
 		pAnimation anim(new Animation(img));
 		return anim;
@@ -415,6 +452,13 @@ namespace love_opengl
 	{
 		// Load the image.
 		pImage img = newImage(filename);
+
+		if(!img->load())
+		{
+			std::stringstream err;
+			err << "Could not load animation \"" << filename << "\".";
+			core->error(err.str().c_str());
+		}
 
 		// Create the animation.
 		pAnimation anim(new Animation(img, fw, fh, delay, num));

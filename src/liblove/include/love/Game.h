@@ -35,6 +35,11 @@ namespace love
 		Game(pFile file);
 
 		virtual ~Game();
+
+		/**
+		* Should return true if the game has been loaded.
+		**/
+		virtual bool isLoaded() const = 0;
 		
 		/**
 		* Called each time the Game should be updated.

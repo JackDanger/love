@@ -65,7 +65,9 @@ namespace love_opengl
 	
 	bool ImageFont::loadVolatile()
 	{
-		image->read();
+		if(!image->read())
+			return false;
+
 		rgba * pixels = image->getData();
 		
 		// Reading image data begins
@@ -149,7 +151,12 @@ namespace love_opengl
 		image->optimize();
 		
 		// Send to hardware
-		image->lock();
+		if(!image->lock())
+		{
+			image->free();
+			return false;
+		}
+
 		image->free();
 
 		// Create display lists

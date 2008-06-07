@@ -42,6 +42,13 @@ namespace love_system
 		**/
 		void DECLSPEC warning(const char * msg);
 
+		/**
+		* Sends a message to the error game.
+		* @param msg The message to send.
+		* @param tag Indicates the purpose of the message.
+		**/
+		void DECLSPEC message(const char * msg, int tag);
+
 		int DECLSPEC include(lua_State * L);
 
 		const love::pGame DECLSPEC & getGame();
@@ -70,6 +77,24 @@ namespace love_system
 	* Immediately quits LOVE.
 	**/
 	void exit();
+
+	/**
+	* Makes the error handler game the current game. This
+	* function will also be available from the error handler
+	* game, but will have no effect if called from it.
+	**/
+	void suspend();
+
+	/**
+	* Sets the main game as the current game. Will
+	* not have any effect if called from the main game.
+	**/
+	void resume();
+
+	/**
+	* Restarts the current game.
+	**/
+	void restart();
 
 } // love_system
 

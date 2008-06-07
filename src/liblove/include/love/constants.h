@@ -19,6 +19,15 @@ namespace love
 		DEFAULT_MOOSE
 	};
 
+	// Message tags.
+	enum
+	{
+		TAG_ERROR, 
+		TAG_WARNING, 
+		TAG_INFO, 
+		TAG_COMMAND
+	};
+
 	// Image optimization, etc.
 	enum
 	{
