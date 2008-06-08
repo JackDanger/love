@@ -2518,7 +2518,21 @@ SWIGEXPORT int SWIG_init(lua_State* L)
 
 const char* SWIG_LUACODE=
   "\n"
-  "love.filesystem = mod_physfs";
+  "love.filesystem = mod_physfs\n"
+  "\n"
+  "-- Contains included files.\n"
+  "love.filesystem.is_included = {}\n"
+  "\n"
+  "function love.filesystem.include(filename)\n"
+  "	return love.system.include(filename)\n"
+  "end\n"
+  "\n"
+  "function love.filesystem.require(filename)\n"
+  "	if not love.filesystem.is_included[filename] then\n"
+  "		love.filesystem.include(filename)\n"
+  "		love.filesystem.is_included[filename] = true\n"
+  "	end\n"
+  "end";
 
 void SWIG_init_user(lua_State* L)
 {

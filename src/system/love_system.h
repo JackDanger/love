@@ -96,6 +96,10 @@ namespace love_system
 	**/
 	void restart();
 
+	// Error handler functions.
+	int runtime_error(lua_State * L);
+	void compile_error(lua_State * L, int status);
+
 } // love_system
 
 #endif // LOVE_MOD_SYSTEM_H

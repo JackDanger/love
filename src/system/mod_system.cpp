@@ -1682,6 +1682,7 @@ static const struct luaL_reg swig_commands[] = {
     { "suspend", _wrap_suspend},
     { "resume", _wrap_resume},
     { "restart", _wrap_restart},
+    { "include",love_system::include},
     {0,0}
 };
 

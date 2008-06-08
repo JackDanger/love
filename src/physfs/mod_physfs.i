@@ -20,8 +20,6 @@ namespace boost {
 namespace love_physfs
 {
 	pFile newFile(const char * file, int mode = READ);
-	//void require( const char * file );
-	//void include( const char * file );
 	bool exists(const char * file);
 	bool isDirectory(const char * file);
 	bool isFile(const char * file);
@@ -29,7 +27,7 @@ namespace love_physfs
 	bool remove(const char * file);
 	bool open(pFile & file);
 	bool close(pFile & file);
-	const char * read(pFile & file, int count = -1);
+	char * read(pFile & file, int count = -1);
 	bool write(pFile & file, const char * data);
 	bool eof(pFile & file);
 	int tell(pFile & file);
@@ -40,4 +38,19 @@ namespace love_physfs
 
 %luacode {
 love.filesystem = mod_physfs
+
+-- Contains included files.
+love.filesystem.is_included = {}
+
+function love.filesystem.include(filename)
+	return love.system.include(filename)
+end
+
+function love.filesystem.require(filename)
+	if not love.filesystem.is_included[filename] then
+		love.filesystem.include(filename)
+		love.filesystem.is_included[filename] = true
+	end
+end
+
 }

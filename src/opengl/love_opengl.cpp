@@ -71,7 +71,7 @@ namespace love_opengl
 			return false;
 		}
 
-		SDL_WM_SetCaption(LOVE_VERSION_FULL_STR, 0);
+		SDL_WM_SetCaption("LOVE " LOVE_VERSION_FULL_STR, 0);
 
 		// Get the video info 
 		video = SDL_GetVideoInfo();

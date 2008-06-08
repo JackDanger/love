@@ -37,6 +37,9 @@ namespace love_system
 	// If an error occurs, this game will be called.
 	love::pGame error_game;
 
+	typedef love::pFile * (*fptr_getFile)(const char *);
+	fptr_getFile getFile =  0;
+
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
 		std::cout << "INIT love.system [" << "Generic" << "]" << std::endl;
@@ -56,10 +59,8 @@ namespace love_system
 		try
 		{
 			// Typedefs for filesystem.
-			typedef love::pFile * (*fptr_getFile)(const char *);
 			typedef bool (*fptr_exists)(const std::string &);
 			typedef const char * (*fptr_getBaseDirectory)();
-			typedef const char * (*fptr_getLeaf)(const std::string &);
 			typedef bool (*fptr_setSaveDirectory)(const std::string &);
 			typedef bool (*fptr_addDirectory)(const std::string &);
 			typedef bool (*fptr_bool)();
@@ -68,10 +69,9 @@ namespace love_system
 			typedef bool (*fptr_setMode)(int, int, bool, bool, int);
 
 			// Get function pointers.
-			fptr_getFile getFile = (fptr_getFile)core->getf(love::Module::FILESYSTEM, "getFile");
+			getFile = (fptr_getFile)core->getf(love::Module::FILESYSTEM, "getFile");
 			fptr_exists exists = (fptr_exists)core->getf(love::Module::FILESYSTEM, "exists");
-			//fptr_getLeaf getLeaf = (fptr_getLeaf)core->getf(love::Module::FILESYSTEM, "getLeaf");
-			//fptr_setSaveDirectory setSaveDirectory = (fptr_setSaveDirectory)core->getf(love::Module::FILESYSTEM, "setSaveDirectory");
+			fptr_setSaveDirectory setSaveDirectory = (fptr_setSaveDirectory)core->getf(love::Module::FILESYSTEM, "setSaveDirectory");
 			fptr_getBaseDirectory getBaseDirectory = (fptr_getBaseDirectory)core->getf(love::Module::FILESYSTEM, "getBaseDirectory");
 			fptr_addDirectory addDirectory = (fptr_addDirectory)core->getf(love::Module::FILESYSTEM, "addDirectory");
 			fptr_setMode setMode = (fptr_setMode)core->getf(love::Module::GRAPHICS, "setMode");
@@ -80,7 +80,14 @@ namespace love_system
 			std::string base = std::string(getBaseDirectory());
 			bool absolute = love::is_arg_absolute(arg_game);
 			std::string game_source = absolute ? (arg_game) : (base + "/" + arg_game);
-			
+				
+			// Setup the save directory.
+			if(!setSaveDirectory(game_source))
+			{
+				std::cerr << "Could not set save directory! Perhaps it isn't writable?" << std::endl;
+				return false;
+			}
+
 			// Add the game source to the search path.
 			if(!addDirectory(game_source))
 			{
@@ -125,7 +132,7 @@ namespace love_system
 				return false;
 			}
 
-			// Set the display mode, unless the user want to do
+			// Set the display mode, unless the user wants to do
 			// that in Lua.
 			if(gc.getBool("display_auto"))
 			{
@@ -198,6 +205,55 @@ namespace love_system
 		{
 			e->message(msg, tag);
 		}
+	}
+
+	int include(lua_State * L)
+	{
+		int n = lua_gettop(L);
+
+		if( n != 1 )
+			return luaL_error(L, "Function requires a single parameter.");
+
+		int type = lua_type(L, 1);
+
+		if(type != LUA_TSTRING)
+			return luaL_error(L, "Function requires parameter of type string.");
+		
+		const char * filename = lua_tostring(L, 1);
+
+		// Get the file.
+		love::pFile * file = getFile(filename);
+
+		if(!(*file)->load())
+		{
+			delete file;
+			std::stringstream ss;
+			ss << "Could not include file \"" << filename << "\".";
+			return luaL_error(L, ss.str().c_str());
+		}
+
+		int status = luaL_loadbuffer (L, (const char *)(*file)->getData(), 
+			(*file)->getSize(), (*file)->getFilename().c_str());
+
+		delete file;
+
+		if(status != 0)
+		{
+			compile_error(L, status);
+			return 0;
+		}
+
+		// Stealing this from LuaGame.
+		int narg = 0, nres = 0;
+		int base = lua_gettop(L) - narg;  /* function index */
+		lua_pushcfunction(L, runtime_error);  /* push traceback function */
+		lua_insert(L, base);  /* put it under chunk and args */
+		status = lua_pcall(L, narg, nres, base);
+		lua_remove(L, base);  /* remove traceback function */
+		/* force a complete garbage collection in case of errors */
+		if (status != 0) lua_gc(L, LUA_GCCOLLECT, 0);
+
+		return 0;
 	}
 
 	const love::pGame & getGame()

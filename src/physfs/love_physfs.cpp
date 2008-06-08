@@ -165,9 +165,11 @@ namespace love_physfs
 		return buf;
 	}
 
-	bool setSaveDirectory( const std::string & gameid )
+	bool setSaveDirectory( const std::string & game )
 	{
-
+		// Get the "id" of the game.
+		std::string gameid = getLeaf(game);
+		
 		// Get user directory.
 		std::string user = std::string(getUserDirectory());
 
@@ -422,7 +424,7 @@ namespace love_physfs
 		return true;
 	}
 
-	const char * read(pFile & file, int count)
+	char * read(pFile & file, int count)
 	{
 		if(file->getHandle() == 0)
 		{
@@ -447,17 +449,16 @@ namespace love_physfs
 		if(PHYSFS_read(file->getHandle(), buffer, 1, count) == -1)
 			return 0;
 
-		return (const char *)buffer;
+		return buffer;
 	}
 
 	bool write(pFile & file, const char * data)
 	{
-
 		std::string str(data);
 
-		unsigned int written = static_cast<unsigned int>(PHYSFS_write(file->getHandle(), data, 1, (PHYSFS_uint32)str.length()));
+		int written = static_cast<int>(PHYSFS_write(file->getHandle(), data, 1, (PHYSFS_uint32)str.length()));
 
-		if(written != str.length())
+		if(written != (int)str.length())
 			return false;
 
 		return true;

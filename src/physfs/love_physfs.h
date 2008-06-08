@@ -73,7 +73,7 @@ namespace love_physfs
 		/**
 		* Setup a save directory for a certain game. 
 		**/
-		bool DECLSPEC setSaveDirectory( const std::string & gameid );
+		bool DECLSPEC setSaveDirectory( const std::string & game );
 
 		love::pFile DECLSPEC * getFile(const char * filename);
 	}
@@ -204,7 +204,7 @@ namespace love_physfs
 	* @param count The number of bytes to read. Defaults
 	* to the size of the file.
 	**/
-	const char * read(pFile & file, int count = -1);
+	char * read(pFile & file, int count = -1);
 
 	/**
 	* Write the bytes in data to the file. File

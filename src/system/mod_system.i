@@ -15,6 +15,8 @@ namespace love_system
 	void restart();
 }
 
+%native(include) int love_system::include(lua_State * L);
+
 %luacode {
 love.system = mod_system
 }
