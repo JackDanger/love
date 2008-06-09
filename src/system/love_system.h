@@ -28,6 +28,7 @@ namespace love_system
 		bool DECLSPEC module_init(int argc, char ** argv, love::Core * core);
 		bool DECLSPEC module_quit();
 		bool DECLSPEC module_open(void * vm);
+
 		/**
 		* This function takes LOVE into suspended mode, 
 		* with the specified error message.

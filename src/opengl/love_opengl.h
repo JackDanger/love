@@ -93,6 +93,11 @@ namespace love_opengl
 		**/
 		void DECLSPEC print(const char * str);
 
+		/**
+		* Sets the windows caption.
+		**/
+		void DECLSPEC setCaption(const char * caption);
+
 	} // extern "C"
 
 	/**

@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 			<< "#ifndef LOVE_RESOURCES_H\n"
 			<< "#define LOVE_RESOURCES_H\n\n"
 			<< "#include <vector>\n"
-			<< "#include \"MemoryFile.h\"\n\n"
+			<< "#include <love/MemoryFile.h>\n\n"
 			<< "namespace love\n"
 			<< "{\n";
 		resources_cpp.open("resources.cpp");

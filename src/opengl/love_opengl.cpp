@@ -479,6 +479,11 @@ namespace love_opengl
 		return part;
 	}
 
+	void setCaption(const char * caption)
+	{
+		SDL_WM_SetCaption(caption, 0);
+	}
+
 	int getWidth()
 	{
 		return current_mode.width;

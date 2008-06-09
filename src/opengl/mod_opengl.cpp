@@ -8256,6 +8256,26 @@ static int _wrap_newParticleSystem(lua_State* L) {
 }
 
 
+static int _wrap_setCaption(lua_State* L) {
+  int SWIG_arg = -1;
+  char *arg1 = (char *) 0 ;
+  
+  SWIG_check_num_args("love_opengl::setCaption",1,1)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("love_opengl::setCaption",1,"char const *");
+  arg1 = (char *)lua_tostring(L, 1);
+  love_opengl::setCaption((char const *)arg1);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_getWidth(lua_State* L) {
   int SWIG_arg = -1;
   int result;
@@ -10514,6 +10534,7 @@ static const struct luaL_reg swig_commands[] = {
     { "newImageFont",_wrap_newImageFont},
     { "newAnimation",_wrap_newAnimation},
     { "newParticleSystem",_wrap_newParticleSystem},
+    { "setCaption", _wrap_setCaption},
     { "getWidth", _wrap_getWidth},
     { "getHeight", _wrap_getHeight},
     { "setColor",_wrap_setColor},

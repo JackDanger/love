@@ -2,6 +2,7 @@
 
 // Module.
 #include "LuaGame.h"
+#include "resources.h"
 
 // LOVE
 #include <love/Core.h>
@@ -43,6 +44,7 @@ namespace love_system
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
 		std::cout << "INIT love.system [" << "Generic" << "]" << std::endl;
+		bool compatible = true;
 
 		// Check command line arguments.
 		std::string arg_game = love::get_arg_game(argc, argv);
@@ -64,9 +66,10 @@ namespace love_system
 			typedef bool (*fptr_setSaveDirectory)(const std::string &);
 			typedef bool (*fptr_addDirectory)(const std::string &);
 			typedef bool (*fptr_bool)();
-
+		
 			// Typedefs for graphics.
 			typedef bool (*fptr_setMode)(int, int, bool, bool, int);
+			typedef void (*fptr_setCaption)(const char *);
 
 			// Get function pointers.
 			getFile = (fptr_getFile)core->getf(love::Module::FILESYSTEM, "getFile");
@@ -75,6 +78,7 @@ namespace love_system
 			fptr_getBaseDirectory getBaseDirectory = (fptr_getBaseDirectory)core->getf(love::Module::FILESYSTEM, "getBaseDirectory");
 			fptr_addDirectory addDirectory = (fptr_addDirectory)core->getf(love::Module::FILESYSTEM, "addDirectory");
 			fptr_setMode setMode = (fptr_setMode)core->getf(love::Module::GRAPHICS, "setMode");
+			fptr_setCaption setCaption = (fptr_setCaption)core->getf(love::Module::GRAPHICS, "setCaption");
 
 			// Create the game source.
 			std::string base = std::string(getBaseDirectory());
@@ -106,9 +110,14 @@ namespace love_system
 			delete main;
 
 			// Also create error game, but load nothing yet.
-			love::pFile * error_main = getFile(GAME_ERROR);
-			error_game.reset<love::Game>(new LuaGame(*error_main, core));
-			delete error_main;
+			if(exists(std::string(GAME_ERROR)))
+			{
+				love::pFile * error_main = getFile(GAME_ERROR);
+				error_game.reset<love::Game>(new LuaGame(*error_main, core));
+				delete error_main;
+			}
+			else
+				error_game.reset<love::Game>(new LuaGame(love::error_lua, core));
 
 			// The main game is the current game for now.
 			current_game = main_game;
@@ -121,7 +130,7 @@ namespace love_system
 			gc.add("vsync", true);
 			gc.add("fsaa", 0);
 			gc.add("fullscreen", false);
-			gc.add("love_version", LOVE_VERSION_STR);
+			gc.add("love_version", std::string(LOVE_VERSION_STR));
 			gc.add("display_auto", true);
 
 			// Now load the config file, causing default values
@@ -132,9 +141,19 @@ namespace love_system
 				return false;
 			}
 
+			// Set the window title.
+			setCaption(gc.getString("title").c_str());
+
+			// Check if this game is made for a compatible
+			// version of LOVE.
+			std::string love_version = gc.getString("love_version");
+			compatible = love::is_compatible(love_version.c_str());	
+
 			// Set the display mode, unless the user wants to do
-			// that in Lua.
-			if(gc.getBool("display_auto"))
+			// that in Lua. 
+			// Note! In case the game isn't compatible, we must use
+			// config settings. (Main game isn't loaded)
+			if(gc.getBool("display_auto") || !compatible)
 			{
 				// Try config.
 				if(!setMode(gc.getInt("width"), gc.getInt("height"), gc.getBool("fullscreen"), gc.getBool("vsync"), gc.getInt("fsaa")))
@@ -148,6 +167,15 @@ namespace love_system
 				}
 			}
 			
+			// If the game isn't compatible, change to error game.
+			if(!compatible)
+			{
+				std::stringstream err;
+				err << "This game is made for another version of LOVE! The current "
+					<< "version is " << LOVE_VERSION_STR << " (game was made for " << love_version << ").";
+				suspend();
+				message(err.str().c_str(), love::TAG_INCOMPATIBLE);
+			}
 		}
 		catch(love::Exception exc)
 		{
@@ -156,7 +184,7 @@ namespace love_system
 		}
 
 		// Current game should be set at this point.
-		if(main_game != 0 && !main_game->load())
+		if(compatible && main_game != 0 && !main_game->load())
 		{
 			std::cerr << "Game could not be loaded." << std::endl;
 			return false;
@@ -182,6 +210,9 @@ namespace love_system
 
 	void error(const char * msg)
 	{
+		if(current_game == error_game)
+			return;
+
 		std::cerr << msg << std::endl;
 		suspend();
 		message(msg, love::TAG_ERROR);
@@ -189,6 +220,9 @@ namespace love_system
 
 	void warning(const char * msg)
 	{
+		if(current_game == error_game)
+			return;
+
 		std::cerr << msg << std::endl;
 		suspend();
 		message(msg, love::TAG_WARNING);
@@ -316,6 +350,22 @@ namespace love_system
 
 	void resume()
 	{
+		// Main game must be set.
+		if(main_game == 0)
+		{
+			std::cout << "Main game is not set!" << std::endl;
+			return;
+		}
+
+		if(!main_game->isLoaded())
+		{
+			if(!main_game->load())
+			{
+				std::cout << "Could not load main game!" << std::endl;
+				return;
+			}
+		}
+
 		current_game = main_game;
 	}
 

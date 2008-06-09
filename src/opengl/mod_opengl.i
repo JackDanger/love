@@ -49,6 +49,8 @@ namespace love_opengl
 	pParticleSystem newParticleSystem(pImage sprite, unsigned int size);
 	pParticleSystem newParticleSystem(pImage sprite, unsigned int size, bool awesome);
 	
+	void setCaption(const char * caption);
+	
 	int getWidth();
 	int getHeight();
 	

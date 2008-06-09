@@ -25,7 +25,8 @@ namespace love
 		TAG_ERROR, 
 		TAG_WARNING, 
 		TAG_INFO, 
-		TAG_COMMAND
+		TAG_COMMAND, 
+		TAG_INCOMPATIBLE
 	};
 
 	// Image optimization, etc.

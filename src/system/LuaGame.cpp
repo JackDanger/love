@@ -393,6 +393,7 @@ namespace love_system
 			"tag_warning = 1,"
 			"tag_info = 2,"
 			"tag_command = 3,"
+			"tag_incompatible = 4,"
 			
 			"default_font = 0,"
 			"default_logo_128 = 1,"
