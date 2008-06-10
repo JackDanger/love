@@ -20,6 +20,12 @@
 #	include <unistd.h>
 #endif
 
+#ifdef WIN32
+#	define LOVE_APPDATA_FOLDER "LOVE"
+#else
+#	define LOVE_APPDATA_FOLDER ".love"
+#endif
+
 // From SWIG.
 extern "C" {
 	int luaopen_mod_physfs(lua_State * L);
@@ -36,6 +42,10 @@ namespace love_physfs
 
 	// Pointer used for file reads.
 	char * buffer = 0;
+
+	// This directory will be set at the 
+	// first file write.
+	std::string save_dir;
 
 	love::Core * core = 0;
 
@@ -167,43 +177,26 @@ namespace love_physfs
 
 	bool setSaveDirectory( const std::string & game )
 	{
+		
+
+
 		// Get the "id" of the game.
 		std::string gameid = getLeaf(game);
-		
-		// Get user directory.
-		std::string user = std::string(getUserDirectory());
 
-		// Create the .love directory.
-		if(!setWriteDirectory(user))
+		if(gameid.empty())
 			return false;
 
-		// Create the love folder.
-		if(!mkdir(".love"))
-		{
-			printf(PHYSFS_getLastError());
-			disableWriteDirectory();
-			return false;
-		}
+		std::string appdata = getAppdata();
 
-		// Set the love folder as the write directory.
-		if(!setWriteDirectory(user + ".love"))
-			return false;
+		// Save this for later.
+		save_dir = std::string(LOVE_APPDATA_FOLDER "/") + gameid;
 
-		// Create the game folder.
-		if(!mkdir(gameid.c_str()))
-		{
-			printf(PHYSFS_getLastError());
-			disableWriteDirectory();
-			return false;
-		}
-
-		// Set this as the new directory.
-		if(!setWriteDirectory(user + ".love/" + gameid))
-			return false;
-
-		// Also add this dir to the search path.
-		if(!addDirectory(user + ".love/" + gameid))
-			return false;
+		// Add the directory if it exists.
+		// (No error check. If it fails, it's because it 
+		// does not exist).
+		std::stringstream full;
+		full << appdata << "/" << save_dir;
+		addDirectory(full.str());
 
 		return true;
 	}
@@ -241,6 +234,17 @@ namespace love_physfs
 		leaf = l.substr(pos+1);
 
 		return leaf;
+	}
+
+	std::string getAppdata()
+	{
+		std::stringstream appdata; 
+#ifdef WIN32
+		appdata << getenv("APPDATA");
+#else
+		appdata << getUserDirectory();
+#endif
+		return appdata.str();
 	}
 
 	love::pFile * getFile(const char * filename)
@@ -310,46 +314,6 @@ namespace love_physfs
 		pFile f(new File(std::string(file), mode));
 		return f;
 	}
-/**
-	// Set 
-	int include( lua_State * L )
-	{
-		int n = lua_gettop(L);
-
-		if( n != 1 )
-			return luaL_error(L, "Function requires a single parameter.");
-
-		if(lua_type(L, 1) != LUA_TSTRING)
-			return luaL_error(L, "Function requires parameter of type string.");	
-
-
-		std::string s(file);
-		
-		if(!exists(file))
-		{
-			love_mod::runtime_error("Could not include " + s + ". File does not exist.");
-			return;
-		}
-
-		const char * filename = lua_tostring(L, 1);
-
-		love::pFile f(new File(std::string(file)));
-		
-		if(!f->load())
-			return luaL_error(L, "Could not load file.");
-
-		luaL_loadbuffer(L,(const char *)f->getData(), 
-						f->getSize(), filename);
-
-		int result = lua_pcall(L, 0, 0, 0);
-
-
-
-		return 0;
-	}
-
-**/
-
 
 	bool exists(const char * file)
 	{
@@ -387,6 +351,52 @@ namespace love_physfs
 	bool open(pFile & file)
 	{
 
+		// Check whether the write directory is set.
+		if((file->getMode() == love::FILE_APPEND || file->getMode() == love::FILE_WRITE) && (PHYSFS_getWriteDir() == 0))
+		{
+			if(save_dir.empty())
+			{
+				std::cerr << "Write directory is not set!" << std::endl;
+				return false;
+			}
+
+			std::string appdata = getAppdata();
+
+			// Create directory.
+			if(!setWriteDirectory(appdata))
+			{
+				std::cerr << "Could not set write directory: " << PHYSFS_getLastError() << std::endl;
+				return false;
+			}
+
+			if(!mkdir(save_dir.c_str()))
+			{
+				std::cerr << "Could not create directory " << save_dir << ": " << PHYSFS_getLastError() << std::endl;
+				return false;
+			}
+
+			disableWriteDirectory();
+
+			std::stringstream full;
+			full << appdata << "/" << save_dir;
+
+			std::cout << "full: " << full.str() << std::endl;
+
+			if(!setWriteDirectory(full.str()))
+			{
+				std::cerr << "Could not set write directory: " << PHYSFS_getLastError() << std::endl;
+				return false;
+			}
+
+			if(!addDirectory(full.str()))
+			{
+				std::cerr << "Could not add directory to search path: " << PHYSFS_getLastError() << std::endl;
+				return false;
+			}
+
+		}
+
+
 		// The to-be opened PhysFS file handle.
 		PHYSFS_file * f = 0;
 
@@ -404,7 +414,10 @@ namespace love_physfs
 		}
 
 		if(f == 0)
+		{
+			std::cerr << "Error, could not open file: " << PHYSFS_getLastError() << std::endl;
 			return false;
+		}
 		
 		file->setHandle(f);
 		open_count++;
@@ -454,11 +467,11 @@ namespace love_physfs
 
 	bool write(pFile & file, const char * data)
 	{
-		std::string str(data);
+		// Try to write.
+		int written = static_cast<int>(PHYSFS_write(file->getHandle(), data, 1, (PHYSFS_uint32)strlen(data)));
 
-		int written = static_cast<int>(PHYSFS_write(file->getHandle(), data, 1, (PHYSFS_uint32)str.length()));
-
-		if(written != (int)str.length())
+		// Check that correct amount of data was written.
+		if(written != (int)strlen(data))
 			return false;
 
 		return true;

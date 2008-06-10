@@ -93,6 +93,8 @@ namespace love_physfs
 	**/
 	std::string getLeaf(const std::string & full);
 
+	std::string getAppdata();
+
 	bool error(const std::string & s);
 
 	/**

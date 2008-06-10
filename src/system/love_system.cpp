@@ -44,6 +44,9 @@ namespace love_system
 
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
+
+		//printf("AppData is: %s\n", getenv("APPDATA"));
+
 		std::cout << "INIT love.system [" << "Generic" << "]" << std::endl;
 		bool compatible = true;
 
@@ -96,7 +99,7 @@ namespace love_system
 			std::string base = std::string(getBaseDirectory());
 			bool absolute = love::is_arg_absolute(arg_game);
 			std::string game_source = absolute ? (arg_game) : (base + "/" + arg_game);
-				
+
 			// Setup the save directory.
 			if(!setSaveDirectory(game_source))
 			{
