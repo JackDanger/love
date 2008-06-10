@@ -79,6 +79,9 @@ namespace love_opengl
 		// Init DevIL
 		ilInit();
 
+		current_mode.width = 0;
+		current_mode.height = 0;
+
 		std::cout << "INIT love.graphics [" << "OpenGL/DevIL/FreeType" << "]" << std::endl;
 		return true;
 	}
@@ -225,6 +228,15 @@ namespace love_opengl
 			}
 		}
 
+		// Save the state.
+		pColor color = getColor();
+		pColor bg = getBackgroundColor();
+		int blend_mode = getBlendMode();
+		int color_mode = getColorMode();
+		float line_width = 1.0f;
+		bool line_smooth = glIsEnabled(GL_LINE_SMOOTH) == GL_TRUE;
+		glGetFloatv(GL_LINE_WIDTH, &line_width);
+
 		// Try to do the change.
 		if(!setMode(current_mode.width, current_mode.height, current_mode.fullscreen, 
 			current_mode.vsync, current_mode.fsaa))
@@ -233,7 +245,23 @@ namespace love_opengl
 		bool success = true;
 		success = success && Volatile::loadAll();
 
+		// Restore the state.
+		setColor(color);
+		setBackgroundColor(bg);
+		setBlendMode(blend_mode);
+		setColorMode(color_mode);
+		setLine(line_width, line_smooth ? love::LINE_SMOOTH : love::LINE_ROUGH);
+
 		return success;
+	}
+
+	void reset()
+	{
+		setColor(255, 255, 255);
+		setBackgroundColor(0, 0, 0);
+		setBlendMode(love::BLEND_NORMAL);
+		setColorMode(love::COLOR_NORMAL);
+		setLine(1, love::LINE_SMOOTH);
 	}
 
 	void clear()
@@ -302,6 +330,9 @@ namespace love_opengl
 		case love::DEFAULT_LOGO_256:
 			return newImage(love::logo256x128_png);
 			break;
+		case love::DEFAULT_VERMIN:
+			return newImage(love::mutant_vermin_png, love::IMAGE_OPTIMIZE);
+			break;
 		default: // ALWAYS MOOSE:
 			return newImage(love::mini_moose_png);
 			break;
@@ -333,19 +364,16 @@ namespace love_opengl
 		return image;
 	}
 
-	pImage newImage(const char * filename, int mode)
+	pImage newImage(love::pFile file, int mode)
 	{
-		love::pFile * file = getFile(filename);
-
 		// Create the new image.
-		pImage image(new Image(*file));
-		delete file;
+		pImage image(new Image(file));
 
 		// Read the image.
 		if(!image->read())
 		{	
 			std::stringstream err;
-			err << "Could not load image \"" << filename << "\".";
+			err << "Could not load image \"" << file->getFilename() << "\".";
 			core->error(err.str().c_str());
 			return image;
 		}
@@ -362,10 +390,22 @@ namespace love_opengl
 		if(!image->lock())
 		{
 			std::stringstream err;
-			err << "Could not lock image \"" << (*file)->getFilename() << "\".";
+			err << "Could not lock image \"" << file->getFilename() << "\".";
 			core->error(err.str().c_str());
 			return image;
 		}
+
+		return image;
+	}
+
+	pImage newImage(const char * filename, int mode)
+	{
+		love::pFile * file = getFile(filename);
+
+		// Create the new image.
+		pImage image = newImage(*file);
+
+		delete file;
 
 		return image;
 	}
@@ -492,6 +532,11 @@ namespace love_opengl
 	int getHeight()
 	{
 		return current_mode.height;
+	}
+
+	bool isSet()
+	{
+		return (current_mode.width > 0) || (current_mode.height > 0);
 	}
 
 	void setColor( int r, int g, int b, int a)
@@ -899,6 +944,16 @@ namespace love_opengl
 	/**
 	* Primitives
 	**/
+
+	void point( float x, float y )
+	{
+		glPointSize(1.0f);
+		glDisable(GL_TEXTURE_2D);
+		glBegin(GL_POINTS);
+			glVertex2f(x, y);
+		glEnd();
+		glEnable(GL_TEXTURE_2D);
+	}
 
 	void line( float x1, float y1, float x2, float y2 )
 	{

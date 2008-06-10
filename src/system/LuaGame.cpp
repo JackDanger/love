@@ -399,6 +399,7 @@ namespace love_system
 			"default_logo_128 = 1,"
 			"default_logo_256 = 2,"
 			"default_moose = 3,"
+			"default_vermin = 4,"
 			
 			"}"
 			);

@@ -11,6 +11,7 @@ namespace love
 	extern pFile logo128x64_png;
 	extern pFile logo256x128_png;
 	extern pFile rpgfont_png;
+	extern pFile mutant_vermin_png;
 }
 
 #endif

@@ -2,7 +2,7 @@
 -- LOVE Error handling code.
 ---------------------------------------------
 
--- Colors.
+-- Colors. (Only one for now)
 c = 
 {
 	{ name = "#0072ff", r = 0, g = 114, b = 255 }
@@ -110,6 +110,10 @@ function message(msg, tag)
 
 	if tag == love.tag_error then
 		display.title = "ERROR!"
+		msg = string.gsub(msg, "stack traceback", "\nStack traceback");
+		msg = string.gsub(msg, "%[string \"", "");
+		msg = string.gsub(msg, "\"%]:", ":");
+		msg = string.gsub(msg, "\t", "   ");
 		display.message = msg	
 	end
 	

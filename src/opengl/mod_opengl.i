@@ -53,6 +53,7 @@ namespace love_opengl
 	
 	int getWidth();
 	int getHeight();
+	bool isSet();
 	
 	void setColor( int r, int g, int b, int a = 255);
 	void setColor(const pColor & color);
@@ -102,10 +103,11 @@ namespace love_opengl
 	void draw( const pParticleSystem & system, float x, float y);
 	
 	// Primitives.
+	void point( float x, float y );
 	void line( float x1, float y1, float x2, float y2 );
 	void triangle( int type, float x1, float y1, float x2, float y2, float x3, float y3 );
 	void quad( int type, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 );
-	void circle( int type, float x, float y, float radius, int points = 10 );	
+	void circle( int type, float x, float y, float radius, int points = 10 );
 }
 
 %native(getModes) int love_opengl::getModes(lua_State * L);

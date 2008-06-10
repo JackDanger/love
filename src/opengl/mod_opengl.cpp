@@ -8312,6 +8312,24 @@ fail:
 }
 
 
+static int _wrap_isSet(lua_State* L) {
+  int SWIG_arg = -1;
+  bool result;
+  
+  SWIG_check_num_args("love_opengl::isSet",0,0)
+  result = (bool)love_opengl::isSet();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_setColor__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   int arg1 ;
@@ -10282,6 +10300,29 @@ static int _wrap_draw(lua_State* L) {
 }
 
 
+static int _wrap_point(lua_State* L) {
+  int SWIG_arg = -1;
+  float arg1 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("love_opengl::point",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::point",1,"float");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::point",2,"float");
+  arg1 = (float)lua_tonumber(L, 1);
+  arg2 = (float)lua_tonumber(L, 2);
+  love_opengl::point(arg1,arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_line(lua_State* L) {
   int SWIG_arg = -1;
   float arg1 ;
@@ -10537,6 +10578,7 @@ static const struct luaL_reg swig_commands[] = {
     { "setCaption", _wrap_setCaption},
     { "getWidth", _wrap_getWidth},
     { "getHeight", _wrap_getHeight},
+    { "isSet", _wrap_isSet},
     { "setColor",_wrap_setColor},
     { "getColor", _wrap_getColor},
     { "setBackgroundColor",_wrap_setBackgroundColor},
@@ -10551,6 +10593,7 @@ static const struct luaL_reg swig_commands[] = {
     { "drawf",_wrap_drawf},
     { "draws",_wrap_draws},
     { "draw",_wrap_draw},
+    { "point", _wrap_point},
     { "line", _wrap_line},
     { "triangle", _wrap_triangle},
     { "quad", _wrap_quad},

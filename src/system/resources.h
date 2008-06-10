@@ -7,6 +7,7 @@
 namespace love
 {
 	extern pFile error_lua;
+	extern pFile nogame_lua;
 }
 
 #endif

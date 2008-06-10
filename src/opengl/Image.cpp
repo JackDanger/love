@@ -260,16 +260,6 @@ namespace love_opengl
 
 	bool Image::load()
 	{	
-		return loadVolatile();
-	}
-
-	void Image::unload()
-	{
-		unloadVolatile();
-	}
-
-	bool Image::loadVolatile()
-	{
 		// Read file.
 		if(!read())
 			return false;
@@ -282,6 +272,37 @@ namespace love_opengl
 		free();
 
 		// HW texture will be removed in unload.
+		return true;
+	}
+
+	void Image::unload()
+	{
+		unloadVolatile();
+	}
+
+	bool Image::loadVolatile()
+	{
+
+		// Image center must persist.
+		float cx = this->center_x;
+		float cy = this->center_y;
+
+		// Read file.
+		if(!read())
+			return false;
+
+		// Send to hardware
+		if(!lock())
+			return false;
+
+		// Free local data.
+		free();
+
+		// HW texture will be removed in unload.
+
+		// Restore image center.
+		this->center_x = cx;
+		this->center_y = cy;
 
 		return true;
 	}

@@ -73,6 +73,13 @@ namespace love_opengl
 		bool DECLSPEC toggleFullscreen();
 
 		/**
+		* Resets the current color, background color,
+		* line style, and so forth. (This will be called
+		* when the game reloads.
+		**/
+		void DECLSPEC reset();
+			
+		/**
 		* Clears the screen.
 		**/
 		void DECLSPEC clear();
@@ -139,7 +146,12 @@ namespace love_opengl
 	/**
 	* Creates an Image object. (This is not exposed in Lua).
 	**/
-	pImage newImage(love::pFile file);	
+	pImage newImage(love::pFile file);
+
+	/**
+	* Creates an Image object with padding and/or optimization.
+	**/
+	pImage newImage(love::pFile file, int mode);
 
 	/**
 	* Creates a Font object.
@@ -192,6 +204,11 @@ namespace love_opengl
 	* Gets the height of the current display mode.
 	**/
 	int getHeight();
+
+	/**
+	* True if some display mode is set.
+	**/
+	bool isSet();
 
 	/**
 	* Sets the foreground color.
@@ -456,6 +473,13 @@ namespace love_opengl
 	* @param oy The y-coordinate of the center.
 	**/
 	void draws( const pImage & sprite, float x, float y, float cx, float cy, float w, float h, float angle, float sx, float sy, float ox, float oy);
+
+	/**
+	* Draws a point at (x,y).
+	* @param x Point along x-axis.
+	* @param y Point along y-axis.
+	**/
+	void point( float x, float y );
 
 	/**
 	* Draws a line from (x1,y1) to (x2,y2).

@@ -16,7 +16,8 @@ namespace love
 		DEFAULT_FONT, 
 		DEFAULT_LOGO_128,
 		DEFAULT_LOGO_256, 
-		DEFAULT_MOOSE
+		DEFAULT_MOOSE, 
+		DEFAULT_VERMIN
 	};
 
 	// Message tags.

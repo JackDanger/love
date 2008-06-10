@@ -39,7 +39,8 @@ namespace love_system
 	love::pGame error_game;
 
 	typedef love::pFile * (*fptr_getFile)(const char *);
-	fptr_getFile getFile =  0;
+	fptr_getFile getFile = 0;
+	love::fptr_void graphics_reset = 0;
 
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
@@ -48,14 +49,14 @@ namespace love_system
 
 		// Check command line arguments.
 		std::string arg_game = love::get_arg_game(argc, argv);
+		bool nogame = arg_game.empty();
 		
 		// Arguments might be empty.
-		if(arg_game.empty())
+		if(nogame)
 		{
 			std::cout << "Usage: love [FILE]" << std::endl;
 			std::cout << std::endl << "Examples:" << std::endl << "  love demo01.love";
 			std::cout << std::endl << "  love /home/nyan/mygame" << std::endl << std::endl;
-			return false;
 		}
 
 		try
@@ -79,6 +80,17 @@ namespace love_system
 			fptr_addDirectory addDirectory = (fptr_addDirectory)core->getf(love::Module::FILESYSTEM, "addDirectory");
 			fptr_setMode setMode = (fptr_setMode)core->getf(love::Module::GRAPHICS, "setMode");
 			fptr_setCaption setCaption = (fptr_setCaption)core->getf(love::Module::GRAPHICS, "setCaption");
+			graphics_reset = (love::fptr_void)core->getf(love::Module::GRAPHICS, "reset");
+
+			// If no arguments, just load the no-game.
+			if(nogame)
+			{
+				main_game.reset<love::Game>(new LuaGame(love::nogame_lua, core));
+				if(!main_game->load())
+					return false;
+				current_game = main_game;
+				return true;
+			}
 
 			// Create the game source.
 			std::string base = std::string(getBaseDirectory());
@@ -184,10 +196,13 @@ namespace love_system
 		}
 
 		// Current game should be set at this point.
-		if(compatible && main_game != 0 && !main_game->load())
+		if(!current_game->isLoaded())
 		{
-			std::cerr << "Game could not be loaded." << std::endl;
-			return false;
+			if(compatible && current_game != 0 && !current_game->load())
+			{
+				std::cerr << "Game could not be loaded." << std::endl;
+				return false;
+			}
 		}
 
 		return true;
@@ -374,8 +389,12 @@ namespace love_system
 		SDL_Event e;
 		e.type = love::EVENT_RESTART;
 
+		// Push the SDL event.
 		if( SDL_PushEvent(&e) != 0 )
 			error("Could not restart game.");
+
+		// Reset the graphics device.
+		graphics_reset();
 	}
 
 	void compile_error(lua_State * L, int status)
