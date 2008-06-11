@@ -1668,6 +1668,26 @@ fail:
 }
 
 
+static int _wrap_grabInput(lua_State* L) {
+  int SWIG_arg = -1;
+  bool arg1 ;
+  
+  SWIG_check_num_args("love_system::grabInput",1,1)
+  if(!lua_isboolean(L,1)) SWIG_fail_arg("love_system::grabInput",1,"bool");
+  arg1 = (lua_toboolean(L, 1)!=0);
+  love_system::grabInput(arg1);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 #ifdef __cplusplus
 }
 #endif
@@ -1682,6 +1702,7 @@ static const struct luaL_reg swig_commands[] = {
     { "suspend", _wrap_suspend},
     { "resume", _wrap_resume},
     { "restart", _wrap_restart},
+    { "grabInput", _wrap_grabInput},
     { "include",love_system::include},
     {0,0}
 };

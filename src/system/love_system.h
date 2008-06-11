@@ -97,6 +97,12 @@ namespace love_system
 	**/
 	void restart();
 
+	/**
+	* Grabs or ungrabs input.
+	* @grab True grabs input, false ungrabs.
+	**/
+	void grabInput(bool grab);
+
 	// Error handler functions.
 	int runtime_error(lua_State * L);
 	void compile_error(lua_State * L, int status);

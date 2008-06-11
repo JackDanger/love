@@ -400,6 +400,14 @@ namespace love_system
 		graphics_reset();
 	}
 
+	void grabInput(bool grab)
+	{
+		if(grab)
+			SDL_WM_GrabInput(SDL_GRAB_ON);
+		else
+			SDL_WM_GrabInput(SDL_GRAB_OFF);
+	}
+
 	void compile_error(lua_State * L, int status)
 	{
 		if(status == 0)
