@@ -4,6 +4,7 @@ OBJDIR = obj
 SRCDIR = src/system
 OBJ = $(OBJDIR)/love_system.o \
 $(OBJDIR)/LuaGame.o \
+$(OBJDIR)/system_resources.o \
 $(OBJDIR)/mod_system.o
 
 CC = g++
@@ -15,6 +16,9 @@ default: $(TARGET)
 
 $(TARGET): $(OBJ) $(BINDIR)/liblove.a
 	$(CC) -shared $(LDFLAGS) -o $(BINDIR)/$@ $^
+
+$(OBJDIR)/system_resources.o: $(SRCDIR)/resources.cpp
+	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJDIR)/mod_system.o: $(SRCDIR)/mod_system.cpp
 	$(CC) -fPIC -g0 -O3 $(INCLUDES) -c $< -o $@
