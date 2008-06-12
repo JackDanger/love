@@ -1,5 +1,5 @@
 <?xml version='1.0' ?>
-<document version="Version 0.2.1" >
+<document version="Version 0.3.0" >
 
   <section name="LÖVE Documentation" refer="index">
 
@@ -327,20 +327,97 @@
         <example name="Add the example font with different spacing.">
           example = love.graphics.newImageFont("imagefont.png", " ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0.5) -- half spacing
           example = love.graphics.newImageFont("imagefont.png", " ABCDEFGHIJKLMNOPQRSTUVWXYZ", 2) -- double spacing
-		  example = love.graphics.newImageFont("imagefont.png", " ABCDEFGHIJKLMNOPQRSTUVWXYZ", -1) -- negative spacing works too
+          example = love.graphics.newImageFont("imagefont.png", " ABCDEFGHIJKLMNOPQRSTUVWXYZ", -1) -- negative spacing works too
         </example>
       </function>
-	  
-	  <function name="newParticleSystem" brief="Creates a particle emitter.">
-	   <param name="image" brief="An Image object." />
-	   <param name="buffer" brief="The maximum amount of particles that are allowed by the system." />
-	   <returns type="ParticleSystem" brief="A particle system containing the apporpriate information." />
-	   <example name="Create a simple particle system based on an image.">
-	      image = love.graphics.newImage("particle.png")
-	      part = love.graphics.newParticleSystem(image, 3000) -- max 3000 particles
-	   </example>
-	  </function>
 
+      <function name="newParticleSystem" brief="Creates a particle emitter.">
+        <param name="image" brief="An Image object." />
+        <param name="buffer" brief="The maximum amount of particles that are allowed by the system." />
+        <returns type="ParticleSystem" brief="A particle system containing the apporpriate information." />
+        <example name="Create a simple particle system based on an image.">
+          image = love.graphics.newImage("particle.png")
+          part = love.graphics.newParticleSystem(image, 3000) -- max 3000 particles
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="checkMode" brief="Checks if a display mode is supported.">
+        <param name="width" brief="Display width." />
+        <param name="height" brief="Display height." />
+        <param name="fullscreen" brief="Fullscreen (true), or windowed (false)." />
+        <returns type="boolean" brief="True if supported, false otherwise" />
+      </function>
+
+      <function name="setMode" brief="Changes the display mode.">
+        <param name="width" brief="Display width." />
+        <param name="height" brief="Display height." />
+        <param name="fullscreen" brief="Fullscreen (true), or windowed (false)." />
+        <param name="vsync" brief="True if LOVE should wait for vsync, false otherwise." />
+        <param name="fsaa" brief="The number of FSAA-buffers." />
+        <returns type="boolean" brief="True if successful, false otherwise" />
+
+        Do not change the display mode unless you know that that mode is supported. Use checkMode() to
+        check whether a mode is supported or not. [br /]
+        [br /]
+        Also note that calling this function will cause the entire display context to reload. This
+        means that all Images, Fonts and other graphical objects will have to be reloaded. It is
+        therefore advisable to call this function when as few objects as possible has been loaded.
+      </function>
+
+      <function name="toggleFullscreen" brief="Toggles fullscreen.">
+        <returns type="boolean" brief="True if successful" />
+        The same goes for this method as for setMode(): Do not change the display mode unless you know that that mode is supported. Use checkMode() to
+        check whether a mode is supported or not. [br /]
+        [br /]
+        Also note that calling this function will cause the entire display context to reload. This
+        means that all Images, Fonts and other graphical objects will have to be reloaded. It is
+        therefore advisable to call this function when as few objects as possible has been loaded.
+      </function>
+
+      <function name="isSet" brief="Checks if the display has been set.">
+        <returns type="boolean" brief="True if display has been set, false otherwise" />
+        When configuring the display manually, it is useful to know if the display
+        has been created. This way, we can avoid unnecessary display changes when
+        the game reloads. The example below should make it more clear.[br /]
+        [br /]
+        Note that the configuration option display_auto must be set to false to 
+        use manual configuration of the display.
+        <example name="Manually setting up the display">
+          function load()
+          [tab /]-- Only setup the display if it hasn't been setup
+          [tab /]-- already! When we later call love.system.restart()
+          [tab /]-- for development purposes, the display mode is not
+          [tab /]-- changed again! ^-^
+          [tab /]if not love.graphics.isSet() then
+          [tab /][tab /]love.graphics.setMode(1024, 768, false)
+          [tab /]end
+
+          -- love.graphics.isSet() now returns true.
+          end
+        </example>
+      </function>
+
+      <function name="getModes" brief="Gets a list of supported fullscreen modes.">
+        <returns type="table" brief="A table of width/height pairs." />
+        This function does not include windowed modes, because they are generally supported with 
+        any screen resolution. To see the exact nature of the returned table, see example below.
+      
+      <example name="Queriying for display modes.">
+        function load()
+        [tab /]-- Get supported modes.
+        [tab /]modes = love.graphics.getModes()
+
+        [tab /]-- Print one by one.
+        [tab /]for i=1,#modes do
+        [tab /] [tab /]print("(" .. modes[i].width .. "x" .. modes[i].height .. ")")
+        [tab /]end
+        end
+      </example>
+      
+      </function>
+      
       <separator />
 
       <function name="setColor" brief="Sets the current color.">
@@ -397,25 +474,25 @@
           love.graphics.setFont(big_text)
         </example>
       </function>
-	  
-	  <function name="setLine" brief="Sets the width of the line used when drawing outlined primitives.">
+
+      <function name="setLine" brief="Sets the width of the line used when drawing outlined primitives.">
         <param name="width" brief="The width of the line." />
-		<example>
-		  love.graphics.setLine(1) -- 1 pixel width lines
-		  love.graphics.setLine(4) -- 4 pixel width lines
-		</example>
+        <example>
+          love.graphics.setLine(1) -- 1 pixel width lines
+          love.graphics.setLine(4) -- 4 pixel width lines
+        </example>
       </function>
-	  
-	  <function name="setLine" brief="Sets the width and type of line used when drawing outlined primitives.">
+
+      <function name="setLine" brief="Sets the width and type of line used when drawing outlined primitives.">
         <param name="width" brief="The width of the line." />
-		<param name="type" brief="The type of line (smooth/rough)." />
-		<example>
-		  love.graphics.setLine(1, love.line_smooth) -- 1 pixel width smooth lines
-		  love.graphics.setLine(1, love.line_rough) -- 1 pixel width rough lines
-		</example>
+        <param name="type" brief="The type of line (smooth/rough)." />
+        <example>
+          love.graphics.setLine(1, love.line_smooth) -- 1 pixel width smooth lines
+          love.graphics.setLine(1, love.line_rough) -- 1 pixel width rough lines
+        </example>
       </function>
-	  
-	  <function name="setBlendMode" brief="Sets the blending mode.">
+
+      <function name="setBlendMode" brief="Sets the blending mode.">
         The blending mode controls the way transparent elements blend together.
         <param name="mode" brief="The blending mode." />
 
@@ -449,21 +526,21 @@
         </example>
 
       </function>
-	  
-	  <separator />
-	  
-	  <function name="getWidth" brief="Gets the width of the window.">
+
+      <separator />
+
+      <function name="getWidth" brief="Gets the width of the window.">
         <returns type="number" brief="The width of the game window." />
-		<example name="Get the width.">
-		  width = love.graphics:getWidth()
-		</example>
+        <example name="Get the width.">
+          width = love.graphics:getWidth()
+        </example>
       </function>
-	  
-	  <function name="getHeight" brief="Gets the height of the window.">
+
+      <function name="getHeight" brief="Gets the height of the window.">
         <returns type="number" brief="The height of the game window." />
-		<example name="Get the height.">
-		  height = love.graphics:getHeight()
-		</example>
+        <example name="Get the height.">
+          height = love.graphics:getHeight()
+        </example>
       </function>
 
       <separator />
@@ -473,37 +550,37 @@
         <param name="string" brief="A text string." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
-		<example name="Draw some text.">
-		  love.graphics.draw("This is text!", 100, 100)
-		</example>
+        <example name="Draw some text.">
+          love.graphics.draw("This is text!", 100, 100)
+        </example>
       </function>
 
-	  <function name="draw" brief="Draws rotated text on screen.">
+      <function name="draw" brief="Draws rotated text on screen.">
         Draws rotated text in the current color.
         <param name="string" brief="A text string." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
         <param name="angle" brief="The angle of rotation (in degrees)." />
-		<example name="Draw some rotated text.">
-		  love.graphics.draw("This is text is slanted!", 100, 100, 20)
-		</example>
+        <example name="Draw some rotated text.">
+          love.graphics.draw("This is text is slanted!", 100, 100, 20)
+        </example>
       </function>
-	  
-	  <function name="draw" brief="Draws rotated/scaled text on screen.">
+
+      <function name="draw" brief="Draws rotated/scaled text on screen.">
         Draws rotated text in the current color.
         <param name="string" brief="A text string." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
         <param name="angle" brief="The angle of rotation (in degrees)." />
         <param name="s" brief="The scale factor." />
-		<example name="Draw some rotated/scaled text.">
-		  love.graphics.draw("This is text is slanted and scaled normally!", 100, 100, 20, 1)
-		  love.graphics.draw("This is text is straight and twice as big!", 100, 100, 0, 2)
-		  love.graphics.draw("This is text is slanted and half as big!", 100, 100, 20, 0.5)
-		</example>
+        <example name="Draw some rotated/scaled text.">
+          love.graphics.draw("This is text is slanted and scaled normally!", 100, 100, 20, 1)
+          love.graphics.draw("This is text is straight and twice as big!", 100, 100, 0, 2)
+          love.graphics.draw("This is text is slanted and half as big!", 100, 100, 20, 0.5)
+        </example>
       </function>
-	  
-	  <function name="draw" brief="Draws rotated/scaled text on screen.">
+
+      <function name="draw" brief="Draws rotated/scaled text on screen.">
         Draws rotated text in the current color.
         <param name="string" brief="A text string." />
         <param name="x" brief="The position on the x-axis." />
@@ -511,11 +588,11 @@
         <param name="angle" brief="The angle of rotation (in degrees)." />
         <param name="sx" brief="The scale factor along the x-axis." />
         <param name="sy" brief="The scale factor along the y-axis." />
-		<example name="Draw some rotated/scaled text.">
-		  love.graphics.draw("TALL TEXT", 100, 100, 0, 1, 2)
-		  love.graphics.draw("WIDE TEXT", 100, 100, 0, 2, 1)
-		  love.graphics.draw("ROTATEDLY SHORT TEXT", 100, 100, 20, 1, 0.5)
-		</example>
+        <example name="Draw some rotated/scaled text.">
+          love.graphics.draw("TALL TEXT", 100, 100, 0, 1, 2)
+          love.graphics.draw("WIDE TEXT", 100, 100, 0, 2, 1)
+          love.graphics.draw("ROTATEDLY SHORT TEXT", 100, 100, 20, 1, 0.5)
+        </example>
       </function>
 
       <function name="drawf" brief="Draws formatted text on screen, with word wrap.">
@@ -524,9 +601,9 @@
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
         <param name="limit" brief="Wrap the line after this many horizontal pixels." />
-		<example name="Draw text that cannot go beyond a 100 pixel wide box.">
-		  love.graphics.draw("This text is going to be broken by the auto-breaker! Breakdown!", 50, 50, 100)
-		</example>
+        <example name="Draw text that cannot go beyond a 100 pixel wide box.">
+          love.graphics.draw("This text is going to be broken by the auto-breaker! Breakdown!", 50, 50, 100)
+        </example>
       </function>
 
       <function name="drawf" brief="Draws formatted text on screen, with word wrap and alignment.">
@@ -536,11 +613,11 @@
         <param name="y" brief="The position on the y-axis." />
         <param name="limit" brief="Wrap the line after this many horizontal pixels." />
         <param name="align" brief="The alignment" />
-		<example name="Draw text that cannot go beyond a 100 pixel wide box and aligned.">
-		  love.graphics.draw("This text is going to be broken by the auto-breaker! Breakdown!", 50, 50, 100, love.align_left) -- left
-		  love.graphics.draw("This text is going to be broken by the auto-breaker! Breakdown!", 50, 50, 100, love.align_center) -- center
-		  love.graphics.draw("This text is going to be broken by the auto-breaker! Breakdown!", 50, 50, 100, love.align_right) -- right
-		</example>
+        <example name="Draw text that cannot go beyond a 100 pixel wide box and aligned.">
+          love.graphics.draw("This text is going to be broken by the auto-breaker! Breakdown!", 50, 50, 100, love.align_left) -- left
+          love.graphics.draw("This text is going to be broken by the auto-breaker! Breakdown!", 50, 50, 100, love.align_center) -- center
+          love.graphics.draw("This text is going to be broken by the auto-breaker! Breakdown!", 50, 50, 100, love.align_right) -- right
+        </example>
       </function>
 
       <separator />
@@ -549,10 +626,10 @@
         <param name="sprite" brief="An Image or Animation object." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
-		<example name="Draw an image.">
-		  image = love.graphics.newImage("image.png")
-		  love.graphics.draw(image, 50, 50)
-		</example>
+        <example name="Draw an image.">
+          image = love.graphics.newImage("image.png")
+          love.graphics.draw(image, 50, 50)
+        </example>
       </function>
 
       <function name="draw" brief="Draws a rotated Image or Animation on screen.">
@@ -560,10 +637,10 @@
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
         <param name="angle" brief="The angle of rotation (in degrees)." />
-		<example name="Draw a rotated image.">
-		  image = love.graphics.newImage("image.png")
-		  love.graphics.draw(image, 50, 50, 20)
-		</example>
+        <example name="Draw a rotated image.">
+          image = love.graphics.newImage("image.png")
+          love.graphics.draw(image, 50, 50, 20)
+        </example>
       </function>
 
       <function name="draw" brief="Draws a rotated/scaled Image or Animation on screen.">
@@ -572,12 +649,12 @@
         <param name="y" brief="The position on the y-axis." />
         <param name="angle" brief="The angle of rotation (in degrees)." />
         <param name="s" brief="The scale factor." />
-		<example name="Draw an image rotated and scaled.">
-		  image = love.graphics.newImage("image.png")
-		  love.graphics.draw(image, 50, 50, 20, 1) -- rotation, normal scale
-		  love.graphics.draw(image, 50, 50, 0, 2) -- normal rotation, twice as big
-		  love.graphics.draw(image, 50, 50, 20, 0.5) -- rotation, half scale
-		</example>
+        <example name="Draw an image rotated and scaled.">
+          image = love.graphics.newImage("image.png")
+          love.graphics.draw(image, 50, 50, 20, 1) -- rotation, normal scale
+          love.graphics.draw(image, 50, 50, 0, 2) -- normal rotation, twice as big
+          love.graphics.draw(image, 50, 50, 20, 0.5) -- rotation, half scale
+        </example>
       </function>
 
       <function name="draw" brief="Draws a rotated/scaled Image or Animation on screen.">
@@ -587,132 +664,132 @@
         <param name="angle" brief="The angle of rotation (in degrees)." />
         <param name="sx" brief="The scale factor along the x-axis." />
         <param name="sy" brief="The scale factor along the y-axis." />
-		<example name="Draw an image in different scales scaled.">
-		  image = love.graphics.newImage("image.png")
-		  love.graphics.draw(image, 50, 50, 0, 1, 2) -- tall image
-		  love.graphics.draw(image, 50, 50, 0, 2, 1) -- wide image
-		  love.graphics.draw(image, 50, 50, 0, 2, 2) -- image is twice as big
-		</example>
-      </function>
-	  
-	  <separator />
-	  
-	  <function name="draws" brief="Draws a subsprite of an Image.">
-	    Note: Will not work with Animation objects.
-        <param name="sprite" brief="An Image object." />
-        <param name="x" brief="The position on the x-axis." />
-        <param name="y" brief="The position on the y-axis." />
-        <param name="cx" brief="The x-position of the image section (top-left)." />
-        <param name="cy" brief="The y-position of the image section (top-left)." />
-        <param name="w" brief="The width of the image section." />
-		<param name="h" brief="The height of the image section." />
-		<example name="Draw a subsprite of an Image.">
-		  image = love.graphics.newImage("image.png") -- this image is 200x200 pixels big
-		  
-		  love.graphics.draws(image, 50, 50, 0, 0, 50, 50) -- top left corner (50x50 pixels)
-		  love.graphics.draws(image, 50, 50, 0, 100, 200, 100) -- bottom half
-		  love.graphics.draws(image, 50, 50, 50, 50, 100, 100) -- center crop (100x100 pixels)
-		</example>
-      </function>
-	  
-	  <function name="draws" brief="Draws a rotated subsprite of an Image.">
-	    Note: Will not work with Animation objects.
-        <param name="sprite" brief="An Image object." />
-        <param name="x" brief="The position on the x-axis." />
-        <param name="y" brief="The position on the y-axis." />
-        <param name="cx" brief="The x-position of the image section (top-left)." />
-        <param name="cy" brief="The y-position of the image section (top-left)." />
-        <param name="w" brief="The width of the image section." />
-		<param name="h" brief="The height of the image section." />
-		<param name="angle" brief="The angle of rotation (in degrees)." />
-		<example name="Draw a rotated subsprite of an Image.">
-		  image = love.graphics.newImage("image.png") -- this image is 200x200 pixels big
-		  love.graphics.draws(image, 50, 50, 50, 50, 100, 100, 20) -- center crop (100x100 pixels) rotated
-		</example>
-      </function>
-
-	  <function name="draws" brief="Draws a rotated/scaled subsprite of an Image.">
-	    Note: Will not work with Animation objects.
-        <param name="sprite" brief="An Image object." />
-        <param name="x" brief="The position on the x-axis." />
-        <param name="y" brief="The position on the y-axis." />
-        <param name="cx" brief="The x-position of the image section (top-left)." />
-        <param name="cy" brief="The y-position of the image section (top-left)." />
-        <param name="w" brief="The width of the image section." />
-		<param name="h" brief="The height of the image section." />
-		<param name="angle" brief="The angle of rotation (in degrees)." />
-		<param name="s" brief="The scale factor." />
-		<example name="Draw a subsprite of an Image.">
-		  image = love.graphics.newImage("image.png") -- this image is 200x200 pixels big
-		  love.graphics.draws(image, 50, 50, 50, 50, 100, 100, 0, 2) -- center crop (100x100 pixels) resized to be same size as original image
-		</example>
-      </function>
-	  
-	  <function name="draws" brief="Draws a rotated/scaled subsprite of an Image.">
-	    Note: Will not work with Animation objects.
-        <param name="sprite" brief="An Image object." />
-        <param name="x" brief="The position on the x-axis." />
-        <param name="y" brief="The position on the y-axis." />
-        <param name="cx" brief="The x-position of the image section (top-left)." />
-        <param name="cy" brief="The y-position of the image section (top-left)." />
-        <param name="w" brief="The width of the image section." />
-		<param name="h" brief="The height of the image section." />
-		<param name="angle" brief="The angle of rotation (in degrees)." />
-		<param name="sx" brief="The scale factor along the x-axis." />
-        <param name="sy" brief="The scale factor along the y-axis." />
-		<example name="Draw a subsprite of an Image.">
-		  image = love.graphics.newImage("image.png") -- this image is 200x200 pixels big
-		  
-		  love.graphics.draws(image, 50, 50, 0, 0, 50, 50, 20, 2, 1) -- top left corner (50x50 pixels) made wide and rotated
-		  love.graphics.draws(image, 50, 50, 0, 100, 200, 100, 0, 1, 2) -- bottom half made tall
-		  love.graphics.draws(image, 50, 50, 50, 50, 100, 100, 0, 0.5, 0.5) -- center crop (100x100 pixels) scaled down by half
-		</example>
-      </function>
-	  
-	  <function name="draws" brief="Draws a rotated/scaled subsprite of an Image, rotating around a different center.">
-	    Note: Will not work with Animation objects.
-        <param name="sprite" brief="An Image object." />
-        <param name="x" brief="The position on the x-axis." />
-        <param name="y" brief="The position on the y-axis." />
-        <param name="cx" brief="The x-position of the image section (top-left)." />
-        <param name="cy" brief="The y-position of the image section (top-left)." />
-        <param name="w" brief="The width of the image section." />
-		<param name="h" brief="The height of the image section." />
-		<param name="angle" brief="The angle of rotation (in degrees)." />
-		<param name="sx" brief="The scale factor along the x-axis." />
-        <param name="sy" brief="The scale factor along the y-axis." />
-		<param name="ox" brief="The x-coordinate of the center." />
-        <param name="oy" brief="The y-coordinate of the center." />
-		<example name="Draw a subsprite of an Image.">
-		  image = love.graphics.newImage("image.png") -- this image is 200x200 pixels big
-		  love.graphics.draws(image, 50, 50, 50, 50, 100, 100, 20, 2, 2, 0, 0) -- center crop (100x100 pixels) scaled to twice the size and rotated around the top left corner
-		</example>
+        <example name="Draw an image in different scales scaled.">
+          image = love.graphics.newImage("image.png")
+          love.graphics.draw(image, 50, 50, 0, 1, 2) -- tall image
+          love.graphics.draw(image, 50, 50, 0, 2, 1) -- wide image
+          love.graphics.draw(image, 50, 50, 0, 2, 2) -- image is twice as big
+        </example>
       </function>
 
       <separator />
-	  
-	  <function name="draw" brief="Draws a particle system on screen.">
+
+      <function name="draws" brief="Draws a subsprite of an Image.">
+        Note: Will not work with Animation objects.
+        <param name="sprite" brief="An Image object." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+        <param name="cx" brief="The x-position of the image section (top-left)." />
+        <param name="cy" brief="The y-position of the image section (top-left)." />
+        <param name="w" brief="The width of the image section." />
+        <param name="h" brief="The height of the image section." />
+        <example name="Draw a subsprite of an Image.">
+          image = love.graphics.newImage("image.png") -- this image is 200x200 pixels big
+
+          love.graphics.draws(image, 50, 50, 0, 0, 50, 50) -- top left corner (50x50 pixels)
+          love.graphics.draws(image, 50, 50, 0, 100, 200, 100) -- bottom half
+          love.graphics.draws(image, 50, 50, 50, 50, 100, 100) -- center crop (100x100 pixels)
+        </example>
+      </function>
+
+      <function name="draws" brief="Draws a rotated subsprite of an Image.">
+        Note: Will not work with Animation objects.
+        <param name="sprite" brief="An Image object." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+        <param name="cx" brief="The x-position of the image section (top-left)." />
+        <param name="cy" brief="The y-position of the image section (top-left)." />
+        <param name="w" brief="The width of the image section." />
+        <param name="h" brief="The height of the image section." />
+        <param name="angle" brief="The angle of rotation (in degrees)." />
+        <example name="Draw a rotated subsprite of an Image.">
+          image = love.graphics.newImage("image.png") -- this image is 200x200 pixels big
+          love.graphics.draws(image, 50, 50, 50, 50, 100, 100, 20) -- center crop (100x100 pixels) rotated
+        </example>
+      </function>
+
+      <function name="draws" brief="Draws a rotated/scaled subsprite of an Image.">
+        Note: Will not work with Animation objects.
+        <param name="sprite" brief="An Image object." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+        <param name="cx" brief="The x-position of the image section (top-left)." />
+        <param name="cy" brief="The y-position of the image section (top-left)." />
+        <param name="w" brief="The width of the image section." />
+        <param name="h" brief="The height of the image section." />
+        <param name="angle" brief="The angle of rotation (in degrees)." />
+        <param name="s" brief="The scale factor." />
+        <example name="Draw a subsprite of an Image.">
+          image = love.graphics.newImage("image.png") -- this image is 200x200 pixels big
+          love.graphics.draws(image, 50, 50, 50, 50, 100, 100, 0, 2) -- center crop (100x100 pixels) resized to be same size as original image
+        </example>
+      </function>
+
+      <function name="draws" brief="Draws a rotated/scaled subsprite of an Image.">
+        Note: Will not work with Animation objects.
+        <param name="sprite" brief="An Image object." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+        <param name="cx" brief="The x-position of the image section (top-left)." />
+        <param name="cy" brief="The y-position of the image section (top-left)." />
+        <param name="w" brief="The width of the image section." />
+        <param name="h" brief="The height of the image section." />
+        <param name="angle" brief="The angle of rotation (in degrees)." />
+        <param name="sx" brief="The scale factor along the x-axis." />
+        <param name="sy" brief="The scale factor along the y-axis." />
+        <example name="Draw a subsprite of an Image.">
+          image = love.graphics.newImage("image.png") -- this image is 200x200 pixels big
+
+          love.graphics.draws(image, 50, 50, 0, 0, 50, 50, 20, 2, 1) -- top left corner (50x50 pixels) made wide and rotated
+          love.graphics.draws(image, 50, 50, 0, 100, 200, 100, 0, 1, 2) -- bottom half made tall
+          love.graphics.draws(image, 50, 50, 50, 50, 100, 100, 0, 0.5, 0.5) -- center crop (100x100 pixels) scaled down by half
+        </example>
+      </function>
+
+      <function name="draws" brief="Draws a rotated/scaled subsprite of an Image, rotating around a different center.">
+        Note: Will not work with Animation objects.
+        <param name="sprite" brief="An Image object." />
+        <param name="x" brief="The position on the x-axis." />
+        <param name="y" brief="The position on the y-axis." />
+        <param name="cx" brief="The x-position of the image section (top-left)." />
+        <param name="cy" brief="The y-position of the image section (top-left)." />
+        <param name="w" brief="The width of the image section." />
+        <param name="h" brief="The height of the image section." />
+        <param name="angle" brief="The angle of rotation (in degrees)." />
+        <param name="sx" brief="The scale factor along the x-axis." />
+        <param name="sy" brief="The scale factor along the y-axis." />
+        <param name="ox" brief="The x-coordinate of the center." />
+        <param name="oy" brief="The y-coordinate of the center." />
+        <example name="Draw a subsprite of an Image.">
+          image = love.graphics.newImage("image.png") -- this image is 200x200 pixels big
+          love.graphics.draws(image, 50, 50, 50, 50, 100, 100, 20, 2, 2, 0, 0) -- center crop (100x100 pixels) scaled to twice the size and rotated around the top left corner
+        </example>
+      </function>
+
+      <separator />
+
+      <function name="draw" brief="Draws a particle system on screen.">
         <param name="particlesystem" brief="A ParticleSystem object." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
-		<example name="Create and draw a particle system.">
-		  image = love.graphics.newImage("image.png")
-		  part = love.graphics.newParticleSystem(image, 3000) -- max 3000 particles
-		  love.graphics.draw(part, 50, 50)
-		</example>
+        <example name="Create and draw a particle system.">
+          image = love.graphics.newImage("image.png")
+          part = love.graphics.newParticleSystem(image, 3000) -- max 3000 particles
+          love.graphics.draw(part, 50, 50)
+        </example>
       </function>
-	  
-	  <separator />
+
+      <separator />
 
       <function name="line" brief="Draws a line from (x1,y1) to (x2,y2).">
         <param name="x1" brief="First x-coordinate." />
         <param name="y1" brief="First y-coordinate." />
         <param name="x2" brief="Second x-coordinate." />
         <param name="y2" brief="Second y-coordinate." />
-		<example name="Draw a horizontal and a slanted line.">
-		  love.graphics.line(100,100, 300,100) -- horizontal
-		  love.graphics.line(100,100, 300,300) -- diagonal
-		</example>
+        <example name="Draw a horizontal and a slanted line.">
+          love.graphics.line(100,100, 300,100) -- horizontal
+          love.graphics.line(100,100, 300,300) -- diagonal
+        </example>
       </function>
 
       <function name="triangle" brief="Draws a triangle usign the passed coordinates.">
@@ -724,10 +801,10 @@
         <param name="y2" brief="Second y-coordinate." />
         <param name="x3" brief="Third x-coordinate." />
         <param name="y3" brief="Third y-coordinate." />
-		<example name="Draw two triangles.">
-		  love.graphics.triangle(love.draw_line, 200,200, 200,400, 500,300) -- outline
-		  love.graphics.triangle(love.draw_fill, 200,200, 200,400, 500,300) -- filled
-		</example>
+        <example name="Draw two triangles.">
+          love.graphics.triangle(love.draw_line, 200,200, 200,400, 500,300) -- outline
+          love.graphics.triangle(love.draw_fill, 200,200, 200,400, 500,300) -- filled
+        </example>
       </function>
 
       <function name="quad" brief="Draws a quadrilateral usign the passed coordinates.">
@@ -741,33 +818,33 @@
         <param name="y3" brief="Third y-coordinate." />
         <param name="x4" brief="Fourth x-coordinate." />
         <param name="y4" brief="Fourht y-coordinate." />
-		<example name="Draw two quads.">
-		  love.graphics.quad(love.draw_line, 200,200, 200,400, 500,300, 500,100) -- outline
-		  love.graphics.quad(love.draw_fill, 200,200, 200,400, 500,300, 500,100) -- filled
-		</example>
+        <example name="Draw two quads.">
+          love.graphics.quad(love.draw_line, 200,200, 200,400, 500,300, 500,100) -- outline
+          love.graphics.quad(love.draw_fill, 200,200, 200,400, 500,300, 500,100) -- filled
+        </example>
       </function>
 
       <function name="circle" brief="Draws a circle usign the passed information.">
         <param name="type" brief="The type of circle (outline/filled)." />
-		<param name="x" brief="The position on the x-axis." />
+        <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
-		<param name="radius" brief="Radius of the circle." />
-		<example name="Draw two circles.">
-		  love.graphics.circle(love.draw_line, 200,200, 50) -- outline
-		  love.graphics.circle(love.draw_fill, 200,200, 50) -- filled
-		</example>
+        <param name="radius" brief="Radius of the circle." />
+        <example name="Draw two circles.">
+          love.graphics.circle(love.draw_line, 200,200, 50) -- outline
+          love.graphics.circle(love.draw_fill, 200,200, 50) -- filled
+        </example>
       </function>
 
       <function name="circle" brief="Draws a circle usign the passed information.">
         <param name="type" brief="The type of circle (outline/filled)." />
-		<param name="x" brief="The position on the x-axis." />
+        <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
-		<param name="radius" brief="Radius of the circle." />
-		<param name="points" brief="The amount of points to use to draw the circle." />
-		<example name="Draw two circles.">
-		  love.graphics.circle(love.draw_fill, 200,200, 50, 5) -- pentagram
-		  love.graphics.circle(love.draw_fill, 400,200, 50, 60) -- detailed circle
-		</example>
+        <param name="radius" brief="Radius of the circle." />
+        <param name="points" brief="The amount of points to use to draw the circle." />
+        <example name="Draw two circles.">
+          love.graphics.circle(love.draw_fill, 200,200, 50, 5) -- pentagram
+          love.graphics.circle(love.draw_fill, 400,200, 50, 60) -- detailed circle
+        </example>
       </function>
 
     </device>
@@ -797,19 +874,19 @@
       <function name="play" brief="Plays a sound.">
         <param name="sound" brief="The sound to play." />
         The Sound is played a single time, on the first available channel.
-		<example name="Play a sound.">
-		  blaster = love.audio.newSound("blast.wav");
-		  love.audio.play(blaster)
-		</example>
+        <example name="Play a sound.">
+          blaster = love.audio.newSound("blast.wav");
+          love.audio.play(blaster)
+        </example>
       </function>
 
       <function name="play" brief="Plays/loops a sound.">
         <param name="sound" brief="The sound to play." />
         <param name="loop" brief="The number of times to loop. (1 = play once, 0 = forever)." />
-		<example name="Play a sound forever.">
-		  blaster = love.audio.newSound("blast.wav");
-		  love.audio.play(blaster, 0)
-		</example>
+        <example name="Play a sound forever.">
+          blaster = love.audio.newSound("blast.wav");
+          love.audio.play(blaster, 0)
+        </example>
       </function>
 
       <separator />
@@ -817,9 +894,9 @@
       <function name="play" brief="Plays music.">
         <param name="music" brief="The Music object to play." />
         Remember that only one Music can play at any time. (See love.audio).
-		<example name="Play some music.">
+        <example name="Play some music.">
           muzik = love.audio.newMusic("totally_awesome.mp3")
-		  love.audio.play(muzik)
+          love.audio.play(muzik)
         </example>
       </function>
 
@@ -827,68 +904,68 @@
         <param name="music" brief="The Music object to play." />
         <param name="loop" brief="The number of times to loop. (1 = play once, 0 = forever)." />
         Remember that only one Music can play at any time. (See love.audio).
-		<example name="Play some music forever.">
+        <example name="Play some music forever.">
           muzik = love.audio.newMusic("totally_awesome.mp3")
-		  love.audio.play(muzik, 0)
+          love.audio.play(muzik, 0)
         </example>
       </function>
 
       <separator />
 
       <function name="pause" brief="Pauses all audio playback.">
-	    <example name="Check if any audio is playing.">
-		  love.audio.play(music_track)
-		  love.audio.pause() -- pauses the music
-		  love.audio.resume() -- resumes the music
-		</example>
+        <example name="Check if any audio is playing.">
+          love.audio.play(music_track)
+          love.audio.pause() -- pauses the music
+          love.audio.resume() -- resumes the music
+        </example>
       </function>
 
       <function name="resume" brief="Resumes all audio playback.">
-	    <example name="Check if any audio is playing.">
-		  love.audio.play(music_track)
-		  love.audio.pause() -- pauses the music
-		  love.audio.resume() -- resumes the music
-		</example>
+        <example name="Check if any audio is playing.">
+          love.audio.play(music_track)
+          love.audio.pause() -- pauses the music
+          love.audio.resume() -- resumes the music
+        </example>
       </function>
 
       <function name="stop" brief="Stops all audio playback.">
-	    <example name="Check if any audio is playing.">
-		  love.audio.play(music_track)
-		  love.audio.stop() -- stops the music
-		  love.audio.resume() -- resumes the music
-		</example>
+        <example name="Check if any audio is playing.">
+          love.audio.play(music_track)
+          love.audio.stop() -- stops the music
+          love.audio.resume() -- resumes the music
+        </example>
       </function>
 
       <separator />
 
       <function name="isPlaying" brief="Checks whether (any) audio is playing or not.">
         <returns type="boolean" brief="True if audio is playing, false otherwise" />
-		<example name="Check if any audio is playing.">
-		  love.audio.play(music_track)
-		  value = love.audio.isPlaying() -- true
-		  love.audio.stop()
-		  value = love.audio.isPlaying() -- false
-		</example>
+        <example name="Check if any audio is playing.">
+          love.audio.play(music_track)
+          value = love.audio.isPlaying() -- true
+          love.audio.stop()
+          value = love.audio.isPlaying() -- false
+        </example>
       </function>
 
       <function name="isPaused" brief="Checks whether audio playback is paused or not.">
         <returns type="boolean" brief="True if audio is paused, false otherwise." />
-		<example name="Check if any audio is playing.">
-		  love.audio.play(music_track)
-		  value = love.audio.isPaused() -- false
-		  love.audio.pause()
-		  value = love.audio.isPlaying() -- true
-		</example>
+        <example name="Check if any audio is playing.">
+          love.audio.play(music_track)
+          value = love.audio.isPaused() -- false
+          love.audio.pause()
+          value = love.audio.isPlaying() -- true
+        </example>
       </function>
 
       <separator />
 
       <function name="setVolume" brief="Changes the master volume.">
         <param name="volume" brief="A number between 0 (min) and 1 (max)." />
-		<example name="Sets the volume of the currently playing music track.">
-		  love.audio.play(music_track)
-		  love.audio.setVolume(0.5) -- half volume
-		</example>
+        <example name="Sets the volume of the currently playing music track.">
+          love.audio.play(music_track)
+          love.audio.setVolume(0.5) -- half volume
+        </example>
       </function>
 
       <see name="Sound" />
@@ -1036,7 +1113,7 @@
       Files that are opened for read will be looked for in the game root folder, and then
       the save directory (in that order). So if a file with a certain filename (and
       path) exist in both the .love-file and the save folder, the one in the .love-file takes precedence.
-     [/p]
+      [/p]
       <function name="newFile" brief="Creates a new File for reading.">
         <param name="filename" brief="The filename of the File." />
         <returns type="File" brief="The newly created file." />
@@ -1118,7 +1195,26 @@
         <param name="filename" brief="The name of the file (or directory)." />
         <returns type="boolean" brief="True if the file really is a file (and not a directory), false otherwise." />
       </function>
+      <function name="enumerate" brief="Gets a list of element in a directory.">
 
+        This functions returns a list of existing files in some directory. See examples.
+
+        <param name="filename" brief="The name of the directory." />
+        <returns type="table" brief="A list of files and directories in the directory." />
+
+        <example name="Directory contents.">
+          function load()
+          [tab /]-- Get the files.
+          [tab /]filelist = love.filesystem.enumerate("folder")
+
+          [tab /]-- Display them one by one.
+          [tab /]for i=1,#filelist do
+          [tab /][tab /]print(filelist[i])
+          [tab /]end
+          end
+        </example>
+
+      </function>
       <separator />
 
       <function name="mkdir" brief="Creates a directory.">
@@ -1243,6 +1339,53 @@
       </function>
     </device>
 
+    <device name="love.system" brief="Handles control tasks, such as exiting and restarting.">
+
+      The system module controls the currently running game and provides information about
+      the running LOVE version. It is not related to the underlying operating system.
+
+
+      <function name="getVersion" brief="Gets the current LOVE version.">
+        <returns type="string" brief="String containing the version." />
+      </function>
+      <function name="getCodename" brief="Gets the codename of the current LOVE version.">
+        <returns type="string" brief="String containing the codename." />
+      </function>
+      <function name="getPlatform" brief="Gets the current platform.">
+        <returns type="string" brief="String containing Windows, Linux ..." />
+      </function>
+      <separator />
+      <function name="exit" brief="Exits LOVE.">
+        Calling this function will immediately exit LOVE and free resources.
+      </function>
+      <function name="restart" brief="Restarts the current game.">
+        The current immediately restarts.
+      </function>
+      <function name="suspend" brief="Takes LOVE to the error handler.">
+        Calling this function will cause LOVE to enter error mode, just like when
+        an error occurs. NOTE! If you actually want to cause an error, do not
+        call this function, use the built-in Lua function error() instead.
+      </function>
+      <function name="resume" brief="Takes LOVE back to the main game.">
+        This function is meant to be called from error handler scripts, and has no
+        effect if called from a normal game.
+      </function>
+      <separator />
+      <function name="grabInput" brief="Sends as much input as possible to LOVE.">
+        <param name="grab" brief="True to grab, false to ungrab." />
+        When grabbing is on, the mouse is confined to the window,
+        and as much keyboard input as possible is passed directly to the current game.
+        Some key combinations may still be interpreted by the window manager, such
+        as Alt+Tab, Ctrl+Alt+Delete, etc.
+        <example name="Grabbing input.">
+          function load()
+          [tab /]love.system.grabInput(true)
+          [tab /]-- Remeber to provide some way to exit for the user!
+          end
+        </example>
+      </function>
+    </device>
+
 
   </section>
 
@@ -1356,24 +1499,24 @@
       A Color object is created by calling any of the [b]love.graphics.newColor()[/b] functions.
       <see name="love.graphics.newColor( red, green, blue, alpha )" />
       <see name="love.graphics.newColor( red, green, blue )" />
-	  
-	  <method name="setRed" brief="Sets the amount of red in the color.">
-	    <param name="red" brief="The amount of red." />
-	  </method>
-	  
-	  <method name="setGreen" brief="Sets the amount of green in the color.">
-	    <param name="green" brief="The amount of green." />
-	  </method>
-	  
-	  <method name="setBlue" brief="Sets the amount of blue in the color.">
-	    <param name="blue" brief="The amount of blue." />
-	  </method>
-	  
-	  <method name="setAlpha" brief="Sets the amount of alpha in the color.">
-	    <param name="alpha" brief="The amount of alpha." />
-	  </method>
-	  
-	  <separator />
+
+      <method name="setRed" brief="Sets the amount of red in the color.">
+        <param name="red" brief="The amount of red." />
+      </method>
+
+      <method name="setGreen" brief="Sets the amount of green in the color.">
+        <param name="green" brief="The amount of green." />
+      </method>
+
+      <method name="setBlue" brief="Sets the amount of blue in the color.">
+        <param name="blue" brief="The amount of blue." />
+      </method>
+
+      <method name="setAlpha" brief="Sets the amount of alpha in the color.">
+        <param name="alpha" brief="The amount of alpha." />
+      </method>
+
+      <separator />
 
       <method name="getRed" brief="Gets the amount of red in the color.">
         <returns type="number">The amount of red.</returns>
@@ -1500,179 +1643,179 @@
       <see name="love.audio.newMusic( filename )" />
 
     </type>
-	
-	<!-- :::::::::::::::::::::::::: PARTICLE SYSTEM :::::::::::::::::::::::::: -->
-	
-	<type name="ParticleSystem" brief="Contains information for a particle system.">
-	  The particle systems are created and drawn on the screen using functions in love.graphics. They also need to be updated in the update(dt) callback
-	  for you to see any changes in the particles emitted
+
+    <!-- :::::::::::::::::::::::::: PARTICLE SYSTEM :::::::::::::::::::::::::: -->
+
+    <type name="ParticleSystem" brief="Contains information for a particle system.">
+      The particle systems are created and drawn on the screen using functions in love.graphics. They also need to be updated in the update(dt) callback
+      for you to see any changes in the particles emitted
       <see name="love.graphics.newParticleSystem( image, buffer )" />
 
       <method name="setBufferSize" brief="Sets the size of the buffer (the max allowed amount of particles in the system).">
         <param name="size">The buffer size.</param>
       </method>
-	  
-	  <separator />
-	  
-	  <method name="setEmissionRate" brief="Sets the amount of particles emitted per second.">
+
+      <separator />
+
+      <method name="setEmissionRate" brief="Sets the amount of particles emitted per second.">
         <param name="rate">The amount of particles per second.</param>
       </method>
 
       <method name="setLifetime" brief="Sets how long the particle system should emitt particles (if -1 then it emitts particles forever).">
         <param name="life">The lifetime of the emitter (in seconds).</param>
       </method>
-	  
-	  <separator />
-	  
-	  <method name="setParticleLife" brief="Sets the life of the particles.">
+
+      <separator />
+
+      <method name="setParticleLife" brief="Sets the life of the particles.">
         <param name="life">The life of the particles (in seconds).</param>
       </method>
-	  
-	  <method name="setParticleLife" brief="Sets the minimum and maximum life of the particles.">
+
+      <method name="setParticleLife" brief="Sets the minimum and maximum life of the particles.">
         <param name="min">The minumum life of the particles (in seconds).</param>
-		<param name="max">The maximum life of the particles (in seconds).</param>
+        <param name="max">The maximum life of the particles (in seconds).</param>
       </method>
-	  
-	  <method name="setDirection" brief="Sets the direction the particles will be emitted in.">
+
+      <method name="setDirection" brief="Sets the direction the particles will be emitted in.">
         <param name="direction">The direction of the particles (in radians).</param>
       </method>
-	  
-	  <method name="setDirection" brief="Sets the direction the particles will be emitted in.">
+
+      <method name="setDirection" brief="Sets the direction the particles will be emitted in.">
         <param name="direction">The direction of the particles (in radians).</param>
-		<param name="spread">The amount of spread (a spread of 0.5 would emitt particles in a range of direction-0.5 to direction+0.5)</param>
+        <param name="spread">The amount of spread (a spread of 0.5 would emitt particles in a range of direction-0.5 to direction+0.5)</param>
       </method>
-	  
-	  <separator />
-	  
-	  <method name="setSpeed" brief="Sets the speed of the particles.">
+
+      <separator />
+
+      <method name="setSpeed" brief="Sets the speed of the particles.">
         <param name="speed">The speed (in pixels per second).</param>
       </method>
-	  
-	  <method name="setSpeed" brief="Sets the minimum and maximum speed of the particles.">
+
+      <method name="setSpeed" brief="Sets the minimum and maximum speed of the particles.">
         <param name="min">The minimum speed (in pixels per second).</param>
-		<param name="max">The maximum speed (in pixels per second).</param>
+        <param name="max">The maximum speed (in pixels per second).</param>
       </method>
-	  
-	  <method name="setGravity" brief="Sets the gravity affecting the particles (acceleration along the y-axis).">
+
+      <method name="setGravity" brief="Sets the gravity affecting the particles (acceleration along the y-axis).">
         <param name="gravity">The amount of gravity.</param>
       </method>
-	  
-	  <method name="setGravity" brief="Sets the minimum and maximum gravity affecting the particles (acceleration along the y-axis).">
+
+      <method name="setGravity" brief="Sets the minimum and maximum gravity affecting the particles (acceleration along the y-axis).">
         <param name="min">The minimum gravity.</param>
-		<param name="max">The maximum gravity.</param>
+        <param name="max">The maximum gravity.</param>
       </method>
-	  
-	  <method name="setRadialAcceleration" brief="Sets the radial acceleration (acceleration towards the emitter).">
+
+      <method name="setRadialAcceleration" brief="Sets the radial acceleration (acceleration towards the emitter).">
         <param name="acceleration">The amount of acceleration.</param>
       </method>
-	  
-	  <method name="setRadialAcceleration" brief="Sets the minimum and maximum radial acceleration (acceleration towards the emitter).">
+
+      <method name="setRadialAcceleration" brief="Sets the minimum and maximum radial acceleration (acceleration towards the emitter).">
         <param name="min">The minimum acceleration.</param>
-		<param name="max">The maximum acceleration.</param>
+        <param name="max">The maximum acceleration.</param>
       </method>
-	  
-	  <method name="setTangentialAcceleration" brief="Sets the tangential acceleration (acceleration perpendicular to the particle's direction).">
+
+      <method name="setTangentialAcceleration" brief="Sets the tangential acceleration (acceleration perpendicular to the particle's direction).">
         <param name="acceleration">The amount of acceleration.</param>
       </method>
-	  
-	  <method name="setTangentialAcceleration" brief="Sets the minimum and maximum tangential acceleration (acceleration perpendicular to the particle's direction).">
+
+      <method name="setTangentialAcceleration" brief="Sets the minimum and maximum tangential acceleration (acceleration perpendicular to the particle's direction).">
         <param name="min">The minimum acceleration.</param>
-		<param name="max">The maximum acceleration.</param>
+        <param name="max">The maximum acceleration.</param>
       </method>
-	  
-	  <separator />
-	  
-	  <method name="setSize" brief="Sets the size of the image (1.0 being normal size).">
+
+      <separator />
+
+      <method name="setSize" brief="Sets the size of the image (1.0 being normal size).">
         <param name="size">The size of the image.</param>
       </method>
-	  
-	  <method name="setSize" brief="Sets the size of the image upon particle creation and death (1.0 being normal size).">
+
+      <method name="setSize" brief="Sets the size of the image upon particle creation and death (1.0 being normal size).">
         <param name="start">The size of the image upon creation.</param>
-		<param name="end">The size of the image upon death.</param>
+        <param name="end">The size of the image upon death.</param>
       </method>
-	  
-	  <method name="setSize" brief="Sets the size of the image upon particle creation and death and the degree of variation (1.0 being normal size).">
+
+      <method name="setSize" brief="Sets the size of the image upon particle creation and death and the degree of variation (1.0 being normal size).">
         <param name="start">The size of the image upon creation.</param>
-		<param name="end">The size of the image upon death.</param>
-		<param name="variation">The degree of variation (0 meaning no variation and 1 meaning full variation between start and end).</param>
+        <param name="end">The size of the image upon death.</param>
+        <param name="variation">The degree of variation (0 meaning no variation and 1 meaning full variation between start and end).</param>
       </method>
-	  
-	  <method name="setSizeVariation" brief="Sets the degree of variation (0 meaning no variation and 1 meaning full variation between start and end).">
-		<param name="variation">The degree of variation.</param>
+
+      <method name="setSizeVariation" brief="Sets the degree of variation (0 meaning no variation and 1 meaning full variation between start and end).">
+        <param name="variation">The degree of variation.</param>
       </method>
-	  
-	  <separator />
-	  
-	  <method name="setRotation" brief="Sets the rotation of the image.">
+
+      <separator />
+
+      <method name="setRotation" brief="Sets the rotation of the image.">
         <param name="rotation">The rotation of the image (in radians).</param>
       </method>
-	  
-	  <method name="setRotation" brief="Sets the rotation of the image upon particle creation and death.">
+
+      <method name="setRotation" brief="Sets the rotation of the image upon particle creation and death.">
         <param name="start">The rotation of the image upon creation.</param>
-		<param name="end">The rotation of the image upon death.</param>
+        <param name="end">The rotation of the image upon death.</param>
       </method>
-	  
-	  <method name="setRotation" brief="Sets the rotation of the image upon particle creation and death and the degree of variation.">
+
+      <method name="setRotation" brief="Sets the rotation of the image upon particle creation and death and the degree of variation.">
         <param name="start">The rotation of the image upon creation.</param>
-		<param name="end">The rotation of the image upon death.</param>
-		<param name="variation">The degree of variation (0 meaning no variation and 1 meaning full variation between start and end).</param>
+        <param name="end">The rotation of the image upon death.</param>
+        <param name="variation">The degree of variation (0 meaning no variation and 1 meaning full variation between start and end).</param>
       </method>
-	  
-	  <method name="setRotationVariation" brief="Sets the degree of variation (0 meaning no variation and 1 meaning full variation between start and end).">
-		<param name="variation">The degree of variation.</param>
+
+      <method name="setRotationVariation" brief="Sets the degree of variation (0 meaning no variation and 1 meaning full variation between start and end).">
+        <param name="variation">The degree of variation.</param>
       </method>
-	  
-	  <separator />
-	  
-	  <method name="setColor" brief="Sets the color of the image (color modulation needs to be activated for it to have any effect).">
-		<param name="color">A Color object.</param>
-		<see name="love.graphics.setColorMode( mode )" />
+
+      <separator />
+
+      <method name="setColor" brief="Sets the color of the image (color modulation needs to be activated for it to have any effect).">
+        <param name="color">A Color object.</param>
+        <see name="love.graphics.setColorMode( mode )" />
       </method>
-	  
-	  <method name="setColor" brief="Sets the color of the image upon creation and death (color modulation needs to be activated for it to have any effect).">
-		<param name="start">A Color object.</param>
-		<param name="end">A Color object.</param>
-		<see name="love.graphics.setColorMode( mode )" />
+
+      <method name="setColor" brief="Sets the color of the image upon creation and death (color modulation needs to be activated for it to have any effect).">
+        <param name="start">A Color object.</param>
+        <param name="end">A Color object.</param>
+        <see name="love.graphics.setColorMode( mode )" />
       </method>
-	  
-	  <separator />
-	  
-	  <method name="count" brief="Gets the amount of particles that are currently in the system.">
-		<returns type="number">The amount of particles.</returns>
+
+      <separator />
+
+      <method name="count" brief="Gets the amount of particles that are currently in the system.">
+        <returns type="number">The amount of particles.</returns>
       </method>
-	  
-	  <separator />
-	  
-	  <method name="start" brief="Starts the particle emitter.">
+
+      <separator />
+
+      <method name="start" brief="Starts the particle emitter.">
       </method>
-	  
-	  <method name="stop" brief="Stops the particle emitter, resetting the lifetime counter.">
+
+      <method name="stop" brief="Stops the particle emitter, resetting the lifetime counter.">
       </method>
-	  
-	  <method name="pause" brief="Pauses the particle emitter.">
+
+      <method name="pause" brief="Pauses the particle emitter.">
       </method>
-	  
-	  <method name="reset" brief="Resets the particle emitter, removing any existing particles and resetting the lifetime counter.">
+
+      <method name="reset" brief="Resets the particle emitter, removing any existing particles and resetting the lifetime counter.">
       </method>
-	  
-	  <separator />
-	  
-	  <method name="isActive" brief="Checks whether the particle system is actively emitting particles.">
-		<returns type="boolean">Whether the particle system is active.</returns>
+
+      <separator />
+
+      <method name="isActive" brief="Checks whether the particle system is actively emitting particles.">
+        <returns type="boolean">Whether the particle system is active.</returns>
       </method>
-	  
-	  <method name="isEmpty" brief="Checks whether the particle system is empty of particles.">
-		<returns type="boolean">Whether the particle system is empty.</returns>
+
+      <method name="isEmpty" brief="Checks whether the particle system is empty of particles.">
+        <returns type="boolean">Whether the particle system is empty.</returns>
       </method>
-	  
-	  <method name="isFull" brief="Checks whether the particle system is full of particles.">
-		<returns type="boolean">Whether the particle system is full.</returns>
+
+      <method name="isFull" brief="Checks whether the particle system is full of particles.">
+        <returns type="boolean">Whether the particle system is full.</returns>
       </method>
-	  
-	  <separator />
-	  
-	  <method name="update" brief="Updates the particle system; moving, creating and killing particles.">
-		<param name="dt">The amount of time that has passed since last time the function was called.</param>
+
+      <separator />
+
+      <method name="update" brief="Updates the particle system; moving, creating and killing particles.">
+        <param name="dt">The amount of time that has passed since last time the function was called.</param>
       </method>
 
     </type>
@@ -1987,6 +2130,7 @@
       <separator />
       <constant name="width" brief="Display resolution width."/>
       <constant name="height" brief="Display resolution height."/>
+      <constant name="display_auto" brief="Set this to false if you want to configure the display in Lua manually." />
       <separator />
       <constant name="love_version" brief="The LOVE-version this game was made for."/>
 
@@ -1998,9 +2142,9 @@
         # Display resolution
         width = 800
         height = 600
-        
+
         # Was made for this version of LOVE:
-        love_version = "0.2.1"
+        love_version = "0.3.0"
       </example>
 
     </constants>
@@ -2012,13 +2156,8 @@
       Keyboard shortcuts
       [/div]
       [div class="text"]
-      At the moment there are a grand whopping two shortcuts:
-
-      [ul]
-      [li]Alt+F4 - Exits LÖVE immediately.[/li]
-      [li]Ctrl+R - Reloads the current game.[/li]
-      [/ul]
-
+      All keyboard shortcuts have been removed as of
+      version 0.3.0.
       [/div]
       [/div]
 
