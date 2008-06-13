@@ -57,9 +57,6 @@ namespace love_system
 		// List of present callback functions.
 		bool callbacks[CALLBACK_SIZE];
 
-		// True when loaded.
-		bool loaded;
-
 	public:
 
 		/**

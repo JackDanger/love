@@ -13,7 +13,7 @@ namespace love_system
 	extern void compile_error(lua_State * L, int status);
 
 	LuaGame::LuaGame(love::pFile file, love::Core * core) 
-		: Game(file), core(core), loaded(false)
+		: Game(file), core(core), L(0)
 	{
 	}
 
@@ -64,7 +64,6 @@ namespace love_system
 			call(0, 0);
 		}
 
-		loaded = true;
 		return true;
 	}
 
@@ -74,12 +73,11 @@ namespace love_system
 			return;
 		lua_close(L);
 		L = 0;
-		loaded = false;
 	}
 
 	bool LuaGame::isLoaded() const
 	{
-		return loaded;
+		return (L != 0);
 	}
 
 	void LuaGame::update(float dt)

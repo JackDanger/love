@@ -346,7 +346,8 @@ namespace love_system
 		// Error game must be set.
 		if(error_game == 0)
 		{
-			std::cout << "Error game is not set!" << std::endl;
+			std::cout << "Error game is not set! Quitting ..." << std::endl;
+			exit();
 			return;
 		}
 

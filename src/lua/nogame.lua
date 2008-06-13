@@ -1,7 +1,7 @@
 flash = 0
 display = true
 function load()
-	if not love.graphics.isSet() then
+	if not love.graphics.isCreated() then
 		love.graphics.setMode(800, 600, false, true, 0)
 	end
 	love.graphics.setCaption("LOVE " .. love.system.getVersion() .. " (" .. love.system.getCodename() .. ")") 
