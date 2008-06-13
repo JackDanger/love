@@ -13,8 +13,7 @@
 * - DevIL (image decoding).
 * 
 * This module also depends on love.filesystem to load
-* image and font files, so nothing will work unless a
-* filesystem pointer is set.
+* image and font files.
 **/
 
 #ifndef LOVE_MOD_OPENGL_H
@@ -209,6 +208,17 @@ namespace love_opengl
 	* True if some display mode is set.
 	**/
 	bool isCreated();
+
+	/**
+	* Scissor defines a box such that everything outside that box
+	* is discared and not drawn. Scissoring is automatically 
+	* enabled.
+	* @param x The x-coordinate of the top-left corner.
+	* @param y The y-coordinate of the top-left corner.
+	* @param width The width of the box.
+	* @param height The height of the box.
+	**/
+	void setScissor(int x, int y, int width, int height);
 
 	/**
 	* Gets the current display caption.

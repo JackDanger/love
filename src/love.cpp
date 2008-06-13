@@ -61,7 +61,7 @@ typedef const pGame & (*fptr_game)();
 int main(int argc, char* argv[])
 {	
 	// Redirect output to files.
-#ifdef _DEBUG
+#if defined(_DEBUG) || defined(WIN32)
 	std::ofstream cout; 
 	std::ofstream cerr; 
 	cout.open ("cout.txt");
@@ -83,12 +83,11 @@ int main(int argc, char* argv[])
 	// Print welcome message.
 	std::cout << "This is LOVE " << LOVE_VERSION_FULL_STR << "." << std::endl << std::endl;
 
-	if(!core->insmod(argc, argv, LOVE_MOD_TIMER, Module::TIMER)) return 1;
 	// Add modules. (Modules are immediately inited, so the order is important).
+	if(!core->insmod(argc, argv, LOVE_MOD_TIMER, Module::TIMER)) return 1;
 	if(!core->insmod(argc, argv, LOVE_MOD_FILESYSTEM, Module::FILESYSTEM)) return 1;
 	if(!core->insmod(argc, argv, LOVE_MOD_GRAPHICS, Module::GRAPHICS)) return 1;
 	//if(!core->insmod(argc, argv, LOVE_MOD_PHYSICS, Module::PHYSICS)) return 1;
-	
 	if(!core->insmod(argc, argv, LOVE_MOD_KEYBOARD, Module::KEYBOARD)) return 1;
 	if(!core->insmod(argc, argv, LOVE_MOD_MOUSE, Module::MOUSE)) return 1;
 	if(!core->insmod(argc, argv, LOVE_MOD_AUDIO, Module::AUDIO)) return 1;
@@ -185,10 +184,10 @@ int main(int argc, char* argv[])
 	// Unload all modules.
 	if(!core->rmmod(LOVE_MOD_SYSTEM)) return 1;
 	if(!core->rmmod(LOVE_MOD_AUDIO)) return 1;
-	if(!core->rmmod(LOVE_MOD_TIMER)) return 1;
 	if(!core->rmmod(LOVE_MOD_MOUSE)) return 1;
 	if(!core->rmmod(LOVE_MOD_KEYBOARD)) return 1;
 	if(!core->rmmod(LOVE_MOD_GRAPHICS)) return 1;
+	if(!core->rmmod(LOVE_MOD_TIMER)) return 1;
 	if(!core->rmmod(LOVE_MOD_FILESYSTEM)) return 1;
 
 	return 0;

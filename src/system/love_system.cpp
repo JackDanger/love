@@ -38,15 +38,13 @@ namespace love_system
 	// If an error occurs, this game will be called.
 	love::pGame error_game;
 
+	// Function pointers and typedefs.
 	typedef love::pFile * (*fptr_getFile)(const char *);
 	fptr_getFile getFile = 0;
 	love::fptr_void graphics_reset = 0;
 
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
-
-		//printf("AppData is: %s\n", getenv("APPDATA"));
-
 		std::cout << "INIT love.system [" << "Generic" << "]" << std::endl;
 		bool compatible = true;
 

@@ -53,8 +53,18 @@ namespace love_system
 		**/
 		void DECLSPEC message(const char * msg, int tag);
 
+		/**
+		* This "native" function includes and runs
+		* some file containing Lua code.
+		**/
 		int DECLSPEC include(lua_State * L);
 
+		/**
+		* Gets a reference to the current game. This is used
+		* by the main loop to determine the current game each
+		* frame.
+		* @return A reference to the current game.
+		**/
 		const love::pGame DECLSPEC & getGame();
 
 	}

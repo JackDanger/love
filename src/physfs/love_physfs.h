@@ -56,7 +56,10 @@ namespace love_physfs
 		**/
 		bool DECLSPEC addBaseDirectory();
 
-		// Doomed?
+		/**
+		* Checks if some file exists in the current search path.
+		* @param f The file (or directory) to check for.
+		**/
 		bool DECLSPEC exists(const std::string & f);
 
 		/**
@@ -72,9 +75,15 @@ namespace love_physfs
 
 		/**
 		* Setup a save directory for a certain game. 
+		* @param game The full or relative path to the game.
 		**/
 		bool DECLSPEC setSaveDirectory( const std::string & game );
 
+		/**
+		* Gets a pointer to a file in the search path. The object
+		* must be freed by the caller.
+		* @param filename The filename (and path) of the file.
+		**/
 		love::pFile DECLSPEC * getFile(const char * filename);
 	}
 
@@ -93,8 +102,17 @@ namespace love_physfs
 	**/
 	std::string getLeaf(const std::string & full);
 
+	/**
+	* Gets the APPDATA directory. On Windows, this is the folder
+	* in the %APPDATA% enviroment variable. On Linux, this is the
+	* user home folder.
+	**/
 	std::string getAppdata();
 
+	/**
+	* This can be called when Physfs encounters an error. 
+	* @return Always false.
+	**/
 	bool error(const std::string & s);
 
 	/**
@@ -141,18 +159,6 @@ namespace love_physfs
 	pFile newFile(const char * file, int mode = love::FILE_READ);
 
 	/**
-	* Loads and runs a file no matter what. The same
-	* file WILL be included twice!
-	**/
-	void include( const char * file );
-
-	/**
-	* Loads and runs a file. The same file will not 
-	* be included twice.
-	**/
-	void require( const char * file );
-
-	/**
 	* Checks whether a file exists in the current search path
 	* or not. 
 	* @param file The filename to check.
@@ -164,9 +170,6 @@ namespace love_physfs
 	* @param file The filename to check.
 	**/
 	bool isDirectory(const char * file);
-
-	// @todo
-	// enumerate() (Special function in pure SWIG).
 
 	/**
 	* Checks if an existing file really is a file, 

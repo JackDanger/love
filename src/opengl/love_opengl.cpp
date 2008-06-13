@@ -560,6 +560,12 @@ namespace love_opengl
 		return (current_mode.width > 0) || (current_mode.height > 0);
 	}
 
+	void setScissor(int x, int y, int width, int height)
+	{
+		glEnable(GL_SCISSOR_TEST);
+		glScissor(x, y, width, height);
+	}
+
 	std::string getCaption()
 	{	
 		char * title = 0;

@@ -20,6 +20,8 @@
 #	include <unistd.h>
 #endif
 
+// In Windows, we would like to use "LOVE" as the 
+// application folder, but in Linux, we like .love.
 #ifdef WIN32
 #	define LOVE_APPDATA_FOLDER "LOVE"
 #else
@@ -379,8 +381,6 @@ namespace love_physfs
 
 			std::stringstream full;
 			full << appdata << "/" << save_dir;
-
-			std::cout << "full: " << full.str() << std::endl;
 
 			if(!setWriteDirectory(full.str()))
 			{
