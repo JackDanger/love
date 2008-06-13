@@ -120,6 +120,50 @@ namespace love_opengl
 
 	bool setMode(int width, int height, bool fullscreen, bool vsync, int fsaa)
 	{
+
+		// Temp variables that holds the saved
+		// graphics state if we are *changing* display mode.
+		pColor color, bg;
+		int blend_mode, color_mode;
+		float line_width;
+		bool line_smooth;
+
+		// If screen is already created, then we're about to 
+		// change the display mode.
+		if(isCreated())
+		{
+			// Save the state.
+			color = getColor();
+			bg = getBackgroundColor();
+			blend_mode = getBlendMode();
+			color_mode = getColorMode();
+			line_smooth = glIsEnabled(GL_LINE_SMOOTH) == GL_TRUE;
+			glGetFloatv(GL_LINE_WIDTH, &line_width);
+
+			// Caption too.
+			std::string caption = getCaption();
+
+			// Reload all Volatiles.
+			Volatile::unloadAll();
+
+			// Special case for fullscreen -> windowed.
+			if( !current_mode.fullscreen )
+			{
+				// Restarting the SDL_VIDEO subsystem was the only thing
+				// that did what I wanted.
+				SDL_QuitSubSystem(SDL_INIT_VIDEO);
+
+				if(SDL_InitSubSystem(SDL_INIT_VIDEO) < 0)
+				{
+					std::cout << "Could not init SDL_VIDEO: " << SDL_GetError() << std::endl;
+					return false;
+				}
+			}
+
+			// Set caption here, not with the rest of the state.
+			setCaption(caption.c_str());
+		}
+
 		// Set GL attributes
 		SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 0);
 		SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 0);
@@ -196,6 +240,20 @@ namespace love_opengl
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 
+		// Restore the saved state, if any.
+		if(isCreated())
+		{
+			if(!Volatile::loadAll())
+				std::cerr << "Could not reload all volatile objects." << std::endl;
+
+			// Restore the state.
+			setColor(color);
+			setBackgroundColor(bg);
+			setBlendMode(blend_mode);
+			setColorMode(color_mode);
+			setLine(line_width, line_smooth ? love::LINE_SMOOTH : love::LINE_ROUGH);
+		}
+
 		// Set the new display mode as the current display mode.
 		current_mode.width = width;
 		current_mode.height = height;
@@ -211,48 +269,11 @@ namespace love_opengl
 	{
 		current_mode.fullscreen = !current_mode.fullscreen;
 
-		// Reload all Volatiles.
-		Volatile::unloadAll();
-
-		// Special case for fullscreen -> windowed.
-		if( !current_mode.fullscreen )
-		{
-			// Restarting the SDL_VIDEO subsystem was the only thing
-			// that did what I wanted.
-			SDL_QuitSubSystem(SDL_INIT_VIDEO);
-
-			if(SDL_InitSubSystem(SDL_INIT_VIDEO) < 0)
-			{
-				std::cout << "Could not init SDL_VIDEO: " << SDL_GetError() << std::endl;
-				return false;
-			}
-		}
-
-		// Save the state.
-		pColor color = getColor();
-		pColor bg = getBackgroundColor();
-		int blend_mode = getBlendMode();
-		int color_mode = getColorMode();
-		float line_width = 1.0f;
-		bool line_smooth = glIsEnabled(GL_LINE_SMOOTH) == GL_TRUE;
-		glGetFloatv(GL_LINE_WIDTH, &line_width);
-
 		// Try to do the change.
 		if(!setMode(current_mode.width, current_mode.height, current_mode.fullscreen, 
 			current_mode.vsync, current_mode.fsaa))
 			return false;
-
-		bool success = true;
-		success = success && Volatile::loadAll();
-
-		// Restore the state.
-		setColor(color);
-		setBackgroundColor(bg);
-		setBlendMode(blend_mode);
-		setColorMode(color_mode);
-		setLine(line_width, line_smooth ? love::LINE_SMOOTH : love::LINE_ROUGH);
-
-		return success;
+		return true;
 	}
 
 	void reset()
@@ -534,9 +555,16 @@ namespace love_opengl
 		return current_mode.height;
 	}
 
-	bool isSet()
+	bool isCreated()
 	{
 		return (current_mode.width > 0) || (current_mode.height > 0);
+	}
+
+	std::string getCaption()
+	{	
+		char * title = 0;
+		SDL_WM_GetCaption(&title, 0);
+		return std::string(title);
 	}
 
 	void setColor( int r, int g, int b, int a)

@@ -8364,12 +8364,12 @@ fail:
 }
 
 
-static int _wrap_isSet(lua_State* L) {
+static int _wrap_isCreated(lua_State* L) {
   int SWIG_arg = -1;
   bool result;
   
-  SWIG_check_num_args("love_opengl::isSet",0,0)
-  result = (bool)love_opengl::isSet();
+  SWIG_check_num_args("love_opengl::isCreated",0,0)
+  result = (bool)love_opengl::isCreated();
   SWIG_arg=0;
   lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
   return SWIG_arg;
@@ -10630,7 +10630,7 @@ static const struct luaL_reg swig_commands[] = {
     { "setCaption", _wrap_setCaption},
     { "getWidth", _wrap_getWidth},
     { "getHeight", _wrap_getHeight},
-    { "isSet", _wrap_isSet},
+    { "isCreated", _wrap_isCreated},
     { "setColor",_wrap_setColor},
     { "getColor", _wrap_getColor},
     { "setBackgroundColor",_wrap_setBackgroundColor},

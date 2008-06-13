@@ -53,7 +53,7 @@ namespace love_opengl
 	
 	int getWidth();
 	int getHeight();
-	bool isSet();
+	bool isCreated();
 	
 	void setColor( int r, int g, int b, int a = 255);
 	void setColor(const pColor & color);

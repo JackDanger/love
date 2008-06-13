@@ -208,7 +208,12 @@ namespace love_opengl
 	/**
 	* True if some display mode is set.
 	**/
-	bool isSet();
+	bool isCreated();
+
+	/**
+	* Gets the current display caption.
+	**/
+	std::string getCaption();
 
 	/**
 	* Sets the foreground color.
