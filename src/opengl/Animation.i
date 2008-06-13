@@ -13,6 +13,7 @@ namespace love_opengl
 		void reset();
 		void seek(int frame);
 		int getCurrentFrame() const;
+		int getSize() const;
 		void setDelay(int frame, float delay);
 		void setSpeed(float speed);
 		float getSpeed() const;

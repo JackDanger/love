@@ -526,6 +526,29 @@
         </example>
 
       </function>
+      <function name="setCaption" brief="Sets the window caption.">
+        <param name="caption" brief="The new window caption." />
+      </function>
+
+      <separator />
+
+      <function name="getColor" brief="Gets the current color.">
+        <returns type="Color" brief="The current color." />
+      </function>
+
+      <function name="getBackgroundColor" brief="Gets the current background color.">
+        <returns type="Color" brief="The current background color." />
+      </function>
+
+      <function name="getBlendMode" brief="Gets the current blend mode.">
+        <returns type="number" brief="And int representing the current blend mode." />
+      </function>
+      <function name="getColorMode" brief="Gets the current color mode.">
+        <returns type="number" brief="And int representing the current color mode." />
+      </function>
+      <function name="getFont" brief="Gets the current font.">
+        <returns type="Font" brief="The current font." />
+      </function>
 
       <separator />
 
@@ -675,8 +698,8 @@
       <separator />
 
       <function name="draws" brief="Draws a subsprite of an Image.">
-        Note: Will not work with Animation objects.
-        <param name="sprite" brief="An Image object." />
+        
+        <param name="image" brief="An Image object." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
         <param name="cx" brief="The x-position of the image section (top-left)." />
@@ -693,8 +716,7 @@
       </function>
 
       <function name="draws" brief="Draws a rotated subsprite of an Image.">
-        Note: Will not work with Animation objects.
-        <param name="sprite" brief="An Image object." />
+        <param name="image" brief="An Image object." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
         <param name="cx" brief="The x-position of the image section (top-left)." />
@@ -709,8 +731,7 @@
       </function>
 
       <function name="draws" brief="Draws a rotated/scaled subsprite of an Image.">
-        Note: Will not work with Animation objects.
-        <param name="sprite" brief="An Image object." />
+        <param name="image" brief="An Image object." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
         <param name="cx" brief="The x-position of the image section (top-left)." />
@@ -726,8 +747,7 @@
       </function>
 
       <function name="draws" brief="Draws a rotated/scaled subsprite of an Image.">
-        Note: Will not work with Animation objects.
-        <param name="sprite" brief="An Image object." />
+        <param name="image" brief="An Image object." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
         <param name="cx" brief="The x-position of the image section (top-left)." />
@@ -747,8 +767,7 @@
       </function>
 
       <function name="draws" brief="Draws a rotated/scaled subsprite of an Image, rotating around a different center.">
-        Note: Will not work with Animation objects.
-        <param name="sprite" brief="An Image object." />
+        <param name="image" brief="An Image object." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
         <param name="cx" brief="The x-position of the image section (top-left)." />
@@ -780,6 +799,11 @@
       </function>
 
       <separator />
+
+      <function name="point" brief="Draws a point at (x,y).">
+        <param name="x" brief="Position along x-axis." />
+        <param name="y" brief="Position along y-axis." />
+      </function>
 
       <function name="line" brief="Draws a line from (x1,y1) to (x2,y2).">
         <param name="x1" brief="First x-coordinate." />
@@ -1430,6 +1454,10 @@
         <returns type="number" brief="The frame number, where 0 is the first frame."/>
       </method>
 
+      <method name="getSize" brief="Gets the number of frames.">
+        <returns type="number" brief="The number of frames." />
+      </method>
+      
       <separator />
 
       <method name="setDelay" brief="Sets the delay of a specific frame." >
@@ -1461,9 +1489,10 @@
 
       <method name="setCenter" brief="Changes the center of the Animation.">
 
-        For instance, a 128x64 animation (assuming all frames have equal size), will have a default center at [64,32] (the actual
-        center). If you want the animation to rotate around its top-left corner, you set
-        the center to [0,0].
+        For instance, a 128x64 Animation (assuming all frames have equal size), will have a default center at (0,0)
+        (the actual center). If you want the Animation to rotate around its top-left corner, you set the center to (-64,-32). 
+        Unlike Images, which have absolute centers, Animations have relative centers. This is because frames in an Animation
+        can have variable dimensions.
 
         <param name="x" brief="The position of the center along the x-axis." />
         <param name="y" brief="The position of the center along the y-axis." />
@@ -2107,6 +2136,10 @@
       <constant name="love.blend_additive" brief="Additive blending mode." />
       <constant name="love.color_normal" brief="Normal color mode." />
       <constant name="love.color_modulate" brief="Modulation color mode." />
+      <separator />
+      <constant name="love.file_read" brief="For file reading." />
+      <constant name="love.file_write" brief="For file writing." />
+      <constant name="love.file_append" brief="For file appending." />
       <separator />
       <constant name="love.default_font" brief="The default font (Vera)." />
       <separator />

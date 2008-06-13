@@ -3389,6 +3389,31 @@ fail:
 }
 
 
+static int _wrap_Animation_getSize(lua_State* L) {
+  int SWIG_arg = -1;
+  love_opengl::Animation *arg1 = (love_opengl::Animation *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getSize",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSize",1,"love_opengl::Animation const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__Animation,0))){
+    SWIG_fail_ptr("Animation_getSize",1,SWIGTYPE_p_love_opengl__Animation);
+  }
+  
+  result = (int)((love_opengl::Animation const *)arg1)->getSize();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Animation_setDelay(lua_State* L) {
   int SWIG_arg = -1;
   love_opengl::Animation *arg1 = (love_opengl::Animation *) 0 ;
@@ -3508,6 +3533,7 @@ static swig_lua_method swig_love_opengl_Animation_methods[] = {
     {"reset", _wrap_Animation_reset}, 
     {"seek", _wrap_Animation_seek}, 
     {"getCurrentFrame", _wrap_Animation_getCurrentFrame}, 
+    {"getSize", _wrap_Animation_getSize}, 
     {"setDelay", _wrap_Animation_setDelay}, 
     {"setSpeed", _wrap_Animation_setSpeed}, 
     {"getSpeed", _wrap_Animation_getSpeed}, 
@@ -3760,6 +3786,31 @@ fail:
 }
 
 
+static int _wrap_SmartAnimation_getSize(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_opengl::Animation > *arg1 = (boost::shared_ptr< love_opengl::Animation > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getSize",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSize",1,"boost::shared_ptr< love_opengl::Animation > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Animation_t,0))){
+    SWIG_fail_ptr("SmartAnimation_getSize",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Animation_t);
+  }
+  
+  result = (int)(*arg1)->getSize();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartAnimation_setDelay(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr< love_opengl::Animation > *arg1 = (boost::shared_ptr< love_opengl::Animation > *) 0 ;
@@ -3962,6 +4013,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_opengl_Animation_Sg__method
     {"reset", _wrap_SmartAnimation_reset}, 
     {"seek", _wrap_SmartAnimation_seek}, 
     {"getCurrentFrame", _wrap_SmartAnimation_getCurrentFrame}, 
+    {"getSize", _wrap_SmartAnimation_getSize}, 
     {"setDelay", _wrap_SmartAnimation_setDelay}, 
     {"setSpeed", _wrap_SmartAnimation_setSpeed}, 
     {"getSpeed", _wrap_SmartAnimation_getSpeed}, 

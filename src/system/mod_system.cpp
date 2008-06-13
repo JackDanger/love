@@ -1560,46 +1560,6 @@ fail:
 }
 
 
-static int _wrap_error(lua_State* L) {
-  int SWIG_arg = -1;
-  char *arg1 = (char *) 0 ;
-  
-  SWIG_check_num_args("love_system::error",1,1)
-  if(!lua_isstring(L,1)) SWIG_fail_arg("love_system::error",1,"char const *");
-  arg1 = (char *)lua_tostring(L, 1);
-  love_system::error((char const *)arg1);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_warning(lua_State* L) {
-  int SWIG_arg = -1;
-  char *arg1 = (char *) 0 ;
-  
-  SWIG_check_num_args("love_system::warning",1,1)
-  if(!lua_isstring(L,1)) SWIG_fail_arg("love_system::warning",1,"char const *");
-  arg1 = (char *)lua_tostring(L, 1);
-  love_system::warning((char const *)arg1);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_exit(lua_State* L) {
   int SWIG_arg = -1;
   
@@ -1696,8 +1656,6 @@ static const struct luaL_reg swig_commands[] = {
     { "getVersion", _wrap_getVersion},
     { "getCodename", _wrap_getCodename},
     { "getPlatform", _wrap_getPlatform},
-    { "error", _wrap_error},
-    { "warning", _wrap_warning},
     { "exit", _wrap_exit},
     { "suspend", _wrap_suspend},
     { "resume", _wrap_resume},
