@@ -31,20 +31,20 @@ namespace love_system
 
 		/**
 		* This function takes LOVE into suspended mode, 
-		* with the specified error message. Called err() and not 
+		* with the specified error message. Called syserr() and not 
 		* error() because there are name conflicts with something
 		* in GCC.
 		* @param msg The message to display in suspended mode.
 		**/
-		void DECLSPEC err(const char * msg);
+		void DECLSPEC syserr(const char * msg);
 
 		/**
 		* A warning does pretty much the same thing as an 
-		* error, but a different error message is shown. Called war()
+		* error, but a different error message is shown. Called syswarn()
 		* and not warning() to prevent name conflicts.
 		* @param msg The message to display in suspended mode.
 		**/
-		void DECLSPEC warn(const char * msg);
+		void DECLSPEC syswarn(const char * msg);
 
 		/**
 		* Sends a message to the error game.

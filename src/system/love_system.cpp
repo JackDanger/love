@@ -226,7 +226,7 @@ namespace love_system
 		return true;
 	}
 
-	void err(const char * msg)
+	void syserr(const char * msg)
 	{
 		if(current_game == error_game)
 			return;
@@ -236,7 +236,7 @@ namespace love_system
 		message(msg, love::TAG_ERROR);
 	}
 
-	void warn(const char * msg)
+	void syswarn(const char * msg)
 	{
 		if(current_game == error_game)
 			return;
@@ -338,7 +338,7 @@ namespace love_system
 		e.type = SDL_QUIT;
 
 		if( SDL_PushEvent(&e) != 0 )
-			err("Could not exit.");
+			syserr("Could not exit.");
 	}
 
 	void suspend()
@@ -394,7 +394,7 @@ namespace love_system
 
 		// Push the SDL event.
 		if( SDL_PushEvent(&e) != 0 )
-			err("Could not restart game.");
+			syserr("Could not restart game.");
 
 		// Reset the graphics device.
 		graphics_reset();
@@ -422,11 +422,11 @@ namespace love_system
 		{
 		case LUA_ERRMEM:
 			ss << "Memory allocation error: " << msg << std::endl;
-			err(ss.str().c_str());
+			syserr(ss.str().c_str());
 			break;
 		case LUA_ERRSYNTAX:
 			ss << "Syntax error: " << msg << std::endl;
-			err(ss.str().c_str());
+			syserr(ss.str().c_str());
 			break;
 		}
 
@@ -457,7 +457,7 @@ namespace love_system
 			const char * msg = lua_tostring(L, -1);
 			std::stringstream ss;
 			ss << "Run-time error: " << msg << std::endl;
-			err(ss.str().c_str());
+			syserr(ss.str().c_str());
 		}
 
 		return 1;
