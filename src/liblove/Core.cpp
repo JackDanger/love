@@ -15,13 +15,6 @@ namespace love
 
 	Core::~Core()
 	{
-		std::map<std::string, pModule>::const_iterator i = modules.begin();
-
-		while(i != modules.end())
-		{
-			i->second->module_quit();
-			i++;
-		}
 	}
 
 	bool Core::insmod(int argc, char ** argv, const std::string & name, unsigned int provides)
@@ -49,6 +42,14 @@ namespace love
 	bool Core::insmod(int argc, char ** argv, const std::string & name)
 	{
 		return insmod(argc, argv, name, Module::CUSTOM);
+	}
+
+	bool Core::rmmod(const std::string & name)
+	{
+		std::map<std::string, pModule>::const_iterator i = modules.find(name);
+		if(!i->second->module_quit())
+			return false;
+		return true;
 	}
 
 	void * Core::getf( const std::string & module, const std::string & name) const

@@ -82,6 +82,13 @@ namespace love
 		bool insmod(int argc, char ** argv, const std::string & name);
 
 		/**
+		* Removes a module from the Core. The module will be unloaded
+		* and immediately, and unattached from the executable.
+		* @param name The name of the module to remove.
+		**/
+		bool rmmod(const std::string & name);
+
+		/**
 		* Gets a function pointer from one of the standard modules.
 		* This function provides abstract means of getting some function
 		* from some module. This function throws an exception if:

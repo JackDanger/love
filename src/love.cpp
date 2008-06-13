@@ -181,5 +181,15 @@ int main(int argc, char* argv[])
 
 		graphics_present();
 	}
+
+	// Unload all modules.
+	if(!core->rmmod(LOVE_MOD_SYSTEM)) return 1;
+	if(!core->rmmod(LOVE_MOD_AUDIO)) return 1;
+	if(!core->rmmod(LOVE_MOD_TIMER)) return 1;
+	if(!core->rmmod(LOVE_MOD_MOUSE)) return 1;
+	if(!core->rmmod(LOVE_MOD_KEYBOARD)) return 1;
+	if(!core->rmmod(LOVE_MOD_GRAPHICS)) return 1;
+	if(!core->rmmod(LOVE_MOD_FILESYSTEM)) return 1;
+
 	return 0;
 } // main
