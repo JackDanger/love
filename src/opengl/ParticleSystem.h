@@ -82,6 +82,12 @@ namespace love_opengl
 		// The emission rate (particles/sec).
 		int emissionRate;
 
+		// Used to determine when a particle should be emitted.
+		float emitCounter;
+
+		// The relative position of the particle emitter.
+		float position[2];
+
 		// The lifetime of the particle emitter (-1 means infinite) and the life it has left.
 		float lifetime;
 		float life;
@@ -93,6 +99,9 @@ namespace love_opengl
 		// The direction (and spread) the particles will be emitted in. Measured in radians.
 		float direction;
 		float spread;
+
+		// Whether the direction should be relative to the emitter's movement.
+		bool relative;
 
 		// The speed.
 		float speedMin;
@@ -171,11 +180,25 @@ namespace love_opengl
 		void setParticleLife(float min, float max = 0);
 
 		/**
+		* Sets the position of the center of the emitter and the direction (if set to relative).
+		* Used to move the emitter without changing the position of already existing particles.
+		* @param x The x-coordinate.
+		* @param y The y-coordinate.
+		**/
+		void setPosition(float x, float y);
+
+		/**
 		* Sets the direction and the spread of the particle emitter.
 		* @param direction The direction (in radians).
 		* @param spread The spread (in radians).
 		**/
 		void setDirection(float direction, float spread = 0);
+
+		/**
+		* Sets whether the direction should be relative to the particle emitters movement. Used in conjunction with setPosition.
+		* @param relative Whether to have relative direction.
+		**/
+		void setRelativeDirection(bool relative);
 
 		/**
 		* Sets the speed of the particles.
@@ -271,6 +294,8 @@ namespace love_opengl
 		* @param end The color of the particle upon death.
 		**/
 		void setColor(pColor start, pColor end);
+
+		float getDirection();
 
 		/**
 		* Returns the amount of particles that are currently active in the system.

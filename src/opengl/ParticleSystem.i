@@ -13,7 +13,9 @@ namespace love_opengl
 		void setLifetime(float life);
 		
 		void setParticleLife(float min, float max = 0);
+		void setPosition(float x, float y);
 		void setDirection(float direction, float spread = 0);
+		void setRelativeDirection(bool relative);
 		
 		void setSpeed(float min, float max = 0);
 		void setGravity(float min, float max = 0);
@@ -32,6 +34,8 @@ namespace love_opengl
 		
 		void setColor(pColor color);
 		void setColor(pColor start, pColor end);
+		
+		float getDirection();
 		
 		int count() const;
 		
