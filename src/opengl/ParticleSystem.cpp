@@ -5,65 +5,24 @@
 
 namespace love_opengl
 {
-	//
-	// Struct constructor.
-	// NO LONGER USED
-	//
 
-	/*
-	particle::particle()
+	float calculate_variation(float inner, float outer, float var)
 	{
-		// life
-		lifetime = 0;
-		life = 0;
-
-		// position
-		position[0] = 0.0f;
-		position[1] = 0.0f;
-
-		// direction
-		direction = 0;
-
-		// speed
-		speed[0] = 0;
-		speed[1] = 0;
-
-		// acceleration
-		gravity = 0;
-		radialAcceleration = 0;
-		tangentialAcceleration = 0;
-
-		// size
-		size = 1.0f;
-		sizeStart = 1.0f;
-		sizeEnd = 1.0f;
-
-		// rotation
-		rotation = 0.0f;
-		rotationStart = 0.0f;
-		rotationEnd = 0.0f;
-
-		// random colour
-		color[0] = 1;
-		color[1] = 1;
-		color[2] = 1;
-		color[3] = 1;
+		float low = inner - (outer/2.0f)*var;
+		float high = inner + (outer/2.0f)*var;
+		float r = (rand() / (float(RAND_MAX)+1));
+		return low*(1-r)+high*r;
 	}
-	*/
 
-	//
-	// Class functions.
-	//
 
 	ParticleSystem::ParticleSystem(pImage sprite, unsigned int buffer) : pStart(0), pLast(0), pEnd(0), active(true), emissionRate(0),
 															emitCounter(0), lifetime(-1), life(0), particleLifeMin(0), particleLifeMax(0),
 															direction(0), spread(0), relative(false), speedMin(0), speedMax(0), gravityMin(0),
 															gravityMax(0), radialAccelerationMin(0), radialAccelerationMax(0),
 															tangentialAccelerationMin(0), tangentialAccelerationMax(0),
-															sizeStart(1), sizeEnd(1), sizeVariation(0), rotationStart(0),
-															rotationEnd(0), rotationVariation(0)
+															sizeStart(1), sizeEnd(1), sizeVariation(0), spinStart(0),
+															spinEnd(0), spinVariation(0)
 	{
-		this->position[0] = 0.0f; this->position[1] = 0.0f;
 		this->sprite = sprite;
 		colorStart.reset(new Color(255,255,255,255));
 		colorEnd.reset(new Color(255,255,255,255));
@@ -90,18 +49,17 @@ namespace love_opengl
 			pLast->life = (rand() / (float(RAND_MAX)+1)) * (max - min) + min;
 		pLast->lifetime = pLast->life;
 
-		pLast->position[0] = this->position[0];
-		pLast->position[1] = this->position[1];
+		pLast->position = position;
 
-		min = direction - spread;
-		max = direction + spread;
+		min = direction - spread/2.0f;
+		max = direction + spread/2.0f;
 		pLast->direction = (rand() / (float(RAND_MAX)+1)) * (max - min) + min;
 
 		min = speedMin;
 		max = speedMax;
 		float speed = (rand() / (float(RAND_MAX)+1)) * (max - min) + min;
-		pLast->speed[0] = (0 * cos(pLast->direction)) - (speed * sin(pLast->direction));
-		pLast->speed[1] = -( (0 * sin(pLast->direction)) + (speed * cos(pLast->direction)) );
+		pLast->speed = love::Vector(cos(pLast->direction), sin(pLast->direction));
+		pLast->speed *= speed;
 
 		min = gravityMin;
 		max = gravityMax;
@@ -115,17 +73,13 @@ namespace love_opengl
 		max = tangentialAccelerationMax;
 		pLast->tangentialAcceleration = (rand() / (float(RAND_MAX)+1)) * (max - min) + min;
 
-		min = sizeStart;
-		max = sizeStart + ((sizeEnd - sizeStart) * sizeVariation);
-		pLast->sizeStart = (rand() / (float(RAND_MAX)+1)) * (max - min) + min;
-		pLast->sizeEnd = sizeEnd;
+		pLast->sizeStart = calculate_variation(sizeStart, sizeEnd, sizeVariation);
+		pLast->sizeEnd = calculate_variation(sizeEnd, sizeStart, sizeVariation);
 		pLast->size = pLast->sizeStart;
 
-		min = rotationStart;
-		max = rotationStart + ((rotationEnd - rotationStart) * rotationVariation);
-		pLast->rotationStart = (rand() / (float(RAND_MAX)+1)) * (max - min) + min;
-		pLast->rotationEnd = rotationEnd;
-		pLast->rotation = pLast->rotationStart;
+		pLast->spinStart = calculate_variation(spinStart, spinEnd, spinVariation);
+		pLast->spinEnd = calculate_variation(spinEnd, spinStart, spinVariation);
+		pLast->rotation = 0;
 
 		pLast->color[0] = (float)colorStart->getRed() / 255;
 		pLast->color[1] = (float)colorStart->getGreen() / 255;
@@ -179,17 +133,20 @@ namespace love_opengl
 
 	void ParticleSystem::setPosition(float x, float y)
 	{
-		if(relative)
+		//if(relative)
 			//direction = atan2(y, x) - atan2(position[1], position[0]);
-			direction = atan2(y - position[1], x - position[0]) - (3.14159265/2);
-		this->position[0] = x;
-		this->position[1] = y;
+		//	direction = atan2(y - position[1], x - position[0]) - (3.14159265/2);
+		position = love::Vector(x, y);
 	}
 
-	void ParticleSystem::setDirection(float direction, float spread)
+	void ParticleSystem::setDirection(float direction)
 	{
-		this->direction = direction;
-		this->spread = spread;
+		this->direction = direction*(float)M_TORAD;
+	}
+
+	void ParticleSystem::setSpread(float spread)
+	{
+		this->spread = spread*(float)M_TORAD;
 	}
 
 	void ParticleSystem::setRelativeDirection(bool relative)
@@ -257,28 +214,28 @@ namespace love_opengl
 		sizeVariation = variation;
 	}
 
-	void ParticleSystem::setRotation(float rotation)
+	void ParticleSystem::setSpin(float spin)
 	{
-		rotationStart = rotation;
-		rotationEnd = rotation;
+		spinStart = spin*(float)M_TORAD;
+		spinEnd = spin*(float)M_TORAD;
 	}
 
-	void ParticleSystem::setRotation(float start, float end)
+	void ParticleSystem::setSpin(float start, float end)
 	{
-		rotationStart = start;
-		rotationEnd = end;
+		spinStart = start*(float)M_TORAD;
+		spinEnd = end*(float)M_TORAD;
 	}
 
-	void ParticleSystem::setRotation(float start, float end, float variation)
+	void ParticleSystem::setSpin(float start, float end, float variation)
 	{
-		rotationStart = start;
-		rotationEnd = end;
-		rotationVariation = variation;
+		spinStart = start*(float)M_TORAD;
+		spinEnd = end*(float)M_TORAD;
+		spinVariation = variation*(float)M_TORAD;
 	}
 
-	void ParticleSystem::setRotationVariation(float variation)
+	void ParticleSystem::setSpinVariation(float variation)
 	{
-		rotationVariation = variation;
+		spinVariation = variation*(float)M_TORAD;
 	}
 
 	void ParticleSystem::setColor(pColor color)
@@ -357,7 +314,7 @@ namespace love_opengl
 			glPushMatrix();
 
 			glColor4f(p->color[0],p->color[1],p->color[2],p->color[3]);
-			glTranslatef(p->position[0],p->position[1],0.0f);
+			glTranslatef(p->position.getX(),p->position.getY(),0.0f);
 			glRotatef(p->rotation * 57.29578f, 0.0f, 0.0f, 1.0f); // rad * (180 / pi)
 			glScalef(p->size,p->size,1.0f);
 			sprite->draw(0,0);
@@ -401,16 +358,33 @@ namespace love_opengl
 
 			if(p->life > 0)
 			{
-				// Apply gravity.
-				p->speed[1] += p->gravity * dt;
 
-				// Apply radial and tangential acceleration.
-				p->speed[0] += ((p->tangentialAcceleration * dt) * cos(p->direction)) - ((-p->radialAcceleration * dt) * sin(p->direction));
-				p->speed[1] += -( ((p->tangentialAcceleration * dt) * sin(p->direction)) + ((-p->radialAcceleration * dt) * cos(p->direction)) );
+				// Temp variables.
+				love::Vector radial, tangential, gravity(0, p->gravity);
+
+				// Get vector from particle center to particle.
+				radial = p->position - position;
+				radial.normalize();
+				tangential = radial;
+
+				// Resize radial acceleration.
+				radial *= p->radialAcceleration;
+
+				// Calculate tangential acceleration.
+				{
+					float a = tangential.getX();
+					tangential.setX(-tangential.getY());
+					tangential.setY(a);
+				}
+
+				// Resize tangential.
+				tangential *= p->tangentialAcceleration;
+
+				// Update position.
+				p->speed += (radial+tangential+gravity)*dt;
 
 				// Modify position.
-				p->position[0] += p->speed[0] * dt;
-				p->position[1] += p->speed[1] * dt;
+				p->position += p->speed * dt;
 
 				const float t = p->life / p->lifetime;
 
@@ -418,7 +392,7 @@ namespace love_opengl
 				p->size = p->sizeEnd - ((p->sizeEnd - p->sizeStart) * t);
 
 				// Rotate.
-				p->rotation = p->rotationEnd - ((p->rotationEnd - p->rotationStart) * t);
+				p->rotation += (p->spinStart*(1-t) + p->spinEnd*t)*dt;
 
 				// Update color.
 				p->color[0] = (float)(colorEnd->getRed()*(1.0f-t) + colorStart->getRed() * t)/255.0f;

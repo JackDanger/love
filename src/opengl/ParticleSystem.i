@@ -14,7 +14,8 @@ namespace love_opengl
 		
 		void setParticleLife(float min, float max = 0);
 		void setPosition(float x, float y);
-		void setDirection(float direction, float spread = 0);
+		void setDirection(float direction);
+		void setSpread(float spread);
 		void setRelativeDirection(bool relative);
 		
 		void setSpeed(float min, float max = 0);
@@ -27,10 +28,10 @@ namespace love_opengl
 		void setSize(float start, float end, float variation);
 		void setSizeVariation(float variation);
 		
-		void setRotation(float rotation);
-		void setRotation(float start, float end);
-		void setRotation(float start, float end, float variation);
-		void setRotationVariation(float variation);
+		void setSpin(float spin);
+		void setSpin(float start, float end);
+		void setSpin(float start, float end, float variation);
+		void setSpinVariation(float variation);
 		
 		void setColor(pColor color);
 		void setColor(pColor start, pColor end);

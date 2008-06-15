@@ -40,8 +40,11 @@ namespace love_system
 
 	// Function pointers and typedefs.
 	typedef love::pFile * (*fptr_getFile)(const char *);
+	typedef bool (*fptr_setMode)(int, int, bool, bool, int);
 	fptr_getFile getFile = 0;
 	love::fptr_void graphics_reset = 0;
+	love::fptr_bool graphics_isCreated = 0;
+	fptr_setMode graphics_setMode = 0;
 
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
@@ -70,7 +73,6 @@ namespace love_system
 			typedef bool (*fptr_bool)();
 		
 			// Typedefs for graphics.
-			typedef bool (*fptr_setMode)(int, int, bool, bool, int);
 			typedef void (*fptr_setCaption)(const char *);
 
 			// Get function pointers.
@@ -79,9 +81,10 @@ namespace love_system
 			fptr_setSaveDirectory setSaveDirectory = (fptr_setSaveDirectory)core->getf(love::Module::FILESYSTEM, "setSaveDirectory");
 			fptr_getBaseDirectory getBaseDirectory = (fptr_getBaseDirectory)core->getf(love::Module::FILESYSTEM, "getBaseDirectory");
 			fptr_addDirectory addDirectory = (fptr_addDirectory)core->getf(love::Module::FILESYSTEM, "addDirectory");
-			fptr_setMode setMode = (fptr_setMode)core->getf(love::Module::GRAPHICS, "setMode");
+			graphics_setMode = (fptr_setMode)core->getf(love::Module::GRAPHICS, "setMode");
 			fptr_setCaption setCaption = (fptr_setCaption)core->getf(love::Module::GRAPHICS, "setCaption");
 			graphics_reset = (love::fptr_void)core->getf(love::Module::GRAPHICS, "reset");
+			graphics_isCreated = (love::fptr_bool)core->getf(love::Module::GRAPHICS, "isCreated");
 
 			// If no arguments, just load the no-game.
 			if(nogame)
@@ -169,10 +172,10 @@ namespace love_system
 			if(gc.getBool("display_auto") || !compatible)
 			{
 				// Try config.
-				if(!setMode(gc.getInt("width"), gc.getInt("height"), gc.getBool("fullscreen"), gc.getBool("vsync"), gc.getInt("fsaa")))
+				if(!graphics_setMode(gc.getInt("width"), gc.getInt("height"), gc.getBool("fullscreen"), gc.getBool("vsync"), gc.getInt("fsaa")))
 				{
 					// Try failsafe.
-					if(!setMode(800, 600, false, true, 0))
+					if(!graphics_setMode(800, 600, false, true, 0))
 					{
 						std::cerr << "Could not set display mode." << std::endl;
 						return false;
@@ -348,6 +351,11 @@ namespace love_system
 			exit();
 			return;
 		}
+
+		// If the game is suspended, and there is no screen: create one.
+		if(!graphics_isCreated())
+			if(!graphics_setMode(800, 600, false, true, 0))
+				std::cerr << "Could not set display mode." << std::endl;
 
 		// Load the error game if suspended for the first time.
 		if(!error_game->isLoaded())

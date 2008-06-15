@@ -104,6 +104,11 @@ namespace love_opengl
 		**/
 		void DECLSPEC setCaption(const char * caption);
 
+		/**
+		* True if some display mode is set.
+		**/
+		bool DECLSPEC isCreated();
+
 	} // extern "C"
 
 	/**
@@ -203,11 +208,6 @@ namespace love_opengl
 	* Gets the height of the current display mode.
 	**/
 	int getHeight();
-
-	/**
-	* True if some display mode is set.
-	**/
-	bool isCreated();
 
 	/**
 	* Scissor defines a box such that everything outside that box

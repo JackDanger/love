@@ -4287,37 +4287,7 @@ fail:
 }
 
 
-static int _wrap_ParticleSystem_setDirection__SWIG_0(lua_State* L) {
-  int SWIG_arg = -1;
-  love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
-  float arg2 ;
-  float arg3 ;
-  
-  SWIG_check_num_args("setDirection",3,3)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setDirection",1,"love_opengl::ParticleSystem *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("setDirection",2,"float");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("setDirection",3,"float");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
-    SWIG_fail_ptr("ParticleSystem_setDirection",1,SWIGTYPE_p_love_opengl__ParticleSystem);
-  }
-  
-  arg2 = (float)lua_tonumber(L, 2);
-  arg3 = (float)lua_tonumber(L, 3);
-  (arg1)->setDirection(arg2,arg3);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_ParticleSystem_setDirection__SWIG_1(lua_State* L) {
+static int _wrap_ParticleSystem_setDirection(lua_State* L) {
   int SWIG_arg = -1;
   love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
   float arg2 ;
@@ -4344,59 +4314,30 @@ fail:
 }
 
 
-static int _wrap_ParticleSystem_setDirection(lua_State* L) {
-  int argc;
-  int argv[4]={
-    1,2,3,4
-  };
+static int _wrap_ParticleSystem_setSpread(lua_State* L) {
+  int SWIG_arg = -1;
+  love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
+  float arg2 ;
   
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love_opengl__ParticleSystem, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_ParticleSystem_setDirection__SWIG_1(L);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_love_opengl__ParticleSystem, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          return _wrap_ParticleSystem_setDirection__SWIG_0(L);
-        }
-      }
-    }
+  SWIG_check_num_args("setSpread",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSpread",1,"love_opengl::ParticleSystem *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setSpread",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
+    SWIG_fail_ptr("ParticleSystem_setSpread",1,SWIGTYPE_p_love_opengl__ParticleSystem);
   }
   
-  lua_pushstring(L,"No matching function for overloaded 'ParticleSystem_setDirection'");
-  lua_error(L);return 0;
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setSpread(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
 }
 
 
@@ -5081,21 +5022,21 @@ fail:
 }
 
 
-static int _wrap_ParticleSystem_setRotation__SWIG_0(lua_State* L) {
+static int _wrap_ParticleSystem_setSpin__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
   float arg2 ;
   
-  SWIG_check_num_args("setRotation",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setRotation",1,"love_opengl::ParticleSystem *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("setRotation",2,"float");
+  SWIG_check_num_args("setSpin",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSpin",1,"love_opengl::ParticleSystem *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setSpin",2,"float");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
-    SWIG_fail_ptr("ParticleSystem_setRotation",1,SWIGTYPE_p_love_opengl__ParticleSystem);
+    SWIG_fail_ptr("ParticleSystem_setSpin",1,SWIGTYPE_p_love_opengl__ParticleSystem);
   }
   
   arg2 = (float)lua_tonumber(L, 2);
-  (arg1)->setRotation(arg2);
+  (arg1)->setSpin(arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -5108,24 +5049,24 @@ fail:
 }
 
 
-static int _wrap_ParticleSystem_setRotation__SWIG_1(lua_State* L) {
+static int _wrap_ParticleSystem_setSpin__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
   float arg2 ;
   float arg3 ;
   
-  SWIG_check_num_args("setRotation",3,3)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setRotation",1,"love_opengl::ParticleSystem *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("setRotation",2,"float");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("setRotation",3,"float");
+  SWIG_check_num_args("setSpin",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSpin",1,"love_opengl::ParticleSystem *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setSpin",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setSpin",3,"float");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
-    SWIG_fail_ptr("ParticleSystem_setRotation",1,SWIGTYPE_p_love_opengl__ParticleSystem);
+    SWIG_fail_ptr("ParticleSystem_setSpin",1,SWIGTYPE_p_love_opengl__ParticleSystem);
   }
   
   arg2 = (float)lua_tonumber(L, 2);
   arg3 = (float)lua_tonumber(L, 3);
-  (arg1)->setRotation(arg2,arg3);
+  (arg1)->setSpin(arg2,arg3);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -5138,27 +5079,27 @@ fail:
 }
 
 
-static int _wrap_ParticleSystem_setRotation__SWIG_2(lua_State* L) {
+static int _wrap_ParticleSystem_setSpin__SWIG_2(lua_State* L) {
   int SWIG_arg = -1;
   love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
   float arg2 ;
   float arg3 ;
   float arg4 ;
   
-  SWIG_check_num_args("setRotation",4,4)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setRotation",1,"love_opengl::ParticleSystem *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("setRotation",2,"float");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("setRotation",3,"float");
-  if(!lua_isnumber(L,4)) SWIG_fail_arg("setRotation",4,"float");
+  SWIG_check_num_args("setSpin",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSpin",1,"love_opengl::ParticleSystem *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setSpin",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setSpin",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("setSpin",4,"float");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
-    SWIG_fail_ptr("ParticleSystem_setRotation",1,SWIGTYPE_p_love_opengl__ParticleSystem);
+    SWIG_fail_ptr("ParticleSystem_setSpin",1,SWIGTYPE_p_love_opengl__ParticleSystem);
   }
   
   arg2 = (float)lua_tonumber(L, 2);
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
-  (arg1)->setRotation(arg2,arg3,arg4);
+  (arg1)->setSpin(arg2,arg3,arg4);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -5171,7 +5112,7 @@ fail:
 }
 
 
-static int _wrap_ParticleSystem_setRotation(lua_State* L) {
+static int _wrap_ParticleSystem_setSpin(lua_State* L) {
   int argc;
   int argv[5]={
     1,2,3,4,5
@@ -5193,7 +5134,7 @@ static int _wrap_ParticleSystem_setRotation(lua_State* L) {
         _v = lua_isnumber(L,argv[1]);
       }
       if (_v) {
-        return _wrap_ParticleSystem_setRotation__SWIG_0(L);
+        return _wrap_ParticleSystem_setSpin__SWIG_0(L);
       }
     }
   }
@@ -5216,7 +5157,7 @@ static int _wrap_ParticleSystem_setRotation(lua_State* L) {
           _v = lua_isnumber(L,argv[2]);
         }
         if (_v) {
-          return _wrap_ParticleSystem_setRotation__SWIG_1(L);
+          return _wrap_ParticleSystem_setSpin__SWIG_1(L);
         }
       }
     }
@@ -5244,33 +5185,33 @@ static int _wrap_ParticleSystem_setRotation(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_ParticleSystem_setRotation__SWIG_2(L);
+            return _wrap_ParticleSystem_setSpin__SWIG_2(L);
           }
         }
       }
     }
   }
   
-  lua_pushstring(L,"No matching function for overloaded 'ParticleSystem_setRotation'");
+  lua_pushstring(L,"No matching function for overloaded 'ParticleSystem_setSpin'");
   lua_error(L);return 0;
 }
 
 
-static int _wrap_ParticleSystem_setRotationVariation(lua_State* L) {
+static int _wrap_ParticleSystem_setSpinVariation(lua_State* L) {
   int SWIG_arg = -1;
   love_opengl::ParticleSystem *arg1 = (love_opengl::ParticleSystem *) 0 ;
   float arg2 ;
   
-  SWIG_check_num_args("setRotationVariation",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setRotationVariation",1,"love_opengl::ParticleSystem *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("setRotationVariation",2,"float");
+  SWIG_check_num_args("setSpinVariation",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSpinVariation",1,"love_opengl::ParticleSystem *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setSpinVariation",2,"float");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
-    SWIG_fail_ptr("ParticleSystem_setRotationVariation",1,SWIGTYPE_p_love_opengl__ParticleSystem);
+    SWIG_fail_ptr("ParticleSystem_setSpinVariation",1,SWIGTYPE_p_love_opengl__ParticleSystem);
   }
   
   arg2 = (float)lua_tonumber(L, 2);
-  (arg1)->setRotationVariation(arg2);
+  (arg1)->setSpinVariation(arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -5714,6 +5655,7 @@ static swig_lua_method swig_love_opengl_ParticleSystem_methods[] = {
     {"setParticleLife", _wrap_ParticleSystem_setParticleLife}, 
     {"setPosition", _wrap_ParticleSystem_setPosition}, 
     {"setDirection", _wrap_ParticleSystem_setDirection}, 
+    {"setSpread", _wrap_ParticleSystem_setSpread}, 
     {"setRelativeDirection", _wrap_ParticleSystem_setRelativeDirection}, 
     {"setSpeed", _wrap_ParticleSystem_setSpeed}, 
     {"setGravity", _wrap_ParticleSystem_setGravity}, 
@@ -5721,8 +5663,8 @@ static swig_lua_method swig_love_opengl_ParticleSystem_methods[] = {
     {"setTangentialAcceleration", _wrap_ParticleSystem_setTangentialAcceleration}, 
     {"setSize", _wrap_ParticleSystem_setSize}, 
     {"setSizeVariation", _wrap_ParticleSystem_setSizeVariation}, 
-    {"setRotation", _wrap_ParticleSystem_setRotation}, 
-    {"setRotationVariation", _wrap_ParticleSystem_setRotationVariation}, 
+    {"setSpin", _wrap_ParticleSystem_setSpin}, 
+    {"setSpinVariation", _wrap_ParticleSystem_setSpinVariation}, 
     {"setColor", _wrap_ParticleSystem_setColor}, 
     {"getDirection", _wrap_ParticleSystem_getDirection}, 
     {"count", _wrap_ParticleSystem_count}, 
@@ -6050,37 +5992,7 @@ fail:
 }
 
 
-static int _wrap_SmartParticleSystem_setDirection__SWIG_0(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
-  float arg2 ;
-  float arg3 ;
-  
-  SWIG_check_num_args("setDirection",3,3)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setDirection",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("setDirection",2,"float");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("setDirection",3,"float");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
-    SWIG_fail_ptr("SmartParticleSystem_setDirection",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
-  }
-  
-  arg2 = (float)lua_tonumber(L, 2);
-  arg3 = (float)lua_tonumber(L, 3);
-  (*arg1)->setDirection(arg2,arg3);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartParticleSystem_setDirection__SWIG_1(lua_State* L) {
+static int _wrap_SmartParticleSystem_setDirection(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
   float arg2 ;
@@ -6107,59 +6019,30 @@ fail:
 }
 
 
-static int _wrap_SmartParticleSystem_setDirection(lua_State* L) {
-  int argc;
-  int argv[4]={
-    1,2,3,4
-  };
+static int _wrap_SmartParticleSystem_setSpread(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
+  float arg2 ;
   
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_SmartParticleSystem_setDirection__SWIG_1(L);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        {
-          _v = lua_isnumber(L,argv[2]);
-        }
-        if (_v) {
-          return _wrap_SmartParticleSystem_setDirection__SWIG_0(L);
-        }
-      }
-    }
+  SWIG_check_num_args("setSpread",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSpread",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setSpread",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
+    SWIG_fail_ptr("SmartParticleSystem_setSpread",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
   }
   
-  lua_pushstring(L,"No matching function for overloaded 'SmartParticleSystem_setDirection'");
-  lua_error(L);return 0;
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setSpread(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
 }
 
 
@@ -6844,21 +6727,21 @@ fail:
 }
 
 
-static int _wrap_SmartParticleSystem_setRotation__SWIG_0(lua_State* L) {
+static int _wrap_SmartParticleSystem_setSpin__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
   float arg2 ;
   
-  SWIG_check_num_args("setRotation",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setRotation",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("setRotation",2,"float");
+  SWIG_check_num_args("setSpin",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSpin",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setSpin",2,"float");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
-    SWIG_fail_ptr("SmartParticleSystem_setRotation",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
+    SWIG_fail_ptr("SmartParticleSystem_setSpin",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
   }
   
   arg2 = (float)lua_tonumber(L, 2);
-  (*arg1)->setRotation(arg2);
+  (*arg1)->setSpin(arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -6871,24 +6754,24 @@ fail:
 }
 
 
-static int _wrap_SmartParticleSystem_setRotation__SWIG_1(lua_State* L) {
+static int _wrap_SmartParticleSystem_setSpin__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
   float arg2 ;
   float arg3 ;
   
-  SWIG_check_num_args("setRotation",3,3)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setRotation",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("setRotation",2,"float");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("setRotation",3,"float");
+  SWIG_check_num_args("setSpin",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSpin",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setSpin",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setSpin",3,"float");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
-    SWIG_fail_ptr("SmartParticleSystem_setRotation",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
+    SWIG_fail_ptr("SmartParticleSystem_setSpin",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
   }
   
   arg2 = (float)lua_tonumber(L, 2);
   arg3 = (float)lua_tonumber(L, 3);
-  (*arg1)->setRotation(arg2,arg3);
+  (*arg1)->setSpin(arg2,arg3);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -6901,27 +6784,27 @@ fail:
 }
 
 
-static int _wrap_SmartParticleSystem_setRotation__SWIG_2(lua_State* L) {
+static int _wrap_SmartParticleSystem_setSpin__SWIG_2(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
   float arg2 ;
   float arg3 ;
   float arg4 ;
   
-  SWIG_check_num_args("setRotation",4,4)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setRotation",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("setRotation",2,"float");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("setRotation",3,"float");
-  if(!lua_isnumber(L,4)) SWIG_fail_arg("setRotation",4,"float");
+  SWIG_check_num_args("setSpin",4,4)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSpin",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setSpin",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setSpin",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("setSpin",4,"float");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
-    SWIG_fail_ptr("SmartParticleSystem_setRotation",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
+    SWIG_fail_ptr("SmartParticleSystem_setSpin",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
   }
   
   arg2 = (float)lua_tonumber(L, 2);
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
-  (*arg1)->setRotation(arg2,arg3,arg4);
+  (*arg1)->setSpin(arg2,arg3,arg4);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -6934,7 +6817,7 @@ fail:
 }
 
 
-static int _wrap_SmartParticleSystem_setRotation(lua_State* L) {
+static int _wrap_SmartParticleSystem_setSpin(lua_State* L) {
   int argc;
   int argv[5]={
     1,2,3,4,5
@@ -6956,7 +6839,7 @@ static int _wrap_SmartParticleSystem_setRotation(lua_State* L) {
         _v = lua_isnumber(L,argv[1]);
       }
       if (_v) {
-        return _wrap_SmartParticleSystem_setRotation__SWIG_0(L);
+        return _wrap_SmartParticleSystem_setSpin__SWIG_0(L);
       }
     }
   }
@@ -6979,7 +6862,7 @@ static int _wrap_SmartParticleSystem_setRotation(lua_State* L) {
           _v = lua_isnumber(L,argv[2]);
         }
         if (_v) {
-          return _wrap_SmartParticleSystem_setRotation__SWIG_1(L);
+          return _wrap_SmartParticleSystem_setSpin__SWIG_1(L);
         }
       }
     }
@@ -7007,33 +6890,33 @@ static int _wrap_SmartParticleSystem_setRotation(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_SmartParticleSystem_setRotation__SWIG_2(L);
+            return _wrap_SmartParticleSystem_setSpin__SWIG_2(L);
           }
         }
       }
     }
   }
   
-  lua_pushstring(L,"No matching function for overloaded 'SmartParticleSystem_setRotation'");
+  lua_pushstring(L,"No matching function for overloaded 'SmartParticleSystem_setSpin'");
   lua_error(L);return 0;
 }
 
 
-static int _wrap_SmartParticleSystem_setRotationVariation(lua_State* L) {
+static int _wrap_SmartParticleSystem_setSpinVariation(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr< love_opengl::ParticleSystem > *arg1 = (boost::shared_ptr< love_opengl::ParticleSystem > *) 0 ;
   float arg2 ;
   
-  SWIG_check_num_args("setRotationVariation",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setRotationVariation",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("setRotationVariation",2,"float");
+  SWIG_check_num_args("setSpinVariation",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSpinVariation",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setSpinVariation",2,"float");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
-    SWIG_fail_ptr("SmartParticleSystem_setRotationVariation",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
+    SWIG_fail_ptr("SmartParticleSystem_setSpinVariation",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
   }
   
   arg2 = (float)lua_tonumber(L, 2);
-  (*arg1)->setRotationVariation(arg2);
+  (*arg1)->setSpinVariation(arg2);
   SWIG_arg=0;
   
   return SWIG_arg;
@@ -7453,6 +7336,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__m
     {"setParticleLife", _wrap_SmartParticleSystem_setParticleLife}, 
     {"setPosition", _wrap_SmartParticleSystem_setPosition}, 
     {"setDirection", _wrap_SmartParticleSystem_setDirection}, 
+    {"setSpread", _wrap_SmartParticleSystem_setSpread}, 
     {"setRelativeDirection", _wrap_SmartParticleSystem_setRelativeDirection}, 
     {"setSpeed", _wrap_SmartParticleSystem_setSpeed}, 
     {"setGravity", _wrap_SmartParticleSystem_setGravity}, 
@@ -7460,8 +7344,8 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__m
     {"setTangentialAcceleration", _wrap_SmartParticleSystem_setTangentialAcceleration}, 
     {"setSize", _wrap_SmartParticleSystem_setSize}, 
     {"setSizeVariation", _wrap_SmartParticleSystem_setSizeVariation}, 
-    {"setRotation", _wrap_SmartParticleSystem_setRotation}, 
-    {"setRotationVariation", _wrap_SmartParticleSystem_setRotationVariation}, 
+    {"setSpin", _wrap_SmartParticleSystem_setSpin}, 
+    {"setSpinVariation", _wrap_SmartParticleSystem_setSpinVariation}, 
     {"setColor", _wrap_SmartParticleSystem_setColor}, 
     {"getDirection", _wrap_SmartParticleSystem_getDirection}, 
     {"count", _wrap_SmartParticleSystem_count}, 

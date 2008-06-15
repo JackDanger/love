@@ -9,6 +9,7 @@
 #define LOVE_OPENGL_PARTICLE_SYSTEM_H
 
 // LOVE
+#include <love/math.h>
 #include <love/constants.h>
 
 // Module
@@ -26,10 +27,10 @@ namespace love_opengl
 		float lifetime;
 		float life;
 
-		float position[2];
+		love::Vector position;
 		float direction;
 
-		float speed[2]; // speed "vector"
+		love::Vector speed;
 		float gravity;
 		float radialAcceleration;
 		float tangentialAcceleration;
@@ -39,8 +40,8 @@ namespace love_opengl
 		float sizeEnd;
 
 		float rotation;
-		float rotationStart;
-		float rotationEnd;
+		float spinStart;
+		float spinEnd;
 
 		float color[4];
 		
@@ -52,7 +53,7 @@ namespace love_opengl
 	* A class for creating, moving and drawing particles.
 	* A big thanks to bobthebloke.org
 	*
-	* TODO: Use sprites and perhaps add size and rotation.
+	* TODO: Use sprites and perhaps add size and spin.
 	*
 	* @author Michael Enger
 	* @date 2008-04-18
@@ -86,7 +87,7 @@ namespace love_opengl
 		float emitCounter;
 
 		// The relative position of the particle emitter.
-		float position[2];
+		love::Vector position;
 
 		// The lifetime of the particle emitter (-1 means infinite) and the life it has left.
 		float lifetime;
@@ -124,10 +125,10 @@ namespace love_opengl
 		float sizeEnd;
 		float sizeVariation;
 
-		// Rotation.
-		float rotationStart;
-		float rotationEnd;
-		float rotationVariation;
+		// Spin.
+		float spinStart;
+		float spinEnd;
+		float spinVariation;
 
 		// Color.
 		pColor colorStart;
@@ -189,10 +190,15 @@ namespace love_opengl
 
 		/**
 		* Sets the direction and the spread of the particle emitter.
-		* @param direction The direction (in radians).
-		* @param spread The spread (in radians).
+		* @param direction The direction (in degrees).
 		**/
-		void setDirection(float direction, float spread = 0);
+		void setDirection(float direction);
+
+		/**
+		* Sets the spread of the particle emitter.
+		* @param spread The spread (in degrees).
+		**/
+		void setSpread(float spread);
 
 		/**
 		* Sets whether the direction should be relative to the particle emitters movement. Used in conjunction with setPosition.
@@ -256,31 +262,31 @@ namespace love_opengl
 		void setSizeVariation(float variation);
 
 		/**
-		* Sets the rotation of the sprite.
-		* @param rotation The rotation of the sprite (in radians).
+		* Sets the spin of the sprite.
+		* @param spin The spin of the sprite (in degrees).
 		**/
-		void setRotation(float rotation);
+		void setSpin(float spin);
 
 		/**
-		* Sets the rotation of the sprite upon particle creation and death.
-		* @param start The rotation of the sprite upon creation (in radians).
-		* @param end The rotation of the sprite upon death (in radians).
+		* Sets the spin of the sprite upon particle creation and death.
+		* @param start The spin of the sprite upon creation (in degrees).
+		* @param end The spin of the sprite upon death (in degrees).
 		**/
-		void setRotation(float start, float end);
+		void setSpin(float start, float end);
 
 		/**
-		* Sets the rotation of the sprite upon particle creation and death and the variation.
-		* @param start The rotation of the sprite upon creation (in radians).
-		* @param end The rotation of the sprite upon death (in radians).
-		* @param variation The variation of the start rotation (0 being no variation and 1 beign a random rotation between start and end).
+		* Sets the spin of the sprite upon particle creation and death and the variation.
+		* @param start The spin of the sprite upon creation (in degrees).
+		* @param end The spin of the sprite upon death (in degrees).
+		* @param variation The variation of the start spin (0 being no variation and 1 beign a random spin between start and end).
 		**/
-		void setRotation(float start, float end, float variation);
+		void setSpin(float start, float end, float variation);
 
 		/**
-		* Sets the variation of the start rotation (0 being no variation and 1 beign a random rotation between start and end).
-		* @param variation The variation.
+		* Sets the variation of the start spin (0 being no variation and 1 beign a random spin between start and end).
+		* @param variation The variation in degrees.
 		**/
-		void setRotationVariation(float variation);
+		void setSpinVariation(float variation);
 
 		/**
 		* Sets the color of the particles.

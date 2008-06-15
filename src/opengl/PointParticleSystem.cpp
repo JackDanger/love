@@ -43,7 +43,8 @@ namespace love_opengl
 		}
 		**/
 
-		glVertexPointer(2, GL_FLOAT, sizeof(particle), pStart->position);
+		// @todo Test this.
+		glVertexPointer(2, GL_FLOAT, sizeof(particle), &pStart->position.x);
 		glColorPointer(4, GL_FLOAT, sizeof(particle), pStart->color);
 	
 		// Enable vertex arrays (for great justice, etc).

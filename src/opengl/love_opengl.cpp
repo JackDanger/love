@@ -15,7 +15,7 @@
 #include <SDL_opengl.h>
 
 // DevIL
-#include <IL/ilu.h>
+#include <IL/il.h>
 
 // Math
 #include <math.h>
