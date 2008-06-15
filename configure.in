@@ -5,7 +5,6 @@ AM_INIT_AUTOMAKE([-Wall foreign])
 AC_PROG_LIBTOOL
 AC_PROG_CC
 AC_PROG_CXX
-AC_PROG_RANLIB
 AC_SEARCH_LIBS([sqrt], [m], [], AC_MSG_ERROR([Lua needs C math library]))
 AC_SEARCH_LIBS(
 	[lua_pcall],
