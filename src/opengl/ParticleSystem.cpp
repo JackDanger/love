@@ -20,8 +20,8 @@ namespace love_opengl
 															direction(0), spread(0), relative(false), speedMin(0), speedMax(0), gravityMin(0),
 															gravityMax(0), radialAccelerationMin(0), radialAccelerationMax(0),
 															tangentialAccelerationMin(0), tangentialAccelerationMax(0),
-															sizeStart(1), sizeEnd(1), sizeVariation(0), spinStart(0),
-															spinEnd(0), spinVariation(0)
+															sizeStart(1), sizeEnd(1), sizeVariation(0), rotationMin(0), rotationMax(0),
+															spinStart(0), spinEnd(0), spinVariation(0)
 	{
 		this->sprite = sprite;
 		colorStart.reset(new Color(255,255,255,255));
@@ -77,9 +77,11 @@ namespace love_opengl
 		pLast->sizeEnd = calculate_variation(sizeEnd, sizeStart, sizeVariation);
 		pLast->size = pLast->sizeStart;
 
+		min = rotationMin;
+		max = rotationMax;
 		pLast->spinStart = calculate_variation(spinStart, spinEnd, spinVariation);
 		pLast->spinEnd = calculate_variation(spinEnd, spinStart, spinVariation);
-		pLast->rotation = 0;
+		pLast->rotation = (rand() / (float(RAND_MAX)+1)) * (max - min) + min;;
 
 		pLast->color[0] = (float)colorStart->getRed() / 255;
 		pLast->color[1] = (float)colorStart->getGreen() / 255;
@@ -135,18 +137,18 @@ namespace love_opengl
 	{
 		//if(relative)
 			//direction = atan2(y, x) - atan2(position[1], position[0]);
-		//	direction = atan2(y - position[1], x - position[0]) - (3.14159265/2);
+			//direction = atan2(y - position[1], x - position[0]) - (3.14159265/2);
 		position = love::Vector(x, y);
 	}
 
 	void ParticleSystem::setDirection(float direction)
 	{
-		this->direction = direction*(float)M_TORAD;
+		this->direction = direction * M_TORAD;
 	}
 
 	void ParticleSystem::setSpread(float spread)
 	{
-		this->spread = spread*(float)M_TORAD;
+		this->spread = spread * M_TORAD;
 	}
 
 	void ParticleSystem::setRelativeDirection(bool relative)
@@ -154,40 +156,48 @@ namespace love_opengl
 		this->relative = relative;
 	}
 
+	void ParticleSystem::setSpeed(float speed)
+	{
+		speedMin = speedMax = speed;
+	}
+
 	void ParticleSystem::setSpeed(float min, float max)
 	{
 		speedMin = min;
-		if(max == 0)
-			speedMax = min;
-		else
-			speedMax = max;
+		speedMax = max;
+	}
+
+	void ParticleSystem::setGravity(float gravity)
+	{
+		gravityMin = gravityMax = gravity;
 	}
 
 	void ParticleSystem::setGravity(float min, float max)
 	{
 		gravityMin = min;
-		if(max == 0)
-			gravityMax = min;
-		else
-			gravityMax = max;
+		gravityMax = max;
+	}
+
+	void ParticleSystem::setRadialAcceleration(float acceleration)
+	{
+		radialAccelerationMin = radialAccelerationMax = acceleration;
 	}
 
 	void ParticleSystem::setRadialAcceleration(float min, float max)
 	{
 		radialAccelerationMin = min;
-		if(max == 0)
-			radialAccelerationMax = min;
-		else
-			radialAccelerationMax = max;
+		radialAccelerationMax = max;
+	}
+
+	void ParticleSystem::setTangentialAcceleration(float acceleration)
+	{
+		tangentialAccelerationMin = tangentialAccelerationMax = acceleration;
 	}
 
 	void ParticleSystem::setTangentialAcceleration(float min, float max)
 	{
 		tangentialAccelerationMin = min;
-		if(max == 0)
-			tangentialAccelerationMax = min;
-		else
-			tangentialAccelerationMax = max;
+		tangentialAccelerationMax = max;
 	}
 
 	void ParticleSystem::setSize(float size)
@@ -214,28 +224,39 @@ namespace love_opengl
 		sizeVariation = variation;
 	}
 
+	void ParticleSystem::setRotation(float rotation)
+	{
+		rotationMin = rotationMax = rotation;
+	}
+
+	void ParticleSystem::setRotation(float min, float max)
+	{
+		rotationMin = min;
+		rotationMax = max;
+	}
+
 	void ParticleSystem::setSpin(float spin)
 	{
-		spinStart = spin*(float)M_TORAD;
-		spinEnd = spin*(float)M_TORAD;
+		spinStart = spin * M_TORAD;
+		spinEnd = spin * M_TORAD;
 	}
 
 	void ParticleSystem::setSpin(float start, float end)
 	{
-		spinStart = start*(float)M_TORAD;
-		spinEnd = end*(float)M_TORAD;
+		spinStart = start * M_TORAD;
+		spinEnd = end * M_TORAD;
 	}
 
 	void ParticleSystem::setSpin(float start, float end, float variation)
 	{
-		spinStart = start*(float)M_TORAD;
-		spinEnd = end*(float)M_TORAD;
-		spinVariation = variation*(float)M_TORAD;
+		spinStart = start * M_TORAD;
+		spinEnd = end * M_TORAD;
+		spinVariation = variation * M_TORAD;
 	}
 
 	void ParticleSystem::setSpinVariation(float variation)
 	{
-		spinVariation = variation*(float)M_TORAD;
+		spinVariation = variation * M_TORAD;
 	}
 
 	void ParticleSystem::setColor(pColor color)
@@ -250,9 +271,24 @@ namespace love_opengl
 		colorEnd = end;
 	}
 
-	float ParticleSystem::getDirection()
+	float ParticleSystem::getX() const
 	{
-		return direction;
+		return position.getX();
+	}
+
+	float ParticleSystem::getY() const
+	{
+		return position.getY();
+	}
+
+	float ParticleSystem::getDirection() const
+	{
+		return direction * M_TODEG;
+	}
+
+	float ParticleSystem::getSpread() const
+	{
+		return spread * M_TODEG;
 	}
 
 	int ParticleSystem::count() const

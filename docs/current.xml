@@ -1683,6 +1683,11 @@
       <method name="setBufferSize" brief="Sets the size of the buffer (the max allowed amount of particles in the system).">
         <param name="size">The buffer size.</param>
       </method>
+	  
+	  <method name="setSprite" brief="Sets the image which is to be emitted.">
+        <param name="sprite">The image.</param>
+		<see name="Image" />
+      </method>
 
       <separator />
 
@@ -1690,7 +1695,7 @@
         <param name="rate">The amount of particles per second.</param>
       </method>
 
-      <method name="setLifetime" brief="Sets how long the particle system should emitt particles (if -1 then it emitts particles forever).">
+      <method name="setLifetime" brief="Sets how long the particle system should emit particles (if -1 then it emits particles forever).">
         <param name="life">The lifetime of the emitter (in seconds).</param>
       </method>
 
@@ -1704,14 +1709,21 @@
         <param name="min">The minumum life of the particles (in seconds).</param>
         <param name="max">The maximum life of the particles (in seconds).</param>
       </method>
+	  
+	  <separator />
+	  
+	  <medhod name="setPosition" brief="Sets the position of the emitter.">
+	    <param name="x">The x-coordinate.</param>
+		<param name="y">The y-coordinate.</param>
+	  </method>
 
-      <method name="setDirection" brief="Sets the direction the particles will be emitted in.">
-        <param name="direction">The direction of the particles (in radians).</param>
+      <method name="setDirection" brief="Sets the direction the particles will be emitted in (in degrees).">
+        <param name="direction">The direction of the particles (in degrees).</param>
       </method>
 
-      <method name="setDirection" brief="Sets the direction the particles will be emitted in.">
-        <param name="direction">The direction of the particles (in radians).</param>
-        <param name="spread">The amount of spread (a spread of 0.5 would emitt particles in a range of direction-0.5 to direction+0.5)</param>
+      <method name="setDirection" brief="Sets the direction the particles will be emitted in (in degrees).">
+        <param name="direction">The direction of the particles (in degrees).</param>
+        <param name="spread">The amount of spread.</param>
       </method>
 
       <separator />
@@ -1775,26 +1787,37 @@
 
       <separator />
 
-      <method name="setRotation" brief="Sets the rotation of the image.">
-        <param name="rotation">The rotation of the image (in radians).</param>
+      <method name="setRotation" brief="Sets the rotation of the image upon particle creation (in degrees).">
+        <param name="rotation">The rotation of the image (in degrees).</param>
       </method>
 
-      <method name="setRotation" brief="Sets the rotation of the image upon particle creation and death.">
-        <param name="start">The rotation of the image upon creation.</param>
-        <param name="end">The rotation of the image upon death.</param>
-      </method>
-
-      <method name="setRotation" brief="Sets the rotation of the image upon particle creation and death and the degree of variation.">
-        <param name="start">The rotation of the image upon creation.</param>
-        <param name="end">The rotation of the image upon death.</param>
-        <param name="variation">The degree of variation (0 meaning no variation and 1 meaning full variation between start and end).</param>
-      </method>
-
-      <method name="setRotationVariation" brief="Sets the degree of variation (0 meaning no variation and 1 meaning full variation between start and end).">
-        <param name="variation">The degree of variation.</param>
+      <method name="setRotation" brief="Sets the range of rotation upon particle creation (in degrees).">
+        <param name="min">The minimum amount of rotation.</param>
+        <param name="max">The maximum amount of rotation.</param>
       </method>
 
       <separator />
+	  
+	  <method name="setSpin" brief="Sets the spin of the sprite.">
+        <param name="size">The amount of spin.</param>
+      </method>
+
+      <method name="setSpin" brief="Sets the spin of the sprite upon particle creation and death.">
+        <param name="start">The amount of spin upon creation.</param>
+        <param name="end">The amount of spin upon death.</param>
+      </method>
+
+      <method name="setSpin" brief="Sets the spin of the sprite upon particle creation and death and the degree of variation.">
+        <param name="start">The amount of spin upon creation.</param>
+        <param name="end">The amount of spin upon death.</param>
+        <param name="variation">The degree of variation (0 meaning no variation and 1 meaning full variation between start and end).</param>
+      </method>
+
+      <method name="setSpinVariation" brief="Sets the degree of variation (0 meaning no variation and 1 meaning full variation between start and end).">
+        <param name="variation">The degree of variation.</param>
+      </method>
+	  
+	  <separator />
 
       <method name="setColor" brief="Sets the color of the image (color modulation needs to be activated for it to have any effect).">
         <param name="color">A Color object.</param>
@@ -1808,6 +1831,24 @@
       </method>
 
       <separator />
+	  
+	  <method name="getX" brief="Gets the x-coordinate of the particle emitter's position.">
+	    <returns type="number">The x-coordinate.</returns>
+	  </mehod>
+	  
+	  <method name="getY" brief="Gets the y-coordinate of the particle emitter's position.">
+	    <returns type="number">The y-coordinate.</returns>
+	  </mehod>
+	  
+	  <method name="getDirection" brief="Gets the direction of the particle emitter (in degrees).">
+	    <returns type="number">The direction.</returns>
+	  </mehod>
+	  
+	  <method name="getSpread" brief="Gets the amount of directional spread of the particle emitter (in degrees).">
+	    <returns type="number">The amount of spread.</returns>
+	  </mehod>
+	  
+	  <separator />
 
       <method name="count" brief="Gets the amount of particles that are currently in the system.">
         <returns type="number">The amount of particles.</returns>

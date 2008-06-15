@@ -125,6 +125,10 @@ namespace love_opengl
 		float sizeEnd;
 		float sizeVariation;
 
+		// Rotation
+		float rotationMin;
+		float rotationMax;
+
 		// Spin.
 		float spinStart;
 		float spinEnd;
@@ -208,31 +212,55 @@ namespace love_opengl
 
 		/**
 		* Sets the speed of the particles.
-		* @param min The minimum speed.
-		* @param max The maximum speed (if 0 uses minimum speed)
+		* @param speed The speed.
 		**/
-		void setSpeed(float min, float max = 0);
+		void setSpeed(float speed);
+
+		/**
+		* Sets the speed of the particles.
+		* @param min The minimum speed.
+		* @param max The maximum speed.
+		**/
+		void setSpeed(float min, float max);
+
+		/**
+		* Sets the gravity of the particles (the acceleration along the y-axis).
+		* @param gravity The amount of gravity.
+		**/
+		void setGravity(float gravity);
 
 		/**
 		* Sets the gravity of the particles (the acceleration along the y-axis).
 		* @param min The minimum gravity.
-		* @param max The maximum gravity (if 0 uses minimum gravity)
+		* @param max The maximum gravity.
 		**/
-		void setGravity(float min, float max = 0);
+		void setGravity(float min, float max);
+
+		/**
+		* Sets the radial acceleration (the acceleration towards the particle emitter).
+		* @param acceleration The amount of acceleration.
+		**/
+		void setRadialAcceleration(float acceleration);
 
 		/**
 		* Sets the radial acceleration (the acceleration towards the particle emitter).
 		* @param min The minimum acceleration.
-		* @param max The maximum acceleration (if 0 uses minimum acceleration)
+		* @param max The maximum acceleration.
 		**/
-		void setRadialAcceleration(float min, float max = 0);
+		void setRadialAcceleration(float min, float max);
+
+		/**
+		* Sets the tangential acceleration (the acceleration perpendicular to the particle's direction).
+		* @param acceleration The amount of acceleration.
+		**/
+		void setTangentialAcceleration(float acceleration);
 
 		/**
 		* Sets the tangential acceleration (the acceleration perpendicular to the particle's direction).
 		* @param min The minimum acceleration.
-		* @param max The maximum acceleration (if 0 uses minimum acceleration)
+		* @param max The maximum acceleration.
 		**/
-		void setTangentialAcceleration(float min, float max = 0);
+		void setTangentialAcceleration(float min, float max);
 
 		/**
 		* Sets the size of the sprite (1.0 being the default size).
@@ -260,6 +288,19 @@ namespace love_opengl
 		* @param variation The amount of variation.
 		**/
 		void setSizeVariation(float variation);
+
+		/**
+		* Sets the amount of rotation a sprite starts out with.
+		* @param rotation The amount of rotation.
+		**/
+		void setRotation(float rotation);
+
+		/**
+		* Sets the amount of rotation a sprite starts out with (a random value between min and max).
+		* @param min The minimum amount of rotation.
+		* @param max The maximum amount of rotation.
+		**/
+		void setRotation(float min, float max);
 
 		/**
 		* Sets the spin of the sprite.
@@ -301,7 +342,25 @@ namespace love_opengl
 		**/
 		void setColor(pColor start, pColor end);
 
-		float getDirection();
+		/**
+		* Returns the x-coordinate of the emitter's position.
+		**/
+		float getX() const;
+
+		/**
+		* Returns the y-coordinate of the emitter's position.
+		**/
+		float getY() const;
+
+		/**
+		* Returns the direction of the emitter (in degrees).
+		**/
+		float getDirection() const;
+
+		/**
+		* Returns the directional spread of the emitter (in degrees).
+		**/
+		float getSpread() const;
 
 		/**
 		* Returns the amount of particles that are currently active in the system.

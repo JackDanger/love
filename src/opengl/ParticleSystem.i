@@ -10,23 +10,32 @@ namespace love_opengl
 		void setSprite(pImage sprite);
 		
 		void setEmissionRate(int rate);
-		void setLifetime(float life);
-		
+		void setLifetime(float life);		
 		void setParticleLife(float min, float max = 0);
+		
 		void setPosition(float x, float y);
 		void setDirection(float direction);
 		void setSpread(float spread);
-		void setRelativeDirection(bool relative);
 		
-		void setSpeed(float min, float max = 0);
-		void setGravity(float min, float max = 0);
-		void setRadialAcceleration(float min, float max = 0);
-		void setTangentialAcceleration(float min, float max = 0);
+		void setSpeed(float speed);
+		void setSpeed(float min, float max);
+		
+		void setGravity(float gravity);
+		void setGravity(float min, float max);
+		
+		void setRadialAcceleration(float acceleration);
+		void setRadialAcceleration(float min, float max);
+		
+		void setTangentialAcceleration(float acceleration);
+		void setTangentialAcceleration(float min, float max);
 		
 		void setSize(float size);
 		void setSize(float start, float end);
 		void setSize(float start, float end, float variation);
 		void setSizeVariation(float variation);
+		
+		void setRotation(float rotation);
+		void setRotation(float min, float max);
 		
 		void setSpin(float spin);
 		void setSpin(float start, float end);
@@ -36,7 +45,10 @@ namespace love_opengl
 		void setColor(pColor color);
 		void setColor(pColor start, pColor end);
 		
-		float getDirection();
+		float getX() const;
+		float getY() const;
+		float getDirection() const;
+		float getSpread() const;
 		
 		int count() const;
 		
