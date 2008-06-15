@@ -27,7 +27,7 @@ namespace love_opengl
 		float lifetime;
 		float life;
 
-		love::Vector position;
+		float position[2];
 		float direction;
 
 		love::Vector speed;

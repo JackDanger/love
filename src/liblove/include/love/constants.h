@@ -20,6 +20,12 @@ namespace love
 		DEFAULT_VERMIN
 	};
 
+	// Features.
+	enum
+	{
+		POINT_SPRITE
+	};
+
 	// Message tags.
 	enum
 	{

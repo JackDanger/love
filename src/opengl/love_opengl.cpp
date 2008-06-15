@@ -108,6 +108,18 @@ namespace love_opengl
 		return (f < 0) ? -f : f;
 	}
 
+	bool feature(int f)
+	{
+		switch(f)
+		{
+		case love::POINT_SPRITE:
+			return (GLEE_ARB_point_sprite == GL_TRUE);
+			break;
+		}
+
+		return false;
+	}
+
 	bool checkMode(int width, int height, bool fullscreen)
 	{
 		Uint32 sdlflags = fullscreen ? (SDL_OPENGL | SDL_FULLSCREEN) : SDL_OPENGL;
@@ -526,18 +538,23 @@ namespace love_opengl
 		return anim;
 	}
 
-	pParticleSystem newParticleSystem(pImage sprite, unsigned int size, bool awesome)
-	{
-		// Create the particle system.
-		pParticleSystem part(new PointParticleSystem(sprite, size));
-		return part;	
-	}
-
 	pParticleSystem newParticleSystem(pImage sprite, unsigned int size)
 	{
 		// Create the particle system.
 		pParticleSystem part(new ParticleSystem(sprite, size));
 		return part;
+	}
+
+	pParticleSystem newParticleSystem(pImage sprite, unsigned int size, int mode)
+	{
+		if(feature(mode))
+		{
+			// Create the particle system.
+			pParticleSystem part(new PointParticleSystem(sprite, size));
+			return part;	
+		}
+		
+		return newParticleSystem(sprite, size);
 	}
 
 	void setCaption(const char * caption)

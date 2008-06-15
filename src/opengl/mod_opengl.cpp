@@ -5462,13 +5462,13 @@ static int _wrap_ParticleSystem_getX(lua_State* L) {
   float result;
   
   SWIG_check_num_args("getX",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getX",1,"love_opengl::ParticleSystem *");
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getX",1,"love_opengl::ParticleSystem const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
     SWIG_fail_ptr("ParticleSystem_getX",1,SWIGTYPE_p_love_opengl__ParticleSystem);
   }
   
-  result = (float)(arg1)->getX();
+  result = (float)((love_opengl::ParticleSystem const *)arg1)->getX();
   SWIG_arg=0;
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
@@ -5487,13 +5487,13 @@ static int _wrap_ParticleSystem_getY(lua_State* L) {
   float result;
   
   SWIG_check_num_args("getY",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getY",1,"love_opengl::ParticleSystem *");
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getY",1,"love_opengl::ParticleSystem const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
     SWIG_fail_ptr("ParticleSystem_getY",1,SWIGTYPE_p_love_opengl__ParticleSystem);
   }
   
-  result = (float)(arg1)->getY();
+  result = (float)((love_opengl::ParticleSystem const *)arg1)->getY();
   SWIG_arg=0;
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
@@ -5512,13 +5512,13 @@ static int _wrap_ParticleSystem_getDirection(lua_State* L) {
   float result;
   
   SWIG_check_num_args("getDirection",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getDirection",1,"love_opengl::ParticleSystem *");
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getDirection",1,"love_opengl::ParticleSystem const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
     SWIG_fail_ptr("ParticleSystem_getDirection",1,SWIGTYPE_p_love_opengl__ParticleSystem);
   }
   
-  result = (float)(arg1)->getDirection();
+  result = (float)((love_opengl::ParticleSystem const *)arg1)->getDirection();
   SWIG_arg=0;
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
@@ -5537,13 +5537,13 @@ static int _wrap_ParticleSystem_getSpread(lua_State* L) {
   float result;
   
   SWIG_check_num_args("getSpread",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSpread",1,"love_opengl::ParticleSystem *");
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSpread",1,"love_opengl::ParticleSystem const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_opengl__ParticleSystem,0))){
     SWIG_fail_ptr("ParticleSystem_getSpread",1,SWIGTYPE_p_love_opengl__ParticleSystem);
   }
   
-  result = (float)(arg1)->getSpread();
+  result = (float)((love_opengl::ParticleSystem const *)arg1)->getSpread();
   SWIG_arg=0;
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
@@ -7331,7 +7331,7 @@ static int _wrap_SmartParticleSystem_getX(lua_State* L) {
   float result;
   
   SWIG_check_num_args("getX",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getX",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getX",1,"boost::shared_ptr< love_opengl::ParticleSystem > const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
     SWIG_fail_ptr("SmartParticleSystem_getX",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
@@ -7356,7 +7356,7 @@ static int _wrap_SmartParticleSystem_getY(lua_State* L) {
   float result;
   
   SWIG_check_num_args("getY",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getY",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getY",1,"boost::shared_ptr< love_opengl::ParticleSystem > const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
     SWIG_fail_ptr("SmartParticleSystem_getY",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
@@ -7381,7 +7381,7 @@ static int _wrap_SmartParticleSystem_getDirection(lua_State* L) {
   float result;
   
   SWIG_check_num_args("getDirection",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getDirection",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getDirection",1,"boost::shared_ptr< love_opengl::ParticleSystem > const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
     SWIG_fail_ptr("SmartParticleSystem_getDirection",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
@@ -7406,7 +7406,7 @@ static int _wrap_SmartParticleSystem_getSpread(lua_State* L) {
   float result;
   
   SWIG_check_num_args("getSpread",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSpread",1,"boost::shared_ptr< love_opengl::ParticleSystem > *");
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSpread",1,"boost::shared_ptr< love_opengl::ParticleSystem > const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
     SWIG_fail_ptr("SmartParticleSystem_getSpread",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t);
@@ -7693,6 +7693,27 @@ static swig_lua_attribute swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg
 static swig_lua_class *swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__bases[] = {0};
 static const char *swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__base_names[] = {0};
 static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg_ = { "SmartParticleSystem", &SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0, swig_delete_SmartParticleSystem, swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__methods, swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__attributes, swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__bases, swig_boost_shared_ptr_Sl_love_opengl_ParticleSystem_Sg__base_names };
+
+static int _wrap_feature(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  bool result;
+  
+  SWIG_check_num_args("love_opengl::feature",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::feature",1,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  result = (bool)love_opengl::feature(arg1);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
 
 static int _wrap_checkMode(lua_State* L) {
   int SWIG_arg = -1;
@@ -8602,14 +8623,14 @@ static int _wrap_newParticleSystem__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   love_opengl::pImage arg1 ;
   unsigned int arg2 ;
-  bool arg3 ;
+  int arg3 ;
   love_opengl::pParticleSystem result;
   love_opengl::pImage *argp1 ;
   
   SWIG_check_num_args("love_opengl::newParticleSystem",3,3)
   if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_opengl::newParticleSystem",1,"love_opengl::pImage");
   if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::newParticleSystem",2,"unsigned int");
-  if(!lua_isboolean(L,3)) SWIG_fail_arg("love_opengl::newParticleSystem",3,"bool");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_opengl::newParticleSystem",3,"int");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t,0))){
     SWIG_fail_ptr("newParticleSystem",1,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t);
@@ -8617,7 +8638,7 @@ static int _wrap_newParticleSystem__SWIG_1(lua_State* L) {
   arg1 = *argp1;
   
   arg2 = (unsigned int)lua_tonumber(L, 2);
-  arg3 = (lua_toboolean(L, 3)!=0);
+  arg3 = (int)lua_tonumber(L, 3);
   result = love_opengl::newParticleSystem(arg1,arg2,arg3);
   SWIG_arg=0;
   {
@@ -8676,7 +8697,7 @@ static int _wrap_newParticleSystem(lua_State* L) {
       }
       if (_v) {
         {
-          _v = lua_isboolean(L,argv[2]);
+          _v = lua_isnumber(L,argv[2]);
         }
         if (_v) {
           return _wrap_newParticleSystem__SWIG_1(L);
@@ -11000,6 +11021,7 @@ static int _wrap_circle(lua_State* L) {
 #endif
 
 static const struct luaL_reg swig_commands[] = {
+    { "feature", _wrap_feature},
     { "checkMode", _wrap_checkMode},
     { "setMode", _wrap_setMode},
     { "toggleFullscreen", _wrap_toggleFullscreen},

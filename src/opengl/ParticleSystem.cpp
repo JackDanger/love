@@ -22,7 +22,7 @@ namespace love_opengl
 															tangentialAccelerationMin(0), tangentialAccelerationMax(0),
 															sizeStart(1), sizeEnd(1), sizeVariation(0), rotationMin(0), rotationMax(0),
 															spinStart(0), spinEnd(0), spinVariation(0)
-	{
+	{	
 		this->sprite = sprite;
 		colorStart.reset(new Color(255,255,255,255));
 		colorEnd.reset(new Color(255,255,255,255));
@@ -49,7 +49,8 @@ namespace love_opengl
 			pLast->life = (rand() / (float(RAND_MAX)+1)) * (max - min) + min;
 		pLast->lifetime = pLast->life;
 
-		pLast->position = position;
+		pLast->position[0] = position.getX();
+		pLast->position[1] = position.getY();
 
 		min = direction - spread/2.0f;
 		max = direction + spread/2.0f;
@@ -135,9 +136,6 @@ namespace love_opengl
 
 	void ParticleSystem::setPosition(float x, float y)
 	{
-		//if(relative)
-			//direction = atan2(y, x) - atan2(position[1], position[0]);
-			//direction = atan2(y - position[1], x - position[0]) - (3.14159265/2);
 		position = love::Vector(x, y);
 	}
 
@@ -350,7 +348,7 @@ namespace love_opengl
 			glPushMatrix();
 
 			glColor4f(p->color[0],p->color[1],p->color[2],p->color[3]);
-			glTranslatef(p->position.getX(),p->position.getY(),0.0f);
+			glTranslatef(p->position[0],p->position[1],0.0f);
 			glRotatef(p->rotation * 57.29578f, 0.0f, 0.0f, 1.0f); // rad * (180 / pi)
 			glScalef(p->size,p->size,1.0f);
 			sprite->draw(0,0);
@@ -397,9 +395,10 @@ namespace love_opengl
 
 				// Temp variables.
 				love::Vector radial, tangential, gravity(0, p->gravity);
+				love::Vector ppos(p->position[0], p->position[1]);
 
 				// Get vector from particle center to particle.
-				radial = p->position - position;
+				radial = ppos - position;
 				radial.normalize();
 				tangential = radial;
 
@@ -420,7 +419,10 @@ namespace love_opengl
 				p->speed += (radial+tangential+gravity)*dt;
 
 				// Modify position.
-				p->position += p->speed * dt;
+				ppos += p->speed * dt;
+
+				p->position[0] = ppos.getX();
+				p->position[1] = ppos.getY();
 
 				const float t = p->life / p->lifetime;
 

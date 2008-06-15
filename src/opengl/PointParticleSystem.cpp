@@ -25,26 +25,9 @@ namespace love_opengl
 
 		glTranslatef(x,y,0.0f);
 		glPointSize( 100 );
-		
-		/**
-		particle * p = pStart;
-		while(p != pLast)
-		{
-			glPushMatrix();
-
-			glColor4f(p->color[0],p->color[1],p->color[2],p->color[3]);
-			glTranslatef(p->position[0],p->position[1],0.0f);
-			glRotatef(p->rotation * 57.29578f, 0.0f, 0.0f, 1.0f); // rad * (180 / pi)
-			glScalef(p->size,p->size,1.0f);
-			sprite->draw(0,0);
-
-			glPopMatrix();
-			p++;
-		}
-		**/
 
 		// @todo Test this.
-		glVertexPointer(2, GL_FLOAT, sizeof(particle), &pStart->position.x);
+		glVertexPointer(2, GL_FLOAT, sizeof(particle), pStart->position);
 		glColorPointer(4, GL_FLOAT, sizeof(particle), pStart->color);
 	
 		// Enable vertex arrays (for great justice, etc).

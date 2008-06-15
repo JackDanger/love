@@ -263,7 +263,7 @@
           -- Frame size: 32x32
           -- Number of frames: all (0)
           -- Delay between each frame: 0.1 seconds.
-          animation = love.graphics.newImage(src, 32, 32, 0.1, 0)
+          animation = love.graphics.newAnimation(src, 32, 32, 0.1, 0)
 
         </example>
       </function>
@@ -1712,7 +1712,7 @@
 	  
 	  <separator />
 	  
-	  <medhod name="setPosition" brief="Sets the position of the emitter.">
+	  <method name="setPosition" brief="Sets the position of the emitter.">
 	    <param name="x">The x-coordinate.</param>
 		<param name="y">The y-coordinate.</param>
 	  </method>
@@ -1834,19 +1834,19 @@
 	  
 	  <method name="getX" brief="Gets the x-coordinate of the particle emitter's position.">
 	    <returns type="number">The x-coordinate.</returns>
-	  </mehod>
+	  </method>
 	  
 	  <method name="getY" brief="Gets the y-coordinate of the particle emitter's position.">
 	    <returns type="number">The y-coordinate.</returns>
-	  </mehod>
+	  </method>
 	  
 	  <method name="getDirection" brief="Gets the direction of the particle emitter (in degrees).">
 	    <returns type="number">The direction.</returns>
-	  </mehod>
+	  </method>
 	  
 	  <method name="getSpread" brief="Gets the amount of directional spread of the particle emitter (in degrees).">
 	    <returns type="number">The amount of spread.</returns>
-	  </mehod>
+	  </method>
 	  
 	  <separator />
 

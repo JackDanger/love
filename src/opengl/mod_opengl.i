@@ -28,6 +28,8 @@ namespace boost {
 namespace love_opengl
 {
 
+	bool feature(int f);
+
 	// Display mode control.
 	bool checkMode(int width, int height, bool fullscreen);
 	bool setMode(int width, int height, bool fullscreen, bool vsync, int fsaa);
@@ -47,7 +49,7 @@ namespace love_opengl
 	pAnimation newAnimation(const char * filename, float fw, float fh, float delay, int num = 0);
 	
 	pParticleSystem newParticleSystem(pImage sprite, unsigned int size);
-	pParticleSystem newParticleSystem(pImage sprite, unsigned int size, bool awesome);
+	pParticleSystem newParticleSystem(pImage sprite, unsigned int size, int mode);
 	
 	void setCaption(const char * caption);
 	

@@ -112,6 +112,11 @@ namespace love_opengl
 	} // extern "C"
 
 	/**
+	* Checks if some feature is present.
+	**/
+	bool feature(int f);
+
+	/**
 	* This native Lua function gets available modes
 	* from SDL and returns them as a table on the following format:
 	* 
@@ -192,12 +197,16 @@ namespace love_opengl
 	**/
 	pAnimation newAnimation(const char * filename, float fw, float fh, float delay, int num = 0);
 
-	pParticleSystem newParticleSystem(pImage sprite, unsigned int size, bool awesome);
-
 	/**
 	* Creates a ParticleSystem object with the specified buffer size and using the specified sprite.
 	**/
 	pParticleSystem newParticleSystem(pImage sprite, unsigned int size);
+
+	/**
+	* Creates a PointParticleSystem object with the specified buffer size and sprite.
+	* @param mode This should be love::POINT_SPRITE.
+	**/
+	pParticleSystem newParticleSystem(pImage sprite, unsigned int size, int mode);
 
 	/**
 	* Gets the width of the current display mode.
