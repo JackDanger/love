@@ -2,7 +2,7 @@ AC_INIT([love], [0.3.0])
 AC_CONFIG_SRCDIR([src/love.cpp])
 AC_CONFIG_AUX_DIR([platform/unix])
 AM_INIT_AUTOMAKE([-Wall foreign])
-LT_INIT
+AC_PROG_LIBTOOL
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_RANLIB
