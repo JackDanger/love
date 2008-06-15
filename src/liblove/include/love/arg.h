@@ -8,6 +8,7 @@
 #ifndef LOVE_ARG_H
 #define LOVE_ARG_H
 
+#include <cstring>
 #include <string>
 
 namespace love

@@ -28,15 +28,15 @@
 #	define LOVE_MOD_SYSTEM "love_system.dll"
 #else
 #	define LOVE_LINUX
-#	define LOVE_MOD_PATH "/usr/lib/love/"
-#	define LOVE_MOD_FILESYSTEM "./love_physfs.so"
-#	define LOVE_MOD_PHYSICS	"./love_chipmunk.so"
-#	define LOVE_MOD_GRAPHICS "./love_opengl.so"
-#	define LOVE_MOD_TIMER "./love_sdltimer.so"
-#	define LOVE_MOD_KEYBOARD "./love_sdlkeyboard.so"
-#	define LOVE_MOD_MOUSE "./love_sdlmouse.so"
-#	define LOVE_MOD_AUDIO "./love_sdlmixer.so"
-#	define LOVE_MOD_SYSTEM "./love_system.so"
+#	define LOVE_MOD_PATH "/usr/local/lib/love/"
+#	define LOVE_MOD_FILESYSTEM "./liblove_physfs.so"
+#	define LOVE_MOD_PHYSICS	"./liblove_chipmunk.so"
+#	define LOVE_MOD_GRAPHICS "./liblove_opengl.so"
+#	define LOVE_MOD_TIMER "./liblove_sdltimer.so"
+#	define LOVE_MOD_KEYBOARD "./liblove_sdlkeyboard.so"
+#	define LOVE_MOD_MOUSE "./liblove_sdlmouse.so"
+#	define LOVE_MOD_AUDIO "./liblove_sdlmixer.so"
+#	define LOVE_MOD_SYSTEM "./liblove_system.so"
 #endif
 
 // STD

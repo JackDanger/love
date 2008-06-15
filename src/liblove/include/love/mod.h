@@ -30,6 +30,7 @@ extern "C" {
 }
 
 // STD
+#include <cstring>
 #include <string>
 #include <sstream>
 #include <iostream>

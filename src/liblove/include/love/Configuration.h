@@ -12,6 +12,7 @@
 #include "Resource.h"
 
 // STD
+#include <cstdlib>
 #include <string>
 #include <vector>
 #include <fstream>

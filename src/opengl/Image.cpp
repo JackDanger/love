@@ -9,7 +9,7 @@ using std::string;
 #include <SDL_opengl.h>
 
 // DevIL
-#include <IL/ilut.h>
+#include <IL/ilu.h>
 
 namespace love_opengl
 {
