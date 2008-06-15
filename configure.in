@@ -16,7 +16,7 @@ AC_SEARCH_LIBS(
 )
 AC_SUBST([INCLUDE_LOVE], [-I../liblove/include])
 AC_SUBST([LIBLOVE], [../liblove/liblove.a])
-prefix='/usr/local'
+prefix='/usr'
 bindir='${prefix}/bin'
 libdir='${prefix}/lib/love'
 AC_CONFIG_FILES([

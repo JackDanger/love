@@ -28,7 +28,7 @@
 #	define LOVE_MOD_SYSTEM "love_system.dll"
 #else
 #	define LOVE_LINUX
-#	define LOVE_MOD_PATH "/usr/local/lib/love/"
+#	define LOVE_MOD_PATH "/usr/lib/love/"
 #	define LOVE_MOD_FILESYSTEM "./liblove_physfs.so"
 #	define LOVE_MOD_PHYSICS	"./liblove_chipmunk.so"
 #	define LOVE_MOD_GRAPHICS "./liblove_opengl.so"
