@@ -44,6 +44,11 @@ namespace love_physfs
 
 	// Pointer used for file reads.
 	char * buffer = 0;
+	
+	// Buffer used for getcwd in Linux.
+#ifndef WIN32
+	char cwdbuffer[MAXPATHLEN];
+#endif
 
 	// This directory will be set at the 
 	// first file write.
@@ -169,12 +174,11 @@ namespace love_physfs
 	const char * getBaseDirectory()
 	{
 #ifdef WIN32
-		char * buf = _getcwd(0, 0);
+		_getcwd(cwdbuffer, MAXPATHLEN);
 #else
-		char buf[MAXPATHLEN];
-		getcwd(buf, MAXPATHLEN);
+		getcwd(cwdbuffer, MAXPATHLEN);
 #endif
-		return buf;
+		return cwdbuffer;
 	}
 
 	bool setSaveDirectory( const std::string & game )

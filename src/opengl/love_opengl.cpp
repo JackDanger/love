@@ -31,14 +31,17 @@ namespace love_opengl
 	const SDL_VideoInfo * video;
 
 	// The current display mode.
-	struct
+	struct display_mode
 	{
 		int width, height; // The size of the screen.
 		int color_depth; // The color depth of the display mode.
 		bool fullscreen; // Fullscreen (true), or windowed (false).
 		bool vsync; // Vsync enabled (true), or disabled (false).
 		int fsaa; // 0 for no FSAA, otherwise 1, 2 or 4.
-	} current_mode ;
+	};
+	
+	// The one and only display_mode instance.
+	display_mode current_mode;
 
 	// The current set font. (Initially not set).
 	pFont current_font;
@@ -136,9 +139,9 @@ namespace love_opengl
 		// Temp variables that holds the saved
 		// graphics state if we are *changing* display mode.
 		pColor color, bg;
-		int blend_mode, color_mode;
-		float line_width;
-		bool line_smooth;
+		int blend_mode = 0, color_mode = 0;
+		float line_width = 1;
+		bool line_smooth = true;
 
 		// If screen is already created, then we're about to 
 		// change the display mode.

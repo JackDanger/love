@@ -4,8 +4,8 @@ OBJDIR = obj
 SRCDIR = src/opengl
 OBJ = $(OBJDIR)/Animation.o \
 $(OBJDIR)/Color.o \
-$(OBJDIR)/console.o \
 $(OBJDIR)/Font.o \
+$(OBJDIR)/GLee.o \
 $(OBJDIR)/Image.o \
 $(OBJDIR)/ImageFont.o \
 $(OBJDIR)/love_opengl.o \
@@ -29,6 +29,9 @@ $(TARGET): $(OBJ) $(BINDIR)/liblove.a
 
 $(OBJDIR)/mod_opengl.o: $(SRCDIR)/mod_opengl.cpp
 	$(CC) -fPIC -g0 -O3 $(INCLUDES) -c $< -o $@
+
+$(OBJDIR)/GLee.o: $(SRCDIR)/GLee.c
+	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@
