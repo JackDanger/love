@@ -13,6 +13,6 @@ clean-%: %.make
 	fi
 
 prep:
-	@mkdir -p obj &> /dev/null
+	@mkdir -p obj bin &> /dev/null
 
 clean: clean-liblove clean-love clean-love_chipmunk clean-love_opengl clean-love_physfs clean-love_sdlkeyboard clean-love_sdlmixer clean-love_sdlmouse clean-love_sdltimer clean-love_system

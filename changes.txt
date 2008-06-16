@@ -1,3 +1,20 @@
+LOVE 0.3.0
+----------
+
+  * Added ParticleSystem.
+  * Added visual error reporting. 
+  * Added love.system for game control needs.
+  * Added input grabbing.
+  * Added functions in love.graphics for display management.
+  * Added love.graphics.point().
+  * Added functions in love.graphics for getting current color, font, etc.
+  * Added love.filesystem.enumerate() for getting folder contents.
+  * Added functions for setting the window caption.
+  * Added version checking. An error occurs if the game is incompatible.
+  * Fixed print() :)
+  * Removed all keyboard shortcuts.
+  * Save folders are now created only if required.
+  * On Windows, the new save location is %APPDATA%\LOVE\game
 
 LOVE 0.2.1
 ----------
