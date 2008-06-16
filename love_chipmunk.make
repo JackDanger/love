@@ -42,7 +42,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 prep:
-	mkdir obj/chipmunk &> /dev/null
+	mkdir -p obj/chipmunk &> /dev/null
 
 clean:
 	rm -f $(OBJ)

@@ -117,7 +117,7 @@ int main(int argc, char* argv[])
 	{
 		timer_step = (fptr_void)core->getf(Module::TIMER, "step");
 		timer_getDelta = (fptr_float)core->getf(Module::TIMER, "getDelta");
-		graphics_clear = (fptr_void)core->getf(Module::GRAPHICS, "clear");
+		graphics_clear = (fptr_void)core->getf(Module::GRAPHICS, "clear_screen");
 		graphics_present = (fptr_void)core->getf(Module::GRAPHICS, "present");
 		system_getGame = (fptr_game)core->getf(Module::SYSTEM, "getGame");
 	}

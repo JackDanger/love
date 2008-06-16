@@ -300,7 +300,7 @@ namespace love_opengl
 		setLine(1, love::LINE_SMOOTH);
 	}
 
-	void clear()
+	void clear_screen()
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 		glLoadIdentity();

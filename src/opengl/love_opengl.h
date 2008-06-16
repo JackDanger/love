@@ -81,7 +81,7 @@ namespace love_opengl
 		/**
 		* Clears the screen.
 		**/
-		void DECLSPEC clear();
+		void DECLSPEC clear_screen();
 
 		/**
 		* Flips buffers. (Rendered geometry is 
