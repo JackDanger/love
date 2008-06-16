@@ -46,7 +46,9 @@ namespace love_physfs
 	char * buffer = 0;
 	
 	// Buffer used for getcwd in Linux.
-#ifndef WIN32
+#ifdef WIN32
+	char cwdbuffer[_MAX_PATH];
+#else
 	char cwdbuffer[MAXPATHLEN];
 #endif
 
@@ -174,7 +176,7 @@ namespace love_physfs
 	const char * getBaseDirectory()
 	{
 #ifdef WIN32
-		_getcwd(cwdbuffer, MAXPATHLEN);
+		_getcwd(cwdbuffer, _MAX_PATH);
 #else
 		getcwd(cwdbuffer, MAXPATHLEN);
 #endif
