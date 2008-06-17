@@ -36,7 +36,7 @@
 
 
     </page>
-    <page name="Licence">
+    <page name="License">
 
 
       [div class="subchapter"]
@@ -44,7 +44,7 @@
       [/div]
       [div class="text"]
 
-      LÖVE is licenced under the terms of the ZLIB licence. This is a short licence to begin with,
+      LÖVE is licensed under the terms of the ZLIB license. This is a short license to begin with,
       but for the lazy, here's a summary:
 
       [ul]
@@ -57,7 +57,7 @@
 
       [div class="subchapter"]
       [div class="title"]
-      ZLIB licence (full)
+      ZLIB license (full)
       [/div]
       [div class="text"]
 
@@ -91,10 +91,11 @@
       External libraries
       [/div]
       [div class="text"]
-      LOVE uses many libraries, such as SDL, DevIL and FreeType. These all have their own licences.
+      LOVE uses many libraries, such as SDL, DevIL and FreeType. These all have their own licenses.
       An overview is presented here.
 
       [ul]
+      [li]boost ([a href="http://www.boost.org/users/license.html"]BSL[/a])[/li]
       [li]SDL ([a href="http://www.opensource.org/licenses/lgpl-license.php"]LGPL[/a])[/li]
       [li]SDL_mixer ([a href="http://www.opensource.org/licenses/lgpl-license.php"]LGPL[/a])[/li]
       [li]DevIL ([a href="http://www.opensource.org/licenses/lgpl-license.php"]LGPL[/a])[/li]
@@ -119,9 +120,9 @@
       [div class="text"]
       LÖVE is created by:[br /]
       [ul]
-      [li]Anders Ruud[/li]
-      [li]Michael Enger[/li]
-      [li]Tommy Nguyen[/li]
+      [li]Anders Ruud - andruud at gmail dot com[/li]
+      [li]Michael Enger - mike at facemeandscream dot com[/li]
+      [li]Tommy Nguyen - tn0502 at hotmail dot com[/li]
       [/ul]
       [/div]
       [/div]
@@ -135,13 +136,14 @@
       LÖVE is built around these libraries, presented here in no particular order:
 
       [ul]
+      [li][a href="http://www.boost.org/"]boost[/a] - General purpose C++ libraries.[/li]
       [li][a href="http://libsdl.org/"]SDL[/a] - OS abstraction, mouse input, keyboard input.[/li]
       [li][a href="http://lua.org/"]Lua[/a] - Scripting.[/li]
       [li][a href="http://opengl.org/"]OpenGL[/a] - Hardware accelerated graphics.[/li]
       [li][a href="http://openil.sourceforge.net/"]DevIL[/a] - Image loading.[/li]
       [li][a href="http://www.freetype.org/"]FreeType 2[/a] - Font loading and rasterization.[/li]
       [li][a href="http://www.libsdl.org/projects/SDL_mixer/"]SDL_mixer[/a] - Sound loading/playing.[/li]
-      [li][a href="http://icculus.org/physfs/"]PhysicsFS[/a] - Generic file loading + support for archive files.[/li]
+      [li][a href="http://icculus.org/physfs/"]PhysicsFS[/a] - Filesystem management + support for archive files.[/li]
 
       [/ul]
 
@@ -150,6 +152,60 @@
       [/div]
       [/div]
       <!-- Subchapter end -->
+
+
+    </page>
+    <page name="Installing">
+
+      [div class="subchapter"]
+      [div class="title"]Binaries
+      [/div]
+      [div class="text"]
+      We currently maintain x86 binaries for:
+      [ul]
+      [li]Windows XP/Vista (zipped .exe and installer)[/li]
+      [li]Ubuntu 8.04 (.deb package. May work on other Debian-based OS.)[/li]
+      [/ul]
+
+      Using the binaries is highly recommended, if available on your system.[br /]
+      [br /]
+      Binaries and packages for other systems (MacOSX, RPM) are planned.
+      If you would like to maintain binaries for some system, please [a href="http://love.sourceforge.net/?page=contact"]contact us[/a].
+      [/div]
+      [/div]
+
+      [div class="subchapter"]
+      [div class="title"]
+      Source
+      [/div]
+      [div class="text"]
+
+      Compiling the source requires that these libraries are present on your system (as named in Ubuntu):
+
+      [ul]
+      [li]libboost-dev[/li]
+      [li]libsdl1.2-dev[/li]
+      [li]liblua5.1-dev[/li]
+      [li]libfreetype6-dev[/li]
+      [li]libdevil-dev[/li]
+      [li]libphysfs-dev[/li]
+      [li]libsdl-mixer1.2-dev[/li]
+      [/ul]
+
+      In Ubuntu, the following command will install the required packages.
+      [code]
+      sudo apt-get install build-essential libboost-dev libsdl1.2-dev liblua5.1-dev libfreetype6-dev libdevil-dev libphysfs-dev libsdl-mixer1.2-dev
+      [/code]
+      When the dependencies are installed, all you need to do is type:
+      [code]
+      make
+      [/code]
+
+      Binaries will appear in the bin folder.[br /]
+      [br /]
+      Note: An autoconf/automake setup is being created, and will probably be included in the next release.
+      [/div]
+      [/div]
 
 
     </page>
@@ -208,6 +264,7 @@
 
 
     </page>
+
 
   </section>
 
