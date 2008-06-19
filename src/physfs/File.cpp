@@ -34,11 +34,13 @@ namespace love_physfs
 		{
 			// @todo Set error.
 			PHYSFS_close(file);
+			file = 0;
 			return false;
 		}
 
 		// Close the file.
 		PHYSFS_close(file);
+		file = 0;
 
 		return true;
 	}
@@ -47,8 +49,17 @@ namespace love_physfs
 	{
 		if(data == 0)
 			return;
+			
+		// Delete the data.
 		delete[] data;
 		data = 0;
+		
+		// CLOSE the file, if it's open.
+		if(file != 0)
+		{
+			PHYSFS_close(file);
+			file = 0;
+		}
 	}
 
 	PHYSFS_file * File::getHandle()

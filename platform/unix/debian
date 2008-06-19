@@ -8,4 +8,4 @@ Depends: libdevil1c2, libfreetype6, libgl1-mesa-glx, liblua5.1-0, libphysfs-1.0-
 Installed-Size: %INSTALLSIZE%
 Maintainer: Tommy Nguyen [tn0502@hotmail.com]
 Provides: love
-Description: LOVE is a free 2D game engine that will utilize the Lua scripting language to create games.
+Description: LOVE is a free 2D game engine which enables easy game creation in Lua.

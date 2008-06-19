@@ -95,7 +95,7 @@ namespace love
 		{
 			try
 			{
-				m_error = (void (*)(const char *))getf(Module::SYSTEM, "err");
+				m_error = (void (*)(const char *))getf(Module::SYSTEM, "syserr");
 			}
 			catch(Exception e)
 			{

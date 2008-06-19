@@ -67,6 +67,7 @@ namespace love_sdlmixer
 
 	bool module_quit()
 	{
+		stop(); // Stops all audio.
 		Mix_CloseAudio();
 		std::cout << "QUIT love.audio [" << "SDL_mixer" << "]" << std::endl;
 		return true;
