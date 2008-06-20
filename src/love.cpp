@@ -60,16 +60,6 @@ typedef const pGame & (*fptr_game)();
 
 int main(int argc, char* argv[])
 {	
-	// Redirect output to files.
-#if defined(_DEBUG) || defined(WIN32)
-	std::ofstream cout; 
-	std::ofstream cerr; 
-	cout.open ("cout.txt");
-	cerr.open ("cerr.txt");
-	std::cout.rdbuf(cout.rdbuf());
-	std::cerr.rdbuf(cerr.rdbuf());
-#endif
-
 	// Create a core.
 	pCore core(new Core());
 
