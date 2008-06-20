@@ -39,7 +39,7 @@ namespace love_sdltimer
 			return false;
 		}
 		
-		std::cout << "INIT love.timer [" << "SDL" << "] WITH FIST" << std::endl;
+		std::cout << "INIT love.timer [" << "SDL" << "]" << std::endl;
 		return true;
 	}
 
