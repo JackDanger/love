@@ -1,3 +1,12 @@
+LOVE 0.3.1
+----------
+ 
+  * Fixed segfault related to graphics.
+  * Fixed wait-forever bug related to audio.
+  * Fixed error reporting not working across modules.
+  * Fixed bug where games with a trailing "/" would not start.
+  * Fixed bug which caused love.timer.sleep to delay for (way) too long.
+
 LOVE 0.3.0
 ----------
 
