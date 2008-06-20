@@ -42,18 +42,18 @@ namespace love_sdltimer
 		* Can be called multiple times per frame.
 		**/
 		float DECLSPEC getDelta();
-
-		/**
-		* Gets the average FPS for the previous second.
-		**/
-		float DECLSPEC getFPS();
-
-		/**
-		* Causes execution to sleep for a certain
-		* amout of milliseconds.
-		**/
-		void DECLSPEC sleep(int ms);
 	}
+	
+	/**
+	* Gets the average FPS for the previous second.
+	**/
+	float getFPS();
+
+	/**
+	* Causes execution to sleep for a certain
+	* amout of milliseconds.
+	**/
+	void sleep(int ms);
 
 } // love_sdltimer
 

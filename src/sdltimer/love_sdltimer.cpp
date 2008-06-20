@@ -39,7 +39,7 @@ namespace love_sdltimer
 			return false;
 		}
 		
-		std::cout << "INIT love.timer [" << "SDL" << "]" << std::endl;
+		std::cout << "INIT love.timer [" << "SDL" << "] WITH FIST" << std::endl;
 		return true;
 	}
 
@@ -96,8 +96,8 @@ namespace love_sdltimer
 	}
 
 	void sleep(int ms)
-	{
-		SDL_Delay(ms);
+	{		
+		SDL_Delay((unsigned int)ms);
 	}
 
 } // love_sdltimer
