@@ -104,7 +104,7 @@ namespace love_system
 			// Setup the save directory.
 			if(!setSaveDirectory(game_source))
 			{
-				std::cerr << "Could not set save directory! Perhaps it isn't writable?" << std::endl;
+				std::cerr << "Could not set save directory!" << std::endl;
 				return false;
 			}
 
@@ -214,6 +214,12 @@ namespace love_system
 
 	bool module_quit()
 	{
+
+		// Clean global data.
+		main_game.reset();
+		error_game.reset();
+		current_game.reset();
+
 		std::cout << "QUIT love.system [" << "Generic" << "]" << std::endl;
 		return true;
 	}

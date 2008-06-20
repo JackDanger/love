@@ -91,7 +91,9 @@ namespace love_opengl
 
 	bool module_quit()
 	{
+		// Reset global data.
 		current_font.reset();
+
 		SDL_QuitSubSystem(SDL_INIT_VIDEO);
 		std::cout << "QUIT love.graphics [" << "OpenGL/DevIL/FreeType" << "]" << std::endl;	
 		return true;

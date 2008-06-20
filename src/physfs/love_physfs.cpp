@@ -185,9 +185,6 @@ namespace love_physfs
 
 	bool setSaveDirectory( const std::string & game )
 	{
-		
-
-
 		// Get the "id" of the game.
 		std::string gameid = getLeaf(game);
 
@@ -230,6 +227,13 @@ namespace love_physfs
 
 		// Get the name after the last slash.
 		size_t pos = l.find_last_of("/");
+
+		// If / is the last char, remove it.
+		while(pos == l.length() - 1 && l.length() > 0)
+		{
+			l = l.substr(0, l.length()-1);
+			pos = l.find_last_of("/"); // Update position.
+		}
 
 		if(pos == std::string::npos)
 		{

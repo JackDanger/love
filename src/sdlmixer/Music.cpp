@@ -13,7 +13,7 @@ namespace love_sdlmixer
 
 	void Music::play(int loop)
 	{
-		Mix_PlayMusic(music, loop - 1);
+		Mix_PlayMusic(music, 0);
 	}
 
 	bool Music::load()

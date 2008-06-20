@@ -190,5 +190,7 @@ int main(int argc, char* argv[])
 	if(!core->rmmod(LOVE_MOD_TIMER)) return 1;
 	if(!core->rmmod(LOVE_MOD_FILESYSTEM)) return 1;
 
+	SDL_Quit();
+
 	return 0;
 } // main
