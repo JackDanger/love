@@ -168,13 +168,13 @@ findVerts(cpContact **arr, cpPolyShape *poly1, cpPolyShape *poly2, cpVect n, cpF
 	for(int i=0; i<poly1->numVerts; i++){
 		cpVect v = poly1->tVerts[i];
 		if(cpPolyShapeContainsVert(poly2, v))
-			cpContactInit(addContactPoint(arr, &max, &num), v, n, dist, CP_HASH_PAIR(poly1, i));
+			cpContactInit(addContactPoint(arr, &max, &num), v, n, dist, CP_HASH_PAIR((size_t)poly1, i));
 	}
 	
 	for(int i=0; i<poly2->numVerts; i++){
 		cpVect v = poly2->tVerts[i];
 		if(cpPolyShapeContainsVert(poly1, v))
-			cpContactInit(addContactPoint(arr, &max, &num), v, n, dist, CP_HASH_PAIR(poly2, i));
+			cpContactInit(addContactPoint(arr, &max, &num), v, n, dist, CP_HASH_PAIR((size_t)poly2, i));
 	}
 	
 	//	if(!num)
@@ -227,7 +227,7 @@ findPointsBehindSeg(cpContact **arr, int *max, int *num, cpSegmentShape *seg, cp
 		if(cpvdot(v, n) < cpvdot(seg->tn, seg->ta)*coef + seg->r){
 			cpFloat dt = cpvcross(seg->tn, v);
 			if(dta >= dt && dt >= dtb){
-				cpContactInit(addContactPoint(arr, max, num), v, n, pDist, CP_HASH_PAIR(poly, i));
+				cpContactInit(addContactPoint(arr, max, num), v, n, pDist, CP_HASH_PAIR((size_t)poly, i));
 			}
 		}
 	}
@@ -268,9 +268,9 @@ seg2poly(cpShape *shape1, cpShape *shape2, cpContact **arr)
 	cpVect va = cpvadd(seg->ta, cpvmult(poly_n, seg->r));
 	cpVect vb = cpvadd(seg->tb, cpvmult(poly_n, seg->r));
 	if(cpPolyShapeContainsVert(poly, va))
-		cpContactInit(addContactPoint(arr, &max, &num), va, poly_n, poly_min, CP_HASH_PAIR(seg, 0));
+		cpContactInit(addContactPoint(arr, &max, &num), va, poly_n, poly_min, CP_HASH_PAIR((size_t)seg, 0));
 	if(cpPolyShapeContainsVert(poly, vb))
-		cpContactInit(addContactPoint(arr, &max, &num), vb, poly_n, poly_min, CP_HASH_PAIR(seg, 1));
+		cpContactInit(addContactPoint(arr, &max, &num), vb, poly_n, poly_min, CP_HASH_PAIR((size_t)seg, 1));
 
 	// Floating point precision problems here.
 	// This will have to do for now.

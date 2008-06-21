@@ -369,7 +369,7 @@ queryFunc(void *p1, void *p2, void *data)
 		// Get an arbiter from space->contactSet for the two shapes.
 		// This is where the persistant contact magic comes from.
 		cpShape *shape_pair[] = {a, b};
-		cpArbiter *arb = (cpArbiter *)cpHashSetInsert(space->contactSet, CP_HASH_PAIR(a, b), shape_pair, space);
+		cpArbiter *arb = (cpArbiter *)cpHashSetInsert(space->contactSet, CP_HASH_PAIR((size_t)a, (size_t)b), shape_pair, space);
 		
 		// Timestamp the arbiter.
 		arb->stamp = space->stamp;
