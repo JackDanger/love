@@ -12,4 +12,5 @@ Game.cpp Game.h \
 Module.cpp Module.h \
 MemoryFile.cpp MemoryFile.h \
 Resource.cpp Resource.h \
+Vector.cpp Vector.h \
 version.cpp version.h

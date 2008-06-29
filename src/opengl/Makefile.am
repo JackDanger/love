@@ -15,7 +15,6 @@ PointParticleSystem.cpp PointParticleSystem.h \
 Sprite.cpp Sprite.h \
 TrueTypeFont.cpp TrueTypeFont.h \
 Volatile.cpp Volatile.h \
-console.cpp console.h \
 love_opengl.cpp love_opengl.h \
 mod_opengl.cpp mod_opengl.h \
 resources.cpp resources.h
