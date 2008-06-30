@@ -1,0 +1,301 @@
+######################################################################
+# "Ancient" LOVE makefile. (Works for 0.3-1)
+# You may need to modify parts of this makefile for your system.
+######################################################################
+
+CC = g++
+CFLAGS = -g -O2 -Wall
+BINDIR = bin
+
+# Inclusion paths.
+INCLUDE_SDL = -I/usr/include/SDL
+INCLUDE_LUA = -I/usr/include/lua5.1
+INCLUDE_LIBLOVE = -Isrc/liblove/include
+INCLUDE_FREETYPE = -I/usr/include/freetype2
+
+# Linker flags.
+LD_LUA = -llua5.1
+LD_SDL = -lSDL
+LD_PHYSFS = -lphysfs
+LD_FREETYPE = -lfreetype
+LD_GL = -lGL -lGLU
+LD_IL = -lIL -lILU
+LD_SDLMIXER = -lSDL_mixer
+
+######################################################################
+
+default: prep $(BINDIR)/liblove.a love liblove_sdltimer.so liblove_physfs.so \
+liblove_opengl.so liblove_sdlkeyboard.so liblove_sdlmouse.so \
+liblove_sdlmixer.so liblove_chipmunk.so liblove_system.so
+
+#
+# liblove
+#
+
+LIBLOVE_TARGET = $(BINDIR)/liblove.a
+LIBLOVE_OBJDIR = obj/liblove
+LIBLOVE_SRCDIR = src/liblove
+LIBLOVE_OBJ = $(LIBLOVE_OBJDIR)/arg.o \
+$(LIBLOVE_OBJDIR)/Configuration.o \
+$(LIBLOVE_OBJDIR)/Core.o \
+$(LIBLOVE_OBJDIR)/Exception.o \
+$(LIBLOVE_OBJDIR)/File.o \
+$(LIBLOVE_OBJDIR)/Game.o \
+$(LIBLOVE_OBJDIR)/Module.o \
+$(LIBLOVE_OBJDIR)/MemoryFile.o \
+$(LIBLOVE_OBJDIR)/Resource.o \
+$(LIBLOVE_OBJDIR)/version.o
+
+LIBLOVE_INCLUDES = $(INCLUDE_SDL) $(INCLUDE_LIBLOVE)
+
+$(LIBLOVE_TARGET): $(LIBLOVE_OBJ)
+	ar crs $@ $^
+
+$(LIBLOVE_OBJDIR)/%.o: $(LIBLOVE_SRCDIR)/%.cpp
+	$(CC) -fPIC $(CFLAGS) $(LIBLOVE_INCLUDES) -c $< -o $@
+	
+#
+# LOVE (main binary)
+#
+
+LOVE_TARGET = love
+LOVE_OBJDIR = obj/love
+LOVE_SRCDIR = src
+LOVE_OBJ = $(LOVE_OBJDIR)/love.o
+
+LOVE_LDFLAGS = $(LD_SDL)
+LOVE_INCLUDES = $(INCLUDE_LUA) $(INCLUDE_SDL) $(INCLUDE_LIBLOVE)
+
+$(LOVE_TARGET): $(LOVE_OBJ) $(LIBLOVE_TARGET)
+	$(CC) $(LOVE_LDFLAGS) -o $(BINDIR)/$@ $^
+
+$(LOVE_OBJDIR)/%.o: $(LOVE_SRCDIR)/%.cpp
+	$(CC) $(CFLAGS) $(LOVE_INCLUDES) -c $< -o $@
+
+#
+# SDLTimer.
+#
+
+SDLTIMER_TARGET = liblove_sdltimer.so
+SDLTIMER_OBJDIR = obj/sdltimer
+SDLTIMER_SRCDIR = src/sdltimer
+SDLTIMER_OBJ = $(SDLTIMER_OBJDIR)/love_sdltimer.o \
+$(SDLTIMER_OBJDIR)/mod_sdltimer.o
+
+SDLTIMER_LDFLAGS = $(LD_LUA) $(LD_SDL)
+SDLTIMER_INCLUDES = $(INCLUDE_LUA) $(INCLUDE_SDL) $(INCLUDE_LIBLOVE)
+
+$(SDLTIMER_TARGET): $(SDLTIMER_OBJ) $(LIBLOVE_TARGET)
+	$(CC) -shared $(SDLTIMER_LDFLAGS) -o $(BINDIR)/$@ $^
+
+$(SDLTIMER_OBJDIR)/%.o: $(SDLTIMER_SRCDIR)/%.cpp
+	$(CC) -fPIC $(CFLAGS) $(SDLTIMER_INCLUDES) -c $< -o $@
+	
+# 
+# PhysFS
+#
+
+PHYSFS_TARGET = liblove_physfs.so
+PHYSFS_OBJDIR = obj/physfs
+PHYSFS_SRCDIR = src/physfs
+PHYSFS_OBJ = $(PHYSFS_OBJDIR)/love_physfs.o \
+$(PHYSFS_OBJDIR)/File.o \
+$(PHYSFS_OBJDIR)/mod_physfs.o
+
+PHYSFS_LDFLAGS = $(LD_LUA) $(LD_SDL) $(LD_PHYSFS)
+PHYSFS_INCLUDES = $(INCLUDE_LUA) $(INCLUDE_LIBLOVE)
+
+$(PHYSFS_TARGET): $(PHYSFS_OBJ) $(LIBLOVE_TARGET)
+	$(CC) -shared $(PHYSFS_LDFLAGS) -o $(BINDIR)/$@ $^
+
+$(PHYSFS_OBJDIR)/mod_physfs.o: $(PHYSFS_SRCDIR)/mod_physfs.cpp
+	$(CC) -fPIC -g0 -O2 $(PHYSFS_INCLUDES) -c $< -o $@
+
+$(PHYSFS_OBJDIR)/%.o: $(PHYSFS_SRCDIR)/%.cpp
+	$(CC) -fPIC $(CFLAGS) $(PHYSFS_INCLUDES) -c $< -o $@
+	
+# 
+# OpenGL
+#
+
+OPENGL_TARGET = liblove_opengl.so
+OPENGL_OBJDIR = obj/opengl
+OPENGL_SRCDIR = src/opengl
+OPENGL_OBJ = $(OPENGL_OBJDIR)/Animation.o \
+$(OPENGL_OBJDIR)/Color.o \
+$(OPENGL_OBJDIR)/Font.o \
+$(OPENGL_OBJDIR)/GLee.o \
+$(OPENGL_OBJDIR)/Image.o \
+$(OPENGL_OBJDIR)/ImageFont.o \
+$(OPENGL_OBJDIR)/love_opengl.o \
+$(OPENGL_OBJDIR)/mod_opengl.o \
+$(OPENGL_OBJDIR)/ParticleSystem.o \
+$(OPENGL_OBJDIR)/PointParticleSystem.o \
+$(OPENGL_OBJDIR)/resources.o \
+$(OPENGL_OBJDIR)/Sprite.o \
+$(OPENGL_OBJDIR)/TrueTypeFont.o \
+$(OPENGL_OBJDIR)/Volatile.o
+
+OPENGL_LDFLAGS = $(LD_FREETYPE) $(LD_GL) $(LD_IL) $(LD_LUA) $(LD_SDL)
+OPENGL_INCLUDES = $(INCLUDE_FREETYPE) $(INCLUDE_LUA) $(INCLUDE_SDL) $(INCLUDE_LIBLOVE)
+
+$(OPENGL_TARGET): $(OPENGL_OBJ) $(LIBLOVE_TARGET)
+	$(CC) -shared $(OPENGL_LDFLAGS) -o $(BINDIR)/$@ $^
+
+$(OPENGL_OBJDIR)/mod_opengl.o: $(OPENGL_SRCDIR)/mod_opengl.cpp
+	$(CC) -fPIC -g0 -O3 $(OPENGL_INCLUDES) -c $< -o $@
+
+$(OPENGL_OBJDIR)/GLee.o: $(OPENGL_SRCDIR)/GLee.c
+	$(CC) -fPIC $(CFLAGS) $(OPENGL_INCLUDES) -c $< -o $@
+
+$(OPENGL_OBJDIR)/%.o: $(OPENGL_SRCDIR)/%.cpp
+	$(CC) -fPIC $(CFLAGS) $(OPENGL_INCLUDES) -c $< -o $@
+
+# 
+# SDLKeyboard
+#
+
+SDLKEYBOARD_TARGET = liblove_sdlkeyboard.so
+SDLKEYBOARD_OBJDIR = obj/sdlkeyboard
+SDLKEYBOARD_SRCDIR = src/sdlkeyboard
+SDLKEYBOARD_OBJ = $(SDLKEYBOARD_OBJDIR)/love_sdlkeyboard.o \
+$(SDLKEYBOARD_OBJDIR)/mod_sdlkeyboard.o
+
+SDLKEYBOARD_LDFLAGS = $(LD_LUA) $(LD_SDL)
+SDLKEYBOARD_INCLUDES = $(INCLUDE_LUA) $(INCLUDE_SDL) $(INCLUDE_LIBLOVE)
+
+$(SDLKEYBOARD_TARGET): $(SDLKEYBOARD_OBJ) $(LIBLOVE_TARGET)
+	$(CC) -shared $(SDLKEYBOARD_LDFLAGS) -o $(BINDIR)/$@ $^
+
+$(SDLKEYBOARD_OBJDIR)/mod_sdlkeyboard.o: $(SDLKEYBOARD_SRCDIR)/mod_sdlkeyboard.cpp
+	$(CC) -fPIC -g0 -O3 $(SDLKEYBOARD_INCLUDES) -c $< -o $@
+
+$(SDLKEYBOARD_OBJDIR)/%.o: $(SDLKEYBOARD_SRCDIR)/%.cpp
+	$(CC) -fPIC $(CFLAGS) $(SDLKEYBOARD_INCLUDES) -c $< -o $@
+
+# 
+# SDLMouse
+#
+
+SDLMOUSE_TARGET = liblove_sdlmouse.so
+SDLMOUSE_OBJDIR = obj/sdlmouse
+SDLMOUSE_SRCDIR = src/sdlmouse
+SDLMOUSE_OBJ = $(SDLMOUSE_OBJDIR)/love_sdlmouse.o \
+$(SDLMOUSE_OBJDIR)/mod_sdlmouse.o
+
+SDLMOUSE_LDFLAGS = $(LD_LUA) $(LD_SDL)
+SDLMOUSE_INCLUDES = $(INCLUDE_LUA) $(INCLUDE_SDL) $(INCLUDE_LIBLOVE)
+
+$(SDLMOUSE_TARGET): $(SDLMOUSE_OBJ) $(LIBLOVE_TARGET)
+	$(CC) -shared $(SDLMOUSE_LDFLAGS) -o $(BINDIR)/$@ $^
+
+$(SDLMOUSE_OBJDIR)/mod_sdlmouse.o: $(SDLMOUSE_SRCDIR)/mod_sdlmouse.cpp
+	$(CC) -fPIC -g0 -O3 $(SDLMOUSE_INCLUDES) -c $< -o $@
+
+$(SDLMOUSE_OBJDIR)/%.o: $(SDLMOUSE_SRCDIR)/%.cpp
+	$(CC) -fPIC $(CFLAGS) $(SDLMOUSE_INCLUDES) -c $< -o $@
+
+# 
+# SDLMixer
+#
+
+SDLMIXER_TARGET = liblove_sdlmixer.so
+SDLMIXER_OBJDIR = obj/sdlmixer
+SDLMIXER_SRCDIR = src/sdlmixer
+SDLMIXER_OBJ = $(SDLMIXER_OBJDIR)/love_sdlmixer.o \
+$(SDLMIXER_OBJDIR)/mod_sdlmixer.o \
+$(SDLMIXER_OBJDIR)/Music.o \
+$(SDLMIXER_OBJDIR)/Sound.o
+
+SDLMIXER_LDFLAGS = $(LD_LUA) $(LD_SDL) $(LD_SDLMIXER)
+SDLMIXER_INCLUDES = $(INCLUDE_LUA) $(INCLUDE_SDL) $(INCLUDE_LIBLOVE)
+
+$(SDLMIXER_TARGET): $(SDLMIXER_OBJ) $(LIBLOVE_TARGET)
+	$(CC) -shared $(SDLMIXER_LDFLAGS) -o $(BINDIR)/$@ $^
+
+$(SDLMIXER_OBJDIR)/mod_sdlmixer.o: $(SDLMIXER_SRCDIR)/mod_sdlmixer.cpp
+	$(CC) -fPIC -g0 -O3 $(SDLMIXER_INCLUDES) -c $< -o $@
+
+$(SDLMIXER_OBJDIR)/%.o: $(SDLMIXER_SRCDIR)/%.cpp
+	$(CC) -fPIC $(CFLAGS) $(SDLMIXER_INCLUDES) -c $< -o $@
+
+#
+# Chipmunk
+#
+
+CHIPMUNK_TARGET = liblove_chipmunk.so
+CHIPMUNK_OBJDIR = obj/chipmunk
+CHIPMUNK_SRCDIR = src/chipmunk
+CHIPMUNK_OBJ = $(CHIPMUNK_OBJDIR)/chipmunk.o \
+$(CHIPMUNK_OBJDIR)/cpArbiter.o \
+$(CHIPMUNK_OBJDIR)/cpArray.o \
+$(CHIPMUNK_OBJDIR)/cpBB.o \
+$(CHIPMUNK_OBJDIR)/cpBody.o \
+$(CHIPMUNK_OBJDIR)/cpCollision.o \
+$(CHIPMUNK_OBJDIR)/cpHashSet.o \
+$(CHIPMUNK_OBJDIR)/cpJoint.o \
+$(CHIPMUNK_OBJDIR)/cpPolyShape.o \
+$(CHIPMUNK_OBJDIR)/cpShape.o \
+$(CHIPMUNK_OBJDIR)/cpSpace.o \
+$(CHIPMUNK_OBJDIR)/cpSpaceHash.o \
+$(CHIPMUNK_OBJDIR)/cpVect.o \
+$(CHIPMUNK_OBJDIR)/Body.o \
+$(CHIPMUNK_OBJDIR)/love_chipmunk.o \
+$(CHIPMUNK_OBJDIR)/mod_chipmunk.o \
+$(CHIPMUNK_OBJDIR)/Shape.o \
+$(CHIPMUNK_OBJDIR)/Space.o
+
+CHIPMUNK_LDFLAGS = $(LD_LUA)
+CHIPMUNK_INCLUDES = $(INCLUDE_LUA) $(INCLUDE_LIBLOVE)
+
+$(CHIPMUNK_TARGET): $(CHIPMUNK_OBJ) $(LIBLOVE_TARGET)
+	$(CC) -shared $(CHIPMUNK_LDFLAGS) -o $(BINDIR)/$@ $^
+
+$(CHIPMUNK_OBJDIR)/%.o: $(CHIPMUNK_SRCDIR)/chipmunk/%.c
+	$(CC) -fPIC -g0 -O3 -Wno-conversion $(CHIPMUNK_INCLUDES) -c $< -o $@
+
+$(CHIPMUNK_OBJDIR)/mod_chipmunk.o: $(CHIPMUNK_SRCDIR)/mod_chipmunk.cpp
+	$(CC) -fPIC -g0 -O3 $(CHIPMUNK_INCLUDES) -c $< -o $@
+
+$(CHIPMUNK_OBJDIR)/%.o: $(CHIPMUNK_SRCDIR)/%.cpp
+	$(CC) -fPIC $(CFLAGS) $(CHIPMUNK_INCLUDES) -c $< -o $@
+
+#
+# System
+#
+
+SYSTEM_TARGET = liblove_system.so
+SYSTEM_OBJDIR = obj/system
+SYSTEM_SRCDIR = src/system
+SYSTEM_OBJ = $(SYSTEM_OBJDIR)/love_system.o \
+$(SYSTEM_OBJDIR)/LuaGame.o \
+$(SYSTEM_OBJDIR)/resources.o \
+$(SYSTEM_OBJDIR)/mod_system.o
+
+SYSTEM_LDFLAGS = $(LD_LUA) $(LD_SDL)
+SYSTEM_INCLUDES = $(INCLUDE_LUA) $(INCLUDE_SDL) $(INCLUDE_LIBLOVE)
+
+$(SYSTEM_TARGET): $(SYSTEM_OBJ) $(LIBLOVE_TARGET)
+	$(CC) -shared $(SYSTEM_LDFLAGS) -o $(BINDIR)/$@ $^
+
+$(SYSTEM_OBJDIR)/mod_system.o: $(SYSTEM_SRCDIR)/mod_system.cpp
+	$(CC) -fPIC -g0 -O3 $(SYSTEM_INCLUDES) -c $< -o $@
+
+$(SYSTEM_OBJDIR)/%.o: $(SYSTEM_SRCDIR)/%.cpp
+	$(CC) -fPIC $(CFLAGS) $(SYSTEM_INCLUDES) -c $< -o $@
+
+clean:
+	rm -f $(LIBLOVE_OBJ) $(LOVE_OBJ) $(SDLTIMER_OBJ) $(PHYSFS_OBJ) \
+		  $(OPENGL_OBJ) $(SDLKEYBOARD_OBJ) $(SDLMOUSE_OBJ) \
+		  $(SDLMIXER_OBJ) $(CHIPMUNK_OBJ) $(SYSTEM_OBJ)
+	rm -f $(BINDIR)/liblove.a $(BINDIR)/love \
+		  $(BINDIR)/liblove_sdltimer.so $(BINDIR)/liblove_physfs.so \
+		  $(BINDIR)/liblove_opengl.so $(BINDIR)/liblove_sdlkeyboard.so \
+		  $(BINDIR)/liblove_sdlmouse.so $(BINDIR)/liblove_sdlmixer.so \
+		  $(BINDIR)/liblove_chipmunk.so $(BINDIR)/liblove_system.so
+	
+prep:
+	mkdir -p obj bin obj/liblove obj/love obj/sdltimer obj/physfs \
+		     obj/opengl obj/sdlkeyboard obj/sdlmouse obj/sdlmixer \
+		     obj/chipmunk obj/system 
+	

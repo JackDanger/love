@@ -8,6 +8,7 @@ liblove_opengl_la_SOURCES = \
 Animation.cpp Animation.h \
 Color.cpp Color.h \
 Font.cpp Font.h \
+GLee.c GLee.h \
 Image.cpp Image.h \
 ImageFont.cpp ImageFont.h \
 ParticleSystem.cpp ParticleSystem.h \
