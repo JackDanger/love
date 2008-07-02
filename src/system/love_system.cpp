@@ -38,17 +38,39 @@ namespace love_system
 	// If an error occurs, this game will be called.
 	love::pGame error_game;
 
-	// Function pointers and typedefs.
-	typedef love::pFile * (*fptr_getFile)(const char *);
-	typedef bool (*fptr_setMode)(int, int, bool, bool, int);
-	fptr_getFile getFile = 0;
-	love::fptr_void graphics_reset = 0;
-	love::fptr_bool graphics_isCreated = 0;
-	fptr_setMode graphics_setMode = 0;
+	// Required modules.
+	love::Filesystem * filesystem = 0;
+	love::Graphics * graphics = 0;
 
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
+		//std::cout << "argv[0] = " << argv[0] << std::endl;
 		std::cout << "INIT love.system [" << "Generic" << "]" << std::endl;
+
+		// Get used modules.
+		filesystem = core->getFilesystem();
+		graphics = core->getGraphics();
+
+		// Verify all.
+		if(!filesystem->verify())
+		{
+			std::cerr << "Required module filesystem not loaded." << std::endl;
+			return false;
+		}
+		if(!graphics->verify())
+		{
+			std::cerr << "Required module graphics not loaded." << std::endl;
+			return false;
+		}
+
+		// Set function pointers and load module.
+		{
+			love::System * s = core->getSystem();
+			s->getGame = love_system::getGame;
+			s->error = love_system::syserr;
+			s->loaded = true;
+		}
+
 		bool compatible = true;
 
 		// Check command line arguments.
@@ -63,140 +85,114 @@ namespace love_system
 			std::cout << std::endl << "  love /home/nyan/mygame" << std::endl << std::endl;
 		}
 
-		try
+		// If no arguments, just load the no-game.
+		if(nogame)
 		{
-			// Typedefs for filesystem.
-			typedef bool (*fptr_exists)(const std::string &);
-			typedef const char * (*fptr_getBaseDirectory)();
-			typedef bool (*fptr_setSaveDirectory)(const std::string &);
-			typedef bool (*fptr_addDirectory)(const std::string &);
-			typedef bool (*fptr_bool)();
-		
-			// Typedefs for graphics.
-			typedef void (*fptr_setCaption)(const char *);
-
-			// Get function pointers.
-			getFile = (fptr_getFile)core->getf(love::Module::FILESYSTEM, "getFile");
-			fptr_exists exists = (fptr_exists)core->getf(love::Module::FILESYSTEM, "exists");
-			fptr_setSaveDirectory setSaveDirectory = (fptr_setSaveDirectory)core->getf(love::Module::FILESYSTEM, "setSaveDirectory");
-			fptr_getBaseDirectory getBaseDirectory = (fptr_getBaseDirectory)core->getf(love::Module::FILESYSTEM, "getBaseDirectory");
-			fptr_addDirectory addDirectory = (fptr_addDirectory)core->getf(love::Module::FILESYSTEM, "addDirectory");
-			graphics_setMode = (fptr_setMode)core->getf(love::Module::GRAPHICS, "setMode");
-			fptr_setCaption setCaption = (fptr_setCaption)core->getf(love::Module::GRAPHICS, "setCaption");
-			graphics_reset = (love::fptr_void)core->getf(love::Module::GRAPHICS, "reset");
-			graphics_isCreated = (love::fptr_bool)core->getf(love::Module::GRAPHICS, "isCreated");
-
-			// If no arguments, just load the no-game.
-			if(nogame)
+			main_game.reset<love::Game>(new LuaGame(love::nogame_lua, core));
+			if(!main_game->load())
 			{
-				main_game.reset<love::Game>(new LuaGame(love::nogame_lua, core));
-				if(!main_game->load())
-					return false;
-				current_game = main_game;
-				return true;
-			}
-
-			// Create the game source.
-			std::string base = std::string(getBaseDirectory());
-			bool absolute = love::is_arg_absolute(arg_game);
-			std::string game_source = absolute ? (arg_game) : (base + "/" + arg_game);
-
-			// Setup the save directory.
-			if(!setSaveDirectory(game_source))
-			{
-				std::cerr << "Could not set save directory!" << std::endl;
+				std::cout << "Could not load the no-game." << std::endl;
 				return false;
 			}
-
-			// Add the game source to the search path.
-			if(!addDirectory(game_source))
-			{
-				std::cerr << "Game (" << game_source << ") does not exist." << std::endl;
-				return false;
-			}
-
-			// Create configuration.
-			love::pFile * conf = getFile(GAME_CONF);
-			love::Configuration gc(*conf);
-			delete conf;
-
-			// Get entry point and create game.
-			love::pFile * main = getFile(GAME_MAIN);
-			main_game.reset<love::Game>(new LuaGame(*main, core));
-			delete main;
-
-			// Also create error game, but load nothing yet.
-			if(exists(std::string(GAME_ERROR)))
-			{
-				love::pFile * error_main = getFile(GAME_ERROR);
-				error_game.reset<love::Game>(new LuaGame(*error_main, core));
-				delete error_main;
-			}
-			else
-				error_game.reset<love::Game>(new LuaGame(love::error_lua, core));
-
-			// The main game is the current game for now.
 			current_game = main_game;
-			
-			// Create default values for the game configuration.
-			gc.add("title", "Untitled Game");
-			gc.add("author", "Unknown Author");
-			gc.add("width", 800);
-			gc.add("height", 600);
-			gc.add("vsync", true);
-			gc.add("fsaa", 0);
-			gc.add("fullscreen", false);
-			gc.add("love_version", std::string(LOVE_VERSION_STR));
-			gc.add("display_auto", true);
+			return true;
+		}
 
-			// Now load the config file, causing default values
-			// to be overwritten.
-			if(exists(GAME_CONF) && !gc.load())
+		// Create the game source.
+		std::string base = std::string(filesystem->getBaseDirectory());
+		bool absolute = love::is_arg_absolute(arg_game);
+		std::string game_source = absolute ? (arg_game) : (base + "/" + arg_game);
+
+		// Setup the save directory.
+		if(!filesystem->setSaveDirectory(game_source))
+		{
+			std::cerr << "Could not set save directory!" << std::endl;
+			return false;
+		}
+
+		// Add the game source to the search path.
+		if(!filesystem->addDirectory(game_source))
+		{
+			std::cerr << "Game (" << game_source << ") does not exist." << std::endl;
+			return false;
+		}
+
+		// Create configuration.
+		love::pFile * conf = filesystem->getFile(GAME_CONF);
+		love::Configuration gc(*conf);
+		delete conf;
+
+		// Get entry point and create game.
+		love::pFile * main = filesystem->getFile(GAME_MAIN);
+		main_game.reset<love::Game>(new LuaGame(*main, core));
+		delete main;
+
+		// Also create error game, but load nothing yet.
+		if(filesystem->exists(std::string(GAME_ERROR)))
+		{
+			love::pFile * error_main = filesystem->getFile(GAME_ERROR);
+			error_game.reset<love::Game>(new LuaGame(*error_main, core));
+			delete error_main;
+		}
+		else
+			error_game.reset<love::Game>(new LuaGame(love::error_lua, core));
+
+		// The main game is the current game for now.
+		current_game = main_game;
+		
+		// Create default values for the game configuration.
+		gc.add("title", "Untitled Game");
+		gc.add("author", "Unknown Author");
+		gc.add("width", 800);
+		gc.add("height", 600);
+		gc.add("vsync", true);
+		gc.add("fsaa", 0);
+		gc.add("fullscreen", false);
+		gc.add("love_version", std::string(LOVE_VERSION_STR));
+		gc.add("display_auto", true);
+
+		// Now load the config file, causing default values
+		// to be overwritten.
+		if(filesystem->exists(GAME_CONF) && !gc.load())
+		{
+			std::cerr << "Could not load configuration." << std::endl;
+			return false;
+		}
+
+		// Set the window title.
+		graphics->setCaption(gc.getString("title").c_str());
+
+		// Check if this game is made for a compatible
+		// version of LOVE.
+		std::string love_version = gc.getString("love_version");
+		compatible = love::is_compatible(love_version.c_str());	
+
+		// Set the display mode, unless the user wants to do
+		// that in Lua. 
+		// Note! In case the game isn't compatible, we must use
+		// config settings. (Main game isn't loaded)
+		if(gc.getBool("display_auto") || !compatible)
+		{
+			// Try config.
+			if(!graphics->setMode(gc.getInt("width"), gc.getInt("height"), gc.getBool("fullscreen"), gc.getBool("vsync"), gc.getInt("fsaa")))
 			{
-				std::cerr << "Could not load configuration." << std::endl;
-				return false;
-			}
-
-			// Set the window title.
-			setCaption(gc.getString("title").c_str());
-
-			// Check if this game is made for a compatible
-			// version of LOVE.
-			std::string love_version = gc.getString("love_version");
-			compatible = love::is_compatible(love_version.c_str());	
-
-			// Set the display mode, unless the user wants to do
-			// that in Lua. 
-			// Note! In case the game isn't compatible, we must use
-			// config settings. (Main game isn't loaded)
-			if(gc.getBool("display_auto") || !compatible)
-			{
-				// Try config.
-				if(!graphics_setMode(gc.getInt("width"), gc.getInt("height"), gc.getBool("fullscreen"), gc.getBool("vsync"), gc.getInt("fsaa")))
+				// Try failsafe.
+				if(!graphics->setMode(800, 600, false, true, 0))
 				{
-					// Try failsafe.
-					if(!graphics_setMode(800, 600, false, true, 0))
-					{
-						std::cerr << "Could not set display mode." << std::endl;
-						return false;
-					}
+					std::cerr << "Could not set display mode." << std::endl;
+					return false;
 				}
 			}
-			
-			// If the game isn't compatible, change to error game.
-			if(!compatible)
-			{
-				std::stringstream err;
-				err << "This game is made for another version of LOVE! The current "
-					<< "version is " << LOVE_VERSION_STR << " (game was made for " << love_version << ").";
-				suspend();
-				message(err.str().c_str(), love::TAG_INCOMPATIBLE);
-			}
 		}
-		catch(love::Exception exc)
+		
+		// If the game isn't compatible, change to error game.
+		if(!compatible)
 		{
-			std::cerr << exc.msg() << std::endl;
-			return false;
+			std::stringstream err;
+			err << "This game is made for another version of LOVE! The current "
+				<< "version is " << LOVE_VERSION_STR << " (game was made for " << love_version << ").";
+			suspend();
+			message(err.str().c_str(), love::TAG_INCOMPATIBLE);
 		}
 
 		// Current game should be set at this point.
@@ -281,7 +277,7 @@ namespace love_system
 		const char * filename = lua_tostring(L, 1);
 
 		// Get the file.
-		love::pFile * file = getFile(filename);
+		love::pFile * file = filesystem->getFile(filename);
 
 		if(!(*file)->load())
 		{
@@ -359,8 +355,8 @@ namespace love_system
 		}
 
 		// If the game is suspended, and there is no screen: create one.
-		if(!graphics_isCreated())
-			if(!graphics_setMode(800, 600, false, true, 0))
+		if(!graphics->isCreated())
+			if(!graphics->setMode(800, 600, false, true, 0))
 				std::cerr << "Could not set display mode." << std::endl;
 
 		// Load the error game if suspended for the first time.
@@ -410,7 +406,7 @@ namespace love_system
 			syserr("Could not restart game.");
 
 		// Reset the graphics device.
-		graphics_reset();
+		graphics->reset();
 	}
 
 	void grabInput(bool grab)

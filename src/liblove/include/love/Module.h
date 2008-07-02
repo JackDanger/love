@@ -10,11 +10,6 @@
 
 // LOVE
 
-// This must be defined in Linux.
-#ifndef WIN32
-#define LOVE_MOD_PATH "/usr/lib/love/"
-#endif
-
 
 // STD
 #include <string>
@@ -31,41 +26,23 @@ namespace love
 	// Common function typedefs.
 	typedef bool (*fptr_init)(int, char **, Core *);
 	typedef bool (*fptr_quit)();
-	typedef int  (*fptr_open)(void *);
-
-	// Other common function types.
-	typedef void (*fptr_void)();
-	typedef bool (*fptr_bool)();
-	typedef float (*fptr_float)();
-	typedef void (*fptr_str)(std::string &);
-	typedef char * (*fptr_cstr)();
+	typedef bool  (*fptr_open)(void *);
 	
 	/**
-	* Represents a single module. This class
-	* will be responsible for loading and unloading
-	* itself, as well as management of functions 
-	* related to this module.
+	* Abstract Module. 
 	* 
 	* @author Anders Ruud
 	* @date 2008-03-14
 	**/
 	class Module
 	{
-	private:
+	protected:
 
 		// Friends.
 		friend class Core;
 
-		// Name of this module (the filename of the DLL/SO).
-		std::string name;
-
-		// Pointer to the DLL/SO handle.
-		void * handle;
-
-		// Functions that have been retrieved.
-		std::map<std::string, void *> functions;
-
-		// Functions that all modules must have.
+		// Functions that all modules must have, dynamic
+		// as well as static.
 		fptr_init module_init;
 		fptr_quit module_quit;
 		fptr_open module_open;
@@ -73,46 +50,24 @@ namespace love
 	public:
 
 		/**
-		* Module identifiers.
-		**/
-		enum
-		{
-			FILESYSTEM, 
-			PHYSICS, 
-			GRAPHICS, 
-			TIMER, 
-			KEYBOARD, 
-			MOUSE, 
-			AUDIO, 
-			SYSTEM, 
-			COUNT, 
-			CUSTOM
-		};
-
-		/**
 		* Creates a new Module.
 		**/
-		Module(std::string name);
+		Module();
 
 		/**
 		* Calls unload.
 		**/
-		~Module();
+		virtual ~Module();
 
 		/**
 		* Loads this Module.
 		**/
-		bool load();
+		virtual bool load() = 0;
 
 		/**
 		* Unloads this Module.
 		**/
-		void unload();
-
-		/**
-		* Gets a pointer to a function within the Module.
-		**/
-		void * getf(const std::string & name);
+		virtual void unload() = 0;
 
 	}; // Module
 

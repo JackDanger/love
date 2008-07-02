@@ -20,54 +20,48 @@
 namespace love_system
 {
 	
-	// Functions that should be availble to the love executable
-	// must be declared C-style.
-	extern "C"
-	{
-		// Standard module functions.
-		bool DECLSPEC module_init(int argc, char ** argv, love::Core * core);
-		bool DECLSPEC module_quit();
-		bool DECLSPEC module_open(void * vm);
+	// Standard module functions.
+	bool module_init(int argc, char ** argv, love::Core * core);
+	bool module_quit();
+	bool module_open(void * vm);
 
-		/**
-		* This function takes LOVE into suspended mode, 
-		* with the specified error message. Called syserr() and not 
-		* error() because there are name conflicts with something
-		* in GCC.
-		* @param msg The message to display in suspended mode.
-		**/
-		void DECLSPEC syserr(const char * msg);
+	/**
+	* This function takes LOVE into suspended mode, 
+	* with the specified error message. Called syserr() and not 
+	* error() because there are name conflicts with something
+	* in GCC.
+	* @param msg The message to display in suspended mode.
+	**/
+	void syserr(const char * msg);
 
-		/**
-		* A warning does pretty much the same thing as an 
-		* error, but a different error message is shown. Called syswarn()
-		* and not warning() to prevent name conflicts.
-		* @param msg The message to display in suspended mode.
-		**/
-		void DECLSPEC syswarn(const char * msg);
+	/**
+	* A warning does pretty much the same thing as an 
+	* error, but a different error message is shown. Called syswarn()
+	* and not warning() to prevent name conflicts.
+	* @param msg The message to display in suspended mode.
+	**/
+	void syswarn(const char * msg);
 
-		/**
-		* Sends a message to the error game.
-		* @param msg The message to send.
-		* @param tag Indicates the purpose of the message.
-		**/
-		void DECLSPEC message(const char * msg, int tag);
+	/**
+	* Sends a message to the error game.
+	* @param msg The message to send.
+	* @param tag Indicates the purpose of the message.
+	**/
+	void message(const char * msg, int tag);
 
-		/**
-		* This "native" function includes and runs
-		* some file containing Lua code.
-		**/
-		int DECLSPEC include(lua_State * L);
+	/**
+	* This "native" function includes and runs
+	* some file containing Lua code.
+	**/
+	int include(lua_State * L);
 
-		/**
-		* Gets a reference to the current game. This is used
-		* by the main loop to determine the current game each
-		* frame.
-		* @return A reference to the current game.
-		**/
-		const love::pGame DECLSPEC & getGame();
-
-	}
+	/**
+	* Gets a reference to the current game. This is used
+	* by the main loop to determine the current game each
+	* frame.
+	* @return A reference to the current game.
+	**/
+	const love::pGame DECLSPEC & getGame();
 
 	/**
 	* Gets the current version of LOVE.

@@ -49,12 +49,24 @@ namespace love_opengl
 	// The width of the lines used to draw primitives
 	float lineWidth = 1;
 
-	// Function pointers.
-	love::pFile * (*getFile)(const char *) = 0;
+	// Required modules + Core.
 	love::Core * core = 0;
+	love::Filesystem * filesystem = 0;
 
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
+		std::cout << "INIT love.graphics [" << "OpenGL/DevIL/FreeType" << "]" << std::endl;
+	
+		// Get modules.
+		filesystem = core->getFilesystem();
+
+		// Verify all.
+		if(!filesystem->verify())
+		{
+			std::cerr << "Required module filesystem not loaded." << std::endl;
+			return false;
+		}
+
 		love_opengl::core = core;
 
 		// Init the SDL video system.
@@ -64,19 +76,9 @@ namespace love_opengl
 			return false;
 		}
 
-		try
-		{
-			getFile = (love::pFile * (*)(const char *))core->getf(love::Module::FILESYSTEM, "getFile");
-		}
-		catch(love::Exception exc)
-		{
-			std::cerr << exc.msg() << std::endl;
-			return false;
-		}
-
 		SDL_WM_SetCaption("LOVE " LOVE_VERSION_FULL_STR, 0);
 
-		// Get the video info 
+		// Get the video info.
 		video = SDL_GetVideoInfo();
 
 		// Init DevIL
@@ -84,8 +86,19 @@ namespace love_opengl
 
 		current_mode.width = 0;
 		current_mode.height = 0;
+		
+		// Set function pointers and load module.
+		{
+			love::Graphics * g = core->getGraphics();
+			g->clear = love_opengl::clear;
+			g->present = love_opengl::present;
+			g->reset = love_opengl::reset;
+			g->setMode = love_opengl::setMode;
+			g->isCreated = love_opengl::isCreated;
+			g->setCaption = love_opengl::setCaption;
+			g->loaded = true;
+		}
 
-		std::cout << "INIT love.graphics [" << "OpenGL/DevIL/FreeType" << "]" << std::endl;
 		return true;
 	}
 
@@ -209,15 +222,15 @@ namespace love_opengl
 		// Check if FSAA failed or not
 		if(fsaa > 0)
 		{
-			int buffers;
-			int samples;
+			GLint buffers;
+			GLint samples;
 
 			glGetIntegerv( GL_SAMPLE_BUFFERS_ARB, & buffers ) ;
 			glGetIntegerv( GL_SAMPLES_ARB, & samples ) ;
 
 			// Don't fail because of this, but issue a warning.
 			if ( ! buffers || (samples != fsaa))
-				printf("Warning, quality setting failed! (Result: buffers: %i, samples: %i)\n", buffers, samples);
+				printf("Warning, quality setting failed! (Result: buffers: %i, samples: %i)\n", (int)buffers, (int)samples);
 		}
 
 		
@@ -303,7 +316,7 @@ namespace love_opengl
 		setLine(1, love::LINE_SMOOTH);
 	}
 
-	void clear_screen()
+	void clear()
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 		glLoadIdentity();
@@ -380,7 +393,7 @@ namespace love_opengl
 
 	pImage newImage(const char * filename)
 	{
-		love::pFile * file = getFile(filename);
+		love::pFile * file = filesystem->getFile(filename);
 		pImage image = newImage(*file);
 		delete file;
 		return image;
@@ -439,7 +452,7 @@ namespace love_opengl
 
 	pImage newImage(const char * filename, int mode)
 	{
-		love::pFile * file = getFile(filename);
+		love::pFile * file = filesystem->getFile(filename);
 
 		// Create the new image.
 		pImage image = newImage(*file);
@@ -451,7 +464,7 @@ namespace love_opengl
 
 	pFont newFont(const char * filename, int size)
 	{
-		love::pFile * file = getFile(filename);
+		love::pFile * file = filesystem->getFile(filename);
 		pFont font(new TrueTypeFont(*file, size));
 		delete file;
 
@@ -480,7 +493,7 @@ namespace love_opengl
 
 	pFont newImageFont(const char * filename, const char * glyphs, float spacing)
 	{
-		love::pFile * file = getFile(filename);
+		love::pFile * file = filesystem->getFile(filename);
 		pFont font(new ImageFont(*file, std::string(glyphs)));
 		delete file;
 		font->setSpacing(spacing);
@@ -660,7 +673,7 @@ namespace love_opengl
 	
 	int getBlendMode()
 	{
-		int dst, src;
+		GLint dst, src;
 		glGetIntegerv(GL_BLEND_DST, &dst);
 		glGetIntegerv(GL_BLEND_SRC, &src);
 
@@ -672,7 +685,7 @@ namespace love_opengl
 
 	int getColorMode()
 	{
-		int mode;
+		GLint mode;
 		glGetTexEnviv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, &mode);
 
 		if(mode == GL_MODULATE)

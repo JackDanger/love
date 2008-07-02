@@ -22,70 +22,64 @@
 // with standard library functions.
 namespace love_physfs
 {
-	
-	// Functions that should be availble to the love executable
-	// must be declared C-style.
-	extern "C"
-	{
-		// Standard module functions.
-		bool DECLSPEC module_init(int argc, char ** argv, love::Core * core);
-		bool DECLSPEC module_quit();
-		bool DECLSPEC module_open(void * vm);
+	// Standard module functions.
+	bool module_init(int argc, char ** argv, love::Core * core);
+	bool module_quit();
+	bool module_open(void * vm);
 
-		/**
-		* Pushes the filesystem state if possible. All directories
-		* are removed from the search path. No files can be open
-		* when this is called.
-		**/
-		bool DECLSPEC push();
+	/**
+	* Pushes the filesystem state if possible. All directories
+	* are removed from the search path. No files can be open
+	* when this is called.
+	**/
+	bool push();
 
-		/**
-		* Removes the current filesystem state, and activates
-		* the next filesystem state, if any. No files can be
-		* open when this is called.
-		**/
-		bool DECLSPEC pop();
+	/**
+	* Removes the current filesystem state, and activates
+	* the next filesystem state, if any. No files can be
+	* open when this is called.
+	**/
+	bool pop();
 
-		/**
-		* Adds a directory to the search path.
-		**/
-		bool DECLSPEC addDirectory(const std::string & dir);
+	/**
+	* Adds a directory to the search path.
+	**/
+	bool addDirectory(const std::string & dir);
 
-		/**
-		* Adds the base directory to the search path.
-		**/
-		bool DECLSPEC addBaseDirectory();
+	/**
+	* Adds the base directory to the search path.
+	**/
+	bool addBaseDirectory();
 
-		/**
-		* Checks if some file exists in the current search path.
-		* @param f The file (or directory) to check for.
-		**/
-		bool DECLSPEC exists(const std::string & f);
+	/**
+	* Checks if some file exists in the current search path.
+	* @param f The file (or directory) to check for.
+	**/
+	bool exists(const std::string & f);
 
-		/**
-		* Gets the user home directory.
-		**/ 
-		const char DECLSPEC * getUserDirectory();
+	/**
+	* Gets the user home directory.
+	**/ 
+	const char * getUserDirectory();
 
-		/**
-		* Gets the directory from which the application 
-		* was run.
-		**/
-		const char DECLSPEC * getBaseDirectory();
+	/**
+	* Gets the directory from which the application 
+	* was run.
+	**/
+	const char * getBaseDirectory();
 
-		/**
-		* Setup a save directory for a certain game. 
-		* @param game The full or relative path to the game.
-		**/
-		bool DECLSPEC setSaveDirectory( const std::string & game );
+	/**
+	* Setup a save directory for a certain game. 
+	* @param game The full or relative path to the game.
+	**/
+	bool setSaveDirectory( const std::string & game );
 
-		/**
-		* Gets a pointer to a file in the search path. The object
-		* must be freed by the caller.
-		* @param filename The filename (and path) of the file.
-		**/
-		love::pFile DECLSPEC * getFile(const char * filename);
-	}
+	/**
+	* Gets a pointer to a file in the search path. The object
+	* must be freed by the caller.
+	* @param filename The filename (and path) of the file.
+	**/
+	love::pFile * getFile(const char * filename);
 
 	/**
 	* A filesystem state. Contains a list of current search

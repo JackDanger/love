@@ -21,16 +21,10 @@
 // with standard library functions.
 namespace love_sdlmouse
 {
-	
-	// Functions that should be availble to the love executable
-	// must be declared C-style.
-	extern "C"
-	{
-		// Standard module functions.
-		bool DECLSPEC module_init(int argc, char ** argv, love::Core * core);
-		bool DECLSPEC module_quit();
-		bool DECLSPEC module_open(void * vm);
-	}
+	// Standard module functions.
+	bool module_init(int argc, char ** argv, love::Core * core);
+	bool module_quit();
+	bool module_open(void * vm);
 
 	/**
 	* Gets current mouse position on x-axis.

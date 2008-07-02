@@ -16,28 +16,25 @@ extern "C" {
 namespace love_sdlmixer
 {
 
-	// Function typedefs for functions we will use.
-	typedef love::pFile * (*fptr_getFile)(const char *);
-
-	// Pointer functions from other modules.
-	love::pFile * (*getFile)(const char *) = 0;
-
+	// Required modules + Core.
 	love::Core * core = 0;
+	love::Filesystem * filesystem = 0;
 
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
-		love_sdlmixer::core = core;
+		std::cout << "INIT love.audio [" << "SDL_mixer" << "]" << std::endl;
 
-		// Get function pointers from other modules.
-		try
+		// Get modules.
+		filesystem = core->getFilesystem();
+
+		// Verify all.
+		if(!filesystem->verify())
 		{
-			getFile = (fptr_getFile)core->getf(love::Module::FILESYSTEM, "getFile");
-		}
-		catch(love::Exception exc)
-		{
-			std::cerr << exc.msg() << std::endl;
+			std::cerr << "Required module filesystem not loaded." << std::endl;
 			return false;
 		}
+
+		love_sdlmixer::core = core;
 
 		int bits = 0;
 		int audio_rate,audio_channels,audio_buffers=1024;
@@ -61,7 +58,13 @@ namespace love_sdlmixer
 		Mix_Volume(-1,MIX_MAX_VOLUME);
 		Mix_VolumeMusic(MIX_MAX_VOLUME);
 
-		std::cout << "INIT love.audio [" << "SDL_mixer" << "]" << std::endl;
+
+		// Set function pointers and load module.
+		{
+			love::Audio * a = core->getAudio();
+			a->loaded = true;
+		}
+
 		return true;
 	}
 
@@ -83,7 +86,7 @@ namespace love_sdlmixer
 
 	pSound newSound(const char * filename)
 	{
-		love::pFile * file = getFile(filename);
+		love::pFile * file = filesystem->getFile(filename);
 		pSound sound(new Sound(*file));
 		if(!sound->load())
 		{
@@ -97,7 +100,7 @@ namespace love_sdlmixer
 	
 	pMusic newMusic(const char * filename)
 	{
-		love::pFile * file = getFile( filename );
+		love::pFile * file = filesystem->getFile( filename );
 		pMusic music(new Music(*file));
 		if(!music->load())
 		{

@@ -181,161 +181,17 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
-			<File
-				RelativePath="..\..\..\src\opengl\Animation.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\Color.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\Font.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\GLee.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\Image.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\ImageFont.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\love_opengl.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\mod_opengl.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\ParticleSystem.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\PointParticleSystem.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\resources.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\Sprite.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\TrueTypeFont.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\Volatile.cpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
-			<File
-				RelativePath="..\..\..\src\opengl\Animation.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\Color.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\Font.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\GLee.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\Image.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\ImageFont.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\love_opengl.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\ParticleSystem.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\PointParticleSystem.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\resources.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\Sprite.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\TrueTypeFont.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\opengl\Volatile.h"
-				>
-			</File>
 			<Filter
 				Name="Resource Files"
 				Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 				UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 				>
-			</Filter>
-			<Filter
-				Name="swig"
-				>
-				<File
-					RelativePath="..\..\..\src\opengl\Animation.i"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\src\opengl\Color.i"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\src\opengl\Font.i"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\src\opengl\Image.i"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\src\opengl\mod_opengl.i"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\src\opengl\ParticleSystem.i"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\src\opengl\Sprite.i"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\src\opengl\TrueTypeFont.i"
-					>
-				</File>
 			</Filter>
 		</Filter>
 	</Files>

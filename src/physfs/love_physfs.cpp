@@ -60,6 +60,8 @@ namespace love_physfs
 
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
+		std::cout << "INIT love.filesystem [" << "PhysFS" << "]" << std::endl;
+
 		love_physfs::core = core;
 
 		if(!PHYSFS_init(argv[0]))
@@ -67,7 +69,6 @@ namespace love_physfs
 			std::cerr << "Count not init PhysFS" << std::endl;
 			return false;
 		}
-		std::cout << "INIT love.filesystem [" << "PhysFS" << "]" << std::endl;
 
 		if(!push())
 		{
@@ -75,6 +76,16 @@ namespace love_physfs
 			return false;
 		}
 
+		// Set function pointers and load module.
+		{
+			love::Filesystem * f = core->getFilesystem();
+			f->getFile = love_physfs::getFile;
+			f->exists = love_physfs::exists;
+			f->setSaveDirectory = love_physfs::setSaveDirectory;
+			f->addDirectory = love_physfs::addDirectory;
+			f->getBaseDirectory = love_physfs::getBaseDirectory;
+			f->loaded = true;
+		}
 		return true;
 	}
 

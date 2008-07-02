@@ -6,42 +6,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "love", "love.vcproj", "{2E4
 		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00} = {A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "love_opengl", "love_opengl\love_opengl.vcproj", "{70D9DE59-244C-4E3B-AA77-DFA5F12F15F4}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00} = {A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "love_physfs", "love_physfs\love_physfs.vcproj", "{8EE72F2D-00C0-43B6-A25E-FDB12EA9FD16}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00} = {A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "love_sdltimer", "love_sdltimer\love_sdltimer.vcproj", "{E5E47063-759C-4EA7-B1BB-4E0622280232}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00} = {A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "love_sdlkeyboard", "love_sdlkeyboard\love_sdlkeyboard.vcproj", "{F1C43CAC-9DD0-4DD4-9451-C26251BFEB4E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00} = {A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "love_sdlmouse", "love_sdlmouse\love_sdlmouse.vcproj", "{FC4A32F2-8C18-4EB2-83B2-4784A66C5649}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00} = {A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "love_sdlmixer", "love_sdlmixer\love_sdlmixer.vcproj", "{FCB75E2A-842C-4D6E-8E51-21CA64683791}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00} = {A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "love_chipmunk", "love_chipmunk\love_chipmunk.vcproj", "{2BBAB373-FEE3-48BC-BA82-EC17E4F9CABC}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00} = {A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "love_system", "love_system\love_system.vcproj", "{38604DC3-D8F6-43B0-A804-734014C7BF38}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00} = {A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}
 	EndProjectSection
@@ -58,38 +23,10 @@ Global
 		{2E4761E9-687A-4EB3-8B90-369B01388577}.Debug|Win32.Build.0 = Debug|Win32
 		{2E4761E9-687A-4EB3-8B90-369B01388577}.Release|Win32.ActiveCfg = Release|Win32
 		{2E4761E9-687A-4EB3-8B90-369B01388577}.Release|Win32.Build.0 = Release|Win32
-		{70D9DE59-244C-4E3B-AA77-DFA5F12F15F4}.Debug|Win32.ActiveCfg = Debug|Win32
-		{70D9DE59-244C-4E3B-AA77-DFA5F12F15F4}.Debug|Win32.Build.0 = Debug|Win32
-		{70D9DE59-244C-4E3B-AA77-DFA5F12F15F4}.Release|Win32.ActiveCfg = Release|Win32
-		{70D9DE59-244C-4E3B-AA77-DFA5F12F15F4}.Release|Win32.Build.0 = Release|Win32
-		{8EE72F2D-00C0-43B6-A25E-FDB12EA9FD16}.Debug|Win32.ActiveCfg = Debug|Win32
-		{8EE72F2D-00C0-43B6-A25E-FDB12EA9FD16}.Debug|Win32.Build.0 = Debug|Win32
-		{8EE72F2D-00C0-43B6-A25E-FDB12EA9FD16}.Release|Win32.ActiveCfg = Release|Win32
-		{8EE72F2D-00C0-43B6-A25E-FDB12EA9FD16}.Release|Win32.Build.0 = Release|Win32
-		{E5E47063-759C-4EA7-B1BB-4E0622280232}.Debug|Win32.ActiveCfg = Debug|Win32
-		{E5E47063-759C-4EA7-B1BB-4E0622280232}.Debug|Win32.Build.0 = Debug|Win32
-		{E5E47063-759C-4EA7-B1BB-4E0622280232}.Release|Win32.ActiveCfg = Release|Win32
-		{E5E47063-759C-4EA7-B1BB-4E0622280232}.Release|Win32.Build.0 = Release|Win32
-		{F1C43CAC-9DD0-4DD4-9451-C26251BFEB4E}.Debug|Win32.ActiveCfg = Debug|Win32
-		{F1C43CAC-9DD0-4DD4-9451-C26251BFEB4E}.Debug|Win32.Build.0 = Debug|Win32
-		{F1C43CAC-9DD0-4DD4-9451-C26251BFEB4E}.Release|Win32.ActiveCfg = Release|Win32
-		{F1C43CAC-9DD0-4DD4-9451-C26251BFEB4E}.Release|Win32.Build.0 = Release|Win32
-		{FC4A32F2-8C18-4EB2-83B2-4784A66C5649}.Debug|Win32.ActiveCfg = Debug|Win32
-		{FC4A32F2-8C18-4EB2-83B2-4784A66C5649}.Debug|Win32.Build.0 = Debug|Win32
-		{FC4A32F2-8C18-4EB2-83B2-4784A66C5649}.Release|Win32.ActiveCfg = Release|Win32
-		{FC4A32F2-8C18-4EB2-83B2-4784A66C5649}.Release|Win32.Build.0 = Release|Win32
-		{FCB75E2A-842C-4D6E-8E51-21CA64683791}.Debug|Win32.ActiveCfg = Debug|Win32
-		{FCB75E2A-842C-4D6E-8E51-21CA64683791}.Debug|Win32.Build.0 = Debug|Win32
-		{FCB75E2A-842C-4D6E-8E51-21CA64683791}.Release|Win32.ActiveCfg = Release|Win32
-		{FCB75E2A-842C-4D6E-8E51-21CA64683791}.Release|Win32.Build.0 = Release|Win32
 		{2BBAB373-FEE3-48BC-BA82-EC17E4F9CABC}.Debug|Win32.ActiveCfg = Debug|Win32
 		{2BBAB373-FEE3-48BC-BA82-EC17E4F9CABC}.Debug|Win32.Build.0 = Debug|Win32
 		{2BBAB373-FEE3-48BC-BA82-EC17E4F9CABC}.Release|Win32.ActiveCfg = Release|Win32
 		{2BBAB373-FEE3-48BC-BA82-EC17E4F9CABC}.Release|Win32.Build.0 = Release|Win32
-		{38604DC3-D8F6-43B0-A804-734014C7BF38}.Debug|Win32.ActiveCfg = Debug|Win32
-		{38604DC3-D8F6-43B0-A804-734014C7BF38}.Debug|Win32.Build.0 = Debug|Win32
-		{38604DC3-D8F6-43B0-A804-734014C7BF38}.Release|Win32.ActiveCfg = Release|Win32
-		{38604DC3-D8F6-43B0-A804-734014C7BF38}.Release|Win32.Build.0 = Release|Win32
 		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}.Debug|Win32.ActiveCfg = Debug|Win32
 		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}.Debug|Win32.Build.0 = Debug|Win32
 		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}.Release|Win32.ActiveCfg = Release|Win32

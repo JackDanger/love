@@ -179,7 +179,7 @@ namespace love_opengl
 		trueHeight = size;
 
 
-		textures = new GLuint[MAX_CHARS];
+		textures = (unsigned int *)(new GLuint[MAX_CHARS]);
 		for(unsigned int i = 0; i != MAX_CHARS; i++) widths[i] = 0;
 
 		FT_Library library;
@@ -197,7 +197,7 @@ namespace love_opengl
 		FT_Set_Pixel_Sizes(face, size, size);
 
 		list = glGenLists(MAX_CHARS);
-		glGenTextures(MAX_CHARS, textures);
+		glGenTextures(MAX_CHARS, (GLuint*)textures);
 		for(unsigned short i = 0; i < MAX_CHARS; i++)
 			createList(face, i);
 
@@ -215,7 +215,7 @@ namespace love_opengl
 		if(list != 0)
 			glDeleteLists(list, MAX_CHARS);
 		if(textures != 0)
-			glDeleteTextures(MAX_CHARS, textures);
+			glDeleteTextures(MAX_CHARS, (const GLuint*)textures);
 
 		// Cleanup plz.
 		if(textures != 0)

@@ -180,58 +180,12 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
-			<File
-				RelativePath="..\..\..\src\physfs\File.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)\$(InputName)1.obj"
-						XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)\$(InputName)1.obj"
-						XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\..\..\src\physfs\File.i"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\physfs\love_physfs.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\physfs\mod_physfs.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\physfs\mod_physfs.i"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
-			<File
-				RelativePath="..\..\..\src\physfs\File.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\physfs\love_physfs.h"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"

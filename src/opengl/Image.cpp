@@ -4,9 +4,8 @@
 #include <cmath>
 using std::string;
 
-// SDL
-#include "GLee.h"
-#include <SDL_opengl.h>
+
+
 
 // DevIL
 #include <IL/ilu.h>

@@ -1,6 +1,7 @@
 #include "love_sdltimer.h"
 
 // LOVE
+#include <love/Core.h>
 
 // SDL
 #include <SDL.h>
@@ -31,6 +32,7 @@ namespace love_sdltimer
 
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
+		std::cout << "INIT love.timer [" << "SDL" << "]" << std::endl;
 		
 		// Init the SDL timer system.
 		if(SDL_InitSubSystem(SDL_INIT_TIMER) < 0)
@@ -39,7 +41,14 @@ namespace love_sdltimer
 			return false;
 		}
 		
-		std::cout << "INIT love.timer [" << "SDL" << "]" << std::endl;
+		// Set function pointers and load module.
+		{
+			love::Timer * t = core->getTimer();
+			t->getDelta = love_sdltimer::getDelta;
+			t->step = love_sdltimer::step;
+			t->loaded = true;
+		}
+
 		return true;
 	}
 

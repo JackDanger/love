@@ -15,30 +15,6 @@
 * @date 2008-03-15
 */
 
-// Module configuration goes here, for now.
-#ifdef WIN32
-#	define LOVE_WINDOWS
-#	define LOVE_MOD_FILESYSTEM "love_physfs.dll"
-#	define LOVE_MOD_PHYSICS	"love_chipmunk.dll"
-#	define LOVE_MOD_GRAPHICS "love_opengl.dll"
-#	define LOVE_MOD_TIMER "love_sdltimer.dll"
-#	define LOVE_MOD_KEYBOARD "love_sdlkeyboard.dll"
-#	define LOVE_MOD_MOUSE "love_sdlmouse.dll"
-#	define LOVE_MOD_AUDIO "love_sdlmixer.dll"
-#	define LOVE_MOD_SYSTEM "love_system.dll"
-#else
-#	define LOVE_LINUX
-#	define LOVE_MOD_PATH "/usr/lib/love/"
-#	define LOVE_MOD_FILESYSTEM "./liblove_physfs.so"
-#	define LOVE_MOD_PHYSICS	"./liblove_chipmunk.so"
-#	define LOVE_MOD_GRAPHICS "./liblove_opengl.so"
-#	define LOVE_MOD_TIMER "./liblove_sdltimer.so"
-#	define LOVE_MOD_KEYBOARD "./liblove_sdlkeyboard.so"
-#	define LOVE_MOD_MOUSE "./liblove_sdlmouse.so"
-#	define LOVE_MOD_AUDIO "./liblove_sdlmixer.so"
-#	define LOVE_MOD_SYSTEM "./liblove_system.so"
-#endif
-
 // STD
 #include <iostream>
 #include <fstream>
@@ -53,10 +29,30 @@
 #include <love/version.h>
 #include <love/events.h>
 
-using namespace love;
+// This neat macro makes static module 
+// configuration prettier.
+#define STATIC_MOD_EXTERN(ns) \
+	namespace ns { \
+		extern bool module_init(int argc, char ** argv, love::Core * core); \
+		extern bool module_quit(); \
+		extern bool module_open(void * vm); \
+	} \
 
-// Some typedefs.
-typedef const pGame & (*fptr_game)();
+// This other neat macro makes static module
+// initialization prettier.
+#define STATIC_MOD_INIT(ns) \
+	if(!core->insmod(ns::module_init, ns::module_quit, ns::module_open)) return 1;
+
+// Static module conf.
+STATIC_MOD_EXTERN(love_physfs);
+STATIC_MOD_EXTERN(love_opengl);
+STATIC_MOD_EXTERN(love_sdlmixer);
+STATIC_MOD_EXTERN(love_sdltimer);
+STATIC_MOD_EXTERN(love_sdlmouse);
+STATIC_MOD_EXTERN(love_sdlkeyboard);
+STATIC_MOD_EXTERN(love_system);
+
+using namespace love;
 
 int main(int argc, char* argv[])
 {	
@@ -73,15 +69,32 @@ int main(int argc, char* argv[])
 	// Print welcome message.
 	std::cout << "This is LOVE " << LOVE_VERSION_FULL_STR << "." << std::endl << std::endl;
 
+	// Set command line arguments.
+	core->setArgs(argc, argv);
+
 	// Add modules. (Modules are immediately inited, so the order is important).
-	if(!core->insmod(argc, argv, LOVE_MOD_TIMER, Module::TIMER)) return 1;
-	if(!core->insmod(argc, argv, LOVE_MOD_FILESYSTEM, Module::FILESYSTEM)) return 1;
-	if(!core->insmod(argc, argv, LOVE_MOD_GRAPHICS, Module::GRAPHICS)) return 1;
-	//if(!core->insmod(argc, argv, LOVE_MOD_PHYSICS, Module::PHYSICS)) return 1;
-	if(!core->insmod(argc, argv, LOVE_MOD_KEYBOARD, Module::KEYBOARD)) return 1;
-	if(!core->insmod(argc, argv, LOVE_MOD_MOUSE, Module::MOUSE)) return 1;
-	if(!core->insmod(argc, argv, LOVE_MOD_AUDIO, Module::AUDIO)) return 1;
-	if(!core->insmod(argc, argv, LOVE_MOD_SYSTEM, Module::SYSTEM)) return 1;
+	STATIC_MOD_INIT(love_physfs);
+	STATIC_MOD_INIT(love_opengl);
+	STATIC_MOD_INIT(love_sdlmixer);
+	STATIC_MOD_INIT(love_sdltimer);
+	STATIC_MOD_INIT(love_sdlmouse);
+	STATIC_MOD_INIT(love_sdlkeyboard);
+	STATIC_MOD_INIT(love_system);
+
+	// Dynamic modules go here.
+
+	// Verifies that all required function pointers 
+	// have been set for the standard modules.
+	if(!core->verify())
+	{
+		std::cerr << "Core verification FAILED." << std::endl;
+		return 1;
+	}
+
+	// Get pointers to the devices we use.
+	Timer * timer = core->getTimer();
+	Graphics * graphics = core->getGraphics();
+	System * system = core->getSystem();
 
 	/**
 	* Main loop section.
@@ -95,40 +108,18 @@ int main(int argc, char* argv[])
 
 	bool running = true;
 
-	// Function pointers.
-	fptr_void timer_step = 0;
-	fptr_float timer_getDelta = 0;
-	fptr_void graphics_clear = 0;
-	fptr_void graphics_present = 0;
-	fptr_game system_getGame = 0;
-
-	// Get function pointers.
-	try
-	{
-		timer_step = (fptr_void)core->getf(Module::TIMER, "step");
-		timer_getDelta = (fptr_float)core->getf(Module::TIMER, "getDelta");
-		graphics_clear = (fptr_void)core->getf(Module::GRAPHICS, "clear_screen");
-		graphics_present = (fptr_void)core->getf(Module::GRAPHICS, "present");
-		system_getGame = (fptr_game)core->getf(Module::SYSTEM, "getGame");
-	}
-	catch(Exception ex)
-	{
-		std::cerr << ex.msg() << std::endl;
-		return 1;
-	}
-
 	while(running)
 	{
-		const pGame & game = system_getGame();
+		const pGame & game = system->getGame();
 		if(!game)
 		{
 			std::cerr << "ERROR! No game." << std::endl;
 			return 1;
 		}
 
-		timer_step();
-		game->update(timer_getDelta());
-		graphics_clear();
+		timer->step();
+		game->update(timer->getDelta());
+		graphics->clear();
 		game->draw();		
 
 		while(SDL_PollEvent(&e))
@@ -168,17 +159,8 @@ int main(int argc, char* argv[])
 			}
 		}
 
-		graphics_present();
+		graphics->present();
 	}
-
-	// Unload all modules.
-	if(!core->rmmod(LOVE_MOD_SYSTEM)) return 1;
-	if(!core->rmmod(LOVE_MOD_AUDIO)) return 1;
-	if(!core->rmmod(LOVE_MOD_MOUSE)) return 1;
-	if(!core->rmmod(LOVE_MOD_KEYBOARD)) return 1;
-	if(!core->rmmod(LOVE_MOD_GRAPHICS)) return 1;
-	if(!core->rmmod(LOVE_MOD_TIMER)) return 1;
-	if(!core->rmmod(LOVE_MOD_FILESYSTEM)) return 1;
 
 	SDL_Quit();
 

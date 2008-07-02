@@ -1,5 +1,8 @@
 #include "love_sdlkeyboard.h"
 
+// LOVE
+#include <love/Core.h>
+
 // SDL
 #include <SDL.h>
 
@@ -13,6 +16,13 @@ namespace love_sdlkeyboard
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
 		std::cout << "INIT love.keyboard [" << "SDL" << "]" << std::endl;
+		
+		// Set function pointers and load module.
+		{
+			love::Keyboard * k = core->getKeyboard();
+			k->loaded = true;
+		}
+		
 		return true;
 	}
 

@@ -1,5 +1,8 @@
 #include "love_sdlmouse.h"
 
+// LOVE
+#include <love/Core.h>
+
 // SDL
 #include <SDL.h>
 
@@ -13,6 +16,13 @@ namespace love_sdlmouse
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
 		std::cout << "INIT love.mouse [" << "SDL" << "]" << std::endl;
+		
+		// Set function pointers and load module.
+		{
+			love::Mouse * m = core->getMouse();
+			m->loaded = true;
+		}
+
 		return true;
 	}
 

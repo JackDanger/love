@@ -161,6 +161,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\liblove\DynamicModule.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\liblove\Exception.cpp"
 				>
 			</File>
@@ -177,11 +181,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\liblove\modspec.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\liblove\Module.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\..\src\liblove\Resource.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\liblove\StaticModule.cpp"
 				>
 			</File>
 			<File
@@ -215,6 +227,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\liblove\include\love\DynamicModule.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\liblove\include\love\events.h"
 				>
 			</File>
@@ -239,11 +255,27 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\liblove\include\love\mod.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\liblove\include\love\modspec.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\liblove\include\love\Module.h"
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\liblove\include\love\platform.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\liblove\include\love\Resource.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\liblove\include\love\StaticModule.h"
 				>
 			</File>
 			<File

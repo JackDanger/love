@@ -8,6 +8,9 @@
 #ifndef LOVE_OPENGL_IMAGE_H 
 #define LOVE_OPENGL_IMAGE_H 
 
+// SDL
+#include "GLee.h"
+#include <SDL/SDL_opengl.h>
 // LOVE
 #include <love/File.h>
 #include <love/Resource.h>
@@ -16,6 +19,7 @@
 // Module.
 #include "Sprite.h"
 #include "Volatile.h"
+
 
 namespace love_opengl
 {
@@ -68,7 +72,7 @@ namespace love_opengl
 		unsigned int image;
 
 		// OpenGL texture identifier.
-		unsigned int texture;
+		GLuint texture;
 
 	public:
 	

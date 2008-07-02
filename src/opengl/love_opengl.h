@@ -37,79 +37,73 @@
 // with standard library functions.
 namespace love_opengl
 {
-	// Functions that should be availble to the love executable
-	// must be declared C-style.
-	extern "C"
-	{
-		// Standard module functions.
-		bool DECLSPEC module_init(int argc, char ** argv, love::Core * core);
-		bool DECLSPEC module_quit();
-		bool DECLSPEC module_open(void * vm);
+	// Standard module functions.
+	bool module_init(int argc, char ** argv, love::Core * core);
+	bool module_quit();
+	bool module_open(void * vm);
 
-		/**
-		* Checks whether a display mode is supported or not. Note
-		* that fullscreen is assumed, because windowed modes are
-		* generally supported regardless of size.
-		* @param width The window width.
-		* @param height The window height.
-		**/
-		bool DECLSPEC checkMode(int width, int height, bool fullscreen);
+	/**
+	* Checks whether a display mode is supported or not. Note
+	* that fullscreen is assumed, because windowed modes are
+	* generally supported regardless of size.
+	* @param width The window width.
+	* @param height The window height.
+	**/
+	bool checkMode(int width, int height, bool fullscreen);
 
-		/**
-		* Sets the current display mode.
-		* @param width The window width.
-		* @param height The window height.
-		* @param fullscreen True if fullscreen, false otherwise.
-		* @param vsync True if we should wait for vsync, false otherwise.
-		* @param fsaa Number of full scene anti-aliasing buffer, or 0 for disabled.
-		**/
-		bool DECLSPEC setMode(int width, int height, bool fullscreen, bool vsync, int fsaa);
+	/**
+	* Sets the current display mode.
+	* @param width The window width.
+	* @param height The window height.
+	* @param fullscreen True if fullscreen, false otherwise.
+	* @param vsync True if we should wait for vsync, false otherwise.
+	* @param fsaa Number of full scene anti-aliasing buffer, or 0 for disabled.
+	**/
+	bool setMode(int width, int height, bool fullscreen, bool vsync, int fsaa);
 
-		/**
-		* Toggles fullscreen. Note that this also needs to reload the
-		* entire OpenGL context.
-		**/
-		bool DECLSPEC toggleFullscreen();
+	/**
+	* Toggles fullscreen. Note that this also needs to reload the
+	* entire OpenGL context.
+	**/
+	bool toggleFullscreen();
 
-		/**
-		* Resets the current color, background color,
-		* line style, and so forth. (This will be called
-		* when the game reloads.
-		**/
-		void DECLSPEC reset();
-			
-		/**
-		* Clears the screen.
-		**/
-		void DECLSPEC clear_screen();
+	/**
+	* Resets the current color, background color,
+	* line style, and so forth. (This will be called
+	* when the game reloads.
+	**/
+	void reset();
+		
+	/**
+	* Clears the screen.
+	**/
+	void clear();
 
-		/**
-		* Flips buffers. (Rendered geometry is 
-		* presented on screen).
-		**/
-		void DECLSPEC present();
+	/**
+	* Flips buffers. (Rendered geometry is 
+	* presented on screen).
+	**/
+	void present();
 
-		/**
-		* Draws the console on screen.
-		**/
-		void DECLSPEC draw_console();
+	/**
+	* Draws the console on screen.
+	**/
+	void draw_console();
 
-		/**
-		* Prints a message in the console.
-		**/
-		void DECLSPEC print(const char * str);
+	/**
+	* Prints a message in the console.
+	**/
+	void print(const char * str);
 
-		/**
-		* Sets the windows caption.
-		**/
-		void DECLSPEC setCaption(const char * caption);
+	/**
+	* Sets the windows caption.
+	**/
+	void setCaption(const char * caption);
 
-		/**
-		* True if some display mode is set.
-		**/
-		bool DECLSPEC isCreated();
-
-	} // extern "C"
+	/**
+	* True if some display mode is set.
+	**/
+	bool isCreated();
 
 	/**
 	* Checks if some feature is present.

@@ -9,104 +9,118 @@
 namespace love
 {
 
-	Core::Core() : m_error(0)
+	Core::Core()
+		: argc(0), argv(0)
 	{
 	}
 
 	Core::~Core()
 	{
+		dynamic_modules.clear();
+
+		// Unload modules in reverse order.
+		while(!modules.empty())
+		{
+			modules.back()->module_quit();
+			modules.back()->unload();
+			modules.pop_back();
+		}
 	}
 
-	bool Core::insmod(int argc, char ** argv, const std::string & name, unsigned int provides)
+	void Core::setArgs(int argc, char ** argv)
 	{
-		// Create a new module.
-		pModule m(new Module(name));
+		this->argc = argc;
+		this->argv = argv;
+	}
 
-		// Load the shared library.
+	bool Core::insmod(pModule m)
+	{
+		// Check args.
+		if(argc == 0 || argv == 0)
+		{
+			std::cerr << "Error: arguments not set." << std::endl;
+			return false;
+		}
+
+		// Load the module.
 		if(!m->load())
 			return false;
 
-		// It's loaded, now add it to the map and the array 
-		// (if applicable).
-		if(provides < Module::COUNT)
-			mptr[provides] = m;
-		modules[name] = m;
+		// Add it to the list of modules.
+		// Note that this must happen *BEFORE* module_init, 
+		// otherwise love.system won't b included.
+		modules.push_back(m);
 
-		// Init the actual module.
+		// Try to init the module.
 		if(!m->module_init(argc, argv, this))
 			return false;
 
 		return true;
 	}
 
-	bool Core::insmod(int argc, char ** argv, const std::string & name)
+	bool Core::insmod(fptr_init init, fptr_quit quit, fptr_open open)
 	{
-		return insmod(argc, argv, name, Module::CUSTOM);
+		// Create the static module.
+		pModule m(new StaticModule(init, quit, open));
+		return insmod(m);
 	}
 
-	bool Core::rmmod(const std::string & name)
+	bool Core::insmod(const std::string & name)
 	{
-		std::map<std::string, pModule>::const_iterator i = modules.find(name);
-		if(!i->second->module_quit())
+		// Check args.
+		if(argc == 0 || argv == 0)
+		{
+			std::cerr << "Error: arguments not set." << std::endl;
 			return false;
+		}
+		
+		// Create the dynamic module.
+		pDynamicModule m(new DynamicModule(name));
+
+		if(!insmod((pModule)m))
+			return false;
+
+		// Add to dynamic modules.
+		dynamic_modules[name] = m;
+
 		return true;
-	}
-
-	void * Core::getf( const std::string & module, const std::string & name) const
-	{
-		// Check that module is loaded.
-		std::map<std::string, pModule>::const_iterator i = modules.find(name);
-		if( i == modules.end() )
-			throw Exception("Could not load function " + name + ". Module isn't loaded.");
-
-		return i->second->getf(name);
-	}
-
-	void * Core::getf( unsigned int module, const std::string & name) const
-	{
-		if( module >= Module::COUNT )
-			throw Exception("Module does not exist.");
-
-		// Check that module is loaded.
-		if( mptr[module] == 0 )
-			throw Exception("Could not load function " + name + ". Module isn't loaded.");
-
-		return mptr[module]->getf(name);
 	}
 
 	bool Core::open(void * vm)
 	{
-		std::map<std::string, pModule>::const_iterator i = modules.begin();
-
-		while(i != modules.end())
+		for(int i = 0;i<(int)modules.size();i++)
 		{
-			if(!i->second->module_open(vm))
+			if(!modules[i]->module_open(vm))
 				return false;
-			i++;
 		}
+		return true;
+	}
+
+	bool Core::verify()
+	{
+		// Verify all standard modules
+		if(!filesystem.verify()) return false;
+		if(!graphics.verify()) return false;
+		if(!timer.verify()) return false;
+		if(!system.verify()) return false;
+		if(!audio.verify()) return false;
+		if(!mouse.verify()) return false;
+		if(!keyboard.verify()) return false;
 		return true;
 	}
 
 	void Core::error(const char * msg)
 	{
-		// Get the function pointer when called for
-		// the first time.
-		if(m_error == 0)
-		{
-			try
-			{
-				m_error = (void (*)(const char *))getf(Module::SYSTEM, "syserr");
-			}
-			catch(Exception e)
-			{
-				std::cerr << e.msg() << std::endl;	
-				return;
-			}
-		}
-
-		// Call the function.
-		m_error(msg);
-
+		system.error(msg);
 	}
+
+	// Accessor functions.
+	Filesystem * Core::getFilesystem() { return &filesystem; }
+	Graphics * Core::getGraphics() { return &graphics; }
+	Timer * Core::getTimer() { return &timer; }
+	System * Core::getSystem() { return &system; }
+	Audio * Core::getAudio() { return &audio; }
+	Mouse * Core::getMouse() { return &mouse; }
+	Keyboard * Core::getKeyboard() { return &keyboard; }
 
 } // love

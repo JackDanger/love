@@ -433,7 +433,7 @@
         therefore advisable to call this function when as few objects as possible has been loaded.
       </function>
 
-      <function name="isSet" brief="Checks if the display has been set.">
+      <function name="isCreated" brief="Checks if the display has been set.">
         <returns type="boolean" brief="True if display has been set, false otherwise" />
         When configuring the display manually, it is useful to know if the display
         has been created. This way, we can avoid unnecessary display changes when
@@ -447,11 +447,11 @@
           [tab /]-- already! When we later call love.system.restart()
           [tab /]-- for development purposes, the display mode is not
           [tab /]-- changed again! ^-^
-          [tab /]if not love.graphics.isSet() then
+          [tab /]if not love.graphics.isCreated() then
           [tab /][tab /]love.graphics.setMode(1024, 768, false)
           [tab /]end
 
-          -- love.graphics.isSet() now returns true.
+          -- love.graphics.isCreated() now returns true.
           end
         </example>
       </function>
@@ -2261,9 +2261,9 @@
       <separator />
       <constant name="width" brief="Display resolution width."/>
       <constant name="height" brief="Display resolution height."/>
-      <constant name="display_auto" brief="Set this to false if you want to configure the display in Lua manually." />
+      <constant name="display_auto" type="boolean" brief="Set this to false if you want to configure the display in Lua manually." />
       <separator />
-      <constant name="love_version" brief="The LOVE-version this game was made for."/>
+      <constant name="love_version" type="string" brief="The LOVE-version this game was made for."/>
 
       <example name="Standard config file.">
         # Title / author
