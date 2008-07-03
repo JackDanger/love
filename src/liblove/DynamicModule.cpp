@@ -11,7 +11,7 @@
 #include <love/Exception.h>
 
 #if defined(LOVE_LINUX)
-#define LOVE_MOD_PATH /usr/lib/love
+#define LOVE_MOD_PATH "/usr/lib/love"
 #endif
 
 namespace love
