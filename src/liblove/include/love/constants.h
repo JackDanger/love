@@ -20,6 +20,12 @@ namespace love
 		DEFAULT_VERMIN
 	};
 
+	// Audio
+	enum
+	{
+		AUDIO_LOOP = 0
+	};
+
 	// Features.
 	enum
 	{

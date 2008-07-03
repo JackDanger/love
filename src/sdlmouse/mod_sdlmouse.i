@@ -12,6 +12,8 @@ namespace love_sdlmouse
 	bool isVisible();
 }
 
+%native(getPosition) int love_sdlmouse::getPosition(lua_State * L);
+
 %luacode {
 love.mouse = mod_sdlmouse
 }

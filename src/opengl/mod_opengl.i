@@ -71,7 +71,12 @@ namespace love_opengl
 	int getBlendMode();
 	int getColorMode();
 	
-	void setLine( float width, int type = 0 );
+	void setLineWidth( float width );
+	void setLineStyle( int style );
+	void setLine( float width, int style = 0 );
+	
+	float getLineWidth();
+	int getLineStyle();
 	
 	void setFont( pFont font );
 	pFont getFont();
@@ -108,6 +113,7 @@ namespace love_opengl
 	void point( float x, float y );
 	void line( float x1, float y1, float x2, float y2 );
 	void triangle( int type, float x1, float y1, float x2, float y2, float x3, float y3 );
+	void rectangle( int type, float x, float y, float w, float h );
 	void quad( int type, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 );
 	void circle( int type, float x, float y, float radius, int points = 10 );
 }

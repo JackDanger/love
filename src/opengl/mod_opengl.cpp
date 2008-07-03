@@ -9148,6 +9148,46 @@ fail:
 }
 
 
+static int _wrap_setLineWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  float arg1 ;
+  
+  SWIG_check_num_args("love_opengl::setLineWidth",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::setLineWidth",1,"float");
+  arg1 = (float)lua_tonumber(L, 1);
+  love_opengl::setLineWidth(arg1);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setLineStyle(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  
+  SWIG_check_num_args("love_opengl::setLineStyle",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::setLineStyle",1,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  love_opengl::setLineStyle(arg1);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_setLine__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   float arg1 ;
@@ -9224,6 +9264,42 @@ static int _wrap_setLine(lua_State* L) {
   
   lua_pushstring(L,"No matching function for overloaded 'setLine'");
   lua_error(L);return 0;
+}
+
+
+static int _wrap_getLineWidth(lua_State* L) {
+  int SWIG_arg = -1;
+  float result;
+  
+  SWIG_check_num_args("love_opengl::getLineWidth",0,0)
+  result = (float)love_opengl::getLineWidth();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getLineStyle(lua_State* L) {
+  int SWIG_arg = -1;
+  int result;
+  
+  SWIG_check_num_args("love_opengl::getLineStyle",0,0)
+  result = (int)love_opengl::getLineStyle();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
 }
 
 
@@ -10845,6 +10921,38 @@ fail:
 }
 
 
+static int _wrap_rectangle(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  
+  SWIG_check_num_args("love_opengl::rectangle",5,5)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::rectangle",1,"int");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::rectangle",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_opengl::rectangle",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("love_opengl::rectangle",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("love_opengl::rectangle",5,"float");
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  love_opengl::rectangle(arg1,arg2,arg3,arg4,arg5);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_quad(lua_State* L) {
   int SWIG_arg = -1;
   int arg1 ;
@@ -11043,7 +11151,11 @@ static const struct luaL_reg swig_commands[] = {
     { "setColorMode", _wrap_setColorMode},
     { "getBlendMode", _wrap_getBlendMode},
     { "getColorMode", _wrap_getColorMode},
+    { "setLineWidth", _wrap_setLineWidth},
+    { "setLineStyle", _wrap_setLineStyle},
     { "setLine",_wrap_setLine},
+    { "getLineWidth", _wrap_getLineWidth},
+    { "getLineStyle", _wrap_getLineStyle},
     { "setFont", _wrap_setFont},
     { "getFont", _wrap_getFont},
     { "drawf",_wrap_drawf},
@@ -11052,6 +11164,7 @@ static const struct luaL_reg swig_commands[] = {
     { "point", _wrap_point},
     { "line", _wrap_line},
     { "triangle", _wrap_triangle},
+    { "rectangle", _wrap_rectangle},
     { "quad", _wrap_quad},
     { "circle",_wrap_circle},
     { "getModes",love_opengl::getModes},

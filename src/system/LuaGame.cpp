@@ -400,6 +400,8 @@ namespace love_system
 			"default_vermin = 4,"
 
 			"point_sprite = 0,"
+
+			"audio_loop = 0,"
 			
 			"}"
 			);

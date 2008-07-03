@@ -75,4 +75,17 @@ namespace love_sdlmouse
 		return (SDL_ShowCursor(SDL_QUERY) == SDL_ENABLE) ? true : false;
 	}
 
+	int getPosition(lua_State * L)
+	{
+		int n = lua_gettop(L);
+
+		if( n != 0 )
+			return luaL_error(L, "Funtion does not take parameters.");
+
+		lua_pushnumber(L, getX());
+		lua_pushnumber(L, getY());
+
+		return 2;
+	}
+
 } // love_sdlmouse

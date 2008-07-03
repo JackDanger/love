@@ -46,9 +46,6 @@ namespace love_opengl
 	// The current set font. (Initially not set).
 	pFont current_font;
 
-	// The width of the lines used to draw primitives
-	float lineWidth = 1;
-
 	// Required modules + Core.
 	love::Core * core = 0;
 	love::Filesystem * filesystem = 0;
@@ -155,9 +152,9 @@ namespace love_opengl
 		// Temp variables that holds the saved
 		// graphics state if we are *changing* display mode.
 		pColor color, bg;
-		int blend_mode = 0, color_mode = 0;
-		float line_width = 1;
-		bool line_smooth = true;
+		int blend_mode = love::BLEND_NORMAL, color_mode = love::COLOR_NORMAL;
+		float line_width = 1.0f;
+		int line_style = love::LINE_SMOOTH;
 
 		// If screen is already created, then we're about to 
 		// change the display mode.
@@ -168,8 +165,8 @@ namespace love_opengl
 			bg = getBackgroundColor();
 			blend_mode = getBlendMode();
 			color_mode = getColorMode();
-			line_smooth = glIsEnabled(GL_LINE_SMOOTH) == GL_TRUE;
-			glGetFloatv(GL_LINE_WIDTH, &line_width);
+			line_style = getLineStyle();
+			line_width = getLineWidth();
 
 			// Caption too.
 			std::string caption = getCaption();
@@ -251,8 +248,7 @@ namespace love_opengl
 		glCullFace(GL_BACK);		// Do not render back face.
 
 		// Set the background color
-		glClearColor( 0.0, 0.0, 0.0, 0.0 );
-		glColor4ub(255, 255, 255, 255);
+		reset();
 
 		// Enable textures
 		glEnable(GL_TEXTURE_2D);	
@@ -282,7 +278,7 @@ namespace love_opengl
 			setBackgroundColor(bg);
 			setBlendMode(blend_mode);
 			setColorMode(color_mode);
-			setLine(line_width, line_smooth ? love::LINE_SMOOTH : love::LINE_ROUGH);
+			setLine(line_width, line_style);
 		}
 
 		// Set the new display mode as the current display mode.
@@ -694,14 +690,30 @@ namespace love_opengl
 			return love::COLOR_NORMAL;
 	}
 
-	void setLine( float width, int type )
+	void setLineWidth( float width )
 	{
-		lineWidth = width;
+		glLineWidth(width);
+	}
 
-		if(type == 0)
+	void setLineStyle( int style )
+	{
+		if(style == love::LINE_ROUGH)
+			glDisable (GL_LINE_SMOOTH);
+		else // type == love::LINE_SMOOTH
+		{
+			glEnable (GL_LINE_SMOOTH);
+			glHint (GL_LINE_SMOOTH_HINT, GL_NICEST);
+		}		
+	}
+
+	void setLine( float width, int style )
+	{
+		glLineWidth(width);
+
+		if(style == 0)
 			return;
 
-		if(type == love::LINE_ROUGH)
+		if(style == love::LINE_ROUGH)
 			glDisable (GL_LINE_SMOOTH);
 		else // type == love::LINE_SMOOTH
 		{
@@ -709,6 +721,21 @@ namespace love_opengl
 			glHint (GL_LINE_SMOOTH_HINT, GL_NICEST);
 		}
 
+	}
+
+	float getLineWidth()
+	{
+		float w;
+		glGetFloatv(GL_LINE_WIDTH, &w);
+		return w;
+	}
+
+	int getLineStyle()
+	{
+		if(glIsEnabled(GL_LINE_SMOOTH) == GL_TRUE)
+			return love::LINE_SMOOTH;
+		else
+			return love::LINE_ROUGH;
 	}
 
 	float push_color_mode()
@@ -1029,7 +1056,6 @@ namespace love_opengl
 	{
 		glDisable(GL_TEXTURE_2D);
 		glPushMatrix();
-			glLineWidth(lineWidth);
 			glBegin(GL_LINES);
 				glVertex2f(x1, y1);
 				glVertex2f(x2, y2);
@@ -1046,7 +1072,6 @@ namespace love_opengl
 		switch(type)
 		{
 		case love::DRAW_LINE:
-			glLineWidth(lineWidth);
 			glBegin(GL_LINE_LOOP);
 				glVertex2f(x1, y1);
 				glVertex2f(x2, y2);
@@ -1068,7 +1093,7 @@ namespace love_opengl
 		glEnable(GL_TEXTURE_2D);
 	}
 
-	void quad( int type, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 )
+	void rectangle( int type, float x, float y, float w, float h )
 	{
 		glDisable(GL_TEXTURE_2D);
 		glPushMatrix();
@@ -1076,7 +1101,38 @@ namespace love_opengl
 		switch(type)
 		{
 		case love::DRAW_LINE:
-			glLineWidth(lineWidth);
+			glBegin(GL_LINE_LOOP);
+				glVertex2f(x, y);				
+				glVertex2f(x, y+h);
+				glVertex2f(x+w, y+h);
+				glVertex2f(x+w, y);
+			glEnd();
+			break;
+
+		default:
+		case love::DRAW_FILL:
+			glBegin(GL_QUADS);
+				glVertex2f(x, y);				
+				glVertex2f(x, y+h);
+				glVertex2f(x+w, y+h);
+				glVertex2f(x+w, y);
+			glEnd();
+			break;
+		}
+
+		glPopMatrix();
+		glEnable(GL_TEXTURE_2D);
+	}
+
+	void quad( int type, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 )
+	{
+		glDisable(GL_CULL_FACE);
+		glDisable(GL_TEXTURE_2D);
+		glPushMatrix();
+
+		switch(type)
+		{
+		case love::DRAW_LINE:
 			glBegin(GL_LINE_LOOP);
 				glVertex2f(x1, y1);				
 				glVertex2f(x2, y2);
@@ -1098,6 +1154,7 @@ namespace love_opengl
 
 		glPopMatrix();
 		glEnable(GL_TEXTURE_2D);
+		glEnable(GL_CULL_FACE);
 	}
 
 	void circle( int type, float x, float y, float radius, int points )
@@ -1114,7 +1171,6 @@ namespace love_opengl
 		switch(type)
 		{
 		case love::DRAW_LINE:
-			glLineWidth(lineWidth);
 			glBegin(GL_LINE_LOOP);
 
 			for(float i = 0; i < two_pi; i+= angle_shift)

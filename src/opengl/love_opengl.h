@@ -288,10 +288,16 @@ namespace love_opengl
 	**/
 	int getColorMode();
 
+	void setLineWidth( float width );
+	void setLineStyle( int style );
+
 	/**
 	* Sets the type of line used to draw primitives.
 	**/
-	void setLine( float width, int type = 0 );
+	void setLine( float width, int style = 0 );
+
+	float getLineWidth();
+	int getLineStyle();
 
 	/**
 	* Draw text on screen at the specified coordiantes (automatically breaks \n characters).
@@ -519,6 +525,15 @@ namespace love_opengl
 	* @param y3 Third y-coordinate.
 	**/
 	void triangle( int type, float x1, float y1, float x2, float y2, float x3, float y3 );
+
+	/**
+	* Draws a rectangle.
+	* @param x Position along x-axis for top-left corner.
+	* @param y Position along y-axis for top-left corner.
+	* @param w The width of the rectangle.
+	* @param h The height of the rectangle.
+	**/
+	void rectangle( int type, float x, float y, float w, float h );
 
 	/**
 	* Draws a quadrilateral using the four coordinates passed.

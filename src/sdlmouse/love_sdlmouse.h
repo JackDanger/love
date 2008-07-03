@@ -57,6 +57,15 @@ namespace love_sdlmouse
 	**/
 	bool isVisible();
 
+	/**
+	* Native function with two return values (x,y). The same
+	* can be achieved with separate calls to getX() and getY(), 
+	* but getting the mouse position is common, and this
+	* will make the process prettier.
+	* Does not take any parameters, and returns two numbers.
+	**/
+	int getPosition(lua_State * L);
+
 
 } // love_sdlmouse
 

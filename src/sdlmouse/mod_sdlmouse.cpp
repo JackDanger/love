@@ -1635,6 +1635,7 @@ static const struct luaL_reg swig_commands[] = {
     { "isDown", _wrap_isDown},
     { "setVisible", _wrap_setVisible},
     { "isVisible", _wrap_isVisible},
+    { "getPosition",love_sdlmouse::getPosition},
     {0,0}
 };
 
