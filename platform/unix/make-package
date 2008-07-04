@@ -23,18 +23,16 @@ case "$1" in
 		mkdir deb/usr
 		mkdir deb/usr/bin
 		mv ../../bin/love deb/usr/bin/love
-		mkdir deb/usr/lib
-		mkdir deb/usr/lib/love
-		mv ../../bin/*.so deb/usr/lib/love
+#		mv ../../bin/*.so deb/usr/lib/love
 		dpkg -b deb love-$2.deb && \
 		echo "  * love-$2.deb created"
 		rm -rf deb
 		;;
 	src )
 		cd ../../../
-		tar -czf love/platform/unix/love-$2-src.tar.gz --exclude=.svn love/*.txt love/makefile love/*.make love/src/ && \
+		tar -czf love/platform/unix/love-$2-src.tar.gz --exclude=.svn love/demos/* love/*.txt love/Makefile love/src/ && \
 		echo "  * love-$2-src.tar.gz created"
-		zip -9q love/platform/unix/love-$2-src.zip love/*.txt love/makefile love/*.make `find love/src/* | grep -viE svn` && \
+		zip -9q love/platform/unix/love-$2-src.zip love/*.txt love/demos/* love/Makefile `find love/src/* | grep -viE svn` && \
 		echo "  * love-$2-src.zip created"
 		;;
 	* )
