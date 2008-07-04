@@ -1,5 +1,5 @@
 <?xml version='1.0' ?>
-<document version="Version 0.3.0" >
+<document version="Version 0.3.2" >
 
   <section name="LÖVE Documentation" refer="index">
 
@@ -411,8 +411,8 @@
         <param name="width" brief="Display width." />
         <param name="height" brief="Display height." />
         <param name="fullscreen" brief="Fullscreen (true), or windowed (false)." />
-        <param name="vsync" brief="True if LOVE should wait for vsync, false otherwise." />
-        <param name="fsaa" brief="The number of FSAA-buffers." />
+        <param name="vsync" brief="True if LOVE should wait for vsync, false otherwise (normally true)." />
+        <param name="fsaa" brief="The number of FSAA-buffers (normally 0)." />
         <returns type="boolean" brief="True if successful, false otherwise" />
 
         Do not change the display mode unless you know that that mode is supported. Use checkMode() to
@@ -421,6 +421,25 @@
         Also note that calling this function will cause the entire display context to reload. This
         means that all Images, Fonts and other graphical objects will have to be reloaded. It is
         therefore advisable to call this function when as few objects as possible has been loaded.
+
+        [br /]
+        [br /]
+        FSAA stands for Full Scene Anti-Aliasing, and it is recommended to set this number to 0 (the default), 
+        unless you need anti-aliasing of the edges on primitves and images. Most machines who support this feature support
+        1, 2 and 4 FSAA buffers. The more buffers, the better the anti-aliasing and the slower the performance. 
+        Assuming you're not using filled primites, you do not really need FSAA as long as you pad the sprites with some empty space; in this case FSAA will have no effect 
+        on the visuals at all, it will only hinder performance.
+
+        <example name="Changing the display mode.">
+          function keypressed(k)
+          if k == love.key_up then
+          [tab /]-- Set a display mode with 1024x768 resolution,
+          [tab /]-- no fullscreen, vertical sync on if possible,
+          [tab /]-- and no FSAA (anti-aliasing) disabled. Unless you need
+          [tab /]love.graphics.setMode(1024, 768, false, true, 0)
+          end
+        </example>  
+      
       </function>
 
       <function name="toggleFullscreen" brief="Toggles fullscreen.">
@@ -532,6 +551,22 @@
         </example>
       </function>
 
+      <separator />
+      
+      <function name="setLineWidth" brief="Sets the line width.">
+        <param name="width" brief="The width of the line." />
+      </function>
+
+      <function name="setLineStyle" brief="Sets line anti-aliasing.">
+        Possible line styles are love.line_smooth and love.line_rough.
+        <param name="style" brief="Line style." />
+        <example>
+          -- No anti-aliasing.
+          love.graphics.setLineStyle(love.line_rough)
+        </example>
+      </function>
+      
+      
       <function name="setLine" brief="Sets the width of the line used when drawing outlined primitives.">
         <param name="width" brief="The width of the line." />
         <example>
@@ -548,6 +583,18 @@
           love.graphics.setLine(1, love.line_rough) -- 1 pixel width rough lines
         </example>
       </function>
+
+      <separator />
+
+      <function name="getLineWidth" brief="Gets the current line width.">
+        <returns type="number" brief="The current line width." />
+      </function>
+
+      <function name="getLineStyle" brief="Gets the current line style.">
+        <returns name="number" brief="love.line_smooth or love.line_rough." />
+      </function>
+      
+      <separator />
 
       <function name="setBlendMode" brief="Sets the blending mode.">
         The blending mode controls the way transparent elements blend together.
@@ -888,6 +935,19 @@
         </example>
       </function>
 
+      <function name="rectangle" brief="Draws a rectangle.">
+        <param name="x" brief="X-coordinate of top-left corner." />
+        <param name="y" brief="Y-coordinate of top-left corder." />
+        <param name="w" brief="Width of the rectangle." />
+        <param name="h" brief="Height of the rectangle." />
+        <example name="Draw a rectangle.">
+          function draw()
+          [tab /]-- Draws a 100px wide, 200px high rectangle at (50, 50).
+          [tab /]love.graphics.rectangle(love.draw_fill, 50, 50, 100, 200)
+          end
+        </example>
+      </function>
+
       <function name="quad" brief="Draws a quadrilateral usign the passed coordinates.">
         Note: When drawing a filled quadrilateral, the coordinates must be passed in a counter-clockwise order.
         <param name="type" brief="The type of quad (outline/filled)." />
@@ -1116,6 +1176,17 @@
       </function>
 
       <separator />
+
+      <function name="getPosition" brief="Gets the current position of the mouse.">
+        This function returns two parameters. Since getting the mouse position is 
+        a very common task, this function makes that process slighly prettier and
+        and more LOVEley for everyone. See the example below for usage!
+        <returns type="number" brief="The current x position." />
+        <returns type="number" brief="The current y position." />
+        <example>
+          local x, y = love.graphics.getPosition()
+        </example>
+      </function>
 
       <function name="setPosition" brief="Sets the current position of the mouse.">
         Sets the current position of the mouse. Note that this generates a mousemoved event.
@@ -1415,6 +1486,24 @@
 
           [tab /]-- Sleep 10 ms.
           [tab /]love.timer.sleep(10)
+          end
+        </example>
+      </function>
+      <function name="getTime" brief="Gets approximate time since startup.">
+        Note that this function does not get the current time! It is meant for
+        timing pieces of code. [br /][br /]Also, this function is not very precise at the moment, 
+        since SDL's timer is used. This will change in some time in the future when modules for timers
+        with higher resolutions are created.
+        <returns type="number" brief="The (approximate) time in seconds since startup." />
+        <example name="Timing code.">
+          -- Assuming we have a huge (10000) array of sprites:
+          function draw()
+          [tab /]local t = love.graphics.getTime()
+          [tab /]for i=1,10000 do
+          [tab /][tab /]love.graphics.draw(sprites[i], sprites[i].x, sprites[i].y)
+          [tab /]end
+          [tab /]local elapsed = love.graphics.getTime() - t
+          [tab /]print("Time used to draw: " .. elapsed .. " seconds.")
           end
         </example>
       </function>
@@ -2246,6 +2335,9 @@
       <separator />
       <constant name="love.line_smooth" brief="Sets the lines as smooth." />
       <constant name="love.line_rough" brief="Sets the lines as rough (best when drawing straight 1px wide lines)." />
+      <separator />
+      <constant name="love.audio_loop" brief="Loops music or sound." />
+    
     </constants>
 
     <constants name="Config files" brief="How to create config files." has="List of attributes">
@@ -2254,13 +2346,16 @@
       this file must be "game.conf".
       A full listing of available attributes is presented below. [br /]
       [br /]
-      All values are optional, but it is highly recommended to at least include title and author.
+      All values are optional, but it is highly recommended to at least include title, author, and [b]love_version[/b].
 
       <constant name="title" type="string" brief="The game title."/>
       <constant name="author" type="string" brief="The author of the game."/>
       <separator />
       <constant name="width" brief="Display resolution width."/>
       <constant name="height" brief="Display resolution height."/>
+      <constant name="fullscreen" brief="True if fullscreen, false otherwise." />
+      <constant name="vsync" brief="True if attemt to enable, false otherwise." />
+      <constant name="fsaa" brief="Number of FSAA-buffers." />
       <constant name="display_auto" type="boolean" brief="Set this to false if you want to configure the display in Lua manually." />
       <separator />
       <constant name="love_version" type="string" brief="The LOVE-version this game was made for."/>
@@ -2275,8 +2370,19 @@
         height = 600
 
         # Was made for this version of LOVE:
-        love_version = "0.3.0"
+        love_version = "0.3.2"
       </example>
+
+        <example name="Config file with more display settings">
+          title = "Epic Quest III"
+          author = "Awesome Games"
+          width = 800
+          height = 600
+          fullscreen = false
+          vsync = true
+          fsaa = 0
+          love_version = "0.3.2"
+        </example>
 
     </constants>
 
@@ -2288,7 +2394,8 @@
       [/div]
       [div class="text"]
       All keyboard shortcuts have been removed as of
-      version 0.3.0.
+      version 0.3.0. The functionality they provided can now be accessed 
+      through love.system.
       [/div]
       [/div]
 
