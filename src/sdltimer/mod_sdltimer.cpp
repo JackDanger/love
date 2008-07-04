@@ -1562,6 +1562,24 @@ fail:
 }
 
 
+static int _wrap_getTime(lua_State* L) {
+  int SWIG_arg = -1;
+  float result;
+  
+  SWIG_check_num_args("love_sdltimer::getTime",0,0)
+  result = (float)love_sdltimer::getTime();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 #ifdef __cplusplus
 }
 #endif
@@ -1570,6 +1588,7 @@ static const struct luaL_reg swig_commands[] = {
     { "getDelta", _wrap_getDelta},
     { "getFPS", _wrap_getFPS},
     { "sleep", _wrap_sleep},
+    { "getTime", _wrap_getTime},
     {0,0}
 };
 

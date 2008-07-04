@@ -14,6 +14,10 @@ extern "C" {
 namespace love_sdltimer
 {
 
+	// Timing vars for benchmarking.
+	Uint32 time_init = 0;
+	
+	// Frame delta vars.
 	Uint32 currTime = 0;
 	Uint32 prevTime;
 	Uint32 prevFpsUpdate = 0;
@@ -48,6 +52,8 @@ namespace love_sdltimer
 			t->step = love_sdltimer::step;
 			t->loaded = true;
 		}
+
+		time_init = SDL_GetTicks();
 
 		return true;
 	}
@@ -107,6 +113,11 @@ namespace love_sdltimer
 	void sleep(int ms)
 	{		
 		SDL_Delay((unsigned int)ms);
+	}
+
+	float getTime()
+	{
+		return (SDL_GetTicks() - time_init)/1000.0f;
 	}
 
 } // love_sdltimer

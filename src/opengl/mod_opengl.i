@@ -115,6 +115,7 @@ namespace love_opengl
 	void triangle( int type, float x1, float y1, float x2, float y2, float x3, float y3 );
 	void rectangle( int type, float x, float y, float w, float h );
 	void quad( int type, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 );
+	void oldQuad( int type, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 );
 	void circle( int type, float x, float y, float radius, int points = 10 );
 }
 

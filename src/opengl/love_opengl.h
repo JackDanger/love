@@ -548,6 +548,7 @@ namespace love_opengl
 	* @param y4 Fourth y-coordinate.
 	**/
 	void quad( int type, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 );
+	void oldQuad( int type, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 );
 
 	/**
 	* Draws a circle using the specified arguments.

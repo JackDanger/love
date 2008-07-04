@@ -7,6 +7,7 @@ namespace love_sdltimer
 	float getDelta();
 	float getFPS();	
 	void sleep(int ms);
+	float getTime();
 }
 
 %luacode {

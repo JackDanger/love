@@ -10997,6 +10997,50 @@ fail:
 }
 
 
+static int _wrap_oldQuad(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
+  float arg8 ;
+  float arg9 ;
+  
+  SWIG_check_num_args("love_opengl::oldQuad",9,9)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::oldQuad",1,"int");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::oldQuad",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_opengl::oldQuad",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("love_opengl::oldQuad",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("love_opengl::oldQuad",5,"float");
+  if(!lua_isnumber(L,6)) SWIG_fail_arg("love_opengl::oldQuad",6,"float");
+  if(!lua_isnumber(L,7)) SWIG_fail_arg("love_opengl::oldQuad",7,"float");
+  if(!lua_isnumber(L,8)) SWIG_fail_arg("love_opengl::oldQuad",8,"float");
+  if(!lua_isnumber(L,9)) SWIG_fail_arg("love_opengl::oldQuad",9,"float");
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  arg6 = (float)lua_tonumber(L, 6);
+  arg7 = (float)lua_tonumber(L, 7);
+  arg8 = (float)lua_tonumber(L, 8);
+  arg9 = (float)lua_tonumber(L, 9);
+  love_opengl::oldQuad(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_circle__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   int arg1 ;
@@ -11166,6 +11210,7 @@ static const struct luaL_reg swig_commands[] = {
     { "triangle", _wrap_triangle},
     { "rectangle", _wrap_rectangle},
     { "quad", _wrap_quad},
+    { "oldQuad", _wrap_oldQuad},
     { "circle",_wrap_circle},
     { "getModes",love_opengl::getModes},
     {0,0}

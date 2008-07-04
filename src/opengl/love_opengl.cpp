@@ -1157,6 +1157,37 @@ namespace love_opengl
 		glEnable(GL_CULL_FACE);
 	}
 
+	void oldQuad( int type, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 )
+	{
+		glDisable(GL_TEXTURE_2D);
+		glPushMatrix();
+
+		switch(type)
+		{
+		case love::DRAW_LINE:
+			glBegin(GL_LINE_LOOP);
+				glVertex2f(x1, y1);				
+				glVertex2f(x2, y2);
+				glVertex2f(x3, y3);
+				glVertex2f(x4, y4);
+			glEnd();
+			break;
+
+		default:
+		case love::DRAW_FILL:
+			glBegin(GL_QUADS);
+				glVertex2f(x1, y1);
+				glVertex2f(x2, y2);
+				glVertex2f(x3, y3);
+				glVertex2f(x4, y4);
+			glEnd();
+			break;
+		}
+
+		glPopMatrix();
+		glEnable(GL_TEXTURE_2D);
+	}
+
 	void circle( int type, float x, float y, float radius, int points )
 	{
 		float two_pi = 3.14159265f * 2;

@@ -49,6 +49,13 @@ namespace love_sdltimer
 	**/
 	void sleep(int ms);
 
+	/**
+	* Returns the time since the initialization of the
+	* module. 
+	* @return The time in seconds.
+	**/
+	float getTime();
+
 } // love_sdltimer
 
 #endif // LOVE_MOD_SDLTIMER_H
