@@ -1,3 +1,20 @@
+LOVE 0.3.2
+----------
+
+  * Added love.graphics.rectangle()
+  * Added love.graphics.setLineWidth()
+  * Added love.graphics.setLineStyle()
+  * Added love.graphics.getLineWidth()
+  * Added love.graphics.getLineStyle()
+  * Added love.mouse.getPosition()
+  * Added love.audio_loop
+  * Added love.timer.getTime()
+  * Changed love.graphics.quad() to accept CCW and CW ordering.
+  * Fixed default color mode bug.
+  * Fixed line width being applied unnecessarily.
+  * Fixed line width bug related to fullscreen toggle.
+  * Fixed music not looping.
+
 LOVE 0.3.1
 ----------
  
