@@ -1,26 +1,30 @@
 #include "Shape.h"
 
+#include "Body.h"
+
 namespace love_chipmunk
 {
-	Shape::Shape(pSpace space, cpShape * shape)
-		: space(space), shape(shape)
+	Shape::Shape(boost::shared_ptr<Body> body)
+		: body(body)
 	{
-		cpSpaceAddShape(space->space, shape);
 	}
 
 	Shape::~Shape()
 	{
-		cpSpaceRemoveShape(space->space, shape);
 		cpShapeFree(shape);
 	}
 
+	void Shape::remove()
+	{
+		cpSpaceRemoveShape(body->space->space, shape);
+	}
 
-	void Shape::setCollisionType(unsigned long type)
+	void Shape::setType(unsigned long type)
 	{
 		shape->collision_type = type;
 	}
 
-	unsigned long Shape::getCollisionType() const
+	unsigned long Shape::getType() const
 	{
 		return shape->collision_type;
 	}

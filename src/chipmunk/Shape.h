@@ -3,40 +3,47 @@
 * Website: http://love.sourceforge.net
 * Licence: ZLIB/libpng
 * Copyright (c) 2006-2008 LOVE Development Team
+* 
+* @author Anders Ruud
+* @date 2008-03-21
 */
 
 #ifndef LOVE_CHIPMUNK_SHAPE_H
 #define LOVE_CHIPMUNK_SHAPE_H
 
-#include "Space.h"
+// love_chipmunk
+#include "chipmunk/chipmunk.h"
+
+// love
+#include <love/constants.h>
 
 // Boost
 #include <boost/shared_ptr.hpp>
 
 namespace love_chipmunk
 {
-	/**
-	 * @author Anders Ruud
-	 * @date 2008-03-21
-	 **/
-	class Shape
+
+	class Body;
+
+	class Shape 
 	{
 		friend class Body;
-	private:
-		pSpace space;
+	protected:
 		cpShape * shape;
+		boost::shared_ptr<Body> body;
 	public:
 
-		Shape(pSpace space, cpShape * shape);
+		Shape(boost::shared_ptr<Body> body);
 		virtual ~Shape();
+	
+		void remove();
 
-		void setCollisionType(unsigned long type);
-		unsigned long getCollisionType() const;
+		void setType(unsigned long type);
+		unsigned long getType() const;
 		void setGroup(unsigned long group);
 		unsigned long getGroup() const;
 		void setLayers(unsigned long layers);
 		unsigned long getLayers() const;
-
 		void setElasticity(float e);
 		float getElasticity() const;
 		void setFriction(float u);

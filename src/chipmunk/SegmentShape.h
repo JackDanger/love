@@ -1,0 +1,52 @@
+/*
+* LOVE: Totally Awesome 2D Gaming.
+* Website: http://love.sourceforge.net
+* Licence: ZLIB/libpng
+* Copyright (c) 2006-2008 LOVE Development Team
+* 
+* @author Anders Ruud
+* @date 2008-07-06
+*/
+
+
+#ifndef LOVE_CHIPMUNK_SEGMENT_SHAPE_H
+#define LOVE_CHIPMUNK_SEGMENT_SHAPE_H
+
+// love_chipmunk
+#include "Shape.h"
+#include "Vector.h"
+
+// Boost
+#include <boost/shared_ptr.hpp>
+
+namespace love_chipmunk
+{
+	// Forward declarations.
+	class Body;
+
+	class SegmentShape : public Shape
+	{
+	protected:
+		cpSegmentShape * segmentShape;
+	public:
+
+		SegmentShape(boost::shared_ptr<Body> body);
+		virtual ~SegmentShape();
+		pVector getFirst();
+		pVector getSecond();
+
+	}; // SegmentShape
+
+	typedef boost::shared_ptr<SegmentShape> pSegmentShape;
+
+	class DynamicSegmentShape : public SegmentShape
+	{
+	public:		
+		DynamicSegmentShape(boost::shared_ptr<Body> body, float x1, float y1, 
+			float x2, float y2);
+		virtual ~DynamicSegmentShape();
+	}; // DynamicCircleShape
+
+} // love_chipmunk
+
+#endif // LOVE_CHIPMUNK_SEGMENT_SHAPE_H

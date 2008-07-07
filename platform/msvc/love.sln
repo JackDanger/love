@@ -6,11 +6,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "love", "love.vcproj", "{2E4
 		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00} = {A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "love_chipmunk", "love_chipmunk\love_chipmunk.vcproj", "{2BBAB373-FEE3-48BC-BA82-EC17E4F9CABC}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00} = {A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "liblove", "liblove\liblove.vcproj", "{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}"
 EndProject
 Global
@@ -23,10 +18,6 @@ Global
 		{2E4761E9-687A-4EB3-8B90-369B01388577}.Debug|Win32.Build.0 = Debug|Win32
 		{2E4761E9-687A-4EB3-8B90-369B01388577}.Release|Win32.ActiveCfg = Release|Win32
 		{2E4761E9-687A-4EB3-8B90-369B01388577}.Release|Win32.Build.0 = Release|Win32
-		{2BBAB373-FEE3-48BC-BA82-EC17E4F9CABC}.Debug|Win32.ActiveCfg = Debug|Win32
-		{2BBAB373-FEE3-48BC-BA82-EC17E4F9CABC}.Debug|Win32.Build.0 = Debug|Win32
-		{2BBAB373-FEE3-48BC-BA82-EC17E4F9CABC}.Release|Win32.ActiveCfg = Release|Win32
-		{2BBAB373-FEE3-48BC-BA82-EC17E4F9CABC}.Release|Win32.Build.0 = Release|Win32
 		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}.Debug|Win32.ActiveCfg = Debug|Win32
 		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}.Debug|Win32.Build.0 = Debug|Win32
 		{A585E9F6-61F4-4FB2-BFF1-BEFFD4EEEF00}.Release|Win32.ActiveCfg = Release|Win32

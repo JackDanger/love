@@ -1,5 +1,7 @@
 #include "love_chipmunk.h"
 
+#include <limits.h>
+
 // From SWIG.
 extern "C" {
 	int luaopen_mod_chipmunk(lua_State * L);
@@ -7,25 +9,36 @@ extern "C" {
 
 namespace love_chipmunk
 {
-	bool DECLSPEC module_init(int argc, char ** argv, love::Core * core)
+	bool module_init(int argc, char ** argv, love::Core * core)
 	{
+		std::cout << "INIT love.physics [" << "Chipmunk" << "]" << std::endl;
 		// Init chipmunk.
-		cpInitChipmunk();
+		cpInitChipmunk();		
 		return true;
 	}
 
-	bool DECLSPEC module_quit()
+	bool module_quit()
 	{
+		std::cout << "QUIT love.physics [" << "Chipmunk" << "]" << std::endl;
 		return true;
 	}
 
-	bool DECLSPEC module_open(void * vm)
+	bool module_open(void * vm)
 	{
 		lua_State * s = (lua_State *)vm;
 		if(s == 0)
 			return false;
 			luaopen_mod_chipmunk(s);
 		return true;
+	}
+
+	int collision(cpShape * a, cpShape * b, cpContact * contacts, 
+		int numContacts, cpFloat normal_coef, void *data)
+	{
+		static int number = 0;
+		number++;
+		std::cout << "Collision: " << number << std::endl;
+		return 1;
 	}
 
 	pSpace newSpace()
@@ -40,17 +53,25 @@ namespace love_chipmunk
 		return body;
 	}
 
-	pShape newCircle(pSpace space, pBody body, float radius)
+	pShape newCircle(pBody body, float radius)
 	{
-		cpShape * shape = cpCircleShapeNew(body->get(), radius, cpvzero);
-		shape->u = 1.0f;
-		shape->e = 0.3f;
-
-		pShape pshape(new Shape(space, shape));
-
-		body->add(pshape);
-
-		return pshape;
+		pShape shape(new DynamicCircleShape(body, radius));
+		body->addShape(shape);
+		return shape;
 	}
+
+	pSegmentShape newSegment(pBody body, float x1, float y1, float x2, float y2)
+	{
+		pSegmentShape shape(new DynamicSegmentShape(body, x1, y1, x2, y2));
+		body->addShape(shape);
+		return shape;
+	}
+
+	float infinity()
+	{
+		return INFINITY;
+	}
+
+	
 
 } // love_chipmunk

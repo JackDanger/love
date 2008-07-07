@@ -1,5 +1,7 @@
 #include "love_system.h"
 
+#include <math.h>
+
 // Module.
 #include "LuaGame.h"
 #include "resources.h"
@@ -416,6 +418,32 @@ namespace love_system
 		else
 			SDL_WM_GrabInput(SDL_GRAB_OFF);
 	}
+
+	/**
+	* For reference.
+	int setData(lua_State * L)
+	{
+		int n = lua_gettop(L);
+		if( n != 1 ) return luaL_error(L, "Function requires a single parameter.");
+		lua_getglobal(L, "love");
+		lua_getfield(L, -1, "refs");
+		lua_pushvalue(L, -3);
+		ref = luaL_ref(L, -2);
+		lua_pop(L, 3);
+		std::cout << lua_gettop(L) << std::endl;
+		return 0;
+	}
+	
+
+	int getData(lua_State * L)
+	{
+		lua_getglobal(L, "love");
+		lua_getfield(L, -1, "refs");
+		lua_rawgeti(L, -1, ref);
+		return 1;
+	}
+
+	**/
 
 	void compile_error(lua_State * L, int status)
 	{

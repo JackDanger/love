@@ -19,6 +19,9 @@
  * SOFTWARE.
  */
 
+#ifndef __CHIPMUNK_INCLUDE__
+#define __CHIPMUNK_INCLUDE__
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -79,3 +82,6 @@ cpFloat cpMomentForPoly(cpFloat m, int numVerts, cpVect *verts, cpVect offset);
 #ifdef __cplusplus
 }
 #endif
+
+
+#endif // #define __CHIPMUNK_INCLUDE__

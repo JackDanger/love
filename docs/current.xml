@@ -936,6 +936,7 @@
       </function>
 
       <function name="rectangle" brief="Draws a rectangle.">
+        <param name="type" brief="The type of rectangle (outline/filled)." />
         <param name="x" brief="X-coordinate of top-left corner." />
         <param name="y" brief="Y-coordinate of top-left corder." />
         <param name="w" brief="Width of the rectangle." />

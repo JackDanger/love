@@ -3,6 +3,9 @@
 * Website: http://love.sourceforge.net
 * Licence: ZLIB/libpng
 * Copyright (c) 2006-2008 LOVE Development Team
+* 
+* @author Anders Ruud
+* @date 2008-03-21
 */
 
 #ifndef LOVE_CHIPMUNK_SPACE_H
@@ -16,19 +19,17 @@
 
 namespace love_chipmunk
 {
-	/**
-	 * @author Anders Ruud
-	 * @date 2008-03-21
-	 **/
 	class Space
 	{
 		friend class Body;
 		friend class Shape;
+		friend class SegmentShape;
+		friend class PolygonShape;
+		friend class DynamicCircleShape;
+		friend class DynamicSegmentShape;
 
 	private:
-		
 		cpSpace * space;
-
 	public:
 
 		Space();

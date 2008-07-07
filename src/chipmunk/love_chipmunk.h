@@ -21,23 +21,29 @@
 #include "Body.h"
 #include "Shape.h"
 
+#include "CircleShape.h"
+#include "PolygonShape.h"
+#include "SegmentShape.h"
+
 // Creating a separate namespace to avoid conflicts
 // with standard library functions.
 namespace love_chipmunk
 {
-	// Functions that should be availble to the love executable
-	// must be declared C-style.
-	extern "C"
-	{
-		// Standard module functions.
-		bool DECLSPEC module_init(int argc, char ** argv, love::Core * core);
-		bool DECLSPEC module_quit();
-		bool DECLSPEC module_open(void * vm);
-	}
+	// Standard module functions.
+	bool module_init(int argc, char ** argv, love::Core * core);
+	bool module_quit();
+	bool module_open(void * vm);
+
+	int collision(cpShape * a, cpShape * b, cpContact * contacts, 
+		int numContacts, cpFloat normal_coef, void *data);
 
 	pSpace newSpace();
 	pBody newBody(pSpace space, float x, float y, float m, float i);
-	pShape newCircle(pSpace space, pBody body, float radius);
+	pShape newCircle(pBody body, float radius);
+	pSegmentShape newSegment(pBody body, float x1, float y1, float x2, float y2);
+	float infinity();
+	//void dampedSpring(pBody & a, pBody & b, const pVector & anchr1, const pVector & anchr2, 
+	//	float rlen, float k, float dmp, float dt);
 
 } // love_chipmunk
 

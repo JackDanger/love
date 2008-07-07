@@ -15,14 +15,23 @@ namespace boost {
 }
 
 // Order is important. No touching.
+%include Vector.i
 %include Space.i
 %include Body.i
 %include Shape.i
+
+%include SegmentShape.i
 
 namespace love_chipmunk
 {
 	pSpace newSpace();
 	pBody newBody(pSpace space, float x, float y, float m, float i);
-	pShape newCircle(pSpace space, pBody body, float radius);	
+	pShape newCircle(pBody body, float radius);
+	pSegmentShape newSegment(pBody body, float x1, float y1, float x2, float y2);
+	float infinity();
 }
 
+
+%luacode {
+love.physics = mod_chipmunk
+}

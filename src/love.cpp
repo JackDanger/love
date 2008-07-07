@@ -50,6 +50,7 @@ STATIC_MOD_EXTERN(love_sdlmixer);
 STATIC_MOD_EXTERN(love_sdltimer);
 STATIC_MOD_EXTERN(love_sdlmouse);
 STATIC_MOD_EXTERN(love_sdlkeyboard);
+STATIC_MOD_EXTERN(love_chipmunk);
 STATIC_MOD_EXTERN(love_system);
 
 using namespace love;
@@ -79,9 +80,11 @@ int main(int argc, char* argv[])
 	STATIC_MOD_INIT(love_sdltimer);
 	STATIC_MOD_INIT(love_sdlmouse);
 	STATIC_MOD_INIT(love_sdlkeyboard);
-	STATIC_MOD_INIT(love_system);
+	STATIC_MOD_INIT(love_chipmunk);
 
-	// Dynamic modules go here.
+	// System shoud even go after dynamic modules, since it
+	// creates the Lua VM, etc.
+	STATIC_MOD_INIT(love_system);
 
 	// Verifies that all required function pointers 
 	// have been set for the standard modules.
@@ -161,6 +164,9 @@ int main(int argc, char* argv[])
 
 		graphics->present();
 	}
+
+	// Destroy the core.
+	core.reset();
 
 	SDL_Quit();
 

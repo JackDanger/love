@@ -35,7 +35,7 @@ namespace love_system
 
 		// Rename load. (Prevents the built-in load from 
 		// being detected.
-		luaL_dostring(L, "stdload = load; load = nil");
+		luaL_dostring(L, "stdload = load; load = nil; love.refs = { test = \"booga\"}");
 
 		// Custom libs.
 		if(!core->open((void*)L))
@@ -402,6 +402,10 @@ namespace love_system
 			"point_sprite = 0,"
 
 			"audio_loop = 0,"
+
+			"image_optimize = 1,"
+			"image_pad = 2,"
+			"image_pad_and_optimize = 3,"
 			
 			"}"
 			);

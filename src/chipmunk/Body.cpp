@@ -2,6 +2,17 @@
 
 namespace love_chipmunk
 {
+
+	Body::Body(pSpace space, float x, float y)
+		: space(space)
+	{
+		body = cpBodyNew(50.0f, 50.0f);
+		body->p = cpv(x, y);
+
+		// Add to space.
+		cpSpaceAddBody(space->space, body);
+	}
+
 	Body::Body(pSpace space, float x, float y, float m, float i) 
 		: space(space)
 	{
@@ -24,14 +35,19 @@ namespace love_chipmunk
 		return body;
 	}
 
-	void Body::add(pShape shape)
+	void Body::addShape(pShape s)
 	{
-		shapes.push_back(shape);
+		shapes.push_back(s);
 	}
 
-	void Body::remove(const pShape & shape)
+	void Body::removeShape(pShape s)
 	{
-		shapes.remove(shape);
+		shapes.remove(s);
+	}
+
+	void Body::remove()
+	{
+		cpSpaceRemoveBody(space->space, body);
 	}
 
 	float Body::getX()
@@ -77,6 +93,12 @@ namespace love_chipmunk
 	void Body::resetForces()
 	{
 		cpBodyResetForces(body);
+	}
+
+	void Body::dampedSpring(boost::shared_ptr<Body> & b, const pVector & anchr1, 
+		const pVector & anchr2, float rlen, float k, float dmp, float dt)
+	{
+		cpDampedSpring(body, b->body, anchr1->v, anchr2->v, rlen, k, dmp, dt);
 	}
 
 } // love_chipmunk

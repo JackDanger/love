@@ -25,6 +25,10 @@
 
 #include "chipmunk.h"
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 cpBody*
 cpBodyAlloc(void)
 {
@@ -93,7 +97,7 @@ void
 cpBodySlew(cpBody *body, cpVect pos, cpFloat dt)
 {
 	cpVect delta = cpvsub(body->p, pos);
-	body->v = cpvmult(delta, 1.0/dt);
+	body->v = cpvmult(delta, 1.0f/dt);
 }
 
 void

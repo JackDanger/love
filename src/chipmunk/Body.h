@@ -3,40 +3,55 @@
 * Website: http://love.sourceforge.net
 * Licence: ZLIB/libpng
 * Copyright (c) 2006-2008 LOVE Development Team
+* 
+* @author Anders Ruud
+* @date 2008-03-21
 */
 
 #ifndef LOVE_CHIPMUNK_BODY_H
 #define LOVE_CHIPMUNK_BODY_H
 
+// STD
+#include <list>
+
+// love_chipmunk
+#include "Vector.h"
 #include "Space.h"
 #include "Shape.h"
-
-#include <list>
 
 // Boost
 #include <boost/shared_ptr.hpp>
 
 namespace love_chipmunk
 {
-	/**
-	 * @author Anders Ruud
-	 * @date 2008-03-21
-	 **/
 	class Body
 	{
 		friend class Shape;
-	private:
+		friend class DynamicCircleShape;
+		friend class DynamicSegmentShape;
+	protected:
+		// The space this body is added to.
 		pSpace space;
-		cpBody * body;
+
+		// The chipmunk body.
+		cpBody * body;		
+
+		// The list of shapes associated with 
+		// this body.
 		std::list<pShape> shapes;
 	public:
 
+		Body(pSpace, float x, float y);
 		Body(pSpace space, float x, float y, float m, float i);
-		~Body();
+		virtual ~Body();
 
 		cpBody * get();
-		void add(pShape shape);
-		void remove(const pShape & shape);
+
+		void addShape(pShape s);
+		void removeShape(pShape s);
+
+		// Removes the body from the space.
+		void remove();
 
 		float getX();
 		float getY();
@@ -48,6 +63,9 @@ namespace love_chipmunk
 		void applyImpulse(float jx, float jy, float rx, float ry);
 		void applyForce(float fx, float fy, float rx, float ry);
 		void resetForces();
+
+		void dampedSpring(boost::shared_ptr<Body> & b, const pVector & anchr1, 
+			const pVector & anchr2, float rlen, float k, float dmp, float dt);
 
 	}; // Body
 
