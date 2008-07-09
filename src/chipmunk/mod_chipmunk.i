@@ -21,16 +21,18 @@ namespace boost {
 %include Shape.i
 
 %include SegmentShape.i
+%include PolygonShape.i
 
 namespace love_chipmunk
 {
 	pSpace newSpace();
 	pBody newBody(pSpace space, float x, float y, float m, float i);
+	pBody newStaticBody(pSpace space, float x, float y, float m, float i);
 	pShape newCircle(pBody body, float radius);
 	pSegmentShape newSegment(pBody body, float x1, float y1, float x2, float y2);
-	float infinity();
 }
 
+//%native(newPolygon) int love_chipmunk::newPolygon(lua_State * L);
 
 %luacode {
 love.physics = mod_chipmunk

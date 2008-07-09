@@ -4,27 +4,28 @@
 
 namespace love_chipmunk
 {
-	CircleShape::CircleShape(boost::shared_ptr<Body> body)
+	CircleShape::CircleShape(boost::shared_ptr<Body> body, float r)
 		: Shape(body)
-	{ }
-
-	CircleShape::~CircleShape()
-	{ }
-
-	DynamicCircleShape::DynamicCircleShape(boost::shared_ptr<Body> body, float r)
-		: CircleShape(body)
-	{
+	{ 
 		circleShape = cpCircleShapeAlloc();
 		cpCircleShapeInit(circleShape, body->get(), r, cpvzero);
 		shape = (cpShape*)circleShape;
 		shape->e = 0.5f;
 		shape->u = 0.5f;
-		cpSpaceAddShape(body->space->space, shape);
+
+		if(body->isDynamic())
+			cpSpaceAddShape(body->space->space, shape);
+		else
+			cpSpaceAddStaticShape(body->space->space, shape);		
 	}
 
-	DynamicCircleShape::~DynamicCircleShape()
-	{
-		cpSpaceRemoveShape(body->space->space, (cpShape*)circleShape);
+	CircleShape::~CircleShape()
+	{ 
+		if(body->isDynamic())
+			cpSpaceRemoveShape(body->space->space, (cpShape*)circleShape);
+		else
+			cpSpaceRemoveStaticShape(body->space->space, (cpShape*)circleShape);
+
 		cpShapeFree((cpShape*)circleShape);
 		circleShape = 0;
 	}

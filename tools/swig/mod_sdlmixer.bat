@@ -1,2 +1,2 @@
-swig.exe -nodefaultctor -lua -c++ -o "..\..\src\sdlmixer\mod_sdlmixer.cpp" "..\..\src\sdlmixer\mod_sdlmixer.i"
+..\lua\lua5.1.exe swigfusion.lua sdlmixer
 pause

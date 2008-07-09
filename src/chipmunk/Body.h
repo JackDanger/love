@@ -27,8 +27,9 @@ namespace love_chipmunk
 	class Body
 	{
 		friend class Shape;
-		friend class DynamicCircleShape;
-		friend class DynamicSegmentShape;
+		friend class CircleShape;
+		friend class SegmentShape;
+		friend class PolygonShape;
 	protected:
 		// The space this body is added to.
 		pSpace space;
@@ -39,10 +40,11 @@ namespace love_chipmunk
 		// The list of shapes associated with 
 		// this body.
 		std::list<pShape> shapes;
+
+		bool dynamic;
 	public:
 
-		Body(pSpace, float x, float y);
-		Body(pSpace space, float x, float y, float m, float i);
+		Body(pSpace space, float x, float y, float m, float i, bool dynamic = true);
 		virtual ~Body();
 
 		cpBody * get();
@@ -50,8 +52,7 @@ namespace love_chipmunk
 		void addShape(pShape s);
 		void removeShape(pShape s);
 
-		// Removes the body from the space.
-		void remove();
+		bool isDynamic() const;
 
 		float getX();
 		float getY();

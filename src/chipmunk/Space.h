@@ -25,8 +25,8 @@ namespace love_chipmunk
 		friend class Shape;
 		friend class SegmentShape;
 		friend class PolygonShape;
-		friend class DynamicCircleShape;
-		friend class DynamicSegmentShape;
+		friend class CircleShape;
+		friend class SegmentShape;
 
 	private:
 		cpSpace * space;

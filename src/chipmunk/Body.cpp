@@ -3,30 +3,21 @@
 namespace love_chipmunk
 {
 
-	Body::Body(pSpace space, float x, float y)
-		: space(space)
-	{
-		body = cpBodyNew(50.0f, 50.0f);
-		body->p = cpv(x, y);
-
-		// Add to space.
-		cpSpaceAddBody(space->space, body);
-	}
-
-	Body::Body(pSpace space, float x, float y, float m, float i) 
-		: space(space)
+	Body::Body(pSpace space, float x, float y, float m, float i, bool dynamic)
+		: space(space), dynamic(dynamic)
 	{
 		body = cpBodyNew(m, i);
 		body->p = cpv(x, y);
 
-		// Add to space.
-		cpSpaceAddBody(space->space, body);
+		if(dynamic)
+			cpSpaceAddBody(space->space, body);
 	}
 
 	Body::~Body()
 	{
-		// Remove from space.
-		cpSpaceRemoveBody(space->space, body);
+		if(dynamic)
+			cpSpaceRemoveBody(space->space, body);
+		shapes.clear();
 		cpBodyFree(body);
 	}
 
@@ -45,9 +36,9 @@ namespace love_chipmunk
 		shapes.remove(s);
 	}
 
-	void Body::remove()
+	bool Body::isDynamic() const
 	{
-		cpSpaceRemoveBody(space->space, body);
+		return dynamic;
 	}
 
 	float Body::getX()

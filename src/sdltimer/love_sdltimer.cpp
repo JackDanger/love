@@ -1,15 +1,11 @@
 #include "love_sdltimer.h"
+#include "mod_sdltimer.h"
 
 // LOVE
 #include <love/Core.h>
 
 // SDL
 #include <SDL.h>
-
-// From SWIG.
-extern "C" {
-	int luaopen_mod_sdltimer(lua_State * L);
-}
 
 namespace love_sdltimer
 {

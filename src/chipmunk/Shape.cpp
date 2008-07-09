@@ -11,7 +11,6 @@ namespace love_chipmunk
 
 	Shape::~Shape()
 	{
-		cpShapeFree(shape);
 	}
 
 	void Shape::remove()

@@ -1,15 +1,11 @@
 #include "love_sdlmouse.h"
+#include "mod_sdlmouse.h"
 
 // LOVE
 #include <love/Core.h>
 
 // SDL
 #include <SDL.h>
-
-// From SWIG.
-extern "C" {
-	int luaopen_mod_sdlmouse(lua_State * L);
-}
 
 namespace love_sdlmouse
 {

@@ -1,2 +1,2 @@
-swig.exe -nodefaultctor -lua -c++ -o "..\..\src\physfs\mod_physfs.cpp" "..\..\src\physfs\mod_physfs.i"
+..\lua\lua5.1.exe swigfusion.lua physfs
 pause

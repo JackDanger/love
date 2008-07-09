@@ -18,8 +18,6 @@ namespace boost {
 %include Color.i
 
 %include Font.i
-%include TrueTypeFont.i
-
 %include Sprite.i
 %include Image.i
 %include Animation.i

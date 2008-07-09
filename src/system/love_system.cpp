@@ -1,4 +1,5 @@
 #include "love_system.h"
+#include "mod_system.h"
 
 #include <math.h>
 
@@ -17,11 +18,6 @@
 
 // SDL
 #include <SDL.h>
-
-// From SWIG.
-extern "C" {
-	int luaopen_mod_system(lua_State * L);
-}
 
 #define GAME_MAIN "main.lua"
 #define GAME_ERROR "error.lua"

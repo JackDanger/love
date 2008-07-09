@@ -30,7 +30,7 @@ namespace love_chipmunk
 		cpSegmentShape * segmentShape;
 	public:
 
-		SegmentShape(boost::shared_ptr<Body> body);
+		SegmentShape(boost::shared_ptr<Body> body, cpVect v1, cpVect v2);
 		virtual ~SegmentShape();
 		pVector getFirst();
 		pVector getSecond();
@@ -38,14 +38,6 @@ namespace love_chipmunk
 	}; // SegmentShape
 
 	typedef boost::shared_ptr<SegmentShape> pSegmentShape;
-
-	class DynamicSegmentShape : public SegmentShape
-	{
-	public:		
-		DynamicSegmentShape(boost::shared_ptr<Body> body, float x1, float y1, 
-			float x2, float y2);
-		virtual ~DynamicSegmentShape();
-	}; // DynamicCircleShape
 
 } // love_chipmunk
 

@@ -1,2 +1,2 @@
-swig.exe -nodefaultctor -lua -c++ -o "..\..\src\sdltimer\mod_sdltimer.cpp" "..\..\src\sdltimer\mod_sdltimer.i"
+..\lua\lua5.1.exe swigfusion.lua sdltimer
 pause

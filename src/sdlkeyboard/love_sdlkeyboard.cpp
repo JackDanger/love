@@ -1,15 +1,11 @@
 #include "love_sdlkeyboard.h"
+#include "mod_sdlkeyboard.h"
 
 // LOVE
 #include <love/Core.h>
 
 // SDL
 #include <SDL.h>
-
-// From SWIG.
-extern "C" {
-	int luaopen_mod_sdlkeyboard(lua_State * L);
-}
 
 namespace love_sdlkeyboard
 {

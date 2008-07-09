@@ -28,20 +28,11 @@ namespace love_chipmunk
 	protected:
 		cpCircleShape * circleShape;
 	public:
-		CircleShape(boost::shared_ptr<Body> body);
+		CircleShape(boost::shared_ptr<Body> body, float r);
 		virtual ~CircleShape();
 	}; // CircleShape
 
 	typedef boost::shared_ptr<CircleShape> pCircleShape;
-
-	class DynamicCircleShape : public CircleShape
-	{
-	public:		
-		DynamicCircleShape(boost::shared_ptr<Body> body, float r);
-		virtual ~DynamicCircleShape();
-	}; // DynamicCircleShape
-
-	
 
 } // love_chipmunk
 

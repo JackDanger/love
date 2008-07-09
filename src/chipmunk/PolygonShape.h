@@ -15,6 +15,8 @@
 // love_chipmunk
 #include "Shape.h"
 
+#include "chipmunk/chipmunk.h"
+
 // Boost
 #include <boost/shared_ptr.hpp>
 
@@ -27,10 +29,11 @@ namespace love_chipmunk
 	class PolygonShape : public Shape
 	{
 	private:
+		cpVect * verts;
 		cpPolyShape * polygonShape;
 	public:
 
-		PolygonShape(boost::shared_ptr<Body> body);
+		PolygonShape(boost::shared_ptr<Body> body, cpVect * verts, int num);
 		virtual ~PolygonShape();
 
 	}; // PolygonShape

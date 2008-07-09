@@ -1,4 +1,5 @@
 #include "love_sdlmixer.h"
+#include "mod_sdlmixer.h"
 
 // LOVE
 #include <love/Core.h>
@@ -7,11 +8,6 @@
 // SDL and friends.
 #include <SDL.h>
 #include <SDL_mixer.h>
-
-// From SWIG.
-extern "C" {
-	int luaopen_mod_sdlmixer(lua_State * L);
-}
 
 namespace love_sdlmixer
 {

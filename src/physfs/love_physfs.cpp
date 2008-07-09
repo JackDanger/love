@@ -1,4 +1,5 @@
 #include "love_physfs.h"
+#include "mod_physfs.h"
 
 // LOVE
 #include <love/Core.h>
@@ -27,11 +28,6 @@
 #else
 #	define LOVE_APPDATA_FOLDER ".love"
 #endif
-
-// From SWIG.
-extern "C" {
-	int luaopen_mod_physfs(lua_State * L);
-}
 
 namespace love_physfs
 {

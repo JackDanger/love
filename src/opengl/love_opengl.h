@@ -560,6 +560,9 @@ namespace love_opengl
 	**/
 	void circle( int type, float x, float y, float radius, int points = 10 );
 
+	// Special member functions.
+	int _Color_getRGB(lua_State * L);
+
 } // love_opengl
 
 #endif // LOVE_MOD_OPENGL_H

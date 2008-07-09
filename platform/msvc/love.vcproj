@@ -389,10 +389,6 @@
 						RelativePath="..\..\src\opengl\Sprite.i"
 						>
 					</File>
-					<File
-						RelativePath="..\..\src\opengl\TrueTypeFont.i"
-						>
-					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -488,12 +484,28 @@
 								CompileAs="2"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\chipmunk\chipmunk\cpArbiter.c"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -512,12 +524,28 @@
 								CompileAs="2"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\chipmunk\chipmunk\cpBB.c"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -536,12 +564,28 @@
 								CompileAs="2"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\chipmunk\chipmunk\cpCollision.c"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -560,12 +604,28 @@
 								CompileAs="2"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\chipmunk\chipmunk\cpJoint.c"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -584,12 +644,28 @@
 								CompileAs="2"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\chipmunk\chipmunk\cpShape.c"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -608,12 +684,28 @@
 								CompileAs="2"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\chipmunk\chipmunk\cpSpaceHash.c"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -632,6 +724,14 @@
 								CompileAs="2"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CompileAs="2"
+							/>
+						</FileConfiguration>
 					</File>
 				</Filter>
 				<Filter
@@ -643,6 +743,10 @@
 					</File>
 					<File
 						RelativePath="..\..\src\chipmunk\mod_chipmunk.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\chipmunk\PolygonShape.i"
 						>
 					</File>
 					<File
@@ -676,12 +780,20 @@
 					RelativePath="..\..\src\sdltimer\love_sdltimer.h"
 					>
 				</File>
+				<File
+					RelativePath="..\..\src\sdltimer\mod_sdltimer.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="sdlkeyboard"
 				>
 				<File
 					RelativePath="..\..\src\sdlkeyboard\love_sdlkeyboard.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\sdlkeyboard\mod_sdlkeyboard.h"
 					>
 				</File>
 			</Filter>
@@ -697,6 +809,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\system\mod_system.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\system\resources.h"
 					>
 				</File>
@@ -706,6 +822,10 @@
 				>
 				<File
 					RelativePath="..\..\src\sdlmouse\love_sdlmouse.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\sdlmouse\mod_sdlmouse.h"
 					>
 				</File>
 			</Filter>
@@ -718,6 +838,10 @@
 				</File>
 				<File
 					RelativePath="..\..\src\physfs\love_physfs.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\physfs\mod_physfs.h"
 					>
 				</File>
 			</Filter>
@@ -753,6 +877,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\opengl\mod_opengl.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\opengl\ParticleSystem.h"
 					>
 				</File>
@@ -785,6 +913,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\sdlmixer\mod_sdlmixer.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\sdlmixer\Music.h"
 					>
 				</File>
@@ -810,6 +942,10 @@
 				</File>
 				<File
 					RelativePath="..\..\src\chipmunk\love_chipmunk.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\chipmunk\mod_chipmunk.h"
 					>
 				</File>
 				<File

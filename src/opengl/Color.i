@@ -15,6 +15,9 @@ namespace love_opengl
 		int getBlue() const;
 		int getAlpha() const;
 		virtual void update(float dt);
+		
+		// Special
+		// r, g, b = getRGB()
 	};
 	
 	typedef boost::shared_ptr<Color> pColor;

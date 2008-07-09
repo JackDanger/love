@@ -1,2 +1,2 @@
-swig.exe -nodefaultctor -lua -c++ -o "..\..\src\sdlmouse\mod_sdlmouse.cpp" "..\..\src\sdlmouse\mod_sdlmouse.i"
+..\lua\lua5.1.exe swigfusion.lua sdlmouse
 pause

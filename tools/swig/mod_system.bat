@@ -1,3 +1,2 @@
-swig.exe -nodefaultctor -lua -c++ -o "..\..\src\system\mod_system.cpp" "..\..\src\system\mod_system.i"
-
+..\lua\lua5.1.exe swigfusion.lua system
 pause

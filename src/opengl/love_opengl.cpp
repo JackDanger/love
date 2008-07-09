@@ -1,4 +1,5 @@
 #include "love_opengl.h"
+#include "mod_opengl.h"
 
 // LOVE
 #include <love/version.h>
@@ -20,10 +21,7 @@
 // Math
 #include <math.h>
 
-// From SWIG.
-extern "C" {
-	int luaopen_mod_opengl(lua_State * L);
-}
+
 
 namespace love_opengl
 {
@@ -114,7 +112,7 @@ namespace love_opengl
 		lua_State * s = (lua_State *)vm;
 		if(s == 0)
 			return false;
-		luaopen_mod_opengl(s);
+		mod_open(s);
 		return true;
 	}
 
@@ -1223,6 +1221,22 @@ namespace love_opengl
 
 		glPopMatrix();
 		glEnable(GL_TEXTURE_2D);
+	}
+
+	/**
+	* Special member functions.
+	**/
+
+	int _Color_getRGB(lua_State * L)
+	{
+		if(lua_gettop(L) != 1)
+			return luaL_error(L, "Error: method takes no parameters."); // (sic)
+
+		pColor c = mod_to_color(L, 1);
+		lua_pushnumber(L, c->getRed());
+		lua_pushnumber(L, c->getGreen());
+		lua_pushnumber(L, c->getBlue());
+		return 3;
 	}
 
 } // love_opengl
