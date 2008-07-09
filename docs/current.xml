@@ -659,14 +659,14 @@
       <function name="getWidth" brief="Gets the width of the window.">
         <returns type="number" brief="The width of the game window." />
         <example name="Get the width.">
-          width = love.graphics:getWidth()
+          width = love.graphics.getWidth()
         </example>
       </function>
 
       <function name="getHeight" brief="Gets the height of the window.">
         <returns type="number" brief="The height of the game window." />
         <example name="Get the height.">
-          height = love.graphics:getHeight()
+          height = love.graphics.getHeight()
         </example>
       </function>
 
