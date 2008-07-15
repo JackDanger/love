@@ -118,6 +118,8 @@ namespace love_opengl
 }
 
 %native(getModes) int love_opengl::getModes(lua_State * L);
+%native(polygon) int love_opengl::polygon(lua_State * L);
+%native(polygong) int love_opengl::polygong(lua_State * L);
 
 %luacode{
 love.graphics = mod_opengl

@@ -112,7 +112,7 @@ namespace love_opengl
 		lua_State * s = (lua_State *)vm;
 		if(s == 0)
 			return false;
-		mod_open(s);
+		luaopen_mod_opengl(s);
 		return true;
 	}
 
@@ -1222,6 +1222,202 @@ namespace love_opengl
 		glPopMatrix();
 		glEnable(GL_TEXTURE_2D);
 	}
+
+	int polygon( lua_State * L )
+	{
+		// Get number of params.
+		int n = lua_gettop(L);
+
+		// Need at least two params.
+		if( n < 2 )
+			return luaL_error(L, "Error: function needs at least two parameters.");
+
+		// The first one MUST be a number.
+		if( !lua_isnumber(L, 1) )
+			return luaL_error(L, "Error: first parameter must be a number.");
+
+		// Get rendering mode. (line/fill)
+		int mode = (int)lua_tonumber(L, 1);
+
+		// Get the type of the second argument.
+		int luatype = lua_type(L, 2);
+
+		// Perform additional type checking.
+		switch(luatype)
+		{
+		case LUA_TNUMBER:
+			if( n-1 < 6 ) return luaL_error(L, "Error: function requires at least 3 vertices.");
+			if( ((n-1)%2) != 0 ) return luaL_error(L, "Error: number of vertices must be a multiple of two.");
+			break;
+		case LUA_TTABLE:
+			if( (lua_objlen(L, 2)%2) != 0 ) return luaL_error(L, "Error: number of vertices must be a multiple of two.");
+			break;
+		default:
+			return luaL_error(L, "Error: number type or table expected.");
+		}
+
+		
+		glDisable(GL_CULL_FACE);
+		glDisable(GL_TEXTURE_2D);
+
+		glBegin((mode==love::DRAW_LINE) ? GL_LINE_LOOP : GL_POLYGON);
+
+		switch(luatype)
+		{
+		case LUA_TNUMBER:
+			for(int i = 2; i<n; i+=2)
+				glVertex2f((GLfloat)lua_tonumber(L, i), (GLfloat)lua_tonumber(L, i+1));
+			break;
+		case LUA_TTABLE:
+			lua_pushnil(L); 
+			while (true)
+			{
+				if(lua_next(L, 2) == 0) break;
+				GLfloat x = (GLfloat)lua_tonumber(L, -1);
+				lua_pop(L, 1); // pop value
+				if(lua_next(L, 2) == 0) break;
+				GLfloat y = (GLfloat)lua_tonumber(L, -1);
+				lua_pop(L, 1); // pop value
+				glVertex2f(x, y);
+			}
+			break;
+		}
+
+		glEnd();
+
+		glEnable(GL_CULL_FACE);
+		glEnable(GL_TEXTURE_2D);
+
+		return 0;
+	}
+
+	int polygong( lua_State * L )
+	{
+		// Get number of params.
+		int n = lua_gettop(L);
+
+		// Need at least two params.
+		if( n < 2 )
+			return luaL_error(L, "Error: function needs at least two parameters.");
+
+		// The first one MUST be a number.
+		if( !lua_isnumber(L, 1) )
+			return luaL_error(L, "Error: first parameter must be a number.");
+
+		int vertc = 0, colorc = 0;
+
+		if( n == 3 )
+		{
+			if((!lua_istable(L, 2) || !lua_istable(L, 3))) 
+				return luaL_error(L, "Error: two tables expected.");
+			vertc = (int)lua_objlen(L, 2);
+			colorc = (int)lua_objlen(L, 3);
+			if( (vertc <= 0 || colorc <= 0)) 
+				return luaL_error(L, "Error: empty table.");
+		}
+
+		// Get rendering mode. (line/fill)
+		int mode = (int)lua_tonumber(L, 1);
+		GLenum glmode = (mode==love::DRAW_LINE) ? GL_LINE_LOOP : GL_POLYGON;
+
+		// Get the type of the second argument.
+		int luatype = lua_type(L, 2);
+
+		if(!(luatype == LUA_TTABLE || luatype == LUA_TNUMBER))
+			return luaL_error(L, "Error: expected number or table values.");
+
+		glPushAttrib(GL_CURRENT_BIT);
+		glDisable(GL_CULL_FACE);
+		glDisable(GL_TEXTURE_2D);
+
+		switch(luatype)
+		{
+		case LUA_TTABLE:
+
+			if( n == 2 )
+			{
+				glBegin(glmode);
+				lua_pushnil(L);
+				while(true)
+				{
+					if(lua_next(L, 2) == 0) break;
+					GLfloat x = (GLfloat)lua_tonumber(L, -1);
+					lua_pop(L, 1);
+					if(lua_next(L, 2) == 0) break;
+					GLfloat y = (GLfloat)lua_tonumber(L, -1);
+					lua_pop(L, 1);
+					if(lua_next(L, 2) == 0) break;
+					GLubyte r = (GLubyte)lua_tonumber(L, -1);
+					lua_pop(L, 1);
+					if(lua_next(L, 2) == 0) break;
+					GLubyte g = (GLubyte)lua_tonumber(L, -1);
+					lua_pop(L, 1);
+					if(lua_next(L, 2) == 0) break;
+					GLubyte b = (GLubyte)lua_tonumber(L, -1);
+					lua_pop(L, 1);
+					if(lua_next(L, 2) == 0) break;
+					GLubyte a = (GLubyte)lua_tonumber(L, -1);
+					lua_pop(L, 1);
+					glColor4ub(r, g, b, a);
+					glVertex2f(x, y);
+				}
+				glEnd();
+			}
+			else if(n == 3)
+			{
+				// Allocate memory.
+				GLfloat * verts = new GLfloat[vertc];
+				GLubyte * colors = new GLubyte[colorc];
+				int verti = 0, colori = 0;
+
+				// Get verts.
+				lua_pushnil(L);
+				while(lua_next(L, 2))
+				{
+					verts[verti++] = (GLfloat)lua_tonumber(L, -1);
+					lua_pop(L, 1);
+				}
+
+				// Get colors.
+				lua_pushnil(L);
+				while(lua_next(L, 3))
+				{
+					colors[colori++] = (GLubyte)lua_tonumber(L, -1);
+					lua_pop(L, 1);
+				}
+
+				glEnable(GL_VERTEX_ARRAY);
+				glEnable(GL_COLOR_ARRAY);
+				glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors);
+				glVertexPointer(2, GL_FLOAT, 0, verts);
+				glDrawArrays(glmode, 0, (GLint)(vertc/2));
+				glDisable(GL_VERTEX_ARRAY);
+				glDisable(GL_COLOR_ARRAY);
+				delete [] verts;
+				delete [] colors;
+			}	
+
+			break;
+		case LUA_TNUMBER:
+			// Assume params to be packed like this: x, y, r, g, b, a, x, y, r, ...
+			glBegin(glmode);
+			for(int i = 2; i < (n-1); i+=6)
+			{
+				glColor4ub((GLubyte)lua_tonumber(L, i+2), (GLubyte)lua_tonumber(L, i+3), (GLubyte)lua_tonumber(L, i+4), (GLubyte)lua_tonumber(L, i+5));
+				glVertex2f((GLfloat)lua_tonumber(L, i), (GLfloat)lua_tonumber(L, i+1));
+			}				
+			glEnd();
+			break;
+		}
+
+		glEnable(GL_CULL_FACE);
+		glEnable(GL_TEXTURE_2D);
+		glPopAttrib();
+
+
+		return 0;
+	}
+
 
 	/**
 	* Special member functions.

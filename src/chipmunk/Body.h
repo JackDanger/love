@@ -18,6 +18,7 @@
 #include "Vector.h"
 #include "Space.h"
 #include "Shape.h"
+#include "Joint.h"
 
 // Boost
 #include <boost/shared_ptr.hpp>
@@ -30,6 +31,11 @@ namespace love_chipmunk
 		friend class CircleShape;
 		friend class SegmentShape;
 		friend class PolygonShape;
+		friend class Joint;
+		friend class PinJoint;
+		friend class SlideJoint;
+		friend class PivotJoint;
+		friend class GrooveJoint;
 	protected:
 		// The space this body is added to.
 		pSpace space;
@@ -37,9 +43,10 @@ namespace love_chipmunk
 		// The chipmunk body.
 		cpBody * body;		
 
-		// The list of shapes associated with 
-		// this body.
+		// The list of joints and shapes associated 
+		// with this body.
 		std::list<pShape> shapes;
+		std::list<pJoint> joints;
 
 		bool dynamic;
 	public:
@@ -51,6 +58,8 @@ namespace love_chipmunk
 
 		void addShape(pShape s);
 		void removeShape(pShape s);
+		void addJoint(pJoint j);
+		void removeJoint(pJoint j);
 
 		bool isDynamic() const;
 

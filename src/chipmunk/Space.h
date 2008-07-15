@@ -27,7 +27,11 @@ namespace love_chipmunk
 		friend class PolygonShape;
 		friend class CircleShape;
 		friend class SegmentShape;
-
+		friend class Joint;
+		friend class PinJoint;
+		friend class SlideJoint;
+		friend class PivotJoint;
+		friend class GrooveJoint;
 	private:
 		cpSpace * space;
 	public:

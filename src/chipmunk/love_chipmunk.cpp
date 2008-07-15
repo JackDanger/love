@@ -22,7 +22,7 @@ namespace love_chipmunk
 		lua_State * s = (lua_State *)vm;
 		if(s == 0)
 			return false;
-			mod_open(s);
+			luaopen_mod_chipmunk(s);
 		return true;
 	}
 
@@ -67,17 +67,48 @@ namespace love_chipmunk
 		return shape;
 	}
 
-	/**
+	pPinJoint newPin(pBody body1, pBody body2, float x1, float y1, float x2, float y2)
+	{
+		pPinJoint j(new PinJoint(body1, body2, cpv(x1, y1), cpv(x2, y2)));
+		body1->addJoint(j);
+		body2->addJoint(j);
+		return j;
+	}
+
+	pSlideJoint newSlide(pBody body1, pBody body2, float x1, float y1, float x2, float y2, float min, float max)
+	{
+		pSlideJoint j(new SlideJoint(body1, body2, cpv(x1,y1), cpv(x2, y2), min, max));
+		body1->addJoint(j);
+		body2->addJoint(j);
+		return j;
+	}
+
+	pPivotJoint newPivot(pBody body1, pBody body2, float x, float y)
+	{
+		pPivotJoint j(new PivotJoint(body1, body2, cpv(x,y)));
+		body1->addJoint(j);
+		body2->addJoint(j);
+		return j;
+	}
+
+	pGrooveJoint newGroove(pBody body1, pBody body2, float x1, float y1, float x2, float y2, float x3, float y3)
+	{
+		pGrooveJoint j(new GrooveJoint(body1, body2, cpv(x1,y1), cpv(x2, y2), cpv(x3, y3)));
+		body1->addJoint(j);
+		body2->addJoint(j);
+		return j;
+	}
+
 	int newPolygon(lua_State * L)
 	{
 		int n = lua_gettop(L);
-		if( n != 2 ) return luaL_error(L, "Function requires a two parameters.");
+		if( n != 2 ) return luaL_error(L, "Function requires two parameters.");
 
 		// First one should be a body.
-		pBody body = mod_chipmunk_swig_get_body(L);
+		pBody body = mod_to_body(L, 1);
 
 		// Second one should be table.
-		if( !lua_istable(L, -1) ) return luaL_error(L, "Error, second argument must be a table.");
+		if( !lua_istable(L, 2) ) return luaL_error(L, "Error, second argument must be a table.");
 
 		// Get the size of that table.
 		int num = (int)lua_objlen(L, -1);
@@ -97,17 +128,12 @@ namespace love_chipmunk
 			lua_pop(L, 1); // Remove value, keep key for next iteration.
 		}
 
-		lua_pop(L, 2);
-
 		// Create the polygon.
 		pPolygonShape poly(new PolygonShape(body, (cpVect*)verts, (int)(num/2)));
-
-		mod_chipmunk_push_polygon(L, poly);
-
-		std::cout << "Stack size: " << lua_gettop(L) << std::endl;
+		
+		mod_push_polygonshape(L, poly);
 
 		return 1;
 	}
-	**/
 
 } // love_chipmunk

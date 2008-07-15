@@ -11000,6 +11000,8 @@ static const struct luaL_reg swig_commands[] = {
     { "oldQuad", _wrap_oldQuad},
     { "circle",_wrap_circle},
     { "getModes",love_opengl::getModes},
+    { "polygon",love_opengl::polygon},
+    { "polygong",love_opengl::polygong},
     {0,0}
 };
 

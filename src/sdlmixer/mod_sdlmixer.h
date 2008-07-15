@@ -11,6 +11,9 @@
 * @date 2008-07-09
 **/
 
+#ifndef LOVE_MOD_FUSION_SDLMIXER_H
+#define LOVE_MOD_FUSION_SDLMIXER_H
+
 // Function from SWIG which opens the module.
 extern "C" {
     int luaopen_mod_sdlmixer(lua_State * L);
@@ -23,9 +26,6 @@ extern "C" {
 namespace love_sdlmixer
 {
 
-	// Pointer to the module-open function, just to make things prettier.
-	int (*mod_open)(lua_State * s) = luaopen_mod_sdlmixer;
-
 	bool mod_is_sound(lua_State * L, int idx);
 	pSound mod_to_sound(lua_State * L, int idx);
 	void mod_push_sound(lua_State * L, pSound sound);
@@ -35,3 +35,4 @@ namespace love_sdlmixer
 	void mod_push_music(lua_State * L, pMusic music);
 
 } // love_sdlmixer
+#endif

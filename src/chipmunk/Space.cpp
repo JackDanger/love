@@ -9,43 +9,7 @@ extern int collision(cpShape * a, cpShape * b, cpContact * contacts,
 	Space::Space()
 	{
 		space = cpSpaceNew();
-
-		cpSpaceAddCollisionPairFunc(space, 1, 2, collision, 0);
-
-		// @todo KILL ME (test code)
-
-		cpBody * staticBody = cpBodyNew(INFINITY, INFINITY);
-
-		{
-			cpShape *seg = cpSegmentShapeNew(staticBody, cpv(0, 600), cpv(800, 600), 0.0f);
-			seg->u = 1.0f; seg->e = 1.0f;
-			seg->collision_type = 1;
-			cpSpaceAddStaticShape(space, seg);
-		}
-
-		{
-			cpShape *seg = cpSegmentShapeNew(staticBody, cpv(0, 0), cpv(0, 600), 0.0f);
-			seg->u = 1.0f; seg->e = 1.0f;
-			seg->collision_type = 1;
-			cpSpaceAddStaticShape(space, seg);
-		}
-
-
-		{
-			cpShape *seg = cpSegmentShapeNew(staticBody, cpv(800, 0), cpv(800, 600), 0.0f);
-			seg->u = 1.0f; seg->e = 1.0f;
-			seg->collision_type = 1;
-			cpSpaceAddStaticShape(space, seg);
-		}
-
-		{
-			cpShape *seg = cpSegmentShapeNew(staticBody, cpv(0, 0), cpv(800, 0), 0.0f);
-			seg->u = 1.0f; seg->e = 1.0f;
-			seg->collision_type = 1;
-			cpSpaceAddStaticShape(space, seg);
-		}
-
-		
+		//cpSpaceAddCollisionPairFunc(space, 1, 2, collision, 0);	
 	}
 
 	Space::~Space()

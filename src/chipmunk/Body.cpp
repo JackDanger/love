@@ -36,6 +36,16 @@ namespace love_chipmunk
 		shapes.remove(s);
 	}
 
+	void Body::addJoint(pJoint j)
+	{
+		joints.push_back(j);
+	}
+
+	void Body::removeJoint(pJoint j)
+	{
+		joints.remove(j);
+	}
+
 	bool Body::isDynamic() const
 	{
 		return dynamic;

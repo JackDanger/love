@@ -11,6 +11,9 @@
 * @date 2008-07-09
 **/
 
+#ifndef LOVE_MOD_FUSION_PHYSFS_H
+#define LOVE_MOD_FUSION_PHYSFS_H
+
 // Function from SWIG which opens the module.
 extern "C" {
     int luaopen_mod_physfs(lua_State * L);
@@ -22,11 +25,9 @@ extern "C" {
 namespace love_physfs
 {
 
-	// Pointer to the module-open function, just to make things prettier.
-	int (*mod_open)(lua_State * s) = luaopen_mod_physfs;
-
 	bool mod_is_file(lua_State * L, int idx);
 	pFile mod_to_file(lua_State * L, int idx);
 	void mod_push_file(lua_State * L, pFile file);
 
 } // love_physfs
+#endif

@@ -25,6 +25,11 @@
 #include "PolygonShape.h"
 #include "SegmentShape.h"
 
+#include "PinJoint.h"
+#include "SlideJoint.h"
+#include "PivotJoint.h"
+#include "GrooveJoint.h"
+
 // Creating a separate namespace to avoid conflicts
 // with standard library functions.
 namespace love_chipmunk
@@ -42,9 +47,16 @@ namespace love_chipmunk
 	pBody newStaticBody(pSpace space, float x, float y, float m, float i);
 	pShape newCircle(pBody body, float radius);
 	pSegmentShape newSegment(pBody body, float x1, float y1, float x2, float y2);
-	
-	// MEGA SWIG HACK:
-	//int newPolygon(lua_State * L);
+	pPinJoint newPin(pBody body1, pBody body2, float x1, float y1, float x2, float y2);
+	pSlideJoint newSlide(pBody body1, pBody body2, float x1, float y1, float x2, float y2, float min, float max);
+	pPivotJoint newPivot(pBody body1, pBody body2, float x, float y);
+	pGrooveJoint newGroove(pBody body1, pBody body2, float x1, float y1, float x2, float y2, float x3, float y3);
+
+	//
+	// Native functions.
+	//
+
+	int newPolygon(lua_State * L);
 
 	//void dampedSpring(pBody & a, pBody & b, const pVector & anchr1, const pVector & anchr2, 
 	//	float rlen, float k, float dmp, float dt);

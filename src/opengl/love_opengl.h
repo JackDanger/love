@@ -560,6 +560,9 @@ namespace love_opengl
 	**/
 	void circle( int type, float x, float y, float radius, int points = 10 );
 
+	int polygon( lua_State * L );
+	int polygong( lua_State * L );
+
 	// Special member functions.
 	int _Color_getRGB(lua_State * L);
 

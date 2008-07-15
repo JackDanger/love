@@ -15,6 +15,7 @@
 // love_chipmunk
 #include "Shape.h"
 
+#include <love/mod.h>
 #include "chipmunk/chipmunk.h"
 
 // Boost
@@ -22,12 +23,15 @@
 
 namespace love_chipmunk
 {
+	// Special native methods.
+	int _PolygonShape_getTransformedPoints(lua_State * L);
 
 	// Forward declarations.
 	class Body;
 
 	class PolygonShape : public Shape
 	{
+		friend int _PolygonShape_getTransformedPoints(lua_State * L);
 	private:
 		cpVect * verts;
 		cpPolyShape * polygonShape;

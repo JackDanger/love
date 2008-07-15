@@ -61,6 +61,9 @@ function Module:header()
 
 **/
 
+#ifndef LOVE_MOD_FUSION_]]..string.upper(self.name)..[[_H
+#define LOVE_MOD_FUSION_]]..string.upper(self.name)..[[_H
+
 ]])
 
 
@@ -93,9 +96,6 @@ extern "C" {
 
     file:write("namespace love_"..self.name.."\n")
     file:write("{\n\n")
-    
-    file:write("\t// Pointer to the module-open function, just to make things prettier.\n")
-    file:write("\tint (*mod_open)(lua_State * s) = luaopen_mod_"..self.name..";\n\n")
                
     if self.types then           
     
@@ -111,6 +111,8 @@ extern "C" {
     file:write("} // " .. "love_"..self.name)
     
     file:write("\n")
+    
+    file:write("#endif\n")
         
     file:close()
 end

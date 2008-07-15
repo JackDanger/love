@@ -11,6 +11,9 @@
 * @date 2008-07-09
 **/
 
+#ifndef LOVE_MOD_FUSION_SDLKEYBOARD_H
+#define LOVE_MOD_FUSION_SDLKEYBOARD_H
+
 // Function from SWIG which opens the module.
 extern "C" {
     int luaopen_mod_sdlkeyboard(lua_State * L);
@@ -19,7 +22,5 @@ extern "C" {
 namespace love_sdlkeyboard
 {
 
-	// Pointer to the module-open function, just to make things prettier.
-	int (*mod_open)(lua_State * s) = luaopen_mod_sdlkeyboard;
-
 } // love_sdlkeyboard
+#endif

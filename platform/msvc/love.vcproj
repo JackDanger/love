@@ -443,11 +443,23 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\chipmunk\Joint.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\chipmunk\love_chipmunk.cpp"
 					>
 				</File>
 				<File
 					RelativePath="..\..\src\chipmunk\mod_chipmunk.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\chipmunk\PinJoint.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\chipmunk\PivotJoint.cpp"
 					>
 				</File>
 				<File
@@ -460,6 +472,10 @@
 				</File>
 				<File
 					RelativePath="..\..\src\chipmunk\Shape.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\chipmunk\SlideJoint.cpp"
 					>
 				</File>
 				<File
@@ -742,7 +758,23 @@
 						>
 					</File>
 					<File
+						RelativePath="..\..\src\chipmunk\GrooveJoint.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\chipmunk\Joint.i"
+						>
+					</File>
+					<File
 						RelativePath="..\..\src\chipmunk\mod_chipmunk.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\chipmunk\PinJoint.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\chipmunk\PivotJoint.i"
 						>
 					</File>
 					<File
@@ -755,6 +787,10 @@
 					</File>
 					<File
 						RelativePath="..\..\src\chipmunk\Shape.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\chipmunk\SlideJoint.i"
 						>
 					</File>
 					<File
@@ -941,11 +977,27 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\chipmunk\GrooveJoint.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\chipmunk\GrooveJoint.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\chipmunk\Joint.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\chipmunk\love_chipmunk.h"
 					>
 				</File>
 				<File
 					RelativePath="..\..\src\chipmunk\mod_chipmunk.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\chipmunk\PinJoint.h"
 					>
 				</File>
 				<File
@@ -958,6 +1010,10 @@
 				</File>
 				<File
 					RelativePath="..\..\src\chipmunk\Shape.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\chipmunk\SlideJoint.h"
 					>
 				</File>
 				<File
@@ -1021,6 +1077,10 @@
 					</File>
 					<File
 						RelativePath="..\..\src\chipmunk\chipmunk\cpVect.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\chipmunk\PivotJoint.h"
 						>
 					</File>
 					<File
