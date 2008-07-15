@@ -1,4 +1,4 @@
-AC_INIT([love], [0.3-1])
+AC_INIT([love], [0.3.3-1])
 AC_CONFIG_SRCDIR([src/love.cpp])
 AC_CONFIG_AUX_DIR([platform/unix])
 AM_INIT_AUTOMAKE([-Wall foreign])
@@ -12,25 +12,13 @@ AC_SEARCH_LIBS(
 	if test "$ac_cv_search_lua_pcall" = "-llua5.1"; then
 		AC_SUBST([INCLUDE_LUA], [-I/usr/include/lua5.1])
 	fi,
-	AC_MSG_ERROR([LÖVE needs Lua])
+	AC_MSG_ERROR([Can't LÖVE without Lua])
 )
-AC_SUBST([INCLUDE_LOVE], [-I../liblove/include])
-AC_SUBST([LIBLOVE], [../liblove/liblove.a])
 prefix='/usr'
 bindir='${prefix}/bin'
 libdir='${prefix}/lib/love'
 AC_CONFIG_FILES([
 	Makefile
-	src/Makefile
-	src/chipmunk/Makefile
 	src/chipmunk/chipmunk/Makefile
-	src/liblove/Makefile
-	src/opengl/Makefile
-	src/physfs/Makefile
-	src/sdlkeyboard/Makefile
-	src/sdlmixer/Makefile
-	src/sdlmouse/Makefile
-	src/sdltimer/Makefile
-	src/system/Makefile
 ])
 AC_OUTPUT

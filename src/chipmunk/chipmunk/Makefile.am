@@ -15,4 +15,5 @@ cpPolyShape.c cpPolyShape.h \
 cpShape.c cpShape.h \
 cpSpace.c cpSpace.h \
 cpSpaceHash.c cpSpaceHash.h \
-cpVect.c cpVect.h
+cpVect.c cpVect.h \
+prime.h
