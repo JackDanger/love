@@ -280,6 +280,21 @@
           picture = love.graphics.newImage("picture.jpg")
         </example>
       </function>
+	  
+	  
+	  <function name="newImage" brief="Loads an image with a certain mode.">
+        <param name="filename" brief="The filepath to the image file." />
+		<param name="mode" brief="The type of image mode (padded/optimized/padded&amp;optimized." />
+        <returns type="Image" brief="An Image object containing the display data." />
+        <example name="Adds an image with different modes.">
+		  -- image is padded with 1 pixel on all sides
+          padded_image = love.graphics.newImage("image.png", love.image_pad)
+		  -- image is optimized (removes the issue where transparent images drawn on float positions would have odd distortions, works best with padded images ^^)
+		  optimized_imaeg = love.graphics.newImage("image.png", love.image_optimize)
+		  -- all of the above
+		  padded_image = love.graphics.newImage("image.png", love.image_pad_and_optimize)
+        </example>
+      </function>
 
 
       <function name="newAnimation" brief="Creates an Animation.">
@@ -2338,6 +2353,10 @@
       <constant name="love.line_rough" brief="Sets the lines as rough (best when drawing straight 1px wide lines)." />
       <separator />
       <constant name="love.audio_loop" brief="Loops music or sound." />
+	  <separator />
+      <constant name="love.image_pad" brief="Used to pad an image upon creation." />
+	  <constant name="love.image_optimize" brief="Used to optimize an image upon creation." />
+	  <constant name="love.image_pad_and_optimize" brief="Used to pad &amp; optimize an image upon creation." />
     
     </constants>
 
