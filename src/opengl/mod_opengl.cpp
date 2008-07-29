@@ -10955,6 +10955,27 @@ static int _wrap_circle(lua_State* L) {
 }
 
 
+static int _wrap_screenshot(lua_State* L) {
+  int SWIG_arg = -1;
+  love_opengl::pImage result;
+  
+  SWIG_check_num_args("love_opengl::screenshot",0,0)
+  result = love_opengl::screenshot();
+  SWIG_arg=0;
+  {
+    love_opengl::pImage * resultptr = new love_opengl::pImage((love_opengl::pImage &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 #ifdef __cplusplus
 }
 #endif
@@ -10999,6 +11020,7 @@ static const struct luaL_reg swig_commands[] = {
     { "quad", _wrap_quad},
     { "oldQuad", _wrap_oldQuad},
     { "circle",_wrap_circle},
+    { "screenshot", _wrap_screenshot},
     { "getModes",love_opengl::getModes},
     { "polygon",love_opengl::polygon},
     { "polygong",love_opengl::polygong},

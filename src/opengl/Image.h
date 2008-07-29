@@ -131,8 +131,7 @@ namespace love_opengl
 
 		// From Volatile
 		bool loadVolatile();
-		void unloadVolatile();
-		
+		void unloadVolatile();		
 
 	private:
 

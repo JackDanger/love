@@ -115,6 +115,9 @@ namespace love_opengl
 	void quad( int type, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 );
 	void oldQuad( int type, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 );
 	void circle( int type, float x, float y, float radius, int points = 10 );
+	
+	// Screenshot
+	pImage screenshot();
 }
 
 %native(getModes) int love_opengl::getModes(lua_State * L);

@@ -563,6 +563,12 @@ namespace love_opengl
 	int polygon( lua_State * L );
 	int polygong( lua_State * L );
 
+	/**
+	* Creates a screenshot of the view and saves it to the default folder.
+	* @param type The type of image (see constants: format_XXX)
+	**/
+	pImage screenshot();
+
 	// Special member functions.
 	int _Color_getRGB(lua_State * L);
 

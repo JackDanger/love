@@ -1418,6 +1418,34 @@ namespace love_opengl
 		return 0;
 	}
 
+	pImage screenshot()
+	{
+		int w = getWidth();
+		int h = getHeight();
+
+		// Declare some storage.
+		GLubyte * pixels = new GLubyte[4*w*h];
+		ILuint image;
+
+		// Read the pixels on the screen.
+		glReadPixels(0, 0, w, h, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+
+		// Create the image.
+		ilGenImages(1, &image);
+		ilBindImage(image);
+		ilTexImage(w, h, 1, 4, IL_RGBA, IL_UNSIGNED_BYTE, (ILvoid*)pixels);
+
+		// Save it.
+		ilEnable(IL_FILE_OVERWRITE); // to kill the previous "monkey.png"
+		ilSaveImage((const wchar_t *)"monkey.png");
+
+		// Cleanup.
+		delete pixels;
+		ilDeleteImages(1, &image);
+
+		return newImage(love::mini_moose_png); // to sate the compiler until a real image can be created
+	}
+
 
 	/**
 	* Special member functions.
