@@ -11422,7 +11422,7 @@ namespace love_opengl
         return false;
     }
     
-	pSprite mod_to_sprite(lua_State * L, int idx)        
+	boost::shared_ptr<Sprite> mod_to_sprite(lua_State * L, int idx)        
     {
         love_opengl::pSprite * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -11432,7 +11432,7 @@ namespace love_opengl
         return *arg;
     }
     
-	void mod_push_sprite(lua_State * L, pSprite sprite)        
+	void mod_push_sprite(lua_State * L, boost::shared_ptr<Sprite> sprite)        
     {
         love_opengl::pSprite * resultptr = new love_opengl::pSprite((love_opengl::pSprite &) sprite);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Sprite_t,1);
@@ -11449,7 +11449,7 @@ namespace love_opengl
         return false;
     }
     
-	pImage mod_to_image(lua_State * L, int idx)        
+	boost::shared_ptr<Image> mod_to_image(lua_State * L, int idx)        
     {
         love_opengl::pImage * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -11459,7 +11459,7 @@ namespace love_opengl
         return *arg;
     }
     
-	void mod_push_image(lua_State * L, pImage image)        
+	void mod_push_image(lua_State * L, boost::shared_ptr<Image> image)        
     {
         love_opengl::pImage * resultptr = new love_opengl::pImage((love_opengl::pImage &) image);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t,1);
@@ -11476,7 +11476,7 @@ namespace love_opengl
         return false;
     }
     
-	pAnimation mod_to_animation(lua_State * L, int idx)        
+	boost::shared_ptr<Animation> mod_to_animation(lua_State * L, int idx)        
     {
         love_opengl::pAnimation * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -11486,7 +11486,7 @@ namespace love_opengl
         return *arg;
     }
     
-	void mod_push_animation(lua_State * L, pAnimation animation)        
+	void mod_push_animation(lua_State * L, boost::shared_ptr<Animation> animation)        
     {
         love_opengl::pAnimation * resultptr = new love_opengl::pAnimation((love_opengl::pAnimation &) animation);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Animation_t,1);
@@ -11503,7 +11503,7 @@ namespace love_opengl
         return false;
     }
     
-	pColor mod_to_color(lua_State * L, int idx)        
+	boost::shared_ptr<Color> mod_to_color(lua_State * L, int idx)        
     {
         love_opengl::pColor * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -11513,7 +11513,7 @@ namespace love_opengl
         return *arg;
     }
     
-	void mod_push_color(lua_State * L, pColor color)        
+	void mod_push_color(lua_State * L, boost::shared_ptr<Color> color)        
     {
         love_opengl::pColor * resultptr = new love_opengl::pColor((love_opengl::pColor &) color);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Color_t,1);
@@ -11530,7 +11530,7 @@ namespace love_opengl
         return false;
     }
     
-	pParticleSystem mod_to_particlesystem(lua_State * L, int idx)        
+	boost::shared_ptr<ParticleSystem> mod_to_particlesystem(lua_State * L, int idx)        
     {
         love_opengl::pParticleSystem * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -11540,7 +11540,7 @@ namespace love_opengl
         return *arg;
     }
     
-	void mod_push_particlesystem(lua_State * L, pParticleSystem particlesystem)        
+	void mod_push_particlesystem(lua_State * L, boost::shared_ptr<ParticleSystem> particlesystem)        
     {
         love_opengl::pParticleSystem * resultptr = new love_opengl::pParticleSystem((love_opengl::pParticleSystem &) particlesystem);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,1);
@@ -11557,7 +11557,7 @@ namespace love_opengl
         return false;
     }
     
-	pFont mod_to_font(lua_State * L, int idx)        
+	boost::shared_ptr<Font> mod_to_font(lua_State * L, int idx)        
     {
         love_opengl::pFont * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -11567,7 +11567,7 @@ namespace love_opengl
         return *arg;
     }
     
-	void mod_push_font(lua_State * L, pFont font)        
+	void mod_push_font(lua_State * L, boost::shared_ptr<Font> font)        
     {
         love_opengl::pFont * resultptr = new love_opengl::pFont((love_opengl::pFont &) font);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Font_t,1);

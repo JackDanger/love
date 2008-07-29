@@ -32,10 +32,12 @@ namespace love_chipmunk
 	protected:
 		cpJoint * joint;
 		boost::shared_ptr<Body> body1, body2;
+		int jointType;
 	public:
 
-		Joint(boost::shared_ptr<Body> body1, boost::shared_ptr<Body> body2);
+		Joint(boost::shared_ptr<Body> body1, boost::shared_ptr<Body> body2, int jointType);
 		virtual ~Joint();
+		virtual int getJointType() const;
 	}; // Joint
 
 	typedef boost::shared_ptr<Joint> pJoint;

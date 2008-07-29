@@ -45,7 +45,7 @@ namespace love_chipmunk
 	pSpace newSpace();
 	pBody newBody(pSpace space, float x, float y, float m, float i);
 	pBody newStaticBody(pSpace space, float x, float y, float m, float i);
-	pShape newCircle(pBody body, float radius);
+	pCircleShape newCircle(pBody body, float radius, float x, float y);
 	pSegmentShape newSegment(pBody body, float x1, float y1, float x2, float y2);
 	pPinJoint newPin(pBody body1, pBody body2, float x1, float y1, float x2, float y2);
 	pSlideJoint newSlide(pBody body1, pBody body2, float x1, float y1, float x2, float y2, float min, float max);

@@ -19,6 +19,10 @@
 
 namespace love_chipmunk
 {
+	class Body;
+	class Shape;
+	class Joint;
+
 	class Space
 	{
 		friend class Body;
@@ -34,6 +38,7 @@ namespace love_chipmunk
 		friend class GrooveJoint;
 	private:
 		cpSpace * space;
+
 	public:
 
 		Space();

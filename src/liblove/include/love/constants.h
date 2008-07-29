@@ -20,6 +20,18 @@ namespace love
 		DEFAULT_VERMIN
 	};
 
+	// Physics
+	enum
+	{
+		JOINT_PIN,
+		JOINT_SLIDE,
+		JOINT_PIVOT,
+		JOINT_GROOVE,
+		SHAPE_CIRCLE, 
+		SHAPE_SEGMENT,
+		SHAPE_POLYGON
+	};
+
 	// Audio
 	enum
 	{

@@ -5,8 +5,6 @@ namespace love_chipmunk
 	class SegmentShape : public Shape
 	{
 	public:
-		pVector getFirst();
-		pVector getSecond();
 	};
 	
 	typedef boost::shared_ptr<SegmentShape> pSegmentShape;

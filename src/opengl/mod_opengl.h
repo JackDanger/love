@@ -14,6 +14,8 @@
 #ifndef LOVE_MOD_FUSION_OPENGL_H
 #define LOVE_MOD_FUSION_OPENGL_H
 
+#include <boost/shared_ptr.hpp>
+
 // Function from SWIG which opens the module.
 extern "C" {
     int luaopen_mod_opengl(lua_State * L);
@@ -33,29 +35,37 @@ extern "C" {
 namespace love_opengl
 {
 
+	//Forward declarations.
+	class Sprite;
+	class Image;
+	class Animation;
+	class Color;
+	class ParticleSystem;
+	class Font;
+
 	bool mod_is_sprite(lua_State * L, int idx);
-	pSprite mod_to_sprite(lua_State * L, int idx);
-	void mod_push_sprite(lua_State * L, pSprite sprite);
+	boost::shared_ptr<Sprite> mod_to_sprite(lua_State * L, int idx);
+	void mod_push_sprite(lua_State * L, boost::shared_ptr<Sprite> sprite);
 
 	bool mod_is_image(lua_State * L, int idx);
-	pImage mod_to_image(lua_State * L, int idx);
-	void mod_push_image(lua_State * L, pImage image);
+	boost::shared_ptr<Image> mod_to_image(lua_State * L, int idx);
+	void mod_push_image(lua_State * L, boost::shared_ptr<Image> image);
 
 	bool mod_is_animation(lua_State * L, int idx);
-	pAnimation mod_to_animation(lua_State * L, int idx);
-	void mod_push_animation(lua_State * L, pAnimation animation);
+	boost::shared_ptr<Animation> mod_to_animation(lua_State * L, int idx);
+	void mod_push_animation(lua_State * L, boost::shared_ptr<Animation> animation);
 
 	bool mod_is_color(lua_State * L, int idx);
-	pColor mod_to_color(lua_State * L, int idx);
-	void mod_push_color(lua_State * L, pColor color);
+	boost::shared_ptr<Color> mod_to_color(lua_State * L, int idx);
+	void mod_push_color(lua_State * L, boost::shared_ptr<Color> color);
 
 	bool mod_is_particlesystem(lua_State * L, int idx);
-	pParticleSystem mod_to_particlesystem(lua_State * L, int idx);
-	void mod_push_particlesystem(lua_State * L, pParticleSystem particlesystem);
+	boost::shared_ptr<ParticleSystem> mod_to_particlesystem(lua_State * L, int idx);
+	void mod_push_particlesystem(lua_State * L, boost::shared_ptr<ParticleSystem> particlesystem);
 
 	bool mod_is_font(lua_State * L, int idx);
-	pFont mod_to_font(lua_State * L, int idx);
-	void mod_push_font(lua_State * L, pFont font);
+	boost::shared_ptr<Font> mod_to_font(lua_State * L, int idx);
+	void mod_push_font(lua_State * L, boost::shared_ptr<Font> font);
 
 } // love_opengl
 #endif

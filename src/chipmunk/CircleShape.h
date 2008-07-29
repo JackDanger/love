@@ -23,12 +23,19 @@ namespace love_chipmunk
 	// Forward declarations.
 	class Body;
 
+	int _CircleShape_setData(lua_State * L);
+	int _CircleShape_getData(lua_State * L);
+	int _CircleShape_getPoint(lua_State * L);
+
 	class CircleShape : public Shape
 	{
+		friend int _CircleShape_setData(lua_State * L);
+		friend int _CircleShape_getData(lua_State * L);
+		friend int _CircleShape_getPoint(lua_State * L);
 	protected:
 		cpCircleShape * circleShape;
 	public:
-		CircleShape(boost::shared_ptr<Body> body, float r);
+		CircleShape(boost::shared_ptr<Body> body, float r, float x, float y);
 		virtual ~CircleShape();
 	}; // CircleShape
 

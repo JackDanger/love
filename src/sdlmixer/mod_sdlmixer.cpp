@@ -2543,7 +2543,7 @@ namespace love_sdlmixer
         return false;
     }
     
-	pSound mod_to_sound(lua_State * L, int idx)        
+	boost::shared_ptr<Sound> mod_to_sound(lua_State * L, int idx)        
     {
         love_sdlmixer::pSound * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -2553,7 +2553,7 @@ namespace love_sdlmixer
         return *arg;
     }
     
-	void mod_push_sound(lua_State * L, pSound sound)        
+	void mod_push_sound(lua_State * L, boost::shared_ptr<Sound> sound)        
     {
         love_sdlmixer::pSound * resultptr = new love_sdlmixer::pSound((love_sdlmixer::pSound &) sound);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_sdlmixer__Sound_t,1);
@@ -2570,7 +2570,7 @@ namespace love_sdlmixer
         return false;
     }
     
-	pMusic mod_to_music(lua_State * L, int idx)        
+	boost::shared_ptr<Music> mod_to_music(lua_State * L, int idx)        
     {
         love_sdlmixer::pMusic * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -2580,7 +2580,7 @@ namespace love_sdlmixer
         return *arg;
     }
     
-	void mod_push_music(lua_State * L, pMusic music)        
+	void mod_push_music(lua_State * L, boost::shared_ptr<Music> music)        
     {
         love_sdlmixer::pMusic * resultptr = new love_sdlmixer::pMusic((love_sdlmixer::pMusic &) music);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_sdlmixer__Music_t,1);

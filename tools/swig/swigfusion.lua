@@ -36,11 +36,11 @@ function Module:getIsType(type)
 end
 
 function Module:getToType(type)
-    return "p"..type.." mod_to_"..string.lower(type).."(lua_State * L, int idx)"
+    return "boost::shared_ptr<"..type.."> mod_to_"..string.lower(type).."(lua_State * L, int idx)"
 end
 
 function Module:getPushType(type)
-    return "void mod_push_"..string.lower(type).."(lua_State * L, p"..type.." "..string.lower(type)..")"
+    return "void mod_push_"..string.lower(type).."(lua_State * L, boost::shared_ptr<"..type.."> "..string.lower(type)..")"
 end
 
 
@@ -63,6 +63,8 @@ function Module:header()
 
 #ifndef LOVE_MOD_FUSION_]]..string.upper(self.name)..[[_H
 #define LOVE_MOD_FUSION_]]..string.upper(self.name)..[[_H
+
+#include <boost/shared_ptr.hpp>
 
 ]])
 
@@ -97,8 +99,18 @@ extern "C" {
     file:write("namespace love_"..self.name.."\n")
     file:write("{\n\n")
                
+    -- Forward delcarations.
+	
+               
     if self.types then           
-    
+		
+		file:write("\t//Forward declarations.\n")
+        for s,l in pairs(self.types) do
+            file:write("\tclass "..s..";\n")
+        end
+		
+		file:write("\n")
+	
         for s,l in pairs(self.types) do
             file:write("\t"..self:getIsType(s)..";\n")
             file:write("\t"..self:getToType(s)..";\n")

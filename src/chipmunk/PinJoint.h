@@ -16,7 +16,6 @@
 
 namespace love_chipmunk
 {
-
 	int _PinJoint_getPoints(lua_State * L);
 
 	class PinJoint : public Joint

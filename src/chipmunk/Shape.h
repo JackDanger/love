@@ -15,6 +15,7 @@
 #include "chipmunk/chipmunk.h"
 
 // love
+#include <love/mod.h>
 #include <love/constants.h>
 
 // Boost
@@ -22,7 +23,6 @@
 
 namespace love_chipmunk
 {
-
 	class Body;
 
 	class Shape 
@@ -31,6 +31,9 @@ namespace love_chipmunk
 	protected:
 		cpShape * shape;
 		boost::shared_ptr<Body> body;
+
+		// Reference to Lua data.
+		int data;
 	public:
 
 		Shape(boost::shared_ptr<Body> body);
@@ -49,6 +52,8 @@ namespace love_chipmunk
 		void setFriction(float u);
 		float getFriction() const;
 		void setSurfaceVelocity(float x, float y);
+		void setData(int data);
+		int getData() const;
 
 	}; // Shape
 

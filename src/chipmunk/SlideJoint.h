@@ -16,8 +16,13 @@
 
 namespace love_chipmunk
 {
+	int _SlideJoint_getPoints(lua_State * L);
+	int _SlideJoint_getLimits(lua_State * L);
+
 	class SlideJoint : public Joint
 	{
+		friend int _SlideJoint_getPoints(lua_State * L);
+		friend int _SlideJoint_getLimits(lua_State * L);
 	protected:
 		cpSlideJoint * slideJoint;
 	public:

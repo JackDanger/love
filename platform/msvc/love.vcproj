@@ -443,6 +443,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\chipmunk\GrooveJoint.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\chipmunk\Joint.cpp"
 					>
 				</File>
@@ -758,6 +762,10 @@
 						>
 					</File>
 					<File
+						RelativePath="..\..\src\chipmunk\CircleShape.i"
+						>
+					</File>
+					<File
 						RelativePath="..\..\src\chipmunk\GrooveJoint.i"
 						>
 					</File>
@@ -977,10 +985,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\chipmunk\GrooveJoint.cpp"
-					>
-				</File>
-				<File
 					RelativePath="..\..\src\chipmunk\GrooveJoint.h"
 					>
 				</File>
@@ -998,6 +1002,10 @@
 				</File>
 				<File
 					RelativePath="..\..\src\chipmunk\PinJoint.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\chipmunk\PivotJoint.h"
 					>
 				</File>
 				<File
@@ -1077,10 +1085,6 @@
 					</File>
 					<File
 						RelativePath="..\..\src\chipmunk\chipmunk\cpVect.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\chipmunk\PivotJoint.h"
 						>
 					</File>
 					<File

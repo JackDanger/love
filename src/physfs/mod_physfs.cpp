@@ -2555,7 +2555,7 @@ namespace love_physfs
         return false;
     }
     
-	pFile mod_to_file(lua_State * L, int idx)        
+	boost::shared_ptr<File> mod_to_file(lua_State * L, int idx)        
     {
         love_physfs::pFile * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -2565,7 +2565,7 @@ namespace love_physfs
         return *arg;
     }
     
-	void mod_push_file(lua_State * L, pFile file)        
+	void mod_push_file(lua_State * L, boost::shared_ptr<File> file)        
     {
         love_physfs::pFile * resultptr = new love_physfs::pFile((love_physfs::pFile &) file);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_physfs__File_t,1);

@@ -1487,29 +1487,31 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Body_t swig_types[0]
-#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__GrooveJoint_t swig_types[1]
-#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Joint_t swig_types[2]
-#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__PinJoint_t swig_types[3]
-#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__PivotJoint_t swig_types[4]
-#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__PolygonShape_t swig_types[5]
-#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__SegmentShape_t swig_types[6]
-#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Shape_t swig_types[7]
-#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__SlideJoint_t swig_types[8]
-#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Space_t swig_types[9]
-#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Vector_t swig_types[10]
-#define SWIGTYPE_p_love_chipmunk__Body swig_types[11]
-#define SWIGTYPE_p_love_chipmunk__GrooveJoint swig_types[12]
-#define SWIGTYPE_p_love_chipmunk__Joint swig_types[13]
-#define SWIGTYPE_p_love_chipmunk__PinJoint swig_types[14]
-#define SWIGTYPE_p_love_chipmunk__PivotJoint swig_types[15]
-#define SWIGTYPE_p_love_chipmunk__PolygonShape swig_types[16]
-#define SWIGTYPE_p_love_chipmunk__SegmentShape swig_types[17]
-#define SWIGTYPE_p_love_chipmunk__Shape swig_types[18]
-#define SWIGTYPE_p_love_chipmunk__SlideJoint swig_types[19]
-#define SWIGTYPE_p_love_chipmunk__Space swig_types[20]
-#define SWIGTYPE_p_love_chipmunk__Vector swig_types[21]
-static swig_type_info *swig_types[23];
-static swig_module_info swig_module = {swig_types, 22, 0, 0, 0, 0};
+#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t swig_types[1]
+#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__GrooveJoint_t swig_types[2]
+#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Joint_t swig_types[3]
+#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__PinJoint_t swig_types[4]
+#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__PivotJoint_t swig_types[5]
+#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__PolygonShape_t swig_types[6]
+#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__SegmentShape_t swig_types[7]
+#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Shape_t swig_types[8]
+#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__SlideJoint_t swig_types[9]
+#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Space_t swig_types[10]
+#define SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Vector_t swig_types[11]
+#define SWIGTYPE_p_love_chipmunk__Body swig_types[12]
+#define SWIGTYPE_p_love_chipmunk__CircleShape swig_types[13]
+#define SWIGTYPE_p_love_chipmunk__GrooveJoint swig_types[14]
+#define SWIGTYPE_p_love_chipmunk__Joint swig_types[15]
+#define SWIGTYPE_p_love_chipmunk__PinJoint swig_types[16]
+#define SWIGTYPE_p_love_chipmunk__PivotJoint swig_types[17]
+#define SWIGTYPE_p_love_chipmunk__PolygonShape swig_types[18]
+#define SWIGTYPE_p_love_chipmunk__SegmentShape swig_types[19]
+#define SWIGTYPE_p_love_chipmunk__Shape swig_types[20]
+#define SWIGTYPE_p_love_chipmunk__SlideJoint swig_types[21]
+#define SWIGTYPE_p_love_chipmunk__Space swig_types[22]
+#define SWIGTYPE_p_love_chipmunk__Vector swig_types[23]
+static swig_type_info *swig_types[25];
+static swig_module_info swig_module = {swig_types, 24, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1535,6 +1537,7 @@ typedef struct{} LANGUAGE_OBJ;
 #include "Body.h"
 #include "Shape.h"
 #include "Joint.h"
+#include "CircleShape.h"
 #include "SegmentShape.h"
 #include "PolygonShape.h"
 #include "PinJoint.h"
@@ -4920,24 +4923,21 @@ static swig_lua_class *swig_boost_shared_ptr_Sl_love_chipmunk_Joint_Sg__bases[] 
 static const char *swig_boost_shared_ptr_Sl_love_chipmunk_Joint_Sg__base_names[] = {0};
 static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_chipmunk_Joint_Sg_ = { "SmartJoint", &SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Joint_t,0, swig_delete_SmartJoint, swig_boost_shared_ptr_Sl_love_chipmunk_Joint_Sg__methods, swig_boost_shared_ptr_Sl_love_chipmunk_Joint_Sg__attributes, swig_boost_shared_ptr_Sl_love_chipmunk_Joint_Sg__bases, swig_boost_shared_ptr_Sl_love_chipmunk_Joint_Sg__base_names };
 
-static int _wrap_SegmentShape_getFirst(lua_State* L) {
+static int _wrap_delete_CircleShape(lua_State* L) {
   int SWIG_arg = -1;
-  love_chipmunk::SegmentShape *arg1 = (love_chipmunk::SegmentShape *) 0 ;
-  love_chipmunk::pVector result;
+  love_chipmunk::CircleShape *arg1 = (love_chipmunk::CircleShape *) 0 ;
   
-  SWIG_check_num_args("getFirst",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getFirst",1,"love_chipmunk::SegmentShape *");
+  SWIG_check_num_args("love_chipmunk::CircleShape::~CircleShape",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("love_chipmunk::CircleShape::~CircleShape",1,"love_chipmunk::CircleShape *");
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_chipmunk__SegmentShape,0))){
-    SWIG_fail_ptr("SegmentShape_getFirst",1,SWIGTYPE_p_love_chipmunk__SegmentShape);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_chipmunk__CircleShape,SWIG_POINTER_DISOWN))){
+    SWIG_fail_ptr("delete_CircleShape",1,SWIGTYPE_p_love_chipmunk__CircleShape);
   }
   
-  result = (arg1)->getFirst();
+  delete arg1;
+  
   SWIG_arg=0;
-  {
-    love_chipmunk::pVector * resultptr = new love_chipmunk::pVector((love_chipmunk::pVector &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Vector_t,1); SWIG_arg++;
-  }
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -4948,24 +4948,35 @@ fail:
 }
 
 
-static int _wrap_SegmentShape_getSecond(lua_State* L) {
+static void swig_delete_CircleShape(void *obj) {
+love_chipmunk::CircleShape *arg1 = (love_chipmunk::CircleShape *) obj;
+delete arg1;
+}
+static swig_lua_method swig_love_chipmunk_CircleShape_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_love_chipmunk_CircleShape_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_love_chipmunk_CircleShape_bases[] = {0,0};
+static const char *swig_love_chipmunk_CircleShape_base_names[] = {"love_chipmunk::Shape *",0};
+static swig_lua_class _wrap_class_love_chipmunk_CircleShape = { "CircleShape", &SWIGTYPE_p_love_chipmunk__CircleShape,0, swig_delete_CircleShape, swig_love_chipmunk_CircleShape_methods, swig_love_chipmunk_CircleShape_attributes, swig_love_chipmunk_CircleShape_bases, swig_love_chipmunk_CircleShape_base_names };
+
+static int _wrap_SmartCircleShape___deref__(lua_State* L) {
   int SWIG_arg = -1;
-  love_chipmunk::SegmentShape *arg1 = (love_chipmunk::SegmentShape *) 0 ;
-  love_chipmunk::pVector result;
+  boost::shared_ptr< love_chipmunk::CircleShape > *arg1 = (boost::shared_ptr< love_chipmunk::CircleShape > *) 0 ;
+  love_chipmunk::CircleShape *result = 0 ;
   
-  SWIG_check_num_args("getSecond",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSecond",1,"love_chipmunk::SegmentShape *");
+  SWIG_check_num_args("operator ->",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("operator ->",1,"boost::shared_ptr< love_chipmunk::CircleShape > const *");
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_chipmunk__SegmentShape,0))){
-    SWIG_fail_ptr("SegmentShape_getSecond",1,SWIGTYPE_p_love_chipmunk__SegmentShape);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape___deref__",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t);
   }
   
-  result = (arg1)->getSecond();
+  result = (love_chipmunk::CircleShape *)((boost::shared_ptr< love_chipmunk::CircleShape > const *)arg1)->operator ->();
   SWIG_arg=0;
-  {
-    love_chipmunk::pVector * resultptr = new love_chipmunk::pVector((love_chipmunk::pVector &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Vector_t,1); SWIG_arg++;
-  }
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love_chipmunk__CircleShape,0); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -4975,6 +4986,350 @@ fail:
   return SWIG_arg;
 }
 
+
+static int _wrap_delete_SmartCircleShape(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_chipmunk::CircleShape > *arg1 = (boost::shared_ptr< love_chipmunk::CircleShape > *) 0 ;
+  
+  SWIG_check_num_args("boost::shared_ptr<(love_chipmunk::CircleShape)>::~shared_ptr<(love_chipmunk::CircleShape)>",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("boost::shared_ptr<(love_chipmunk::CircleShape)>::~shared_ptr<(love_chipmunk::CircleShape)>",1,"boost::shared_ptr< love_chipmunk::CircleShape > *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,SWIG_POINTER_DISOWN))){
+    SWIG_fail_ptr("delete_SmartCircleShape",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_setType(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_chipmunk::CircleShape > *arg1 = (boost::shared_ptr< love_chipmunk::CircleShape > *) 0 ;
+  unsigned long arg2 ;
+  
+  SWIG_check_num_args("setType",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setType",1,"boost::shared_ptr< love_chipmunk::CircleShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setType",2,"unsigned long");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_setType",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t);
+  }
+  
+  arg2 = (unsigned long)lua_tonumber(L, 2);
+  (*arg1)->setType(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_getType(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_chipmunk::CircleShape > *arg1 = (boost::shared_ptr< love_chipmunk::CircleShape > *) 0 ;
+  unsigned long result;
+  
+  SWIG_check_num_args("getType",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getType",1,"boost::shared_ptr< love_chipmunk::CircleShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_getType",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t);
+  }
+  
+  result = (unsigned long)(*arg1)->getType();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_setGroup(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_chipmunk::CircleShape > *arg1 = (boost::shared_ptr< love_chipmunk::CircleShape > *) 0 ;
+  unsigned long arg2 ;
+  
+  SWIG_check_num_args("setGroup",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setGroup",1,"boost::shared_ptr< love_chipmunk::CircleShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setGroup",2,"unsigned long");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_setGroup",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t);
+  }
+  
+  arg2 = (unsigned long)lua_tonumber(L, 2);
+  (*arg1)->setGroup(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_getGroup(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_chipmunk::CircleShape > *arg1 = (boost::shared_ptr< love_chipmunk::CircleShape > *) 0 ;
+  unsigned long result;
+  
+  SWIG_check_num_args("getGroup",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getGroup",1,"boost::shared_ptr< love_chipmunk::CircleShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_getGroup",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t);
+  }
+  
+  result = (unsigned long)(*arg1)->getGroup();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_setLayers(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_chipmunk::CircleShape > *arg1 = (boost::shared_ptr< love_chipmunk::CircleShape > *) 0 ;
+  unsigned long arg2 ;
+  
+  SWIG_check_num_args("setLayers",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setLayers",1,"boost::shared_ptr< love_chipmunk::CircleShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setLayers",2,"unsigned long");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_setLayers",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t);
+  }
+  
+  arg2 = (unsigned long)lua_tonumber(L, 2);
+  (*arg1)->setLayers(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_getLayers(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_chipmunk::CircleShape > *arg1 = (boost::shared_ptr< love_chipmunk::CircleShape > *) 0 ;
+  unsigned long result;
+  
+  SWIG_check_num_args("getLayers",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getLayers",1,"boost::shared_ptr< love_chipmunk::CircleShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_getLayers",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t);
+  }
+  
+  result = (unsigned long)(*arg1)->getLayers();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_setElasticity(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_chipmunk::CircleShape > *arg1 = (boost::shared_ptr< love_chipmunk::CircleShape > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setElasticity",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setElasticity",1,"boost::shared_ptr< love_chipmunk::CircleShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setElasticity",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_setElasticity",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setElasticity(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_getElasticity(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_chipmunk::CircleShape > *arg1 = (boost::shared_ptr< love_chipmunk::CircleShape > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getElasticity",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getElasticity",1,"boost::shared_ptr< love_chipmunk::CircleShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_getElasticity",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t);
+  }
+  
+  result = (float)(*arg1)->getElasticity();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_setFriction(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_chipmunk::CircleShape > *arg1 = (boost::shared_ptr< love_chipmunk::CircleShape > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setFriction",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setFriction",1,"boost::shared_ptr< love_chipmunk::CircleShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setFriction",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_setFriction",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setFriction(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_getFriction(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_chipmunk::CircleShape > *arg1 = (boost::shared_ptr< love_chipmunk::CircleShape > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getFriction",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getFriction",1,"boost::shared_ptr< love_chipmunk::CircleShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_getFriction",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t);
+  }
+  
+  result = (float)(*arg1)->getFriction();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_setSurfaceVelocity(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_chipmunk::CircleShape > *arg1 = (boost::shared_ptr< love_chipmunk::CircleShape > *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  
+  SWIG_check_num_args("setSurfaceVelocity",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSurfaceVelocity",1,"boost::shared_ptr< love_chipmunk::CircleShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setSurfaceVelocity",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setSurfaceVelocity",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_setSurfaceVelocity",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (*arg1)->setSurfaceVelocity(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_SmartCircleShape(void *obj) {
+boost::shared_ptr< love_chipmunk::CircleShape > *arg1 = (boost::shared_ptr< love_chipmunk::CircleShape > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_boost_shared_ptr_Sl_love_chipmunk_CircleShape_Sg__methods[] = {
+	{"setData", love_chipmunk::_CircleShape_setData},
+	{"getPoint", love_chipmunk::_CircleShape_getPoint,},
+	{"getData", love_chipmunk::_CircleShape_getData},
+    {"__deref__", _wrap_SmartCircleShape___deref__}, 
+    {"setType", _wrap_SmartCircleShape_setType}, 
+    {"getType", _wrap_SmartCircleShape_getType}, 
+    {"setGroup", _wrap_SmartCircleShape_setGroup}, 
+    {"getGroup", _wrap_SmartCircleShape_getGroup}, 
+    {"setLayers", _wrap_SmartCircleShape_setLayers}, 
+    {"getLayers", _wrap_SmartCircleShape_getLayers}, 
+    {"setElasticity", _wrap_SmartCircleShape_setElasticity}, 
+    {"getElasticity", _wrap_SmartCircleShape_getElasticity}, 
+    {"setFriction", _wrap_SmartCircleShape_setFriction}, 
+    {"getFriction", _wrap_SmartCircleShape_getFriction}, 
+    {"setSurfaceVelocity", _wrap_SmartCircleShape_setSurfaceVelocity}, 
+    {0,0}
+};
+static swig_lua_attribute swig_boost_shared_ptr_Sl_love_chipmunk_CircleShape_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_boost_shared_ptr_Sl_love_chipmunk_CircleShape_Sg__bases[] = {0};
+static const char *swig_boost_shared_ptr_Sl_love_chipmunk_CircleShape_Sg__base_names[] = {0};
+static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_chipmunk_CircleShape_Sg_ = { "SmartCircleShape", &SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,0, swig_delete_SmartCircleShape, swig_boost_shared_ptr_Sl_love_chipmunk_CircleShape_Sg__methods, swig_boost_shared_ptr_Sl_love_chipmunk_CircleShape_Sg__attributes, swig_boost_shared_ptr_Sl_love_chipmunk_CircleShape_Sg__bases, swig_boost_shared_ptr_Sl_love_chipmunk_CircleShape_Sg__base_names };
 
 static int _wrap_delete_SegmentShape(lua_State* L) {
   int SWIG_arg = -1;
@@ -5006,8 +5361,6 @@ love_chipmunk::SegmentShape *arg1 = (love_chipmunk::SegmentShape *) obj;
 delete arg1;
 }
 static swig_lua_method swig_love_chipmunk_SegmentShape_methods[] = {
-    {"getFirst", _wrap_SegmentShape_getFirst}, 
-    {"getSecond", _wrap_SegmentShape_getSecond}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_chipmunk_SegmentShape_attributes[] = {
@@ -5057,62 +5410,6 @@ static int _wrap_delete_SmartSegmentShape(lua_State* L) {
   
   SWIG_arg=0;
   
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartSegmentShape_getFirst(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr< love_chipmunk::SegmentShape > *arg1 = (boost::shared_ptr< love_chipmunk::SegmentShape > *) 0 ;
-  love_chipmunk::pVector result;
-  
-  SWIG_check_num_args("getFirst",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getFirst",1,"boost::shared_ptr< love_chipmunk::SegmentShape > *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__SegmentShape_t,0))){
-    SWIG_fail_ptr("SmartSegmentShape_getFirst",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__SegmentShape_t);
-  }
-  
-  result = (*arg1)->getFirst();
-  SWIG_arg=0;
-  {
-    love_chipmunk::pVector * resultptr = new love_chipmunk::pVector((love_chipmunk::pVector &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Vector_t,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SmartSegmentShape_getSecond(lua_State* L) {
-  int SWIG_arg = -1;
-  boost::shared_ptr< love_chipmunk::SegmentShape > *arg1 = (boost::shared_ptr< love_chipmunk::SegmentShape > *) 0 ;
-  love_chipmunk::pVector result;
-  
-  SWIG_check_num_args("getSecond",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSecond",1,"boost::shared_ptr< love_chipmunk::SegmentShape > *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__SegmentShape_t,0))){
-    SWIG_fail_ptr("SmartSegmentShape_getSecond",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__SegmentShape_t);
-  }
-  
-  result = (*arg1)->getSecond();
-  SWIG_arg=0;
-  {
-    love_chipmunk::pVector * resultptr = new love_chipmunk::pVector((love_chipmunk::pVector &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Vector_t,1); SWIG_arg++;
-  }
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -5418,9 +5715,10 @@ boost::shared_ptr< love_chipmunk::SegmentShape > *arg1 = (boost::shared_ptr< lov
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_chipmunk_SegmentShape_Sg__methods[] = {
+	{"setData", love_chipmunk::_SegmentShape_setData},
+	{"getPoints", love_chipmunk::_SegmentShape_getPoints},
+	{"getData", love_chipmunk::_SegmentShape_getData},
     {"__deref__", _wrap_SmartSegmentShape___deref__}, 
-    {"getFirst", _wrap_SmartSegmentShape_getFirst}, 
-    {"getSecond", _wrap_SmartSegmentShape_getSecond}, 
     {"setType", _wrap_SmartSegmentShape_setType}, 
     {"getType", _wrap_SmartSegmentShape_getType}, 
     {"setGroup", _wrap_SmartSegmentShape_setGroup}, 
@@ -5826,6 +6124,8 @@ delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_chipmunk_PolygonShape_Sg__methods[] = {
 	{"getTransformedPoints", love_chipmunk::_PolygonShape_getTransformedPoints},
+	{"getData", love_chipmunk::_PolygonShape_getData},
+	{"setData", love_chipmunk::_PolygonShape_setData},
     {"__deref__", _wrap_SmartPolygonShape___deref__}, 
     {"setType", _wrap_SmartPolygonShape_setType}, 
     {"getType", _wrap_SmartPolygonShape_getType}, 
@@ -6046,6 +6346,8 @@ boost::shared_ptr< love_chipmunk::SlideJoint > *arg1 = (boost::shared_ptr< love_
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_chipmunk_SlideJoint_Sg__methods[] = {
+	{"getPoints", love_chipmunk::_SlideJoint_getPoints},
+	{"getLimits", love_chipmunk::_SlideJoint_getLimits},
     {"__deref__", _wrap_SmartSlideJoint___deref__}, 
     {0,0}
 };
@@ -6255,6 +6557,7 @@ boost::shared_ptr< love_chipmunk::GrooveJoint > *arg1 = (boost::shared_ptr< love
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_chipmunk_GrooveJoint_Sg__methods[] = {
+	{"getPoints", love_chipmunk::_GrooveJoint_getPoints},
     {"__deref__", _wrap_SmartGrooveJoint___deref__}, 
     {0,0}
 };
@@ -6374,12 +6677,16 @@ static int _wrap_newCircle(lua_State* L) {
   int SWIG_arg = -1;
   love_chipmunk::pBody arg1 ;
   float arg2 ;
-  love_chipmunk::pShape result;
+  float arg3 ;
+  float arg4 ;
+  love_chipmunk::pCircleShape result;
   love_chipmunk::pBody *argp1 ;
   
-  SWIG_check_num_args("love_chipmunk::newCircle",2,2)
+  SWIG_check_num_args("love_chipmunk::newCircle",4,4)
   if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_chipmunk::newCircle",1,"love_chipmunk::pBody");
   if(!lua_isnumber(L,2)) SWIG_fail_arg("love_chipmunk::newCircle",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_chipmunk::newCircle",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("love_chipmunk::newCircle",4,"float");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Body_t,0))){
     SWIG_fail_ptr("newCircle",1,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Body_t);
@@ -6387,11 +6694,13 @@ static int _wrap_newCircle(lua_State* L) {
   arg1 = *argp1;
   
   arg2 = (float)lua_tonumber(L, 2);
-  result = love_chipmunk::newCircle(arg1,arg2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  result = love_chipmunk::newCircle(arg1,arg2,arg3,arg4);
   SWIG_arg=0;
   {
-    love_chipmunk::pShape * resultptr = new love_chipmunk::pShape((love_chipmunk::pShape &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Shape_t,1); SWIG_arg++;
+    love_chipmunk::pCircleShape * resultptr = new love_chipmunk::pCircleShape((love_chipmunk::pCircleShape &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -6683,6 +6992,9 @@ static swig_lua_const_info swig_constants[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_love_chipmunk__CircleShapeTo_p_love_chipmunk__Shape(void *x, int *newmemory) {
+    return (void *)((love_chipmunk::Shape *)  ((love_chipmunk::CircleShape *) x));
+}
 static void *_p_love_chipmunk__SegmentShapeTo_p_love_chipmunk__Shape(void *x, int *newmemory) {
     return (void *)((love_chipmunk::Shape *)  ((love_chipmunk::SegmentShape *) x));
 }
@@ -6702,6 +7014,7 @@ static void *_p_love_chipmunk__PinJointTo_p_love_chipmunk__Joint(void *x, int *n
     return (void *)((love_chipmunk::Joint *)  ((love_chipmunk::PinJoint *) x));
 }
 static swig_type_info _swigt__p_boost__shared_ptrT_love_chipmunk__Body_t = {"_p_boost__shared_ptrT_love_chipmunk__Body_t", "love_chipmunk::pBody *|boost::shared_ptr< love_chipmunk::Body > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_chipmunk_Body_Sg_, 0};
+static swig_type_info _swigt__p_boost__shared_ptrT_love_chipmunk__CircleShape_t = {"_p_boost__shared_ptrT_love_chipmunk__CircleShape_t", "boost::shared_ptr< love_chipmunk::CircleShape > *|love_chipmunk::pCircleShape *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_chipmunk_CircleShape_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_chipmunk__GrooveJoint_t = {"_p_boost__shared_ptrT_love_chipmunk__GrooveJoint_t", "love_chipmunk::pGrooveJoint *|boost::shared_ptr< love_chipmunk::GrooveJoint > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_chipmunk_GrooveJoint_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_chipmunk__Joint_t = {"_p_boost__shared_ptrT_love_chipmunk__Joint_t", "love_chipmunk::pJoint *|boost::shared_ptr< love_chipmunk::Joint > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_chipmunk_Joint_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_chipmunk__PinJoint_t = {"_p_boost__shared_ptrT_love_chipmunk__PinJoint_t", "love_chipmunk::pPinJoint *|boost::shared_ptr< love_chipmunk::PinJoint > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_chipmunk_PinJoint_Sg_, 0};
@@ -6713,6 +7026,7 @@ static swig_type_info _swigt__p_boost__shared_ptrT_love_chipmunk__SlideJoint_t =
 static swig_type_info _swigt__p_boost__shared_ptrT_love_chipmunk__Space_t = {"_p_boost__shared_ptrT_love_chipmunk__Space_t", "boost::shared_ptr< love_chipmunk::Space > *|love_chipmunk::pSpace *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_chipmunk_Space_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_chipmunk__Vector_t = {"_p_boost__shared_ptrT_love_chipmunk__Vector_t", "boost::shared_ptr< love_chipmunk::Vector > *|love_chipmunk::pVector *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_chipmunk_Vector_Sg_, 0};
 static swig_type_info _swigt__p_love_chipmunk__Body = {"_p_love_chipmunk__Body", "love_chipmunk::Body *", 0, 0, (void*)&_wrap_class_love_chipmunk_Body, 0};
+static swig_type_info _swigt__p_love_chipmunk__CircleShape = {"_p_love_chipmunk__CircleShape", "love_chipmunk::CircleShape *", 0, 0, (void*)&_wrap_class_love_chipmunk_CircleShape, 0};
 static swig_type_info _swigt__p_love_chipmunk__GrooveJoint = {"_p_love_chipmunk__GrooveJoint", "love_chipmunk::GrooveJoint *", 0, 0, (void*)&_wrap_class_love_chipmunk_GrooveJoint, 0};
 static swig_type_info _swigt__p_love_chipmunk__Joint = {"_p_love_chipmunk__Joint", "love_chipmunk::Joint *", 0, 0, (void*)&_wrap_class_love_chipmunk_Joint, 0};
 static swig_type_info _swigt__p_love_chipmunk__PinJoint = {"_p_love_chipmunk__PinJoint", "love_chipmunk::PinJoint *", 0, 0, (void*)&_wrap_class_love_chipmunk_PinJoint, 0};
@@ -6726,6 +7040,7 @@ static swig_type_info _swigt__p_love_chipmunk__Vector = {"_p_love_chipmunk__Vect
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_boost__shared_ptrT_love_chipmunk__Body_t,
+  &_swigt__p_boost__shared_ptrT_love_chipmunk__CircleShape_t,
   &_swigt__p_boost__shared_ptrT_love_chipmunk__GrooveJoint_t,
   &_swigt__p_boost__shared_ptrT_love_chipmunk__Joint_t,
   &_swigt__p_boost__shared_ptrT_love_chipmunk__PinJoint_t,
@@ -6737,6 +7052,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_boost__shared_ptrT_love_chipmunk__Space_t,
   &_swigt__p_boost__shared_ptrT_love_chipmunk__Vector_t,
   &_swigt__p_love_chipmunk__Body,
+  &_swigt__p_love_chipmunk__CircleShape,
   &_swigt__p_love_chipmunk__GrooveJoint,
   &_swigt__p_love_chipmunk__Joint,
   &_swigt__p_love_chipmunk__PinJoint,
@@ -6750,6 +7066,7 @@ static swig_type_info *swig_type_initial[] = {
 };
 
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_chipmunk__Body_t[] = {  {&_swigt__p_boost__shared_ptrT_love_chipmunk__Body_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_boost__shared_ptrT_love_chipmunk__CircleShape_t[] = {  {&_swigt__p_boost__shared_ptrT_love_chipmunk__CircleShape_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_chipmunk__GrooveJoint_t[] = {  {&_swigt__p_boost__shared_ptrT_love_chipmunk__GrooveJoint_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_chipmunk__Joint_t[] = {  {&_swigt__p_boost__shared_ptrT_love_chipmunk__Joint_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_chipmunk__PinJoint_t[] = {  {&_swigt__p_boost__shared_ptrT_love_chipmunk__PinJoint_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -6761,19 +7078,21 @@ static swig_cast_info _swigc__p_boost__shared_ptrT_love_chipmunk__SlideJoint_t[]
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_chipmunk__Space_t[] = {  {&_swigt__p_boost__shared_ptrT_love_chipmunk__Space_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_chipmunk__Vector_t[] = {  {&_swigt__p_boost__shared_ptrT_love_chipmunk__Vector_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_chipmunk__Body[] = {  {&_swigt__p_love_chipmunk__Body, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love_chipmunk__CircleShape[] = {  {&_swigt__p_love_chipmunk__CircleShape, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_chipmunk__GrooveJoint[] = {  {&_swigt__p_love_chipmunk__GrooveJoint, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_chipmunk__Joint[] = {  {&_swigt__p_love_chipmunk__SlideJoint, _p_love_chipmunk__SlideJointTo_p_love_chipmunk__Joint, 0, 0},  {&_swigt__p_love_chipmunk__GrooveJoint, _p_love_chipmunk__GrooveJointTo_p_love_chipmunk__Joint, 0, 0},  {&_swigt__p_love_chipmunk__Joint, 0, 0, 0},  {&_swigt__p_love_chipmunk__PivotJoint, _p_love_chipmunk__PivotJointTo_p_love_chipmunk__Joint, 0, 0},  {&_swigt__p_love_chipmunk__PinJoint, _p_love_chipmunk__PinJointTo_p_love_chipmunk__Joint, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_chipmunk__PinJoint[] = {  {&_swigt__p_love_chipmunk__PinJoint, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_chipmunk__PivotJoint[] = {  {&_swigt__p_love_chipmunk__PivotJoint, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_chipmunk__PolygonShape[] = {  {&_swigt__p_love_chipmunk__PolygonShape, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_chipmunk__SegmentShape[] = {  {&_swigt__p_love_chipmunk__SegmentShape, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_love_chipmunk__Shape[] = {  {&_swigt__p_love_chipmunk__Shape, 0, 0, 0},  {&_swigt__p_love_chipmunk__SegmentShape, _p_love_chipmunk__SegmentShapeTo_p_love_chipmunk__Shape, 0, 0},  {&_swigt__p_love_chipmunk__PolygonShape, _p_love_chipmunk__PolygonShapeTo_p_love_chipmunk__Shape, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love_chipmunk__Shape[] = {  {&_swigt__p_love_chipmunk__CircleShape, _p_love_chipmunk__CircleShapeTo_p_love_chipmunk__Shape, 0, 0},  {&_swigt__p_love_chipmunk__Shape, 0, 0, 0},  {&_swigt__p_love_chipmunk__SegmentShape, _p_love_chipmunk__SegmentShapeTo_p_love_chipmunk__Shape, 0, 0},  {&_swigt__p_love_chipmunk__PolygonShape, _p_love_chipmunk__PolygonShapeTo_p_love_chipmunk__Shape, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_chipmunk__SlideJoint[] = {  {&_swigt__p_love_chipmunk__SlideJoint, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_chipmunk__Space[] = {  {&_swigt__p_love_chipmunk__Space, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_chipmunk__Vector[] = {  {&_swigt__p_love_chipmunk__Vector, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_boost__shared_ptrT_love_chipmunk__Body_t,
+  _swigc__p_boost__shared_ptrT_love_chipmunk__CircleShape_t,
   _swigc__p_boost__shared_ptrT_love_chipmunk__GrooveJoint_t,
   _swigc__p_boost__shared_ptrT_love_chipmunk__Joint_t,
   _swigc__p_boost__shared_ptrT_love_chipmunk__PinJoint_t,
@@ -6785,6 +7104,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_boost__shared_ptrT_love_chipmunk__Space_t,
   _swigc__p_boost__shared_ptrT_love_chipmunk__Vector_t,
   _swigc__p_love_chipmunk__Body,
+  _swigc__p_love_chipmunk__CircleShape,
   _swigc__p_love_chipmunk__GrooveJoint,
   _swigc__p_love_chipmunk__Joint,
   _swigc__p_love_chipmunk__PinJoint,
@@ -7120,7 +7440,7 @@ namespace love_chipmunk
         return false;
     }
     
-	pSlideJoint mod_to_slidejoint(lua_State * L, int idx)        
+	boost::shared_ptr<SlideJoint> mod_to_slidejoint(lua_State * L, int idx)        
     {
         love_chipmunk::pSlideJoint * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -7130,10 +7450,37 @@ namespace love_chipmunk
         return *arg;
     }
     
-	void mod_push_slidejoint(lua_State * L, pSlideJoint slidejoint)        
+	void mod_push_slidejoint(lua_State * L, boost::shared_ptr<SlideJoint> slidejoint)        
     {
         love_chipmunk::pSlideJoint * resultptr = new love_chipmunk::pSlideJoint((love_chipmunk::pSlideJoint &) slidejoint);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__SlideJoint_t,1);
+    }
+    
+	bool mod_is_space(lua_State * L, int idx)        
+    {
+        swig_lua_userdata* usr = 0;
+        swig_cast_info *cast = 0;
+        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
+        if(!usr) return false;
+        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Space_t);
+        if(cast) return true;
+        return false;
+    }
+    
+	boost::shared_ptr<Space> mod_to_space(lua_State * L, int idx)        
+    {
+        love_chipmunk::pSpace * arg;
+        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Space_t,0))){
+              luaL_error(L, "Error, argument is not type Space.");
+        }
+        return *arg;
+    }
+    
+	void mod_push_space(lua_State * L, boost::shared_ptr<Space> space)        
+    {
+        love_chipmunk::pSpace * resultptr = new love_chipmunk::pSpace((love_chipmunk::pSpace &) space);
+        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Space_t,1);
     }
     
 	bool mod_is_pinjoint(lua_State * L, int idx)        
@@ -7147,7 +7494,7 @@ namespace love_chipmunk
         return false;
     }
     
-	pPinJoint mod_to_pinjoint(lua_State * L, int idx)        
+	boost::shared_ptr<PinJoint> mod_to_pinjoint(lua_State * L, int idx)        
     {
         love_chipmunk::pPinJoint * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -7157,7 +7504,7 @@ namespace love_chipmunk
         return *arg;
     }
     
-	void mod_push_pinjoint(lua_State * L, pPinJoint pinjoint)        
+	void mod_push_pinjoint(lua_State * L, boost::shared_ptr<PinJoint> pinjoint)        
     {
         love_chipmunk::pPinJoint * resultptr = new love_chipmunk::pPinJoint((love_chipmunk::pPinJoint &) pinjoint);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__PinJoint_t,1);
@@ -7174,7 +7521,7 @@ namespace love_chipmunk
         return false;
     }
     
-	pBody mod_to_body(lua_State * L, int idx)        
+	boost::shared_ptr<Body> mod_to_body(lua_State * L, int idx)        
     {
         love_chipmunk::pBody * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -7184,7 +7531,7 @@ namespace love_chipmunk
         return *arg;
     }
     
-	void mod_push_body(lua_State * L, pBody body)        
+	void mod_push_body(lua_State * L, boost::shared_ptr<Body> body)        
     {
         love_chipmunk::pBody * resultptr = new love_chipmunk::pBody((love_chipmunk::pBody &) body);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Body_t,1);
@@ -7201,7 +7548,7 @@ namespace love_chipmunk
         return false;
     }
     
-	pSegmentShape mod_to_segmentshape(lua_State * L, int idx)        
+	boost::shared_ptr<SegmentShape> mod_to_segmentshape(lua_State * L, int idx)        
     {
         love_chipmunk::pSegmentShape * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -7211,7 +7558,7 @@ namespace love_chipmunk
         return *arg;
     }
     
-	void mod_push_segmentshape(lua_State * L, pSegmentShape segmentshape)        
+	void mod_push_segmentshape(lua_State * L, boost::shared_ptr<SegmentShape> segmentshape)        
     {
         love_chipmunk::pSegmentShape * resultptr = new love_chipmunk::pSegmentShape((love_chipmunk::pSegmentShape &) segmentshape);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__SegmentShape_t,1);
@@ -7228,7 +7575,7 @@ namespace love_chipmunk
         return false;
     }
     
-	pPolygonShape mod_to_polygonshape(lua_State * L, int idx)        
+	boost::shared_ptr<PolygonShape> mod_to_polygonshape(lua_State * L, int idx)        
     {
         love_chipmunk::pPolygonShape * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -7238,7 +7585,7 @@ namespace love_chipmunk
         return *arg;
     }
     
-	void mod_push_polygonshape(lua_State * L, pPolygonShape polygonshape)        
+	void mod_push_polygonshape(lua_State * L, boost::shared_ptr<PolygonShape> polygonshape)        
     {
         love_chipmunk::pPolygonShape * resultptr = new love_chipmunk::pPolygonShape((love_chipmunk::pPolygonShape &) polygonshape);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__PolygonShape_t,1);
@@ -7255,7 +7602,7 @@ namespace love_chipmunk
         return false;
     }
     
-	pVector mod_to_vector(lua_State * L, int idx)        
+	boost::shared_ptr<Vector> mod_to_vector(lua_State * L, int idx)        
     {
         love_chipmunk::pVector * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -7265,64 +7612,10 @@ namespace love_chipmunk
         return *arg;
     }
     
-	void mod_push_vector(lua_State * L, pVector vector)        
+	void mod_push_vector(lua_State * L, boost::shared_ptr<Vector> vector)        
     {
         love_chipmunk::pVector * resultptr = new love_chipmunk::pVector((love_chipmunk::pVector &) vector);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Vector_t,1);
-    }
-    
-	bool mod_is_space(lua_State * L, int idx)        
-    {
-        swig_lua_userdata* usr = 0;
-        swig_cast_info *cast = 0;
-        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
-        if(!usr) return false;
-        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Space_t);
-        if(cast) return true;
-        return false;
-    }
-    
-	pSpace mod_to_space(lua_State * L, int idx)        
-    {
-        love_chipmunk::pSpace * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Space_t,0))){
-              luaL_error(L, "Error, argument is not type Space.");
-        }
-        return *arg;
-    }
-    
-	void mod_push_space(lua_State * L, pSpace space)        
-    {
-        love_chipmunk::pSpace * resultptr = new love_chipmunk::pSpace((love_chipmunk::pSpace &) space);
-        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Space_t,1);
-    }
-    
-	bool mod_is_groovejoint(lua_State * L, int idx)        
-    {
-        swig_lua_userdata* usr = 0;
-        swig_cast_info *cast = 0;
-        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
-        if(!usr) return false;
-        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__GrooveJoint_t);
-        if(cast) return true;
-        return false;
-    }
-    
-	pGrooveJoint mod_to_groovejoint(lua_State * L, int idx)        
-    {
-        love_chipmunk::pGrooveJoint * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__GrooveJoint_t,0))){
-              luaL_error(L, "Error, argument is not type GrooveJoint.");
-        }
-        return *arg;
-    }
-    
-	void mod_push_groovejoint(lua_State * L, pGrooveJoint groovejoint)        
-    {
-        love_chipmunk::pGrooveJoint * resultptr = new love_chipmunk::pGrooveJoint((love_chipmunk::pGrooveJoint &) groovejoint);
-        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__GrooveJoint_t,1);
     }
     
 	bool mod_is_pivotjoint(lua_State * L, int idx)        
@@ -7336,7 +7629,7 @@ namespace love_chipmunk
         return false;
     }
     
-	pPivotJoint mod_to_pivotjoint(lua_State * L, int idx)        
+	boost::shared_ptr<PivotJoint> mod_to_pivotjoint(lua_State * L, int idx)        
     {
         love_chipmunk::pPivotJoint * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -7346,37 +7639,10 @@ namespace love_chipmunk
         return *arg;
     }
     
-	void mod_push_pivotjoint(lua_State * L, pPivotJoint pivotjoint)        
+	void mod_push_pivotjoint(lua_State * L, boost::shared_ptr<PivotJoint> pivotjoint)        
     {
         love_chipmunk::pPivotJoint * resultptr = new love_chipmunk::pPivotJoint((love_chipmunk::pPivotJoint &) pivotjoint);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__PivotJoint_t,1);
-    }
-    
-	bool mod_is_shape(lua_State * L, int idx)        
-    {
-        swig_lua_userdata* usr = 0;
-        swig_cast_info *cast = 0;
-        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
-        if(!usr) return false;
-        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Shape_t);
-        if(cast) return true;
-        return false;
-    }
-    
-	pShape mod_to_shape(lua_State * L, int idx)        
-    {
-        love_chipmunk::pShape * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Shape_t,0))){
-              luaL_error(L, "Error, argument is not type Shape.");
-        }
-        return *arg;
-    }
-    
-	void mod_push_shape(lua_State * L, pShape shape)        
-    {
-        love_chipmunk::pShape * resultptr = new love_chipmunk::pShape((love_chipmunk::pShape &) shape);
-        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Shape_t,1);
     }
     
 	bool mod_is_joint(lua_State * L, int idx)        
@@ -7390,7 +7656,7 @@ namespace love_chipmunk
         return false;
     }
     
-	pJoint mod_to_joint(lua_State * L, int idx)        
+	boost::shared_ptr<Joint> mod_to_joint(lua_State * L, int idx)        
     {
         love_chipmunk::pJoint * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
@@ -7400,10 +7666,91 @@ namespace love_chipmunk
         return *arg;
     }
     
-	void mod_push_joint(lua_State * L, pJoint joint)        
+	void mod_push_joint(lua_State * L, boost::shared_ptr<Joint> joint)        
     {
         love_chipmunk::pJoint * resultptr = new love_chipmunk::pJoint((love_chipmunk::pJoint &) joint);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Joint_t,1);
+    }
+    
+	bool mod_is_circleshape(lua_State * L, int idx)        
+    {
+        swig_lua_userdata* usr = 0;
+        swig_cast_info *cast = 0;
+        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
+        if(!usr) return false;
+        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t);
+        if(cast) return true;
+        return false;
+    }
+    
+	boost::shared_ptr<CircleShape> mod_to_circleshape(lua_State * L, int idx)        
+    {
+        love_chipmunk::pCircleShape * arg;
+        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,0))){
+              luaL_error(L, "Error, argument is not type CircleShape.");
+        }
+        return *arg;
+    }
+    
+	void mod_push_circleshape(lua_State * L, boost::shared_ptr<CircleShape> circleshape)        
+    {
+        love_chipmunk::pCircleShape * resultptr = new love_chipmunk::pCircleShape((love_chipmunk::pCircleShape &) circleshape);
+        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__CircleShape_t,1);
+    }
+    
+	bool mod_is_shape(lua_State * L, int idx)        
+    {
+        swig_lua_userdata* usr = 0;
+        swig_cast_info *cast = 0;
+        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
+        if(!usr) return false;
+        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Shape_t);
+        if(cast) return true;
+        return false;
+    }
+    
+	boost::shared_ptr<Shape> mod_to_shape(lua_State * L, int idx)        
+    {
+        love_chipmunk::pShape * arg;
+        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Shape_t,0))){
+              luaL_error(L, "Error, argument is not type Shape.");
+        }
+        return *arg;
+    }
+    
+	void mod_push_shape(lua_State * L, boost::shared_ptr<Shape> shape)        
+    {
+        love_chipmunk::pShape * resultptr = new love_chipmunk::pShape((love_chipmunk::pShape &) shape);
+        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__Shape_t,1);
+    }
+    
+	bool mod_is_groovejoint(lua_State * L, int idx)        
+    {
+        swig_lua_userdata* usr = 0;
+        swig_cast_info *cast = 0;
+        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
+        if(!usr) return false;
+        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__GrooveJoint_t);
+        if(cast) return true;
+        return false;
+    }
+    
+	boost::shared_ptr<GrooveJoint> mod_to_groovejoint(lua_State * L, int idx)        
+    {
+        love_chipmunk::pGrooveJoint * arg;
+        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__GrooveJoint_t,0))){
+              luaL_error(L, "Error, argument is not type GrooveJoint.");
+        }
+        return *arg;
+    }
+    
+	void mod_push_groovejoint(lua_State * L, boost::shared_ptr<GrooveJoint> groovejoint)        
+    {
+        love_chipmunk::pGrooveJoint * resultptr = new love_chipmunk::pGrooveJoint((love_chipmunk::pGrooveJoint &) groovejoint);
+        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_chipmunk__GrooveJoint_t,1);
     }
     
 }

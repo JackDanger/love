@@ -1,6 +1,7 @@
 #include "SegmentShape.h"
 
 #include "Body.h"
+#include "mod_chipmunk.h"
 
 namespace love_chipmunk
 {
@@ -30,16 +31,45 @@ namespace love_chipmunk
 		segmentShape = 0;
 	}
 
-	pVector SegmentShape::getFirst()
+	int _SegmentShape_setData(lua_State * L)
 	{
-		pVector v(new Vector(segmentShape->ta));
-		return v;
+		if(lua_gettop(L) != 2) return luaL_error(L, "Incorrect number of parameters.");
+		pSegmentShape p = mod_to_segmentshape(L, 1);
+		lua_getglobal(L, "love");
+		lua_getfield(L, -1, "refs");
+		lua_pushvalue(L, -3);
+		int ref = luaL_ref(L, -2);
+		p->setData(ref);
+		return 0;
 	}
 
-	pVector SegmentShape::getSecond()
+	int _SegmentShape_getData(lua_State * L)
 	{
-		pVector v(new Vector(segmentShape->tb));
-		return v;
+		if(lua_gettop(L) != 1) return luaL_error(L, "Incorrect number of parameters.");
+		pSegmentShape p = mod_to_segmentshape(L, 1);
+
+		int ref = p->getData();
+
+		if(ref==LUA_REFNIL)
+			return 0;
+
+		lua_getglobal(L, "love");
+		lua_getfield(L, -1, "refs");
+		lua_rawgeti(L, -1, ref);
+		return 1;
 	}
+
+	int _SegmentShape_getPoints(lua_State * L)
+	{
+		if(lua_gettop(L) != 1) return luaL_error(L, "Incorrect number of parameters.");
+		pSegmentShape p = mod_to_segmentshape(L, 1);
+
+		lua_pushnumber(L, p->segmentShape->ta.x);
+		lua_pushnumber(L, p->segmentShape->ta.y);
+		lua_pushnumber(L, p->segmentShape->tb.x);
+		lua_pushnumber(L, p->segmentShape->tb.y);
+		return 4;
+	}
+
 } // love_chipmunk
 

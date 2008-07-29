@@ -53,9 +53,9 @@ namespace love_chipmunk
 		return body;
 	}
 
-	pShape newCircle(pBody body, float radius)
+	pCircleShape newCircle(pBody body, float radius, float x, float y)
 	{
-		pShape shape(new CircleShape(body, radius));
+		pCircleShape shape(new CircleShape(body, radius, x, y));
 		body->addShape(shape);
 		return shape;
 	}

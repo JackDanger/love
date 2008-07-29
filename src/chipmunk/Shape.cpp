@@ -1,12 +1,14 @@
 #include "Shape.h"
 
 #include "Body.h"
+#include "mod_chipmunk.h"
 
 namespace love_chipmunk
 {
 	Shape::Shape(boost::shared_ptr<Body> body)
 		: body(body)
 	{
+		data = LUA_REFNIL;
 	}
 
 	Shape::~Shape()
@@ -73,6 +75,15 @@ namespace love_chipmunk
 		shape->surface_v = cpv(x, y);
 	}
 
+	void Shape::setData(int data)
+	{
+		this->data = data;
+	}
+
+	int Shape::getData() const
+	{
+		return this->data;
+	}
 
 } // love_chipmunk
 

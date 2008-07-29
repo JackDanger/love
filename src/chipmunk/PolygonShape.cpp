@@ -66,5 +66,33 @@ namespace love_chipmunk
 		return 1;
 	}
 
+	int _PolygonShape_setData(lua_State * L)
+	{
+		if(lua_gettop(L) != 2) return luaL_error(L, "Incorrect number of parameters.");
+		pPolygonShape p = mod_to_polygonshape(L, 1);
+		lua_getglobal(L, "love");
+		lua_getfield(L, -1, "refs");
+		lua_pushvalue(L, -3);
+		int ref = luaL_ref(L, -2);
+		p->setData(ref);
+		return 0;
+	}
+
+	int _PolygonShape_getData(lua_State * L)
+	{
+		if(lua_gettop(L) != 1) return luaL_error(L, "Incorrect number of parameters.");
+		pPolygonShape p = mod_to_polygonshape(L, 1);
+
+		int ref = p->getData();
+
+		if(ref==LUA_REFNIL)
+			return 0;
+
+		lua_getglobal(L, "love");
+		lua_getfield(L, -1, "refs");
+		lua_rawgeti(L, -1, ref);
+		return 1;
+	}
+
 } // love_chipmunk
 

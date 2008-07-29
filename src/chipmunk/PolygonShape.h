@@ -25,6 +25,9 @@ namespace love_chipmunk
 {
 	// Special native methods.
 	int _PolygonShape_getTransformedPoints(lua_State * L);
+	int _PolygonShape_setData(lua_State * L);
+	int _PolygonShape_getData(lua_State * L);
+
 
 	// Forward declarations.
 	class Body;
@@ -32,6 +35,8 @@ namespace love_chipmunk
 	class PolygonShape : public Shape
 	{
 		friend int _PolygonShape_getTransformedPoints(lua_State * L);
+		friend int _PolygonShape_setData(lua_State * L);
+		friend int _PolygonShape_getData(lua_State * L);
 	private:
 		cpVect * verts;
 		cpPolyShape * polygonShape;

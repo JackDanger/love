@@ -8,7 +8,7 @@ namespace love_chipmunk
 {
 	PivotJoint::PivotJoint(boost::shared_ptr<Body> body1, boost::shared_ptr<Body> body2, 
 		cpVect pivot)
-		: Joint(body1, body2)
+		: Joint(body1, body2, love::JOINT_PIVOT)
 	{
 		pivotJoint = cpPivotJointAlloc();
 		cpPivotJointInit(pivotJoint, body1->body, body2->body, pivot);

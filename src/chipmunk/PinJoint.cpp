@@ -7,7 +7,7 @@
 namespace love_chipmunk
 {
 	PinJoint::PinJoint(boost::shared_ptr<Body> body1, boost::shared_ptr<Body> body2, cpVect anchr1, cpVect anchr2)
-		: Joint(body1, body2)
+		: Joint(body1, body2, love::JOINT_PIN)
 	{
 		pinJoint = cpPinJointAlloc();
 		cpPinJointInit(pinJoint, body1->body, body2->body, anchr1, anchr2);

@@ -16,8 +16,12 @@
 
 namespace love_chipmunk
 {
+
+	int _GrooveJoint_getPoints(lua_State * L);
+
 	class GrooveJoint : public Joint
 	{
+		friend int _GrooveJoint_getPoints(lua_State * L);
 	protected:
 		cpGrooveJoint * grooveJoint;
 	public:
