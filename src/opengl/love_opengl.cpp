@@ -1424,16 +1424,16 @@ namespace love_opengl
 		int h = getHeight();
 
 		// Declare some storage.
-		GLubyte * pixels = new GLubyte[4*w*h];
+		GLubyte * pixels = new GLubyte[3*w*h];
 		ILuint image;
 
 		// Read the pixels on the screen.
-		glReadPixels(0, 0, w, h, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+		glReadPixels(0, 0, w, h, GL_RGB, GL_UNSIGNED_BYTE, pixels);
 
 		// Create the image.
 		ilGenImages(1, &image);
 		ilBindImage(image);
-		ilTexImage(w, h, 1, 4, IL_RGBA, IL_UNSIGNED_BYTE, (ILvoid*)pixels);
+		ilTexImage(w, h, 1, 3, IL_RGB, IL_UNSIGNED_BYTE, (ILvoid*)pixels);
 
 		// Save it.
 		ilEnable(IL_FILE_OVERWRITE); // to kill the previous "monkey.png"
