@@ -1,0 +1,216 @@
+
+body
+{
+	background: url(../gfx/bar-bg.png) repeat-y;
+	margin: 0px;
+	padding: 0px;
+}
+
+div
+{
+	font-family: Arial, Sans-Serif;
+	color: #444;
+	font-size: 14px;
+}
+
+a
+{
+	color: #109fe6;
+	text-decoration: none;
+}
+
+a:hover
+{
+	text-decoration: underline;
+}
+
+.master
+{
+	width: 100%;
+}
+
+.master .cell
+{
+	vertical-align: top;
+	padding: 0px;
+}
+
+.bar
+{
+	width: 202px;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+}
+
+.bar .header
+{
+	background: url(../gfx/bar-head.png);
+	width: 202px;
+	height: 75px;	
+}
+
+.bar .content
+{
+	margin: 15px 0px 0px 15px;
+}
+
+.bar .menu
+{
+	margin: 0px 0px 10px 0px;
+}
+
+.bar .menu .title
+{
+	font-size: 18px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.bar .menu a
+{
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.bar .menu a:hover
+{
+	text-decoration: underline;
+}
+
+.bar a.selected
+{
+	padding: 0px 0px 0px 0px;
+	background: url(../gfx/active.png) no-repeat;
+	width: 187px;
+	height: 27px;
+	color: #109fe6;
+	margin: -5px 0px -5px -15px;
+	padding: 11px 0px 0px 15px;
+}
+
+.page
+{
+	padding: 30px;
+}
+
+.page .title
+{
+	font-size: 30px;
+	color: #0d8bca;
+	margin: 0px 0px 10px 0px;
+}
+
+.page .description
+{
+	margin: 0px 0px 20px 0px;
+}
+
+.page .description .title
+{
+	font-size: 24px;
+	color: #949494;
+}
+
+.page .description .text
+{
+	color: #444;
+}
+
+.page .section
+{
+	margin: 0px 0px 20px 0px;
+}
+
+.page .section .title
+{
+	font-size: 24px;
+	color: #0d8bca;
+	margin: 0px 0px 10px 0px;
+}
+
+
+.list
+{
+	border: 1px solid #cce0ea;	
+}
+
+.data
+{
+	padding: 5px;
+}
+
+.data .name
+{
+	color: #109fe6;
+	padding-right: 10px;
+}
+
+.data .name a
+{
+	color: #109fe6;
+	text-decoration: none;
+}
+
+.data .name a:hover
+{
+	text-decoration: underline;
+}
+
+.data .last
+{
+	border-bottom: none;
+}
+
+.data .desc
+{
+	color: #666;
+}
+
+.data .separator
+{
+	height: 5px;
+}
+
+.example
+{
+	margin-bottom: 10px;
+	border: 1px solid #d1d9fd;
+}
+
+.example .code
+{
+	background: #f1f9fd;
+	font-size: 13px;
+	padding: 10px;
+	
+}
+
+.example .code pre
+{
+	margin: 0px;
+	line-height: 1.1;
+}
+
+.section .example .title
+{
+	font-size: 14px;
+	background: #f1f9fd;
+	border-bottom: 1px solid #d1d9fd;
+	margin: 0px;
+	padding: 5px 10px 5px 10px;
+	font-weight: bold;
+}
+
+.keyword
+{
+	color: #0d8bca;
+	font-weight: bold;
+}
+
+.comment
+{
+	color: #888;
+	font-weight: normal;
+}

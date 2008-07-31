@@ -1,0 +1,392 @@
+<nzai>
+  <page name="Overview">
+    <section name="Introduction">
+      Hello, this is the new documentation. The only well-documented thing so far is:
+
+      [ul]
+      [li] love.mouse [/li]
+      [/ul]
+
+      [p]
+      The symbolizer should be more awesome now.
+      [i]Does html work?[/i] Seems like it. Ok time to test the symbolizer:
+      [/p]
+
+      [p]
+      Image, Animation, love.graphics, and others. Also, there's love.mouse.setPosition.
+      Now we can even talk about plural types, like Images, Fonts, and the like. List time:
+      [/p]
+
+      [ul]
+      [li]OpenGL[/li]
+      [li]OpenAL[/li]
+      [li]FreeType[/li]
+      [li]etc[/li]
+      [/ul]
+
+    </section>
+    <section name="Tutorials">
+    </section>
+    <section name="Examples">
+    </section>
+  </page>
+
+  <page name="License">
+    <section name="Summary">
+
+    </section>
+  </page>
+
+  <module name="love.graphics">
+    The graphics module is responsible for things like window management, Images, Animations,
+    Fonts, and more.
+
+
+    <type name="Image" brief="Represents a drawable image.">
+      Some info about image.
+      <func name="getWidth" brief="Gets the width of a window.">
+        <overload>
+          <ret type="number" brief="The width of the image." />
+        </overload>
+      </func>
+      <func name="setCenter" brief="Sets the center of the image.">
+        <overload>
+          <param name="x" />
+          <param name="y" />
+        </overload>
+      </func>
+
+      <see>
+        love.graphics.newImage, Animation
+      </see>
+
+      <example id="1" />
+
+    </type>
+
+
+
+    <type name="Animation" brief="Represents your mother.">
+      Some info about Animation.
+    </type>
+
+    <type name="Font" brief="Represents your mother.">
+      Some info about Animation.
+    </type>
+
+
+    <func name="newImage" brief="Loads an image.">
+      <overload brief="Loads an image given a filename.">
+        <param name="filename" brief="The filepath to the image file." />
+        <ret type="Image" brief="An Image object containing the display data." />
+      </overload>
+      <overload brief="Loads an image with a certain mode.">
+        <param name="filename" brief="The filepath to the image file." />
+        <param name="mode" brief="The type of image mode (padded, optimized, or both)." />
+        <ret type="Image" brief="An Image object containing the display data." />
+      </overload>
+    </func>
+
+
+    <example id="1" />
+  </module>
+  <module name="love.audio">
+  </module>
+  <module name="love.physics">
+  </module>
+  <module name="love.mouse">
+    Keeps track of the state of the mouse.
+
+    <func name="getX" brief="Gets the current x-position of the mouse.">
+      <overload>
+        Gets the current x-position of the mouse. Use this if you for some reason
+        only need the position along the x-axis. Otherwise, you probably want to use love.mouse.getPosition.
+        <ret type="number" brief="Current x-position." />
+        <see>
+          love.mouse.getPosition, love.mouse.getY
+        </see>
+        <example id="3" />
+      </overload>
+    </func>
+
+    <func name="getY" brief="Gets the current y-position of the mouse.">
+      <overload>
+        Gets the current y-position of the mouse. Use this if you for some reason
+        only need the position along the y-axis. Otherwise, you probably want to use love.mouse.getPosition.
+        <ret type="number" brief="Current y-position." />
+        <see>
+          love.mouse.getPosition, love.mouse.getX
+        </see>
+        <example id="3" />
+      </overload>
+    </func>
+
+    <func name="getPosition" brief="Gets the current position of the mouse.">
+      <overload>
+        Gets the current x- and y-position of the mouse in one call. Since getting the mouse position (along both axes) is
+        a fairly common task, this function was created to make it prettier.
+        <ret type="number" brief="The current x position." />
+        <ret type="number" brief="The current y position." />
+        <example id="2" />
+      </overload>
+    </func>
+
+    <func name="setPosition" brief="Sets the current position of the mouse.">
+      <overload>
+        Sets the current position of the mouse. Note that this generates a mousemoved event.
+        If you just want to confine the mouse to the screen area, take a look at love.system.grabInput.
+        <param name="x" brief="The new x-position." />
+        <param name="y" brief="The new y-position." />
+        <see>
+          love.system.grabInput
+        </see>
+        <example id="4" />
+      </overload>
+    </func>
+
+
+    <func name="isDown" brief="Checks whether a certain button is down.">
+      <overload>
+        Checks whether a certain mouse button is down.
+        <param name="button" brief="A mouse button." />
+        <ret type="boolean" brief="Whether the button is down." />
+        <see>
+          Constants
+        </see>
+        <example id="5" />
+      </overload>
+    </func>
+
+    <func name="setVisible" brief="Controls cursor visbility.">
+      <overload>
+        Controls cursor visbility. Goes great with love.system.grabInput.
+        <param name="visible" brief="True for visible, false for invisible." />
+        <see>
+          love.system.grabInput
+        </see>
+        <example id="6" />
+      </overload>
+    </func>
+
+    <func name="isVisible" brief="Checks cursor visbility.">
+      <overload>
+        Checks cursor visbility.
+        <ret type="boolean" brief="True if visible, false otherwise." />
+        <see>
+          love.mouse.setVisible
+        </see>
+        <example id="6" />
+      </overload>
+    </func>
+
+    <example id="2" />
+
+  </module>
+  <module name="love.keyboard">
+  </module>
+  <module name="love.timer">
+  </module>
+  <module name="love.system">
+  </module>
+
+  <misc name="Function List">
+    Whooptido.
+  </misc>
+
+  <misc name="Example List">
+    Whooptido TWOOOO.
+  </misc>
+
+  <misc name="Constants" title="List of constants">
+    This is the complete list of constants available in LOVE.
+    <item name="love.key_unknown" brief="Represents an unknown key" />
+    <item name="love.key_first" />
+    <item name="love.key_backspace" brief="Backspace key" />
+    <item name="love.key_tab" brief="Tab key" />
+    <item name="love.key_clear" />
+    <item name="love.key_return" brief="Carriage return key" />
+    <item name="love.key_pause" brief="Pause key" />
+    <item name="love.key_escape" brief="Escape key" />
+    <item name="love.key_space" brief="Spacebar key" />
+    <item name="love.key_exclaim" brief="! key" />
+    <item name="love.key_quotedbl" />
+    <item name="love.key_hash" brief="# key" />
+    <item name="love.key_dollar" brief="$ key" />
+    <item name="love.key_ampersand" brief="&amp; key" />
+    <item name="love.key_quote" brief='" key' />
+    <item name="love.key_leftparen" brief="( key" />
+    <item name="love.key_rightparen" brief=") key" />
+    <item name="love.key_asterisk" brief="* key" />
+    <item name="love.key_plus" brief="+ key" />
+    <item name="love.key_comma" brief=", key" />
+    <item name="love.key_minus" brief="- key" />
+    <item name="love.key_period" brief=". key" />
+    <item name="love.key_slash" brief="/ key" />
+    <item name="love.key_0" brief="0 key" />
+    <item name="love.key_1" brief="1 key" />
+    <item name="love.key_2" brief="2 key" />
+    <item name="love.key_3" brief="3 key" />
+    <item name="love.key_4" brief="4 key" />
+    <item name="love.key_5" brief="5 key" />
+    <item name="love.key_6" brief="6 key" />
+    <item name="love.key_7" brief="7 key" />
+    <item name="love.key_8" brief="8 key" />
+    <item name="love.key_9" brief="9 key" />
+    <item name="love.key_colon" brief=": key" />
+    <item name="love.key_semicolon" brief="; key" />
+    <item name="love.key_less" brief="&lt; key" />
+    <item name="love.key_equals" brief="= key" />
+    <item name="love.key_greater" brief="&gt; key" />
+    <item name="love.key_question" brief="? key" />
+    <item name="love.key_at" brief="@ key" />
+
+    <item name="love.key_leftbracket" brief="[ key" />
+    <item name="love.key_backslash" brief="\ key" />
+    <item name="love.key_rightbracket" brief="] key" />
+    <item name="love.key_caret" brief="^ key" />
+    <item name="love.key_underscore" brief="_ key" />
+    <item name="love.key_backquote" brief=" key" />
+    <item name="love.key_a" brief="A key" />
+    <item name="love.key_b" brief="B key" />
+    <item name="love.key_c" brief="C key" />
+    <item name="love.key_d" brief="D key" />
+    <item name="love.key_e" brief="E key" />
+    <item name="love.key_f" brief="F key" />
+    <item name="love.key_g" brief="G key" />
+    <item name="love.key_h" brief="H key" />
+    <item name="love.key_i" brief="I key" />
+    <item name="love.key_j" brief="J key" />
+    <item name="love.key_k" brief="K key" />
+    <item name="love.key_l" brief="L key" />
+    <item name="love.key_m" brief="M key" />
+    <item name="love.key_n" brief="N key" />
+    <item name="love.key_o" brief="O key" />
+    <item name="love.key_p" brief="P key" />
+    <item name="love.key_q" brief="Q key" />
+    <item name="love.key_r" brief="R key" />
+    <item name="love.key_s" brief="S key" />
+    <item name="love.key_t" brief="T key" />
+    <item name="love.key_u" brief="U key" />
+    <item name="love.key_v" brief="V key" />
+    <item name="love.key_w" brief="W key" />
+    <item name="love.key_x" brief="X key" />
+    <item name="love.key_y" brief="Y key" />
+    <item name="love.key_z" brief="Z key" />
+    <item name="love.key_delete" brief="Delete key" />
+
+    <item name="love.key_kp0" brief="Keypad 0" />
+    <item name="love.key_kp1" brief="Keypad 1" />
+    <item name="love.key_kp2" brief="Keypad 2" />
+    <item name="love.key_kp3" brief="Keypad 3" />
+    <item name="love.key_kp4" brief="Keypad 4" />
+    <item name="love.key_kp5" brief="Keypad 5" />
+    <item name="love.key_kp6" brief="Keypad 6" />
+    <item name="love.key_kp7" brief="Keypad 7" />
+    <item name="love.key_kp8" brief="Keypad 8" />
+    <item name="love.key_kp9" brief="Keypad 9" />
+    <item name="love.key_kp_period" brief="Keypad ." />
+    <item name="love.key_kp_divide" brief="Keypad /" />
+    <item name="love.key_kp_multiply" brief="Keypad *" />
+    <item name="love.key_kp_minus" brief="Keypad -" />
+    <item name="love.key_kp_plus" brief="Keypad +" />
+    <item name="love.key_kp_enter" brief="Keypad enter" />
+    <item name="love.key_kp_equals" brief="Keypad =" />
+
+    <item name="love.key_up" brief="Up key" />
+    <item name="love.key_down" brief="Down key" />
+    <item name="love.key_right" brief="Right key" />
+    <item name="love.key_left" brief="Left key" />
+    <item name="love.key_insert" brief="Insert key" />
+    <item name="love.key_home" brief="Home key" />
+    <item name="love.key_end" brief="End key" />
+    <item name="love.key_pageup" brief="Page Up key" />
+    <item name="love.key_pagedown" brief="Page Down key" />
+
+    <item name="love.key_f1" brief="F1 key" />
+    <item name="love.key_f2" brief="F2 key" />
+    <item name="love.key_f3" brief="F3 key" />
+    <item name="love.key_f4" brief="F4 key" />
+    <item name="love.key_f5" brief="F5 key" />
+    <item name="love.key_f6" brief="F6 key" />
+    <item name="love.key_f7" brief="F7 key" />
+    <item name="love.key_f8" brief="F8 key" />
+    <item name="love.key_f9" brief="F9 key" />
+    <item name="love.key_f10" brief="F10 key" />
+    <item name="love.key_f11" brief="F11 key" />
+    <item name="love.key_f12" brief="F12 key" />
+    <item name="love.key_f13" brief="F13 key" />
+    <item name="love.key_f14" brief="F14 key" />
+    <item name="love.key_f15" brief="F15 key" />
+
+    <item name="love.key_numlock" brief="Num lock key" />
+    <item name="love.key_capslock" brief="Caps lock key" />
+    <item name="love.key_scrollock" brief="Scroll lock key" />
+    <item name="love.key_rshift" brief="Right shift key" />
+    <item name="love.key_lshift" brief="Left shift key" />
+    <item name="love.key_rctrl" brief="Right control key" />
+    <item name="love.key_lctrl" brief="Left control key" />
+    <item name="love.key_ralt" brief="Right alt key" />
+    <item name="love.key_lalt" brief="Left alt key" />
+    <item name="love.key_rmeta" brief="Right meta key" />
+    <item name="love.key_lmeta" brief="Left meta key" />
+    <item name="love.key_rsuper" brief="Right super key" />
+    <item name="love.key_lsuper" brief="Left super key" />
+    <item name="love.key_mode" brief="Mode key" />
+    <item name="love.key_compose" brief="Compose key" />
+
+    <item name="love.key_help" brief="Help key" />
+    <item name="love.key_print" brief="Print key" />
+    <item name="love.key_sysreq" brief="System request key" />
+    <item name="love.key_break" brief="Break key" />
+    <item name="love.key_menu" brief="Menu key" />
+    <item name="love.key_power" brief="Power key" />
+    <item name="love.key_euro" brief="€ key" />
+    <item name="love.key_undo" brief="Undo key" />
+
+    <item name="love.mouse_left" brief="The left mouse button." />
+    <item name="love.mouse_middle" brief="The middle mouse button."  />
+    <item name="love.mouse_right" brief="The right mouse button."  />
+    <item name="love.mouse_wheelup" brief="Mouse wheel scrolled upwards."  />
+    <item name="love.mouse_wheeldown" brief="Mouse wheel scrolled downwards."  />
+
+    <item name="love.align_left" brief="Align to the left side." />
+    <item name="love.align_center" brief="Align in the center (vertically or horizontally)." />
+    <item name="love.align_right" brief="Align to the right side." />
+    <item name="love.align_top" brief="Align to the top." />
+    <item name="love.align_bottom" brief="Align to the bottom." />
+
+    <item name="love.mode_loop" brief="Loops continuesly." />
+    <item name="love.mode_once" brief="Plays once." />
+    <item name="love.mode_bounce" brief="Bounces back and forth." />
+
+    <item name="love.event_message" brief="A message event." />
+    <item name="love.event_gui" brief="A GUI event." />
+
+    <item name="love.blend_normal" brief="Normal blendig mode." />
+    <item name="love.blend_additive" brief="Additive blending mode." />
+    <item name="love.color_normal" brief="Normal color mode." />
+    <item name="love.color_modulate" brief="Modulation color mode." />
+    <item name="love.file_read" brief="For file reading." />
+    <item name="love.file_write" brief="For file writing." />
+    <item name="love.file_append" brief="For file appending." />
+    <item name="love.default_font" brief="The default font (Vera)." />
+    <item name="love.draw_line" brief="Draws the primitive using lines." />
+    <item name="love.draw_fill" brief="Draws a filled primitive." />
+    <item name="love.line_smooth" brief="Sets the lines as smooth." />
+    <item name="love.line_rough" brief="Sets the lines as rough (best when drawing straight 1px wide lines)." />
+    <item name="love.audio_loop" brief="Loops music or sound." />
+    <item name="love.image_pad" brief="Used to pad an image upon creation." />
+    <item name="love.image_optimize" brief="Used to optimize an image upon creation." />
+    <item name="love.image_pad_and_optimize" brief="Used to pad &amp; optimize an image upon creation." />
+
+
+
+  </misc>
+
+  <misc name="Config Files">
+
+  </misc>
+
+
+
+</nzai>
