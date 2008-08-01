@@ -1418,7 +1418,7 @@ namespace love_opengl
 		return 0;
 	}
 
-	pImage screenshot()
+	void screenshot(const char * filename)
 	{
 		int w = getWidth();
 		int h = getHeight();
@@ -1436,14 +1436,13 @@ namespace love_opengl
 		ilTexImage(w, h, 1, 3, IL_RGB, IL_UNSIGNED_BYTE, (ILvoid*)pixels);
 
 		// Save it.
-		ilEnable(IL_FILE_OVERWRITE); // to kill the previous "monkey.png"
-		ilSaveImage((const wchar_t *)"monkey.png");
+		ilEnable(IL_FILE_OVERWRITE);
+		ilSaveImage((const wchar_t *)filename);
 
 		// Cleanup.
+		ilDisable(IL_FILE_OVERWRITE);
 		delete pixels;
 		ilDeleteImages(1, &image);
-
-		return newImage(love::mini_moose_png); // to sate the compiler until a real image can be created
 	}
 
 

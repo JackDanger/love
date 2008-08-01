@@ -117,7 +117,7 @@ namespace love_opengl
 	void circle( int type, float x, float y, float radius, int points = 10 );
 	
 	// Screenshot
-	pImage screenshot();
+	void screenshot(const char * filename);
 }
 
 %native(getModes) int love_opengl::getModes(lua_State * L);

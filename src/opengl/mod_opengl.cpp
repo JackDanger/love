@@ -10957,15 +10957,14 @@ static int _wrap_circle(lua_State* L) {
 
 static int _wrap_screenshot(lua_State* L) {
   int SWIG_arg = -1;
-  love_opengl::pImage result;
+  char *arg1 = (char *) 0 ;
   
-  SWIG_check_num_args("love_opengl::screenshot",0,0)
-  result = love_opengl::screenshot();
+  SWIG_check_num_args("love_opengl::screenshot",1,1)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("love_opengl::screenshot",1,"char const *");
+  arg1 = (char *)lua_tostring(L, 1);
+  love_opengl::screenshot((char const *)arg1);
   SWIG_arg=0;
-  {
-    love_opengl::pImage * resultptr = new love_opengl::pImage((love_opengl::pImage &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t,1); SWIG_arg++;
-  }
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;

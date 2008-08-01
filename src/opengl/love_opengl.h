@@ -565,9 +565,9 @@ namespace love_opengl
 
 	/**
 	* Creates a screenshot of the view and saves it to the default folder.
-	* @param type The type of image (see constants: format_XXX)
+	* @param filename The filename for where the file should be saved.
 	**/
-	pImage screenshot();
+	void screenshot(const char * filename);
 
 	// Special member functions.
 	int _Color_getRGB(lua_State * L);
