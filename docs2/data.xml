@@ -92,6 +92,8 @@
   </module>
   <module name="love.audio">
   </module>
+  <module name="love.filesystem">
+  </module>
   <module name="love.physics">
   </module>
   <module name="love.mouse">
@@ -183,6 +185,20 @@
 
   </module>
   <module name="love.keyboard">
+      Keeps track of the state of the keyboard.
+
+      <func name="isDown" brief="Checks whether a certain key is down.">
+        <overload>
+        Checks whether a certain key is down. For list of accepted keys, see Constants.
+        <param name="key" brief="The key in question." />
+        <ret type="boolean" brief="Whether the passed key is pressed down." />
+        <see>
+          Constants, keypressed, keyrelreased
+        </see>
+        <example id="10" />
+        </overload>
+      </func>
+      <example id="10" />
   </module>
   <module name="love.timer">
     
