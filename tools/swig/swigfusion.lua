@@ -243,6 +243,7 @@ mods = {
     physfs = Module:new("physfs"),
     system = Module:new("system"),
     chipmunk = Module:new("chipmunk"),
+	sdljoystick = Module:new("sdljoystick"),
 }
 
 -- If there's a param,

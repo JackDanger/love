@@ -122,7 +122,13 @@ namespace love
 
 	bool Keyboard::verify()
 	{
-		CHECK_LOAD("Keybpoard");
+		CHECK_LOAD("Keyboard");
+		return true;
+	}
+
+	bool Gamepad::verify()
+	{
+		CHECK_LOAD("Gamepad");
 		return true;
 	}
 

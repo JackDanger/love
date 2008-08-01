@@ -119,6 +119,12 @@ namespace love
 		// From module.
 		bool verify();
 	};
+
+	struct Gamepad : public modspec 
+	{
+		// From module.
+		bool verify();
+	};
 }
 
 #endif // LOVE_MODSPEC_H

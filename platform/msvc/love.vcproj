@@ -811,6 +811,22 @@
 					</File>
 				</Filter>
 			</Filter>
+			<Filter
+				Name="sdljoystick"
+				>
+				<File
+					RelativePath="..\..\src\sdljoystick\love_sdljoystick.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\sdljoystick\mod_sdljoystick.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\sdljoystick\mod_sdljoystick.i"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1092,6 +1108,18 @@
 						>
 					</File>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="sdljoystick"
+				>
+				<File
+					RelativePath="..\..\src\sdljoystick\love_sdljoystick.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\sdljoystick\mod_sdljoystick.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
