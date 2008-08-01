@@ -540,6 +540,19 @@ function page_begin(b, header, title, description)
 end
 
 function page_end(b)
+
+        b:div("foot")
+        
+        --b:div("copyright")
+        b:write("Copyright &copy; 2006-2008 L&Ouml;VE Development Team")
+        --b:pop()
+        
+        b:div("links")
+        b:write('<a href="http://love2d.org">Visit homepage</a> - <a href="">Help improve the manual</a>')
+        b:pop()
+        
+        b:pop()
+
         b:pop()
 end
 

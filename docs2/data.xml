@@ -185,6 +185,53 @@
   <module name="love.keyboard">
   </module>
   <module name="love.timer">
+    
+      The timer module keeps track of time between frames, so that game
+      objects can be updated in a FPS-independet fashion. The precision of the
+      timer is usually 1ms, although this [i]may[/i] vary from system to system. Hardware timers
+      with higher precision are planned, but not implemented at the time of writing.
+
+      <func name="getFPS" brief="Gets the current FPS.">
+        <overload>
+        Returns the current frames-per-second. Since it is meant for display-purposes,
+        the value is only updated each second (this makes the value non-erratic and human-readable
+        when drawn on screen).
+        <ret type="number" brief="The FPS." />
+        <example id="8" />
+        </overload>
+      </func>
+      <func name="getDelta" brief="Returns the current timestep.">
+        <overload>
+        Returns the time (in seconds) since last frame. This is the same value that is
+        passed with the update-callback each frame, so you should't really need to
+        use this function for antying but display purposes.
+        <example id="8" />
+        </overload>
+        <ret type="number" brief="The current timestep." />
+      </func>
+      <func name="sleep" brief="Delays exection for an amount of time.">
+        <overload>
+        <param name="ms" brief="The amount of milliseconds." />
+        Delays execution for the specified amount of milliseconds. Tragically,
+        the precision varies from system to system, and is generally not very good.
+        Do not expect to get better precision than the nearest 10ms.
+         <example id="7" />
+        </overload>
+      </func>
+      <func name="getTime" brief="Gets approximate time since startup.">
+        <overload>
+        Note that this function does not get the current time! It is meant for
+        timing pieces of code. [br /][br /]Also, this function is not very precise at the moment, 
+        since SDL's timer is used. This will change in some time in the future when modules for timers
+        with higher resolutions are created.
+        <ret type="number" brief="The (approximate) time in seconds since startup." />
+        <example id="9" />
+        </overload>
+        </func>
+    
+      <example id="7" />
+        <example id="9" />
+    
   </module>
   <module name="love.system">
   </module>

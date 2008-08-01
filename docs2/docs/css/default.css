@@ -130,6 +130,17 @@ a:hover
 	margin: 0px 0px 10px 0px;
 }
 
+.page .foot
+{
+	border-top: 1px solid #d1d9fd;
+	padding: 10px;
+	font-size: 12px;
+}
+
+.page .foot a
+{
+	font-size: 10px;
+}
 
 .list
 {
@@ -214,3 +225,5 @@ a:hover
 	color: #888;
 	font-weight: normal;
 }
+
+
