@@ -124,7 +124,7 @@ namespace love
 		* @param direction The direction ofthe viewhat (GAMEPAD_HAT_UP, GAMEPAD_HAT_DOWN, etc)
 		* @param value The amount of movement.
 		**/
-		virtual void gamepadHatMoved(int index, int direction, int value) = 0;
+		virtual void gamepadHatMoved(int index, int hat, int direction) = 0;
 
 	}; // Game
 

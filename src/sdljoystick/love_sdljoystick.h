@@ -32,7 +32,7 @@ namespace love_sdljoystick
 	/**
 	* Gets the amount of gamepads that are connected to the computer.
 	**/
-	int numGamepads();
+	int getNumGamepads();
 
 	/**
 	* Gets the name of a gamepad based on its index.
@@ -56,25 +56,25 @@ namespace love_sdljoystick
 	* Gets the amount of axes available on the desired gamepad.
 	* @param index The index of the desired gamepad.
 	**/
-	int numAxes(int index);
+	int getNumAxes(int index);
 
 	/**
 	* Gets the amount of trackballs available on the desired gamepad.
 	* @param index The index of the desired gamepad.
 	**/
-	int numBalls(int index);
+	int getNumBalls(int index);
 
 	/**
 	* Gets the amount of buttons available on the desired gamepad.
 	* @param index The index of the desired gamepad.
 	**/
-	int numButtons(int index);
+	int getNumButtons(int index);
 
 	/**
 	* Gets the amount of viewhats available on the desired gamepad.
 	* @param index The index of the desired gamepad.
 	**/
-	int numHats(int index);
+	int getNumHats(int index);
 
 	/**
 	* Gets the status of an axis available on the desired gamepad.

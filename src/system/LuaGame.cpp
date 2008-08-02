@@ -195,14 +195,14 @@ namespace love_system
 		call(4, 0);
 	}
 
-	void LuaGame::gamepadHatMoved(int index, int direction, int value)
+	void LuaGame::gamepadHatMoved(int index, int hat, int direction)
 	{
 		if(!callbacks[CALLBACK_GAMEPADHATMOVED])
 			return;
 		lua_getglobal(L, "gamepadhatmoved");
 		lua_pushnumber(L, index);
+		lua_pushnumber(L, hat);
 		lua_pushnumber(L, direction);
-		lua_pushnumber(L, value);
 		call(3, 0);
 	}
 

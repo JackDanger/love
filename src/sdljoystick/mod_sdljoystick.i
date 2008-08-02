@@ -4,14 +4,14 @@
 
 namespace love_sdljoystick
 {
-	int numGamepads();
+	int getNumGamepads();
 	const char * getName(int index);
 	void open(int index);
 	bool isOpen(int index);
-	int numAxes(int index);
-	int numBalls(int index);
-	int numButtons(int index);
-	int numHats(int index);
+	int getNumAxes(int index);
+	int getNumBalls(int index);
+	int getNumButtons(int index);
+	int getNumHats(int index);
 	int getAxis(int index, int axis);
 	int getBallX(int index, int ball);
 	int getBallY(int index, int ball);

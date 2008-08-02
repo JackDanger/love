@@ -88,7 +88,7 @@ namespace love_system
 		void gamepadButtonPressed(int index, int button);
 		void gamepadButtonReleased(int index, int button);
 		void gamepadBallMoved(int index, int ball, int x, int y);
-		void gamepadHatMoved(int index, int direction, int value);
+		void gamepadHatMoved(int index, int hat, int direction);
 
 		void message(const char * msg, int tag);
 

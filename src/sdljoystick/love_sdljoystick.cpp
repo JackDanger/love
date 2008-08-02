@@ -13,6 +13,8 @@ namespace love_sdljoystick
 {
 	// Requires Core (for error messages).
 	love::Core * core = 0;
+	// Array of opened gamepads.
+	SDL_Joystick ** gamepads = 0;
 
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
@@ -36,17 +38,22 @@ namespace love_sdljoystick
 		// Start joystick event watching.
 		SDL_JoystickEventState(SDL_ENABLE);
 
+		gamepads = (SDL_Joystick **)calloc(getNumGamepads(), sizeof(SDL_Joystick*));
+		
+
 		return true;
 	}
 
 	bool module_quit()
 	{
 		// Closes any open gamepads.
-		for(int i = 0; i != numGamepads(); i++)
+		for(int i = 0; i != getNumGamepads(); i++)
 		{
 			if(isOpen(i))
 				close(i);
 		}
+
+		free(gamepads);
 
 		std::cout << "QUIT love.gamepad [" << "SDL" << "]" << std::endl;
 		return true;
@@ -63,13 +70,13 @@ namespace love_sdljoystick
 
 	bool checkIndex(int index)
 	{
-		if(index < numGamepads())
+		if(index < getNumGamepads())
 			return true;
 		else
 			return false;
 	}
 
-	int numGamepads()
+	int getNumGamepads()
 	{
 		return SDL_NumJoysticks();
 	}
@@ -89,8 +96,7 @@ namespace love_sdljoystick
 			return;
 		}
 
-		SDL_Joystick * gamepad;
-		if( !(gamepad = SDL_JoystickOpen(index)) )
+		if( !(gamepads[index] = SDL_JoystickOpen(index)) )
 		{
 			std::stringstream err;
 			err << "Could not open gamepad with index " << index << ": Unknown error.";
@@ -101,10 +107,19 @@ namespace love_sdljoystick
 
 	bool isOpen(int index)
 	{
-		return SDL_JoystickOpened(index) == 1 ? true : false;
+		if(!checkIndex(index))
+		{
+			std::stringstream err;
+			err << "Could not check gamepad with index " << index << ": Invalid gamepad index.";
+			core->error(err.str().c_str());
+			return false;
+		}
+
+		return gamepads[index] != 0 ? true : false;
+		//return SDL_JoystickOpened(index) == 1 ? true : false;
 	}
 
-	int numAxes(int index)
+	int getNumAxes(int index)
 	{
 		if(!checkIndex(index))
 		{
@@ -122,10 +137,10 @@ namespace love_sdljoystick
 			return 0;
 		}
 
-		return SDL_JoystickNumAxes(SDL_JoystickOpen(index));
+		return SDL_JoystickNumAxes(gamepads[index]);
 	}
 
-	int numBalls(int index)
+	int getNumBalls(int index)
 	{
 		if(!checkIndex(index))
 		{
@@ -143,10 +158,10 @@ namespace love_sdljoystick
 			return 0;
 		}
 
-		return SDL_JoystickNumBalls(SDL_JoystickOpen(index));
+		return SDL_JoystickNumBalls(gamepads[index]);
 	}
 
-	int numButtons(int index)
+	int getNumButtons(int index)
 	{
 		if(!checkIndex(index))
 		{
@@ -164,10 +179,10 @@ namespace love_sdljoystick
 			return 0;
 		}
 
-		return SDL_JoystickNumButtons(SDL_JoystickOpen(index));
+		return SDL_JoystickNumButtons(gamepads[index]);
 	}
 
-	int numHats(int index)
+	int getNumHats(int index)
 	{
 		if(!checkIndex(index))
 		{
@@ -185,7 +200,7 @@ namespace love_sdljoystick
 			return 0;
 		}
 
-		return SDL_JoystickNumHats(SDL_JoystickOpen(index));
+		return SDL_JoystickNumHats(gamepads[index]);
 	}
 
 	int getAxis(int index, int axis)
@@ -206,7 +221,7 @@ namespace love_sdljoystick
 			return 0;
 		}
 
-		if(axis >= numAxes(index))
+		if(axis >= getNumAxes(index))
 		{
 			std::stringstream err;
 			err << "Could not get axis status of gamepad with index " << index << ": Axis " << axis << " is invalid.";
@@ -214,7 +229,7 @@ namespace love_sdljoystick
 			return 0;
 		}
 
-		return SDL_JoystickGetAxis(SDL_JoystickOpen(index), axis);
+		return SDL_JoystickGetAxis(gamepads[index], axis);
 	}
 
 	int getBallX(int index, int ball)
@@ -235,7 +250,7 @@ namespace love_sdljoystick
 			return 0;
 		}
 
-		if(ball >= numBalls(index))
+		if(ball >= getNumBalls(index))
 		{
 			std::stringstream err;
 			err << "Could not get trackball status of gamepad with index " << index << ": Trackball " << ball << " is invalid.";
@@ -246,7 +261,7 @@ namespace love_sdljoystick
 		int dx;
 		int dy;
 
-		SDL_JoystickGetBall(SDL_JoystickOpen(index), ball, &dx, &dy);
+		SDL_JoystickGetBall(gamepads[index], ball, &dx, &dy);
 		return dx;
 	}
 
@@ -268,7 +283,7 @@ namespace love_sdljoystick
 			return 0;
 		}
 
-		if(ball >= numBalls(index))
+		if(ball >= getNumBalls(index))
 		{
 			std::stringstream err;
 			err << "Could not get trackball status of gamepad with index " << index << ": Trackball " << ball << " is invalid.";
@@ -279,7 +294,7 @@ namespace love_sdljoystick
 		int dx;
 		int dy;
 
-		SDL_JoystickGetBall(SDL_JoystickOpen(index), ball, &dx, &dy);
+		SDL_JoystickGetBall(gamepads[index], ball, &dx, &dy);
 		return dy;
 	}
 
@@ -301,7 +316,7 @@ namespace love_sdljoystick
 			return 0;
 		}
 
-		if(button >= numButtons(index))
+		if(button >= getNumButtons(index))
 		{
 			std::stringstream err;
 			err << "Could not get button status of gamepad with index " << index << ": Button " << button << " is invalid.";
@@ -309,7 +324,7 @@ namespace love_sdljoystick
 			return 0;
 		}
 
-		return SDL_JoystickGetButton(SDL_JoystickOpen(index), button);
+		return SDL_JoystickGetButton(gamepads[index], button);
 	}
 
 	int getHat(int index, int hat)
@@ -330,7 +345,7 @@ namespace love_sdljoystick
 			return 0;
 		}
 
-		if(hat >= numHats(index))
+		if(hat >= getNumHats(index))
 		{
 			std::stringstream err;
 			err << "Could not get viewhat status of gamepad with index " << index << ": Hat " << hat << " is invalid.";
@@ -338,7 +353,7 @@ namespace love_sdljoystick
 			return 0;
 		}
 
-		return SDL_JoystickGetHat(SDL_JoystickOpen(index), hat);
+		return SDL_JoystickGetHat(gamepads[index], hat);
 	}
 
 	void close(int index)
@@ -359,7 +374,8 @@ namespace love_sdljoystick
 			return;
 		}
 
-		return SDL_JoystickClose(SDL_JoystickOpen(index));
+		SDL_JoystickClose(gamepads[index]);
+		gamepads[index] = 0;
 	}
 
 } // love_sdljoystick
