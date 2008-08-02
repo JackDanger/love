@@ -1508,14 +1508,300 @@ typedef struct{} LANGUAGE_OBJ;
 #ifdef __cplusplus
 extern "C" {
 #endif
-static int _wrap_test(lua_State* L) {
+static int _wrap_numGamepads(lua_State* L) {
   int SWIG_arg = -1;
   int result;
   
-  SWIG_check_num_args("love_sdljoystick::test",0,0)
-  result = (int)love_sdljoystick::test();
+  SWIG_check_num_args("love_sdljoystick::numGamepads",0,0)
+  result = (int)love_sdljoystick::numGamepads();
   SWIG_arg=0;
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getName(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  char *result = 0 ;
+  
+  SWIG_check_num_args("love_sdljoystick::getName",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_sdljoystick::getName",1,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  result = (char *)love_sdljoystick::getName(arg1);
+  SWIG_arg=0;
+  lua_pushstring(L,(const char*)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_open(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  
+  SWIG_check_num_args("love_sdljoystick::open",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_sdljoystick::open",1,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  love_sdljoystick::open(arg1);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_isOpen(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  bool result;
+  
+  SWIG_check_num_args("love_sdljoystick::isOpen",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_sdljoystick::isOpen",1,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  result = (bool)love_sdljoystick::isOpen(arg1);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_numAxes(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int result;
+  
+  SWIG_check_num_args("love_sdljoystick::numAxes",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_sdljoystick::numAxes",1,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  result = (int)love_sdljoystick::numAxes(arg1);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_numBalls(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int result;
+  
+  SWIG_check_num_args("love_sdljoystick::numBalls",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_sdljoystick::numBalls",1,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  result = (int)love_sdljoystick::numBalls(arg1);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_numButtons(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int result;
+  
+  SWIG_check_num_args("love_sdljoystick::numButtons",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_sdljoystick::numButtons",1,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  result = (int)love_sdljoystick::numButtons(arg1);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_numHats(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int result;
+  
+  SWIG_check_num_args("love_sdljoystick::numHats",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_sdljoystick::numHats",1,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  result = (int)love_sdljoystick::numHats(arg1);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getAxis(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int arg2 ;
+  int result;
+  
+  SWIG_check_num_args("love_sdljoystick::getAxis",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_sdljoystick::getAxis",1,"int");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_sdljoystick::getAxis",2,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (int)love_sdljoystick::getAxis(arg1,arg2);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getBallX(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int arg2 ;
+  int result;
+  
+  SWIG_check_num_args("love_sdljoystick::getBallX",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_sdljoystick::getBallX",1,"int");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_sdljoystick::getBallX",2,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (int)love_sdljoystick::getBallX(arg1,arg2);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getBallY(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int arg2 ;
+  int result;
+  
+  SWIG_check_num_args("love_sdljoystick::getBallY",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_sdljoystick::getBallY",1,"int");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_sdljoystick::getBallY",2,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (int)love_sdljoystick::getBallY(arg1,arg2);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getButton(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int arg2 ;
+  int result;
+  
+  SWIG_check_num_args("love_sdljoystick::getButton",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_sdljoystick::getButton",1,"int");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_sdljoystick::getButton",2,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (int)love_sdljoystick::getButton(arg1,arg2);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getHat(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int arg2 ;
+  int result;
+  
+  SWIG_check_num_args("love_sdljoystick::getHat",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_sdljoystick::getHat",1,"int");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_sdljoystick::getHat",2,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  result = (int)love_sdljoystick::getHat(arg1,arg2);
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_close(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  
+  SWIG_check_num_args("love_sdljoystick::close",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_sdljoystick::close",1,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  love_sdljoystick::close(arg1);
+  SWIG_arg=0;
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -1531,7 +1817,20 @@ fail:
 #endif
 
 static const struct luaL_reg swig_commands[] = {
-    { "test", _wrap_test},
+    { "numGamepads", _wrap_numGamepads},
+    { "getName", _wrap_getName},
+    { "open", _wrap_open},
+    { "isOpen", _wrap_isOpen},
+    { "numAxes", _wrap_numAxes},
+    { "numBalls", _wrap_numBalls},
+    { "numButtons", _wrap_numButtons},
+    { "numHats", _wrap_numHats},
+    { "getAxis", _wrap_getAxis},
+    { "getBallX", _wrap_getBallX},
+    { "getBallY", _wrap_getBallY},
+    { "getButton", _wrap_getButton},
+    { "getHat", _wrap_getHat},
+    { "close", _wrap_close},
     {0,0}
 };
 

@@ -87,6 +87,45 @@ namespace love
 		**/
 		virtual void mouseMoved(int xrel, int yrel) = 0;
 
+		/**
+		* Called every time the gamepad is moved along an axis.
+		* @param index The index of the gamepad.
+		* @param axis The axis which the gamepad was moved along (if not GAMEPAD_AXIS_HORIZONTAL or GAMEPAD_AXIS_VERTICAL then other [throttle or something]).
+		* @param value The amount of movement along the axis.
+		**/
+		virtual void gamepadAxisMoved(int index, int axis, int value) = 0;
+		
+		/**
+		* Called every time a button on a gamepad is pressed.
+		* @param index The index of the gamepad.
+		* @param button The button which was pressed.
+		**/
+		virtual void gamepadButtonPressed(int index, int button) = 0;
+
+		/**
+		* Called every time a button on a gamepad is released.
+		* @param index The index of the gamepad.
+		* @param button The button which was released.
+		**/
+		virtual void gamepadButtonReleased(int index, int button) = 0;
+
+		/**
+		* Called every time a trackball is moved.
+		* @param index The index of the gamepad.
+		* @param ball Which ball was moved.
+		* @param x The amount of movement along the x axis.
+		* @param y The amount of movement along the y axis.
+		**/
+		virtual void gamepadBallMoved(int index, int ball, int x, int y) = 0;
+
+		/**
+		* Called every time a gamepad viewhat is moved.
+		* @param index The index of the gamepad.
+		* @param direction The direction ofthe viewhat (GAMEPAD_HAT_UP, GAMEPAD_HAT_DOWN, etc)
+		* @param value The amount of movement.
+		**/
+		virtual void gamepadHatMoved(int index, int direction, int value) = 0;
+
 	}; // Game
 
 	typedef boost::shared_ptr<Game> pGame;

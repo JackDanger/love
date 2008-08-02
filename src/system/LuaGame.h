@@ -39,6 +39,11 @@ namespace love_system
 		CALLBACK_MOUSEPRESSED, 
 		CALLBACK_MOUSERELEASED, 
 		CALLBACK_MOUSEMOVED,
+		CALLBACK_GAMEPADAXISMOVED,
+		CALLBACK_GAMEPADBUTTONPRESSED,
+		CALLBACK_GAMEPADBUTTONRELEASED,
+		CALLBACK_GAMEPADBALLMOVED,
+		CALLBACK_GAMEPADHATMOVED,
 		CALLBACK_MESSAGE,
 		CALLBACK_EVENT, 
 		CALLBACK_SIZE
@@ -79,6 +84,11 @@ namespace love_system
 		void mousePressed(int x, int y, int button);
 		void mouseReleased(int x, int y, int button);
 		void mouseMoved(int xrel, int yrel);
+		void gamepadAxisMoved(int index, int axis, int value);
+		void gamepadButtonPressed(int index, int button);
+		void gamepadButtonReleased(int index, int button);
+		void gamepadBallMoved(int index, int ball, int x, int y);
+		void gamepadHatMoved(int index, int direction, int value);
 
 		void message(const char * msg, int tag);
 
