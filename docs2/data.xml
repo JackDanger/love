@@ -1,11 +1,7 @@
 <nzai>
   <page name="Overview">
     <section name="Introduction">
-      Hello, this is the new documentation. The only well-documented thing so far is:
-
-      [ul]
-      [li] love.mouse [/li]
-      [/ul]
+      Hello, this is the new documentation.
 
       [p]
       The symbolizer should be more awesome now.
@@ -28,6 +24,19 @@
     <section name="Tutorials">
     </section>
     <section name="Examples">
+    </section>
+    <section name="TODO">
+      These should require no further work:
+      [ul]
+      [li] love.mouse [/li]
+      [li] love.keyboard [/li]
+      [li] love.timer [/li]
+      [/ul]
+      These need examples, but are otherwise done:
+      [ul]
+      [li] love.system [/li]
+      [li] love.audio [/li]
+      [/ul]
     </section>
   </page>
 
@@ -90,12 +99,114 @@
 
     <example id="1" />
   </module>
+
+
   <module name="love.audio">
+
+    The audio module is currently a wrapper around SDL_mixer, and has very limited
+    features as of yet.
+
+    <type name="Sound" brief="A sound effect.">
+      Can load the following formats: WAVE, OGG, AIFF, RIFF and VOC. Sound is fully
+      expanded into memory when the game loads. This means that if you load a
+      5MB compressed .ogg file as a sound, it would consume ~50MB RAM when fully
+      decompressed. Consider using Music in such cases.[br /]
+      [br /]
+      Note that the Sound object does not contain funcs to play itself back;
+      love.audio.play must be used for this.
+      <func name="setVolume" brief="Sets the volume the sound should be played at.">
+        <overload>
+          <param name="volume" brief="The volume (a number between 0 and 1.0)." />
+        </overload>
+      </func>
+    </type>
+    <type name="Music" brief="Streaming sound.">
+      Can load the following formats: MP3, OGG, MIDI, XM, MOD,
+      and a variety of other tracker formats.
+
+      Music, unlike Sound, isn't fully decoded and expanded into
+      memory when the game loads; decoding takes place during run-time.[br /]
+      [br /]
+      Note that the Music object itself has no funcs; it is currently only used as a handle. To play Music, 
+      use love.audio.play.
+      <see>
+        Sound, love.audio, love.audio.newMusic
+      </see>
+    </type>
+
+    <func name="newSound" brief="Loads a sound file.">
+      <overload>
+        <param name="filename" brief="The filepath to the sound file." />
+        <ret type="Sound" brief="A Sound object containing the audio data." />
+      </overload>
+    </func>
+
+    <func name="newMusic" brief="Loads a music file.">
+      <overload>
+        <param name="filename" brief="The filepath to the music file." />
+        <ret type="Music" brief="A Music object containing the audio data." />
+      </overload>
+    </func>
+
+    <func name="play" brief="Plays a sound.">
+      <overload>
+        <param name="sound" brief="The sound to play." />
+        The Sound is played a single time, on the first available channel.
+      </overload>
+      <overload>
+        <param name="sound" brief="The sound to play." />
+        <param name="loop" brief="The number of times to loop. (1 = play once, 0 = forever)." />
+      </overload>
+      <overload>
+        <param name="music" brief="The Music object to play." />
+        Remember that only one Music can play at any time. (See love.audio).
+      </overload>
+      <overload>
+        <param name="music" brief="The Music object to play." />
+        <param name="loop" brief="The number of times to loop. (1 = play once, 0 = forever)." />
+        Remember that only one Music can play at any time. (See love.audio).
+      </overload>
+    </func>
+
+    <func name="pause" brief="Pauses all audio playback.">
+      <overload>
+
+      </overload>
+    </func>
+
+    <func name="resume" brief="Resumes all audio playback.">
+      <overload>
+      </overload>
+    </func>
+
+    <func name="stop" brief="Stops all audio playback.">
+      <overload>
+      </overload>
+    </func>
+
+    <func name="isPlaying" brief="Checks whether (any) audio is playing or not.">
+      <overload>
+        <ret type="boolean" brief="True if audio is playing, false otherwise" />
+      </overload>
+    </func>
+
+    <func name="isPaused" brief="Checks whether audio playback is paused or not.">
+      <overload>
+        <ret type="boolean" brief="True if audio is paused, false otherwise." />
+      </overload>
+    </func>
+
+    <func name="setVolume" brief="Changes the master volume.">
+      <overload>
+        <param name="volume" brief="A number between 0 (min) and 1 (max)." />
+      </overload>
+    </func>
+
   </module>
   <module name="love.filesystem">
   </module>
-  <module name="love.physics">
-  </module>
+  <!--<module name="love.physics">
+  </module>-->
   <module name="love.mouse">
     Keeps track of the state of the mouse.
 
@@ -126,7 +237,7 @@
     <func name="getPosition" brief="Gets the current position of the mouse.">
       <overload>
         Gets the current x- and y-position of the mouse in one call. Since getting the mouse position (along both axes) is
-        a fairly common task, this function was created to make it prettier.
+        a fairly common task, this func was created to make it prettier.
         <ret type="number" brief="The current x position." />
         <ret type="number" brief="The current y position." />
         <example id="2" />
@@ -185,10 +296,10 @@
 
   </module>
   <module name="love.keyboard">
-      Keeps track of the state of the keyboard.
+    Keeps track of the state of the keyboard.
 
-      <func name="isDown" brief="Checks whether a certain key is down.">
-        <overload>
+    <func name="isDown" brief="Checks whether a certain key is down.">
+      <overload>
         Checks whether a certain key is down. For list of accepted keys, see Constants.
         <param name="key" brief="The key in question." />
         <ret type="boolean" brief="Whether the passed key is pressed down." />
@@ -196,60 +307,110 @@
           Constants, keypressed, keyrelreased
         </see>
         <example id="10" />
-        </overload>
-      </func>
-      <example id="10" />
+      </overload>
+    </func>
+    <example id="10" />
   </module>
   <module name="love.timer">
-    
-      The timer module keeps track of time between frames, so that game
-      objects can be updated in a FPS-independet fashion. The precision of the
-      timer is usually 1ms, although this [i]may[/i] vary from system to system. Hardware timers
-      with higher precision are planned, but not implemented at the time of writing.
 
-      <func name="getFPS" brief="Gets the current FPS.">
-        <overload>
-        Returns the current frames-per-second. Since it is meant for display-purposes,
+    The timer module keeps track of time between frames, so that game
+    objects can be updated in a FPS-independet fashion. The precision of the
+    timer is usually 1ms, although this [i]may[/i] vary from system to system. Hardware timers
+    with higher precision are planned, but not implemented at the time of writing.
+
+    <func name="getFPS" brief="Gets the current FPS.">
+      <overload>
+        ret the current frames-per-second. Since it is meant for display-purposes,
         the value is only updated each second (this makes the value non-erratic and human-readable
         when drawn on screen).
         <ret type="number" brief="The FPS." />
         <example id="8" />
-        </overload>
-      </func>
-      <func name="getDelta" brief="Returns the current timestep.">
-        <overload>
-        Returns the time (in seconds) since last frame. This is the same value that is
+      </overload>
+    </func>
+    <func name="getDelta" brief="ret the current timestep.">
+      <overload>
+        ret the time (in seconds) since last frame. This is the same value that is
         passed with the update-callback each frame, so you should't really need to
-        use this function for antying but display purposes.
+        use this func for antying but display purposes.
         <example id="8" />
-        </overload>
-        <ret type="number" brief="The current timestep." />
-      </func>
-      <func name="sleep" brief="Delays exection for an amount of time.">
-        <overload>
+      </overload>
+      <ret type="number" brief="The current timestep." />
+    </func>
+    <func name="sleep" brief="Delays exection for an amount of time.">
+      <overload>
         <param name="ms" brief="The amount of milliseconds." />
         Delays execution for the specified amount of milliseconds. Tragically,
         the precision varies from system to system, and is generally not very good.
         Do not expect to get better precision than the nearest 10ms.
-         <example id="7" />
-        </overload>
-      </func>
-      <func name="getTime" brief="Gets approximate time since startup.">
-        <overload>
-        Note that this function does not get the current time! It is meant for
-        timing pieces of code. [br /][br /]Also, this function is not very precise at the moment, 
+        <example id="7" />
+      </overload>
+    </func>
+    <func name="getTime" brief="Gets approximate time since startup.">
+      <overload>
+        Note that this func does not get the current time! It is meant for
+        timing pieces of code. [br /][br /]Also, this func is not very precise at the moment,
         since SDL's timer is used. This will change in some time in the future when modules for timers
         with higher resolutions are created.
         <ret type="number" brief="The (approximate) time in seconds since startup." />
         <example id="9" />
-        </overload>
-        </func>
-    
-      <example id="7" />
-        <example id="9" />
-    
+      </overload>
+    </func>
+
+    <example id="7" />
+    <example id="9" />
+
   </module>
   <module name="love.system">
+
+    The system module controls the currently running game and provides information about
+    the running LOVE version. It is not related to the underlying operating system.
+    <func name="getVersion" brief="Gets the current LOVE version.">
+      <overload>
+        <ret type="string" brief="String containing the version." />
+      </overload>
+    </func>
+    <func name="getCodename" brief="Gets the codename of the current LOVE version.">
+      <overload>
+        <ret type="string" brief="String containing the codename." />
+      </overload>
+    </func>
+    <func name="getPlatform" brief="Gets the current platform.">
+      <overload>
+        <ret type="string" brief="String containing Windows, Linux ..." />
+      </overload>
+    </func>
+    <func name="exit" brief="Exits LOVE.">
+      <overload>
+        Calling this func will immediately exit LOVE and free resources.
+      </overload>
+    </func>
+    <func name="restart" brief="Restarts the current game.">
+      <overload>
+        The current immediately restarts.
+      </overload>
+    </func>
+    <func name="suspend" brief="Takes LOVE to the error handler.">
+      <overload>
+        Calling this func will cause LOVE to enter error mode, just like when
+        an error occurs. NOTE! If you actually want to cause an error, do not
+        call this func, use the built-in Lua func error() instead.
+      </overload>
+    </func>
+    <func name="resume" brief="Takes LOVE back to the main game.">
+      <overload>
+        This func is meant to be called from error handler scripts, and has no
+        effect if called from a normal game.
+      </overload>
+    </func>
+    <func name="grabInput" brief="Sends as much input as possible to LOVE.">
+      <overload>
+        <param name="grab" brief="True to grab, false to ungrab." />
+        When grabbing is on, the mouse is confined to the window,
+        and as much keyboard input as possible is passed directly to the current game.
+        Some key combinations may still be interpreted by the window manager, such
+        as Alt+Tab, Ctrl+Alt+Delete, etc.
+      </overload>
+    </func>
   </module>
 
   <misc name="Function List">

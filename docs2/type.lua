@@ -10,9 +10,10 @@ function lovedoc.parser.type(t, p)
 	o._parent = p:name()
 	o._brief = t.attr.brief or "(No description.)"
 	o._type = true
-        o.example = {}
+	o._text = ""
+    o.example = {}
 	o.func = {}
-        o.see = {}
+    o.see = {}
 	lovedoc.insert(t, p, o)
 end
 
@@ -26,8 +27,9 @@ function lovedoc.docwriter.type(m)
 	b:menu(m._parent)
         
 	page_begin(b, "Type", m:name(), m:text())	
-        func_section(b, m.func)       
-        example_section(b, m.example)		
+    func_section(b, m.func)       
+    see_section(b, m.see)
+    example_section(b, m.example)
 	page_end(b)
         
 	b:tofile(m:url())
