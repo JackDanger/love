@@ -68,6 +68,20 @@ namespace love_sdlmixer
 	void resume();
 
 	/**
+	* Sets the number of channels for sound effect mixing.
+	* @param channels The amount of channels.
+	**/
+	void setChannels(int channels);
+
+	/**
+	* Sets the audio mode.
+	* @param frequency The frequency (in Hz, could be AUDIO_QUALITY_LOW, AUDIO_QUALITY_MEDIUM, AUDIO_QUALITY_HIGH or custom value).
+	* @param mode The audio mode (AUDIO_MODE_MONO, AUDIO_MODE_STEREO).
+	* @param buffersize The size of the buffer (bytes per output per sample).
+	**/
+	void setMode(int frequency, int mode, int buffersize);
+
+	/**
 	* Sets global volume.
 	* @param volume The volume from 0.0 - 1.0.
 	**/

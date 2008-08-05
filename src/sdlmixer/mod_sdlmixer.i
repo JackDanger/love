@@ -25,6 +25,8 @@ namespace love_sdlmixer
 	void pause();
 	void stop();
 	void resume();
+	void setChannels(int channels);
+	void setMode(int frequency, int mode, int buffersize);
 	void setVolume(float volume);
 	void play(const pSound & sound, int loop = 1, int channel = -1);
 	void play(const pMusic & music, int loop = 1);

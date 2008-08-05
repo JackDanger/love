@@ -196,6 +196,20 @@
       </overload>
     </func>
 
+	<func name="setChannels" brief="Sets the amount of channels for sounds.">
+      <overload>
+        <param name="channels" brief="A number. Any number below 0 will have no effect." />
+      </overload>
+    </func>
+	
+	<func name="setMode" brief="Sets the mode for audio mixing and playback.">
+      <overload>
+        <param name="frequency" brief="The amount of Hz to use (love.audio_quality_low, love.audio_quality_medium, love.audio_quality_hight, or custom value)." />
+		<param name="mode" brief="The audio mode (love.audio_mode_mono or love.audio_mode_stereo)." />
+		<param name="buffersize" brief="The size of the buffer (bits per output per sample, use love.audio_buffer_default for default value)." />
+      </overload>
+    </func>
+
     <func name="setVolume" brief="Changes the master volume.">
       <overload>
         <param name="volume" brief="A number between 0 (min) and 1 (max)." />
@@ -599,6 +613,12 @@
     <item name="love.line_smooth" brief="Sets the lines as smooth." />
     <item name="love.line_rough" brief="Sets the lines as rough (best when drawing straight 1px wide lines)." />
     <item name="love.audio_loop" brief="Loops music or sound." />
+	<item name="love.audio_mode_mono" brief="Sets the audio mode as mono." />
+	<item name="love.audio_mode_stereo" brief="Sets the audio mode as stereo." />
+	<item name="love.audio_quality_low" brief="Designates low audio quality (11.025KHz)." />
+	<item name="love.audio_quality_medium" brief="Designates medium audio quality (22.050KHz)." />
+	<item name="love.audio_quality_high" brief="Designates high audio quality (44.100KHz)." />
+	<item name="love.audio_buffer_default" brief="The default buffer size for audio mixing-" />
     <item name="love.image_pad" brief="Used to pad an image upon creation." />
     <item name="love.image_optimize" brief="Used to optimize an image upon creation." />
     <item name="love.image_pad_and_optimize" brief="Used to pad &amp; optimize an image upon creation." />

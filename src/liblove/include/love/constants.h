@@ -35,7 +35,13 @@ namespace love
 	// Audio
 	enum
 	{
-		AUDIO_LOOP = 0
+		AUDIO_LOOP = 0,
+		AUDIO_MODE_MONO = 1,
+		AUDIO_MODE_STEREO = 2,
+		AUDIO_QUALITY_LOW = 11025,
+		AUDIO_QUALITY_MEDIUM = 22050,
+		AUDIO_QUALITY_HIGH = 44100,
+		AUDIO_BUFFER_DEFAULT = 1024
 	};
 
 	// Features.

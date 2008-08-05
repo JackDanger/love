@@ -461,6 +461,12 @@ namespace love_system
 			"point_sprite = 0,"
 
 			"audio_loop = 0,"
+			"audio_mode_mono = 1,"
+			"audio_mode_stereo = 2,"
+			"audio_quality_low = 11025,"
+			"audio_quality_medium = 22050,"
+			"audio_quality_high = 44100,"
+			"audio_vuffer_default = 1024,"
 
 			"image_optimize = 1,"
 			"image_pad = 2,"

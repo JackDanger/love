@@ -33,14 +33,14 @@ namespace love_sdlmixer
 		love_sdlmixer::core = core;
 
 		int bits = 0;
-		int audio_rate,audio_channels,audio_buffers=1024;
+		int audio_rate,audio_channels,audio_buffers= love::AUDIO_BUFFER_DEFAULT;
 		Uint16 audio_format;
 
 		// High: 44100
 		// Medium: 22050
 		// Low: 11025
 
-		if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,audio_buffers)<0)
+		if(Mix_OpenAudio(love::AUDIO_QUALITY_HIGH, MIX_DEFAULT_FORMAT, love::AUDIO_MODE_STEREO, audio_buffers)<0)
 		{
 			std::cout << "SDLMixerAudio: Unable to open audio!" << std::endl;
 			return false;
@@ -157,6 +157,27 @@ namespace love_sdlmixer
 
 		// Resume music.
 		Mix_ResumeMusic();
+	}
+
+	void setChannels(int channels)
+	{
+		// Allocate channels.
+		Mix_AllocateChannels(channels);
+	}
+
+	void setMode(int frequency, int mode, int buffersize)
+	{
+		// Close previous setting.
+		Mix_CloseAudio();
+
+		// Open new setting.
+		if(Mix_OpenAudio(frequency, MIX_DEFAULT_FORMAT, mode, buffersize)<0)
+		{
+			std::stringstream err;
+			err << "Could not set audio mode: " << Mix_GetError();
+			core->error(err.str().c_str());
+			return;
+		}
 	}
 
 	void setVolume(float volume)

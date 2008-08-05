@@ -1914,6 +1914,52 @@ fail:
 }
 
 
+static int _wrap_setChannels(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  
+  SWIG_check_num_args("love_sdlmixer::setChannels",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_sdlmixer::setChannels",1,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  love_sdlmixer::setChannels(arg1);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setMode(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int arg2 ;
+  int arg3 ;
+  
+  SWIG_check_num_args("love_sdlmixer::setMode",3,3)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_sdlmixer::setMode",1,"int");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_sdlmixer::setMode",2,"int");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_sdlmixer::setMode",3,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  arg3 = (int)lua_tonumber(L, 3);
+  love_sdlmixer::setMode(arg1,arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_setVolume(lua_State* L) {
   int SWIG_arg = -1;
   float arg1 ;
@@ -2181,6 +2227,8 @@ static const struct luaL_reg swig_commands[] = {
     { "pause", _wrap_pause},
     { "stop", _wrap_stop},
     { "resume", _wrap_resume},
+    { "setChannels", _wrap_setChannels},
+    { "setMode", _wrap_setMode},
     { "setVolume", _wrap_setVolume},
     { "play",_wrap_play},
     {0,0}
