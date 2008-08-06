@@ -48,8 +48,8 @@ circle2circleQuery(cpVect p1, cpVect p2, cpFloat r1, cpFloat r2, cpContact **con
 	(*con) = (cpContact *)malloc(sizeof(cpContact));
 	cpContactInit(
 		(*con),
-		cpvadd(p1, cpvmult(delta, 0.5 + (r1 - 0.5*mindist)/non_zero_dist)),
-		cpvmult(delta, 1.0/non_zero_dist),
+		cpvadd(p1, cpvmult(delta, 0.5f + (r1 - 0.5f*mindist)/non_zero_dist)),
+		cpvmult(delta, 1.0f/non_zero_dist),
 		dist - mindist,
 		0
 	);

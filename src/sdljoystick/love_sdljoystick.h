@@ -6,8 +6,8 @@
 *
 * An interface to add gamepad devices via SDL.
 * 
-* @author Anders Ruud
-* @date 2008-03-16
+* @author Michael Enger
+* @date 2008-08-01
 */
 #ifndef LOVE_MOD_SDLJOYSTICK_H
 #define LOVE_MOD_SDLJOYSTICK_H

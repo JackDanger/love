@@ -24,21 +24,15 @@ namespace love_chipmunk
 	// Forward declarations.
 	class Body;
 
-	int _SegmentShape_setData(lua_State * L);
-	int _SegmentShape_getData(lua_State * L);
-	int _SegmentShape_getPoints(lua_State * L);
-
 	class SegmentShape : public Shape
 	{
-		friend int _SegmentShape_setData(lua_State * L);
-		friend int _SegmentShape_getData(lua_State * L);
-		friend int _SegmentShape_getPoints(lua_State * L);
 	protected:
 		cpSegmentShape * segmentShape;
 	public:
 
 		SegmentShape(boost::shared_ptr<Body> body, cpVect v1, cpVect v2);
 		virtual ~SegmentShape();
+		int getPoints(lua_State * L);
 
 	}; // SegmentShape
 

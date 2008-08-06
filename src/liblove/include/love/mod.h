@@ -22,13 +22,6 @@
 #	define DECLSPEC
 #endif
 
-// All modules need Lua.
-extern "C" {
-	#include <lua.h>
-	#include <lualib.h>
-	#include <lauxlib.h>
-}
-
 // STD
 #include <cstring>
 #include <string>
@@ -36,10 +29,8 @@ extern "C" {
 #include <iostream>
 
 // LOVE
-namespace love 
-{
-	// Forward declare.
-	class Core; 
-}
+#include "Core.h"
+#include "luax.h"
+#include "Reference.h"
 
 #endif // LOVE_MOD_H

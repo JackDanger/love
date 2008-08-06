@@ -8,7 +8,6 @@ namespace love_chipmunk
 	Shape::Shape(boost::shared_ptr<Body> body)
 		: body(body)
 	{
-		data = LUA_REFNIL;
 	}
 
 	Shape::~Shape()
@@ -75,14 +74,41 @@ namespace love_chipmunk
 		shape->surface_v = cpv(x, y);
 	}
 
-	void Shape::setData(int data)
+	int Shape::setData(lua_State * L)
 	{
-		this->data = data;
+		love::luax_assert_argc(L, 1);
+		ref.reset<love::Reference>(new love::Reference(L, -1));
+		return 0;
 	}
 
-	int Shape::getData() const
+	int Shape::getData(lua_State * L)
 	{
-		return this->data;
+		love::luax_assert_argc(L, 0);
+		
+		if(ref != 0)
+			ref->push();
+		else
+			lua_pushnil(L);
+
+		return 1;
+	}
+
+	int Shape::getPosition(lua_State * L)
+	{
+		love::luax_assert_argc(L, 0);
+		lua_pushnumber(L, shape->body->p.x);
+		lua_pushnumber(L, shape->body->p.y);
+		return 2;
+	}
+
+	int Shape::getBoundingBox(lua_State * L)
+	{
+		love::luax_assert_argc(L, 0);
+		lua_pushnumber(L, shape->bb.t);
+		lua_pushnumber(L, shape->bb.r);
+		lua_pushnumber(L, shape->bb.b);
+		lua_pushnumber(L, shape->bb.l);
+		return 4;
 	}
 
 } // love_chipmunk

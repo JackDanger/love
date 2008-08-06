@@ -61,6 +61,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
+				IgnoreAllDefaultLibraries="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -177,6 +178,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\liblove\luax.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\liblove\MemoryFile.cpp"
 				>
 			</File>
@@ -186,6 +191,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\liblove\Module.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\liblove\Reference.cpp"
 				>
 			</File>
 			<File
@@ -247,6 +256,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\liblove\include\love\luax.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\liblove\include\love\math.h"
 				>
 			</File>
@@ -268,6 +281,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\liblove\include\love\platform.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\liblove\include\love\Reference.h"
 				>
 			</File>
 			<File

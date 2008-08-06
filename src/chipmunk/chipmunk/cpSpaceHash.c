@@ -240,10 +240,10 @@ hashHandle(cpSpaceHash *hash, cpHandle *hand, cpBB bb)
 {
 	// Find the dimensions in cell coordinates.
 	cpFloat dim = hash->celldim;
-	int l = bb.l/dim;
-	int r = bb.r/dim;
-	int b = bb.b/dim;
-	int t = bb.t/dim;
+	int l = (int)(bb.l/dim);
+	int r = (int)(bb.r/dim);
+	int b = (int)(bb.b/dim);
+	int t = (int)(bb.t/dim);
 	
 	int n = hash->numcells;
 	for(int i=l; i<=r; i++){
@@ -361,10 +361,10 @@ cpSpaceHashQuery(cpSpaceHash *hash, void *obj, cpBB bb, cpSpaceHashQueryFunc fun
 {
 	// Get the dimensions in cell coordinates.
 	cpFloat dim = hash->celldim;
-	int l = bb.l/dim;
-	int r = bb.r/dim;
-	int b = bb.b/dim;
-	int t = bb.t/dim;
+	int l = (int)(bb.l/dim);
+	int r = (int)(bb.r/dim);
+	int b = (int)(bb.b/dim);
+	int t = (int)(bb.t/dim);
 	
 	int n = hash->numcells;
 	
@@ -404,10 +404,10 @@ handleQueryRehashHelper(void *elt, void *data)
 	void *obj = hand->obj;
 	cpBB bb = hash->bbfunc(obj);
 
-	int l = bb.l/dim;
-	int r = bb.r/dim;
-	int b = bb.b/dim;
-	int t = bb.t/dim;
+	int l = (int)(bb.l/dim);
+	int r = (int)(bb.r/dim);
+	int b = (int)(bb.b/dim);
+	int t = (int)(bb.t/dim);
 
 	for(int i=l; i<=r; i++){
 		for(int j=b; j<=t; j++){

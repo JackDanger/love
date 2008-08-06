@@ -31,43 +31,13 @@ namespace love_chipmunk
 		segmentShape = 0;
 	}
 
-	int _SegmentShape_setData(lua_State * L)
+	int SegmentShape::getPoints(lua_State * L)
 	{
-		if(lua_gettop(L) != 2) return luaL_error(L, "Incorrect number of parameters.");
-		pSegmentShape p = mod_to_segmentshape(L, 1);
-		lua_getglobal(L, "love");
-		lua_getfield(L, -1, "refs");
-		lua_pushvalue(L, -3);
-		int ref = luaL_ref(L, -2);
-		p->setData(ref);
-		return 0;
-	}
-
-	int _SegmentShape_getData(lua_State * L)
-	{
-		if(lua_gettop(L) != 1) return luaL_error(L, "Incorrect number of parameters.");
-		pSegmentShape p = mod_to_segmentshape(L, 1);
-
-		int ref = p->getData();
-
-		if(ref==LUA_REFNIL)
-			return 0;
-
-		lua_getglobal(L, "love");
-		lua_getfield(L, -1, "refs");
-		lua_rawgeti(L, -1, ref);
-		return 1;
-	}
-
-	int _SegmentShape_getPoints(lua_State * L)
-	{
-		if(lua_gettop(L) != 1) return luaL_error(L, "Incorrect number of parameters.");
-		pSegmentShape p = mod_to_segmentshape(L, 1);
-
-		lua_pushnumber(L, p->segmentShape->ta.x);
-		lua_pushnumber(L, p->segmentShape->ta.y);
-		lua_pushnumber(L, p->segmentShape->tb.x);
-		lua_pushnumber(L, p->segmentShape->tb.y);
+		love::luax_assert_argc(L, 0);
+		lua_pushnumber(L, segmentShape->ta.x);
+		lua_pushnumber(L, segmentShape->ta.y);
+		lua_pushnumber(L, segmentShape->tb.x);
+		lua_pushnumber(L, segmentShape->tb.y);
 		return 4;
 	}
 

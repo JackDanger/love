@@ -31,9 +31,7 @@ namespace love_chipmunk
 	protected:
 		cpShape * shape;
 		boost::shared_ptr<Body> body;
-
-		// Reference to Lua data.
-		int data;
+		love::pReference ref;
 	public:
 
 		Shape(boost::shared_ptr<Body> body);
@@ -52,8 +50,20 @@ namespace love_chipmunk
 		void setFriction(float u);
 		float getFriction() const;
 		void setSurfaceVelocity(float x, float y);
-		void setData(int data);
-		int getData() const;
+
+		int setData(lua_State * L);
+		int getData(lua_State * L);
+		int getBoundingBox(lua_State * L);
+
+		/**
+		* Position of the associated Body.
+		* 
+		* @returns The x-coordiate.
+		* @returns The y-coordinate.
+		**/
+		int getPosition(lua_State * L);
+
+		virtual int getPoints(lua_State * L) = 0; 
 
 	}; // Shape
 

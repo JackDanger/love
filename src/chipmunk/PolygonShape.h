@@ -8,14 +8,16 @@
 * @date 2008-07-06
 */
 
-
 #ifndef LOVE_CHIPMUNK_POLYGON_SHAPE_H
 #define LOVE_CHIPMUNK_POLYGON_SHAPE_H
+
+// LOVE
+#include <love/mod.h>
 
 // love_chipmunk
 #include "Shape.h"
 
-#include <love/mod.h>
+// Chipmunk
 #include "chipmunk/chipmunk.h"
 
 // Boost
@@ -23,20 +25,11 @@
 
 namespace love_chipmunk
 {
-	// Special native methods.
-	int _PolygonShape_getTransformedPoints(lua_State * L);
-	int _PolygonShape_setData(lua_State * L);
-	int _PolygonShape_getData(lua_State * L);
-
-
 	// Forward declarations.
 	class Body;
 
 	class PolygonShape : public Shape
 	{
-		friend int _PolygonShape_getTransformedPoints(lua_State * L);
-		friend int _PolygonShape_setData(lua_State * L);
-		friend int _PolygonShape_getData(lua_State * L);
 	private:
 		cpVect * verts;
 		cpPolyShape * polygonShape;
@@ -44,6 +37,7 @@ namespace love_chipmunk
 
 		PolygonShape(boost::shared_ptr<Body> body, cpVect * verts, int num);
 		virtual ~PolygonShape();
+		int getPoints(lua_State * L);
 
 	}; // PolygonShape
 
