@@ -45,13 +45,16 @@ lovedoc = {}
 lovedoc.data = {
 	page = {},
 	module = {},
-	misc = {}
+        callback = {},
+	misc = {},
+        ghost = {},
 }
 
 lovedoc.menudef =
 {
 	{ t = lovedoc.data.page,	name = "Documentation"},
-	{ t = lovedoc.data.module, name = "Modules"},
+	{ t = lovedoc.data.module,      name = "Modules"},
+        { t = lovedoc.data.callback,    name = "Callbacks"},
 	{ t = lovedoc.data.misc, 	name = "Miscellaneous"},
 }
 
@@ -63,6 +66,8 @@ lovedoc.symdef =
 	
 	"func",
 	"overload",
+        "callback",
+        "ghost",
 	
 	"page",
 	"misc",
@@ -457,8 +462,6 @@ end
 -- Parsers
 ----------------------------------------------------
 
-
-
 function lovedoc.parser.param(t, p)
 	local o = lovedoc.newtag()
 	o._name = t.attr.name or "noparam"
@@ -470,14 +473,6 @@ function lovedoc.parser.ret(t, p)
 	local o = lovedoc.newtag()
 	o._type = t.attr.type or "noparam"
 	o._brief = t.attr.brief or "(No description.)"
-	lovedoc.insert(t, p, o)
-end
-
-function lovedoc.parser.page(t, p)
-	local o = lovedoc.newtag()
-	o._name = t.attr.name or "No Name"
-	o._text = ""
-	o.section = {}
 	lovedoc.insert(t, p, o)
 end
 
@@ -539,6 +534,13 @@ function page_begin(b, header, title, description)
         b:pop()
 end
 
+function page_begin_lite(b, header)
+        b:div("page")
+        b:div("title")
+        b:write(header)
+        b:pop()    
+end
+
 function page_end(b)
 
         b:div("foot")
@@ -548,7 +550,7 @@ function page_end(b)
         --b:pop()
         
         b:div("links")
-        b:write('<a href="http://love2d.org">Visit homepage</a> - <a href="">Help improve the manual</a>')
+        b:write('<a href="http://love2d.org">Visit homepage</a> - <a href="ManualImprovements.html">Help improve the manual</a>')
         b:pop()
         
         b:pop()
@@ -680,34 +682,23 @@ function see_section(b, list)
         b:pop()
 end
 
+function section_section(b, list)
+        if #list <= 0 then return end
+        for si,s in ipairs(list) do
+                b:div("section")
+                        b:div("title")
+                                b:write(s:name())
+                        b:pop()
+                        b:div("content")
+                                b:write(lovedoc.symbolize(s:text()))
+                        b:pop()
+                b:pop()
+        end
+end
+
 ----------------------------------------------------
 -- Docwriters
 ----------------------------------------------------
-
-
-function lovedoc.docwriter.page(m)
-	local b = lovedoc.newbuffer()
-	b:header()
-	b:menu(m:name())
-
-	b:div("page")
-		b:div("title")
-			b:write(m:name())
-		b:pop()
-		for is, s in ipairs(m.section) do
-			b:div("section")
-				b:div("title")
-					b:write(s:name())
-				b:pop()
-				b:div("content")
-					b:write(lovedoc.symbolize(s:text()))
-				b:pop()
-			b:pop()
-		end
-	b:pop()
-	
-	b:tofile(m:url())
-end
 
 function lovedoc.docwriter.misc(m)
 	local b = lovedoc.newbuffer()
@@ -729,6 +720,9 @@ dofile("module.lua")
 dofile("type.lua")
 dofile("func.lua")
 dofile("overload.lua")
+dofile("callback.lua")
+dofile("page.lua")
+dofile("ghost.lua")
 
 ----------------------------------------------------
 -- Testdata

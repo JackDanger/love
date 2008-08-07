@@ -42,7 +42,13 @@
 
   <page name="License">
     <section name="Summary">
+      Blah blah, take part in Manual Improvements!
+    </section>
+  </page>
 
+  <page name="Manual Improvements">
+    <section name="Help us help you!">
+      
     </section>
   </page>
 
@@ -127,7 +133,7 @@
       Music, unlike Sound, isn't fully decoded and expanded into
       memory when the game loads; decoding takes place during run-time.[br /]
       [br /]
-      Note that the Music object itself has no funcs; it is currently only used as a handle. To play Music, 
+      Note that the Music object itself has no funcs; it is currently only used as a handle. To play Music,
       use love.audio.play.
       <see>
         Sound, love.audio, love.audio.newMusic
@@ -196,17 +202,17 @@
       </overload>
     </func>
 
-	<func name="setChannels" brief="Sets the amount of channels for sounds.">
+    <func name="setChannels" brief="Sets the amount of channels for sounds.">
       <overload>
         <param name="channels" brief="A number. Any number below 0 will have no effect." />
       </overload>
     </func>
-	
-	<func name="setMode" brief="Sets the mode for audio mixing and playback.">
+
+    <func name="setMode" brief="Sets the mode for audio mixing and playback.">
       <overload>
         <param name="frequency" brief="The amount of Hz to use (love.audio_quality_low, love.audio_quality_medium, love.audio_quality_hight, or custom value)." />
-		<param name="mode" brief="The audio mode (love.audio_mode_mono or love.audio_mode_stereo)." />
-		<param name="buffersize" brief="The size of the buffer (bits per output per sample, use love.audio_buffer_default for default value)." />
+        <param name="mode" brief="The audio mode (love.audio_mode_mono or love.audio_mode_stereo)." />
+        <param name="buffersize" brief="The size of the buffer (bits per output per sample, use love.audio_buffer_default for default value)." />
       </overload>
     </func>
 
@@ -427,6 +433,39 @@
     </func>
   </module>
 
+
+  <callback name="load" brief="Called when the game should load.">
+    This function is called exacly once at the beginning of the game. This is where
+    resources such as images and sounds should be loaded.
+    <example id="51" />
+  </callback>
+
+  <callback name="update" brief="Called each timestep when the game should be updated.">
+    This function should update the state of the game according to the time value dt.
+    <param name="dt" brief="The time since last update in seconds." />
+  </callback>
+  <callback name="draw" brief="Called each timestep right after update.">
+    This is where you should draw things onto the screen.
+  </callback>
+  <callback name="mousepressed" brief="Called when the mouse is pressed.">
+    <param name="x" brief="The position of the mouse on the x-axis." />
+    <param name="y" brief="The position of the mouse on the y-axis." />
+    <param name="button" brief="Which button is pressed." />
+
+  </callback>
+  <callback name="mousereleased" brief="Called when the mouse is released.">
+    <param name="x" brief="The position of the mouse on the x-axis." />
+    <param name="y" brief="The position of the mouse on the y-axis." />
+    <param name="button" brief="Which button is released." />
+  </callback>
+  <callback name="keypressed" brief="Called when a key is pressed.">
+    <param name="key" brief="The key code of the pressed key." />
+  </callback>
+  <callback name="keyreleased" brief="Called when a key is released.">
+    <param name="key" brief="The key code of the released key." />
+  </callback>
+
+
   <misc name="Function List">
     Whooptido.
   </misc>
@@ -613,12 +652,12 @@
     <item name="love.line_smooth" brief="Sets the lines as smooth." />
     <item name="love.line_rough" brief="Sets the lines as rough (best when drawing straight 1px wide lines)." />
     <item name="love.audio_loop" brief="Loops music or sound." />
-	<item name="love.audio_mode_mono" brief="Sets the audio mode as mono." />
-	<item name="love.audio_mode_stereo" brief="Sets the audio mode as stereo." />
-	<item name="love.audio_quality_low" brief="Designates low audio quality (11.025KHz)." />
-	<item name="love.audio_quality_medium" brief="Designates medium audio quality (22.050KHz)." />
-	<item name="love.audio_quality_high" brief="Designates high audio quality (44.100KHz)." />
-	<item name="love.audio_buffer_default" brief="The default buffer size for audio mixing-" />
+    <item name="love.audio_mode_mono" brief="Sets the audio mode as mono." />
+    <item name="love.audio_mode_stereo" brief="Sets the audio mode as stereo." />
+    <item name="love.audio_quality_low" brief="Designates low audio quality (11.025KHz)." />
+    <item name="love.audio_quality_medium" brief="Designates medium audio quality (22.050KHz)." />
+    <item name="love.audio_quality_high" brief="Designates high audio quality (44.100KHz)." />
+    <item name="love.audio_buffer_default" brief="The default buffer size for audio mixing-" />
     <item name="love.image_pad" brief="Used to pad an image upon creation." />
     <item name="love.image_optimize" brief="Used to optimize an image upon creation." />
     <item name="love.image_pad_and_optimize" brief="Used to pad &amp; optimize an image upon creation." />
@@ -630,7 +669,6 @@
   <misc name="Config Files">
 
   </misc>
-
 
 
 </nzai>
