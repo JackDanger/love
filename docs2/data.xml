@@ -1604,26 +1604,36 @@
   <callback name="update" brief="Called each timestep when the game should be updated.">
     This function should update the state of the game according to the time value dt.
     <param name="dt" brief="The time since last update in seconds." />
+	<example id="51" />
   </callback>
+  
   <callback name="draw" brief="Called each timestep right after update.">
     This is where you should draw things onto the screen.
+	<example id="51" />
   </callback>
+  
   <callback name="mousepressed" brief="Called when the mouse is pressed.">
     <param name="x" brief="The position of the mouse on the x-axis." />
     <param name="y" brief="The position of the mouse on the y-axis." />
     <param name="button" brief="Which button is pressed." />
-
+	<example id="52" />
   </callback>
+  
   <callback name="mousereleased" brief="Called when the mouse is released.">
     <param name="x" brief="The position of the mouse on the x-axis." />
     <param name="y" brief="The position of the mouse on the y-axis." />
     <param name="button" brief="Which button is released." />
+	<example id="52" />
   </callback>
+  
   <callback name="keypressed" brief="Called when a key is pressed.">
     <param name="key" brief="The key code of the pressed key." />
+	<example id="53" />
   </callback>
+  
   <callback name="keyreleased" brief="Called when a key is released.">
     <param name="key" brief="The key code of the released key." />
+	<example id="53" />
   </callback>
 
 
@@ -1827,8 +1837,40 @@
 
   </misc>
 
-  <misc name="Config Files">
+  <misc name="Config Files" title="List of config file attributes">
+  
+    Each game should have a config file that specifies game title, author, version, etc. The name of this file must be "game.conf".
+    A full listing of available attributes is presented below. [br /]
+    [br /]
+    All values are optional, but it is highly recommended to at least include title, author, and [b]love_version[/b].[br /]
+	[br /]
+	[div class="section"]
+	  [div class="title"]Example file:[/div]
+	  
+        [i]# Title / author[/i][br /]
+        title = "Epic Quest III"[br /]
+        author = "Awesome Games"[br /]
+        [i]# Display resolution[/i][br /]
+        width = 800[br /]
+        height = 600[br /]
+        [i]# Was made for this version of LOVE:[/i][br /]
+        love_version = "0.3.2"[br /]
+	[/div]
 
+    <item name="title" type="string" brief="The game title."/>
+    <item name="author" type="string" brief="The author of the game."/>
+    <item name="width" brief="Display resolution width."/>
+    <item name="height" brief="Display resolution height."/>
+    <item name="fullscreen" brief="True if fullscreen, false otherwise." />
+    <item name="vsync" brief="True if attemt to enable, false otherwise." />
+    <item name="fsaa" brief="Number of FSAA-buffers." />
+    <item name="display_auto" type="boolean" brief="Set this to false if you want to configure the display in Lua manually." />
+    <item name="love_version" type="string" brief="The LOVE-version this game was made for."/>
+  
+  </misc>
+  
+  <misc name="Keyboard shortcuts">
+    All keyboard shortcuts have been removed as of version 0.3.0. The functionality they provided can now be accessed through love.system.
   </misc>
 
 

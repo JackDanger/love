@@ -19,6 +19,6 @@ end
 -- Draw: Called each frame. The game
 -- should be drawn in this functions.
 function draw()
-    love.graphics.draw("Elapsed time: " .. elapsed)
+    love.graphics.draw("Elapsed time: " .. elapsed, 100, 100)
 end
 

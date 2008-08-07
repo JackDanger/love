@@ -17,7 +17,7 @@ function load()
     exf.available = love.filesystem.enumerate(".")
     exf.font = love.graphics.newFont(love.default_font, 28)
     love.graphics.setFont(exf.font)
-    exf.start(2)
+    exf.start(53)
 end
 
 function update(dt) end
