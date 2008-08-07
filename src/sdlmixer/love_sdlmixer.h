@@ -74,7 +74,8 @@ namespace love_sdlmixer
 	void setChannels(int channels);
 
 	/**
-	* Sets the audio mode.
+	* Sets the audio mode. Note: This will stop any playing sounds and any changes in frequency will cause already created sound/music
+	*                            to be played faster or slower, relative to their difference in frequency.
 	* @param frequency The frequency (in Hz, could be AUDIO_QUALITY_LOW, AUDIO_QUALITY_MEDIUM, AUDIO_QUALITY_HIGH or custom value).
 	* @param mode The audio mode (AUDIO_MODE_MONO, AUDIO_MODE_STEREO).
 	* @param buffersize The size of the buffer (bytes per output per sample).
