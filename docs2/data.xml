@@ -1,31 +1,24 @@
 <nzai>
   <page name="Overview">
-    <section name="Introduction">
-      Hello, this is the new documentation.
 
-      [p]
-      The symbolizer should be more awesome now.
-      [i]Does html work?[/i] Seems like it. Ok time to test the symbolizer:
-      [/p]
+    <section name="Welcome">
 
-      [p]
-      Image, Animation, love.graphics, and others. Also, there's love.mouse.setPosition.
-      Now we can even talk about plural types, like Images, Fonts, and the like. List time:
-      [/p]
 
-      [ul]
-      [li]OpenGL[/li]
-      [li]OpenAL[/li]
-      [li]FreeType[/li]
-      [li]etc[/li]
-      [/ul]
-
+      Welcome to the official LÖVE documentation page. Here we have explanations of all the types and objects available for the Lua scripting.
+      This does not describe the inner-workings of the engine itself (but we do have an SVN repository available on SourceForge if that's what you're looking for).
+      To understand anything that's going on it is recommended that you have a little bit of programming experience, but hopefully LÖVE is straight-forward and simple
+      enough for even novices to get into game creation.
+      [br /][br /]
+      We believe that thorough documentation is important for the survival of a program so if there is something missing or incorrect, please
+      [a href="http://love.sourceforge.net/?page=contact"]contact us[/a].
     </section>
+
     <section name="Tutorials">
+      This page has the bare documentation and, except for the simple examples, contain no actual tutorials.
+      Tutorials are available from the tutorial page on the [a href="http://love.sourceforge.net/?page=documentation"]LÖVE website[/a].
     </section>
-    <section name="Examples">
-    </section>
-    <section name="TODO">
+
+      <section name="TODO">
       These should require no further work:
       [ul]
       [li] love.mouse [/li]
@@ -43,9 +36,63 @@
   </page>
 
   <page name="License">
+
+
     <section name="Summary">
-      Blah blah, take part in Manual Improvements!
+
+    LÖVE is licensed under the terms of the ZLIB license. This is a short license to begin with,
+    but for the lazy, here's a summary:
+
+    [ul]
+    [li]Do not claim that you made this software.[/li]
+    [li]Do not make an altered version and claim that it is the original software.[/li]
+    [li]Otherwise, feel free to use this software in any situation, including commercial.[/li]
+    [/ul]
     </section>
+
+    <section name="ZLIB license (full)">
+
+      Copyright © 2006-2008 LÖVE Development Team[br /]
+      [br /]
+      This software is provided 'as-is', without any express or implied
+      warranty. In no event will the authors be held liable for any damages
+      arising from the use of this software.[br /]
+      [br /]
+      Permission is granted to anyone to use this software for any purpose,
+      including commercial applications, and to alter it and redistribute it
+      freely, subject to the following restrictions:[br /]
+      [br /]
+      1. The origin of this software must not be misrepresented; you must not
+      claim that you wrote the original software. If you use this software
+      in a product, an acknowledgment in the product documentation would be
+      appreciated but is not required.[br /]
+      [br /]
+      2. Altered source versions must be plainly marked as such, and must not be
+      misrepresented as being the original software.[br /]
+      [br /]
+      3. This notice may not be removed or altered from any source
+      distribution.[br /]
+
+    </section>
+
+    <section name="External libraries">
+
+      LOVE uses many libraries, such as SDL, DevIL and FreeType. These all have their own licenses.
+      An overview is presented here.
+
+      [ul]
+      [li]boost ([a href="http://www.boost.org/users/license.html"]BSL[/a])[/li]
+      [li]SDL ([a href="http://www.opensource.org/licenses/lgpl-license.php"]LGPL[/a])[/li]
+      [li]SDL_mixer ([a href="http://www.opensource.org/licenses/lgpl-license.php"]LGPL[/a])[/li]
+      [li]DevIL ([a href="http://www.opensource.org/licenses/lgpl-license.php"]LGPL[/a])[/li]
+      [li]FreeType 2 ([a href="http://www.freetype.org/FTL.TXT"]FTL[/a])[/li]
+      [li]PhysFS ([a href="http://www.opensource.org/licenses/zlib-license.php"]ZLIB[/a])[/li]
+      [li]Lua ([a href="http://www.opensource.org/licenses/mit-license.html"]MIT[/a])[/li]
+      [/ul]
+
+    </section>
+
+
   </page>
 
   <page name="Manual Improvements">

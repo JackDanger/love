@@ -92,25 +92,29 @@ a:hover
 
 .page
 {
-	padding: 30px;
+	padding: 20px 30px 30px 30px;
 }
 
 .page .title
 {
-	font-size: 30px;
+	font-size: 26px;
 	color: #0d8bca;
-	margin: 0px 0px 10px 0px;
+	margin: 0px 0px 0px 0px;
+	border-bottom: 1px solid #d2eaf5;
+	padding: 0px 0px 5px 0px;
 }
 
 .page .description
 {
-	margin: 0px 0px 20px 0px;
+	margin: 0px 0px 0px 0px;
+	padding: 20px 15px 0px 15px;
 }
 
 .page .description .title
 {
 	font-size: 24px;
-	color: #949494;
+	color: #214568;
+	border: none;
 }
 
 .page .description .text
@@ -120,24 +124,30 @@ a:hover
 
 .page .section
 {
-	margin: 0px 0px 20px 0px;
+	margin: 0px 0px 0px 0px;
+	padding: 20px 15px 20px 15px;
+	border-bottom: 1px solid #d2eaf5;
 }
 
 .page .section .title
 {
-	font-size: 24px;
+	font-size: 22px;
 	color: #0d8bca;
 	margin: 0px 0px 10px 0px;
+	border: none;
+	padding: 0;
+	font-weight: bold;
 }
 
-.page .foot
+.foot
 {
-	border-top: 1px solid #d1d9fd;
-	padding: 10px;
+	padding: 20px;
 	font-size: 12px;
+	text-align: center;
+	color: #3a5664;
 }
 
-.page .foot a
+.foot a
 {
 	font-size: 10px;
 }
@@ -145,6 +155,16 @@ a:hover
 .list
 {
 	border: 1px solid #cce0ea;	
+}
+
+.attr
+{
+	
+}
+
+.attr .title
+{
+	font-size: 16px;
 }
 
 .data

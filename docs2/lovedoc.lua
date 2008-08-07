@@ -544,17 +544,28 @@ end
 function page_end(b)
 
         b:div("foot")
-        
-        --b:div("copyright")
-        b:write("Copyright &copy; 2006-2008 L&Ouml;VE Development Team")
-        --b:pop()
-        
-        b:div("links")
-        b:write('<a href="http://love2d.org">Visit homepage</a> - <a href="ManualImprovements.html">Help improve the manual</a>')
-        b:pop()
-        
+                b:write("Copyright &copy; 2006-2008 L&Ouml;VE Development Team")      
+                b:div("links")
+                b:write('<a href="http://love2d.org">Visit homepage</a> - <a href="ManualImprovements.html">Help improve the manual</a>')
+                b:pop()
         b:pop()
 
+        b:pop()
+        
+
+        
+end
+
+function attr_begin(b, title)
+        b:div("attr")
+        b:div("title")
+        b:write(title)
+        b:pop()
+        b:div("content")   
+end
+
+function attr_end(b)
+        b:pop()
         b:pop()
 end
 
