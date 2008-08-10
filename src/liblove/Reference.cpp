@@ -4,19 +4,16 @@ namespace love
 {
 	const char * Reference::TABLE = "refs";
 
-	Reference::Reference(lua_State * L, int idx)
+	Reference::Reference(lua_State * L)
 	{
 		this->L = L;
 
 		// Push reftable.
 		lua_getglobal(L, "love");
 		lua_getfield(L, -1, Reference::TABLE);
-		lua_insert(L, -2); // move reftable
-		lua_insert(L, -2); // move love
+		lua_pushvalue(L, -3); // Copy value
 
-		// Stack should now be [ ..., love, reftable, value ]
-
-		ref = luaL_ref(L, -1);
+		ref = luaL_ref(L, -2);
 
 		// Pop love and reftable tables.
 		lua_pop(L, 2);
@@ -42,6 +39,11 @@ namespace love
 		{
 			lua_pushnil(L);
 		}
+	}
+
+	lua_State * Reference::getL()
+	{
+		return L;
 	}
 
 } // love

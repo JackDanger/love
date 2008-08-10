@@ -311,6 +311,7 @@ mods = {
     system = Module:new("system"),
     chipmunk = Module:new("chipmunk"),
     sdljoystick = Module:new("sdljoystick"),
+    box2d = Module:new("box2d")
 }
 
 -- If there's a param,

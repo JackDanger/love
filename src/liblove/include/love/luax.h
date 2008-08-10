@@ -25,6 +25,7 @@ namespace love
 {
 	int luax_assert_argc(lua_State * L, int lower);
 	int luax_assert_argc(lua_State * L, int lower, int upper);
+	int luax_assert_function(lua_State * L, int n);
 
 } // love
 

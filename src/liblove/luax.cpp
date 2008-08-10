@@ -18,4 +18,11 @@ namespace love
 		return 0;
 	}
 
+	int luax_assert_function(lua_State * L, int n)
+	{
+		if(!lua_isfunction(L, n))
+			return luaL_error(L, "Argument must be of type \"function\".");
+		return 0;
+	}
+
 } // love

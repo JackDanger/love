@@ -26,9 +26,10 @@ namespace love
 		int ref;
 	public:
 		static const char * TABLE;
-		Reference(lua_State * L, int idx);
+		Reference(lua_State * L);
 		~Reference();
 		void push();
+		lua_State * getL();
 	};
 
 	typedef boost::shared_ptr<Reference> pReference;
