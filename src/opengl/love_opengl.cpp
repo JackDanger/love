@@ -593,7 +593,27 @@ namespace love_opengl
 	void setScissor(int x, int y, int width, int height)
 	{
 		glEnable(GL_SCISSOR_TEST);
-		glScissor(x, y, width, height);
+		glScissor(x, getHeight() - (y + height), width, height); // Compensates for the fact that our y-coordinate is reverse of OpenGLs.
+	}
+
+	void setScissor()
+	{
+		glDisable(GL_SCISSOR_TEST);
+	}
+
+	int getScissor(lua_State * L)
+	{
+		GLint * scissor = new GLint[4];
+		glGetIntegerv(GL_SCISSOR_BOX, scissor);
+
+		lua_pushnumber(L, scissor[0]);
+		lua_pushnumber(L, getHeight() - (scissor[1] + scissor[3])); // Compensates for the fact that our y-coordinate is reverse of OpenGLs.
+		lua_pushnumber(L, scissor[2]);
+		lua_pushnumber(L, scissor[3]);
+
+		delete scissor;
+
+		return 4;
 	}
 
 	std::string getCaption()

@@ -878,6 +878,26 @@
 	  </overload>
     </func>
 	
+	<func name="setScissor" brief="Scissor defines a box such that everything outside that box is discared and not drawn.">
+	  <overload>
+		<param name="x" brief="The x-coordinate of the scissor box." />
+		<param name="y" brief="The y-coordinate of the scissor box." />
+		<param name="width" brief="The width of the scissor box." />
+		<param name="height" brief="The height of the scissor box." />
+	  </overload>
+	  <overload brief="Clears the scissor area.">
+	  </overload>
+	</func>
+	
+	<func name="getScissor" brief="Gets the current scissor box.">
+	  <overload>
+	    <ret type="number" brief="The x-coordinate of the scissor box." />
+		<ret type="number" brief="The y-coordinate of the scissor box." />
+		<ret type="number" brief="The width of the scissor box." />
+		<ret type="number" brief="The height of the scissor box." />
+	  </overload>
+	</func>
+	
 	<func name="draw" brief="Draws.">
 	  <overload brief="Draws text on screen.">
         Draws text in the current color.
@@ -1812,23 +1832,30 @@
 
     <item name="love.blend_normal" brief="Normal blendig mode." />
     <item name="love.blend_additive" brief="Additive blending mode." />
+	
     <item name="love.color_normal" brief="Normal color mode." />
     <item name="love.color_modulate" brief="Modulation color mode." />
+	
     <item name="love.file_read" brief="For file reading." />
     <item name="love.file_write" brief="For file writing." />
     <item name="love.file_append" brief="For file appending." />
+	
     <item name="love.default_font" brief="The default font (Vera)." />
+	
     <item name="love.draw_line" brief="Draws the primitive using lines." />
     <item name="love.draw_fill" brief="Draws a filled primitive." />
+	
     <item name="love.line_smooth" brief="Sets the lines as smooth." />
     <item name="love.line_rough" brief="Sets the lines as rough (best when drawing straight 1px wide lines)." />
+	
     <item name="love.audio_loop" brief="Loops music or sound." />
     <item name="love.audio_mode_mono" brief="Sets the audio mode as mono." />
     <item name="love.audio_mode_stereo" brief="Sets the audio mode as stereo." />
     <item name="love.audio_quality_low" brief="Designates low audio quality (11.025KHz)." />
     <item name="love.audio_quality_medium" brief="Designates medium audio quality (22.050KHz)." />
     <item name="love.audio_quality_high" brief="Designates high audio quality (44.100KHz)." />
-    <item name="love.audio_buffer_default" brief="The default buffer size for audio mixing-" />
+    <item name="love.audio_buffer_default" brief="The default buffer size for audio mixing." />
+	
     <item name="love.image_pad" brief="Used to pad an image upon creation." />
     <item name="love.image_optimize" brief="Used to optimize an image upon creation." />
     <item name="love.image_pad_and_optimize" brief="Used to pad &amp; optimize an image upon creation." />

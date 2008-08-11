@@ -55,6 +55,9 @@ namespace love_opengl
 	int getHeight();
 	bool isCreated();
 	
+	void setScissor();
+	void setScissor(int x, int y, int width, int height);
+	
 	void setColor( int r, int g, int b, int a = 255);
 	void setColor(const pColor & color);
 	pColor getColor();
@@ -121,6 +124,7 @@ namespace love_opengl
 }
 
 %native(getModes) int love_opengl::getModes(lua_State * L);
+%native(getScissor) int love_opengl::getScissor(lua_State * L);
 %native(polygon) int love_opengl::polygon(lua_State * L);
 %native(polygong) int love_opengl::polygong(lua_State * L);
 

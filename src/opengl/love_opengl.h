@@ -213,15 +213,25 @@ namespace love_opengl
 	int getHeight();
 
 	/**
-	* Scissor defines a box such that everything outside that box
-	* is discared and not drawn. Scissoring is automatically 
-	* enabled.
+	* Scissor defines a box such that everything outside that box is discared and not drawn.
+	* Scissoring is automatically enabled.
 	* @param x The x-coordinate of the top-left corner.
 	* @param y The y-coordinate of the top-left corner.
 	* @param width The width of the box.
 	* @param height The height of the box.
 	**/
 	void setScissor(int x, int y, int width, int height);
+
+	/**
+	* Clears any scissor that has been created.
+	**/
+	void setScissor();
+
+	/**
+	* This native Lua function gets the current scissor box in the order of:
+	* x, y, width, height
+	**/
+	int getScissor(lua_State * L);
 
 	/**
 	* Gets the current display caption.
