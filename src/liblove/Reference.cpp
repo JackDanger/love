@@ -39,6 +39,8 @@ namespace love
 		{
 			lua_pushnil(L);
 		}
+		lua_insert(L, -3);
+		lua_pop(L, 2);
 	}
 
 	lua_State * Reference::getL()

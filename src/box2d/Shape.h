@@ -23,14 +23,22 @@ namespace love_box2d
 {
 	class Body;
 
+	struct shapeudata
+	{
+		love::pReference ref;
+	};
+
 	class Shape
 	{
 	protected:
 		boost::shared_ptr<Body> body;
 		b2Shape * shape;
+		shapeudata * data;
 	public:
 		Shape(boost::shared_ptr<Body> body);
 		virtual ~Shape();
+		int setData(lua_State * L);
+		int getData(lua_State * L);
 	};
 
 	typedef boost::shared_ptr<Shape> pShape;

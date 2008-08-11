@@ -23,6 +23,7 @@ namespace love_box2d
 {
 	class Contact
 	{
+		friend class World;
 	private:
 		b2ContactPoint point;
 	public:

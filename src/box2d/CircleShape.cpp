@@ -9,6 +9,7 @@ namespace love_box2d
 		: Shape(body)
 	{
 		shape = body->body->CreateShape(def);
+		shape->SetUserData((void*)data);
 	}
 
 	CircleShape::~CircleShape()

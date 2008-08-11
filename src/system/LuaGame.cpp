@@ -35,7 +35,7 @@ namespace love_system
 
 		// Rename load. (Prevents the built-in load from 
 		// being detected.
-		luaL_dostring(L, "stdload = load; load = nil; love.refs = { test = \"booga\"}");
+		luaL_dostring(L, "stdload = load; load = nil; love.refs = {}");
 
 		// Custom libs.
 		if(!core->open((void*)L))

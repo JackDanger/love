@@ -10,9 +10,15 @@ namespace love_box2d
 	int _wrap_method_Contact_getPosition(lua_State * L);
 	int _wrap_method_Contact_getVelocity(lua_State * L);
 	int _wrap_method_Contact_getNormal(lua_State * L);
+	int _wrap_method_PolygonShape_setData(lua_State * L);
 	int _wrap_method_PolygonShape_getPoints(lua_State * L);
+	int _wrap_method_PolygonShape_getData(lua_State * L);
 	int _wrap_method_World_getCallback(lua_State * L);
 	int _wrap_method_World_setCallback(lua_State * L);
+	int _wrap_method_CircleShape_getData(lua_State * L);
+	int _wrap_method_CircleShape_setData(lua_State * L);
+	int _wrap_method_Shape_getData(lua_State * L);
+	int _wrap_method_Shape_setData(lua_State * L);
 	int _wrap_method_Body_getPosition(lua_State * L);
 }
 
@@ -2637,6 +2643,8 @@ boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::S
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_Shape_Sg__methods[] = {
+	{"getData", love_box2d::_wrap_method_Shape_getData},
+	{"setData", love_box2d::_wrap_method_Shape_setData},
     {"__deref__", _wrap_SmartShape___deref__}, 
     {0,0}
 };
@@ -2741,6 +2749,8 @@ boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_bo
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_CircleShape_Sg__methods[] = {
+	{"getData", love_box2d::_wrap_method_CircleShape_getData},
+	{"setData", love_box2d::_wrap_method_CircleShape_setData},
     {"__deref__", _wrap_SmartCircleShape___deref__}, 
     {0,0}
 };
@@ -2845,7 +2855,9 @@ boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_b
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_PolygonShape_Sg__methods[] = {
+	{"setData", love_box2d::_wrap_method_PolygonShape_setData},
 	{"getPoints", love_box2d::_wrap_method_PolygonShape_getPoints},
+	{"getData", love_box2d::_wrap_method_PolygonShape_getData},
     {"__deref__", _wrap_SmartPolygonShape___deref__}, 
     {0,0}
 };
@@ -3807,12 +3819,28 @@ namespace love_box2d
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,1);
     }
         
+	int _wrap_method_PolygonShape_setData(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
+        lua_remove(L, 1);
+        return p->setData(L);
+    }
+        
 	int _wrap_method_PolygonShape_getPoints(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
         love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
         lua_remove(L, 1);
         return p->getPoints(L);
+    }
+        
+	int _wrap_method_PolygonShape_getData(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
+        lua_remove(L, 1);
+        return p->getData(L);
     }
         
 	bool mod_is_world(lua_State * L, int idx)            
@@ -3885,6 +3913,22 @@ namespace love_box2d
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,1);
     }
         
+	int _wrap_method_CircleShape_getData(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
+        lua_remove(L, 1);
+        return p->getData(L);
+    }
+        
+	int _wrap_method_CircleShape_setData(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
+        lua_remove(L, 1);
+        return p->setData(L);
+    }
+        
 	bool mod_is_shape(lua_State * L, int idx)            
     {
         swig_lua_userdata* usr = 0;
@@ -3910,6 +3954,22 @@ namespace love_box2d
     {
         love_box2d::pShape * resultptr = new love_box2d::pShape((love_box2d::pShape &) shape);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,1);
+    }
+        
+	int _wrap_method_Shape_getData(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pShape p = mod_to_shape(L, 1);
+        lua_remove(L, 1);
+        return p->getData(L);
+    }
+        
+	int _wrap_method_Shape_setData(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pShape p = mod_to_shape(L, 1);
+        lua_remove(L, 1);
+        return p->setData(L);
     }
         
 	bool mod_is_body(lua_State * L, int idx)            

@@ -1,6 +1,8 @@
 #include "World.h"
 #include "mod_box2d.h"
 
+#include "Shape.h"
+
 namespace love_box2d
 {
 	World::World(b2AABB aabb, b2Vec2 gravity, bool sleep)
@@ -26,9 +28,25 @@ namespace love_box2d
 			for(int i = 0;i<(int)add_contacts.size();i++)
 			{
 				// Call the function.
-				add_ref->push();
-				mod_push_contact(L, add_contacts[i]);
-				lua_call(L, 1, 0);
+				add_ref->push(); // Push the function.
+				
+				{
+					shapeudata * d = (shapeudata *)(add_contacts[i]->point.shape1->GetUserData());
+					if(d->ref != 0) 
+						d->ref->push(); 
+					else 
+						lua_pushnil(L);
+				}
+				{
+					shapeudata * d = (shapeudata *)(add_contacts[i]->point.shape2->GetUserData());
+					if(d->ref != 0) 
+						d->ref->push(); 
+					else 
+						lua_pushnil(L);
+				}
+
+				mod_push_contact(L, add_contacts[i]); // Contact object.
+				lua_call(L, 3, 0);
 			}
 
 			// Clear contacts.

@@ -7,10 +7,6 @@ local t =
 			-- actualMethodName = "exposedMethodName"
 			getPosition = "getPosition",
 		},
-		PolygonShape = 
-		{
-			getPoints = "getPoints"
-		}, 
 		Contact = 
 		{
 			getPosition = "getPosition", 
@@ -23,6 +19,22 @@ local t =
 			getCallback = "getCallback",
 		},
 		
+		Shape = 
+		{
+			setData = "setData", 
+			getData = "getData",
+		},
+		CircleShape = 
+		{
+			setData = "setData", 
+			getData = "getData",
+		},
+		PolygonShape = 
+		{
+			setData = "setData", 
+			getData = "getData",
+			getPoints = "getPoints",
+		},		
 	}
 }
 return t
