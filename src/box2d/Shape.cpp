@@ -3,6 +3,9 @@
 // Module
 #include "Body.h"
 
+// STD
+#include <bitset>
+
 namespace love_box2d
 {
 	Shape::Shape(boost::shared_ptr<Body> body)
@@ -15,6 +18,92 @@ namespace love_box2d
 	{
 		delete data;
 		data = 0;
+	}
+
+	void Shape::setFriction(float friction)
+	{
+		shape->m_friction = friction;
+	}
+
+	void Shape::setRestitution(float restitution)
+	{
+		shape->m_restitution = restitution;
+	}
+
+	void Shape::setDensity(float density)
+	{
+		shape->m_density = density;
+	}
+
+	void Shape::setSensor(bool sensor)
+	{
+		shape->m_isSensor = sensor;
+	}
+
+	float Shape::getFriction() const
+	{
+		return shape->GetFriction();
+	}
+
+	float Shape::getRestituion() const
+	{
+		return shape->GetRestitution();
+	}
+
+	float Shape::getDensity() const
+	{
+		return shape->m_density;
+	}
+
+	bool Shape::getSensor() const
+	{
+		return shape->IsSensor();
+	}
+
+	void Shape::setCategoryBits(int bits)
+	{
+		b2FilterData f = shape->GetFilterData();
+		f.categoryBits = (uint16)bits;
+		shape->SetFilterData(f);
+	}
+
+	int Shape::getCategoryBits() const
+	{
+		return shape->GetFilterData().categoryBits;
+	}
+
+	void Shape::setMaskBits(int bits)
+	{
+		b2FilterData f = shape->GetFilterData();
+		f.maskBits = (uint16)bits;
+		shape->SetFilterData(f);
+	}
+
+	int Shape::getMaskBits() const
+	{
+		return shape->GetFilterData().maskBits;
+	}
+
+	int Shape::setCategory(lua_State * L)
+	{
+		setCategoryBits(getBits(L));
+		return 0;
+	}
+
+	int Shape::getCategory(lua_State * L)
+	{
+		return pushBits(L, shape->GetFilterData().categoryBits);
+	}
+
+	int Shape::setMask(lua_State * L)
+	{
+		setMaskBits(~getBits(L));
+		return 0;
+	}
+
+	int Shape::getMask(lua_State * L)
+	{
+		return pushBits(L, ~(shape->GetFilterData().maskBits));
 	}
 
 	int Shape::setData(lua_State * L)
@@ -33,6 +122,39 @@ namespace love_box2d
 			lua_pushnil(L);
 
 		return 1;
+	}
+
+	uint16 Shape::getBits(lua_State * L)
+	{
+		// Get number of args.
+		int argc = lua_gettop(L);
+
+		// The new bitset.
+		std::bitset<16> b;
+
+		for(int i = 1;i<=argc;i++)
+		{
+			size_t bpos = (size_t)(lua_tointeger(L, i)-1);
+			if(bpos < 0 || bpos > 16) 
+				return luaL_error(L, "Values must be in rage 1-16.");
+			b.set(bpos, true);
+		}
+		
+		return (uint16)b.to_ulong();
+	}
+
+	int Shape::pushBits(lua_State * L, uint16 bits)
+	{
+		// Create a bitset.
+		std::bitset<16> b((unsigned long)bits);
+
+		// Push all set bits.
+		for(int i = 0;i<16;i++)
+			if(b.test(i))
+				lua_pushinteger(L, i+1);
+
+		// Count number of set bits.
+		return (int)b.count();
 	}
 
 } // love_box2d

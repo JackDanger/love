@@ -10,15 +10,27 @@ namespace love_box2d
 	int _wrap_method_Contact_getPosition(lua_State * L);
 	int _wrap_method_Contact_getVelocity(lua_State * L);
 	int _wrap_method_Contact_getNormal(lua_State * L);
-	int _wrap_method_PolygonShape_setData(lua_State * L);
-	int _wrap_method_PolygonShape_getPoints(lua_State * L);
+	int _wrap_method_PolygonShape_getCategory(lua_State * L);
 	int _wrap_method_PolygonShape_getData(lua_State * L);
+	int _wrap_method_PolygonShape_getPoints(lua_State * L);
+	int _wrap_method_PolygonShape_setCategory(lua_State * L);
+	int _wrap_method_PolygonShape_setData(lua_State * L);
+	int _wrap_method_PolygonShape_getMask(lua_State * L);
+	int _wrap_method_PolygonShape_setMask(lua_State * L);
 	int _wrap_method_World_getCallback(lua_State * L);
 	int _wrap_method_World_setCallback(lua_State * L);
+	int _wrap_method_CircleShape_getCategory(lua_State * L);
 	int _wrap_method_CircleShape_getData(lua_State * L);
+	int _wrap_method_CircleShape_setCategory(lua_State * L);
 	int _wrap_method_CircleShape_setData(lua_State * L);
+	int _wrap_method_CircleShape_getMask(lua_State * L);
+	int _wrap_method_CircleShape_setMask(lua_State * L);
+	int _wrap_method_Shape_getCategory(lua_State * L);
 	int _wrap_method_Shape_getData(lua_State * L);
+	int _wrap_method_Shape_setCategory(lua_State * L);
 	int _wrap_method_Shape_setData(lua_State * L);
+	int _wrap_method_Shape_getMask(lua_State * L);
+	int _wrap_method_Shape_setMask(lua_State * L);
 	int _wrap_method_Body_getPosition(lua_State * L);
 }
 
@@ -2549,6 +2561,318 @@ static swig_lua_class *swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__bases[] = {0
 static const char *swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__base_names[] = {0};
 static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_box2d_Body_Sg_ = { "SmartBody", &SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0, swig_delete_SmartBody, swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__methods, swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__attributes, swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__bases, swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__base_names };
 
+static int _wrap_Shape_setFriction(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setFriction",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setFriction",1,"love_box2d::Shape *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setFriction",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
+    SWIG_fail_ptr("Shape_setFriction",1,SWIGTYPE_p_love_box2d__Shape);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setFriction(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Shape_setRestitution(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setRestitution",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setRestitution",1,"love_box2d::Shape *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setRestitution",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
+    SWIG_fail_ptr("Shape_setRestitution",1,SWIGTYPE_p_love_box2d__Shape);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setRestitution(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Shape_setDensity(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setDensity",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setDensity",1,"love_box2d::Shape *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setDensity",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
+    SWIG_fail_ptr("Shape_setDensity",1,SWIGTYPE_p_love_box2d__Shape);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setDensity(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Shape_setSensor(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setSensor",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSensor",1,"love_box2d::Shape *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setSensor",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
+    SWIG_fail_ptr("Shape_setSensor",1,SWIGTYPE_p_love_box2d__Shape);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (arg1)->setSensor(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Shape_getFriction(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getFriction",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getFriction",1,"love_box2d::Shape const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
+    SWIG_fail_ptr("Shape_getFriction",1,SWIGTYPE_p_love_box2d__Shape);
+  }
+  
+  result = (float)((love_box2d::Shape const *)arg1)->getFriction();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Shape_getRestituion(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getRestituion",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getRestituion",1,"love_box2d::Shape const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
+    SWIG_fail_ptr("Shape_getRestituion",1,SWIGTYPE_p_love_box2d__Shape);
+  }
+  
+  result = (float)((love_box2d::Shape const *)arg1)->getRestituion();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Shape_getDensity(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getDensity",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getDensity",1,"love_box2d::Shape const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
+    SWIG_fail_ptr("Shape_getDensity",1,SWIGTYPE_p_love_box2d__Shape);
+  }
+  
+  result = (float)((love_box2d::Shape const *)arg1)->getDensity();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Shape_getSensor(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("getSensor",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSensor",1,"love_box2d::Shape const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
+    SWIG_fail_ptr("Shape_getSensor",1,SWIGTYPE_p_love_box2d__Shape);
+  }
+  
+  result = (bool)((love_box2d::Shape const *)arg1)->getSensor();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Shape_setCategoryBits(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("setCategoryBits",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setCategoryBits",1,"love_box2d::Shape *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setCategoryBits",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
+    SWIG_fail_ptr("Shape_setCategoryBits",1,SWIGTYPE_p_love_box2d__Shape);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setCategoryBits(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Shape_getCategoryBits(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getCategoryBits",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getCategoryBits",1,"love_box2d::Shape const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
+    SWIG_fail_ptr("Shape_getCategoryBits",1,SWIGTYPE_p_love_box2d__Shape);
+  }
+  
+  result = (int)((love_box2d::Shape const *)arg1)->getCategoryBits();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Shape_setMaskBits(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("setMaskBits",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMaskBits",1,"love_box2d::Shape *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMaskBits",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
+    SWIG_fail_ptr("Shape_setMaskBits",1,SWIGTYPE_p_love_box2d__Shape);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (arg1)->setMaskBits(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Shape_getMaskBits(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getMaskBits",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMaskBits",1,"love_box2d::Shape const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
+    SWIG_fail_ptr("Shape_getMaskBits",1,SWIGTYPE_p_love_box2d__Shape);
+  }
+  
+  result = (int)((love_box2d::Shape const *)arg1)->getMaskBits();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_delete_Shape(lua_State* L) {
   int SWIG_arg = -1;
   love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
@@ -2579,6 +2903,18 @@ love_box2d::Shape *arg1 = (love_box2d::Shape *) obj;
 delete arg1;
 }
 static swig_lua_method swig_love_box2d_Shape_methods[] = {
+    {"setFriction", _wrap_Shape_setFriction}, 
+    {"setRestitution", _wrap_Shape_setRestitution}, 
+    {"setDensity", _wrap_Shape_setDensity}, 
+    {"setSensor", _wrap_Shape_setSensor}, 
+    {"getFriction", _wrap_Shape_getFriction}, 
+    {"getRestituion", _wrap_Shape_getRestituion}, 
+    {"getDensity", _wrap_Shape_getDensity}, 
+    {"getSensor", _wrap_Shape_getSensor}, 
+    {"setCategoryBits", _wrap_Shape_setCategoryBits}, 
+    {"getCategoryBits", _wrap_Shape_getCategoryBits}, 
+    {"setMaskBits", _wrap_Shape_setMaskBits}, 
+    {"getMaskBits", _wrap_Shape_getMaskBits}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_box2d_Shape_attributes[] = {
@@ -2638,14 +2974,342 @@ fail:
 }
 
 
+static int _wrap_SmartShape_setFriction(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setFriction",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setFriction",1,"boost::shared_ptr< love_box2d::Shape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setFriction",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+    SWIG_fail_ptr("SmartShape_setFriction",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setFriction(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartShape_setRestitution(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setRestitution",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setRestitution",1,"boost::shared_ptr< love_box2d::Shape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setRestitution",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+    SWIG_fail_ptr("SmartShape_setRestitution",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setRestitution(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartShape_setDensity(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setDensity",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setDensity",1,"boost::shared_ptr< love_box2d::Shape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setDensity",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+    SWIG_fail_ptr("SmartShape_setDensity",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setDensity(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartShape_setSensor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setSensor",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSensor",1,"boost::shared_ptr< love_box2d::Shape > *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setSensor",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+    SWIG_fail_ptr("SmartShape_setSensor",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (*arg1)->setSensor(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartShape_getFriction(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getFriction",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getFriction",1,"boost::shared_ptr< love_box2d::Shape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+    SWIG_fail_ptr("SmartShape_getFriction",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+  }
+  
+  result = (float)(*arg1)->getFriction();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartShape_getRestituion(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getRestituion",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getRestituion",1,"boost::shared_ptr< love_box2d::Shape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+    SWIG_fail_ptr("SmartShape_getRestituion",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+  }
+  
+  result = (float)(*arg1)->getRestituion();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartShape_getDensity(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getDensity",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getDensity",1,"boost::shared_ptr< love_box2d::Shape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+    SWIG_fail_ptr("SmartShape_getDensity",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+  }
+  
+  result = (float)(*arg1)->getDensity();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartShape_getSensor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("getSensor",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSensor",1,"boost::shared_ptr< love_box2d::Shape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+    SWIG_fail_ptr("SmartShape_getSensor",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+  }
+  
+  result = (bool)(*arg1)->getSensor();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartShape_setCategoryBits(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("setCategoryBits",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setCategoryBits",1,"boost::shared_ptr< love_box2d::Shape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setCategoryBits",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+    SWIG_fail_ptr("SmartShape_setCategoryBits",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setCategoryBits(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartShape_getCategoryBits(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getCategoryBits",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getCategoryBits",1,"boost::shared_ptr< love_box2d::Shape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+    SWIG_fail_ptr("SmartShape_getCategoryBits",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+  }
+  
+  result = (int)(*arg1)->getCategoryBits();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartShape_setMaskBits(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("setMaskBits",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMaskBits",1,"boost::shared_ptr< love_box2d::Shape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMaskBits",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+    SWIG_fail_ptr("SmartShape_setMaskBits",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setMaskBits(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartShape_getMaskBits(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getMaskBits",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMaskBits",1,"boost::shared_ptr< love_box2d::Shape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+    SWIG_fail_ptr("SmartShape_getMaskBits",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+  }
+  
+  result = (int)(*arg1)->getMaskBits();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_SmartShape(void *obj) {
 boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) obj;
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_Shape_Sg__methods[] = {
+	{"getCategory", love_box2d::_wrap_method_Shape_getCategory},
 	{"getData", love_box2d::_wrap_method_Shape_getData},
+	{"setCategory", love_box2d::_wrap_method_Shape_setCategory},
 	{"setData", love_box2d::_wrap_method_Shape_setData},
+	{"getMask", love_box2d::_wrap_method_Shape_getMask},
+	{"setMask", love_box2d::_wrap_method_Shape_setMask},
     {"__deref__", _wrap_SmartShape___deref__}, 
+    {"setFriction", _wrap_SmartShape_setFriction}, 
+    {"setRestitution", _wrap_SmartShape_setRestitution}, 
+    {"setDensity", _wrap_SmartShape_setDensity}, 
+    {"setSensor", _wrap_SmartShape_setSensor}, 
+    {"getFriction", _wrap_SmartShape_getFriction}, 
+    {"getRestituion", _wrap_SmartShape_getRestituion}, 
+    {"getDensity", _wrap_SmartShape_getDensity}, 
+    {"getSensor", _wrap_SmartShape_getSensor}, 
+    {"setCategoryBits", _wrap_SmartShape_setCategoryBits}, 
+    {"getCategoryBits", _wrap_SmartShape_getCategoryBits}, 
+    {"setMaskBits", _wrap_SmartShape_setMaskBits}, 
+    {"getMaskBits", _wrap_SmartShape_getMaskBits}, 
     {0,0}
 };
 static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_Shape_Sg__attributes[] = {
@@ -2744,14 +3408,342 @@ fail:
 }
 
 
+static int _wrap_SmartCircleShape_setFriction(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setFriction",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setFriction",1,"boost::shared_ptr< love_box2d::CircleShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setFriction",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_setFriction",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setFriction(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_setRestitution(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setRestitution",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setRestitution",1,"boost::shared_ptr< love_box2d::CircleShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setRestitution",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_setRestitution",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setRestitution(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_setDensity(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setDensity",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setDensity",1,"boost::shared_ptr< love_box2d::CircleShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setDensity",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_setDensity",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setDensity(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_setSensor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setSensor",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSensor",1,"boost::shared_ptr< love_box2d::CircleShape > *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setSensor",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_setSensor",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (*arg1)->setSensor(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_getFriction(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getFriction",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getFriction",1,"boost::shared_ptr< love_box2d::CircleShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_getFriction",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  result = (float)(*arg1)->getFriction();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_getRestituion(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getRestituion",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getRestituion",1,"boost::shared_ptr< love_box2d::CircleShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_getRestituion",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  result = (float)(*arg1)->getRestituion();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_getDensity(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getDensity",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getDensity",1,"boost::shared_ptr< love_box2d::CircleShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_getDensity",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  result = (float)(*arg1)->getDensity();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_getSensor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("getSensor",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSensor",1,"boost::shared_ptr< love_box2d::CircleShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_getSensor",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  result = (bool)(*arg1)->getSensor();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_setCategoryBits(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("setCategoryBits",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setCategoryBits",1,"boost::shared_ptr< love_box2d::CircleShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setCategoryBits",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_setCategoryBits",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setCategoryBits(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_getCategoryBits(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getCategoryBits",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getCategoryBits",1,"boost::shared_ptr< love_box2d::CircleShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_getCategoryBits",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  result = (int)(*arg1)->getCategoryBits();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_setMaskBits(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("setMaskBits",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMaskBits",1,"boost::shared_ptr< love_box2d::CircleShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMaskBits",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_setMaskBits",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setMaskBits(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_getMaskBits(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getMaskBits",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMaskBits",1,"boost::shared_ptr< love_box2d::CircleShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_getMaskBits",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  result = (int)(*arg1)->getMaskBits();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_SmartCircleShape(void *obj) {
 boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) obj;
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_CircleShape_Sg__methods[] = {
+	{"getCategory", love_box2d::_wrap_method_CircleShape_getCategory},
 	{"getData", love_box2d::_wrap_method_CircleShape_getData},
+	{"setCategory", love_box2d::_wrap_method_CircleShape_setCategory},
 	{"setData", love_box2d::_wrap_method_CircleShape_setData},
+	{"getMask", love_box2d::_wrap_method_CircleShape_getMask},
+	{"setMask", love_box2d::_wrap_method_CircleShape_setMask},
     {"__deref__", _wrap_SmartCircleShape___deref__}, 
+    {"setFriction", _wrap_SmartCircleShape_setFriction}, 
+    {"setRestitution", _wrap_SmartCircleShape_setRestitution}, 
+    {"setDensity", _wrap_SmartCircleShape_setDensity}, 
+    {"setSensor", _wrap_SmartCircleShape_setSensor}, 
+    {"getFriction", _wrap_SmartCircleShape_getFriction}, 
+    {"getRestituion", _wrap_SmartCircleShape_getRestituion}, 
+    {"getDensity", _wrap_SmartCircleShape_getDensity}, 
+    {"getSensor", _wrap_SmartCircleShape_getSensor}, 
+    {"setCategoryBits", _wrap_SmartCircleShape_setCategoryBits}, 
+    {"getCategoryBits", _wrap_SmartCircleShape_getCategoryBits}, 
+    {"setMaskBits", _wrap_SmartCircleShape_setMaskBits}, 
+    {"getMaskBits", _wrap_SmartCircleShape_getMaskBits}, 
     {0,0}
 };
 static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_CircleShape_Sg__attributes[] = {
@@ -2850,15 +3842,343 @@ fail:
 }
 
 
+static int _wrap_SmartPolygonShape_setFriction(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setFriction",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setFriction",1,"boost::shared_ptr< love_box2d::PolygonShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setFriction",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+    SWIG_fail_ptr("SmartPolygonShape_setFriction",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setFriction(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPolygonShape_setRestitution(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setRestitution",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setRestitution",1,"boost::shared_ptr< love_box2d::PolygonShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setRestitution",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+    SWIG_fail_ptr("SmartPolygonShape_setRestitution",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setRestitution(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPolygonShape_setDensity(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setDensity",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setDensity",1,"boost::shared_ptr< love_box2d::PolygonShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setDensity",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+    SWIG_fail_ptr("SmartPolygonShape_setDensity",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setDensity(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPolygonShape_setSensor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setSensor",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSensor",1,"boost::shared_ptr< love_box2d::PolygonShape > *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setSensor",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+    SWIG_fail_ptr("SmartPolygonShape_setSensor",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (*arg1)->setSensor(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPolygonShape_getFriction(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getFriction",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getFriction",1,"boost::shared_ptr< love_box2d::PolygonShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+    SWIG_fail_ptr("SmartPolygonShape_getFriction",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+  }
+  
+  result = (float)(*arg1)->getFriction();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPolygonShape_getRestituion(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getRestituion",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getRestituion",1,"boost::shared_ptr< love_box2d::PolygonShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+    SWIG_fail_ptr("SmartPolygonShape_getRestituion",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+  }
+  
+  result = (float)(*arg1)->getRestituion();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPolygonShape_getDensity(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getDensity",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getDensity",1,"boost::shared_ptr< love_box2d::PolygonShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+    SWIG_fail_ptr("SmartPolygonShape_getDensity",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+  }
+  
+  result = (float)(*arg1)->getDensity();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPolygonShape_getSensor(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("getSensor",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSensor",1,"boost::shared_ptr< love_box2d::PolygonShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+    SWIG_fail_ptr("SmartPolygonShape_getSensor",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+  }
+  
+  result = (bool)(*arg1)->getSensor();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPolygonShape_setCategoryBits(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("setCategoryBits",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setCategoryBits",1,"boost::shared_ptr< love_box2d::PolygonShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setCategoryBits",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+    SWIG_fail_ptr("SmartPolygonShape_setCategoryBits",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setCategoryBits(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPolygonShape_getCategoryBits(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getCategoryBits",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getCategoryBits",1,"boost::shared_ptr< love_box2d::PolygonShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+    SWIG_fail_ptr("SmartPolygonShape_getCategoryBits",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+  }
+  
+  result = (int)(*arg1)->getCategoryBits();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPolygonShape_setMaskBits(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("setMaskBits",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMaskBits",1,"boost::shared_ptr< love_box2d::PolygonShape > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMaskBits",2,"int");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+    SWIG_fail_ptr("SmartPolygonShape_setMaskBits",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+  }
+  
+  arg2 = (int)lua_tonumber(L, 2);
+  (*arg1)->setMaskBits(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPolygonShape_getMaskBits(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getMaskBits",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMaskBits",1,"boost::shared_ptr< love_box2d::PolygonShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+    SWIG_fail_ptr("SmartPolygonShape_getMaskBits",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+  }
+  
+  result = (int)(*arg1)->getMaskBits();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_SmartPolygonShape(void *obj) {
 boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) obj;
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_PolygonShape_Sg__methods[] = {
-	{"setData", love_box2d::_wrap_method_PolygonShape_setData},
-	{"getPoints", love_box2d::_wrap_method_PolygonShape_getPoints},
+	{"getCategory", love_box2d::_wrap_method_PolygonShape_getCategory},
 	{"getData", love_box2d::_wrap_method_PolygonShape_getData},
+	{"getPoints", love_box2d::_wrap_method_PolygonShape_getPoints},
+	{"setCategory", love_box2d::_wrap_method_PolygonShape_setCategory},
+	{"setData", love_box2d::_wrap_method_PolygonShape_setData},
+	{"getMask", love_box2d::_wrap_method_PolygonShape_getMask},
+	{"setMask", love_box2d::_wrap_method_PolygonShape_setMask},
     {"__deref__", _wrap_SmartPolygonShape___deref__}, 
+    {"setFriction", _wrap_SmartPolygonShape_setFriction}, 
+    {"setRestitution", _wrap_SmartPolygonShape_setRestitution}, 
+    {"setDensity", _wrap_SmartPolygonShape_setDensity}, 
+    {"setSensor", _wrap_SmartPolygonShape_setSensor}, 
+    {"getFriction", _wrap_SmartPolygonShape_getFriction}, 
+    {"getRestituion", _wrap_SmartPolygonShape_getRestituion}, 
+    {"getDensity", _wrap_SmartPolygonShape_getDensity}, 
+    {"getSensor", _wrap_SmartPolygonShape_getSensor}, 
+    {"setCategoryBits", _wrap_SmartPolygonShape_setCategoryBits}, 
+    {"getCategoryBits", _wrap_SmartPolygonShape_getCategoryBits}, 
+    {"setMaskBits", _wrap_SmartPolygonShape_setMaskBits}, 
+    {"getMaskBits", _wrap_SmartPolygonShape_getMaskBits}, 
     {0,0}
 };
 static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_PolygonShape_Sg__attributes[] = {
@@ -3819,12 +5139,20 @@ namespace love_box2d
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,1);
     }
         
-	int _wrap_method_PolygonShape_setData(lua_State * L)        
+	int _wrap_method_PolygonShape_getCategory(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
         love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
         lua_remove(L, 1);
-        return p->setData(L);
+        return p->getCategory(L);
+    }
+        
+	int _wrap_method_PolygonShape_getData(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
+        lua_remove(L, 1);
+        return p->getData(L);
     }
         
 	int _wrap_method_PolygonShape_getPoints(lua_State * L)        
@@ -3835,12 +5163,36 @@ namespace love_box2d
         return p->getPoints(L);
     }
         
-	int _wrap_method_PolygonShape_getData(lua_State * L)        
+	int _wrap_method_PolygonShape_setCategory(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
         love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
         lua_remove(L, 1);
-        return p->getData(L);
+        return p->setCategory(L);
+    }
+        
+	int _wrap_method_PolygonShape_setData(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
+        lua_remove(L, 1);
+        return p->setData(L);
+    }
+        
+	int _wrap_method_PolygonShape_getMask(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
+        lua_remove(L, 1);
+        return p->getMask(L);
+    }
+        
+	int _wrap_method_PolygonShape_setMask(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
+        lua_remove(L, 1);
+        return p->setMask(L);
     }
         
 	bool mod_is_world(lua_State * L, int idx)            
@@ -3913,6 +5265,14 @@ namespace love_box2d
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,1);
     }
         
+	int _wrap_method_CircleShape_getCategory(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
+        lua_remove(L, 1);
+        return p->getCategory(L);
+    }
+        
 	int _wrap_method_CircleShape_getData(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
@@ -3921,12 +5281,36 @@ namespace love_box2d
         return p->getData(L);
     }
         
+	int _wrap_method_CircleShape_setCategory(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
+        lua_remove(L, 1);
+        return p->setCategory(L);
+    }
+        
 	int _wrap_method_CircleShape_setData(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
         love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
         lua_remove(L, 1);
         return p->setData(L);
+    }
+        
+	int _wrap_method_CircleShape_getMask(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
+        lua_remove(L, 1);
+        return p->getMask(L);
+    }
+        
+	int _wrap_method_CircleShape_setMask(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
+        lua_remove(L, 1);
+        return p->setMask(L);
     }
         
 	bool mod_is_shape(lua_State * L, int idx)            
@@ -3956,6 +5340,14 @@ namespace love_box2d
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,1);
     }
         
+	int _wrap_method_Shape_getCategory(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pShape p = mod_to_shape(L, 1);
+        lua_remove(L, 1);
+        return p->getCategory(L);
+    }
+        
 	int _wrap_method_Shape_getData(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
@@ -3964,12 +5356,36 @@ namespace love_box2d
         return p->getData(L);
     }
         
+	int _wrap_method_Shape_setCategory(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pShape p = mod_to_shape(L, 1);
+        lua_remove(L, 1);
+        return p->setCategory(L);
+    }
+        
 	int _wrap_method_Shape_setData(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
         love_box2d::pShape p = mod_to_shape(L, 1);
         lua_remove(L, 1);
         return p->setData(L);
+    }
+        
+	int _wrap_method_Shape_getMask(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pShape p = mod_to_shape(L, 1);
+        lua_remove(L, 1);
+        return p->getMask(L);
+    }
+        
+	int _wrap_method_Shape_setMask(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pShape p = mod_to_shape(L, 1);
+        lua_remove(L, 1);
+        return p->setMask(L);
     }
         
 	bool mod_is_body(lua_State * L, int idx)            

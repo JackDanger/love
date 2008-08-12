@@ -37,8 +37,34 @@ namespace love_box2d
 	public:
 		Shape(boost::shared_ptr<Body> body);
 		virtual ~Shape();
+
+		void setFriction(float friction);
+		void setRestitution(float restitution);
+		void setDensity(float density);
+		void setSensor(bool sensor);
+
+		float getFriction() const;
+		float getRestituion() const;
+		float getDensity() const;
+		bool getSensor() const;
+
+		void setCategoryBits(int bits);
+		int getCategoryBits() const;
+
+		void setMaskBits(int bits);
+		int getMaskBits() const;
+
+		int setCategory(lua_State * L);
+		int getCategory(lua_State * L);
+
+		int setMask(lua_State * L);
+		int getMask(lua_State * L);
+
 		int setData(lua_State * L);
 		int getData(lua_State * L);
+	private:
+		uint16 getBits(lua_State * L);
+		int pushBits(lua_State * L, uint16 bits);
 	};
 
 	typedef boost::shared_ptr<Shape> pShape;

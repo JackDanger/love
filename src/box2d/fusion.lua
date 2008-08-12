@@ -23,18 +23,30 @@ local t =
 		{
 			setData = "setData", 
 			getData = "getData",
+			setCategory = "setCategory",
+			getCategory = "getCategory",
+			setMask = "setMask",
+			getMask = "getMask",
 		},
 		CircleShape = 
 		{
 			setData = "setData", 
 			getData = "getData",
+			setCategory = "setCategory",
+			getCategory = "getCategory",
+			setMask = "setMask",
+			getMask = "getMask",
 		},
 		PolygonShape = 
 		{
 			setData = "setData", 
 			getData = "getData",
 			getPoints = "getPoints",
-		},		
+			setCategory = "setCategory",
+			getCategory = "getCategory",
+			setMask = "setMask",
+			getMask = "getMask",
+		},
 	}
 }
 return t

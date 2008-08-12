@@ -190,6 +190,11 @@ public:
 	/// Get the coefficient of restitution.
 	float32 GetRestitution() const;
 
+	float32 m_density;
+	float32 m_friction;
+	float32 m_restitution;
+	bool m_isSensor;
+
 protected:
 
 	friend class b2Body;
@@ -215,14 +220,10 @@ protected:
 	// Sweep radius relative to the parent body's center of mass.
 	float32 m_sweepRadius;
 
-	float32 m_density;
-	float32 m_friction;
-	float32 m_restitution;
-
 	uint16 m_proxyId;
 	b2FilterData m_filter;
 
-	bool m_isSensor;
+	
 
 	void* m_userData;
 };
