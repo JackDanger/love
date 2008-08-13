@@ -60,6 +60,16 @@ namespace love_box2d
 		return shape->IsSensor();
 	}
 
+	boost::shared_ptr<Body> Shape::getBody() const
+	{
+		return body;
+	}
+
+	bool Shape::testPoint(float x, float y) const
+	{
+		return shape->TestPoint(shape->GetBody()->GetXForm(), b2Vec2(x, y));
+	}
+
 	void Shape::setCategoryBits(int bits)
 	{
 		b2FilterData f = shape->GetFilterData();

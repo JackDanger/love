@@ -47,6 +47,15 @@ local t =
 			setMask = "setMask",
 			getMask = "getMask",
 		},
+		
+		Joint = 
+		{
+			getAnchors = "getAnchors",
+		},
+		MouseJoint = 
+		{
+			getAnchors = "getAnchors",
+		},
 	}
 }
 return t

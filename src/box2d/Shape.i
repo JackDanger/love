@@ -14,6 +14,9 @@ namespace love_box2d
 		float getRestituion() const;
 		float getDensity() const;
 		bool getSensor() const;
+		
+		boost::shared_ptr<Body> getBody() const;
+		bool testPoint(float x, float y) const;
 
 		void setCategoryBits(int bits);
 		int getCategoryBits() const;

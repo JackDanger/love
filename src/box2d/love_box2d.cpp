@@ -88,4 +88,23 @@ namespace love_box2d
 		return 1;
 	}
 
+	pDistanceJoint newDistanceJoint(pBody body1, pBody body2, float x1, float y1, float x2, float y2)
+	{
+		b2DistanceJointDef def;
+		def.localAnchor1.Set(x1, y1);
+		def.localAnchor2.Set(x2, y2);
+		b2Vec2 dist = body2->body->GetPosition() - body1->body->GetPosition();
+		def.length = dist.Length();
+		pDistanceJoint j(new DistanceJoint(body1, body2, &def));
+		return j;
+	}
+
+	pMouseJoint newMouseJoint(pBody body, float x, float y)
+	{
+		b2MouseJointDef def;
+		def.target.Set(x, y);
+		pMouseJoint j(new MouseJoint(body, &def));
+		return j;
+	}
+
 } // love_box2d

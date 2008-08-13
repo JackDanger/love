@@ -22,6 +22,9 @@
 #include "CircleShape.h"
 #include "PolygonShape.h"
 
+#include "DistanceJoint.h"
+#include "MouseJoint.h"
+
 // Creating a separate namespace to avoid conflicts
 // with standard library functions.
 namespace love_box2d
@@ -36,6 +39,8 @@ namespace love_box2d
 	pCircleShape newCircle(pBody body, float radius);
 	pCircleShape newCircle(pBody body, float x, float y, float radius);
 	int newPolygon(lua_State * L);
+	pDistanceJoint newDistanceJoint(pBody body1, pBody body2, float x1, float y1, float x2, float y2);
+	pMouseJoint newMouseJoint(pBody body, float x, float y);
 
 } // love_box2d
 

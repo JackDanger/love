@@ -48,6 +48,9 @@ namespace love_box2d
 		float getDensity() const;
 		bool getSensor() const;
 
+		boost::shared_ptr<Body> getBody() const;
+		bool testPoint(float x, float y) const;
+
 		void setCategoryBits(int bits);
 		int getCategoryBits() const;
 
@@ -62,6 +65,7 @@ namespace love_box2d
 
 		int setData(lua_State * L);
 		int getData(lua_State * L);
+
 	private:
 		uint16 getBits(lua_State * L);
 		int pushBits(lua_State * L, uint16 bits);

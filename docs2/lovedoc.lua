@@ -220,7 +220,6 @@ function lovedoc.sortsym()
 end
 
 function lovedoc.symbolize(text)
-
 	for i,v in ipairs(lovedoc.url.data) do
 
 		text = string.gsub(" "..text, "([%s])("..string.gsub(v, "%.", "%%.")..")([%s%p])",

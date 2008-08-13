@@ -25,6 +25,9 @@ namespace love_box2d
 
 	class Body
 	{
+		friend class Joint;
+		friend class DistanceJoint;
+		friend class MouseJoint;
 		friend class CircleShape;
 		friend class PolygonShape;
 	private:

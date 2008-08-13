@@ -24,12 +24,18 @@ namespace boost {
 
 %include Contact.i
 
+%include Joint.i
+%include DistanceJoint.i
+%include MouseJoint.i
+
 namespace love_box2d
 {
 	pWorld newWorld(float lx, float ly, float ux, float uy, float gx, float gy, bool sleep);
 	pBody newBody(pWorld world, float x, float y, float mass);
 	pCircleShape newCircle(pBody body, float x, float y, float radius);
 	pCircleShape newCircle(pBody body, float radius);
+	pDistanceJoint newDistanceJoint(pBody body1, pBody body2, float x1, float y1, float x2, float y2);
+	pMouseJoint newMouseJoint(pBody body, float x, float y);
 }
 
 %native(newPolygon) int love_box2d::newPolygon(lua_State * L);

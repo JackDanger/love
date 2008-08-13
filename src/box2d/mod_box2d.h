@@ -24,12 +24,15 @@ extern "C" {
 }
 
 // Types found:
-// Contact (SWIGTYPE_p_boost__shared_ptrT_love_box2d__Contact_t)
-// PolygonShape (SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t)
-// World (SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t)
-// CircleShape (SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t)
-// Shape (SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t)
 // Body (SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t)
+// CircleShape (SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t)
+// PolygonShape (SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t)
+// Shape (SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t)
+// MouseJoint (SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t)
+// Joint (SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t)
+// Contact (SWIGTYPE_p_boost__shared_ptrT_love_box2d__Contact_t)
+// DistanceJoint (SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t)
+// World (SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t)
 
 // Fused: 
 // World::getCallback => _wrap_method_World_getCallback
@@ -57,41 +60,58 @@ extern "C" {
 // Contact::getPosition => _wrap_method_Contact_getPosition
 // Contact::getVelocity => _wrap_method_Contact_getVelocity
 // Contact::getNormal => _wrap_method_Contact_getNormal
+// Joint::getAnchors => _wrap_method_Joint_getAnchors
+// MouseJoint::getAnchors => _wrap_method_MouseJoint_getAnchors
 
 namespace love_box2d
 {
 
 	//Forward declarations.
-	class Contact;
-	class PolygonShape;
-	class World;
-	class CircleShape;
-	class Shape;
 	class Body;
+	class CircleShape;
+	class PolygonShape;
+	class Shape;
+	class MouseJoint;
+	class Joint;
+	class Contact;
+	class DistanceJoint;
+	class World;
 
-	bool mod_is_contact(lua_State * L, int idx);
-	boost::shared_ptr<Contact> mod_to_contact(lua_State * L, int idx);
-	void mod_push_contact(lua_State * L, boost::shared_ptr<Contact> contact);
-
-	bool mod_is_polygonshape(lua_State * L, int idx);
-	boost::shared_ptr<PolygonShape> mod_to_polygonshape(lua_State * L, int idx);
-	void mod_push_polygonshape(lua_State * L, boost::shared_ptr<PolygonShape> polygonshape);
-
-	bool mod_is_world(lua_State * L, int idx);
-	boost::shared_ptr<World> mod_to_world(lua_State * L, int idx);
-	void mod_push_world(lua_State * L, boost::shared_ptr<World> world);
+	bool mod_is_body(lua_State * L, int idx);
+	boost::shared_ptr<Body> mod_to_body(lua_State * L, int idx);
+	void mod_push_body(lua_State * L, boost::shared_ptr<Body> body);
 
 	bool mod_is_circleshape(lua_State * L, int idx);
 	boost::shared_ptr<CircleShape> mod_to_circleshape(lua_State * L, int idx);
 	void mod_push_circleshape(lua_State * L, boost::shared_ptr<CircleShape> circleshape);
 
+	bool mod_is_polygonshape(lua_State * L, int idx);
+	boost::shared_ptr<PolygonShape> mod_to_polygonshape(lua_State * L, int idx);
+	void mod_push_polygonshape(lua_State * L, boost::shared_ptr<PolygonShape> polygonshape);
+
 	bool mod_is_shape(lua_State * L, int idx);
 	boost::shared_ptr<Shape> mod_to_shape(lua_State * L, int idx);
 	void mod_push_shape(lua_State * L, boost::shared_ptr<Shape> shape);
 
-	bool mod_is_body(lua_State * L, int idx);
-	boost::shared_ptr<Body> mod_to_body(lua_State * L, int idx);
-	void mod_push_body(lua_State * L, boost::shared_ptr<Body> body);
+	bool mod_is_mousejoint(lua_State * L, int idx);
+	boost::shared_ptr<MouseJoint> mod_to_mousejoint(lua_State * L, int idx);
+	void mod_push_mousejoint(lua_State * L, boost::shared_ptr<MouseJoint> mousejoint);
+
+	bool mod_is_joint(lua_State * L, int idx);
+	boost::shared_ptr<Joint> mod_to_joint(lua_State * L, int idx);
+	void mod_push_joint(lua_State * L, boost::shared_ptr<Joint> joint);
+
+	bool mod_is_contact(lua_State * L, int idx);
+	boost::shared_ptr<Contact> mod_to_contact(lua_State * L, int idx);
+	void mod_push_contact(lua_State * L, boost::shared_ptr<Contact> contact);
+
+	bool mod_is_distancejoint(lua_State * L, int idx);
+	boost::shared_ptr<DistanceJoint> mod_to_distancejoint(lua_State * L, int idx);
+	void mod_push_distancejoint(lua_State * L, boost::shared_ptr<DistanceJoint> distancejoint);
+
+	bool mod_is_world(lua_State * L, int idx);
+	boost::shared_ptr<World> mod_to_world(lua_State * L, int idx);
+	void mod_push_world(lua_State * L, boost::shared_ptr<World> world);
 
 } // love_box2d
 

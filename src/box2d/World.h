@@ -29,6 +29,9 @@ namespace love_box2d
 {
 	class World : public b2ContactListener
 	{
+		friend class Joint;
+		friend class DistanceJoint;
+		friend class MouseJoint;
 		friend class Body;
 	private:
 		b2World * world;

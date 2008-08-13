@@ -7,9 +7,13 @@ struct lua_State;
 // Forward declarations of fused methods: 
 namespace love_box2d
 {
-	int _wrap_method_Contact_getPosition(lua_State * L);
-	int _wrap_method_Contact_getVelocity(lua_State * L);
-	int _wrap_method_Contact_getNormal(lua_State * L);
+	int _wrap_method_Body_getPosition(lua_State * L);
+	int _wrap_method_CircleShape_getCategory(lua_State * L);
+	int _wrap_method_CircleShape_getData(lua_State * L);
+	int _wrap_method_CircleShape_setCategory(lua_State * L);
+	int _wrap_method_CircleShape_setData(lua_State * L);
+	int _wrap_method_CircleShape_getMask(lua_State * L);
+	int _wrap_method_CircleShape_setMask(lua_State * L);
 	int _wrap_method_PolygonShape_getCategory(lua_State * L);
 	int _wrap_method_PolygonShape_getData(lua_State * L);
 	int _wrap_method_PolygonShape_getPoints(lua_State * L);
@@ -17,21 +21,19 @@ namespace love_box2d
 	int _wrap_method_PolygonShape_setData(lua_State * L);
 	int _wrap_method_PolygonShape_getMask(lua_State * L);
 	int _wrap_method_PolygonShape_setMask(lua_State * L);
-	int _wrap_method_World_getCallback(lua_State * L);
-	int _wrap_method_World_setCallback(lua_State * L);
-	int _wrap_method_CircleShape_getCategory(lua_State * L);
-	int _wrap_method_CircleShape_getData(lua_State * L);
-	int _wrap_method_CircleShape_setCategory(lua_State * L);
-	int _wrap_method_CircleShape_setData(lua_State * L);
-	int _wrap_method_CircleShape_getMask(lua_State * L);
-	int _wrap_method_CircleShape_setMask(lua_State * L);
 	int _wrap_method_Shape_getCategory(lua_State * L);
 	int _wrap_method_Shape_getData(lua_State * L);
 	int _wrap_method_Shape_setCategory(lua_State * L);
 	int _wrap_method_Shape_setData(lua_State * L);
 	int _wrap_method_Shape_getMask(lua_State * L);
 	int _wrap_method_Shape_setMask(lua_State * L);
-	int _wrap_method_Body_getPosition(lua_State * L);
+	int _wrap_method_MouseJoint_getAnchors(lua_State * L);
+	int _wrap_method_Joint_getAnchors(lua_State * L);
+	int _wrap_method_Contact_getPosition(lua_State * L);
+	int _wrap_method_Contact_getVelocity(lua_State * L);
+	int _wrap_method_Contact_getNormal(lua_State * L);
+	int _wrap_method_World_getCallback(lua_State * L);
+	int _wrap_method_World_setCallback(lua_State * L);
 }
 
 
@@ -1524,17 +1526,23 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t swig_types[0]
 #define SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t swig_types[1]
 #define SWIGTYPE_p_boost__shared_ptrT_love_box2d__Contact_t swig_types[2]
-#define SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t swig_types[3]
-#define SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t swig_types[4]
-#define SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t swig_types[5]
-#define SWIGTYPE_p_love_box2d__Body swig_types[6]
-#define SWIGTYPE_p_love_box2d__CircleShape swig_types[7]
-#define SWIGTYPE_p_love_box2d__Contact swig_types[8]
-#define SWIGTYPE_p_love_box2d__PolygonShape swig_types[9]
-#define SWIGTYPE_p_love_box2d__Shape swig_types[10]
-#define SWIGTYPE_p_love_box2d__World swig_types[11]
-static swig_type_info *swig_types[13];
-static swig_module_info swig_module = {swig_types, 12, 0, 0, 0, 0};
+#define SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t swig_types[3]
+#define SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t swig_types[4]
+#define SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t swig_types[5]
+#define SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t swig_types[6]
+#define SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t swig_types[7]
+#define SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t swig_types[8]
+#define SWIGTYPE_p_love_box2d__Body swig_types[9]
+#define SWIGTYPE_p_love_box2d__CircleShape swig_types[10]
+#define SWIGTYPE_p_love_box2d__Contact swig_types[11]
+#define SWIGTYPE_p_love_box2d__DistanceJoint swig_types[12]
+#define SWIGTYPE_p_love_box2d__Joint swig_types[13]
+#define SWIGTYPE_p_love_box2d__MouseJoint swig_types[14]
+#define SWIGTYPE_p_love_box2d__PolygonShape swig_types[15]
+#define SWIGTYPE_p_love_box2d__Shape swig_types[16]
+#define SWIGTYPE_p_love_box2d__World swig_types[17]
+static swig_type_info *swig_types[19];
+static swig_module_info swig_module = {swig_types, 18, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1561,6 +1569,9 @@ typedef struct{} LANGUAGE_OBJ;
 #include "CircleShape.h"
 #include "PolygonShape.h"
 #include "Contact.h"
+#include "Joint.h"
+#include "DistanceJoint.h"
+#include "MouseJoint.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -2769,6 +2780,65 @@ fail:
 }
 
 
+static int _wrap_Shape_getBody(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
+  boost::shared_ptr< love_box2d::Body > result;
+  
+  SWIG_check_num_args("getBody",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getBody",1,"love_box2d::Shape const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
+    SWIG_fail_ptr("Shape_getBody",1,SWIGTYPE_p_love_box2d__Shape);
+  }
+  
+  result = ((love_box2d::Shape const *)arg1)->getBody();
+  SWIG_arg=0;
+  {
+    boost::shared_ptr< love_box2d::Body > * resultptr = new boost::shared_ptr< love_box2d::Body >((boost::shared_ptr< love_box2d::Body > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Shape_testPoint(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  bool result;
+  
+  SWIG_check_num_args("testPoint",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("testPoint",1,"love_box2d::Shape const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("testPoint",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("testPoint",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
+    SWIG_fail_ptr("Shape_testPoint",1,SWIGTYPE_p_love_box2d__Shape);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  result = (bool)((love_box2d::Shape const *)arg1)->testPoint(arg2,arg3);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Shape_setCategoryBits(lua_State* L) {
   int SWIG_arg = -1;
   love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
@@ -2911,6 +2981,8 @@ static swig_lua_method swig_love_box2d_Shape_methods[] = {
     {"getRestituion", _wrap_Shape_getRestituion}, 
     {"getDensity", _wrap_Shape_getDensity}, 
     {"getSensor", _wrap_Shape_getSensor}, 
+    {"getBody", _wrap_Shape_getBody}, 
+    {"testPoint", _wrap_Shape_testPoint}, 
     {"setCategoryBits", _wrap_Shape_setCategoryBits}, 
     {"getCategoryBits", _wrap_Shape_getCategoryBits}, 
     {"setMaskBits", _wrap_Shape_setMaskBits}, 
@@ -3182,6 +3254,65 @@ fail:
 }
 
 
+static int _wrap_SmartShape_getBody(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
+  boost::shared_ptr< love_box2d::Body > result;
+  
+  SWIG_check_num_args("getBody",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getBody",1,"boost::shared_ptr< love_box2d::Shape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+    SWIG_fail_ptr("SmartShape_getBody",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+  }
+  
+  result = (*arg1)->getBody();
+  SWIG_arg=0;
+  {
+    boost::shared_ptr< love_box2d::Body > * resultptr = new boost::shared_ptr< love_box2d::Body >((boost::shared_ptr< love_box2d::Body > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartShape_testPoint(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  bool result;
+  
+  SWIG_check_num_args("testPoint",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("testPoint",1,"boost::shared_ptr< love_box2d::Shape > const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("testPoint",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("testPoint",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+    SWIG_fail_ptr("SmartShape_testPoint",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  result = (bool)(*arg1)->testPoint(arg2,arg3);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartShape_setCategoryBits(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
@@ -3306,6 +3437,8 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_Shape_Sg__methods[] =
     {"getRestituion", _wrap_SmartShape_getRestituion}, 
     {"getDensity", _wrap_SmartShape_getDensity}, 
     {"getSensor", _wrap_SmartShape_getSensor}, 
+    {"getBody", _wrap_SmartShape_getBody}, 
+    {"testPoint", _wrap_SmartShape_testPoint}, 
     {"setCategoryBits", _wrap_SmartShape_setCategoryBits}, 
     {"getCategoryBits", _wrap_SmartShape_getCategoryBits}, 
     {"setMaskBits", _wrap_SmartShape_setMaskBits}, 
@@ -3616,6 +3749,65 @@ fail:
 }
 
 
+static int _wrap_SmartCircleShape_getBody(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  boost::shared_ptr< love_box2d::Body > result;
+  
+  SWIG_check_num_args("getBody",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getBody",1,"boost::shared_ptr< love_box2d::CircleShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_getBody",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  result = (*arg1)->getBody();
+  SWIG_arg=0;
+  {
+    boost::shared_ptr< love_box2d::Body > * resultptr = new boost::shared_ptr< love_box2d::Body >((boost::shared_ptr< love_box2d::Body > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_testPoint(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  bool result;
+  
+  SWIG_check_num_args("testPoint",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("testPoint",1,"boost::shared_ptr< love_box2d::CircleShape > const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("testPoint",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("testPoint",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_testPoint",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  result = (bool)(*arg1)->testPoint(arg2,arg3);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartCircleShape_setCategoryBits(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
@@ -3740,6 +3932,8 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_CircleShape_Sg__metho
     {"getRestituion", _wrap_SmartCircleShape_getRestituion}, 
     {"getDensity", _wrap_SmartCircleShape_getDensity}, 
     {"getSensor", _wrap_SmartCircleShape_getSensor}, 
+    {"getBody", _wrap_SmartCircleShape_getBody}, 
+    {"testPoint", _wrap_SmartCircleShape_testPoint}, 
     {"setCategoryBits", _wrap_SmartCircleShape_setCategoryBits}, 
     {"getCategoryBits", _wrap_SmartCircleShape_getCategoryBits}, 
     {"setMaskBits", _wrap_SmartCircleShape_setMaskBits}, 
@@ -4050,6 +4244,65 @@ fail:
 }
 
 
+static int _wrap_SmartPolygonShape_getBody(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
+  boost::shared_ptr< love_box2d::Body > result;
+  
+  SWIG_check_num_args("getBody",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getBody",1,"boost::shared_ptr< love_box2d::PolygonShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+    SWIG_fail_ptr("SmartPolygonShape_getBody",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+  }
+  
+  result = (*arg1)->getBody();
+  SWIG_arg=0;
+  {
+    boost::shared_ptr< love_box2d::Body > * resultptr = new boost::shared_ptr< love_box2d::Body >((boost::shared_ptr< love_box2d::Body > &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPolygonShape_testPoint(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  bool result;
+  
+  SWIG_check_num_args("testPoint",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("testPoint",1,"boost::shared_ptr< love_box2d::PolygonShape > const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("testPoint",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("testPoint",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+    SWIG_fail_ptr("SmartPolygonShape_testPoint",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  result = (bool)(*arg1)->testPoint(arg2,arg3);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartPolygonShape_setCategoryBits(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
@@ -4175,6 +4428,8 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_PolygonShape_Sg__meth
     {"getRestituion", _wrap_SmartPolygonShape_getRestituion}, 
     {"getDensity", _wrap_SmartPolygonShape_getDensity}, 
     {"getSensor", _wrap_SmartPolygonShape_getSensor}, 
+    {"getBody", _wrap_SmartPolygonShape_getBody}, 
+    {"testPoint", _wrap_SmartPolygonShape_testPoint}, 
     {"setCategoryBits", _wrap_SmartPolygonShape_setCategoryBits}, 
     {"getCategoryBits", _wrap_SmartPolygonShape_getCategoryBits}, 
     {"setMaskBits", _wrap_SmartPolygonShape_setMaskBits}, 
@@ -4451,6 +4706,382 @@ static swig_lua_class *swig_boost_shared_ptr_Sl_love_box2d_Contact_Sg__bases[] =
 static const char *swig_boost_shared_ptr_Sl_love_box2d_Contact_Sg__base_names[] = {0};
 static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_box2d_Contact_Sg_ = { "SmartContact", &SWIGTYPE_p_boost__shared_ptrT_love_box2d__Contact_t,0, swig_delete_SmartContact, swig_boost_shared_ptr_Sl_love_box2d_Contact_Sg__methods, swig_boost_shared_ptr_Sl_love_box2d_Contact_Sg__attributes, swig_boost_shared_ptr_Sl_love_box2d_Contact_Sg__bases, swig_boost_shared_ptr_Sl_love_box2d_Contact_Sg__base_names };
 
+static int _wrap_delete_Joint(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Joint *arg1 = (love_box2d::Joint *) 0 ;
+  
+  SWIG_check_num_args("love_box2d::Joint::~Joint",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("love_box2d::Joint::~Joint",1,"love_box2d::Joint *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Joint,SWIG_POINTER_DISOWN))){
+    SWIG_fail_ptr("delete_Joint",1,SWIGTYPE_p_love_box2d__Joint);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_Joint(void *obj) {
+love_box2d::Joint *arg1 = (love_box2d::Joint *) obj;
+delete arg1;
+}
+static swig_lua_method swig_love_box2d_Joint_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_love_box2d_Joint_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_love_box2d_Joint_bases[] = {0};
+static const char *swig_love_box2d_Joint_base_names[] = {0};
+static swig_lua_class _wrap_class_love_box2d_Joint = { "Joint", &SWIGTYPE_p_love_box2d__Joint,0, swig_delete_Joint, swig_love_box2d_Joint_methods, swig_love_box2d_Joint_attributes, swig_love_box2d_Joint_bases, swig_love_box2d_Joint_base_names };
+
+static int _wrap_SmartJoint___deref__(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Joint > *arg1 = (boost::shared_ptr< love_box2d::Joint > *) 0 ;
+  love_box2d::Joint *result = 0 ;
+  
+  SWIG_check_num_args("operator ->",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("operator ->",1,"boost::shared_ptr< love_box2d::Joint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t,0))){
+    SWIG_fail_ptr("SmartJoint___deref__",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t);
+  }
+  
+  result = (love_box2d::Joint *)((boost::shared_ptr< love_box2d::Joint > const *)arg1)->operator ->();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love_box2d__Joint,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_SmartJoint(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Joint > *arg1 = (boost::shared_ptr< love_box2d::Joint > *) 0 ;
+  
+  SWIG_check_num_args("boost::shared_ptr<(love_box2d::Joint)>::~shared_ptr<(love_box2d::Joint)>",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("boost::shared_ptr<(love_box2d::Joint)>::~shared_ptr<(love_box2d::Joint)>",1,"boost::shared_ptr< love_box2d::Joint > *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t,SWIG_POINTER_DISOWN))){
+    SWIG_fail_ptr("delete_SmartJoint",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_SmartJoint(void *obj) {
+boost::shared_ptr< love_box2d::Joint > *arg1 = (boost::shared_ptr< love_box2d::Joint > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__methods[] = {
+	{"getAnchors", love_box2d::_wrap_method_Joint_getAnchors},
+    {"__deref__", _wrap_SmartJoint___deref__}, 
+    {0,0}
+};
+static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__bases[] = {0};
+static const char *swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__base_names[] = {0};
+static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_box2d_Joint_Sg_ = { "SmartJoint", &SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t,0, swig_delete_SmartJoint, swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__methods, swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__attributes, swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__bases, swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__base_names };
+
+static int _wrap_delete_DistanceJoint(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::DistanceJoint *arg1 = (love_box2d::DistanceJoint *) 0 ;
+  
+  SWIG_check_num_args("love_box2d::DistanceJoint::~DistanceJoint",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("love_box2d::DistanceJoint::~DistanceJoint",1,"love_box2d::DistanceJoint *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__DistanceJoint,SWIG_POINTER_DISOWN))){
+    SWIG_fail_ptr("delete_DistanceJoint",1,SWIGTYPE_p_love_box2d__DistanceJoint);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_DistanceJoint(void *obj) {
+love_box2d::DistanceJoint *arg1 = (love_box2d::DistanceJoint *) obj;
+delete arg1;
+}
+static swig_lua_method swig_love_box2d_DistanceJoint_methods[] = {
+    {0,0}
+};
+static swig_lua_attribute swig_love_box2d_DistanceJoint_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_love_box2d_DistanceJoint_bases[] = {0};
+static const char *swig_love_box2d_DistanceJoint_base_names[] = {0};
+static swig_lua_class _wrap_class_love_box2d_DistanceJoint = { "DistanceJoint", &SWIGTYPE_p_love_box2d__DistanceJoint,0, swig_delete_DistanceJoint, swig_love_box2d_DistanceJoint_methods, swig_love_box2d_DistanceJoint_attributes, swig_love_box2d_DistanceJoint_bases, swig_love_box2d_DistanceJoint_base_names };
+
+static int _wrap_SmartDistanceJoint___deref__(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::DistanceJoint > *arg1 = (boost::shared_ptr< love_box2d::DistanceJoint > *) 0 ;
+  love_box2d::DistanceJoint *result = 0 ;
+  
+  SWIG_check_num_args("operator ->",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("operator ->",1,"boost::shared_ptr< love_box2d::DistanceJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,0))){
+    SWIG_fail_ptr("SmartDistanceJoint___deref__",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t);
+  }
+  
+  result = (love_box2d::DistanceJoint *)((boost::shared_ptr< love_box2d::DistanceJoint > const *)arg1)->operator ->();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love_box2d__DistanceJoint,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_SmartDistanceJoint(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::DistanceJoint > *arg1 = (boost::shared_ptr< love_box2d::DistanceJoint > *) 0 ;
+  
+  SWIG_check_num_args("boost::shared_ptr<(love_box2d::DistanceJoint)>::~shared_ptr<(love_box2d::DistanceJoint)>",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("boost::shared_ptr<(love_box2d::DistanceJoint)>::~shared_ptr<(love_box2d::DistanceJoint)>",1,"boost::shared_ptr< love_box2d::DistanceJoint > *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,SWIG_POINTER_DISOWN))){
+    SWIG_fail_ptr("delete_SmartDistanceJoint",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_SmartDistanceJoint(void *obj) {
+boost::shared_ptr< love_box2d::DistanceJoint > *arg1 = (boost::shared_ptr< love_box2d::DistanceJoint > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_DistanceJoint_Sg__methods[] = {
+    {"__deref__", _wrap_SmartDistanceJoint___deref__}, 
+    {0,0}
+};
+static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_DistanceJoint_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_boost_shared_ptr_Sl_love_box2d_DistanceJoint_Sg__bases[] = {0};
+static const char *swig_boost_shared_ptr_Sl_love_box2d_DistanceJoint_Sg__base_names[] = {0};
+static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_box2d_DistanceJoint_Sg_ = { "SmartDistanceJoint", &SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,0, swig_delete_SmartDistanceJoint, swig_boost_shared_ptr_Sl_love_box2d_DistanceJoint_Sg__methods, swig_boost_shared_ptr_Sl_love_box2d_DistanceJoint_Sg__attributes, swig_boost_shared_ptr_Sl_love_box2d_DistanceJoint_Sg__bases, swig_boost_shared_ptr_Sl_love_box2d_DistanceJoint_Sg__base_names };
+
+static int _wrap_MouseJoint_setTarget(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::MouseJoint *arg1 = (love_box2d::MouseJoint *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  
+  SWIG_check_num_args("setTarget",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setTarget",1,"love_box2d::MouseJoint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setTarget",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setTarget",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__MouseJoint,0))){
+    SWIG_fail_ptr("MouseJoint_setTarget",1,SWIGTYPE_p_love_box2d__MouseJoint);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (arg1)->setTarget(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_MouseJoint(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::MouseJoint *arg1 = (love_box2d::MouseJoint *) 0 ;
+  
+  SWIG_check_num_args("love_box2d::MouseJoint::~MouseJoint",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("love_box2d::MouseJoint::~MouseJoint",1,"love_box2d::MouseJoint *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__MouseJoint,SWIG_POINTER_DISOWN))){
+    SWIG_fail_ptr("delete_MouseJoint",1,SWIGTYPE_p_love_box2d__MouseJoint);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_MouseJoint(void *obj) {
+love_box2d::MouseJoint *arg1 = (love_box2d::MouseJoint *) obj;
+delete arg1;
+}
+static swig_lua_method swig_love_box2d_MouseJoint_methods[] = {
+    {"setTarget", _wrap_MouseJoint_setTarget}, 
+    {0,0}
+};
+static swig_lua_attribute swig_love_box2d_MouseJoint_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_love_box2d_MouseJoint_bases[] = {0};
+static const char *swig_love_box2d_MouseJoint_base_names[] = {0};
+static swig_lua_class _wrap_class_love_box2d_MouseJoint = { "MouseJoint", &SWIGTYPE_p_love_box2d__MouseJoint,0, swig_delete_MouseJoint, swig_love_box2d_MouseJoint_methods, swig_love_box2d_MouseJoint_attributes, swig_love_box2d_MouseJoint_bases, swig_love_box2d_MouseJoint_base_names };
+
+static int _wrap_SmartMouseJoint___deref__(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::MouseJoint > *arg1 = (boost::shared_ptr< love_box2d::MouseJoint > *) 0 ;
+  love_box2d::MouseJoint *result = 0 ;
+  
+  SWIG_check_num_args("operator ->",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("operator ->",1,"boost::shared_ptr< love_box2d::MouseJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t,0))){
+    SWIG_fail_ptr("SmartMouseJoint___deref__",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t);
+  }
+  
+  result = (love_box2d::MouseJoint *)((boost::shared_ptr< love_box2d::MouseJoint > const *)arg1)->operator ->();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love_box2d__MouseJoint,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_SmartMouseJoint(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::MouseJoint > *arg1 = (boost::shared_ptr< love_box2d::MouseJoint > *) 0 ;
+  
+  SWIG_check_num_args("boost::shared_ptr<(love_box2d::MouseJoint)>::~shared_ptr<(love_box2d::MouseJoint)>",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("boost::shared_ptr<(love_box2d::MouseJoint)>::~shared_ptr<(love_box2d::MouseJoint)>",1,"boost::shared_ptr< love_box2d::MouseJoint > *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t,SWIG_POINTER_DISOWN))){
+    SWIG_fail_ptr("delete_SmartMouseJoint",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMouseJoint_setTarget(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::MouseJoint > *arg1 = (boost::shared_ptr< love_box2d::MouseJoint > *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  
+  SWIG_check_num_args("setTarget",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setTarget",1,"boost::shared_ptr< love_box2d::MouseJoint > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setTarget",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setTarget",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t,0))){
+    SWIG_fail_ptr("SmartMouseJoint_setTarget",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (*arg1)->setTarget(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_SmartMouseJoint(void *obj) {
+boost::shared_ptr< love_box2d::MouseJoint > *arg1 = (boost::shared_ptr< love_box2d::MouseJoint > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__methods[] = {
+	{"getAnchors", love_box2d::_wrap_method_MouseJoint_getAnchors},
+    {"__deref__", _wrap_SmartMouseJoint___deref__}, 
+    {"setTarget", _wrap_SmartMouseJoint_setTarget}, 
+    {0,0}
+};
+static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__bases[] = {0};
+static const char *swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__base_names[] = {0};
+static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg_ = { "SmartMouseJoint", &SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t,0, swig_delete_SmartMouseJoint, swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__methods, swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__attributes, swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__bases, swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__base_names };
+
 static int _wrap_newWorld(lua_State* L) {
   int SWIG_arg = -1;
   float arg1 ;
@@ -4665,6 +5296,93 @@ static int _wrap_newCircle(lua_State* L) {
 }
 
 
+static int _wrap_newDistanceJoint(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::pBody arg1 ;
+  love_box2d::pBody arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  love_box2d::pDistanceJoint result;
+  love_box2d::pBody *argp1 ;
+  love_box2d::pBody *argp2 ;
+  
+  SWIG_check_num_args("love_box2d::newDistanceJoint",6,6)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_box2d::newDistanceJoint",1,"love_box2d::pBody");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("love_box2d::newDistanceJoint",2,"love_box2d::pBody");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_box2d::newDistanceJoint",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("love_box2d::newDistanceJoint",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("love_box2d::newDistanceJoint",5,"float");
+  if(!lua_isnumber(L,6)) SWIG_fail_arg("love_box2d::newDistanceJoint",6,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("newDistanceJoint",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  arg1 = *argp1;
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("newDistanceJoint",2,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  arg2 = *argp2;
+  
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  arg6 = (float)lua_tonumber(L, 6);
+  result = love_box2d::newDistanceJoint(arg1,arg2,arg3,arg4,arg5,arg6);
+  SWIG_arg=0;
+  {
+    love_box2d::pDistanceJoint * resultptr = new love_box2d::pDistanceJoint((love_box2d::pDistanceJoint &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_newMouseJoint(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::pBody arg1 ;
+  float arg2 ;
+  float arg3 ;
+  love_box2d::pMouseJoint result;
+  love_box2d::pBody *argp1 ;
+  
+  SWIG_check_num_args("love_box2d::newMouseJoint",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_box2d::newMouseJoint",1,"love_box2d::pBody");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_box2d::newMouseJoint",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_box2d::newMouseJoint",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("newMouseJoint",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  arg1 = *argp1;
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  result = love_box2d::newMouseJoint(arg1,arg2,arg3);
+  SWIG_arg=0;
+  {
+    love_box2d::pMouseJoint * resultptr = new love_box2d::pMouseJoint((love_box2d::pMouseJoint &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 #ifdef __cplusplus
 }
 #endif
@@ -4673,6 +5391,8 @@ static const struct luaL_reg swig_commands[] = {
     { "newWorld", _wrap_newWorld},
     { "newBody", _wrap_newBody},
     { "newCircle",_wrap_newCircle},
+    { "newDistanceJoint", _wrap_newDistanceJoint},
+    { "newMouseJoint", _wrap_newMouseJoint},
     { "newPolygon",love_box2d::newPolygon},
     {0,0}
 };
@@ -4696,12 +5416,18 @@ static void *_p_love_box2d__PolygonShapeTo_p_love_box2d__Shape(void *x, int *new
 static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__Body_t = {"_p_boost__shared_ptrT_love_box2d__Body_t", "love_box2d::pBody *|boost::shared_ptr< love_box2d::Body > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_Body_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__CircleShape_t = {"_p_boost__shared_ptrT_love_box2d__CircleShape_t", "boost::shared_ptr< love_box2d::CircleShape > *|love_box2d::pCircleShape *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_CircleShape_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__Contact_t = {"_p_boost__shared_ptrT_love_box2d__Contact_t", "boost::shared_ptr< love_box2d::Contact > *|love_box2d::pContact *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_Contact_Sg_, 0};
+static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__DistanceJoint_t = {"_p_boost__shared_ptrT_love_box2d__DistanceJoint_t", "love_box2d::pDistanceJoint *|boost::shared_ptr< love_box2d::DistanceJoint > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_DistanceJoint_Sg_, 0};
+static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__Joint_t = {"_p_boost__shared_ptrT_love_box2d__Joint_t", "love_box2d::pJoint *|boost::shared_ptr< love_box2d::Joint > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_Joint_Sg_, 0};
+static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__MouseJoint_t = {"_p_boost__shared_ptrT_love_box2d__MouseJoint_t", "love_box2d::pMouseJoint *|boost::shared_ptr< love_box2d::MouseJoint > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__PolygonShape_t = {"_p_boost__shared_ptrT_love_box2d__PolygonShape_t", "boost::shared_ptr< love_box2d::PolygonShape > *|love_box2d::pPolygonShape *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_PolygonShape_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__Shape_t = {"_p_boost__shared_ptrT_love_box2d__Shape_t", "boost::shared_ptr< love_box2d::Shape > *|love_box2d::pShape *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_Shape_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__World_t = {"_p_boost__shared_ptrT_love_box2d__World_t", "boost::shared_ptr< love_box2d::World > *|love_box2d::pWorld *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_World_Sg_, 0};
 static swig_type_info _swigt__p_love_box2d__Body = {"_p_love_box2d__Body", "love_box2d::Body *", 0, 0, (void*)&_wrap_class_love_box2d_Body, 0};
 static swig_type_info _swigt__p_love_box2d__CircleShape = {"_p_love_box2d__CircleShape", "love_box2d::CircleShape *", 0, 0, (void*)&_wrap_class_love_box2d_CircleShape, 0};
 static swig_type_info _swigt__p_love_box2d__Contact = {"_p_love_box2d__Contact", "love_box2d::Contact *", 0, 0, (void*)&_wrap_class_love_box2d_Contact, 0};
+static swig_type_info _swigt__p_love_box2d__DistanceJoint = {"_p_love_box2d__DistanceJoint", "love_box2d::DistanceJoint *", 0, 0, (void*)&_wrap_class_love_box2d_DistanceJoint, 0};
+static swig_type_info _swigt__p_love_box2d__Joint = {"_p_love_box2d__Joint", "love_box2d::Joint *", 0, 0, (void*)&_wrap_class_love_box2d_Joint, 0};
+static swig_type_info _swigt__p_love_box2d__MouseJoint = {"_p_love_box2d__MouseJoint", "love_box2d::MouseJoint *", 0, 0, (void*)&_wrap_class_love_box2d_MouseJoint, 0};
 static swig_type_info _swigt__p_love_box2d__PolygonShape = {"_p_love_box2d__PolygonShape", "love_box2d::PolygonShape *", 0, 0, (void*)&_wrap_class_love_box2d_PolygonShape, 0};
 static swig_type_info _swigt__p_love_box2d__Shape = {"_p_love_box2d__Shape", "love_box2d::Shape *", 0, 0, (void*)&_wrap_class_love_box2d_Shape, 0};
 static swig_type_info _swigt__p_love_box2d__World = {"_p_love_box2d__World", "love_box2d::World *", 0, 0, (void*)&_wrap_class_love_box2d_World, 0};
@@ -4710,12 +5436,18 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_boost__shared_ptrT_love_box2d__Body_t,
   &_swigt__p_boost__shared_ptrT_love_box2d__CircleShape_t,
   &_swigt__p_boost__shared_ptrT_love_box2d__Contact_t,
+  &_swigt__p_boost__shared_ptrT_love_box2d__DistanceJoint_t,
+  &_swigt__p_boost__shared_ptrT_love_box2d__Joint_t,
+  &_swigt__p_boost__shared_ptrT_love_box2d__MouseJoint_t,
   &_swigt__p_boost__shared_ptrT_love_box2d__PolygonShape_t,
   &_swigt__p_boost__shared_ptrT_love_box2d__Shape_t,
   &_swigt__p_boost__shared_ptrT_love_box2d__World_t,
   &_swigt__p_love_box2d__Body,
   &_swigt__p_love_box2d__CircleShape,
   &_swigt__p_love_box2d__Contact,
+  &_swigt__p_love_box2d__DistanceJoint,
+  &_swigt__p_love_box2d__Joint,
+  &_swigt__p_love_box2d__MouseJoint,
   &_swigt__p_love_box2d__PolygonShape,
   &_swigt__p_love_box2d__Shape,
   &_swigt__p_love_box2d__World,
@@ -4724,12 +5456,18 @@ static swig_type_info *swig_type_initial[] = {
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__Body_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__Body_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__CircleShape_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__CircleShape_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__Contact_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__Contact_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__DistanceJoint_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__DistanceJoint_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__Joint_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__Joint_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__MouseJoint_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__MouseJoint_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__PolygonShape_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__PolygonShape_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__Shape_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__Shape_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__World_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__World_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_box2d__Body[] = {  {&_swigt__p_love_box2d__Body, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_box2d__CircleShape[] = {  {&_swigt__p_love_box2d__CircleShape, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_box2d__Contact[] = {  {&_swigt__p_love_box2d__Contact, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love_box2d__DistanceJoint[] = {  {&_swigt__p_love_box2d__DistanceJoint, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love_box2d__Joint[] = {  {&_swigt__p_love_box2d__Joint, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love_box2d__MouseJoint[] = {  {&_swigt__p_love_box2d__MouseJoint, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_box2d__PolygonShape[] = {  {&_swigt__p_love_box2d__PolygonShape, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_box2d__Shape[] = {  {&_swigt__p_love_box2d__CircleShape, _p_love_box2d__CircleShapeTo_p_love_box2d__Shape, 0, 0},  {&_swigt__p_love_box2d__Shape, 0, 0, 0},  {&_swigt__p_love_box2d__PolygonShape, _p_love_box2d__PolygonShapeTo_p_love_box2d__Shape, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_box2d__World[] = {  {&_swigt__p_love_box2d__World, 0, 0, 0},{0, 0, 0, 0}};
@@ -4738,12 +5476,18 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_boost__shared_ptrT_love_box2d__Body_t,
   _swigc__p_boost__shared_ptrT_love_box2d__CircleShape_t,
   _swigc__p_boost__shared_ptrT_love_box2d__Contact_t,
+  _swigc__p_boost__shared_ptrT_love_box2d__DistanceJoint_t,
+  _swigc__p_boost__shared_ptrT_love_box2d__Joint_t,
+  _swigc__p_boost__shared_ptrT_love_box2d__MouseJoint_t,
   _swigc__p_boost__shared_ptrT_love_box2d__PolygonShape_t,
   _swigc__p_boost__shared_ptrT_love_box2d__Shape_t,
   _swigc__p_boost__shared_ptrT_love_box2d__World_t,
   _swigc__p_love_box2d__Body,
   _swigc__p_love_box2d__CircleShape,
   _swigc__p_love_box2d__Contact,
+  _swigc__p_love_box2d__DistanceJoint,
+  _swigc__p_love_box2d__Joint,
+  _swigc__p_love_box2d__MouseJoint,
   _swigc__p_love_box2d__PolygonShape,
   _swigc__p_love_box2d__Shape,
   _swigc__p_love_box2d__World,
@@ -5061,55 +5805,114 @@ void SWIG_init_user(lua_State* L)
 
 namespace love_box2d
 {
-	bool mod_is_contact(lua_State * L, int idx)            
+	bool mod_is_body(lua_State * L, int idx)            
     {
         swig_lua_userdata* usr = 0;
         swig_cast_info *cast = 0;
         usr=(swig_lua_userdata*)lua_touserdata(L,idx);
         if(!usr) return false;
-        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Contact_t);
+        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
         if(cast) return true;
         return false;
     }
         
-	boost::shared_ptr<Contact> mod_to_contact(lua_State * L, int idx)            
+	boost::shared_ptr<Body> mod_to_body(lua_State * L, int idx)            
     {
-        love_box2d::pContact * arg;
+        love_box2d::pBody * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Contact_t,0))){
-              luaL_error(L, "Error, argument is not type Contact.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+              luaL_error(L, "Error, argument is not type Body.");
         }
         return *arg;
     }
         
-	void mod_push_contact(lua_State * L, boost::shared_ptr<Contact> contact)            
+	void mod_push_body(lua_State * L, boost::shared_ptr<Body> body)            
     {
-        love_box2d::pContact * resultptr = new love_box2d::pContact((love_box2d::pContact &) contact);
-        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Contact_t,1);
+        love_box2d::pBody * resultptr = new love_box2d::pBody((love_box2d::pBody &) body);
+        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,1);
     }
         
-	int _wrap_method_Contact_getPosition(lua_State * L)        
+	int _wrap_method_Body_getPosition(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pContact p = mod_to_contact(L, 1);
+        love_box2d::pBody p = mod_to_body(L, 1);
         lua_remove(L, 1);
         return p->getPosition(L);
     }
         
-	int _wrap_method_Contact_getVelocity(lua_State * L)        
+	bool mod_is_circleshape(lua_State * L, int idx)            
     {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pContact p = mod_to_contact(L, 1);
-        lua_remove(L, 1);
-        return p->getVelocity(L);
+        swig_lua_userdata* usr = 0;
+        swig_cast_info *cast = 0;
+        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
+        if(!usr) return false;
+        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+        if(cast) return true;
+        return false;
     }
         
-	int _wrap_method_Contact_getNormal(lua_State * L)        
+	boost::shared_ptr<CircleShape> mod_to_circleshape(lua_State * L, int idx)            
+    {
+        love_box2d::pCircleShape * arg;
+        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+              luaL_error(L, "Error, argument is not type CircleShape.");
+        }
+        return *arg;
+    }
+        
+	void mod_push_circleshape(lua_State * L, boost::shared_ptr<CircleShape> circleshape)            
+    {
+        love_box2d::pCircleShape * resultptr = new love_box2d::pCircleShape((love_box2d::pCircleShape &) circleshape);
+        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,1);
+    }
+        
+	int _wrap_method_CircleShape_getCategory(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pContact p = mod_to_contact(L, 1);
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
         lua_remove(L, 1);
-        return p->getNormal(L);
+        return p->getCategory(L);
+    }
+        
+	int _wrap_method_CircleShape_getData(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
+        lua_remove(L, 1);
+        return p->getData(L);
+    }
+        
+	int _wrap_method_CircleShape_setCategory(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
+        lua_remove(L, 1);
+        return p->setCategory(L);
+    }
+        
+	int _wrap_method_CircleShape_setData(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
+        lua_remove(L, 1);
+        return p->setData(L);
+    }
+        
+	int _wrap_method_CircleShape_getMask(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
+        lua_remove(L, 1);
+        return p->getMask(L);
+    }
+        
+	int _wrap_method_CircleShape_setMask(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
+        lua_remove(L, 1);
+        return p->setMask(L);
     }
         
 	bool mod_is_polygonshape(lua_State * L, int idx)            
@@ -5195,124 +5998,6 @@ namespace love_box2d
         return p->setMask(L);
     }
         
-	bool mod_is_world(lua_State * L, int idx)            
-    {
-        swig_lua_userdata* usr = 0;
-        swig_cast_info *cast = 0;
-        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
-        if(!usr) return false;
-        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t);
-        if(cast) return true;
-        return false;
-    }
-        
-	boost::shared_ptr<World> mod_to_world(lua_State * L, int idx)            
-    {
-        love_box2d::pWorld * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t,0))){
-              luaL_error(L, "Error, argument is not type World.");
-        }
-        return *arg;
-    }
-        
-	void mod_push_world(lua_State * L, boost::shared_ptr<World> world)            
-    {
-        love_box2d::pWorld * resultptr = new love_box2d::pWorld((love_box2d::pWorld &) world);
-        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t,1);
-    }
-        
-	int _wrap_method_World_getCallback(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pWorld p = mod_to_world(L, 1);
-        lua_remove(L, 1);
-        return p->getCallback(L);
-    }
-        
-	int _wrap_method_World_setCallback(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pWorld p = mod_to_world(L, 1);
-        lua_remove(L, 1);
-        return p->setCallback(L);
-    }
-        
-	bool mod_is_circleshape(lua_State * L, int idx)            
-    {
-        swig_lua_userdata* usr = 0;
-        swig_cast_info *cast = 0;
-        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
-        if(!usr) return false;
-        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
-        if(cast) return true;
-        return false;
-    }
-        
-	boost::shared_ptr<CircleShape> mod_to_circleshape(lua_State * L, int idx)            
-    {
-        love_box2d::pCircleShape * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
-              luaL_error(L, "Error, argument is not type CircleShape.");
-        }
-        return *arg;
-    }
-        
-	void mod_push_circleshape(lua_State * L, boost::shared_ptr<CircleShape> circleshape)            
-    {
-        love_box2d::pCircleShape * resultptr = new love_box2d::pCircleShape((love_box2d::pCircleShape &) circleshape);
-        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,1);
-    }
-        
-	int _wrap_method_CircleShape_getCategory(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
-        lua_remove(L, 1);
-        return p->getCategory(L);
-    }
-        
-	int _wrap_method_CircleShape_getData(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
-        lua_remove(L, 1);
-        return p->getData(L);
-    }
-        
-	int _wrap_method_CircleShape_setCategory(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
-        lua_remove(L, 1);
-        return p->setCategory(L);
-    }
-        
-	int _wrap_method_CircleShape_setData(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
-        lua_remove(L, 1);
-        return p->setData(L);
-    }
-        
-	int _wrap_method_CircleShape_getMask(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
-        lua_remove(L, 1);
-        return p->getMask(L);
-    }
-        
-	int _wrap_method_CircleShape_setMask(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
-        lua_remove(L, 1);
-        return p->setMask(L);
-    }
-        
 	bool mod_is_shape(lua_State * L, int idx)            
     {
         swig_lua_userdata* usr = 0;
@@ -5388,39 +6073,195 @@ namespace love_box2d
         return p->setMask(L);
     }
         
-	bool mod_is_body(lua_State * L, int idx)            
+	bool mod_is_mousejoint(lua_State * L, int idx)            
     {
         swig_lua_userdata* usr = 0;
         swig_cast_info *cast = 0;
         usr=(swig_lua_userdata*)lua_touserdata(L,idx);
         if(!usr) return false;
-        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t);
         if(cast) return true;
         return false;
     }
         
-	boost::shared_ptr<Body> mod_to_body(lua_State * L, int idx)            
+	boost::shared_ptr<MouseJoint> mod_to_mousejoint(lua_State * L, int idx)            
     {
-        love_box2d::pBody * arg;
+        love_box2d::pMouseJoint * arg;
         if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
-              luaL_error(L, "Error, argument is not type Body.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t,0))){
+              luaL_error(L, "Error, argument is not type MouseJoint.");
         }
         return *arg;
     }
         
-	void mod_push_body(lua_State * L, boost::shared_ptr<Body> body)            
+	void mod_push_mousejoint(lua_State * L, boost::shared_ptr<MouseJoint> mousejoint)            
     {
-        love_box2d::pBody * resultptr = new love_box2d::pBody((love_box2d::pBody &) body);
-        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,1);
+        love_box2d::pMouseJoint * resultptr = new love_box2d::pMouseJoint((love_box2d::pMouseJoint &) mousejoint);
+        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t,1);
     }
         
-	int _wrap_method_Body_getPosition(lua_State * L)        
+	int _wrap_method_MouseJoint_getAnchors(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pBody p = mod_to_body(L, 1);
+        love_box2d::pMouseJoint p = mod_to_mousejoint(L, 1);
+        lua_remove(L, 1);
+        return p->getAnchors(L);
+    }
+        
+	bool mod_is_joint(lua_State * L, int idx)            
+    {
+        swig_lua_userdata* usr = 0;
+        swig_cast_info *cast = 0;
+        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
+        if(!usr) return false;
+        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t);
+        if(cast) return true;
+        return false;
+    }
+        
+	boost::shared_ptr<Joint> mod_to_joint(lua_State * L, int idx)            
+    {
+        love_box2d::pJoint * arg;
+        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t,0))){
+              luaL_error(L, "Error, argument is not type Joint.");
+        }
+        return *arg;
+    }
+        
+	void mod_push_joint(lua_State * L, boost::shared_ptr<Joint> joint)            
+    {
+        love_box2d::pJoint * resultptr = new love_box2d::pJoint((love_box2d::pJoint &) joint);
+        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t,1);
+    }
+        
+	int _wrap_method_Joint_getAnchors(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pJoint p = mod_to_joint(L, 1);
+        lua_remove(L, 1);
+        return p->getAnchors(L);
+    }
+        
+	bool mod_is_contact(lua_State * L, int idx)            
+    {
+        swig_lua_userdata* usr = 0;
+        swig_cast_info *cast = 0;
+        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
+        if(!usr) return false;
+        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Contact_t);
+        if(cast) return true;
+        return false;
+    }
+        
+	boost::shared_ptr<Contact> mod_to_contact(lua_State * L, int idx)            
+    {
+        love_box2d::pContact * arg;
+        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Contact_t,0))){
+              luaL_error(L, "Error, argument is not type Contact.");
+        }
+        return *arg;
+    }
+        
+	void mod_push_contact(lua_State * L, boost::shared_ptr<Contact> contact)            
+    {
+        love_box2d::pContact * resultptr = new love_box2d::pContact((love_box2d::pContact &) contact);
+        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Contact_t,1);
+    }
+        
+	int _wrap_method_Contact_getPosition(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pContact p = mod_to_contact(L, 1);
         lua_remove(L, 1);
         return p->getPosition(L);
+    }
+        
+	int _wrap_method_Contact_getVelocity(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pContact p = mod_to_contact(L, 1);
+        lua_remove(L, 1);
+        return p->getVelocity(L);
+    }
+        
+	int _wrap_method_Contact_getNormal(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pContact p = mod_to_contact(L, 1);
+        lua_remove(L, 1);
+        return p->getNormal(L);
+    }
+        
+	bool mod_is_distancejoint(lua_State * L, int idx)            
+    {
+        swig_lua_userdata* usr = 0;
+        swig_cast_info *cast = 0;
+        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
+        if(!usr) return false;
+        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t);
+        if(cast) return true;
+        return false;
+    }
+        
+	boost::shared_ptr<DistanceJoint> mod_to_distancejoint(lua_State * L, int idx)            
+    {
+        love_box2d::pDistanceJoint * arg;
+        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,0))){
+              luaL_error(L, "Error, argument is not type DistanceJoint.");
+        }
+        return *arg;
+    }
+        
+	void mod_push_distancejoint(lua_State * L, boost::shared_ptr<DistanceJoint> distancejoint)            
+    {
+        love_box2d::pDistanceJoint * resultptr = new love_box2d::pDistanceJoint((love_box2d::pDistanceJoint &) distancejoint);
+        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,1);
+    }
+        
+	bool mod_is_world(lua_State * L, int idx)            
+    {
+        swig_lua_userdata* usr = 0;
+        swig_cast_info *cast = 0;
+        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
+        if(!usr) return false;
+        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t);
+        if(cast) return true;
+        return false;
+    }
+        
+	boost::shared_ptr<World> mod_to_world(lua_State * L, int idx)            
+    {
+        love_box2d::pWorld * arg;
+        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t,0))){
+              luaL_error(L, "Error, argument is not type World.");
+        }
+        return *arg;
+    }
+        
+	void mod_push_world(lua_State * L, boost::shared_ptr<World> world)            
+    {
+        love_box2d::pWorld * resultptr = new love_box2d::pWorld((love_box2d::pWorld &) world);
+        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t,1);
+    }
+        
+	int _wrap_method_World_getCallback(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pWorld p = mod_to_world(L, 1);
+        lua_remove(L, 1);
+        return p->getCallback(L);
+    }
+        
+	int _wrap_method_World_setCallback(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pWorld p = mod_to_world(L, 1);
+        lua_remove(L, 1);
+        return p->setCallback(L);
     }
         
 }
