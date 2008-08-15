@@ -7,31 +7,45 @@ struct lua_State;
 // Forward declarations of fused methods: 
 namespace love_box2d
 {
-	int _wrap_method_Body_getPosition(lua_State * L);
-	int _wrap_method_CircleShape_getCategory(lua_State * L);
-	int _wrap_method_CircleShape_getData(lua_State * L);
-	int _wrap_method_CircleShape_setCategory(lua_State * L);
-	int _wrap_method_CircleShape_setData(lua_State * L);
-	int _wrap_method_CircleShape_getMask(lua_State * L);
-	int _wrap_method_CircleShape_setMask(lua_State * L);
 	int _wrap_method_PolygonShape_getCategory(lua_State * L);
 	int _wrap_method_PolygonShape_getData(lua_State * L);
 	int _wrap_method_PolygonShape_getPoints(lua_State * L);
+	int _wrap_method_PolygonShape_getBoundingBox(lua_State * L);
 	int _wrap_method_PolygonShape_setCategory(lua_State * L);
 	int _wrap_method_PolygonShape_setData(lua_State * L);
 	int _wrap_method_PolygonShape_getMask(lua_State * L);
 	int _wrap_method_PolygonShape_setMask(lua_State * L);
-	int _wrap_method_Shape_getCategory(lua_State * L);
-	int _wrap_method_Shape_getData(lua_State * L);
-	int _wrap_method_Shape_setCategory(lua_State * L);
-	int _wrap_method_Shape_setData(lua_State * L);
-	int _wrap_method_Shape_getMask(lua_State * L);
-	int _wrap_method_Shape_setMask(lua_State * L);
+	int _wrap_method_Body_getLocalPoint(lua_State * L);
+	int _wrap_method_Body_getLocalCenter(lua_State * L);
+	int _wrap_method_Body_getWorldPoint(lua_State * L);
+	int _wrap_method_Body_getLocalVector(lua_State * L);
+	int _wrap_method_Body_getVelocityLocalPoint(lua_State * L);
+	int _wrap_method_Body_getPosition(lua_State * L);
+	int _wrap_method_Body_getVelocityWorldPoint(lua_State * L);
+	int _wrap_method_Body_getWorldVector(lua_State * L);
+	int _wrap_method_Body_getWorldCenter(lua_State * L);
+	int _wrap_method_CircleShape_getCategory(lua_State * L);
+	int _wrap_method_CircleShape_getData(lua_State * L);
+	int _wrap_method_CircleShape_getBoundingBox(lua_State * L);
+	int _wrap_method_CircleShape_setCategory(lua_State * L);
+	int _wrap_method_CircleShape_setData(lua_State * L);
+	int _wrap_method_CircleShape_getMask(lua_State * L);
+	int _wrap_method_CircleShape_setMask(lua_State * L);
+	int _wrap_method_PrismaticJoint_getLimits(lua_State * L);
+	int _wrap_method_PrismaticJoint_getReactionForce(lua_State * L);
+	int _wrap_method_PrismaticJoint_getAnchors(lua_State * L);
+	int _wrap_method_RevoluteJoint_getLimits(lua_State * L);
+	int _wrap_method_RevoluteJoint_getReactionForce(lua_State * L);
+	int _wrap_method_RevoluteJoint_getAnchors(lua_State * L);
+	int _wrap_method_MouseJoint_getReactionForce(lua_State * L);
+	int _wrap_method_MouseJoint_getTarget(lua_State * L);
 	int _wrap_method_MouseJoint_getAnchors(lua_State * L);
-	int _wrap_method_Joint_getAnchors(lua_State * L);
 	int _wrap_method_Contact_getPosition(lua_State * L);
 	int _wrap_method_Contact_getVelocity(lua_State * L);
 	int _wrap_method_Contact_getNormal(lua_State * L);
+	int _wrap_method_DistanceJoint_getReactionForce(lua_State * L);
+	int _wrap_method_DistanceJoint_getAnchors(lua_State * L);
+	int _wrap_method_World_getGravity(lua_State * L);
 	int _wrap_method_World_getCallback(lua_State * L);
 	int _wrap_method_World_setCallback(lua_State * L);
 }
@@ -1530,19 +1544,23 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t swig_types[4]
 #define SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t swig_types[5]
 #define SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t swig_types[6]
-#define SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t swig_types[7]
-#define SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t swig_types[8]
-#define SWIGTYPE_p_love_box2d__Body swig_types[9]
-#define SWIGTYPE_p_love_box2d__CircleShape swig_types[10]
-#define SWIGTYPE_p_love_box2d__Contact swig_types[11]
-#define SWIGTYPE_p_love_box2d__DistanceJoint swig_types[12]
-#define SWIGTYPE_p_love_box2d__Joint swig_types[13]
-#define SWIGTYPE_p_love_box2d__MouseJoint swig_types[14]
-#define SWIGTYPE_p_love_box2d__PolygonShape swig_types[15]
-#define SWIGTYPE_p_love_box2d__Shape swig_types[16]
-#define SWIGTYPE_p_love_box2d__World swig_types[17]
-static swig_type_info *swig_types[19];
-static swig_module_info swig_module = {swig_types, 18, 0, 0, 0, 0};
+#define SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t swig_types[7]
+#define SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t swig_types[8]
+#define SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t swig_types[9]
+#define SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t swig_types[10]
+#define SWIGTYPE_p_love_box2d__Body swig_types[11]
+#define SWIGTYPE_p_love_box2d__CircleShape swig_types[12]
+#define SWIGTYPE_p_love_box2d__Contact swig_types[13]
+#define SWIGTYPE_p_love_box2d__DistanceJoint swig_types[14]
+#define SWIGTYPE_p_love_box2d__Joint swig_types[15]
+#define SWIGTYPE_p_love_box2d__MouseJoint swig_types[16]
+#define SWIGTYPE_p_love_box2d__PolygonShape swig_types[17]
+#define SWIGTYPE_p_love_box2d__PrismaticJoint swig_types[18]
+#define SWIGTYPE_p_love_box2d__RevoluteJoint swig_types[19]
+#define SWIGTYPE_p_love_box2d__Shape swig_types[20]
+#define SWIGTYPE_p_love_box2d__World swig_types[21]
+static swig_type_info *swig_types[23];
+static swig_module_info swig_module = {swig_types, 22, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1572,6 +1590,8 @@ typedef struct{} LANGUAGE_OBJ;
 #include "Joint.h"
 #include "DistanceJoint.h"
 #include "MouseJoint.h"
+#include "RevoluteJoint.h"
+#include "PrismaticJoint.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -1592,6 +1612,86 @@ static int _wrap_World_update(lua_State* L) {
   (arg1)->update(arg2);
   SWIG_arg=0;
   
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_World_setGravity(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::World *arg1 = (love_box2d::World *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  
+  SWIG_check_num_args("setGravity",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setGravity",1,"love_box2d::World *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setGravity",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setGravity",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__World,0))){
+    SWIG_fail_ptr("World_setGravity",1,SWIGTYPE_p_love_box2d__World);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (arg1)->setGravity(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_World_getBodyCount(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::World *arg1 = (love_box2d::World *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getBodyCount",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getBodyCount",1,"love_box2d::World *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__World,0))){
+    SWIG_fail_ptr("World_getBodyCount",1,SWIGTYPE_p_love_box2d__World);
+  }
+  
+  result = (int)(arg1)->getBodyCount();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_World_getJointCount(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::World *arg1 = (love_box2d::World *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getJointCount",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getJointCount",1,"love_box2d::World *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__World,0))){
+    SWIG_fail_ptr("World_getJointCount",1,SWIGTYPE_p_love_box2d__World);
+  }
+  
+  result = (int)(arg1)->getJointCount();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -1633,6 +1733,9 @@ delete arg1;
 }
 static swig_lua_method swig_love_box2d_World_methods[] = {
     {"update", _wrap_World_update}, 
+    {"setGravity", _wrap_World_setGravity}, 
+    {"getBodyCount", _wrap_World_getBodyCount}, 
+    {"getJointCount", _wrap_World_getJointCount}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_box2d_World_attributes[] = {
@@ -1719,15 +1822,99 @@ fail:
 }
 
 
+static int _wrap_SmartWorld_setGravity(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::World > *arg1 = (boost::shared_ptr< love_box2d::World > *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  
+  SWIG_check_num_args("setGravity",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setGravity",1,"boost::shared_ptr< love_box2d::World > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setGravity",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setGravity",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t,0))){
+    SWIG_fail_ptr("SmartWorld_setGravity",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (*arg1)->setGravity(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartWorld_getBodyCount(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::World > *arg1 = (boost::shared_ptr< love_box2d::World > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getBodyCount",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getBodyCount",1,"boost::shared_ptr< love_box2d::World > *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t,0))){
+    SWIG_fail_ptr("SmartWorld_getBodyCount",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t);
+  }
+  
+  result = (int)(*arg1)->getBodyCount();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartWorld_getJointCount(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::World > *arg1 = (boost::shared_ptr< love_box2d::World > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getJointCount",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getJointCount",1,"boost::shared_ptr< love_box2d::World > *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t,0))){
+    SWIG_fail_ptr("SmartWorld_getJointCount",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t);
+  }
+  
+  result = (int)(*arg1)->getJointCount();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_SmartWorld(void *obj) {
 boost::shared_ptr< love_box2d::World > *arg1 = (boost::shared_ptr< love_box2d::World > *) obj;
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_World_Sg__methods[] = {
+	{"getGravity", love_box2d::_wrap_method_World_getGravity},
 	{"getCallback", love_box2d::_wrap_method_World_getCallback},
 	{"setCallback", love_box2d::_wrap_method_World_setCallback},
     {"__deref__", _wrap_SmartWorld___deref__}, 
     {"update", _wrap_SmartWorld_update}, 
+    {"setGravity", _wrap_SmartWorld_setGravity}, 
+    {"getBodyCount", _wrap_SmartWorld_getBodyCount}, 
+    {"getJointCount", _wrap_SmartWorld_getJointCount}, 
     {0,0}
 };
 static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_World_Sg__attributes[] = {
@@ -1800,6 +1987,131 @@ static int _wrap_Body_getAngle(lua_State* L) {
   }
   
   result = (float)(arg1)->getAngle();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_getSpin(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getSpin",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSpin",1,"love_box2d::Body const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_getSpin",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  result = (float)((love_box2d::Body const *)arg1)->getSpin();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_getMass(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMass",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMass",1,"love_box2d::Body const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_getMass",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  result = (float)((love_box2d::Body const *)arg1)->getMass();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_getInertia(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getInertia",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getInertia",1,"love_box2d::Body const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_getInertia",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  result = (float)((love_box2d::Body const *)arg1)->getInertia();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_getAngularDamping(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getAngularDamping",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getAngularDamping",1,"love_box2d::Body const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_getAngularDamping",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  result = (float)((love_box2d::Body const *)arg1)->getAngularDamping();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_getDamping(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getDamping",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getDamping",1,"love_box2d::Body const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_getDamping",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  result = (float)((love_box2d::Body const *)arg1)->getDamping();
   SWIG_arg=0;
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
@@ -1949,6 +2261,33 @@ static int _wrap_Body_applyImpulse(lua_State* L) {
 }
 
 
+static int _wrap_Body_applyTorque(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("applyTorque",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("applyTorque",1,"love_box2d::Body *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("applyTorque",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_applyTorque",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->applyTorque(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Body_applyForce(lua_State* L) {
   int SWIG_arg = -1;
   love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
@@ -2039,6 +2378,90 @@ fail:
 }
 
 
+static int _wrap_Body_setVelocity(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  
+  SWIG_check_num_args("setVelocity",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setVelocity",1,"love_box2d::Body *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setVelocity",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setVelocity",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_setVelocity",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (arg1)->setVelocity(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_setAngle(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setAngle",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setAngle",1,"love_box2d::Body *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setAngle",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_setAngle",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setAngle(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_setSpin(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setSpin",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSpin",1,"love_box2d::Body *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setSpin",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_setSpin",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setSpin(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Body_setPosition(lua_State* L) {
   int SWIG_arg = -1;
   love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
@@ -2093,6 +2516,302 @@ fail:
 }
 
 
+static int _wrap_Body_setMass(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  
+  SWIG_check_num_args("setMass",5,5)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMass",1,"love_box2d::Body *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMass",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setMass",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("setMass",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("setMass",5,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_setMass",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  (arg1)->setMass(arg2,arg3,arg4,arg5);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_setAngularDamping(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setAngularDamping",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setAngularDamping",1,"love_box2d::Body *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setAngularDamping",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_setAngularDamping",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setAngularDamping(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_setDamping(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setDamping",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setDamping",1,"love_box2d::Body *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setDamping",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_setDamping",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setDamping(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_isBullet(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isBullet",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isBullet",1,"love_box2d::Body const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_isBullet",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  result = (bool)((love_box2d::Body const *)arg1)->isBullet();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_setBullet(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setBullet",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setBullet",1,"love_box2d::Body *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setBullet",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_setBullet",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (arg1)->setBullet(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_isStatic(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isStatic",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isStatic",1,"love_box2d::Body const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_isStatic",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  result = (bool)((love_box2d::Body const *)arg1)->isStatic();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_isDynamic(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isDynamic",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isDynamic",1,"love_box2d::Body const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_isDynamic",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  result = (bool)((love_box2d::Body const *)arg1)->isDynamic();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_isFrozen(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isFrozen",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isFrozen",1,"love_box2d::Body const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_isFrozen",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  result = (bool)((love_box2d::Body const *)arg1)->isFrozen();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_isSleeping(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isSleeping",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isSleeping",1,"love_box2d::Body const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_isSleeping",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  result = (bool)((love_box2d::Body const *)arg1)->isSleeping();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_setAllowSleep(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setAllowSleep",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setAllowSleep",1,"love_box2d::Body *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setAllowSleep",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_setAllowSleep",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (arg1)->setAllowSleep(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Body_setSleep(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setSleep",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSleep",1,"love_box2d::Body *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setSleep",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Body,0))){
+    SWIG_fail_ptr("Body_setSleep",1,SWIGTYPE_p_love_box2d__Body);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (arg1)->setSleep(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_delete_Body(lua_State* L) {
   int SWIG_arg = -1;
   love_box2d::Body *arg1 = (love_box2d::Body *) 0 ;
@@ -2126,12 +2845,32 @@ static swig_lua_method swig_love_box2d_Body_methods[] = {
     {"getX", _wrap_Body_getX}, 
     {"getY", _wrap_Body_getY}, 
     {"getAngle", _wrap_Body_getAngle}, 
+    {"getSpin", _wrap_Body_getSpin}, 
+    {"getMass", _wrap_Body_getMass}, 
+    {"getInertia", _wrap_Body_getInertia}, 
+    {"getAngularDamping", _wrap_Body_getAngularDamping}, 
+    {"getDamping", _wrap_Body_getDamping}, 
     {"applyImpulse", _wrap_Body_applyImpulse}, 
+    {"applyTorque", _wrap_Body_applyTorque}, 
     {"applyForce", _wrap_Body_applyForce}, 
     {"setX", _wrap_Body_setX}, 
     {"setY", _wrap_Body_setY}, 
+    {"setVelocity", _wrap_Body_setVelocity}, 
+    {"setAngle", _wrap_Body_setAngle}, 
+    {"setSpin", _wrap_Body_setSpin}, 
     {"setPosition", _wrap_Body_setPosition}, 
     {"setMassFromShapes", _wrap_Body_setMassFromShapes}, 
+    {"setMass", _wrap_Body_setMass}, 
+    {"setAngularDamping", _wrap_Body_setAngularDamping}, 
+    {"setDamping", _wrap_Body_setDamping}, 
+    {"isBullet", _wrap_Body_isBullet}, 
+    {"setBullet", _wrap_Body_setBullet}, 
+    {"isStatic", _wrap_Body_isStatic}, 
+    {"isDynamic", _wrap_Body_isDynamic}, 
+    {"isFrozen", _wrap_Body_isFrozen}, 
+    {"isSleeping", _wrap_Body_isSleeping}, 
+    {"setAllowSleep", _wrap_Body_setAllowSleep}, 
+    {"setSleep", _wrap_Body_setSleep}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_box2d_Body_attributes[] = {
@@ -2254,6 +2993,131 @@ static int _wrap_SmartBody_getAngle(lua_State* L) {
   }
   
   result = (float)(*arg1)->getAngle();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_getSpin(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getSpin",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSpin",1,"boost::shared_ptr< love_box2d::Body > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_getSpin",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  result = (float)(*arg1)->getSpin();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_getMass(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMass",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMass",1,"boost::shared_ptr< love_box2d::Body > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_getMass",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  result = (float)(*arg1)->getMass();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_getInertia(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getInertia",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getInertia",1,"boost::shared_ptr< love_box2d::Body > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_getInertia",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  result = (float)(*arg1)->getInertia();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_getAngularDamping(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getAngularDamping",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getAngularDamping",1,"boost::shared_ptr< love_box2d::Body > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_getAngularDamping",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  result = (float)(*arg1)->getAngularDamping();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_getDamping(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getDamping",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getDamping",1,"boost::shared_ptr< love_box2d::Body > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_getDamping",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  result = (float)(*arg1)->getDamping();
   SWIG_arg=0;
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
@@ -2403,6 +3267,33 @@ static int _wrap_SmartBody_applyImpulse(lua_State* L) {
 }
 
 
+static int _wrap_SmartBody_applyTorque(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("applyTorque",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("applyTorque",1,"boost::shared_ptr< love_box2d::Body > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("applyTorque",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_applyTorque",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->applyTorque(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartBody_applyForce(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
@@ -2493,6 +3384,90 @@ fail:
 }
 
 
+static int _wrap_SmartBody_setVelocity(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  
+  SWIG_check_num_args("setVelocity",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setVelocity",1,"boost::shared_ptr< love_box2d::Body > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setVelocity",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setVelocity",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_setVelocity",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (*arg1)->setVelocity(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_setAngle(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setAngle",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setAngle",1,"boost::shared_ptr< love_box2d::Body > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setAngle",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_setAngle",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setAngle(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_setSpin(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setSpin",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSpin",1,"boost::shared_ptr< love_box2d::Body > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setSpin",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_setSpin",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setSpin(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_SmartBody_setPosition(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
@@ -2547,22 +3522,346 @@ fail:
 }
 
 
+static int _wrap_SmartBody_setMass(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  
+  SWIG_check_num_args("setMass",5,5)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMass",1,"boost::shared_ptr< love_box2d::Body > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMass",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setMass",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("setMass",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("setMass",5,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_setMass",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  (*arg1)->setMass(arg2,arg3,arg4,arg5);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_setAngularDamping(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setAngularDamping",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setAngularDamping",1,"boost::shared_ptr< love_box2d::Body > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setAngularDamping",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_setAngularDamping",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setAngularDamping(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_setDamping(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setDamping",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setDamping",1,"boost::shared_ptr< love_box2d::Body > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setDamping",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_setDamping",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setDamping(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_isBullet(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isBullet",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isBullet",1,"boost::shared_ptr< love_box2d::Body > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_isBullet",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  result = (bool)(*arg1)->isBullet();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_setBullet(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setBullet",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setBullet",1,"boost::shared_ptr< love_box2d::Body > *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setBullet",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_setBullet",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (*arg1)->setBullet(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_isStatic(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isStatic",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isStatic",1,"boost::shared_ptr< love_box2d::Body > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_isStatic",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  result = (bool)(*arg1)->isStatic();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_isDynamic(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isDynamic",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isDynamic",1,"boost::shared_ptr< love_box2d::Body > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_isDynamic",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  result = (bool)(*arg1)->isDynamic();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_isFrozen(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isFrozen",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isFrozen",1,"boost::shared_ptr< love_box2d::Body > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_isFrozen",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  result = (bool)(*arg1)->isFrozen();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_isSleeping(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isSleeping",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isSleeping",1,"boost::shared_ptr< love_box2d::Body > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_isSleeping",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  result = (bool)(*arg1)->isSleeping();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_setAllowSleep(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setAllowSleep",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setAllowSleep",1,"boost::shared_ptr< love_box2d::Body > *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setAllowSleep",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_setAllowSleep",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (*arg1)->setAllowSleep(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartBody_setSleep(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setSleep",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setSleep",1,"boost::shared_ptr< love_box2d::Body > *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setSleep",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("SmartBody_setSleep",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (*arg1)->setSleep(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_SmartBody(void *obj) {
 boost::shared_ptr< love_box2d::Body > *arg1 = (boost::shared_ptr< love_box2d::Body > *) obj;
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__methods[] = {
+	{"getLocalPoint", love_box2d::_wrap_method_Body_getLocalPoint},
+	{"getLocalCenter", love_box2d::_wrap_method_Body_getLocalCenter},
+	{"getWorldPoint", love_box2d::_wrap_method_Body_getWorldPoint},
+	{"getLocalVector", love_box2d::_wrap_method_Body_getLocalVector},
+	{"getVelocityLocalPoint", love_box2d::_wrap_method_Body_getVelocityLocalPoint},
 	{"getPosition", love_box2d::_wrap_method_Body_getPosition},
+	{"getVelocityWorldPoint", love_box2d::_wrap_method_Body_getVelocityWorldPoint},
+	{"getWorldVector", love_box2d::_wrap_method_Body_getWorldVector},
+	{"getWorldCenter", love_box2d::_wrap_method_Body_getWorldCenter},
     {"__deref__", _wrap_SmartBody___deref__}, 
     {"getX", _wrap_SmartBody_getX}, 
     {"getY", _wrap_SmartBody_getY}, 
     {"getAngle", _wrap_SmartBody_getAngle}, 
+    {"getSpin", _wrap_SmartBody_getSpin}, 
+    {"getMass", _wrap_SmartBody_getMass}, 
+    {"getInertia", _wrap_SmartBody_getInertia}, 
+    {"getAngularDamping", _wrap_SmartBody_getAngularDamping}, 
+    {"getDamping", _wrap_SmartBody_getDamping}, 
     {"applyImpulse", _wrap_SmartBody_applyImpulse}, 
+    {"applyTorque", _wrap_SmartBody_applyTorque}, 
     {"applyForce", _wrap_SmartBody_applyForce}, 
     {"setX", _wrap_SmartBody_setX}, 
     {"setY", _wrap_SmartBody_setY}, 
+    {"setVelocity", _wrap_SmartBody_setVelocity}, 
+    {"setAngle", _wrap_SmartBody_setAngle}, 
+    {"setSpin", _wrap_SmartBody_setSpin}, 
     {"setPosition", _wrap_SmartBody_setPosition}, 
     {"setMassFromShapes", _wrap_SmartBody_setMassFromShapes}, 
+    {"setMass", _wrap_SmartBody_setMass}, 
+    {"setAngularDamping", _wrap_SmartBody_setAngularDamping}, 
+    {"setDamping", _wrap_SmartBody_setDamping}, 
+    {"isBullet", _wrap_SmartBody_isBullet}, 
+    {"setBullet", _wrap_SmartBody_setBullet}, 
+    {"isStatic", _wrap_SmartBody_isStatic}, 
+    {"isDynamic", _wrap_SmartBody_isDynamic}, 
+    {"isFrozen", _wrap_SmartBody_isFrozen}, 
+    {"isSleeping", _wrap_SmartBody_isSleeping}, 
+    {"setAllowSleep", _wrap_SmartBody_setAllowSleep}, 
+    {"setSleep", _wrap_SmartBody_setSleep}, 
     {0,0}
 };
 static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__attributes[] = {
@@ -2571,6 +3870,31 @@ static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__attribute
 static swig_lua_class *swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__bases[] = {0};
 static const char *swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__base_names[] = {0};
 static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_box2d_Body_Sg_ = { "SmartBody", &SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0, swig_delete_SmartBody, swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__methods, swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__attributes, swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__bases, swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__base_names };
+
+static int _wrap_Shape_getType(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getType",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getType",1,"love_box2d::Shape const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
+    SWIG_fail_ptr("Shape_getType",1,SWIGTYPE_p_love_box2d__Shape);
+  }
+  
+  result = (int)((love_box2d::Shape const *)arg1)->getType();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
 
 static int _wrap_Shape_setFriction(lua_State* L) {
   int SWIG_arg = -1;
@@ -2755,19 +4079,19 @@ fail:
 }
 
 
-static int _wrap_Shape_getSensor(lua_State* L) {
+static int _wrap_Shape_isSensor(lua_State* L) {
   int SWIG_arg = -1;
   love_box2d::Shape *arg1 = (love_box2d::Shape *) 0 ;
   bool result;
   
-  SWIG_check_num_args("getSensor",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSensor",1,"love_box2d::Shape const *");
+  SWIG_check_num_args("isSensor",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isSensor",1,"love_box2d::Shape const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Shape,0))){
-    SWIG_fail_ptr("Shape_getSensor",1,SWIGTYPE_p_love_box2d__Shape);
+    SWIG_fail_ptr("Shape_isSensor",1,SWIGTYPE_p_love_box2d__Shape);
   }
   
-  result = (bool)((love_box2d::Shape const *)arg1)->getSensor();
+  result = (bool)((love_box2d::Shape const *)arg1)->isSensor();
   SWIG_arg=0;
   lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
   return SWIG_arg;
@@ -2973,6 +4297,7 @@ love_box2d::Shape *arg1 = (love_box2d::Shape *) obj;
 delete arg1;
 }
 static swig_lua_method swig_love_box2d_Shape_methods[] = {
+    {"getType", _wrap_Shape_getType}, 
     {"setFriction", _wrap_Shape_setFriction}, 
     {"setRestitution", _wrap_Shape_setRestitution}, 
     {"setDensity", _wrap_Shape_setDensity}, 
@@ -2980,7 +4305,7 @@ static swig_lua_method swig_love_box2d_Shape_methods[] = {
     {"getFriction", _wrap_Shape_getFriction}, 
     {"getRestituion", _wrap_Shape_getRestituion}, 
     {"getDensity", _wrap_Shape_getDensity}, 
-    {"getSensor", _wrap_Shape_getSensor}, 
+    {"isSensor", _wrap_Shape_isSensor}, 
     {"getBody", _wrap_Shape_getBody}, 
     {"testPoint", _wrap_Shape_testPoint}, 
     {"setCategoryBits", _wrap_Shape_setCategoryBits}, 
@@ -3036,6 +4361,31 @@ static int _wrap_delete_SmartShape(lua_State* L) {
   
   SWIG_arg=0;
   
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartShape_getType(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getType",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getType",1,"boost::shared_ptr< love_box2d::Shape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+    SWIG_fail_ptr("SmartShape_getType",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+  }
+  
+  result = (int)(*arg1)->getType();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -3229,19 +4579,19 @@ fail:
 }
 
 
-static int _wrap_SmartShape_getSensor(lua_State* L) {
+static int _wrap_SmartShape_isSensor(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::Shape > *) 0 ;
   bool result;
   
-  SWIG_check_num_args("getSensor",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSensor",1,"boost::shared_ptr< love_box2d::Shape > const *");
+  SWIG_check_num_args("isSensor",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isSensor",1,"boost::shared_ptr< love_box2d::Shape > const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
-    SWIG_fail_ptr("SmartShape_getSensor",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
+    SWIG_fail_ptr("SmartShape_isSensor",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t);
   }
   
-  result = (bool)(*arg1)->getSensor();
+  result = (bool)(*arg1)->isSensor();
   SWIG_arg=0;
   lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
   return SWIG_arg;
@@ -3422,13 +4772,8 @@ boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::S
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_Shape_Sg__methods[] = {
-	{"getCategory", love_box2d::_wrap_method_Shape_getCategory},
-	{"getData", love_box2d::_wrap_method_Shape_getData},
-	{"setCategory", love_box2d::_wrap_method_Shape_setCategory},
-	{"setData", love_box2d::_wrap_method_Shape_setData},
-	{"getMask", love_box2d::_wrap_method_Shape_getMask},
-	{"setMask", love_box2d::_wrap_method_Shape_setMask},
     {"__deref__", _wrap_SmartShape___deref__}, 
+    {"getType", _wrap_SmartShape_getType}, 
     {"setFriction", _wrap_SmartShape_setFriction}, 
     {"setRestitution", _wrap_SmartShape_setRestitution}, 
     {"setDensity", _wrap_SmartShape_setDensity}, 
@@ -3436,7 +4781,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_Shape_Sg__methods[] =
     {"getFriction", _wrap_SmartShape_getFriction}, 
     {"getRestituion", _wrap_SmartShape_getRestituion}, 
     {"getDensity", _wrap_SmartShape_getDensity}, 
-    {"getSensor", _wrap_SmartShape_getSensor}, 
+    {"isSensor", _wrap_SmartShape_isSensor}, 
     {"getBody", _wrap_SmartShape_getBody}, 
     {"testPoint", _wrap_SmartShape_testPoint}, 
     {"setCategoryBits", _wrap_SmartShape_setCategoryBits}, 
@@ -3451,6 +4796,31 @@ static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_Shape_Sg__attribut
 static swig_lua_class *swig_boost_shared_ptr_Sl_love_box2d_Shape_Sg__bases[] = {0};
 static const char *swig_boost_shared_ptr_Sl_love_box2d_Shape_Sg__base_names[] = {0};
 static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_box2d_Shape_Sg_ = { "SmartShape", &SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0, swig_delete_SmartShape, swig_boost_shared_ptr_Sl_love_box2d_Shape_Sg__methods, swig_boost_shared_ptr_Sl_love_box2d_Shape_Sg__attributes, swig_boost_shared_ptr_Sl_love_box2d_Shape_Sg__bases, swig_boost_shared_ptr_Sl_love_box2d_Shape_Sg__base_names };
+
+static int _wrap_CircleShape_getRadius(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::CircleShape *arg1 = (love_box2d::CircleShape *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getRadius",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getRadius",1,"love_box2d::CircleShape const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__CircleShape,0))){
+    SWIG_fail_ptr("CircleShape_getRadius",1,SWIGTYPE_p_love_box2d__CircleShape);
+  }
+  
+  result = (float)((love_box2d::CircleShape const *)arg1)->getRadius();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
 
 static int _wrap_delete_CircleShape(lua_State* L) {
   int SWIG_arg = -1;
@@ -3482,6 +4852,7 @@ love_box2d::CircleShape *arg1 = (love_box2d::CircleShape *) obj;
 delete arg1;
 }
 static swig_lua_method swig_love_box2d_CircleShape_methods[] = {
+    {"getRadius", _wrap_CircleShape_getRadius}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_box2d_CircleShape_attributes[] = {
@@ -3531,6 +4902,56 @@ static int _wrap_delete_SmartCircleShape(lua_State* L) {
   
   SWIG_arg=0;
   
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_getRadius(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getRadius",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getRadius",1,"boost::shared_ptr< love_box2d::CircleShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_getRadius",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  result = (float)(*arg1)->getRadius();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartCircleShape_getType(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getType",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getType",1,"boost::shared_ptr< love_box2d::CircleShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+    SWIG_fail_ptr("SmartCircleShape_getType",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+  }
+  
+  result = (int)(*arg1)->getType();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -3724,19 +5145,19 @@ fail:
 }
 
 
-static int _wrap_SmartCircleShape_getSensor(lua_State* L) {
+static int _wrap_SmartCircleShape_isSensor(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr< love_box2d::CircleShape > *arg1 = (boost::shared_ptr< love_box2d::CircleShape > *) 0 ;
   bool result;
   
-  SWIG_check_num_args("getSensor",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSensor",1,"boost::shared_ptr< love_box2d::CircleShape > const *");
+  SWIG_check_num_args("isSensor",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isSensor",1,"boost::shared_ptr< love_box2d::CircleShape > const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
-    SWIG_fail_ptr("SmartCircleShape_getSensor",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+    SWIG_fail_ptr("SmartCircleShape_isSensor",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
   }
   
-  result = (bool)(*arg1)->getSensor();
+  result = (bool)(*arg1)->isSensor();
   SWIG_arg=0;
   lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
   return SWIG_arg;
@@ -3919,11 +5340,14 @@ delete arg1;
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_CircleShape_Sg__methods[] = {
 	{"getCategory", love_box2d::_wrap_method_CircleShape_getCategory},
 	{"getData", love_box2d::_wrap_method_CircleShape_getData},
+	{"getBoundingBox", love_box2d::_wrap_method_CircleShape_getBoundingBox},
 	{"setCategory", love_box2d::_wrap_method_CircleShape_setCategory},
 	{"setData", love_box2d::_wrap_method_CircleShape_setData},
 	{"getMask", love_box2d::_wrap_method_CircleShape_getMask},
 	{"setMask", love_box2d::_wrap_method_CircleShape_setMask},
     {"__deref__", _wrap_SmartCircleShape___deref__}, 
+    {"getRadius", _wrap_SmartCircleShape_getRadius}, 
+    {"getType", _wrap_SmartCircleShape_getType}, 
     {"setFriction", _wrap_SmartCircleShape_setFriction}, 
     {"setRestitution", _wrap_SmartCircleShape_setRestitution}, 
     {"setDensity", _wrap_SmartCircleShape_setDensity}, 
@@ -3931,7 +5355,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_CircleShape_Sg__metho
     {"getFriction", _wrap_SmartCircleShape_getFriction}, 
     {"getRestituion", _wrap_SmartCircleShape_getRestituion}, 
     {"getDensity", _wrap_SmartCircleShape_getDensity}, 
-    {"getSensor", _wrap_SmartCircleShape_getSensor}, 
+    {"isSensor", _wrap_SmartCircleShape_isSensor}, 
     {"getBody", _wrap_SmartCircleShape_getBody}, 
     {"testPoint", _wrap_SmartCircleShape_testPoint}, 
     {"setCategoryBits", _wrap_SmartCircleShape_setCategoryBits}, 
@@ -4026,6 +5450,31 @@ static int _wrap_delete_SmartPolygonShape(lua_State* L) {
   
   SWIG_arg=0;
   
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPolygonShape_getType(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getType",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getType",1,"boost::shared_ptr< love_box2d::PolygonShape > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+    SWIG_fail_ptr("SmartPolygonShape_getType",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+  }
+  
+  result = (int)(*arg1)->getType();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -4219,19 +5668,19 @@ fail:
 }
 
 
-static int _wrap_SmartPolygonShape_getSensor(lua_State* L) {
+static int _wrap_SmartPolygonShape_isSensor(lua_State* L) {
   int SWIG_arg = -1;
   boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_box2d::PolygonShape > *) 0 ;
   bool result;
   
-  SWIG_check_num_args("getSensor",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSensor",1,"boost::shared_ptr< love_box2d::PolygonShape > const *");
+  SWIG_check_num_args("isSensor",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isSensor",1,"boost::shared_ptr< love_box2d::PolygonShape > const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
-    SWIG_fail_ptr("SmartPolygonShape_getSensor",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
+    SWIG_fail_ptr("SmartPolygonShape_isSensor",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t);
   }
   
-  result = (bool)(*arg1)->getSensor();
+  result = (bool)(*arg1)->isSensor();
   SWIG_arg=0;
   lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
   return SWIG_arg;
@@ -4415,11 +5864,13 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_PolygonShape_Sg__meth
 	{"getCategory", love_box2d::_wrap_method_PolygonShape_getCategory},
 	{"getData", love_box2d::_wrap_method_PolygonShape_getData},
 	{"getPoints", love_box2d::_wrap_method_PolygonShape_getPoints},
+	{"getBoundingBox", love_box2d::_wrap_method_PolygonShape_getBoundingBox},
 	{"setCategory", love_box2d::_wrap_method_PolygonShape_setCategory},
 	{"setData", love_box2d::_wrap_method_PolygonShape_setData},
 	{"getMask", love_box2d::_wrap_method_PolygonShape_getMask},
 	{"setMask", love_box2d::_wrap_method_PolygonShape_setMask},
     {"__deref__", _wrap_SmartPolygonShape___deref__}, 
+    {"getType", _wrap_SmartPolygonShape_getType}, 
     {"setFriction", _wrap_SmartPolygonShape_setFriction}, 
     {"setRestitution", _wrap_SmartPolygonShape_setRestitution}, 
     {"setDensity", _wrap_SmartPolygonShape_setDensity}, 
@@ -4427,7 +5878,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_PolygonShape_Sg__meth
     {"getFriction", _wrap_SmartPolygonShape_getFriction}, 
     {"getRestituion", _wrap_SmartPolygonShape_getRestituion}, 
     {"getDensity", _wrap_SmartPolygonShape_getDensity}, 
-    {"getSensor", _wrap_SmartPolygonShape_getSensor}, 
+    {"isSensor", _wrap_SmartPolygonShape_isSensor}, 
     {"getBody", _wrap_SmartPolygonShape_getBody}, 
     {"testPoint", _wrap_SmartPolygonShape_testPoint}, 
     {"setCategoryBits", _wrap_SmartPolygonShape_setCategoryBits}, 
@@ -4706,6 +6157,108 @@ static swig_lua_class *swig_boost_shared_ptr_Sl_love_box2d_Contact_Sg__bases[] =
 static const char *swig_boost_shared_ptr_Sl_love_box2d_Contact_Sg__base_names[] = {0};
 static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_box2d_Contact_Sg_ = { "SmartContact", &SWIGTYPE_p_boost__shared_ptrT_love_box2d__Contact_t,0, swig_delete_SmartContact, swig_boost_shared_ptr_Sl_love_box2d_Contact_Sg__methods, swig_boost_shared_ptr_Sl_love_box2d_Contact_Sg__attributes, swig_boost_shared_ptr_Sl_love_box2d_Contact_Sg__bases, swig_boost_shared_ptr_Sl_love_box2d_Contact_Sg__base_names };
 
+static int _wrap_Joint_getType(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Joint *arg1 = (love_box2d::Joint *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getType",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getType",1,"love_box2d::Joint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Joint,0))){
+    SWIG_fail_ptr("Joint_getType",1,SWIGTYPE_p_love_box2d__Joint);
+  }
+  
+  result = (int)((love_box2d::Joint const *)arg1)->getType();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Joint_getReactionTorque(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Joint *arg1 = (love_box2d::Joint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getReactionTorque",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getReactionTorque",1,"love_box2d::Joint *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Joint,0))){
+    SWIG_fail_ptr("Joint_getReactionTorque",1,SWIGTYPE_p_love_box2d__Joint);
+  }
+  
+  result = (float)(arg1)->getReactionTorque();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Joint_setCollideConnected(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Joint *arg1 = (love_box2d::Joint *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setCollideConnected",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setCollideConnected",1,"love_box2d::Joint *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setCollideConnected",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Joint,0))){
+    SWIG_fail_ptr("Joint_setCollideConnected",1,SWIGTYPE_p_love_box2d__Joint);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (arg1)->setCollideConnected(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Joint_getCollideConnected(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::Joint *arg1 = (love_box2d::Joint *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("getCollideConnected",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getCollideConnected",1,"love_box2d::Joint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__Joint,0))){
+    SWIG_fail_ptr("Joint_getCollideConnected",1,SWIGTYPE_p_love_box2d__Joint);
+  }
+  
+  result = (bool)((love_box2d::Joint const *)arg1)->getCollideConnected();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_delete_Joint(lua_State* L) {
   int SWIG_arg = -1;
   love_box2d::Joint *arg1 = (love_box2d::Joint *) 0 ;
@@ -4736,6 +6289,10 @@ love_box2d::Joint *arg1 = (love_box2d::Joint *) obj;
 delete arg1;
 }
 static swig_lua_method swig_love_box2d_Joint_methods[] = {
+    {"getType", _wrap_Joint_getType}, 
+    {"getReactionTorque", _wrap_Joint_getReactionTorque}, 
+    {"setCollideConnected", _wrap_Joint_setCollideConnected}, 
+    {"getCollideConnected", _wrap_Joint_getCollideConnected}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_box2d_Joint_attributes[] = {
@@ -4795,13 +6352,118 @@ fail:
 }
 
 
+static int _wrap_SmartJoint_getType(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Joint > *arg1 = (boost::shared_ptr< love_box2d::Joint > *) 0 ;
+  int result;
+  
+  SWIG_check_num_args("getType",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getType",1,"boost::shared_ptr< love_box2d::Joint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t,0))){
+    SWIG_fail_ptr("SmartJoint_getType",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t);
+  }
+  
+  result = (int)(*arg1)->getType();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartJoint_getReactionTorque(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Joint > *arg1 = (boost::shared_ptr< love_box2d::Joint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getReactionTorque",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getReactionTorque",1,"boost::shared_ptr< love_box2d::Joint > *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t,0))){
+    SWIG_fail_ptr("SmartJoint_getReactionTorque",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t);
+  }
+  
+  result = (float)(*arg1)->getReactionTorque();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartJoint_setCollideConnected(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Joint > *arg1 = (boost::shared_ptr< love_box2d::Joint > *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setCollideConnected",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setCollideConnected",1,"boost::shared_ptr< love_box2d::Joint > *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setCollideConnected",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t,0))){
+    SWIG_fail_ptr("SmartJoint_setCollideConnected",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (*arg1)->setCollideConnected(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartJoint_getCollideConnected(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::Joint > *arg1 = (boost::shared_ptr< love_box2d::Joint > *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("getCollideConnected",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getCollideConnected",1,"boost::shared_ptr< love_box2d::Joint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t,0))){
+    SWIG_fail_ptr("SmartJoint_getCollideConnected",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t);
+  }
+  
+  result = (bool)(*arg1)->getCollideConnected();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_SmartJoint(void *obj) {
 boost::shared_ptr< love_box2d::Joint > *arg1 = (boost::shared_ptr< love_box2d::Joint > *) obj;
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__methods[] = {
-	{"getAnchors", love_box2d::_wrap_method_Joint_getAnchors},
     {"__deref__", _wrap_SmartJoint___deref__}, 
+    {"getType", _wrap_SmartJoint_getType}, 
+    {"getReactionTorque", _wrap_SmartJoint_getReactionTorque}, 
+    {"setCollideConnected", _wrap_SmartJoint_setCollideConnected}, 
+    {"getCollideConnected", _wrap_SmartJoint_getCollideConnected}, 
     {0,0}
 };
 static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__attributes[] = {
@@ -4810,6 +6472,162 @@ static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__attribut
 static swig_lua_class *swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__bases[] = {0};
 static const char *swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__base_names[] = {0};
 static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_box2d_Joint_Sg_ = { "SmartJoint", &SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t,0, swig_delete_SmartJoint, swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__methods, swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__attributes, swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__bases, swig_boost_shared_ptr_Sl_love_box2d_Joint_Sg__base_names };
+
+static int _wrap_DistanceJoint_setLength(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::DistanceJoint *arg1 = (love_box2d::DistanceJoint *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setLength",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setLength",1,"love_box2d::DistanceJoint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setLength",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__DistanceJoint,0))){
+    SWIG_fail_ptr("DistanceJoint_setLength",1,SWIGTYPE_p_love_box2d__DistanceJoint);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setLength(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DistanceJoint_getLength(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::DistanceJoint *arg1 = (love_box2d::DistanceJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getLength",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getLength",1,"love_box2d::DistanceJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__DistanceJoint,0))){
+    SWIG_fail_ptr("DistanceJoint_getLength",1,SWIGTYPE_p_love_box2d__DistanceJoint);
+  }
+  
+  result = (float)((love_box2d::DistanceJoint const *)arg1)->getLength();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DistanceJoint_setFrequency(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::DistanceJoint *arg1 = (love_box2d::DistanceJoint *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setFrequency",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setFrequency",1,"love_box2d::DistanceJoint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setFrequency",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__DistanceJoint,0))){
+    SWIG_fail_ptr("DistanceJoint_setFrequency",1,SWIGTYPE_p_love_box2d__DistanceJoint);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setFrequency(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DistanceJoint_getFrequency(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::DistanceJoint *arg1 = (love_box2d::DistanceJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getFrequency",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getFrequency",1,"love_box2d::DistanceJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__DistanceJoint,0))){
+    SWIG_fail_ptr("DistanceJoint_getFrequency",1,SWIGTYPE_p_love_box2d__DistanceJoint);
+  }
+  
+  result = (float)((love_box2d::DistanceJoint const *)arg1)->getFrequency();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DistanceJoint_setDamping(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::DistanceJoint *arg1 = (love_box2d::DistanceJoint *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setDamping",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setDamping",1,"love_box2d::DistanceJoint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setDamping",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__DistanceJoint,0))){
+    SWIG_fail_ptr("DistanceJoint_setDamping",1,SWIGTYPE_p_love_box2d__DistanceJoint);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setDamping(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_DistanceJoint_getDamping(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::DistanceJoint *arg1 = (love_box2d::DistanceJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getDamping",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getDamping",1,"love_box2d::DistanceJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__DistanceJoint,0))){
+    SWIG_fail_ptr("DistanceJoint_getDamping",1,SWIGTYPE_p_love_box2d__DistanceJoint);
+  }
+  
+  result = (float)((love_box2d::DistanceJoint const *)arg1)->getDamping();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
 
 static int _wrap_delete_DistanceJoint(lua_State* L) {
   int SWIG_arg = -1;
@@ -4841,6 +6659,12 @@ love_box2d::DistanceJoint *arg1 = (love_box2d::DistanceJoint *) obj;
 delete arg1;
 }
 static swig_lua_method swig_love_box2d_DistanceJoint_methods[] = {
+    {"setLength", _wrap_DistanceJoint_setLength}, 
+    {"getLength", _wrap_DistanceJoint_getLength}, 
+    {"setFrequency", _wrap_DistanceJoint_setFrequency}, 
+    {"getFrequency", _wrap_DistanceJoint_getFrequency}, 
+    {"setDamping", _wrap_DistanceJoint_setDamping}, 
+    {"getDamping", _wrap_DistanceJoint_getDamping}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_box2d_DistanceJoint_attributes[] = {
@@ -4900,12 +6724,176 @@ fail:
 }
 
 
+static int _wrap_SmartDistanceJoint_setLength(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::DistanceJoint > *arg1 = (boost::shared_ptr< love_box2d::DistanceJoint > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setLength",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setLength",1,"boost::shared_ptr< love_box2d::DistanceJoint > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setLength",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,0))){
+    SWIG_fail_ptr("SmartDistanceJoint_setLength",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setLength(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartDistanceJoint_getLength(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::DistanceJoint > *arg1 = (boost::shared_ptr< love_box2d::DistanceJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getLength",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getLength",1,"boost::shared_ptr< love_box2d::DistanceJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,0))){
+    SWIG_fail_ptr("SmartDistanceJoint_getLength",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t);
+  }
+  
+  result = (float)(*arg1)->getLength();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartDistanceJoint_setFrequency(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::DistanceJoint > *arg1 = (boost::shared_ptr< love_box2d::DistanceJoint > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setFrequency",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setFrequency",1,"boost::shared_ptr< love_box2d::DistanceJoint > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setFrequency",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,0))){
+    SWIG_fail_ptr("SmartDistanceJoint_setFrequency",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setFrequency(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartDistanceJoint_getFrequency(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::DistanceJoint > *arg1 = (boost::shared_ptr< love_box2d::DistanceJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getFrequency",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getFrequency",1,"boost::shared_ptr< love_box2d::DistanceJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,0))){
+    SWIG_fail_ptr("SmartDistanceJoint_getFrequency",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t);
+  }
+  
+  result = (float)(*arg1)->getFrequency();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartDistanceJoint_setDamping(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::DistanceJoint > *arg1 = (boost::shared_ptr< love_box2d::DistanceJoint > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setDamping",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setDamping",1,"boost::shared_ptr< love_box2d::DistanceJoint > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setDamping",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,0))){
+    SWIG_fail_ptr("SmartDistanceJoint_setDamping",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setDamping(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartDistanceJoint_getDamping(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::DistanceJoint > *arg1 = (boost::shared_ptr< love_box2d::DistanceJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getDamping",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getDamping",1,"boost::shared_ptr< love_box2d::DistanceJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,0))){
+    SWIG_fail_ptr("SmartDistanceJoint_getDamping",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t);
+  }
+  
+  result = (float)(*arg1)->getDamping();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_SmartDistanceJoint(void *obj) {
 boost::shared_ptr< love_box2d::DistanceJoint > *arg1 = (boost::shared_ptr< love_box2d::DistanceJoint > *) obj;
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_DistanceJoint_Sg__methods[] = {
+	{"getReactionForce", love_box2d::_wrap_method_DistanceJoint_getReactionForce},
+	{"getAnchors", love_box2d::_wrap_method_DistanceJoint_getAnchors},
     {"__deref__", _wrap_SmartDistanceJoint___deref__}, 
+    {"setLength", _wrap_SmartDistanceJoint_setLength}, 
+    {"getLength", _wrap_SmartDistanceJoint_getLength}, 
+    {"setFrequency", _wrap_SmartDistanceJoint_setFrequency}, 
+    {"getFrequency", _wrap_SmartDistanceJoint_getFrequency}, 
+    {"setDamping", _wrap_SmartDistanceJoint_setDamping}, 
+    {"getDamping", _wrap_SmartDistanceJoint_getDamping}, 
     {0,0}
 };
 static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_DistanceJoint_Sg__attributes[] = {
@@ -4935,6 +6923,58 @@ static int _wrap_MouseJoint_setTarget(lua_State* L) {
   (arg1)->setTarget(arg2,arg3);
   SWIG_arg=0;
   
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseJoint_setMaxForce(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::MouseJoint *arg1 = (love_box2d::MouseJoint *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setMaxForce",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMaxForce",1,"love_box2d::MouseJoint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMaxForce",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__MouseJoint,0))){
+    SWIG_fail_ptr("MouseJoint_setMaxForce",1,SWIGTYPE_p_love_box2d__MouseJoint);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setMaxForce(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_MouseJoint_getMaxForce(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::MouseJoint *arg1 = (love_box2d::MouseJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMaxForce",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMaxForce",1,"love_box2d::MouseJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__MouseJoint,0))){
+    SWIG_fail_ptr("MouseJoint_getMaxForce",1,SWIGTYPE_p_love_box2d__MouseJoint);
+  }
+  
+  result = (float)((love_box2d::MouseJoint const *)arg1)->getMaxForce();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -4976,6 +7016,8 @@ delete arg1;
 }
 static swig_lua_method swig_love_box2d_MouseJoint_methods[] = {
     {"setTarget", _wrap_MouseJoint_setTarget}, 
+    {"setMaxForce", _wrap_MouseJoint_setMaxForce}, 
+    {"getMaxForce", _wrap_MouseJoint_getMaxForce}, 
     {0,0}
 };
 static swig_lua_attribute swig_love_box2d_MouseJoint_attributes[] = {
@@ -5065,14 +7107,70 @@ fail:
 }
 
 
+static int _wrap_SmartMouseJoint_setMaxForce(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::MouseJoint > *arg1 = (boost::shared_ptr< love_box2d::MouseJoint > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setMaxForce",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMaxForce",1,"boost::shared_ptr< love_box2d::MouseJoint > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMaxForce",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t,0))){
+    SWIG_fail_ptr("SmartMouseJoint_setMaxForce",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setMaxForce(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartMouseJoint_getMaxForce(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::MouseJoint > *arg1 = (boost::shared_ptr< love_box2d::MouseJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMaxForce",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMaxForce",1,"boost::shared_ptr< love_box2d::MouseJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t,0))){
+    SWIG_fail_ptr("SmartMouseJoint_getMaxForce",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t);
+  }
+  
+  result = (float)(*arg1)->getMaxForce();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_SmartMouseJoint(void *obj) {
 boost::shared_ptr< love_box2d::MouseJoint > *arg1 = (boost::shared_ptr< love_box2d::MouseJoint > *) obj;
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__methods[] = {
+	{"getReactionForce", love_box2d::_wrap_method_MouseJoint_getReactionForce},
+	{"getTarget", love_box2d::_wrap_method_MouseJoint_getTarget},
 	{"getAnchors", love_box2d::_wrap_method_MouseJoint_getAnchors},
     {"__deref__", _wrap_SmartMouseJoint___deref__}, 
     {"setTarget", _wrap_SmartMouseJoint_setTarget}, 
+    {"setMaxForce", _wrap_SmartMouseJoint_setMaxForce}, 
+    {"getMaxForce", _wrap_SmartMouseJoint_getMaxForce}, 
     {0,0}
 };
 static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__attributes[] = {
@@ -5081,6 +7179,1952 @@ static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__att
 static swig_lua_class *swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__bases[] = {0};
 static const char *swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__base_names[] = {0};
 static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg_ = { "SmartMouseJoint", &SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t,0, swig_delete_SmartMouseJoint, swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__methods, swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__attributes, swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__bases, swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__base_names };
+
+static int _wrap_RevoluteJoint_getAngle(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getAngle",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getAngle",1,"love_box2d::RevoluteJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_getAngle",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  result = (float)((love_box2d::RevoluteJoint const *)arg1)->getAngle();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RevoluteJoint_getSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getSpeed",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSpeed",1,"love_box2d::RevoluteJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_getSpeed",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  result = (float)((love_box2d::RevoluteJoint const *)arg1)->getSpeed();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RevoluteJoint_setMotorEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setMotorEnabled",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMotorEnabled",1,"love_box2d::RevoluteJoint *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setMotorEnabled",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_setMotorEnabled",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (arg1)->setMotorEnabled(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RevoluteJoint_isMotorEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isMotorEnabled",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isMotorEnabled",1,"love_box2d::RevoluteJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_isMotorEnabled",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  result = (bool)((love_box2d::RevoluteJoint const *)arg1)->isMotorEnabled();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RevoluteJoint_setMaxMotorTorque(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setMaxMotorTorque",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMaxMotorTorque",1,"love_box2d::RevoluteJoint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMaxMotorTorque",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_setMaxMotorTorque",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setMaxMotorTorque(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RevoluteJoint_getMaxMotorTorque(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMaxMotorTorque",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMaxMotorTorque",1,"love_box2d::RevoluteJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_getMaxMotorTorque",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  result = (float)((love_box2d::RevoluteJoint const *)arg1)->getMaxMotorTorque();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RevoluteJoint_setMotorSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setMotorSpeed",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMotorSpeed",1,"love_box2d::RevoluteJoint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMotorSpeed",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_setMotorSpeed",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setMotorSpeed(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RevoluteJoint_getMotorSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMotorSpeed",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMotorSpeed",1,"love_box2d::RevoluteJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_getMotorSpeed",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  result = (float)((love_box2d::RevoluteJoint const *)arg1)->getMotorSpeed();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RevoluteJoint_getMotorTorque(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMotorTorque",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMotorTorque",1,"love_box2d::RevoluteJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_getMotorTorque",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  result = (float)((love_box2d::RevoluteJoint const *)arg1)->getMotorTorque();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RevoluteJoint_setLimitsEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setLimitsEnabled",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setLimitsEnabled",1,"love_box2d::RevoluteJoint *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setLimitsEnabled",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_setLimitsEnabled",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (arg1)->setLimitsEnabled(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RevoluteJoint_isLimitsEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isLimitsEnabled",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isLimitsEnabled",1,"love_box2d::RevoluteJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_isLimitsEnabled",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  result = (bool)((love_box2d::RevoluteJoint const *)arg1)->isLimitsEnabled();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RevoluteJoint_setUpperLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setUpperLimit",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setUpperLimit",1,"love_box2d::RevoluteJoint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setUpperLimit",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_setUpperLimit",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setUpperLimit(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RevoluteJoint_setLowerLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setLowerLimit",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setLowerLimit",1,"love_box2d::RevoluteJoint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setLowerLimit",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_setLowerLimit",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setLowerLimit(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RevoluteJoint_setLimits(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  
+  SWIG_check_num_args("setLimits",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setLimits",1,"love_box2d::RevoluteJoint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setLimits",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setLimits",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_setLimits",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (arg1)->setLimits(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RevoluteJoint_getLowerLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getLowerLimit",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getLowerLimit",1,"love_box2d::RevoluteJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_getLowerLimit",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  result = (float)((love_box2d::RevoluteJoint const *)arg1)->getLowerLimit();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_RevoluteJoint_getUpperLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getUpperLimit",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getUpperLimit",1,"love_box2d::RevoluteJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,0))){
+    SWIG_fail_ptr("RevoluteJoint_getUpperLimit",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  result = (float)((love_box2d::RevoluteJoint const *)arg1)->getUpperLimit();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_RevoluteJoint(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) 0 ;
+  
+  SWIG_check_num_args("love_box2d::RevoluteJoint::~RevoluteJoint",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("love_box2d::RevoluteJoint::~RevoluteJoint",1,"love_box2d::RevoluteJoint *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__RevoluteJoint,SWIG_POINTER_DISOWN))){
+    SWIG_fail_ptr("delete_RevoluteJoint",1,SWIGTYPE_p_love_box2d__RevoluteJoint);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_RevoluteJoint(void *obj) {
+love_box2d::RevoluteJoint *arg1 = (love_box2d::RevoluteJoint *) obj;
+delete arg1;
+}
+static swig_lua_method swig_love_box2d_RevoluteJoint_methods[] = {
+    {"getAngle", _wrap_RevoluteJoint_getAngle}, 
+    {"getSpeed", _wrap_RevoluteJoint_getSpeed}, 
+    {"setMotorEnabled", _wrap_RevoluteJoint_setMotorEnabled}, 
+    {"isMotorEnabled", _wrap_RevoluteJoint_isMotorEnabled}, 
+    {"setMaxMotorTorque", _wrap_RevoluteJoint_setMaxMotorTorque}, 
+    {"getMaxMotorTorque", _wrap_RevoluteJoint_getMaxMotorTorque}, 
+    {"setMotorSpeed", _wrap_RevoluteJoint_setMotorSpeed}, 
+    {"getMotorSpeed", _wrap_RevoluteJoint_getMotorSpeed}, 
+    {"getMotorTorque", _wrap_RevoluteJoint_getMotorTorque}, 
+    {"setLimitsEnabled", _wrap_RevoluteJoint_setLimitsEnabled}, 
+    {"isLimitsEnabled", _wrap_RevoluteJoint_isLimitsEnabled}, 
+    {"setUpperLimit", _wrap_RevoluteJoint_setUpperLimit}, 
+    {"setLowerLimit", _wrap_RevoluteJoint_setLowerLimit}, 
+    {"setLimits", _wrap_RevoluteJoint_setLimits}, 
+    {"getLowerLimit", _wrap_RevoluteJoint_getLowerLimit}, 
+    {"getUpperLimit", _wrap_RevoluteJoint_getUpperLimit}, 
+    {0,0}
+};
+static swig_lua_attribute swig_love_box2d_RevoluteJoint_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_love_box2d_RevoluteJoint_bases[] = {0};
+static const char *swig_love_box2d_RevoluteJoint_base_names[] = {0};
+static swig_lua_class _wrap_class_love_box2d_RevoluteJoint = { "RevoluteJoint", &SWIGTYPE_p_love_box2d__RevoluteJoint,0, swig_delete_RevoluteJoint, swig_love_box2d_RevoluteJoint_methods, swig_love_box2d_RevoluteJoint_attributes, swig_love_box2d_RevoluteJoint_bases, swig_love_box2d_RevoluteJoint_base_names };
+
+static int _wrap_SmartRevoluteJoint___deref__(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  love_box2d::RevoluteJoint *result = 0 ;
+  
+  SWIG_check_num_args("operator ->",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("operator ->",1,"boost::shared_ptr< love_box2d::RevoluteJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint___deref__",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  result = (love_box2d::RevoluteJoint *)((boost::shared_ptr< love_box2d::RevoluteJoint > const *)arg1)->operator ->();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love_box2d__RevoluteJoint,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_SmartRevoluteJoint(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  
+  SWIG_check_num_args("boost::shared_ptr<(love_box2d::RevoluteJoint)>::~shared_ptr<(love_box2d::RevoluteJoint)>",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("boost::shared_ptr<(love_box2d::RevoluteJoint)>::~shared_ptr<(love_box2d::RevoluteJoint)>",1,"boost::shared_ptr< love_box2d::RevoluteJoint > *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,SWIG_POINTER_DISOWN))){
+    SWIG_fail_ptr("delete_SmartRevoluteJoint",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_getAngle(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getAngle",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getAngle",1,"boost::shared_ptr< love_box2d::RevoluteJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_getAngle",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  result = (float)(*arg1)->getAngle();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_getSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getSpeed",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSpeed",1,"boost::shared_ptr< love_box2d::RevoluteJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_getSpeed",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  result = (float)(*arg1)->getSpeed();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_setMotorEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setMotorEnabled",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMotorEnabled",1,"boost::shared_ptr< love_box2d::RevoluteJoint > *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setMotorEnabled",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_setMotorEnabled",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (*arg1)->setMotorEnabled(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_isMotorEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isMotorEnabled",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isMotorEnabled",1,"boost::shared_ptr< love_box2d::RevoluteJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_isMotorEnabled",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  result = (bool)(*arg1)->isMotorEnabled();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_setMaxMotorTorque(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setMaxMotorTorque",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMaxMotorTorque",1,"boost::shared_ptr< love_box2d::RevoluteJoint > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMaxMotorTorque",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_setMaxMotorTorque",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setMaxMotorTorque(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_getMaxMotorTorque(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMaxMotorTorque",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMaxMotorTorque",1,"boost::shared_ptr< love_box2d::RevoluteJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_getMaxMotorTorque",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  result = (float)(*arg1)->getMaxMotorTorque();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_setMotorSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setMotorSpeed",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMotorSpeed",1,"boost::shared_ptr< love_box2d::RevoluteJoint > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMotorSpeed",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_setMotorSpeed",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setMotorSpeed(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_getMotorSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMotorSpeed",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMotorSpeed",1,"boost::shared_ptr< love_box2d::RevoluteJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_getMotorSpeed",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  result = (float)(*arg1)->getMotorSpeed();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_getMotorTorque(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMotorTorque",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMotorTorque",1,"boost::shared_ptr< love_box2d::RevoluteJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_getMotorTorque",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  result = (float)(*arg1)->getMotorTorque();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_setLimitsEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setLimitsEnabled",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setLimitsEnabled",1,"boost::shared_ptr< love_box2d::RevoluteJoint > *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setLimitsEnabled",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_setLimitsEnabled",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (*arg1)->setLimitsEnabled(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_isLimitsEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isLimitsEnabled",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isLimitsEnabled",1,"boost::shared_ptr< love_box2d::RevoluteJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_isLimitsEnabled",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  result = (bool)(*arg1)->isLimitsEnabled();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_setUpperLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setUpperLimit",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setUpperLimit",1,"boost::shared_ptr< love_box2d::RevoluteJoint > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setUpperLimit",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_setUpperLimit",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setUpperLimit(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_setLowerLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setLowerLimit",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setLowerLimit",1,"boost::shared_ptr< love_box2d::RevoluteJoint > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setLowerLimit",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_setLowerLimit",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setLowerLimit(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_setLimits(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  
+  SWIG_check_num_args("setLimits",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setLimits",1,"boost::shared_ptr< love_box2d::RevoluteJoint > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setLimits",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setLimits",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_setLimits",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (*arg1)->setLimits(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_getLowerLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getLowerLimit",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getLowerLimit",1,"boost::shared_ptr< love_box2d::RevoluteJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_getLowerLimit",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  result = (float)(*arg1)->getLowerLimit();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartRevoluteJoint_getUpperLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getUpperLimit",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getUpperLimit",1,"boost::shared_ptr< love_box2d::RevoluteJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+    SWIG_fail_ptr("SmartRevoluteJoint_getUpperLimit",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+  }
+  
+  result = (float)(*arg1)->getUpperLimit();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_SmartRevoluteJoint(void *obj) {
+boost::shared_ptr< love_box2d::RevoluteJoint > *arg1 = (boost::shared_ptr< love_box2d::RevoluteJoint > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_RevoluteJoint_Sg__methods[] = {
+	{"getLimits", love_box2d::_wrap_method_RevoluteJoint_getLimits},
+	{"getReactionForce", love_box2d::_wrap_method_RevoluteJoint_getReactionForce},
+	{"getAnchors", love_box2d::_wrap_method_RevoluteJoint_getAnchors},
+    {"__deref__", _wrap_SmartRevoluteJoint___deref__}, 
+    {"getAngle", _wrap_SmartRevoluteJoint_getAngle}, 
+    {"getSpeed", _wrap_SmartRevoluteJoint_getSpeed}, 
+    {"setMotorEnabled", _wrap_SmartRevoluteJoint_setMotorEnabled}, 
+    {"isMotorEnabled", _wrap_SmartRevoluteJoint_isMotorEnabled}, 
+    {"setMaxMotorTorque", _wrap_SmartRevoluteJoint_setMaxMotorTorque}, 
+    {"getMaxMotorTorque", _wrap_SmartRevoluteJoint_getMaxMotorTorque}, 
+    {"setMotorSpeed", _wrap_SmartRevoluteJoint_setMotorSpeed}, 
+    {"getMotorSpeed", _wrap_SmartRevoluteJoint_getMotorSpeed}, 
+    {"getMotorTorque", _wrap_SmartRevoluteJoint_getMotorTorque}, 
+    {"setLimitsEnabled", _wrap_SmartRevoluteJoint_setLimitsEnabled}, 
+    {"isLimitsEnabled", _wrap_SmartRevoluteJoint_isLimitsEnabled}, 
+    {"setUpperLimit", _wrap_SmartRevoluteJoint_setUpperLimit}, 
+    {"setLowerLimit", _wrap_SmartRevoluteJoint_setLowerLimit}, 
+    {"setLimits", _wrap_SmartRevoluteJoint_setLimits}, 
+    {"getLowerLimit", _wrap_SmartRevoluteJoint_getLowerLimit}, 
+    {"getUpperLimit", _wrap_SmartRevoluteJoint_getUpperLimit}, 
+    {0,0}
+};
+static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_RevoluteJoint_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_boost_shared_ptr_Sl_love_box2d_RevoluteJoint_Sg__bases[] = {0};
+static const char *swig_boost_shared_ptr_Sl_love_box2d_RevoluteJoint_Sg__base_names[] = {0};
+static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_box2d_RevoluteJoint_Sg_ = { "SmartRevoluteJoint", &SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0, swig_delete_SmartRevoluteJoint, swig_boost_shared_ptr_Sl_love_box2d_RevoluteJoint_Sg__methods, swig_boost_shared_ptr_Sl_love_box2d_RevoluteJoint_Sg__attributes, swig_boost_shared_ptr_Sl_love_box2d_RevoluteJoint_Sg__bases, swig_boost_shared_ptr_Sl_love_box2d_RevoluteJoint_Sg__base_names };
+
+static int _wrap_PrismaticJoint_getTranslation(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getTranslation",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getTranslation",1,"love_box2d::PrismaticJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_getTranslation",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  result = (float)((love_box2d::PrismaticJoint const *)arg1)->getTranslation();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PrismaticJoint_getSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getSpeed",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSpeed",1,"love_box2d::PrismaticJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_getSpeed",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  result = (float)((love_box2d::PrismaticJoint const *)arg1)->getSpeed();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PrismaticJoint_setMotorEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setMotorEnabled",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMotorEnabled",1,"love_box2d::PrismaticJoint *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setMotorEnabled",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_setMotorEnabled",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (arg1)->setMotorEnabled(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PrismaticJoint_isMotorEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isMotorEnabled",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isMotorEnabled",1,"love_box2d::PrismaticJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_isMotorEnabled",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  result = (bool)((love_box2d::PrismaticJoint const *)arg1)->isMotorEnabled();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PrismaticJoint_setMaxMotorForce(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setMaxMotorForce",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMaxMotorForce",1,"love_box2d::PrismaticJoint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMaxMotorForce",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_setMaxMotorForce",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setMaxMotorForce(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PrismaticJoint_getMaxMotorForce(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMaxMotorForce",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMaxMotorForce",1,"love_box2d::PrismaticJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_getMaxMotorForce",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  result = (float)((love_box2d::PrismaticJoint const *)arg1)->getMaxMotorForce();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PrismaticJoint_setMotorSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setMotorSpeed",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMotorSpeed",1,"love_box2d::PrismaticJoint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMotorSpeed",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_setMotorSpeed",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setMotorSpeed(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PrismaticJoint_getMotorSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMotorSpeed",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMotorSpeed",1,"love_box2d::PrismaticJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_getMotorSpeed",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  result = (float)((love_box2d::PrismaticJoint const *)arg1)->getMotorSpeed();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PrismaticJoint_getMotorForce(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMotorForce",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMotorForce",1,"love_box2d::PrismaticJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_getMotorForce",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  result = (float)((love_box2d::PrismaticJoint const *)arg1)->getMotorForce();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PrismaticJoint_setLimitsEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setLimitsEnabled",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setLimitsEnabled",1,"love_box2d::PrismaticJoint *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setLimitsEnabled",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_setLimitsEnabled",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (arg1)->setLimitsEnabled(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PrismaticJoint_isLimitsEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isLimitsEnabled",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isLimitsEnabled",1,"love_box2d::PrismaticJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_isLimitsEnabled",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  result = (bool)((love_box2d::PrismaticJoint const *)arg1)->isLimitsEnabled();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PrismaticJoint_setUpperLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setUpperLimit",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setUpperLimit",1,"love_box2d::PrismaticJoint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setUpperLimit",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_setUpperLimit",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setUpperLimit(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PrismaticJoint_setLowerLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setLowerLimit",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setLowerLimit",1,"love_box2d::PrismaticJoint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setLowerLimit",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_setLowerLimit",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (arg1)->setLowerLimit(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PrismaticJoint_setLimits(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  
+  SWIG_check_num_args("setLimits",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setLimits",1,"love_box2d::PrismaticJoint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setLimits",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setLimits",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_setLimits",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (arg1)->setLimits(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PrismaticJoint_getLowerLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getLowerLimit",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getLowerLimit",1,"love_box2d::PrismaticJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_getLowerLimit",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  result = (float)((love_box2d::PrismaticJoint const *)arg1)->getLowerLimit();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PrismaticJoint_getUpperLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getUpperLimit",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getUpperLimit",1,"love_box2d::PrismaticJoint const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,0))){
+    SWIG_fail_ptr("PrismaticJoint_getUpperLimit",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  result = (float)((love_box2d::PrismaticJoint const *)arg1)->getUpperLimit();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_PrismaticJoint(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) 0 ;
+  
+  SWIG_check_num_args("love_box2d::PrismaticJoint::~PrismaticJoint",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("love_box2d::PrismaticJoint::~PrismaticJoint",1,"love_box2d::PrismaticJoint *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_love_box2d__PrismaticJoint,SWIG_POINTER_DISOWN))){
+    SWIG_fail_ptr("delete_PrismaticJoint",1,SWIGTYPE_p_love_box2d__PrismaticJoint);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_PrismaticJoint(void *obj) {
+love_box2d::PrismaticJoint *arg1 = (love_box2d::PrismaticJoint *) obj;
+delete arg1;
+}
+static swig_lua_method swig_love_box2d_PrismaticJoint_methods[] = {
+    {"getTranslation", _wrap_PrismaticJoint_getTranslation}, 
+    {"getSpeed", _wrap_PrismaticJoint_getSpeed}, 
+    {"setMotorEnabled", _wrap_PrismaticJoint_setMotorEnabled}, 
+    {"isMotorEnabled", _wrap_PrismaticJoint_isMotorEnabled}, 
+    {"setMaxMotorForce", _wrap_PrismaticJoint_setMaxMotorForce}, 
+    {"getMaxMotorForce", _wrap_PrismaticJoint_getMaxMotorForce}, 
+    {"setMotorSpeed", _wrap_PrismaticJoint_setMotorSpeed}, 
+    {"getMotorSpeed", _wrap_PrismaticJoint_getMotorSpeed}, 
+    {"getMotorForce", _wrap_PrismaticJoint_getMotorForce}, 
+    {"setLimitsEnabled", _wrap_PrismaticJoint_setLimitsEnabled}, 
+    {"isLimitsEnabled", _wrap_PrismaticJoint_isLimitsEnabled}, 
+    {"setUpperLimit", _wrap_PrismaticJoint_setUpperLimit}, 
+    {"setLowerLimit", _wrap_PrismaticJoint_setLowerLimit}, 
+    {"setLimits", _wrap_PrismaticJoint_setLimits}, 
+    {"getLowerLimit", _wrap_PrismaticJoint_getLowerLimit}, 
+    {"getUpperLimit", _wrap_PrismaticJoint_getUpperLimit}, 
+    {0,0}
+};
+static swig_lua_attribute swig_love_box2d_PrismaticJoint_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_love_box2d_PrismaticJoint_bases[] = {0};
+static const char *swig_love_box2d_PrismaticJoint_base_names[] = {0};
+static swig_lua_class _wrap_class_love_box2d_PrismaticJoint = { "PrismaticJoint", &SWIGTYPE_p_love_box2d__PrismaticJoint,0, swig_delete_PrismaticJoint, swig_love_box2d_PrismaticJoint_methods, swig_love_box2d_PrismaticJoint_attributes, swig_love_box2d_PrismaticJoint_bases, swig_love_box2d_PrismaticJoint_base_names };
+
+static int _wrap_SmartPrismaticJoint___deref__(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  love_box2d::PrismaticJoint *result = 0 ;
+  
+  SWIG_check_num_args("operator ->",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("operator ->",1,"boost::shared_ptr< love_box2d::PrismaticJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint___deref__",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  result = (love_box2d::PrismaticJoint *)((boost::shared_ptr< love_box2d::PrismaticJoint > const *)arg1)->operator ->();
+  SWIG_arg=0;
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_love_box2d__PrismaticJoint,0); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_delete_SmartPrismaticJoint(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  
+  SWIG_check_num_args("boost::shared_ptr<(love_box2d::PrismaticJoint)>::~shared_ptr<(love_box2d::PrismaticJoint)>",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("boost::shared_ptr<(love_box2d::PrismaticJoint)>::~shared_ptr<(love_box2d::PrismaticJoint)>",1,"boost::shared_ptr< love_box2d::PrismaticJoint > *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,SWIG_POINTER_DISOWN))){
+    SWIG_fail_ptr("delete_SmartPrismaticJoint",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  delete arg1;
+  
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_getTranslation(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getTranslation",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getTranslation",1,"boost::shared_ptr< love_box2d::PrismaticJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_getTranslation",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  result = (float)(*arg1)->getTranslation();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_getSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getSpeed",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getSpeed",1,"boost::shared_ptr< love_box2d::PrismaticJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_getSpeed",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  result = (float)(*arg1)->getSpeed();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_setMotorEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setMotorEnabled",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMotorEnabled",1,"boost::shared_ptr< love_box2d::PrismaticJoint > *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setMotorEnabled",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_setMotorEnabled",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (*arg1)->setMotorEnabled(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_isMotorEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isMotorEnabled",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isMotorEnabled",1,"boost::shared_ptr< love_box2d::PrismaticJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_isMotorEnabled",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  result = (bool)(*arg1)->isMotorEnabled();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_setMaxMotorForce(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setMaxMotorForce",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMaxMotorForce",1,"boost::shared_ptr< love_box2d::PrismaticJoint > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMaxMotorForce",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_setMaxMotorForce",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setMaxMotorForce(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_getMaxMotorForce(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMaxMotorForce",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMaxMotorForce",1,"boost::shared_ptr< love_box2d::PrismaticJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_getMaxMotorForce",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  result = (float)(*arg1)->getMaxMotorForce();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_setMotorSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setMotorSpeed",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setMotorSpeed",1,"boost::shared_ptr< love_box2d::PrismaticJoint > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setMotorSpeed",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_setMotorSpeed",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setMotorSpeed(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_getMotorSpeed(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMotorSpeed",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMotorSpeed",1,"boost::shared_ptr< love_box2d::PrismaticJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_getMotorSpeed",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  result = (float)(*arg1)->getMotorSpeed();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_getMotorForce(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getMotorForce",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getMotorForce",1,"boost::shared_ptr< love_box2d::PrismaticJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_getMotorForce",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  result = (float)(*arg1)->getMotorForce();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_setLimitsEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  bool arg2 ;
+  
+  SWIG_check_num_args("setLimitsEnabled",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setLimitsEnabled",1,"boost::shared_ptr< love_box2d::PrismaticJoint > *");
+  if(!lua_isboolean(L,2)) SWIG_fail_arg("setLimitsEnabled",2,"bool");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_setLimitsEnabled",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  arg2 = (lua_toboolean(L, 2)!=0);
+  (*arg1)->setLimitsEnabled(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_isLimitsEnabled(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("isLimitsEnabled",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("isLimitsEnabled",1,"boost::shared_ptr< love_box2d::PrismaticJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_isLimitsEnabled",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  result = (bool)(*arg1)->isLimitsEnabled();
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_setUpperLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setUpperLimit",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setUpperLimit",1,"boost::shared_ptr< love_box2d::PrismaticJoint > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setUpperLimit",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_setUpperLimit",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setUpperLimit(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_setLowerLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("setLowerLimit",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setLowerLimit",1,"boost::shared_ptr< love_box2d::PrismaticJoint > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setLowerLimit",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_setLowerLimit",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  (*arg1)->setLowerLimit(arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_setLimits(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  
+  SWIG_check_num_args("setLimits",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("setLimits",1,"boost::shared_ptr< love_box2d::PrismaticJoint > *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("setLimits",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("setLimits",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_setLimits",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  (*arg1)->setLimits(arg2,arg3);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_getLowerLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getLowerLimit",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getLowerLimit",1,"boost::shared_ptr< love_box2d::PrismaticJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_getLowerLimit",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  result = (float)(*arg1)->getLowerLimit();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SmartPrismaticJoint_getUpperLimit(lua_State* L) {
+  int SWIG_arg = -1;
+  boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) 0 ;
+  float result;
+  
+  SWIG_check_num_args("getUpperLimit",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("getUpperLimit",1,"boost::shared_ptr< love_box2d::PrismaticJoint > const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+    SWIG_fail_ptr("SmartPrismaticJoint_getUpperLimit",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+  }
+  
+  result = (float)(*arg1)->getUpperLimit();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_SmartPrismaticJoint(void *obj) {
+boost::shared_ptr< love_box2d::PrismaticJoint > *arg1 = (boost::shared_ptr< love_box2d::PrismaticJoint > *) obj;
+delete arg1;
+}
+static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg__methods[] = {
+	{"getLimits", love_box2d::_wrap_method_PrismaticJoint_getLimits},
+	{"getReactionForce", love_box2d::_wrap_method_PrismaticJoint_getReactionForce},
+	{"getAnchors", love_box2d::_wrap_method_PrismaticJoint_getAnchors},
+    {"__deref__", _wrap_SmartPrismaticJoint___deref__}, 
+    {"getTranslation", _wrap_SmartPrismaticJoint_getTranslation}, 
+    {"getSpeed", _wrap_SmartPrismaticJoint_getSpeed}, 
+    {"setMotorEnabled", _wrap_SmartPrismaticJoint_setMotorEnabled}, 
+    {"isMotorEnabled", _wrap_SmartPrismaticJoint_isMotorEnabled}, 
+    {"setMaxMotorForce", _wrap_SmartPrismaticJoint_setMaxMotorForce}, 
+    {"getMaxMotorForce", _wrap_SmartPrismaticJoint_getMaxMotorForce}, 
+    {"setMotorSpeed", _wrap_SmartPrismaticJoint_setMotorSpeed}, 
+    {"getMotorSpeed", _wrap_SmartPrismaticJoint_getMotorSpeed}, 
+    {"getMotorForce", _wrap_SmartPrismaticJoint_getMotorForce}, 
+    {"setLimitsEnabled", _wrap_SmartPrismaticJoint_setLimitsEnabled}, 
+    {"isLimitsEnabled", _wrap_SmartPrismaticJoint_isLimitsEnabled}, 
+    {"setUpperLimit", _wrap_SmartPrismaticJoint_setUpperLimit}, 
+    {"setLowerLimit", _wrap_SmartPrismaticJoint_setLowerLimit}, 
+    {"setLimits", _wrap_SmartPrismaticJoint_setLimits}, 
+    {"getLowerLimit", _wrap_SmartPrismaticJoint_getLowerLimit}, 
+    {"getUpperLimit", _wrap_SmartPrismaticJoint_getUpperLimit}, 
+    {0,0}
+};
+static swig_lua_attribute swig_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg__attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg__bases[] = {0};
+static const char *swig_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg__base_names[] = {0};
+static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg_ = { "SmartPrismaticJoint", &SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0, swig_delete_SmartPrismaticJoint, swig_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg__methods, swig_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg__attributes, swig_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg__bases, swig_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg__base_names };
 
 static int _wrap_newWorld(lua_State* L) {
   int SWIG_arg = -1;
@@ -5163,7 +9207,7 @@ fail:
 }
 
 
-static int _wrap_newCircle__SWIG_0(lua_State* L) {
+static int _wrap_newCircleShape__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love_box2d::pBody arg1 ;
   float arg2 ;
@@ -5172,21 +9216,21 @@ static int _wrap_newCircle__SWIG_0(lua_State* L) {
   love_box2d::pCircleShape result;
   love_box2d::pBody *argp1 ;
   
-  SWIG_check_num_args("love_box2d::newCircle",4,4)
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_box2d::newCircle",1,"love_box2d::pBody");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_box2d::newCircle",2,"float");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_box2d::newCircle",3,"float");
-  if(!lua_isnumber(L,4)) SWIG_fail_arg("love_box2d::newCircle",4,"float");
+  SWIG_check_num_args("love_box2d::newCircleShape",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_box2d::newCircleShape",1,"love_box2d::pBody");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_box2d::newCircleShape",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_box2d::newCircleShape",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("love_box2d::newCircleShape",4,"float");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
-    SWIG_fail_ptr("newCircle",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+    SWIG_fail_ptr("newCircleShape",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
   }
   arg1 = *argp1;
   
   arg2 = (float)lua_tonumber(L, 2);
   arg3 = (float)lua_tonumber(L, 3);
   arg4 = (float)lua_tonumber(L, 4);
-  result = love_box2d::newCircle(arg1,arg2,arg3,arg4);
+  result = love_box2d::newCircleShape(arg1,arg2,arg3,arg4);
   SWIG_arg=0;
   {
     love_box2d::pCircleShape * resultptr = new love_box2d::pCircleShape((love_box2d::pCircleShape &) result);
@@ -5202,24 +9246,24 @@ fail:
 }
 
 
-static int _wrap_newCircle__SWIG_1(lua_State* L) {
+static int _wrap_newCircleShape__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   love_box2d::pBody arg1 ;
   float arg2 ;
   love_box2d::pCircleShape result;
   love_box2d::pBody *argp1 ;
   
-  SWIG_check_num_args("love_box2d::newCircle",2,2)
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_box2d::newCircle",1,"love_box2d::pBody");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_box2d::newCircle",2,"float");
+  SWIG_check_num_args("love_box2d::newCircleShape",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_box2d::newCircleShape",1,"love_box2d::pBody");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_box2d::newCircleShape",2,"float");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
-    SWIG_fail_ptr("newCircle",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+    SWIG_fail_ptr("newCircleShape",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
   }
   arg1 = *argp1;
   
   arg2 = (float)lua_tonumber(L, 2);
-  result = love_box2d::newCircle(arg1,arg2);
+  result = love_box2d::newCircleShape(arg1,arg2);
   SWIG_arg=0;
   {
     love_box2d::pCircleShape * resultptr = new love_box2d::pCircleShape((love_box2d::pCircleShape &) result);
@@ -5235,7 +9279,7 @@ fail:
 }
 
 
-static int _wrap_newCircle(lua_State* L) {
+static int _wrap_newCircleShape(lua_State* L) {
   int argc;
   int argv[5]={
     1,2,3,4,5
@@ -5257,7 +9301,7 @@ static int _wrap_newCircle(lua_State* L) {
         _v = lua_isnumber(L,argv[1]);
       }
       if (_v) {
-        return _wrap_newCircle__SWIG_1(L);
+        return _wrap_newCircleShape__SWIG_1(L);
       }
     }
   }
@@ -5284,14 +9328,14 @@ static int _wrap_newCircle(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_newCircle__SWIG_0(L);
+            return _wrap_newCircleShape__SWIG_0(L);
           }
         }
       }
     }
   }
   
-  lua_pushstring(L,"No matching function for overloaded 'newCircle'");
+  lua_pushstring(L,"No matching function for overloaded 'newCircleShape'");
   lua_error(L);return 0;
 }
 
@@ -5383,6 +9427,102 @@ fail:
 }
 
 
+static int _wrap_newRevoluteJoint(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::pBody arg1 ;
+  love_box2d::pBody arg2 ;
+  float arg3 ;
+  float arg4 ;
+  love_box2d::pRevoluteJoint result;
+  love_box2d::pBody *argp1 ;
+  love_box2d::pBody *argp2 ;
+  
+  SWIG_check_num_args("love_box2d::newRevoluteJoint",4,4)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_box2d::newRevoluteJoint",1,"love_box2d::pBody");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("love_box2d::newRevoluteJoint",2,"love_box2d::pBody");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_box2d::newRevoluteJoint",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("love_box2d::newRevoluteJoint",4,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("newRevoluteJoint",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  arg1 = *argp1;
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("newRevoluteJoint",2,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  arg2 = *argp2;
+  
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  result = love_box2d::newRevoluteJoint(arg1,arg2,arg3,arg4);
+  SWIG_arg=0;
+  {
+    love_box2d::pRevoluteJoint * resultptr = new love_box2d::pRevoluteJoint((love_box2d::pRevoluteJoint &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_newPrismaticJoint(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::pBody arg1 ;
+  love_box2d::pBody arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  love_box2d::pPrismaticJoint result;
+  love_box2d::pBody *argp1 ;
+  love_box2d::pBody *argp2 ;
+  
+  SWIG_check_num_args("love_box2d::newPrismaticJoint",6,6)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_box2d::newPrismaticJoint",1,"love_box2d::pBody");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("love_box2d::newPrismaticJoint",2,"love_box2d::pBody");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_box2d::newPrismaticJoint",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("love_box2d::newPrismaticJoint",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("love_box2d::newPrismaticJoint",5,"float");
+  if(!lua_isnumber(L,6)) SWIG_fail_arg("love_box2d::newPrismaticJoint",6,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("newPrismaticJoint",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  arg1 = *argp1;
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("newPrismaticJoint",2,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  arg2 = *argp2;
+  
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  arg6 = (float)lua_tonumber(L, 6);
+  result = love_box2d::newPrismaticJoint(arg1,arg2,arg3,arg4,arg5,arg6);
+  SWIG_arg=0;
+  {
+    love_box2d::pPrismaticJoint * resultptr = new love_box2d::pPrismaticJoint((love_box2d::pPrismaticJoint &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 #ifdef __cplusplus
 }
 #endif
@@ -5390,10 +9530,12 @@ fail:
 static const struct luaL_reg swig_commands[] = {
     { "newWorld", _wrap_newWorld},
     { "newBody", _wrap_newBody},
-    { "newCircle",_wrap_newCircle},
+    { "newCircleShape",_wrap_newCircleShape},
     { "newDistanceJoint", _wrap_newDistanceJoint},
     { "newMouseJoint", _wrap_newMouseJoint},
-    { "newPolygon",love_box2d::newPolygon},
+    { "newRevoluteJoint", _wrap_newRevoluteJoint},
+    { "newPrismaticJoint", _wrap_newPrismaticJoint},
+    { "newPolygonShape",love_box2d::newPolygonShape},
     {0,0}
 };
 
@@ -5420,6 +9562,8 @@ static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__DistanceJoint_t =
 static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__Joint_t = {"_p_boost__shared_ptrT_love_box2d__Joint_t", "love_box2d::pJoint *|boost::shared_ptr< love_box2d::Joint > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_Joint_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__MouseJoint_t = {"_p_boost__shared_ptrT_love_box2d__MouseJoint_t", "love_box2d::pMouseJoint *|boost::shared_ptr< love_box2d::MouseJoint > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__PolygonShape_t = {"_p_boost__shared_ptrT_love_box2d__PolygonShape_t", "boost::shared_ptr< love_box2d::PolygonShape > *|love_box2d::pPolygonShape *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_PolygonShape_Sg_, 0};
+static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__PrismaticJoint_t = {"_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t", "love_box2d::pPrismaticJoint *|boost::shared_ptr< love_box2d::PrismaticJoint > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg_, 0};
+static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__RevoluteJoint_t = {"_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t", "love_box2d::pRevoluteJoint *|boost::shared_ptr< love_box2d::RevoluteJoint > *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_RevoluteJoint_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__Shape_t = {"_p_boost__shared_ptrT_love_box2d__Shape_t", "boost::shared_ptr< love_box2d::Shape > *|love_box2d::pShape *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_Shape_Sg_, 0};
 static swig_type_info _swigt__p_boost__shared_ptrT_love_box2d__World_t = {"_p_boost__shared_ptrT_love_box2d__World_t", "boost::shared_ptr< love_box2d::World > *|love_box2d::pWorld *", 0, 0, (void*)&_wrap_class_boost_shared_ptr_Sl_love_box2d_World_Sg_, 0};
 static swig_type_info _swigt__p_love_box2d__Body = {"_p_love_box2d__Body", "love_box2d::Body *", 0, 0, (void*)&_wrap_class_love_box2d_Body, 0};
@@ -5429,6 +9573,8 @@ static swig_type_info _swigt__p_love_box2d__DistanceJoint = {"_p_love_box2d__Dis
 static swig_type_info _swigt__p_love_box2d__Joint = {"_p_love_box2d__Joint", "love_box2d::Joint *", 0, 0, (void*)&_wrap_class_love_box2d_Joint, 0};
 static swig_type_info _swigt__p_love_box2d__MouseJoint = {"_p_love_box2d__MouseJoint", "love_box2d::MouseJoint *", 0, 0, (void*)&_wrap_class_love_box2d_MouseJoint, 0};
 static swig_type_info _swigt__p_love_box2d__PolygonShape = {"_p_love_box2d__PolygonShape", "love_box2d::PolygonShape *", 0, 0, (void*)&_wrap_class_love_box2d_PolygonShape, 0};
+static swig_type_info _swigt__p_love_box2d__PrismaticJoint = {"_p_love_box2d__PrismaticJoint", "love_box2d::PrismaticJoint *", 0, 0, (void*)&_wrap_class_love_box2d_PrismaticJoint, 0};
+static swig_type_info _swigt__p_love_box2d__RevoluteJoint = {"_p_love_box2d__RevoluteJoint", "love_box2d::RevoluteJoint *", 0, 0, (void*)&_wrap_class_love_box2d_RevoluteJoint, 0};
 static swig_type_info _swigt__p_love_box2d__Shape = {"_p_love_box2d__Shape", "love_box2d::Shape *", 0, 0, (void*)&_wrap_class_love_box2d_Shape, 0};
 static swig_type_info _swigt__p_love_box2d__World = {"_p_love_box2d__World", "love_box2d::World *", 0, 0, (void*)&_wrap_class_love_box2d_World, 0};
 
@@ -5440,6 +9586,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_boost__shared_ptrT_love_box2d__Joint_t,
   &_swigt__p_boost__shared_ptrT_love_box2d__MouseJoint_t,
   &_swigt__p_boost__shared_ptrT_love_box2d__PolygonShape_t,
+  &_swigt__p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,
+  &_swigt__p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,
   &_swigt__p_boost__shared_ptrT_love_box2d__Shape_t,
   &_swigt__p_boost__shared_ptrT_love_box2d__World_t,
   &_swigt__p_love_box2d__Body,
@@ -5449,6 +9597,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_love_box2d__Joint,
   &_swigt__p_love_box2d__MouseJoint,
   &_swigt__p_love_box2d__PolygonShape,
+  &_swigt__p_love_box2d__PrismaticJoint,
+  &_swigt__p_love_box2d__RevoluteJoint,
   &_swigt__p_love_box2d__Shape,
   &_swigt__p_love_box2d__World,
 };
@@ -5460,6 +9610,8 @@ static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__DistanceJoint_t[]
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__Joint_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__Joint_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__MouseJoint_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__MouseJoint_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__PolygonShape_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__PolygonShape_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__PrismaticJoint_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__PrismaticJoint_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__RevoluteJoint_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__RevoluteJoint_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__Shape_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__Shape_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boost__shared_ptrT_love_box2d__World_t[] = {  {&_swigt__p_boost__shared_ptrT_love_box2d__World_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_box2d__Body[] = {  {&_swigt__p_love_box2d__Body, 0, 0, 0},{0, 0, 0, 0}};
@@ -5469,6 +9621,8 @@ static swig_cast_info _swigc__p_love_box2d__DistanceJoint[] = {  {&_swigt__p_lov
 static swig_cast_info _swigc__p_love_box2d__Joint[] = {  {&_swigt__p_love_box2d__Joint, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_box2d__MouseJoint[] = {  {&_swigt__p_love_box2d__MouseJoint, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_box2d__PolygonShape[] = {  {&_swigt__p_love_box2d__PolygonShape, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love_box2d__PrismaticJoint[] = {  {&_swigt__p_love_box2d__PrismaticJoint, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_love_box2d__RevoluteJoint[] = {  {&_swigt__p_love_box2d__RevoluteJoint, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_box2d__Shape[] = {  {&_swigt__p_love_box2d__CircleShape, _p_love_box2d__CircleShapeTo_p_love_box2d__Shape, 0, 0},  {&_swigt__p_love_box2d__Shape, 0, 0, 0},  {&_swigt__p_love_box2d__PolygonShape, _p_love_box2d__PolygonShapeTo_p_love_box2d__Shape, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_love_box2d__World[] = {  {&_swigt__p_love_box2d__World, 0, 0, 0},{0, 0, 0, 0}};
 
@@ -5480,6 +9634,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_boost__shared_ptrT_love_box2d__Joint_t,
   _swigc__p_boost__shared_ptrT_love_box2d__MouseJoint_t,
   _swigc__p_boost__shared_ptrT_love_box2d__PolygonShape_t,
+  _swigc__p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,
+  _swigc__p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,
   _swigc__p_boost__shared_ptrT_love_box2d__Shape_t,
   _swigc__p_boost__shared_ptrT_love_box2d__World_t,
   _swigc__p_love_box2d__Body,
@@ -5489,6 +9645,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_love_box2d__Joint,
   _swigc__p_love_box2d__MouseJoint,
   _swigc__p_love_box2d__PolygonShape,
+  _swigc__p_love_box2d__PrismaticJoint,
+  _swigc__p_love_box2d__RevoluteJoint,
   _swigc__p_love_box2d__Shape,
   _swigc__p_love_box2d__World,
 };
@@ -5805,116 +9963,6 @@ void SWIG_init_user(lua_State* L)
 
 namespace love_box2d
 {
-	bool mod_is_body(lua_State * L, int idx)            
-    {
-        swig_lua_userdata* usr = 0;
-        swig_cast_info *cast = 0;
-        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
-        if(!usr) return false;
-        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
-        if(cast) return true;
-        return false;
-    }
-        
-	boost::shared_ptr<Body> mod_to_body(lua_State * L, int idx)            
-    {
-        love_box2d::pBody * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
-              luaL_error(L, "Error, argument is not type Body.");
-        }
-        return *arg;
-    }
-        
-	void mod_push_body(lua_State * L, boost::shared_ptr<Body> body)            
-    {
-        love_box2d::pBody * resultptr = new love_box2d::pBody((love_box2d::pBody &) body);
-        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,1);
-    }
-        
-	int _wrap_method_Body_getPosition(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pBody p = mod_to_body(L, 1);
-        lua_remove(L, 1);
-        return p->getPosition(L);
-    }
-        
-	bool mod_is_circleshape(lua_State * L, int idx)            
-    {
-        swig_lua_userdata* usr = 0;
-        swig_cast_info *cast = 0;
-        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
-        if(!usr) return false;
-        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
-        if(cast) return true;
-        return false;
-    }
-        
-	boost::shared_ptr<CircleShape> mod_to_circleshape(lua_State * L, int idx)            
-    {
-        love_box2d::pCircleShape * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
-              luaL_error(L, "Error, argument is not type CircleShape.");
-        }
-        return *arg;
-    }
-        
-	void mod_push_circleshape(lua_State * L, boost::shared_ptr<CircleShape> circleshape)            
-    {
-        love_box2d::pCircleShape * resultptr = new love_box2d::pCircleShape((love_box2d::pCircleShape &) circleshape);
-        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,1);
-    }
-        
-	int _wrap_method_CircleShape_getCategory(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
-        lua_remove(L, 1);
-        return p->getCategory(L);
-    }
-        
-	int _wrap_method_CircleShape_getData(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
-        lua_remove(L, 1);
-        return p->getData(L);
-    }
-        
-	int _wrap_method_CircleShape_setCategory(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
-        lua_remove(L, 1);
-        return p->setCategory(L);
-    }
-        
-	int _wrap_method_CircleShape_setData(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
-        lua_remove(L, 1);
-        return p->setData(L);
-    }
-        
-	int _wrap_method_CircleShape_getMask(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
-        lua_remove(L, 1);
-        return p->getMask(L);
-    }
-        
-	int _wrap_method_CircleShape_setMask(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
-        lua_remove(L, 1);
-        return p->setMask(L);
-    }
-        
 	bool mod_is_polygonshape(lua_State * L, int idx)            
     {
         swig_lua_userdata* usr = 0;
@@ -5964,6 +10012,14 @@ namespace love_box2d
         love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
         lua_remove(L, 1);
         return p->getPoints(L);
+    }
+        
+	int _wrap_method_PolygonShape_getBoundingBox(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
+        lua_remove(L, 1);
+        return p->getBoundingBox(L);
     }
         
 	int _wrap_method_PolygonShape_setCategory(lua_State * L)        
@@ -6025,52 +10081,288 @@ namespace love_box2d
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,1);
     }
         
-	int _wrap_method_Shape_getCategory(lua_State * L)        
+	bool mod_is_body(lua_State * L, int idx)            
+    {
+        swig_lua_userdata* usr = 0;
+        swig_cast_info *cast = 0;
+        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
+        if(!usr) return false;
+        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+        if(cast) return true;
+        return false;
+    }
+        
+	boost::shared_ptr<Body> mod_to_body(lua_State * L, int idx)            
+    {
+        love_box2d::pBody * arg;
+        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+              luaL_error(L, "Error, argument is not type Body.");
+        }
+        return *arg;
+    }
+        
+	void mod_push_body(lua_State * L, boost::shared_ptr<Body> body)            
+    {
+        love_box2d::pBody * resultptr = new love_box2d::pBody((love_box2d::pBody &) body);
+        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,1);
+    }
+        
+	int _wrap_method_Body_getLocalPoint(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pShape p = mod_to_shape(L, 1);
+        love_box2d::pBody p = mod_to_body(L, 1);
+        lua_remove(L, 1);
+        return p->getLocalPoint(L);
+    }
+        
+	int _wrap_method_Body_getLocalCenter(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pBody p = mod_to_body(L, 1);
+        lua_remove(L, 1);
+        return p->getLocalCenter(L);
+    }
+        
+	int _wrap_method_Body_getWorldPoint(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pBody p = mod_to_body(L, 1);
+        lua_remove(L, 1);
+        return p->getWorldPoint(L);
+    }
+        
+	int _wrap_method_Body_getLocalVector(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pBody p = mod_to_body(L, 1);
+        lua_remove(L, 1);
+        return p->getLocalVector(L);
+    }
+        
+	int _wrap_method_Body_getVelocityLocalPoint(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pBody p = mod_to_body(L, 1);
+        lua_remove(L, 1);
+        return p->getVelocityLocalPoint(L);
+    }
+        
+	int _wrap_method_Body_getPosition(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pBody p = mod_to_body(L, 1);
+        lua_remove(L, 1);
+        return p->getPosition(L);
+    }
+        
+	int _wrap_method_Body_getVelocityWorldPoint(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pBody p = mod_to_body(L, 1);
+        lua_remove(L, 1);
+        return p->getVelocityWorldPoint(L);
+    }
+        
+	int _wrap_method_Body_getWorldVector(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pBody p = mod_to_body(L, 1);
+        lua_remove(L, 1);
+        return p->getWorldVector(L);
+    }
+        
+	int _wrap_method_Body_getWorldCenter(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pBody p = mod_to_body(L, 1);
+        lua_remove(L, 1);
+        return p->getWorldCenter(L);
+    }
+        
+	bool mod_is_circleshape(lua_State * L, int idx)            
+    {
+        swig_lua_userdata* usr = 0;
+        swig_cast_info *cast = 0;
+        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
+        if(!usr) return false;
+        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t);
+        if(cast) return true;
+        return false;
+    }
+        
+	boost::shared_ptr<CircleShape> mod_to_circleshape(lua_State * L, int idx)            
+    {
+        love_box2d::pCircleShape * arg;
+        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+              luaL_error(L, "Error, argument is not type CircleShape.");
+        }
+        return *arg;
+    }
+        
+	void mod_push_circleshape(lua_State * L, boost::shared_ptr<CircleShape> circleshape)            
+    {
+        love_box2d::pCircleShape * resultptr = new love_box2d::pCircleShape((love_box2d::pCircleShape &) circleshape);
+        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,1);
+    }
+        
+	int _wrap_method_CircleShape_getCategory(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
         lua_remove(L, 1);
         return p->getCategory(L);
     }
         
-	int _wrap_method_Shape_getData(lua_State * L)        
+	int _wrap_method_CircleShape_getData(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pShape p = mod_to_shape(L, 1);
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
         lua_remove(L, 1);
         return p->getData(L);
     }
         
-	int _wrap_method_Shape_setCategory(lua_State * L)        
+	int _wrap_method_CircleShape_getBoundingBox(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pShape p = mod_to_shape(L, 1);
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
+        lua_remove(L, 1);
+        return p->getBoundingBox(L);
+    }
+        
+	int _wrap_method_CircleShape_setCategory(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
         lua_remove(L, 1);
         return p->setCategory(L);
     }
         
-	int _wrap_method_Shape_setData(lua_State * L)        
+	int _wrap_method_CircleShape_setData(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pShape p = mod_to_shape(L, 1);
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
         lua_remove(L, 1);
         return p->setData(L);
     }
         
-	int _wrap_method_Shape_getMask(lua_State * L)        
+	int _wrap_method_CircleShape_getMask(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pShape p = mod_to_shape(L, 1);
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
         lua_remove(L, 1);
         return p->getMask(L);
     }
         
-	int _wrap_method_Shape_setMask(lua_State * L)        
+	int _wrap_method_CircleShape_setMask(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pShape p = mod_to_shape(L, 1);
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
         lua_remove(L, 1);
         return p->setMask(L);
+    }
+        
+	bool mod_is_prismaticjoint(lua_State * L, int idx)            
+    {
+        swig_lua_userdata* usr = 0;
+        swig_cast_info *cast = 0;
+        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
+        if(!usr) return false;
+        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t);
+        if(cast) return true;
+        return false;
+    }
+        
+	boost::shared_ptr<PrismaticJoint> mod_to_prismaticjoint(lua_State * L, int idx)            
+    {
+        love_box2d::pPrismaticJoint * arg;
+        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+              luaL_error(L, "Error, argument is not type PrismaticJoint.");
+        }
+        return *arg;
+    }
+        
+	void mod_push_prismaticjoint(lua_State * L, boost::shared_ptr<PrismaticJoint> prismaticjoint)            
+    {
+        love_box2d::pPrismaticJoint * resultptr = new love_box2d::pPrismaticJoint((love_box2d::pPrismaticJoint &) prismaticjoint);
+        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,1);
+    }
+        
+	int _wrap_method_PrismaticJoint_getLimits(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pPrismaticJoint p = mod_to_prismaticjoint(L, 1);
+        lua_remove(L, 1);
+        return p->getLimits(L);
+    }
+        
+	int _wrap_method_PrismaticJoint_getReactionForce(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pPrismaticJoint p = mod_to_prismaticjoint(L, 1);
+        lua_remove(L, 1);
+        return p->getReactionForce(L);
+    }
+        
+	int _wrap_method_PrismaticJoint_getAnchors(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pPrismaticJoint p = mod_to_prismaticjoint(L, 1);
+        lua_remove(L, 1);
+        return p->getAnchors(L);
+    }
+        
+	bool mod_is_revolutejoint(lua_State * L, int idx)            
+    {
+        swig_lua_userdata* usr = 0;
+        swig_cast_info *cast = 0;
+        usr=(swig_lua_userdata*)lua_touserdata(L,idx);
+        if(!usr) return false;
+        cast=SWIG_TypeCheckStruct(usr->type,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t);
+        if(cast) return true;
+        return false;
+    }
+        
+	boost::shared_ptr<RevoluteJoint> mod_to_revolutejoint(lua_State * L, int idx)            
+    {
+        love_box2d::pRevoluteJoint * arg;
+        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+              luaL_error(L, "Error, argument is not type RevoluteJoint.");
+        }
+        return *arg;
+    }
+        
+	void mod_push_revolutejoint(lua_State * L, boost::shared_ptr<RevoluteJoint> revolutejoint)            
+    {
+        love_box2d::pRevoluteJoint * resultptr = new love_box2d::pRevoluteJoint((love_box2d::pRevoluteJoint &) revolutejoint);
+        SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,1);
+    }
+        
+	int _wrap_method_RevoluteJoint_getLimits(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pRevoluteJoint p = mod_to_revolutejoint(L, 1);
+        lua_remove(L, 1);
+        return p->getLimits(L);
+    }
+        
+	int _wrap_method_RevoluteJoint_getReactionForce(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pRevoluteJoint p = mod_to_revolutejoint(L, 1);
+        lua_remove(L, 1);
+        return p->getReactionForce(L);
+    }
+        
+	int _wrap_method_RevoluteJoint_getAnchors(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pRevoluteJoint p = mod_to_revolutejoint(L, 1);
+        lua_remove(L, 1);
+        return p->getAnchors(L);
     }
         
 	bool mod_is_mousejoint(lua_State * L, int idx)            
@@ -6098,6 +10390,22 @@ namespace love_box2d
     {
         love_box2d::pMouseJoint * resultptr = new love_box2d::pMouseJoint((love_box2d::pMouseJoint &) mousejoint);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t,1);
+    }
+        
+	int _wrap_method_MouseJoint_getReactionForce(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pMouseJoint p = mod_to_mousejoint(L, 1);
+        lua_remove(L, 1);
+        return p->getReactionForce(L);
+    }
+        
+	int _wrap_method_MouseJoint_getTarget(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pMouseJoint p = mod_to_mousejoint(L, 1);
+        lua_remove(L, 1);
+        return p->getTarget(L);
     }
         
 	int _wrap_method_MouseJoint_getAnchors(lua_State * L)        
@@ -6133,14 +10441,6 @@ namespace love_box2d
     {
         love_box2d::pJoint * resultptr = new love_box2d::pJoint((love_box2d::pJoint &) joint);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t,1);
-    }
-        
-	int _wrap_method_Joint_getAnchors(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pJoint p = mod_to_joint(L, 1);
-        lua_remove(L, 1);
-        return p->getAnchors(L);
     }
         
 	bool mod_is_contact(lua_State * L, int idx)            
@@ -6221,6 +10521,22 @@ namespace love_box2d
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,1);
     }
         
+	int _wrap_method_DistanceJoint_getReactionForce(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pDistanceJoint p = mod_to_distancejoint(L, 1);
+        lua_remove(L, 1);
+        return p->getReactionForce(L);
+    }
+        
+	int _wrap_method_DistanceJoint_getAnchors(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pDistanceJoint p = mod_to_distancejoint(L, 1);
+        lua_remove(L, 1);
+        return p->getAnchors(L);
+    }
+        
 	bool mod_is_world(lua_State * L, int idx)            
     {
         swig_lua_userdata* usr = 0;
@@ -6246,6 +10562,14 @@ namespace love_box2d
     {
         love_box2d::pWorld * resultptr = new love_box2d::pWorld((love_box2d::pWorld &) world);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t,1);
+    }
+        
+	int _wrap_method_World_getGravity(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pWorld p = mod_to_world(L, 1);
+        lua_remove(L, 1);
+        return p->getGravity(L);
     }
         
 	int _wrap_method_World_getCallback(lua_State * L)        

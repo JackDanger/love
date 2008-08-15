@@ -5,6 +5,9 @@ namespace love_box2d
 	class Shape
 	{
 	public:
+	
+		int getType() const;
+		
 		void setFriction(float friction);
 		void setRestitution(float restitution);
 		void setDensity(float density);
@@ -13,7 +16,7 @@ namespace love_box2d
 		float getFriction() const;
 		float getRestituion() const;
 		float getDensity() const;
-		bool getSensor() const;
+		bool isSensor() const;
 		
 		boost::shared_ptr<Body> getBody() const;
 		bool testPoint(float x, float y) const;

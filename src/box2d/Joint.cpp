@@ -25,6 +25,26 @@ namespace love_box2d
 		joint = 0;
 	}
 
+	int Joint::getType() const
+	{
+		switch(joint->GetType())
+		{
+		case e_revoluteJoint: 
+			return love::JOINT_DISTANCE;
+		case e_prismaticJoint: 
+			return love::JOINT_PRISMATIC;
+		case e_distanceJoint: 
+			return love::JOINT_DISTANCE;
+		case e_pulleyJoint: 
+			return love::JOINT_PULLEY;
+		case e_mouseJoint: 
+			return love::JOINT_MOUSE;
+		case e_gearJoint: 
+			return love::JOINT_GEAR;
+		}
+		return -1;
+	}
+
 	int Joint::getAnchors(lua_State * L)
 	{
 		lua_pushnumber(L, joint->GetAnchor1().x);
@@ -32,6 +52,29 @@ namespace love_box2d
 		lua_pushnumber(L, joint->GetAnchor2().x);
 		lua_pushnumber(L, joint->GetAnchor2().y);
 		return 4;
+	}
+
+	int Joint::getReactionForce(lua_State * L)
+	{
+		b2Vec2 v = joint->GetReactionForce();
+		lua_pushnumber(L, v.x);
+		lua_pushnumber(L, v.y);
+		return 2;
+	}
+
+	float Joint::getReactionTorque()
+	{
+		return joint->GetReactionTorque();
+	}
+
+	void Joint::setCollideConnected(bool collide)
+	{
+		joint->m_collideConnected = collide;
+	}
+
+	bool Joint::getCollideConnected() const
+	{
+		return joint->m_collideConnected;
 	}
 
 	b2Joint * Joint::createJoint(b2JointDef * def)

@@ -6,6 +6,14 @@ local t =
 		{
 			-- actualMethodName = "exposedMethodName"
 			getPosition = "getPosition",
+			getWorldCenter = "getWorldCenter",
+			getLocalCenter = "getLocalCenter",
+			getWorldPoint = "getWorldPoint",
+			getWorldVector = "getWorldVector",
+			getLocalPoint = "getLocalPoint",
+			getLocalVector = "getLocalVector",
+			getVelocityWorldPoint = "getVelocityWorldPoint",
+			getVelocityLocalPoint = "getVelocityLocalPoint",
 		},
 		Contact = 
 		{
@@ -17,17 +25,9 @@ local t =
 		{
 			setCallback = "setCallback",
 			getCallback = "getCallback",
+			getGravity = "getGravity",
 		},
 		
-		Shape = 
-		{
-			setData = "setData", 
-			getData = "getData",
-			setCategory = "setCategory",
-			getCategory = "getCategory",
-			setMask = "setMask",
-			getMask = "getMask",
-		},
 		CircleShape = 
 		{
 			setData = "setData", 
@@ -36,6 +36,7 @@ local t =
 			getCategory = "getCategory",
 			setMask = "setMask",
 			getMask = "getMask",
+			getBoundingBox = "getBoundingBox",
 		},
 		PolygonShape = 
 		{
@@ -46,16 +47,34 @@ local t =
 			getCategory = "getCategory",
 			setMask = "setMask",
 			getMask = "getMask",
+			getBoundingBox = "getBoundingBox",
 		},
 		
-		Joint = 
+
+		RevoluteJoint = 
 		{
 			getAnchors = "getAnchors",
+			getReactionForce = "getReactionForce",
+			getLimits = "getLimits",
 		},
 		MouseJoint = 
 		{
 			getAnchors = "getAnchors",
+			getReactionForce = "getReactionForce",
+			getTarget = "getTarget",
 		},
+		DistanceJoint = 
+		{
+			getAnchors = "getAnchors",
+			getReactionForce = "getReactionForce",
+		},
+		PrismaticJoint = 
+		{
+			getAnchors = "getAnchors",
+			getReactionForce = "getReactionForce",
+			getLimits = "getLimits",
+		},
+		
 	}
 }
 return t

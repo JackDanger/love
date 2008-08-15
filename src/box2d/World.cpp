@@ -5,6 +5,14 @@
 
 namespace love_box2d
 {
+
+	World::World(b2AABB aabb)
+	{
+		world = new b2World(aabb, b2Vec2(0,0), true);
+		world->SetContactListener(this);
+		add_contacts.reserve(10);
+	}
+
 	World::World(b2AABB aabb, b2Vec2 gravity, bool sleep)
 	{
 		world = new b2World(aabb, gravity, sleep);
@@ -83,6 +91,29 @@ namespace love_box2d
 			lua_pushnil(L);
 
 		return 1;
+	}
+
+	void World::setGravity(float x, float y)
+	{
+		world->SetGravity(b2Vec2(x, y));
+	}
+
+	int World::getGravity(lua_State * L)
+	{
+		b2Vec2 v = world->m_gravity;
+		lua_pushnumber(L, v.x);
+		lua_pushnumber(L, v.y);
+		return 2;
+	}
+
+	int World::getBodyCount()
+	{
+		return world->GetBodyCount();
+	}
+
+	int World::getJointCount()
+	{
+		return world->GetJointCount();
 	}
 
 } // love_box2d

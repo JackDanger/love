@@ -44,12 +44,12 @@ namespace love_box2d
 		return body;
 	}
 
-	pCircleShape newCircle(pBody body, float radius)
+	pCircleShape newCircleShape(pBody body, float radius)
 	{
-		return newCircle(body, 0, 0, radius);
+		return newCircleShape(body, 0, 0, radius);
 	}
 
-	pCircleShape newCircle(pBody body, float x, float y, float radius)
+	pCircleShape newCircleShape(pBody body, float x, float y, float radius)
 	{
 		b2CircleDef def;
 		def.density = 1.0f;
@@ -61,7 +61,7 @@ namespace love_box2d
 		return shape;
 	}
 
-	int newPolygon(lua_State * L)
+	int newPolygonShape(lua_State * L)
 	{
 		int argc = lua_gettop(L);
 		love::luax_assert_argc(L, 7);
@@ -93,8 +93,6 @@ namespace love_box2d
 		b2DistanceJointDef def;
 		def.localAnchor1.Set(x1, y1);
 		def.localAnchor2.Set(x2, y2);
-		b2Vec2 dist = body2->body->GetPosition() - body1->body->GetPosition();
-		def.length = dist.Length();
 		pDistanceJoint j(new DistanceJoint(body1, body2, &def));
 		return j;
 	}
@@ -104,6 +102,26 @@ namespace love_box2d
 		b2MouseJointDef def;
 		def.target.Set(x, y);
 		pMouseJoint j(new MouseJoint(body, &def));
+		return j;
+	}
+
+	pRevoluteJoint newRevoluteJoint(pBody body1, pBody body2, float x, float y)
+	{
+		b2RevoluteJointDef def;
+		def.localAnchor1.Set(x, y);
+		pRevoluteJoint j(new RevoluteJoint(body1, body2, &def));
+		return j;
+	}
+
+	pPrismaticJoint newPrismaticJoint(pBody body1, pBody body2, float x, float y, float ax, float ay)
+	{
+		b2PrismaticJointDef def;
+		
+		// Using these as temporal storage.
+		def.localAnchor2.Set(x, y);
+		def.localAxis1.Set(ax, ay);
+
+		pPrismaticJoint j(new PrismaticJoint(body1, body2, &def));
 		return j;
 	}
 

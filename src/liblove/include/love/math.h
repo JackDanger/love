@@ -39,6 +39,8 @@
 #define M_SQRT1_2  0.707106781186547524401
 #define M_TORAD	   (float)(M_PI/180.0)
 #define M_TODEG    (float)(180.0/M_PI)
+#define TORAD(x)	(float)(x*M_TORAD)
+#define TODEG(x)	(float)(x*M_TODEG)
 
 // LOVE
 #include "Vector.h"

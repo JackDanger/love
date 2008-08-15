@@ -42,6 +42,7 @@ namespace love_box2d
 		// Contacts buffers.
 		std::vector<pContact> add_contacts;
 	public:
+		World(b2AABB aabb);
 		World(b2AABB aabb, b2Vec2 gravity, bool sleep);
 		~World();
 		void update(float dt);
@@ -51,6 +52,12 @@ namespace love_box2d
 
 		int setCallback(lua_State * L);
 		int getCallback(lua_State * L);
+
+		void setGravity(float x, float y);
+		int getGravity(lua_State * L);
+
+		int getBodyCount();
+		int getJointCount();
 
 	};
 

@@ -21,7 +21,11 @@ namespace love_box2d
 	public:
 		MouseJoint(boost::shared_ptr<Body> body1, b2MouseJointDef * def);
 		virtual ~MouseJoint();
+
 		void setTarget(float x, float y);
+		int getTarget(lua_State * L);
+		void setMaxForce(float force);
+		float getMaxForce() const;
 	};
 
 	typedef boost::shared_ptr<MouseJoint> pMouseJoint;

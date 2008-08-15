@@ -6,6 +6,9 @@ namespace love_box2d
 	{
 	public:
 		void update(float dt);
+		void setGravity(float x, float y);
+		int getBodyCount();
+		int getJointCount();
 	};
 	
 	typedef boost::shared_ptr<World> pWorld;

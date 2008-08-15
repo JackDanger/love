@@ -20,6 +20,18 @@ namespace love_box2d
 		data = 0;
 	}
 
+	int Shape::getType() const
+	{
+		switch(shape->GetType())
+		{
+		case e_circleShape:
+			return love::SHAPE_CIRCLE;
+		case e_polygonShape:
+			return love::SHAPE_POLYGON;
+		}
+		return -1;
+	}
+
 	void Shape::setFriction(float friction)
 	{
 		shape->m_friction = friction;
@@ -55,7 +67,7 @@ namespace love_box2d
 		return shape->m_density;
 	}
 
-	bool Shape::getSensor() const
+	bool Shape::isSensor() const
 	{
 		return shape->IsSensor();
 	}
@@ -75,6 +87,7 @@ namespace love_box2d
 		b2FilterData f = shape->GetFilterData();
 		f.categoryBits = (uint16)bits;
 		shape->SetFilterData(f);
+		shape->GetBody()->GetWorld()->Refilter(shape);
 	}
 
 	int Shape::getCategoryBits() const
@@ -87,6 +100,7 @@ namespace love_box2d
 		b2FilterData f = shape->GetFilterData();
 		f.maskBits = (uint16)bits;
 		shape->SetFilterData(f);
+		shape->GetBody()->GetWorld()->Refilter(shape);
 	}
 
 	int Shape::getMaskBits() const
@@ -132,6 +146,31 @@ namespace love_box2d
 			lua_pushnil(L);
 
 		return 1;
+	}
+
+	int Shape::getBoundingBox(lua_State * L)
+	{
+		love::luax_assert_argc(L, 0, 0);
+		b2AABB bb;
+		shape->ComputeAABB(&bb, shape->GetBody()->GetXForm());
+
+		// Top left.
+		lua_pushnumber(L, bb.lowerBound.x);
+		lua_pushnumber(L, bb.upperBound.y);
+
+		// Bottom left.
+		lua_pushnumber(L, bb.lowerBound.x);
+		lua_pushnumber(L, bb.lowerBound.y);
+
+		// Bottom right.
+		lua_pushnumber(L, bb.upperBound.x);
+		lua_pushnumber(L, bb.lowerBound.y);
+
+		// Top right.
+		lua_pushnumber(L, bb.upperBound.x);
+		lua_pushnumber(L, bb.upperBound.y);
+
+		return 8;
 	}
 
 	uint16 Shape::getBits(lua_State * L)

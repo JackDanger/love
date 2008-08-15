@@ -35,7 +35,16 @@ namespace love_box2d
 		Joint(boost::shared_ptr<Body> body1);
 		Joint(boost::shared_ptr<Body> body1, boost::shared_ptr<Body> body2);
 		virtual ~Joint();
+		int getType() const;
+
 		int getAnchors(lua_State * L);
+		int getReactionForce(lua_State * L);
+
+		float getReactionTorque();
+
+		void setCollideConnected(bool collide);
+		bool getCollideConnected() const;
+
 	protected:
 		b2Joint * createJoint(b2JointDef * def);
 		void destroyJoint(b2Joint * joint);

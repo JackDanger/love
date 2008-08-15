@@ -321,6 +321,7 @@ namespace love_physfs
 		return true;
 	}
 
+
 	pFile newFile(const char * file, int mode)
 	{
 		if(mode == love::FILE_READ && !exists(file))

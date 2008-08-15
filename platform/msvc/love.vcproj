@@ -483,6 +483,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\box2d\PrismaticJoint.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\box2d\RevoluteJoint.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\box2d\Shape.cpp"
 					>
 				</File>
@@ -615,6 +623,62 @@
 					</File>
 					<File
 						RelativePath="..\..\src\box2d\Source\Dynamics\b2WorldCallbacks.cpp"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="swig"
+					>
+					<File
+						RelativePath="..\..\src\box2d\Body.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\box2d\CircleShape.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\box2d\Contact.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\box2d\DistanceJoint.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\box2d\fusion.lua"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\box2d\Joint.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\box2d\mod_box2d.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\box2d\MouseJoint.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\box2d\PolygonShape.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\box2d\PrismaticJoint.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\box2d\RevoluteJoint.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\box2d\Shape.i"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\box2d\World.i"
 						>
 					</File>
 				</Filter>
@@ -826,6 +890,14 @@
 				</File>
 				<File
 					RelativePath="..\..\src\box2d\PolygonShape.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\box2d\PrismaticJoint.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\box2d\RevoluteJoint.h"
 					>
 				</File>
 				<File

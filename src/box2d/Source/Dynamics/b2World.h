@@ -160,7 +160,7 @@ public:
 	/// Change the global gravity vector.
 	void SetGravity(const b2Vec2& gravity);
 
-private:
+public:
 
 	friend class b2Body;
 	friend class b2ContactManager;

@@ -24,6 +24,8 @@
 
 #include "DistanceJoint.h"
 #include "MouseJoint.h"
+#include "RevoluteJoint.h"
+#include "PrismaticJoint.h"
 
 // Creating a separate namespace to avoid conflicts
 // with standard library functions.
@@ -36,11 +38,13 @@ namespace love_box2d
 
 	pWorld newWorld(float lx, float ly, float ux, float uy, float gx, float gy, bool sleep);
 	pBody newBody(pWorld world, float x, float y, float mass);
-	pCircleShape newCircle(pBody body, float radius);
-	pCircleShape newCircle(pBody body, float x, float y, float radius);
-	int newPolygon(lua_State * L);
+	pCircleShape newCircleShape(pBody body, float radius);
+	pCircleShape newCircleShape(pBody body, float x, float y, float radius);
+	int newPolygonShape(lua_State * L);
 	pDistanceJoint newDistanceJoint(pBody body1, pBody body2, float x1, float y1, float x2, float y2);
 	pMouseJoint newMouseJoint(pBody body, float x, float y);
+	pRevoluteJoint newRevoluteJoint(pBody body1, pBody body2, float x, float y);
+	pPrismaticJoint newPrismaticJoint(pBody body1, pBody body2, float x, float y, float ax, float ay);
 
 } // love_box2d
 

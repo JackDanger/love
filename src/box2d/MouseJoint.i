@@ -6,6 +6,8 @@ namespace love_box2d
 	{
 	public:
 		void setTarget(float x, float y);
+		void setMaxForce(float force);
+		float getMaxForce() const;
 	};
 	
 	typedef boost::shared_ptr<MouseJoint> pMouseJoint;

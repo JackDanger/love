@@ -164,9 +164,11 @@ protected:
 	float32 m_inv_dt;
 
 	bool m_islandFlag;
-	bool m_collideConnected;
+	
 
 	void* m_userData;
+public:
+	bool m_collideConnected;
 };
 
 inline void b2Jacobian::SetZero()

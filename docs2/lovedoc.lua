@@ -220,16 +220,18 @@ function lovedoc.sortsym()
 end
 
 function lovedoc.symbolize(text)
-	for i,v in ipairs(lovedoc.url.data) do
-
-		text = string.gsub(" "..text, "([%s])("..string.gsub(v, "%.", "%%.")..")([%s%p])",
-			function (s, p, e)
-				return s .. '<a href="'..lovedoc.url.data[v]..'">' .. p .. "</a>" .. e
-			end)
-		text = string.sub(text, 1)
-		text = string.gsub(text, "%[", "<");
-		text = string.gsub(text, "%]", ">");
-	end
+  
+        text = string.gsub(text, "%[%[(.-)%]%]",
+                                function (p)
+                                        local r = lovedoc.url.data[p]
+                                        print("Found", p, r)
+                                        if not r then return p end
+                                        
+                                        return '<a href="'..r..'">'..p..'</a>'
+                                end)
+                                
+        text = string.gsub(text, "%[", "<");
+        text = string.gsub(text, "%]", ">");
 
 	return text
 end

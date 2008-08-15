@@ -472,6 +472,15 @@ namespace love_system
 			"image_pad = 2,"
 			"image_pad_and_optimize = 3,"
 			
+			"shape_circle = 1,"
+			"shape_polygon = 2,"
+			"joint_distance = 3,"
+			"joint_revolute = 4,"
+			"joint_prismatic = 5,"
+			"joint_mouse = 6,"	
+			"joint_pulley = 7,"	
+			"joint_gear = 8,"		
+
 			"}"
 			);
 	}

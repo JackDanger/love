@@ -27,18 +27,22 @@ namespace boost {
 %include Joint.i
 %include DistanceJoint.i
 %include MouseJoint.i
+%include RevoluteJoint.i
+%include PrismaticJoint.i
 
 namespace love_box2d
 {
 	pWorld newWorld(float lx, float ly, float ux, float uy, float gx, float gy, bool sleep);
 	pBody newBody(pWorld world, float x, float y, float mass);
-	pCircleShape newCircle(pBody body, float x, float y, float radius);
-	pCircleShape newCircle(pBody body, float radius);
+	pCircleShape newCircleShape(pBody body, float x, float y, float radius);
+	pCircleShape newCircleShape(pBody body, float radius);
 	pDistanceJoint newDistanceJoint(pBody body1, pBody body2, float x1, float y1, float x2, float y2);
 	pMouseJoint newMouseJoint(pBody body, float x, float y);
+	pRevoluteJoint newRevoluteJoint(pBody body1, pBody body2, float x, float y);
+	pPrismaticJoint newPrismaticJoint(pBody body1, pBody body2, float x, float y, float ax, float ay);
 }
 
-%native(newPolygon) int love_box2d::newPolygon(lua_State * L);
+%native(newPolygonShape) int love_box2d::newPolygonShape(lua_State * L);
 
 %luacode {
 love.physics = mod_box2d

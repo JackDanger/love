@@ -6,7 +6,7 @@
 namespace love_box2d
 {
 	CircleShape::CircleShape(boost::shared_ptr<Body> body, b2CircleDef * def)
-		: Shape(body)
+		: Shape(body), radius(def->radius)
 	{
 		shape = body->body->CreateShape(def);
 		shape->SetUserData((void*)data);
@@ -16,6 +16,11 @@ namespace love_box2d
 	{
 		body->body->DestroyShape(shape);
 		shape = 0;
+	}
+
+	float CircleShape::getRadius() const
+	{
+		return radius;
 	}
 
 } // love_box2d

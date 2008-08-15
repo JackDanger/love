@@ -4,9 +4,6 @@
 #include "Body.h"
 #include "World.h"
 
-// STD
-#include <bitset>
-
 namespace love_box2d
 {
 	MouseJoint::MouseJoint(boost::shared_ptr<Body> body1, b2MouseJointDef * def)
@@ -28,5 +25,23 @@ namespace love_box2d
 	{
 		joint->SetTarget(b2Vec2(x, y));
 	}
+
+	int MouseJoint::getTarget(lua_State * L)
+	{
+		lua_pushnumber(L, joint->m_target.x);
+		lua_pushnumber(L, joint->m_target.y);
+		return 2;
+	}
+
+	void MouseJoint::setMaxForce(float force)
+	{
+		joint->m_maxForce = force;
+	}
+
+	float MouseJoint::getMaxForce() const
+	{
+		return joint->m_maxForce;
+	}
+
 
 } // love_box2d

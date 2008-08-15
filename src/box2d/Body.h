@@ -43,15 +43,50 @@ namespace love_box2d
 		float getAngle();
 
 		int getPosition(lua_State * L);
+		int getWorldCenter(lua_State * L);
+		int getLocalCenter(lua_State * L);
+
+		float getSpin() const;
+		float getMass() const;
+		float getInertia() const;
+		float getAngularDamping() const;
+		float getDamping() const;
 
 		void applyImpulse(float jx, float jy);
 		void applyImpulse(float jx, float jy, float rx, float ry);
+		void applyTorque(float t);
 		void applyForce(float fx, float fy, float rx, float ry);
 	
 		void setX(float x);
 		void setY(float y);
+		void setVelocity(float x, float y);
+		void setAngle(float d);
+		void setSpin(float r);
 		void setPosition(float x, float y);
 		void setMassFromShapes();
+		void setMass(float x, float y, float m, float i);
+		void setAngularDamping(float d);
+		void setDamping(float d);
+
+		int getWorldPoint(lua_State * L);
+		int getWorldVector(lua_State * L);
+		int getLocalPoint(lua_State * L);
+		int getLocalVector(lua_State * L);
+		int getVelocityWorldPoint(lua_State * L);
+		int getVelocityLocalPoint(lua_State * L);
+
+		bool isBullet() const;
+		void setBullet(bool bullet);
+		bool isStatic() const;
+		bool isDynamic() const;
+		bool isFrozen() const;
+		bool isSleeping() const;
+
+		void setAllowSleep(bool allow);
+		void setSleep(bool sleep);
+	private:
+		b2Vec2 getVector(lua_State * L);
+		int pushVector(lua_State * L, const b2Vec2 & v);
 	};
 
 	typedef boost::shared_ptr<Body> pBody;

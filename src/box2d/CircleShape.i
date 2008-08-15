@@ -5,6 +5,7 @@ namespace love_box2d
 	class CircleShape : public Shape
 	{
 	public:
+		float getRadius() const;
 	};
 	
 	typedef boost::shared_ptr<CircleShape> pCircleShape;

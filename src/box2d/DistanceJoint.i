@@ -5,6 +5,12 @@ namespace love_box2d
 	class DistanceJoint
 	{
 	public:
+		void setLength(float length);
+		float getLength() const;
+		void setFrequency(float hz);
+		float getFrequency() const;
+		void setDamping(float d);
+		float getDamping() const;
 	};
 	
 	typedef boost::shared_ptr<DistanceJoint> pDistanceJoint;

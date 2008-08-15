@@ -34,8 +34,7 @@ namespace love
 		* @param source The source from which to load the file. (Archive or directory)
 		* @param filename The relative filepath of the file to load from the source.
 		**/
-		MemoryFile(char *data, const unsigned long size, const std::string &filename);
-
+		MemoryFile(char *data, const unsigned long size, const std::string &filename, bool compiled = true);
 		~MemoryFile();
 
 		bool load();

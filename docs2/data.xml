@@ -19,20 +19,23 @@
     </section>
 
       <section name="TODO">
-      These should require no further work:
-      [ul]
-      [li] love.mouse [/li]
-      [li] love.keyboard [/li]
-      [li] love.timer [/li]
-      [/ul]
-      These need examples, but are otherwise done:
-      [ul]
-      [li] love.system [/li]
-      [li] love.audio [/li]
-	  [li] love.filesystem [/li]
-	  [li] love.graphics [/li]
-      [/ul]
-    </section>
+        These should require no further work:
+        [ul]
+        [li] [[love.mouse]] [/li]
+        [li] [[love.keyboard]] [/li]
+        [li] [[love.timer]] [/li]
+        [/ul]
+        These need examples, but are otherwise done:
+        [ul]
+        [li] [[love.system]] [/li]
+        [li] [[love.audio]] [/li]
+        [li] [[love.filesystem]] [/li]
+        [li] [[love.graphics]] [/li]
+        [/ul]
+      </section>
+      <section name="Symbolizer">
+        [[Animations]], [[Image]], [[Font]], and all that. That also goes for [[Constants]].
+      </section>
   </page>
 
   <page name="License">
@@ -96,8 +99,10 @@
   </page>
 
   <page name="Manual Improvements">
-    <section name="Help us help you!">
+    <section name="Help us help you">
       
+    </section>
+    <section name="Submit an Example">
     </section>
   </page>
 

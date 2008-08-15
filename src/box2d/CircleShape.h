@@ -17,9 +17,12 @@ namespace love_box2d
 {
 	class CircleShape : public Shape
 	{
+	private:
+		float radius;
 	public:
 		CircleShape(boost::shared_ptr<Body> body, b2CircleDef * def);
 		virtual ~CircleShape();
+		float getRadius() const;
 	};
 
 	typedef boost::shared_ptr<CircleShape> pCircleShape;

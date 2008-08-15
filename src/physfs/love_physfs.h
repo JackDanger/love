@@ -10,6 +10,7 @@
 // LOVE
 #include <love/mod.h>
 #include <love/File.h>
+#include <love/MemoryFile.h>
 
 // Module
 #include "File.h"

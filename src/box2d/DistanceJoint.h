@@ -23,6 +23,11 @@ namespace love_box2d
 		virtual ~DistanceJoint();
 		void setLength(float length);
 		float getLength() const;
+		void setFrequency(float hz);
+		float getFrequency() const;
+		void setDamping(float d);
+		float getDamping() const;
+
 	};
 
 	typedef boost::shared_ptr<DistanceJoint> pDistanceJoint;

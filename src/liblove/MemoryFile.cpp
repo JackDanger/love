@@ -4,24 +4,24 @@ using std::string;
 namespace love
 {
 
-	MemoryFile::MemoryFile(char *d, const unsigned long s, const string &f)
-		: File(f, d, s, true)
+	MemoryFile::MemoryFile(char *d, const unsigned long s, const string &f, bool compiled)
+		: File(f, d, s, compiled)
 	{
 	}
 
 	MemoryFile::~MemoryFile()
 	{
+		unload();
 	}
 
 	bool MemoryFile::load()
 	{
-		// Always loaded ...
 		return true;
 	}
 
 	void MemoryFile::unload()
 	{
-		// (Supposed to be empty).
+		
 	}
 
 }// love
