@@ -15,12 +15,33 @@
 
 namespace love_box2d
 {
+	/**
+	* You should know what a Polygon is. :)
+	* 
+	* This class is needed so that we can easily get
+	* the transformed points in Lua. By calling shape:getPoints(), 
+	* the result can be passed directly to love.graphics.polygon().
+	**/
 	class PolygonShape : public Shape
 	{
-	private:
 	public:
+
+		/**
+		* Create a new PolygonShape from the parent Body and
+		* a Box2D polygon definition.
+		* @param body The parent Body. 
+		* @param def The polygon definition.
+		**/
 		PolygonShape(boost::shared_ptr<Body> body, b2PolygonDef * def);
+
 		virtual ~PolygonShape();
+
+		/**
+		* Returns the transformed points of the polygon.
+		* This function is useful for debug drawing and such.
+		*
+		* The result can be directly passed into love.graphics.polygon().
+		**/
 		int getPoints(lua_State * L);
 	};
 

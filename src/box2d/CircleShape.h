@@ -15,14 +15,37 @@
 
 namespace love_box2d
 {
+	/**
+	* A CircleShape represent a Circle which can 
+	* be used for collision detection and physics.
+	* 
+	* The CircleShape is much faster than the PolygonShape, 
+	* and should generally be used where possible.
+	**/
 	class CircleShape : public Shape
 	{
 	private:
+		// The radius of the circle. We need to store this because
+		// Box2D has no built-in method for getting the radius.
 		float radius;
 	public:
+		
+		/**
+		* Create a new CircleShape from the parent body and a 
+		* Box2D CircleShape definition.
+		* @param body The parent body.
+		* @param def The CircleShape definition.
+		**/
 		CircleShape(boost::shared_ptr<Body> body, b2CircleDef * def);
+
 		virtual ~CircleShape();
+
+		/**
+		* Gets the radius for the circle.
+		**/
 		float getRadius() const;
+
+		// There is no support for setting the radius.
 	};
 
 	typedef boost::shared_ptr<CircleShape> pCircleShape;

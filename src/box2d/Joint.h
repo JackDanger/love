@@ -22,31 +22,96 @@
 namespace love_box2d
 {
 
+	// Forward declarations.
 	class Body;
 	class World;
 
+	/**
+	* A Joint acts as positioning constraints on Bodies. 
+	* A Joint can be used to prevent Bodies from going to 
+	* far apart, or coming too close together.
+	**/
 	class Joint
 	{
 	private:
+		
+		// A Joint must be destroyed *before* the bodies it acts upon, 
+		// and the world they reside in. We therefore need shared_ptrs
+		// parents and associations to prevent wrong destruction order.
 		boost::shared_ptr<Body> body1, body2;
 		boost::shared_ptr<World> world;
+
+		// The Box2D joint object.
 		b2Joint * joint;
+
 	public:
+
+		/**
+		* This constructor will connect one end of the joint to body1, 
+		* and the other one to the default ground body.
+		* 
+		* This constructor is mainly used by MouseJoint.
+		**/
 		Joint(boost::shared_ptr<Body> body1);
+
+		/**
+		* Create a joint between body1 and body2.
+		**/
 		Joint(boost::shared_ptr<Body> body1, boost::shared_ptr<Body> body2);
+
 		virtual ~Joint();
+
+		/**
+		* Gets the type of joint.
+		**/
 		int getType() const;
 
+		/**
+		* Gets the anchor positions of the Joint in world
+		* coordinates. This is useful for debugdrawing the joint.
+		**/
 		int getAnchors(lua_State * L);
+
+		/**
+		* Gets the reaction force on body2 at the joint anchor.
+		**/
 		int getReactionForce(lua_State * L);
 
+		/**
+		* Gets the reaction torque on body2.
+		**/
 		float getReactionTorque();
 
+		/**
+		* Sets whether connected bodies should collide
+		* or not. Default is false.
+		**/
 		void setCollideConnected(bool collide);
+
+		/**
+		* Gets whether connected bodies should collide
+		* or not.
+		**/
 		bool getCollideConnected() const;
 
 	protected:
+
+		/**
+		* Joints require pointers to a Box2D joint objects at
+		* different polymorphic levels, which is why these function 
+		* were created.
+		**/
+
+		/**
+		* Creates a Joint, and ensures that the parent class
+		* gets a copy of the pointer.
+		**/
 		b2Joint * createJoint(b2JointDef * def);
+
+		/**
+		* Destroys the joint. This function was created just to 
+		* get some cinsistency.
+		**/
 		void destroyJoint(b2Joint * joint);
 	};
 

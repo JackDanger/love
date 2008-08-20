@@ -66,6 +66,12 @@ namespace love_box2d
 
 	void World::Add(const b2ContactPoint* point)
 	{
+		/**
+		* We must copy contacts, since we're not allowed to process
+		* them inside this function. Removing bodies in this function
+		* pretty much guarantees segfault. ^^
+		**/
+
 		if(add_ref != 0)
 		{
 			pContact p(new Contact(point));
@@ -104,6 +110,16 @@ namespace love_box2d
 		lua_pushnumber(L, v.x);
 		lua_pushnumber(L, v.y);
 		return 2;
+	}
+
+	void World::setAllowSleep(bool allow)
+	{
+		world->m_allowSleep = allow;
+	}
+
+	bool World::isAllowSleep() const
+	{
+		return world->m_allowSleep;
 	}
 
 	int World::getBodyCount()

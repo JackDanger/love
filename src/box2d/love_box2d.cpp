@@ -4,6 +4,7 @@
 // LOVE
 #include <love/Core.h>
 
+#include "graham/GrahamScanConvexHull.h"
 
 namespace love_box2d
 {
@@ -64,23 +65,38 @@ namespace love_box2d
 	int newPolygonShape(lua_State * L)
 	{
 		int argc = lua_gettop(L);
-		love::luax_assert_argc(L, 7);
+		int vcount = (int)(argc-1)/2;
+		// 1 body + 3 vertices
+		love::luax_assert_argc(L, 1 + (2 * 3));
 		pBody b = mod_to_body(L, 1);
 
 		b2PolygonDef def;
-		def.vertexCount = (int)(argc-1)/2;
 		def.friction = 0.5f;
 		def.restitution = 0.1f;
 		def.density = 1.0f;
 
-		for(int i = 0;i<def.vertexCount;i++)
+		std::vector<point2d> points(def.vertexCount);
+		std::vector<point2d> convex_hull;
+
+		for(int i = 0;i<vcount;i++)
 		{
+			float x = (float)lua_tonumber(L, -2);
 			float y = (float)lua_tonumber(L, -1);
-			lua_pop(L, 1);
-			float x = (float)lua_tonumber(L, -1);
-			lua_pop(L, 1);
-			def.vertices[i].Set(x, y);
+			point2d tmp(x, y);
+			points.push_back(tmp);
+			lua_pop(L, 2);
 		}
+
+		// Compute convex hull.
+		GrahamScanConvexHull()(points, convex_hull);
+
+		def.vertexCount = (int32)convex_hull.size();
+
+		if(def.vertexCount < 3)
+			return luaL_error(L, "Polygon degenerated to less than three points.");
+
+		for(int i = 0;i<def.vertexCount;i++)
+			def.vertices[def.vertexCount-i-1].Set((float)convex_hull[i].x, (float)convex_hull[i].y);
 
 		pPolygonShape p(new PolygonShape(b, &def));
 		mod_push_polygonshape(L, p);

@@ -6,7 +6,7 @@ namespace love
 	{
 		int argc = lua_gettop(L);
 		if( argc < lower )
-			return luaL_error(L, "Incorrect number of arguments. Got [%i], expected [%i]", argc, lower);
+			return luaL_error(L, "Incorrect number of arguments. Got [%d], expected at least [%d]", argc, lower);
 		return 0;
 	}
 
@@ -14,7 +14,7 @@ namespace love
 	{
 		int argc = lua_gettop(L);
 		if( argc < lower || argc > upper)
-			return luaL_error(L, "Incorrect number of arguments. Got [%i], expected [%i-%i]", argc, lower, upper);
+			return luaL_error(L, "Incorrect number of arguments. Got [%d], expected [%d-%d]", argc, lower, upper);
 		return 0;
 	}
 

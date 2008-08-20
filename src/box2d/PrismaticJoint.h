@@ -14,6 +14,10 @@
 
 namespace love_box2d
 {
+	/**
+	* PrismaticJoints allow shapes to move in relation to eachother
+	* along a any axis.
+	**/
 	class PrismaticJoint : public Joint
 	{
 	private:

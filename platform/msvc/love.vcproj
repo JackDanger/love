@@ -682,6 +682,14 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="graham"
+					>
+					<File
+						RelativePath="..\..\src\box2d\graham\GrahamScanConvexHull.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
