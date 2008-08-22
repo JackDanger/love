@@ -55,7 +55,7 @@ namespace love_box2d
 		b2Body * body;
 
 		/**
-		* Create a Body at posiion p with mass m.
+		* Create a Body at posiion p.
 		**/ 
 		Body(boost::shared_ptr<World> world, b2Vec2 p, float m);
 

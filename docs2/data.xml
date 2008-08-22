@@ -1,5 +1,5 @@
 <nzai>
-  <page name="Overview">
+  <page name="Overview" file="index.html">
 
     <section name="Welcome">
 
@@ -10,32 +10,14 @@
       enough for even novices to get into game creation.
       [br /][br /]
       We believe that thorough documentation is important for the survival of a program so if there is something missing or incorrect, please
-      [a href="http://love.sourceforge.net/?page=contact"]contact us[/a].
+      [a href="http://love2d.org/?page=credits"]contact us[/a].
     </section>
 
     <section name="Tutorials">
       This page has the bare documentation and, except for the simple examples, contain no actual tutorials.
-      Tutorials are available from the tutorial page on the [a href="http://love.sourceforge.net/?page=documentation"]LÖVE website[/a].
+      Tutorials are available from the tutorial page on the [a href="http://love2d.org/?page=documentation"]LÖVE website[/a].
     </section>
 
-      <section name="TODO">
-        These should require no further work:
-        [ul]
-        [li] [[love.mouse]] [/li]
-        [li] [[love.keyboard]] [/li]
-        [li] [[love.timer]] [/li]
-        [/ul]
-        These need examples, but are otherwise done:
-        [ul]
-        [li] [[love.system]] [/li]
-        [li] [[love.audio]] [/li]
-        [li] [[love.filesystem]] [/li]
-        [li] [[love.graphics]] [/li]
-        [/ul]
-      </section>
-      <section name="Symbolizer">
-        [[Animations]], [[Image]], [[Font]], and all that. That also goes for [[Constants]].
-      </section>
   </page>
 
   <page name="License">
@@ -77,6 +59,127 @@
       distribution.[br /]
 
     </section>
+   </page>
+  
+
+    <page name="Credits">
+      <section name="Authors">
+      LÖVE is created by:[br /]
+      [ul]
+      [li]Anders Ruud - andruud at gmail dot com[/li]
+      [li]Michael Enger - mike at facemeandscream dot com[/li]
+      [li]Tommy Nguyen - tn0502 at hotmail dot com[/li]
+      [/ul]
+      </section>
+
+      <!-- Subchapter start -->
+       <section name="Libraries">
+      LÖVE is built around these libraries, presented here in no particular order:
+
+      [ul]
+      [li][a href="http://www.boost.org/"]boost[/a] - General purpose C++ libraries.[/li]
+      [li][a href="http://libsdl.org/"]SDL[/a] - OS abstraction, mouse input, keyboard input.[/li]
+      [li][a href="http://lua.org/"]Lua[/a] - Scripting.[/li]
+      [li][a href="http://opengl.org/"]OpenGL[/a] - Hardware accelerated graphics.[/li]
+      [li][a href="http://openil.sourceforge.net/"]DevIL[/a] - Image loading.[/li]
+      [li][a href="http://www.freetype.org/"]FreeType 2[/a] - Font loading and rasterization.[/li]
+      [li][a href="http://www.libsdl.org/projects/SDL_mixer/"]SDL_mixer[/a] - Sound loading/playing.[/li]
+      [li][a href="http://icculus.org/physfs/"]PhysicsFS[/a] - Filesystem management + support for archive files.[/li]
+
+      [/ul]
+
+      A behemothic thanks to all of these.
+
+      </section>
+      <!-- Subchapter end -->
+
+
+    </page>
+    <page name="Installing">
+
+      <section name="Binaries">
+      We currently maintain x86 binaries for:
+      [ul]
+      [li]Windows XP/Vista (zipped .exe and installer)[/li]
+      [li]Ubuntu 8.04 (.deb package. May work on other Debian-based OS.)[/li]
+      [/ul]
+
+      Using the binaries is highly recommended, if available on your system.[br /]
+      [br /]
+      Binaries and packages for other systems (MacOSX, RPM) are planned.
+      If you would like to maintain binaries for some system, please [a href="http://love2d.org/?page=credits"]contact us[/a].
+      </section>
+
+      <section name="Source">
+
+      Compiling the source requires that these libraries are present on your system (as named in Ubuntu):
+
+      [ul]
+      [li]libboost-dev[/li]
+      [li]libsdl1.2-dev[/li]
+      [li]liblua5.1-dev[/li]
+      [li]libfreetype6-dev[/li]
+      [li]libdevil-dev[/li]
+      [li]libphysfs-dev[/li]
+      [li]libsdl-mixer1.2-dev[/li]
+      [/ul]
+
+      In Ubuntu, the following command will install the required packages.
+      [code]
+      sudo apt-get install build-essential libboost-dev libsdl1.2-dev liblua5.1-dev libfreetype6-dev libdevil-dev libphysfs-dev libsdl-mixer1.2-dev
+      [/code]
+      When the dependencies are installed, all you need to do is type:
+      [code]
+      make
+      [/code]
+
+      Binaries will appear in the bin folder.[br /]
+      [br /]
+      Note: An autoconf/automake setup is being created, and will probably be included in the next release.
+      </section>
+    </page>
+      
+      
+    <page name="Getting started">
+      <section name="Basics">
+      Download LÖVE from [a href="http://love2d.org"]http://love2d.org[/a] and install.[br /]
+      [br /]
+      Create a new directory somewhere, and create two files:
+
+      [ul]
+      [li]main.lua - main file containing the game code.[/li]
+      [li]game.conf - optional (but recommended) support file that contains info about your game.[/li]
+      [/ul]
+
+      Write the following into the game.conf file:
+      [code]
+      author = "Your Name"[br /]
+      title = "My Awesome Game"
+      [/code]
+      
+      And write the following into the main.lua file:
+      [code]
+      function load()[br /]
+      &amp;nbsp;&amp;nbsp;&amp;nbsp;font = love.graphics.newFont(love.default_font, 12)[br /]
+      &amp;nbsp;&amp;nbsp;&amp;nbsp;love.graphics.setFont(font)[br /]
+      &amp;nbsp;&amp;nbsp;&amp;nbsp;message = "Yharrr, Why hello thaarrrr!"[br /]
+      end[br /]
+[br /]
+      function draw()[br /]
+      &amp;nbsp;&amp;nbsp;&amp;nbsp;love.graphics.draw(message, 100, 100)[br /]
+      end
+      [/code]
+
+
+      After saving, simply drag the directory you created onto the executable
+      (Windows: love.exe), and the the game will start. You should see your
+      message on the screen.
+      </section>
+
+
+      <section name="Further Reading">
+      For more information, check out the [a href="http://love2d.org/?page=documentation"]tutorials[/a].
+      </section>
 
     <section name="External libraries">
 
@@ -98,7 +201,7 @@
 
   </page>
 
-  <page name="Manual Improvements">
+   <page name="Manual Improvements">
     <section name="Help us help you">
       
     </section>
@@ -110,6 +213,9 @@
     The graphics module is responsible for things like window management, Images, Animations,
     Fonts, and more.
 	
+    <type name="Fake" brief="Documentation Test Type">
+    </type>
+        
     <type name="Image" brief="Represents a drawable image.">
       Images are created and drawn on screen using functions in love.graphics. Images do currently not exist in memory after they are created as GPU textures, thus methods
       for reading single pixel colors and similar are not available.[br /]
@@ -896,10 +1002,10 @@
 	
 	<func name="getScissor" brief="Gets the current scissor box.">
 	  <overload>
-	    <ret type="number" brief="The x-coordinate of the scissor box." />
-		<ret type="number" brief="The y-coordinate of the scissor box." />
-		<ret type="number" brief="The width of the scissor box." />
-		<ret type="number" brief="The height of the scissor box." />
+	   <ret name="x" type="number" brief="The x-coordinate of the scissor box." />
+		<ret name="y" type="number" brief="The y-coordinate of the scissor box." />
+		<ret name="w" type="number" brief="The width of the scissor box." />
+		<ret name="h" type="number" brief="The height of the scissor box." />
 	  </overload>
 	</func>
 	
@@ -1237,8 +1343,31 @@
 
   </module>
   
-  <!--<module name="love.physics">
-  </module>-->
+  <module name="love.physics">
+   
+   <type name="World" >
+   </type>
+   <type name="Contact">
+   </type>
+   <type name="Body" space="true">
+   </type>
+   
+   <type name="CircleShape">
+   </type>
+   <type name="PolygonShape" space="true">
+   </type>
+   
+   <type name="DistanceJoint">
+   </type>
+   <type name="RevoluteJoint">
+   </type>
+   <type name="PrismaticJoint">
+   </type>
+   <type name="MouseJoint">
+   </type>
+   
+   
+  </module>
   <module name="love.mouse">
     Keeps track of the state of the mouse.
 
@@ -1246,7 +1375,7 @@
       <overload>
         Gets the current x-position of the mouse. Use this if you for some reason
         only need the position along the x-axis. Otherwise, you probably want to use love.mouse.getPosition.
-        <ret type="number" brief="Current x-position." />
+        <ret name="x" type="number" brief="Current x-position." />
         <see>
           love.mouse.getPosition, love.mouse.getY
         </see>
@@ -1254,11 +1383,11 @@
       </overload>
     </func>
 
-    <func name="getY" brief="Gets the current y-position of the mouse.">
+    <func name="getY" brief="Gets the current y-position of the mouse." space="true">
       <overload>
         Gets the current y-position of the mouse. Use this if you for some reason
         only need the position along the y-axis. Otherwise, you probably want to use love.mouse.getPosition.
-        <ret type="number" brief="Current y-position." />
+        <ret name="y" type="number" brief="Current y-position." />
         <see>
           love.mouse.getPosition, love.mouse.getX
         </see>
@@ -1270,13 +1399,13 @@
       <overload>
         Gets the current x- and y-position of the mouse in one call. Since getting the mouse position (along both axes) is
         a fairly common task, this func was created to make it prettier.
-        <ret type="number" brief="The current x position." />
-        <ret type="number" brief="The current y position." />
+        <ret name="x" type="number" brief="The current x position." />
+        <ret name="y" type="number" brief="The current y position." />
         <example id="2" />
       </overload>
     </func>
 
-    <func name="setPosition" brief="Sets the current position of the mouse.">
+    <func name="setPosition" brief="Sets the current position of the mouse." space="true">
       <overload>
         Sets the current position of the mouse. Note that this generates a mousemoved event.
         If you just want to confine the mouse to the screen area, take a look at love.system.grabInput.
@@ -1290,11 +1419,11 @@
     </func>
 
 
-    <func name="isDown" brief="Checks whether a certain button is down.">
+    <func name="isDown" brief="Checks whether a certain button is down." space="true">
       <overload>
         Checks whether a certain mouse button is down.
         <param name="button" brief="A mouse button." />
-        <ret type="boolean" brief="Whether the button is down." />
+        <ret name="down" type="boolean" brief="Whether the button is down." />
         <see>
           Constants
         </see>
@@ -1316,7 +1445,7 @@
     <func name="isVisible" brief="Checks cursor visbility.">
       <overload>
         Checks cursor visbility.
-        <ret type="boolean" brief="True if visible, false otherwise." />
+        <ret name="visible" type="boolean" brief="True if visible, false otherwise." />
         <see>
           love.mouse.setVisible
         </see>
@@ -1373,7 +1502,7 @@
       [/ul]
       In other cases, you can (and must) specify filenames directly when creating objects
       such as Image, Font and Sound.
-	  <func name="getSize" brief="ets the size of the file in bytes.">
+	  <func name="getSize" brief="Gets the size of the file in bytes.">
         <overload>
           <ret type="number" brief="The size of the file." />
 		  Gets the size of the file in bytes. This requires that the File was created for reading, otherwise this functioin will return 0.
@@ -1384,12 +1513,12 @@
     
 	<func name="newFile" brief="Constructs a File with the given filename.">
 	  <overload>
-	    <param name="file" brief="The filename." />
+	    <param name="filename" brief="The filename." />
 		<ret type="File" brief="The newly created file." />
 		The file is in read mode only.
 	  </overload>
 	  <overload>
-	    <param name="file" brief="The filename." />
+	    <param name="filename" brief="The filename." />
 		<param name="mode" brief="The filesystem mode (read, write, append)." />
 		<ret type="File" brief="The newly created file." />
 	  </overload>
@@ -1496,6 +1625,7 @@
 	
 	<func name="enumerate" brief="Gets a list of files in the given directory.">
 	  <overload>
+      <param name="dir" brief="A directory." />
 		<ret type="list" brief="All the files (and subdirs) in the directory." />
 	  </overload>
 	</func>
@@ -1503,9 +1633,12 @@
 	<func name="require" brief="Includes and runs a Lua file (once).">
 	  <overload>
         <param name="filename" brief="The filename of the file to read." />
-	    It is safe to include the same file more than once. LÖVE keeps track of included
-        files to prevent reparsing. (If you want the same file to be included multiple
-        times, take a look at love.filesystem.include( filename ).
+	    It is safe to require the same file more than once. LÖVE keeps track of required
+        files to prevent reparsing. (If you want the same file to be executed multiple
+        times, take a look at {love.filesystem.include}.
+        <see>
+        love.filesystem.include
+        </see>
 	  </overload>
     </func>
 
@@ -1513,7 +1646,12 @@
 	  <overload>
         <param name="filename" brief="The filename of the file to read." />
 	    Includes and runs a Lua file every time the function is called. (Does not check if the file is included already).
-	  </overload>
+
+        <see>
+        love.filesystem.require
+        </see>
+     
+     </overload>
     </func>
   
   </module>
@@ -1661,15 +1799,6 @@
 	<example id="53" />
   </callback>
 
-
-  <misc name="Function List">
-    Whooptido.
-  </misc>
-
-  <misc name="Example List">
-    Whooptido TWOOOO.
-  </misc>
-
   <misc name="Constants" title="List of constants">
     This is the complete list of constants available in LOVE.
     <item name="love.key_unknown" brief="Represents an unknown key" />
@@ -1711,7 +1840,7 @@
     <item name="love.key_equals" brief="= key" />
     <item name="love.key_greater" brief="&gt; key" />
     <item name="love.key_question" brief="? key" />
-    <item name="love.key_at" brief="@ key" />
+    <item name="love.key_at" brief="@ key" space="true" />
 
     <item name="love.key_leftbracket" brief="[ key" />
     <item name="love.key_backslash" brief="\ key" />
@@ -1745,7 +1874,7 @@
     <item name="love.key_x" brief="X key" />
     <item name="love.key_y" brief="Y key" />
     <item name="love.key_z" brief="Z key" />
-    <item name="love.key_delete" brief="Delete key" />
+    <item name="love.key_delete" brief="Delete key" space="true" />
 
     <item name="love.key_kp0" brief="Keypad 0" />
     <item name="love.key_kp1" brief="Keypad 1" />
@@ -1763,7 +1892,7 @@
     <item name="love.key_kp_minus" brief="Keypad -" />
     <item name="love.key_kp_plus" brief="Keypad +" />
     <item name="love.key_kp_enter" brief="Keypad enter" />
-    <item name="love.key_kp_equals" brief="Keypad =" />
+    <item name="love.key_kp_equals" brief="Keypad =" space="true" />
 
     <item name="love.key_up" brief="Up key" />
     <item name="love.key_down" brief="Down key" />
@@ -1773,7 +1902,7 @@
     <item name="love.key_home" brief="Home key" />
     <item name="love.key_end" brief="End key" />
     <item name="love.key_pageup" brief="Page Up key" />
-    <item name="love.key_pagedown" brief="Page Down key" />
+    <item name="love.key_pagedown" brief="Page Down key" space="true" />
 
     <item name="love.key_f1" brief="F1 key" />
     <item name="love.key_f2" brief="F2 key" />
@@ -1789,7 +1918,7 @@
     <item name="love.key_f12" brief="F12 key" />
     <item name="love.key_f13" brief="F13 key" />
     <item name="love.key_f14" brief="F14 key" />
-    <item name="love.key_f15" brief="F15 key" />
+    <item name="love.key_f15" brief="F15 key" space="true" />
 
     <item name="love.key_numlock" brief="Num lock key" />
     <item name="love.key_capslock" brief="Caps lock key" />
@@ -1805,7 +1934,7 @@
     <item name="love.key_rsuper" brief="Right super key" />
     <item name="love.key_lsuper" brief="Left super key" />
     <item name="love.key_mode" brief="Mode key" />
-    <item name="love.key_compose" brief="Compose key" />
+    <item name="love.key_compose" brief="Compose key" space="true" />
 
     <item name="love.key_help" brief="Help key" />
     <item name="love.key_print" brief="Print key" />
@@ -1814,44 +1943,44 @@
     <item name="love.key_menu" brief="Menu key" />
     <item name="love.key_power" brief="Power key" />
     <item name="love.key_euro" brief="€ key" />
-    <item name="love.key_undo" brief="Undo key" />
+    <item name="love.key_undo" brief="Undo key" space="true" />
 
     <item name="love.mouse_left" brief="The left mouse button." />
     <item name="love.mouse_middle" brief="The middle mouse button."  />
     <item name="love.mouse_right" brief="The right mouse button."  />
     <item name="love.mouse_wheelup" brief="Mouse wheel scrolled upwards."  />
-    <item name="love.mouse_wheeldown" brief="Mouse wheel scrolled downwards."  />
+    <item name="love.mouse_wheeldown" brief="Mouse wheel scrolled downwards."  space="true" />
 
     <item name="love.align_left" brief="Align to the left side." />
     <item name="love.align_center" brief="Align in the center (vertically or horizontally)." />
     <item name="love.align_right" brief="Align to the right side." />
     <item name="love.align_top" brief="Align to the top." />
-    <item name="love.align_bottom" brief="Align to the bottom." />
+    <item name="love.align_bottom" brief="Align to the bottom." space="true" />
 
     <item name="love.mode_loop" brief="Loops continuesly." />
     <item name="love.mode_once" brief="Plays once." />
-    <item name="love.mode_bounce" brief="Bounces back and forth." />
+    <item name="love.mode_bounce" brief="Bounces back and forth." space="true" />
 
     <item name="love.event_message" brief="A message event." />
-    <item name="love.event_gui" brief="A GUI event." />
+    <item name="love.event_gui" brief="A GUI event." space="true" />
 
     <item name="love.blend_normal" brief="Normal blendig mode." />
-    <item name="love.blend_additive" brief="Additive blending mode." />
+    <item name="love.blend_additive" brief="Additive blending mode." space="true" />
 	
     <item name="love.color_normal" brief="Normal color mode." />
-    <item name="love.color_modulate" brief="Modulation color mode." />
+    <item name="love.color_modulate" brief="Modulation color mode." space="true" />
 	
     <item name="love.file_read" brief="For file reading." />
     <item name="love.file_write" brief="For file writing." />
-    <item name="love.file_append" brief="For file appending." />
+    <item name="love.file_append" brief="For file appending." space="true" />
 	
-    <item name="love.default_font" brief="The default font (Vera)." />
+    <item name="love.default_font" brief="The default font (Vera)." space="true" />
 	
     <item name="love.draw_line" brief="Draws the primitive using lines." />
-    <item name="love.draw_fill" brief="Draws a filled primitive." />
+    <item name="love.draw_fill" brief="Draws a filled primitive." space="true" />
 	
     <item name="love.line_smooth" brief="Sets the lines as smooth." />
-    <item name="love.line_rough" brief="Sets the lines as rough (best when drawing straight 1px wide lines)." />
+    <item name="love.line_rough" brief="Sets the lines as rough (best when drawing straight 1px wide lines)." space="true" />
 	
     <item name="love.audio_loop" brief="Loops music or sound." />
     <item name="love.audio_mode_mono" brief="Sets the audio mode as mono." />
@@ -1859,7 +1988,7 @@
     <item name="love.audio_quality_low" brief="Designates low audio quality (11.025KHz)." />
     <item name="love.audio_quality_medium" brief="Designates medium audio quality (22.050KHz)." />
     <item name="love.audio_quality_high" brief="Designates high audio quality (44.100KHz)." />
-    <item name="love.audio_buffer_default" brief="The default buffer size for audio mixing." />
+    <item name="love.audio_buffer_default" brief="The default buffer size for audio mixing." space="true" />
 	
     <item name="love.image_pad" brief="Used to pad an image upon creation." />
     <item name="love.image_optimize" brief="Used to optimize an image upon creation." />
@@ -1876,18 +2005,20 @@
     [br /]
     All values are optional, but it is highly recommended to at least include title, author, and [b]love_version[/b].[br /]
 	[br /]
-	[div class="section"]
-	  [div class="title"]Example file:[/div]
-	  
-        [i]# Title / author[/i][br /]
-        title = "Epic Quest III"[br /]
-        author = "Awesome Games"[br /]
-        [i]# Display resolution[/i][br /]
-        width = 800[br /]
-        height = 600[br /]
-        [i]# Was made for this version of LOVE:[/i][br /]
-        love_version = "0.3.2"[br /]
-	[/div]
+	
+   [div class="section"]
+   [div class="title"]Example[/div]
+   [div class="synopsis"]
+      [i]# Title / author[/i][br /]
+      title = "Epic Quest III"[br /]
+      author = "Awesome Games"[br /]
+      [i]# Display resolution[/i][br /]
+      width = 800[br /]
+      height = 600[br /]
+      [i]# Was made for this version of LOVE:[/i][br /]
+      love_version = "0.3.2"[br /]
+   [/div]
+   [/div]
 
     <item name="title" type="string" brief="The game title."/>
     <item name="author" type="string" brief="The author of the game."/>
@@ -1901,9 +2032,4 @@
   
   </misc>
   
-  <misc name="Keyboard shortcuts">
-    All keyboard shortcuts have been removed as of version 0.3.0. The functionality they provided can now be accessed through love.system.
-  </misc>
-
-
 </nzai>

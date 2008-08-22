@@ -51,7 +51,7 @@ STATIC_MOD_EXTERN(love_sdltimer);
 STATIC_MOD_EXTERN(love_sdlmouse);
 STATIC_MOD_EXTERN(love_sdlkeyboard);
 STATIC_MOD_EXTERN(love_box2d);
-STATIC_MOD_EXTERN(love_sdljoystick);
+//STATIC_MOD_EXTERN(love_sdljoystick);
 STATIC_MOD_EXTERN(love_system);
 
 using namespace love;
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 	STATIC_MOD_INIT(love_sdlmouse);
 	STATIC_MOD_INIT(love_sdlkeyboard);
 	STATIC_MOD_INIT(love_box2d);
-	STATIC_MOD_INIT(love_sdljoystick);
+	//STATIC_MOD_INIT(love_sdljoystick);
 
 	// System shoud even go after dynamic modules, since it
 	// creates the Lua VM, etc.

@@ -106,7 +106,7 @@ namespace love
 		if(!audio.verify()) return false;
 		if(!mouse.verify()) return false;
 		if(!keyboard.verify()) return false;
-		if(!gamepad.verify()) return false;
+		//if(!gamepad.verify()) return false;
 		return true;
 	}
 

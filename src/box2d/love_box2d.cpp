@@ -3,6 +3,7 @@
 
 // LOVE
 #include <love/Core.h>
+#include <love/math.h>
 
 #include "graham/GrahamScanConvexHull.h"
 
@@ -11,7 +12,6 @@ namespace love_box2d
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
 		std::cout << "INIT love.physics [" << "Box2D" << "]" << std::endl;
-		
 		return true;
 	}
 
@@ -39,9 +39,26 @@ namespace love_box2d
 		return w;
 	}
 
+	pWorld newWorld(float w, float h)
+	{
+		return newWorld(-w, -h, w, h, 0, 0, true);
+	}
+
 	pBody newBody(pWorld world, float x, float y, float mass)
 	{
 		pBody body(new Body(world, b2Vec2(x, y), mass));
+		return body;
+	}
+
+	pBody newBody(pWorld world, float x, float y)
+	{
+		pBody body(new Body(world, b2Vec2(x, y), 1));
+		return body;
+	}
+
+	pBody newBody(pWorld world)
+	{
+		pBody body(new Body(world, b2Vec2(0, 0), 1));
 		return body;
 	}
 
@@ -60,6 +77,27 @@ namespace love_box2d
 		def.radius = radius;
 		pCircleShape shape(new CircleShape(body, &def));
 		return shape;
+	}
+
+	pPolygonShape newRectangleShape(pBody body, float w, float h)
+	{
+		return newRectangleShape(body, 0, 0, w, h, 0);
+	}
+
+	pPolygonShape newRectangleShape(pBody body, float x, float y, float w, float h)
+	{
+		return newRectangleShape(body, x, y, w, h, 0);
+	}
+
+	pPolygonShape newRectangleShape(pBody body, float x, float y, float w, float h, float angle)
+	{
+		b2PolygonDef def;
+		def.friction = 0.5f;
+		def.restitution = 0.1f;
+		def.density = 1.0f;
+		def.SetAsBox(w/2.0f, h/2.0f, b2Vec2(x, y), TORAD(angle));
+		pPolygonShape p(new PolygonShape(body, &def));
+		return p;
 	}
 
 	int newPolygonShape(lua_State * L)

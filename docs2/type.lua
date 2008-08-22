@@ -11,9 +11,10 @@ function lovedoc.parser.type(t, p)
 	o._brief = t.attr.brief or "(No description.)"
 	o._type = true
 	o._text = ""
-    o.example = {}
+	o._space = t.attr.space
+o.example = {}
 	o.func = {}
-    o.see = {}
+o.see = {}
 	lovedoc.insert(t, p, o)
 end
 

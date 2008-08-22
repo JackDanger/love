@@ -17,7 +17,7 @@ namespace love
 	File::~File()
 	{
 		if(data != 0 && !compiled)
-			delete data;
+			delete [] data;
 
 		data = 0;
 	}

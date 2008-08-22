@@ -17,8 +17,11 @@ function lovedoc.docwriter.callback(t)
 	b:menu(t:name())
 	
         page_begin(b, "Callback", t:signature(), t:text())
+		  synopsis_callback_section(b, t:signature(), {})
         param_section(b, t.param)
         see_section(b, t.see)
+		  ret_section(b, {})
+		  
         example_section(b, t.example)
         page_end(b)
         

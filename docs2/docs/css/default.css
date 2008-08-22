@@ -9,7 +9,7 @@ body
 div
 {
 	font-family: Arial, Sans-Serif;
-	color: #444;
+	color: #555;
 	font-size: 14px;
 }
 
@@ -106,15 +106,17 @@ a:hover
 
 .page .description
 {
-	margin: 0px 0px 0px 0px;
+	margin: 0px 0px 10px 0px;
 	padding: 20px 15px 0px 15px;
 }
 
 .page .description .title
 {
-	font-size: 24px;
-	color: #214568;
+	font-size: 20px;
+	color: #117ab6;
 	border: none;
+	margin-bottom: 10px;
+	font-weight: bold;
 }
 
 .page .description .text
@@ -122,21 +124,35 @@ a:hover
 	color: #444;
 }
 
-.page .section
+.chapter
 {
-	margin: 0px 0px 0px 0px;
-	padding: 20px 15px 20px 15px;
 	border-bottom: 1px solid #d2eaf5;
+	padding: 20px 15px 20px 15px;
 }
 
-.page .section .title
+.chapter .title
 {
-	font-size: 22px;
+	font-size: 20px;
+	color: #117ab6;
+	border: none;
+	margin-bottom: 10px;
+	font-weight: bold;	
+}
+
+.section
+{
+	margin: 0px 0px 0px 0px;
+	padding: 10px 0px 10px 0px;
+}
+
+.section .title
+{
+	font-size: 16px;
 	color: #0d8bca;
-	margin: 0px 0px 10px 0px;
+	margin: 0px 0px 5px 0px;
 	border: none;
 	padding: 0;
-	font-weight: bold;
+	font-weight: normal;
 }
 
 .foot
@@ -145,6 +161,7 @@ a:hover
 	font-size: 12px;
 	text-align: center;
 	color: #3a5664;
+	margin-top: 5px;
 }
 
 .foot a
@@ -157,14 +174,27 @@ a:hover
 	border: 1px solid #cce0ea;	
 }
 
-.attr
+.list .space
 {
-	
+	height: 6px;
 }
 
-.attr .title
+.cluster
 {
-	font-size: 16px;
+}
+
+.cluster .item
+{
+}
+
+.cluster .item .name
+{
+	padding-right: 10px;
+	font-style: italic;
+}
+
+.cluster .item .desc
+{
 }
 
 .data
@@ -224,11 +254,37 @@ a:hover
 	line-height: 1.1;
 }
 
+.synopsis
+{
+	border: 1px solid #d1d9fd;
+	background: #f1f9fd;
+	font-size: 13px;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	line-height: 1.1;
+	font-family: monospace;
+}
+
+
+code
+{
+	display: block;
+	border: 1px solid #d1d9fd;
+	background: #f1f9fd;
+	font-size: 13px;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	line-height: 1.1;
+	font-family: monospace;
+}
+
+
 .section .example .title
 {
 	font-size: 14px;
 	background: #f1f9fd;
-	border-bottom: 1px solid #d1d9fd;
 	margin: 0px;
 	padding: 5px 10px 5px 10px;
 	font-weight: bold;

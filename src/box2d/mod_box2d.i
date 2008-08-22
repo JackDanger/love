@@ -33,9 +33,17 @@ namespace boost {
 namespace love_box2d
 {
 	pWorld newWorld(float lx, float ly, float ux, float uy, float gx, float gy, bool sleep);
-	pBody newBody(pWorld world, float x, float y, float mass);
-	pCircleShape newCircleShape(pBody body, float x, float y, float radius);
+	pWorld newWorld(float w, float h);
+	pBody newBody(pWorld world, float x, float y, float m);
+	pBody newBody(pWorld world, float x, float y);
+	pBody newBody(pWorld world);
 	pCircleShape newCircleShape(pBody body, float radius);
+	pCircleShape newCircleShape(pBody body, float x, float y, float radius);
+	
+	pPolygonShape newRectangleShape(pBody body, float w, float h);
+	pPolygonShape newRectangleShape(pBody body, float x, float y, float w, float h);
+	pPolygonShape newRectangleShape(pBody body, float x, float y, float w, float h, float angle);
+	
 	pDistanceJoint newDistanceJoint(pBody body1, pBody body2, float x1, float y1, float x2, float y2);
 	pMouseJoint newMouseJoint(pBody body, float x, float y);
 	pRevoluteJoint newRevoluteJoint(pBody body1, pBody body2, float x, float y);

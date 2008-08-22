@@ -73,7 +73,7 @@ lovedoc.symdef =
 	"misc",
 }
 
-lovedoc.url = { data = {}, count = {}, sorted = {} }
+lovedoc.url = { data = {}, count = {}, sorted = {}, gsub = {} }
 lovedoc.parser = {}
 lovedoc.docwriter = {}
 lovedoc.menuwriter = {}
@@ -82,7 +82,9 @@ lovedoc.fullsig = {}
 lovedoc.html = {}
 lovedoc.html.buffer = {}
 lovedoc.html.header = [[
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <title>L&Ouml;VE Documentation 0.4.0</title>
@@ -125,6 +127,7 @@ lovedoc.html.footer = [[
 function lovedoc.strclean(s)
 	local t = string.gsub(s, " ", "")
 	t = string.gsub(t, "%.", "_")
+	t = string.gsub(t, ":", "_")
 	return t
 end
 
@@ -219,23 +222,17 @@ function lovedoc.sortsym()
 		)
 end
 
-function lovedoc.symbolize(text)
-  
-        text = string.gsub(text, "%[%[(.-)%]%]",
-                                function (p)
-                                        local r = lovedoc.url.data[p]
-                                        print("Found", p, r)
-                                        if not r then return p end
-                                        
-                                        return '<a href="'..r..'">'..p..'</a>'
-                                end)
-                                
-        text = string.gsub(text, "%[", "<");
-        text = string.gsub(text, "%]", ">");
-
-	return text
+function lovedoc.urlsym()
+		  for i,v in pairs(lovedoc.url.data) do
+					 lovedoc.url.gsub[i] = '<a href="'..v..'">'..i..'</a>'
+		  end
 end
 
+function lovedoc.symbolize(text)
+		  text = string.gsub(text, "{(.-)}", lovedoc.url.gsub)
+		  text = string.gsub(text, "%[(.-)%]", '<%1>')
+		  return text
+end
 ----------------------------------------------------
 -- Buffer
 ----------------------------------------------------
@@ -365,7 +362,7 @@ end
 
 function lovedoc.Tag:fullname()
 	if not self._parent then return self:name() end
-	return self._parent .. "." .. self:name()	
+	return self._parent .. self._separator .. self:name()	
 end
 
 function lovedoc.Tag:signature()
@@ -392,6 +389,7 @@ function lovedoc.newtag()
 	lovedoc.Tag.__index = lovedoc.Tag
 	o._name = ""
 	o._parent = nil
+	o._separator = "."
 	return o
 end
 
@@ -472,6 +470,7 @@ end
 
 function lovedoc.parser.ret(t, p)
 	local o = lovedoc.newtag()
+	o._name = t.attr.name or "var"
 	o._type = t.attr.type or "noparam"
 	o._brief = t.attr.brief or "(No description.)"
 	lovedoc.insert(t, p, o)
@@ -500,9 +499,10 @@ end
 
 function lovedoc.parser.item(t, p)
 	local o = lovedoc.newtag()
-        o._name = t.attr.name or "noname"
+      o._name = t.attr.name or "noname"
 	o._brief = t.attr.brief or "(No description)"
 	o._type = t.attr.name
+	o._space = t.attr.space
         lovedoc.insert(t, p, o)
 end
 
@@ -525,36 +525,37 @@ function page_begin(b, header, title, description)
         b:div("title")
         b:write(header)
         b:pop()
-        b:div("description")
-        b:div("title")
-        b:write(title)
-        b:pop()
+		  
+		  b:div("chapter")
+			b:div("title")
+			b:write(title)
+			b:pop()
         b:div("text")
         b:write(lovedoc.symbolize(description))
         b:pop()
-        b:pop()
+        
 end
 
 function page_begin_lite(b, header)
         b:div("page")
         b:div("title")
         b:write(header)
-        b:pop()    
+        b:pop()
 end
 
 function page_end(b)
+		  b:pop()
+        page_end_lite(b)
+end
 
+function page_end_lite(b, header)
         b:div("foot")
                 b:write("Copyright &copy; 2006-2008 L&Ouml;VE Development Team")      
                 b:div("links")
                 b:write('<a href="http://love2d.org">Visit homepage</a> - <a href="ManualImprovements.html">Help improve the manual</a>')
                 b:pop()
         b:pop()
-
         b:pop()
-        
-
-        
 end
 
 function attr_begin(b, title)
@@ -583,6 +584,23 @@ function section_end(b)
         b:pop()
 end
 
+function cluster_section_begin(b, title)
+   section_begin(b, title)
+   b:div("cluster")
+end
+
+function cluster_section_end(b, title)
+	b:pop()
+	section_end(b)	
+end
+
+function cluster_item(b, name, desc)
+        b:div("item")
+        b:push("span", "name"); b:write(name); b:pop()
+        b:push("span", "desc"); b:write(lovedoc.symbolize(desc)); b:pop()
+        b:pop()
+end
+
 function list_section_begin(b, title)
         section_begin(b, title)
         b:div("list")
@@ -602,49 +620,99 @@ function list_item(b, name, desc)
         b:pop()
 end
 
+function space_list_item(b)
+        b:push("tr")
+        b:push("td", "space"); b:pop()
+        b:push("td", "desc"); b:pop()
+        b:pop()
+end
+
 function func_section(b, list)
         if #list <= 0 then return end
         list_section_begin(b, "Functions")
 	for fi,f in ipairs(list) do
 		for oi, o in ipairs(f.overload) do
 			list_item(b,"<a href=\""..o:url().."\">"..o:shortsignature() .."</a>", o._brief)
+			if o._space then space_list_item(b) end
 		end
+		if f._space then space_list_item(b) end
 	end
         list_section_end(b)
 
 end
 
 function type_section(b, list)
-        if #list <= 0 then return end
-        list_section_begin(b, "Types")
+   if #list <= 0 then return end
+   list_section_begin(b, "Types")
 	for i, t in ipairs(list) do
 		list_item(b, "<a href=\""..t:url().."\">"..t:shortsignature() .."</a>", t._brief)
+		if t._space then space_list_item(b) end
 	end
-        list_section_end(b)
+   list_section_end(b)
 end
 
 function param_section(b, list)
-        list_section_begin(b, "Parameters")
+        cluster_section_begin(b, "Arguments")
 	if #list > 0 then
 		for i, v in ipairs(list) do
-			list_item(b, v:shortsignature(), v._brief)
+			cluster_item(b, v:shortsignature(), v._brief)
 		end
 	else
-		list_item(b, "(None)", "")
+		cluster_item(b, "(None)", "")
 	end
-        list_section_end(b)
+        cluster_section_end(b)
+end
+
+function synopsis_section(b, name, ret)
+	section_begin(b, "Synopsis")
+	b:div("synopsis")
+	
+	local retvals = ""
+	if ret and #ret > 0 then
+		for i=1,(#ret-1) do
+			local r = ret[i]._name or ret[i]._type
+			retvals = retvals .. string.lower(r) .. ", "
+		end
+		local r = ret[#ret]._name or ret[#ret]._type
+		retvals = retvals .. string.lower(r) .. " = "
+	end
+	
+	
+	b:write(retvals..name)
+	b:pop()
+	section_end(b)
+end
+
+function synopsis_callback_section(b, name, ret)
+	section_begin(b, "Synopsis")
+	b:div("synopsis")
+	
+	local retvals = ""
+	if ret and #ret > 0 then
+		for i=1,(#ret-1) do
+			local r = ret[i]._name or ret[i]._type
+			retvals = retvals .. string.lower(r) .. ", "
+		end
+		local r = ret[#ret]._name or ret[#ret]._type
+		retvals = retvals .. string.lower(r) .. " = "
+	end
+	
+	
+	b:write(retvals.. "function " .. name .. " ... end")
+	b:pop()
+	section_end(b)
 end
 
 function ret_section(b, list)
-        list_section_begin(b, "Returns")
+	cluster_section_begin(b, "Returns")
 	if #list > 0 then
 		for i, v in ipairs(list) do
-			list_item(b, v._type, v._brief)
+		cluster_item(b, v._type, v._brief)
 		end
 	else
-		list_item(b, "(Nothing)", "")
+		cluster_item(b, "(Nothing)", "")
 	end
-        list_section_end(b)
+	cluster_section_end(b)
 end
 
 function item_section(b, list, name)
@@ -652,8 +720,32 @@ function item_section(b, list, name)
         list_section_begin(b, name)
 	for i, v in ipairs(list) do
 		list_item(b, v._name, v._brief)
+		if v._space then space_list_item(b) end
 	end
         list_section_end(b)
+end
+
+function attr_section(b, list, title, nothing, _name, _brief)
+	_name = _name or "_name"
+	_brief = _brief or "_brief"
+	--nothing = nothing or "(Nothing)"
+	attr_begin(b, title)
+	
+	if #list > 0 then
+		for i, v in ipairs(list) do
+			attr_item(b, v[_name], v[_brief])
+		end
+	else
+		--attr_item(b, nothing)
+	end
+	attr_end(b)
+end
+
+function attr_item(b, name, brief)
+        b:push("div", "item")
+        b:push("span", "name"); b:write(lovedoc.symbolize(name)); b:pop()
+        b:push("span", "desc"); b:write(lovedoc.symbolize(brief)); b:pop()
+        b:pop()	
 end
 
 function example_section(b, list)
@@ -688,7 +780,13 @@ function see_section(b, list)
         b:pop()
         b:div("content")
         for si,s in ipairs(list) do
-                b:write(lovedoc.symbolize(s:text()))
+				local text = string.gsub(s:text(), "([%w%p]-)([, ])",
+					function(s,e)
+						if lovedoc.url.gsub[s] then return lovedoc.url.gsub[s]..e end
+						return s..e
+					end)
+		  
+                b:write(text)
         end
         b:pop()
         b:pop()
@@ -697,14 +795,14 @@ end
 function section_section(b, list)
         if #list <= 0 then return end
         for si,s in ipairs(list) do
-                b:div("section")
-                        b:div("title")
-                                b:write(s:name())
-                        b:pop()
-                        b:div("content")
-                                b:write(lovedoc.symbolize(s:text()))
-                        b:pop()
-                b:pop()
+					 b:div("chapter")
+						b:div("title")
+								  b:write(s:name())
+						b:pop()
+						b:div("content")
+								  b:write(lovedoc.symbolize(s:text()))
+						b:pop()
+					 b:pop()
         end
 end
 
@@ -713,15 +811,16 @@ end
 ----------------------------------------------------
 
 function lovedoc.docwriter.misc(m)
-	local b = lovedoc.newbuffer()
-	b:header()
-	b:menu(m:name())
+
+		local b = lovedoc.newbuffer()
+		b:header()
+		b:menu(m:name())
+			
+		page_begin(b, "Miscellaneous", m:name(), m:text())
+		item_section(b, m.item, m._title)
+		page_end(b)
 		
-	page_begin(b, "Miscellaneous", m:name(), m:text())
-	item_section(b, m.item, m._title)
-	page_end(b)
-	
-	b:tofile(m:url())
+		b:tofile(m:url())
 end
 
 ----------------------------------------------------
@@ -750,6 +849,7 @@ lovedoc.parse(tab)
 
 lovedoc.gensym()
 lovedoc.sortsym()
+lovedoc.urlsym()
 --table_print(lovedoc.url.data)
 --table_print(lovedoc.data)
 lovedoc.docwrite()

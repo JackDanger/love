@@ -9126,7 +9126,7 @@ static swig_lua_class *swig_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg__ba
 static const char *swig_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg__base_names[] = {0};
 static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg_ = { "SmartPrismaticJoint", &SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0, swig_delete_SmartPrismaticJoint, swig_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg__methods, swig_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg__attributes, swig_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg__bases, swig_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg__base_names };
 
-static int _wrap_newWorld(lua_State* L) {
+static int _wrap_newWorld__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   float arg1 ;
   float arg2 ;
@@ -9168,7 +9168,100 @@ fail:
 }
 
 
-static int _wrap_newBody(lua_State* L) {
+static int _wrap_newWorld__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  float arg1 ;
+  float arg2 ;
+  love_box2d::pWorld result;
+  
+  SWIG_check_num_args("love_box2d::newWorld",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_box2d::newWorld",1,"float");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_box2d::newWorld",2,"float");
+  arg1 = (float)lua_tonumber(L, 1);
+  arg2 = (float)lua_tonumber(L, 2);
+  result = love_box2d::newWorld(arg1,arg2);
+  SWIG_arg=0;
+  {
+    love_box2d::pWorld * resultptr = new love_box2d::pWorld((love_box2d::pWorld &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_newWorld(lua_State* L) {
+  int argc;
+  int argv[8]={
+    1,2,3,4,5,6,7,8
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 2) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_newWorld__SWIG_1(L);
+      }
+    }
+  }
+  if (argc == 7) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              {
+                _v = lua_isnumber(L,argv[5]);
+              }
+              if (_v) {
+                {
+                  _v = lua_isboolean(L,argv[6]);
+                }
+                if (_v) {
+                  return _wrap_newWorld__SWIG_0(L);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'newWorld'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_newBody__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love_box2d::pWorld arg1 ;
   float arg2 ;
@@ -9207,7 +9300,186 @@ fail:
 }
 
 
+static int _wrap_newBody__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::pWorld arg1 ;
+  float arg2 ;
+  float arg3 ;
+  love_box2d::pBody result;
+  love_box2d::pWorld *argp1 ;
+  
+  SWIG_check_num_args("love_box2d::newBody",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_box2d::newBody",1,"love_box2d::pWorld");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_box2d::newBody",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_box2d::newBody",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t,0))){
+    SWIG_fail_ptr("newBody",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t);
+  }
+  arg1 = *argp1;
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  result = love_box2d::newBody(arg1,arg2,arg3);
+  SWIG_arg=0;
+  {
+    love_box2d::pBody * resultptr = new love_box2d::pBody((love_box2d::pBody &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_newBody__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::pWorld arg1 ;
+  love_box2d::pBody result;
+  love_box2d::pWorld *argp1 ;
+  
+  SWIG_check_num_args("love_box2d::newBody",1,1)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_box2d::newBody",1,"love_box2d::pWorld");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t,0))){
+    SWIG_fail_ptr("newBody",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t);
+  }
+  arg1 = *argp1;
+  
+  result = love_box2d::newBody(arg1);
+  SWIG_arg=0;
+  {
+    love_box2d::pBody * resultptr = new love_box2d::pBody((love_box2d::pBody &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_newBody(lua_State* L) {
+  int argc;
+  int argv[5]={
+    1,2,3,4,5
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_newBody__SWIG_2(L);
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_newBody__SWIG_1(L);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_newBody__SWIG_0(L);
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'newBody'");
+  lua_error(L);return 0;
+}
+
+
 static int _wrap_newCircleShape__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::pBody arg1 ;
+  float arg2 ;
+  love_box2d::pCircleShape result;
+  love_box2d::pBody *argp1 ;
+  
+  SWIG_check_num_args("love_box2d::newCircleShape",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_box2d::newCircleShape",1,"love_box2d::pBody");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_box2d::newCircleShape",2,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("newCircleShape",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  arg1 = *argp1;
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  result = love_box2d::newCircleShape(arg1,arg2);
+  SWIG_arg=0;
+  {
+    love_box2d::pCircleShape * resultptr = new love_box2d::pCircleShape((love_box2d::pCircleShape &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_newCircleShape__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
   love_box2d::pBody arg1 ;
   float arg2 ;
@@ -9246,39 +9518,6 @@ fail:
 }
 
 
-static int _wrap_newCircleShape__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  love_box2d::pBody arg1 ;
-  float arg2 ;
-  love_box2d::pCircleShape result;
-  love_box2d::pBody *argp1 ;
-  
-  SWIG_check_num_args("love_box2d::newCircleShape",2,2)
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_box2d::newCircleShape",1,"love_box2d::pBody");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_box2d::newCircleShape",2,"float");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
-    SWIG_fail_ptr("newCircleShape",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
-  }
-  arg1 = *argp1;
-  
-  arg2 = (float)lua_tonumber(L, 2);
-  result = love_box2d::newCircleShape(arg1,arg2);
-  SWIG_arg=0;
-  {
-    love_box2d::pCircleShape * resultptr = new love_box2d::pCircleShape((love_box2d::pCircleShape &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_newCircleShape(lua_State* L) {
   int argc;
   int argv[5]={
@@ -9301,7 +9540,7 @@ static int _wrap_newCircleShape(lua_State* L) {
         _v = lua_isnumber(L,argv[1]);
       }
       if (_v) {
-        return _wrap_newCircleShape__SWIG_1(L);
+        return _wrap_newCircleShape__SWIG_0(L);
       }
     }
   }
@@ -9328,7 +9567,7 @@ static int _wrap_newCircleShape(lua_State* L) {
             _v = lua_isnumber(L,argv[3]);
           }
           if (_v) {
-            return _wrap_newCircleShape__SWIG_0(L);
+            return _wrap_newCircleShape__SWIG_1(L);
           }
         }
       }
@@ -9336,6 +9575,239 @@ static int _wrap_newCircleShape(lua_State* L) {
   }
   
   lua_pushstring(L,"No matching function for overloaded 'newCircleShape'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_newRectangleShape__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::pBody arg1 ;
+  float arg2 ;
+  float arg3 ;
+  love_box2d::pPolygonShape result;
+  love_box2d::pBody *argp1 ;
+  
+  SWIG_check_num_args("love_box2d::newRectangleShape",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_box2d::newRectangleShape",1,"love_box2d::pBody");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_box2d::newRectangleShape",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_box2d::newRectangleShape",3,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("newRectangleShape",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  arg1 = *argp1;
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  result = love_box2d::newRectangleShape(arg1,arg2,arg3);
+  SWIG_arg=0;
+  {
+    love_box2d::pPolygonShape * resultptr = new love_box2d::pPolygonShape((love_box2d::pPolygonShape &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_newRectangleShape__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::pBody arg1 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  love_box2d::pPolygonShape result;
+  love_box2d::pBody *argp1 ;
+  
+  SWIG_check_num_args("love_box2d::newRectangleShape",5,5)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_box2d::newRectangleShape",1,"love_box2d::pBody");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_box2d::newRectangleShape",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_box2d::newRectangleShape",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("love_box2d::newRectangleShape",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("love_box2d::newRectangleShape",5,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("newRectangleShape",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  arg1 = *argp1;
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  result = love_box2d::newRectangleShape(arg1,arg2,arg3,arg4,arg5);
+  SWIG_arg=0;
+  {
+    love_box2d::pPolygonShape * resultptr = new love_box2d::pPolygonShape((love_box2d::pPolygonShape &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_newRectangleShape__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  love_box2d::pBody arg1 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  love_box2d::pPolygonShape result;
+  love_box2d::pBody *argp1 ;
+  
+  SWIG_check_num_args("love_box2d::newRectangleShape",6,6)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_box2d::newRectangleShape",1,"love_box2d::pBody");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_box2d::newRectangleShape",2,"float");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_box2d::newRectangleShape",3,"float");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("love_box2d::newRectangleShape",4,"float");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("love_box2d::newRectangleShape",5,"float");
+  if(!lua_isnumber(L,6)) SWIG_fail_arg("love_box2d::newRectangleShape",6,"float");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&argp1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+    SWIG_fail_ptr("newRectangleShape",1,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t);
+  }
+  arg1 = *argp1;
+  
+  arg2 = (float)lua_tonumber(L, 2);
+  arg3 = (float)lua_tonumber(L, 3);
+  arg4 = (float)lua_tonumber(L, 4);
+  arg5 = (float)lua_tonumber(L, 5);
+  arg6 = (float)lua_tonumber(L, 6);
+  result = love_box2d::newRectangleShape(arg1,arg2,arg3,arg4,arg5,arg6);
+  SWIG_arg=0;
+  {
+    love_box2d::pPolygonShape * resultptr = new love_box2d::pPolygonShape((love_box2d::pPolygonShape &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_newRectangleShape(lua_State* L) {
+  int argc;
+  int argv[7]={
+    1,2,3,4,5,6,7
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          return _wrap_newRectangleShape__SWIG_0(L);
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_newRectangleShape__SWIG_1(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isnumber(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              {
+                _v = lua_isnumber(L,argv[5]);
+              }
+              if (_v) {
+                return _wrap_newRectangleShape__SWIG_2(L);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'newRectangleShape'");
   lua_error(L);return 0;
 }
 
@@ -9528,9 +10000,10 @@ fail:
 #endif
 
 static const struct luaL_reg swig_commands[] = {
-    { "newWorld", _wrap_newWorld},
-    { "newBody", _wrap_newBody},
+    { "newWorld",_wrap_newWorld},
+    { "newBody",_wrap_newBody},
     { "newCircleShape",_wrap_newCircleShape},
+    { "newRectangleShape",_wrap_newRectangleShape},
     { "newDistanceJoint", _wrap_newDistanceJoint},
     { "newMouseJoint", _wrap_newMouseJoint},
     { "newRevoluteJoint", _wrap_newRevoluteJoint},

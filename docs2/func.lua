@@ -4,14 +4,15 @@ function lovedoc.parser.func(t, p)
 	local o = lovedoc.newtag()
 	o._name = t.attr.name or "nofunc"
 	o._brief = t.attr.brief or "(No description.)"
-        o._separator = t.attr.separator
+   if p._type then o._separator = ":" else o._separator = "." end
 	o._parent = p:name()
 	o._text = ""
 	o._type = p._type
+	o._space = t.attr.space
 	o.overload = {}
 	o.param = {}
 	o.ret = {}
-        o.see = {}
+   o.see = {}
 	lovedoc.insert(t, p, o)
 end
 
@@ -27,39 +28,13 @@ function lovedoc.docwriter.func(t)
 	b:header()
 	b:menu(t._parent or "")
 	
-	b:div("page")
-		b:div("title")
-			b:write("Function")
-		b:pop()
-		b:div("description")
-			b:div("title")
-				b:write(t:fullname())
-			b:pop()
-			b:div("text")
-				b:write(t:text())
-			b:pop()
-		b:pop()
-		
-		b:div("section")
-			b:div("title")
-				b:write("Variants")
-			b:pop()
-			b:div("content")
-				b:push("table", "data")
-					for oi,o in ipairs(t.overload) do
-						b:push("tr")
-							b:push("td", "name")
-								b:write("<a href=\""..o:url().."\">"..o:shortsignature() .."</a>")
-							b:pop()
-							b:push("td", "desc")
-								b:write(o._brief)
-							b:pop()
-						b:pop()
-					end
-				b:pop()
-			b:pop()
-		b:pop()
-				
-	b:pop()	
+	page_begin(b, "Function", t:fullname(), t:text())
+	list_section_begin(b, "Variants")
+	for oi,o in ipairs(t.overload) do
+		list_item(b, '<a href="'..o:url()..'">'..o:shortsignature()..'</a>', o._brief)
+	end
+	list_section_end(b)
+	page_end(b)
+	
 	b:tofile(t:url())
 end
