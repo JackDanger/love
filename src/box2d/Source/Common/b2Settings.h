@@ -73,7 +73,7 @@ const float32 b2_pi = 3.14159265359f;
 // Collision
 const int32 b2_maxManifoldPoints = 2;
 const int32 b2_maxPolygonVertices = 8;
-const int32 b2_maxProxies = 512;				// this must be a power of two
+const int32 b2_maxProxies = 2048;				// this must be a power of two
 const int32 b2_maxPairs = 8 * b2_maxProxies;	// this must be a power of two
 
 // Dynamics

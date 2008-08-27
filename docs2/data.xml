@@ -1,6 +1,5 @@
 <nzai>
   <page name="Overview" file="index.html">
-
     <section name="Welcome">
 
 
@@ -25,19 +24,19 @@
 
     <section name="Summary">
 
-    LÖVE is licensed under the terms of the ZLIB license. This is a short license to begin with,
-    but for the lazy, here's a summary:
+      L&amp;Ouml; is licensed under the terms of the ZLIB license. This is a short license to begin with,
+      but for the lazy, here's a summary:
 
-    [ul]
-    [li]Do not claim that you made this software.[/li]
-    [li]Do not make an altered version and claim that it is the original software.[/li]
-    [li]Otherwise, feel free to use this software in any situation, including commercial.[/li]
-    [/ul]
+      [ul]
+      [li]Do not claim that you made this software.[/li]
+      [li]Do not make an altered version and claim that it is the original software.[/li]
+      [li]Otherwise, feel free to use this software in any situation, including commercial.[/li]
+      [/ul]
     </section>
 
     <section name="ZLIB license (full)">
 
-      Copyright © 2006-2008 LÖVE Development Team[br /]
+      Copyright &amp;copy; 2006-2008 L&amp;Ouml; Development Team[br /]
       [br /]
       This software is provided 'as-is', without any express or implied
       warranty. In no event will the authors be held liable for any damages
@@ -59,21 +58,18 @@
       distribution.[br /]
 
     </section>
-   </page>
-  
-
-    <page name="Credits">
-      <section name="Authors">
+  </page>
+  <page name="Credits">
+    <section name="Authors">
       LÖVE is created by:[br /]
       [ul]
       [li]Anders Ruud - andruud at gmail dot com[/li]
       [li]Michael Enger - mike at facemeandscream dot com[/li]
       [li]Tommy Nguyen - tn0502 at hotmail dot com[/li]
       [/ul]
-      </section>
+    </section>
 
-      <!-- Subchapter start -->
-       <section name="Libraries">
+    <section name="Libraries">
       LÖVE is built around these libraries, presented here in no particular order:
 
       [ul]
@@ -90,14 +86,13 @@
 
       A behemothic thanks to all of these.
 
-      </section>
-      <!-- Subchapter end -->
+    </section>
 
 
-    </page>
-    <page name="Installing">
+  </page>
+  <page name="Installing">
 
-      <section name="Binaries">
+    <section name="Binaries">
       We currently maintain x86 binaries for:
       [ul]
       [li]Windows XP/Vista (zipped .exe and installer)[/li]
@@ -108,9 +103,9 @@
       [br /]
       Binaries and packages for other systems (MacOSX, RPM) are planned.
       If you would like to maintain binaries for some system, please [a href="http://love2d.org/?page=credits"]contact us[/a].
-      </section>
+    </section>
 
-      <section name="Source">
+    <section name="Source">
 
       Compiling the source requires that these libraries are present on your system (as named in Ubuntu):
 
@@ -136,12 +131,10 @@
       Binaries will appear in the bin folder.[br /]
       [br /]
       Note: An autoconf/automake setup is being created, and will probably be included in the next release.
-      </section>
-    </page>
-      
-      
-    <page name="Getting started">
-      <section name="Basics">
+    </section>
+  </page>
+  <page name="Getting started">
+    <section name="Basics">
       Download LÖVE from [a href="http://love2d.org"]http://love2d.org[/a] and install.[br /]
       [br /]
       Create a new directory somewhere, and create two files:
@@ -156,7 +149,7 @@
       author = "Your Name"[br /]
       title = "My Awesome Game"
       [/code]
-      
+
       And write the following into the main.lua file:
       [code]
       function load()[br /]
@@ -164,7 +157,7 @@
       &amp;nbsp;&amp;nbsp;&amp;nbsp;love.graphics.setFont(font)[br /]
       &amp;nbsp;&amp;nbsp;&amp;nbsp;message = "Yharrr, Why hello thaarrrr!"[br /]
       end[br /]
-[br /]
+      [br /]
       function draw()[br /]
       &amp;nbsp;&amp;nbsp;&amp;nbsp;love.graphics.draw(message, 100, 100)[br /]
       end
@@ -174,12 +167,12 @@
       After saving, simply drag the directory you created onto the executable
       (Windows: love.exe), and the the game will start. You should see your
       message on the screen.
-      </section>
+    </section>
 
 
-      <section name="Further Reading">
+    <section name="Further Reading">
       For more information, check out the [a href="http://love2d.org/?page=documentation"]tutorials[/a].
-      </section>
+    </section>
 
     <section name="External libraries">
 
@@ -200,10 +193,9 @@
 
 
   </page>
-
-   <page name="Manual Improvements">
+  <page name="Manual Improvements">
     <section name="Help us help you">
-      
+
     </section>
     <section name="Submit an Example">
     </section>
@@ -212,10 +204,7 @@
   <module name="love.graphics">
     The graphics module is responsible for things like window management, Images, Animations,
     Fonts, and more.
-	
-    <type name="Fake" brief="Documentation Test Type">
-    </type>
-        
+
     <type name="Image" brief="Represents a drawable image.">
       Images are created and drawn on screen using functions in love.graphics. Images do currently not exist in memory after they are created as GPU textures, thus methods
       for reading single pixel colors and similar are not available.[br /]
@@ -239,7 +228,7 @@
           <ret type="number" brief="The width of the image." />
         </overload>
       </func>
-	  <func name="getHeight" brief="Gets the height of an image.">
+      <func name="getHeight" brief="Gets the height of an image.">
         <overload>
           <ret type="number" brief="The height of the image." />
         </overload>
@@ -248,7 +237,7 @@
         <overload>
           <param name="x" />
           <param name="y" />
-		  For instance, a 128x64 image, will have a default center at [64,32] (the actual center). If you want the image to rotate around its top-left corner, you set the center to [0,0].
+          For instance, a 128x64 image, will have a default center at [64,32] (the actual center). If you want the image to rotate around its top-left corner, you set the center to [0,0].
         </overload>
       </func>
 
@@ -264,438 +253,438 @@
 
     <type name="Animation" brief="Represents a frame-by-frame animation.">
       Remember that Animations must be updated each frame. (See example)
-	  
-	  <func name="addFrame" brief="Adds a single frame to the Animation.">
-	    <overload>
-         <param name="x" brief="The position of the frame along the x-axis." />
+
+      <func name="addFrame" brief="Adds a single frame to the Animation.">
+        <overload>
+          <param name="x" brief="The position of the frame along the x-axis." />
           <param name="y" brief="The position of the frame along the y-axis." />
           <param name="w" brief="The width of the frame." />
           <param name="h" brief="The height of the frame." />
           <param name="delay" brief="The delay in seconds after the frame. " />
-		</overload>
+        </overload>
       </func>
-	  
-	  <func name="setMode" brief="Sets the animation mode.">
-	    <overload>
+
+      <func name="setMode" brief="Sets the animation mode.">
+        <overload>
           <param name="mode" brief="The animation mode." />
-		</overload>
+        </overload>
       </func>
-	  
-	  <func name="play" brief="Starts the Animation.">
-	    <overload></overload>
-      </func>
-	  
-	  <func name="stop" brief="Stops the Animation">
-	    <overload></overload>
-      </func>
-	  
-	  <func name="reset" brief="Sets the current frame to the first frame and resets timer." >
+
+      <func name="play" brief="Starts the Animation.">
         <overload></overload>
       </func>
-	  
-	  <func name="seek" brief="Sets the current frame.">
-        <overload>
-		  <param name="frame" brief="The frame number. (0 = first)" />
-		</overload>
+
+      <func name="stop" brief="Stops the Animation">
+        <overload></overload>
       </func>
-	  
-	  <func name="getCurrentFrame" brief="Gets the current frame number">
-        <overload>
-		  <ret type="number" brief="The frame number, where 0 is the first frame."/>
-		</overload>
+
+      <func name="reset" brief="Sets the current frame to the first frame and resets timer." >
+        <overload></overload>
       </func>
-	  
-	  <func name="getSize" brief="Gets the number of frames.">
+
+      <func name="seek" brief="Sets the current frame.">
         <overload>
-		  <ret type="number" brief="The number of frames." />
-		</overload>
+          <param name="frame" brief="The frame number. (0 = first)" />
+        </overload>
       </func>
-	  
-	  <func name="setDelay" brief="Sets the delay of a specific frame." >
+
+      <func name="getCurrentFrame" brief="Gets the current frame number">
         <overload>
-		  <param name="frame" brief="The frame number." />
+          <ret type="number" brief="The frame number, where 0 is the first frame."/>
+        </overload>
+      </func>
+
+      <func name="getSize" brief="Gets the number of frames.">
+        <overload>
+          <ret type="number" brief="The number of frames." />
+        </overload>
+      </func>
+
+      <func name="setDelay" brief="Sets the delay of a specific frame." >
+        <overload>
+          <param name="frame" brief="The frame number." />
           <param name="delay" brief="The new delay for the frame." />
-		</overload>
+        </overload>
       </func>
-	  
-	  <func name="setSpeed" brief="Sets the overall speed of the Animation.">
-	    <overload>
+
+      <func name="setSpeed" brief="Sets the overall speed of the Animation.">
+        <overload>
           <param name="speed" brief="Speed factor, where a value of 1 means normal speed." />
-		</overload>
+        </overload>
       </func>
-	  
-	  <func name="getSpeed" brief="Returns the current speed of the Animation.">
+
+      <func name="getSpeed" brief="Returns the current speed of the Animation.">
         <overload>
-		  <ret type="number" brief="The speed factor, where a value of 1 means normal speed." />
-		</overload>
+          <ret type="number" brief="The speed factor, where a value of 1 means normal speed." />
+        </overload>
       </func>
-	  
-	  <func name="getWidth" brief="Gets the width of the current frame.">
+
+      <func name="getWidth" brief="Gets the width of the current frame.">
         <overload>
-		  <ret type="number" brief="The width of the current frame in pixels." />
-		</overload>
+          <ret type="number" brief="The width of the current frame in pixels." />
+        </overload>
       </func>
-	  
-	  <func name="getHeight" brief="Gets the height of the current frame.">
+
+      <func name="getHeight" brief="Gets the height of the current frame.">
         <overload>
-		  <ret type="number" brief="The height of the current frame in pixels." />
-		</overload>
+          <ret type="number" brief="The height of the current frame in pixels." />
+        </overload>
       </func>
-	  
-	  <func name="setCenter" brief="Changes the center of the Animation.">
-		<overload>
+
+      <func name="setCenter" brief="Changes the center of the Animation.">
+        <overload>
           <param name="x" brief="The position of the center along the x-axis." />
           <param name="y" brief="The position of the center along the y-axis." />
-		  For instance, a 128x64 Animation (assuming all frames have equal size), will have a default center at (0,0)
-          (the actual center). If you want the Animation to rotate around its top-left corner, you set the center to (-64,-32). 
+          For instance, a 128x64 Animation (assuming all frames have equal size), will have a default center at (0,0)
+          (the actual center). If you want the Animation to rotate around its top-left corner, you set the center to (-64,-32).
           Unlike Images, which have absolute centers, Animations have relative centers. This is because frames in an Animation
           can have variable dimensions.
-		</overload>
+        </overload>
       </func>
-	  
-	  <func name="update" brief="Updates the Animation">
-	    <overload>
-		  <param name="dt" brief="The time since last update." />
+
+      <func name="update" brief="Updates the Animation">
+        <overload>
+          <param name="dt" brief="The time since last update." />
           Note that this must be called every frame for the Animation to run. See the example.
-		</overload>
+        </overload>
       </func>
-	  
-	  <see>
-	    love.graphics.newAnimation, Image
-	  </see>
-	  
-	  <example id="11" />
-	  
+
+      <see>
+        love.graphics.newAnimation, Image
+      </see>
+
+      <example id="11" />
+
     </type>
-	
+
 
     <type name="Font" brief="Represents a font.">
-	  
-	  <func name="getHeight" brief="Returns the height of the font.">
+
+      <func name="getHeight" brief="Returns the height of the font.">
         <overload>
           <ret type="number" brief="The height of the font." />
-		  The height of the font is the size including any spacing; the height which it will need.
-		</overload>
+          The height of the font is the size including any spacing; the height which it will need.
+        </overload>
       </func>
-	  
-	  <func name="getWidth" brief="Returns the width of the line.">
+
+      <func name="getWidth" brief="Returns the width of the line.">
         <overload>
           <param name="line" brief="A line of text." />
           <ret type="number" brief="The width of the font." />
-		  Determines the line width. Does not support line-breaks.
-		</overload>
+          Determines the line width. Does not support line-breaks.
+        </overload>
       </func>
-	  
-	  <func name="setLineHeight" brief="Sets the line height of the font.">
-	    <overload>
-          <param name="height" brief="The new line height." />
-		  When rendering the font in lines the actual height will be determined by the line height multiplied by the height of the font. The default is 1.0
-		</overload>
-      </func>
-	  
-	  <func name="getLineHeight" brief="Returns the line height.">
+
+      <func name="setLineHeight" brief="Sets the line height of the font.">
         <overload>
-		  <ret type="number" brief="The line height." />
-		</overload>
+          <param name="height" brief="The new line height." />
+          When rendering the font in lines the actual height will be determined by the line height multiplied by the height of the font. The default is 1.0
+        </overload>
       </func>
-	  
+
+      <func name="getLineHeight" brief="Returns the line height.">
+        <overload>
+          <ret type="number" brief="The line height." />
+        </overload>
+      </func>
+
       <see>
-	    love.graphics.newFont, love.graphics.newImageFont
-	  </see>
-	  
+        love.graphics.newFont, love.graphics.newImageFont
+      </see>
+
     </type>
-	
-	<type name="Color" brief="An object containing color information.">
+
+    <type name="Color" brief="An object containing color information.">
       A Color object is created by calling any of the [b]love.graphics.newColor()[/b] functions.
 
       <func name="setRed" brief="Sets the amount of red in the color.">
         <overload>
-		  <param name="red" brief="The amount of red." />
-		</overload>
+          <param name="red" brief="The amount of red." />
+        </overload>
       </func>
 
       <func name="setGreen" brief="Sets the amount of green in the color.">
         <overload>
-		  <param name="green" brief="The amount of green." />
-		</overload>
+          <param name="green" brief="The amount of green." />
+        </overload>
       </func>
 
       <func name="setBlue" brief="Sets the amount of blue in the color.">
         <overload>
-		  <param name="blue" brief="The amount of blue." />
-		</overload>
+          <param name="blue" brief="The amount of blue." />
+        </overload>
       </func>
 
       <func name="setAlpha" brief="Sets the amount of alpha in the color.">
         <overload>
-		  <param name="alpha" brief="The amount of alpha." />
-		</overload>
+          <param name="alpha" brief="The amount of alpha." />
+        </overload>
       </func>
 
       <func name="getRed" brief="Gets the amount of red in the color.">
         <overload>
-		  <ret type="number" brief="The amount of red." />
-		</overload>
+          <ret type="number" brief="The amount of red." />
+        </overload>
       </func>
 
       <func name="getGreen" brief="Gets the amount of green in the color.">
         <overload>
-		  <ret type="number" brief="The amount of green." />
-		</overload>
+          <ret type="number" brief="The amount of green." />
+        </overload>
       </func>
 
       <func name="getBlue" brief="Gets the amount of blue in the color.">
         <overload>
-		  <ret type="number" brief="The amount of blue." />
-		</overload>
+          <ret type="number" brief="The amount of blue." />
+        </overload>
       </func>
 
       <func name="getAlpha" brief="Gets the amount of alpha in the color.">
         <overload>
-		  <ret type="number" brief="The amount of alpha." />
-		</overload>
+          <ret type="number" brief="The amount of alpha." />
+        </overload>
       </func>
-	  
-	  <see>love.graphics.newColor</see>
+
+      <see>love.graphics.newColor</see>
 
     </type>
-	
-	<type name="ParticleSystem" brief="Contains information for a particle system.">
+
+    <type name="ParticleSystem" brief="Contains information for a particle system.">
       The particle systems are created and drawn on the screen using functions in love.graphics. They also need to be updated in the update(dt) callback
       for you to see any changes in the particles emitted
 
       <func name="setBufferSize" brief="Sets the size of the buffer (the max allowed amount of particles in the system).">
         <overload>
-		  <param name="size">The buffer size.</param>
-		</overload>
+          <param name="size">The buffer size.</param>
+        </overload>
       </func>
-	  
-	  <func name="setSprite" brief="Sets the image which is to be emitted.">
+
+      <func name="setSprite" brief="Sets the image which is to be emitted.">
         <overload>
-		  <param name="sprite">An Image.</param>
-		</overload>
+          <param name="sprite">An Image.</param>
+        </overload>
       </func>
 
       <func name="setEmissionRate" brief="Sets the amount of particles emitted per second.">
         <overload>
-		  <param name="rate">The amount of particles per second.</param>
-		</overload>
+          <param name="rate">The amount of particles per second.</param>
+        </overload>
       </func>
 
       <func name="setLifetime" brief="Sets how long the particle system should emit particles (if -1 then it emits particles forever).">
         <overload>
-		  <param name="life">The lifetime of the emitter (in seconds).</param>
-		</overload>
+          <param name="life">The lifetime of the emitter (in seconds).</param>
+        </overload>
       </func>
 
       <func name="setParticleLife" brief="Sets the life of the particles.">
         <overload>
-		  <param name="life">The life of the particles (in seconds).</param>
-		</overload>
+          <param name="life">The life of the particles (in seconds).</param>
+        </overload>
         <overload>
-		  <param name="min">The minumum life of the particles (in seconds).</param>
+          <param name="min">The minumum life of the particles (in seconds).</param>
           <param name="max">The maximum life of the particles (in seconds).</param>
-		  Every particle created will have a lifetime between min and max.
-		</overload>
+          Every particle created will have a lifetime between min and max.
+        </overload>
       </func>
-	  
-	  <func name="setPosition" brief="Sets the position of the emitter.">
-	    <overload>
-		  <param name="x">The x-coordinate.</param>
-		  <param name="y">The y-coordinate.</param>
-		</overload>
-	  </func>
+
+      <func name="setPosition" brief="Sets the position of the emitter.">
+        <overload>
+          <param name="x">The x-coordinate.</param>
+          <param name="y">The y-coordinate.</param>
+        </overload>
+      </func>
 
       <func name="setDirection" brief="Sets the direction the particles will be emitted in (in degrees).">
         <overload>
-		  <param name="direction">The direction of the particles (in degrees).</param>
-		</overload>
+          <param name="direction">The direction of the particles (in degrees).</param>
+        </overload>
         <overload>
-		  <param name="direction">The direction of the particles (in degrees).</param>
+          <param name="direction">The direction of the particles (in degrees).</param>
           <param name="spread">The amount of spread.</param>
-		</overload>
+        </overload>
       </func>
 
       <func name="setSpeed" brief="Sets the speed of the particles.">
         <overload>
-		  <param name="speed">The speed (in pixels per second).</param>
-		</overload>
+          <param name="speed">The speed (in pixels per second).</param>
+        </overload>
         <overload>
-		  <param name="min">The minimum speed (in pixels per second).</param>
+          <param name="min">The minimum speed (in pixels per second).</param>
           <param name="max">The maximum speed (in pixels per second).</param>
-		  Every particle created will have a speed between min and max.
-		</overload>
+          Every particle created will have a speed between min and max.
+        </overload>
       </func>
 
       <func name="setGravity" brief="Sets the gravity affecting the particles (acceleration along the y-axis).">
         <overload>
-		  <param name="gravity">The amount of gravity.</param>
-		</overload>
+          <param name="gravity">The amount of gravity.</param>
+        </overload>
         <overload>
-		  <param name="min">The minimum gravity.</param>
+          <param name="min">The minimum gravity.</param>
           <param name="max">The maximum gravity.</param>
-		  Every particle created will have a gravity between min and max.
-		</overload>
+          Every particle created will have a gravity between min and max.
+        </overload>
       </func>
 
       <func name="setRadialAcceleration" brief="Sets the radial acceleration (acceleration towards the emitter).">
         <overload>
-		  <param name="acceleration">The amount of acceleration.</param>
-		</overload>
+          <param name="acceleration">The amount of acceleration.</param>
+        </overload>
         <overload>
-		  <param name="min">The minimum acceleration.</param>
+          <param name="min">The minimum acceleration.</param>
           <param name="max">The maximum acceleration.</param>
-		  Every particle created will have an acceleration between min and max.
-		</overload>
+          Every particle created will have an acceleration between min and max.
+        </overload>
       </func>
 
       <func name="setTangentialAcceleration" brief="Sets the tangential acceleration (acceleration perpendicular to the particle's direction).">
         <overload>
-		  <param name="acceleration">The amount of acceleration.</param>
-		</overload>
+          <param name="acceleration">The amount of acceleration.</param>
+        </overload>
         <overload>
-		  <param name="min">The minimum acceleration.</param>
+          <param name="min">The minimum acceleration.</param>
           <param name="max">The maximum acceleration.</param>
-		  Every particle created will have an acceleration between min and max.
-		</overload>
+          Every particle created will have an acceleration between min and max.
+        </overload>
       </func>
 
       <func name="setSize" brief="Sets the size of the image (1.0 being normal size).">
         <overload>
-		  <param name="size">The size of the image.</param>
-		</overload>
+          <param name="size">The size of the image.</param>
+        </overload>
         <overload>
-		  <param name="start">The size of the image upon creation.</param>
+          <param name="start">The size of the image upon creation.</param>
           <param name="end">The size of the image upon death.</param>
-		  The particles will grow/shrink from the starting size to the ending size.
-		</overload>
+          The particles will grow/shrink from the starting size to the ending size.
+        </overload>
         <overload>
-		  <param name="start">The size of the image upon creation.</param>
+          <param name="start">The size of the image upon creation.</param>
           <param name="end">The size of the image upon death.</param>
           <param name="variation">The degree of variation (0 meaning no variation and 1 meaning full variation between start and end).</param>
-		  The particles will grow/shrink from the starting size to the ending size. The variation affects starting size only.
-		</overload>
+          The particles will grow/shrink from the starting size to the ending size. The variation affects starting size only.
+        </overload>
       </func>
 
       <func name="setSizeVariation" brief="Sets the degree of variation (0 meaning no variation and 1 meaning full variation between start and end).">
         <overload>
-		  <param name="variation">The degree of variation.</param>
-		</overload>
+          <param name="variation">The degree of variation.</param>
+        </overload>
       </func>
 
       <func name="setRotation" brief="Sets the rotation of the image upon particle creation (in degrees).">
         <overload>
-		  <param name="rotation">The rotation of the image (in degrees).</param>
-		</overload>
+          <param name="rotation">The rotation of the image (in degrees).</param>
+        </overload>
         <overload>
-		  <param name="min">The minimum amount of rotation.</param>
+          <param name="min">The minimum amount of rotation.</param>
           <param name="max">The maximum amount of rotation.</param>
-		  Every particle created will have a rotation between min and max.
-		</overload>
+          Every particle created will have a rotation between min and max.
+        </overload>
       </func>
-	  
-	  <func name="setSpin" brief="Sets the spin of the sprite.">
+
+      <func name="setSpin" brief="Sets the spin of the sprite.">
         <overload>
-		  <param name="size">The amount of spin.</param>
-		</overload>
+          <param name="size">The amount of spin.</param>
+        </overload>
         <overload>
-		  <param name="start">The amount of spin upon creation.</param>
+          <param name="start">The amount of spin upon creation.</param>
           <param name="end">The amount of spin upon death.</param>
-		</overload>
+        </overload>
         <overload>
-		  <param name="start">The amount of spin upon creation.</param>
+          <param name="start">The amount of spin upon creation.</param>
           <param name="end">The amount of spin upon death.</param>
           <param name="variation">The degree of variation (0 meaning no variation and 1 meaning full variation between start and end).</param>
-		</overload>
+        </overload>
       </func>
 
       <func name="setSpinVariation" brief="Sets the degree of variation (0 meaning no variation and 1 meaning full variation between start and end).">
         <overload>
-		  <param name="variation">The degree of variation.</param>
-		</overload>
+          <param name="variation">The degree of variation.</param>
+        </overload>
       </func>
 
       <func name="setColor" brief="Sets the color of the image (color modulation needs to be activated for it to have any effect).">
         <overload>
-		  <param name="color">A Color object.</param>
-		</overload>
+          <param name="color">A Color object.</param>
+        </overload>
         <overload>
-		  <param name="start">A Color object.</param>
+          <param name="start">A Color object.</param>
           <param name="end">A Color object.</param>
-		</overload>
+        </overload>
       </func>
-	  
-	  <func name="getX" brief="Gets the x-coordinate of the particle emitter's position.">
-	    <overload>
-		  <ret type="number" brief="The x-coordinate." />
-		</overload>
-	  </func>
-	  
-	  <func name="getY" brief="Gets the y-coordinate of the particle emitter's position.">
-	    <overload>
-		  <ret type="number" brief="The y-coordinate." />
-		</overload>
-	  </func>
-	  
-	  <func name="getDirection" brief="Gets the direction of the particle emitter (in degrees).">
-	    <overload>
-		  <ret type="number" brief="The direction." />
-		</overload>
-	  </func>
-	  
-	  <func name="getSpread" brief="Gets the amount of directional spread of the particle emitter (in degrees).">
-	    <overload>
-		  <ret type="number" brief="The amount of spread." />
-		</overload>
-	  </func>
+
+      <func name="getX" brief="Gets the x-coordinate of the particle emitter's position.">
+        <overload>
+          <ret type="number" brief="The x-coordinate." />
+        </overload>
+      </func>
+
+      <func name="getY" brief="Gets the y-coordinate of the particle emitter's position.">
+        <overload>
+          <ret type="number" brief="The y-coordinate." />
+        </overload>
+      </func>
+
+      <func name="getDirection" brief="Gets the direction of the particle emitter (in degrees).">
+        <overload>
+          <ret type="number" brief="The direction." />
+        </overload>
+      </func>
+
+      <func name="getSpread" brief="Gets the amount of directional spread of the particle emitter (in degrees).">
+        <overload>
+          <ret type="number" brief="The amount of spread." />
+        </overload>
+      </func>
 
       <func name="count" brief="Gets the amount of particles that are currently in the system.">
         <overload>
-		  <ret type="number" brief="The amount of particles." />
-		</overload>
+          <ret type="number" brief="The amount of particles." />
+        </overload>
       </func>
 
       <func name="start" brief="Starts the particle emitter.">
-	    <overload></overload>
+        <overload></overload>
       </func>
 
       <func name="stop" brief="Stops the particle emitter, resetting the lifetime counter.">
-	    <overload></overload>
+        <overload></overload>
       </func>
 
       <func name="pause" brief="Pauses the particle emitter.">
-	    <overload></overload>
+        <overload></overload>
       </func>
 
       <func name="reset" brief="Resets the particle emitter, removing any existing particles and resetting the lifetime counter.">
-	    <overload></overload>
+        <overload></overload>
       </func>
 
       <func name="isActive" brief="Checks whether the particle system is actively emitting particles.">
         <overload>
-		  <ret type="boolean" brief="Whether the particle system is active." />
-		</overload>
+          <ret type="boolean" brief="Whether the particle system is active." />
+        </overload>
       </func>
 
       <func name="isEmpty" brief="Checks whether the particle system is empty of particles.">
         <overload>
-		  <ret type="boolean" brief="Whether the particle system is empty." />
-		</overload>
+          <ret type="boolean" brief="Whether the particle system is empty." />
+        </overload>
       </func>
 
       <func name="isFull" brief="Checks whether the particle system is full of particles.">
         <overload>
-		  <ret type="boolean" brief="Whether the particle system is full." />
-		</overload>
+          <ret type="boolean" brief="Whether the particle system is full." />
+        </overload>
       </func>
 
       <func name="update" brief="Updates the particle system; moving, creating and killing particles.">
         <overload>
-		  <param name="dt">The amount of time that has passed since last time the function was called.</param>
-		</overload>
+          <param name="dt">The amount of time that has passed since last time the function was called.</param>
+        </overload>
       </func>
-	  
-	  <see>love.graphics.newParticleSystem</see>
+
+      <see>love.graphics.newParticleSystem</see>
 
     </type>
 
@@ -711,55 +700,55 @@
         <ret type="Image" brief="An Image object containing the display data." />
       </overload>
     </func>
-	
-	<func name="newAnimation" brief="Creates an Animation.">
-	  <overload>
+
+    <func name="newAnimation" brief="Creates an Animation.">
+      <overload>
         <param name="image" brief="The source Image for the Animation."/>
         <ret type="Animation" brief="An Animation object with no frames." />
-	  </overload>
-	  <overload>
+      </overload>
+      <overload>
         <param name="image" brief="The source Image for the Animation."/>
         <param name="fw" brief="The width of each frame."/>
         <param name="fh" brief="The height of each frame."/>
         <param name="delay" brief="The delay (seconds) between each frame."/>
         <param name="frames" brief="The number of frames to include. (0 = all)" />
         <ret type="Animation" />
-		This method assumes that
+        This method assumes that
 
         [ol]
         [li]The frames are all of equal size[/li]
         [li]The frames are ordered from top-left to bottom-right[/li]
         [li]The frame size fx*fh must also fit with the width and height of the source image.[/li]
         [/ol]
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="newColor" brief="Creates a color.">
-	  <overload>
+
+    <func name="newColor" brief="Creates a color.">
+      <overload>
         <param name="red" brief="The amount of red." />
         <param name="green" brief="The amount of green." />
         <param name="blue" brief="The amount of blue." />
         <param name="alpha" brief="The amount of alpha." />
         <ret type="Color" brief="A Color object containing the color data." />
-	  </overload>
+      </overload>
       <overload>
         <param name="red" brief="The amount of red." />
         <param name="green" brief="The amount of green." />
         <param name="blue" brief="The amount of blue." />
         <ret type="Color" brief="A Color object containing the color data." />
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="newFont" brief="Creates a new font by loading the font file.">
-	  <overload>
+
+    <func name="newFont" brief="Creates a new font by loading the font file.">
+      <overload>
         <param name="filename" brief="The filepath to the font file." />
         <param name="size" brief="The size of the font." />
         <ret type="Font" brief="A Font object containing the font data." />
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="newImageFont" brief="Creates a new font by loading a specifically formatted image.">
-	  <overload>
+
+    <func name="newImageFont" brief="Creates a new font by loading a specifically formatted image.">
+      <overload>
         An image font is created by having a series of characters set next to each other in a horizontal row.
         Between all the characters and on the left and right sides should be a dividing line consisting of a single color
         (which is not found in the actual characters themselves).[br /]
@@ -768,8 +757,8 @@
         <param name="filename" brief="The filepath to the image file." />
         <param name="glyphs" brief="A list of the characters as they are in the image." />
         <ret type="Font" brief="A Font object containing the font data." />
-	  </overload>
-	  <overload>
+      </overload>
+      <overload>
         An image font is created by having a series of characters set next to each other in a horizontal row.
         Between all the characters and on the left and right sides should be a dividing line consisting of a single color
         (which is not found in the actual characters themselves).[br /]
@@ -779,28 +768,28 @@
         <param name="glyphs" brief="A list of the characters as they are in the image." />
         <param name="spacing" brief="The spacing factor." />
         <ret type="Font" brief="A Font object containing the font data." />
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="newParticleSystem" brief="Creates a particle emitter.">
-	  <overload>
+
+    <func name="newParticleSystem" brief="Creates a particle emitter.">
+      <overload>
         <param name="image" brief="An Image object." />
         <param name="buffer" brief="The maximum amount of particles that are allowed by the system." />
         <ret type="ParticleSystem" brief="A particle system containing the apporpriate information." />
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="checkMode" brief="Checks if a display mode is supported.">
-	  <overload>
+
+    <func name="checkMode" brief="Checks if a display mode is supported.">
+      <overload>
         <param name="width" brief="Display width." />
         <param name="height" brief="Display height." />
         <param name="fullscreen" brief="Fullscreen (true), or windowed (false)." />
         <ret type="boolean" brief="True if supported, false otherwise" />
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="setMode" brief="Changes the display mode.">
-	  <overload>
+
+    <func name="setMode" brief="Changes the display mode.">
+      <overload>
         <param name="width" brief="Display width." />
         <param name="height" brief="Display height." />
         <param name="fullscreen" brief="Fullscreen (true), or windowed (false)." />
@@ -817,16 +806,16 @@
 
         [br /]
         [br /]
-        FSAA stands for Full Scene Anti-Aliasing, and it is recommended to set this number to 0 (the default), 
+        FSAA stands for Full Scene Anti-Aliasing, and it is recommended to set this number to 0 (the default),
         unless you need anti-aliasing of the edges on primitves and images. Most machines who support this feature support
-        1, 2 and 4 FSAA buffers. The more buffers, the better the anti-aliasing and the slower the performance. 
-        Assuming you're not using filled primites, you do not really need FSAA as long as you pad the sprites with some empty space; in this case FSAA will have no effect 
+        1, 2 and 4 FSAA buffers. The more buffers, the better the anti-aliasing and the slower the performance.
+        Assuming you're not using filled primites, you do not really need FSAA as long as you pad the sprites with some empty space; in this case FSAA will have no effect
         on the visuals at all, it will only hinder performance.
       </overload>
     </func>
-	
-	<func name="toggleFullscreen" brief="Toggles fullscreen.">
-	  <overload>
+
+    <func name="toggleFullscreen" brief="Toggles fullscreen.">
+      <overload>
         <ret type="boolean" brief="True if successful" />
         The same goes for this method as for love.graphics.setMode: Do not change the display mode unless you know that that mode is supported. Use love.graphics.checkMode to
         check whether a mode is supported or not. [br /]
@@ -834,30 +823,30 @@
         Also note that calling this function will cause the entire display context to reload. This
         means that all Images, Fonts and other graphical objects will have to be reloaded. It is
         therefore advisable to call this function when as few objects as possible has been loaded.
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="isCreated" brief="Checks if the display has been set.">
-	  <overload>
+
+    <func name="isCreated" brief="Checks if the display has been set.">
+      <overload>
         <ret type="boolean" brief="True if display has been set, false otherwise" />
         When configuring the display manually, it is useful to know if the display
         has been created. This way, we can avoid unnecessary display changes when
         the game reloads. The example below should make it more clear.[br /]
         [br /]
-        Note that the configuration option display_auto must be set to false to 
+        Note that the configuration option display_auto must be set to false to
         use manual configuration of the display.
       </overload>
-	</func>
-	
-	<func name="getModes" brief="Gets a list of supported fullscreen modes.">
-	  <overload>
+    </func>
+
+    <func name="getModes" brief="Gets a list of supported fullscreen modes.">
+      <overload>
         <ret type="table" brief="A table of width/height pairs." />
-        This function does not include windowed modes, because they are generally supported with 
+        This function does not include windowed modes, because they are generally supported with
         any screen resolution. To see the exact nature of the returned table, see example below.
       </overload>
     </func>
-	
-	<func name="setColor" brief="Sets the current color.">
+
+    <func name="setColor" brief="Sets the current color.">
       <overload>
         <param name="color" brief="A Color object." />
       </overload>
@@ -871,146 +860,146 @@
         <param name="green" brief="The amount of green." />
         <param name="blue" brief="The amount of blue." />
         <param name="alpha" brief="The amount of alpha." />
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="setBackgroundColor" brief="Sets the background color.">
+
+    <func name="setBackgroundColor" brief="Sets the background color.">
       <overload>
-		[b]Note:[/b] The alpha value of the Color will be ignored as the background cannot be transparent.
+        [b]Note:[/b] The alpha value of the Color will be ignored as the background cannot be transparent.
         <param name="color" brief="A Color object." />
       </overload>
       <overload>
         <param name="red" brief="The amount of red." />
         <param name="green" brief="The amount of green." />
         <param name="blue" brief="The amount of blue." />
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="setFont" brief="Sets the current font.">
-	  <overload>
-        <param name="font" brief="A Font object." />
-	  </overload>
-    </func>
-	
-	<func name="setLineWidth" brief="Sets the line width.">
+
+    <func name="setFont" brief="Sets the current font.">
       <overload>
-	    <param name="width" brief="The width of the line." />
-	  </overload>
+        <param name="font" brief="A Font object." />
+      </overload>
     </func>
-	
-	<func name="setLineStyle" brief="Sets line anti-aliasing.">
-	  <overload>
+
+    <func name="setLineWidth" brief="Sets the line width.">
+      <overload>
+        <param name="width" brief="The width of the line." />
+      </overload>
+    </func>
+
+    <func name="setLineStyle" brief="Sets line anti-aliasing.">
+      <overload>
         Possible line styles are love.line_smooth and love.line_rough.
         <param name="style" brief="Line style." />
       </overload>
     </func>
-	
-	<func name="setLine" brief="Sets the width of the line used when drawing outlined primitives.">
-	  <overload>
+
+    <func name="setLine" brief="Sets the width of the line used when drawing outlined primitives.">
+      <overload>
         <param name="width" brief="The width of the line." />
       </overload>
       <overload>
         <param name="width" brief="The width of the line." />
         <param name="type" brief="The type of line (smooth/rough)." />
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="getLineWidth" brief="Gets the current line width.">
+
+    <func name="getLineWidth" brief="Gets the current line width.">
       <overload>
         <ret type="number" brief="The current line width." />
-	  </overload>
+      </overload>
     </func>
 
     <func name="getLineStyle" brief="Gets the current line style.">
       <overload>
         <ret name="number" brief="love.line_smooth or love.line_rough." />
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="setBlendMode" brief="Sets the blending mode.">
+
+    <func name="setBlendMode" brief="Sets the blending mode.">
       <overload>
-		The blending mode controls the way transparent elements blend together.
+        The blending mode controls the way transparent elements blend together.
         <param name="mode" brief="The blending mode." />
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="setColorMode" brief="Sets the color mode.">
+
+    <func name="setColorMode" brief="Sets the color mode.">
       <overload>
-		The color mode controls how the current color affects elements.
+        The color mode controls how the current color affects elements.
         <param name="mode" brief="The color mode." />
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="setCaption" brief="Sets the window caption.">
-	  <overload>
+
+    <func name="setCaption" brief="Sets the window caption.">
+      <overload>
         <param name="caption" brief="The new window caption." />
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="getColor" brief="Gets the current color.">
+
+    <func name="getColor" brief="Gets the current color.">
       <overload>
         <ret type="Color" brief="The current color." />
-	  </overload>
+      </overload>
     </func>
 
     <func name="getBackgroundColor" brief="Gets the current background color.">
       <overload>
         <ret type="Color" brief="The current background color." />
-	  </overload>
+      </overload>
     </func>
 
     <func name="getBlendMode" brief="Gets the current blend mode.">
       <overload>
         <ret type="number" brief="And int representing the current blend mode." />
-	  </overload>
+      </overload>
     </func>
-    
-	<func name="getColorMode" brief="Gets the current color mode.">
+
+    <func name="getColorMode" brief="Gets the current color mode.">
       <overload>
         <ret type="number" brief="And int representing the current color mode." />
-	  </overload>
+      </overload>
     </func>
 
     <func name="getFont" brief="Gets the current font.">
       <overload>
         <ret type="Font" brief="The current font." />
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="getWidth" brief="Gets the width of the window.">
-	  <overload>
+
+    <func name="getWidth" brief="Gets the width of the window.">
+      <overload>
         <ret type="number" brief="The width of the game window." />
-	  </overload>
+      </overload>
     </func>
 
     <func name="getHeight" brief="Gets the height of the window.">
-	  <overload>
+      <overload>
         <ret type="number" brief="The height of the game window." />
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="setScissor" brief="Scissor defines a box such that everything outside that box is discared and not drawn.">
-	  <overload>
-		<param name="x" brief="The x-coordinate of the scissor box." />
-		<param name="y" brief="The y-coordinate of the scissor box." />
-		<param name="width" brief="The width of the scissor box." />
-		<param name="height" brief="The height of the scissor box." />
-	  </overload>
-	  <overload brief="Clears the scissor area.">
-	  </overload>
-	</func>
-	
-	<func name="getScissor" brief="Gets the current scissor box.">
-	  <overload>
-	   <ret name="x" type="number" brief="The x-coordinate of the scissor box." />
-		<ret name="y" type="number" brief="The y-coordinate of the scissor box." />
-		<ret name="w" type="number" brief="The width of the scissor box." />
-		<ret name="h" type="number" brief="The height of the scissor box." />
-	  </overload>
-	</func>
-	
-	<func name="draw" brief="Draws.">
-	  <overload brief="Draws text on screen.">
+
+    <func name="setScissor" brief="Scissor defines a box such that everything outside that box is discared and not drawn.">
+      <overload>
+        <param name="x" brief="The x-coordinate of the scissor box." />
+        <param name="y" brief="The y-coordinate of the scissor box." />
+        <param name="width" brief="The width of the scissor box." />
+        <param name="height" brief="The height of the scissor box." />
+      </overload>
+      <overload brief="Clears the scissor area.">
+      </overload>
+    </func>
+
+    <func name="getScissor" brief="Gets the current scissor box.">
+      <overload>
+        <ret name="x" type="number" brief="The x-coordinate of the scissor box." />
+        <ret name="y" type="number" brief="The y-coordinate of the scissor box." />
+        <ret name="w" type="number" brief="The width of the scissor box." />
+        <ret name="h" type="number" brief="The height of the scissor box." />
+      </overload>
+    </func>
+
+    <func name="draw" brief="Draws.">
+      <overload brief="Draws text on screen.">
         Draws text in the current color.
         <param name="string" brief="A text string." />
         <param name="x" brief="The position on the x-axis." />
@@ -1040,7 +1029,7 @@
         <param name="sx" brief="The scale factor along the x-axis." />
         <param name="sy" brief="The scale factor along the y-axis." />
       </overload>
-	  <overload brief="Draws an Image or Animation on screen.">
+      <overload brief="Draws an Image or Animation on screen.">
         <param name="sprite" brief="An Image or Animation object." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
@@ -1066,15 +1055,15 @@
         <param name="sx" brief="The scale factor along the x-axis." />
         <param name="sy" brief="The scale factor along the y-axis." />
       </overload>
-	  <overload brief="Draws a particle system on screen.">
+      <overload brief="Draws a particle system on screen.">
         <param name="particlesystem" brief="A ParticleSystem object." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
       </overload>
-	</func>
+    </func>
 
-	<func name="drawf" brief="Draws formatted text on screen, with word wrap.">
-	  <overload>
+    <func name="drawf" brief="Draws formatted text on screen, with word wrap.">
+      <overload>
         Draws text in the current color, with word wrap.
         <param name="string" brief="A text string." />
         <param name="x" brief="The position on the x-axis." />
@@ -1089,11 +1078,11 @@
         <param name="limit" brief="Wrap the line after this many horizontal pixels." />
         <param name="align" brief="The alignment" />
       </overload>
-	 </func>
-	 
-	 
-	<func name="draws" brief="Draws a subsprite of an Image.">
-	  <overload brief="Draws a subsprite of an Image.">
+    </func>
+
+
+    <func name="draws" brief="Draws a subsprite of an Image.">
+      <overload brief="Draws a subsprite of an Image.">
         <param name="image" brief="An Image object." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
@@ -1102,7 +1091,7 @@
         <param name="w" brief="The width of the image section." />
         <param name="h" brief="The height of the image section." />
       </overload>
-	  <overload brief="Draws a rotated subsprite of an Image.">
+      <overload brief="Draws a rotated subsprite of an Image.">
         <param name="image" brief="An Image object." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
@@ -1149,26 +1138,26 @@
         <param name="ox" brief="The x-coordinate of the center." />
         <param name="oy" brief="The y-coordinate of the center." />
       </overload>
-	</func>
-	
-	<func name="point" brief="Draws a point at (x,y).">
-	  <overload>
+    </func>
+
+    <func name="point" brief="Draws a point at (x,y).">
+      <overload>
         <param name="x" brief="Position along x-axis." />
         <param name="y" brief="Position along y-axis." />
       </overload>
-	</func>
+    </func>
 
     <func name="line" brief="Draws a line from (x1,y1) to (x2,y2).">
-	  <overload>
+      <overload>
         <param name="x1" brief="First x-coordinate." />
         <param name="y1" brief="First y-coordinate." />
         <param name="x2" brief="Second x-coordinate." />
         <param name="y2" brief="Second y-coordinate." />
-	  </overload>
+      </overload>
     </func>
 
     <func name="triangle" brief="Draws a triangle usign the passed coordinates.">
-	  <overload>
+      <overload>
         [b]Note:[/b] When drawing a filled triangle, the coordinates must be passed in a counter-clockwise order.
         <param name="type" brief="The type of triangle (outline/filled)." />
         <param name="x1" brief="First x-coordinate." />
@@ -1177,21 +1166,21 @@
         <param name="y2" brief="Second y-coordinate." />
         <param name="x3" brief="Third x-coordinate." />
         <param name="y3" brief="Third y-coordinate." />
-	  </overload>
+      </overload>
     </func>
 
     <func name="rectangle" brief="Draws a rectangle.">
-      <overload>	
+      <overload>
         <param name="type" brief="The type of rectangle (outline/filled)." />
         <param name="x" brief="X-coordinate of top-left corner." />
         <param name="y" brief="Y-coordinate of top-left corder." />
         <param name="w" brief="Width of the rectangle." />
         <param name="h" brief="Height of the rectangle." />
-	  </overload>
+      </overload>
     </func>
-	
-	<func name="quad" brief="Draws a quadrilateral usign the passed coordinates.">
-	  <overload>
+
+    <func name="quad" brief="Draws a quadrilateral usign the passed coordinates.">
+      <overload>
         [b]Note:[/b] When drawing a filled quadrilateral, the coordinates must be passed in a counter-clockwise order.
         <param name="type" brief="The type of quad (outline/filled)." />
         <param name="x1" brief="First x-coordinate." />
@@ -1202,11 +1191,11 @@
         <param name="y3" brief="Third y-coordinate." />
         <param name="x4" brief="Fourth x-coordinate." />
         <param name="y4" brief="Fourht y-coordinate." />
-	  </overload>
+      </overload>
     </func>
 
     <func name="circle" brief="Draws a circle usign the passed information.">
-	  <overload>
+      <overload>
         <param name="type" brief="The type of circle (outline/filled)." />
         <param name="x" brief="The position on the x-axis." />
         <param name="y" brief="The position on the y-axis." />
@@ -1224,8 +1213,6 @@
 
     <example id="1" />
   </module>
-
-
   <module name="love.audio">
 
     The audio module is currently a wrapper around SDL_mixer, and has very limited
@@ -1330,8 +1317,8 @@
     <func name="setMode" brief="Sets the mode for audio mixing and playback.">
       <overload>
         <param name="frequency" brief="The amount of Hz to use." />
-		<param name="mode" brief="The audio mode (1 = mono, 2 = stereo)." />
-		<param name="buffersize" brief="The size of the buffer (bits per output per sample)." />
+        <param name="mode" brief="The audio mode (1 = mono, 2 = stereo)." />
+        <param name="buffersize" brief="The size of the buffer (bits per output per sample)." />
       </overload>
     </func>
 
@@ -1342,31 +1329,163 @@
     </func>
 
   </module>
-  
   <module name="love.physics">
-   
-   <type name="World" >
-   </type>
-   <type name="Contact">
-   </type>
-   <type name="Body" space="true">
-   </type>
-   
-   <type name="CircleShape">
-   </type>
-   <type name="PolygonShape" space="true">
-   </type>
-   
-   <type name="DistanceJoint">
-   </type>
-   <type name="RevoluteJoint">
-   </type>
-   <type name="PrismaticJoint">
-   </type>
-   <type name="MouseJoint">
-   </type>
-   
-   
+
+    <type name="World" brief="Contains all Bodies and joints.">
+    </type>
+    <type name="Contact" brief="Represents a contact point between two shapes.">
+    </type>
+    <type name="Body" plural="Bodies" brief="A Body is a physical entity with position and orientation." space="true">
+    </type>
+
+    <type name="CircleShape" brief="A simple circle which can be attatched to Bodies.">
+    </type>
+    <type name="PolygonShape" brief="Convex polygon which can be attatched to Bodies." space="true">
+    </type>
+
+    <type name="DistanceJoint" brief="Maintains a certain distance between Bodies.">
+    </type>
+    <type name="RevoluteJoint" brief="Allow two Bodies to revolve around a shared point.">
+    </type>
+    <type name="PrismaticJoint" brief="Restricts relative motion between Bodies to one shared axis.">
+    </type>
+    <type name="MouseJoint" brief="For controlling objects with the mouse.">
+    </type>
+
+    <func name="newWorld" brief="Creates a new World." space="true">
+      <overload>
+        This function creates a new World with the given size,
+        no gravity and sleeping turned on.
+        <param name="w" brief="The width of the World." />
+        <param name="h" brief="The height of the World." />
+        <ret name="world" type="World" brief="A World object."/>
+      </overload>
+      <overload>
+        This function creates a new World with an area defined by the two vertices,
+        the given gravity, and sleeping turned on or off.
+        <param name="lx" brief="X-component of lower left corner of the World area." />
+        <param name="ly" brief="Y-component of lower left corner of the World area." />
+        <param name="ux" brief="X-component of upper left corner of the World area." />
+        <param name="uy" brief="Y-component of upper left corner of the World area." />
+        <param name="gx" brief="X-component of the gravity." />
+        <param name="gy" brief="Y-component of the gravity." />
+        <param name="sleep" brief="True to allow sleep, false otherwise." />
+        <ret name="world" type="World" brief="A World object."/>
+      </overload>
+    </func>
+
+    <func name="newBody" brief="Creates a new Body." space="true">
+      <overload>
+        <param name="world" brief="The World to create the Body in." />
+        <ret name="body" type="Body" />
+      </overload>
+      <overload brief="Creates a new Body with some position.">
+        <param name="world" brief="The World to create the Body in." />
+        <param name="x" brief="The x-component of the position." />
+        <param name="y" brief="The y-component of the position." />
+        <ret name="body" type="Body" />
+      </overload>
+      <overload brief="Creates a new Body with some position and mass.">
+        <param name="world" brief="The World to create the Body in." />
+        <param name="x" brief="The x-component of the position." />
+        <param name="y" brief="The y-component of the position." />
+        <param name="m" brief="The mass of the Body." />
+        <ret name="body" type="Body" />
+      </overload>
+    </func>
+
+    <func name="newCircleShape" brief="Creates a new CircleShape." space="true">
+      <overload>
+        <param name="body" brief="A Body to attatch the CircleShape to." />
+        <param name="radius" brief="The radius of the circle." />
+        <ret name="circle" type="Circle" brief="A CircleShape." />
+      </overload>
+      <overload brief="Creates a new CircleShape with an offset.">
+        <param name="body" brief="A Body to attatch the CircleShape to." />
+        <param name="x" brief="The x-component of the circle offset." />
+        <param name="y" brief="The y-component of the circle offset." />
+        <param name="radius" brief="The radius of the circle." />
+        <ret name="circle" type="Circle" brief="A CircleShape." />
+      </overload>
+    </func>
+
+    <func name="newRectangleShape" brief="Creates a new rectangular PolygonShape." space="true">
+      <overload brief="Creates a rectangle.">
+        <param name="body" brief="The Body to attatch the rectangle to." />
+        <param name="w" brief="The width of the rectangle." />
+        <param name="h" brief="The height of the rectangle." />
+        <ret name="rectangle" type="PolygonShape" brief="A rectangular PolygonShape." />
+      </overload>
+      <overload brief="Creates a new rectangle with an offset.">
+        <param name="body" brief="The Body to attatch the rectangle to." />
+        <param name="x" brief="The x-component of the offset." />
+        <param name="x" brief="The y-component of the offset." />
+        <param name="w" brief="The width of the rectangle." />
+        <param name="h" brief="The height of the rectangle." />
+        <ret name="rectangle" type="PolygonShape" brief="A rectangular PolygonShape." />
+      </overload>
+      <overload brief="Creates a new rectangle with offset and orientation.">
+        <param name="body" brief="The Body to attatch the rectangle to." />
+        <param name="x" brief="The x-component of the offset." />
+        <param name="x" brief="The y-component of the offset." />
+        <param name="w" brief="The width of the rectangle." />
+        <param name="h" brief="The height of the rectangle." />
+        <param name="angle" brief="The orientation of the rectangle (degrees)." />
+        <ret name="rectangle" type="PolygonShape" brief="A rectangular PolygonShape." />
+      </overload>
+    </func>
+
+    <func name="newPolygonShape" brief="Creates a new PolygonShape." space="true">
+      <overload>
+        <param name="body" brief="The Body to attatch the polygon to." />
+        <param name="..." brief="The vertices of the PolygonShape." />
+        <ret name="polygon" type="PolygonShape" brief="The new PolygonShape." />
+      </overload>
+    </func>
+
+    <func name="newDistanceJoint" brief="Creates a new DistanceJoint.">
+      <overload>
+        <param name="body1" brief="The first Body to attatch the joint to." />
+        <param name="body2" brief="The second Body to attatch the joint to." />
+        <param name="x1" brief="The x-component of the first anchor point." />
+        <param name="y1" brief="The y-component of the first anchor point." />
+        <param name="x2" brief="The x-component of the second anchor point." />
+        <param name="y2" brief="The y-component of the second anchor point." />
+        <ret name="distancejoint" type="DistanceJoint" brief="The new DistanceJoint." />
+      </overload>
+    </func>
+
+    <func name="newMouseJoint" brief="Creates a new MouseJoint">
+      <overload>
+        <param name="body" brief="The first Body to attatch the joint to." />
+        <param name="x" brief="The x-component of the anchor point." />
+        <param name="y" brief="The y-component of the anchor point." />
+        <ret name="mousejoint" type="MouseJoint" brief="The new MouseJoint." />
+      </overload>
+    </func>
+
+    <func name="newRevoluteJoint" brief="Creates a new RevoluteJoint.">
+      <overload>
+        <param name="body1" brief="The first Body to attatch the joint to." />
+        <param name="body2" brief="The second Body to attatch the joint to." />
+        <param name="x" brief="The x-component of the anchor point." />
+        <param name="y" brief="The y-component of the anchor point." />
+        <ret name="revolutejoint" type="RevoluteJoint" brief="The new RevoluteJoint." />
+      </overload>
+    </func>
+
+    <func name="newPrismaticJoint" brief="Creates a new PrismaticJoint.">
+      <overload>
+        <param name="body1" brief="The first Body to attatch the joint to." />
+        <param name="body2" brief="The second Body to attatch the joint to." />
+        <param name="x" brief="The x-component of the anchor point." />
+        <param name="y" brief="The y-component of the anchor point." />
+        <param name="ax" brief="The x-component of the axis." />
+        <param name="ay" brief="The y-component of the axis." />
+        <ret name="prismaticjoint" type="PrismaticJoint" brief="The new PrismaticJoint." />
+      </overload>
+    </func>
+
   </module>
   <module name="love.mouse">
     Keeps track of the state of the mouse.
@@ -1493,7 +1612,7 @@
     the save directory (in that order). So if a file with a certain filename (and
     path) exist in both the .love-file and the save folder, the one in the .love-file takes precedence.
     [/p]
-	
+
     <type name="File" brief="A file that can be read from or written to.">
       A File should only be needed in these situations:
       [ul]
@@ -1502,158 +1621,158 @@
       [/ul]
       In other cases, you can (and must) specify filenames directly when creating objects
       such as Image, Font and Sound.
-	  <func name="getSize" brief="Gets the size of the file in bytes.">
+      <func name="getSize" brief="Gets the size of the file in bytes.">
         <overload>
           <ret type="number" brief="The size of the file." />
-		  Gets the size of the file in bytes. This requires that the File was created for reading, otherwise this functioin will return 0.
+          Gets the size of the file in bytes. This requires that the File was created for reading, otherwise this functioin will return 0.
         </overload>
       </func>
       <see>love.filesystem.newFile</see>
     </type>
-    
-	<func name="newFile" brief="Constructs a File with the given filename.">
-	  <overload>
-	    <param name="filename" brief="The filename." />
-		<ret type="File" brief="The newly created file." />
-		The file is in read mode only.
-	  </overload>
-	  <overload>
-	    <param name="filename" brief="The filename." />
-		<param name="mode" brief="The filesystem mode (read, write, append)." />
-		<ret type="File" brief="The newly created file." />
-	  </overload>
-	</func>
-	
-	<func name="exists" brief="Check whether a file exists.">
-	  <overload>
-	    <param name="filename" brief="The name of the file to check." />
-		<ret type="boolean" brief="Whether the file exists." />
-	  </overload>
-	</func>
-	
-	<func name="isDirectory" brief="Check whether something is a directory.">
-	  <overload>
-	    <param name="dirname" brief="Name of the directory to check." />
-		<ret type="boolean" brief="Whether it's a directory." />
-	  </overload>
-	</func>
-	
-	<func name="isFile" brief="Check whether something is a file.">
-	  <overload>
-	    <param name="filename" brief="Name of the file to check." />
-		<ret type="boolean" brief="Whether it's a file." />
-	  </overload>
-	</func>
-	
-	<func name="mkdir" brief="Creates a directory.">
-	  <overload>
-	    <param name="dirname" brief="Name of the new directory." />
-		<ret type="boolean" brief="Whether the operation was successful." />
-	  </overload>
-	</func>
-	
-	<func name="remove" brief="Removes a file (or directory).">
-	  <overload>
-	    <param name="filename" brief="Name of the file (or directory(." />
-		<ret type="boolean" brief="Whether the operation was successful." />
-	  </overload>
-	</func>
-	
-	<func name="open" brief="Opens the file for reading/writing (depending on its mode).">
-	  <overload>
-	    <param name="file" brief="A File object of the file to open." />
-		<ret type="boolean" brief="Whether the operation was successful." />
-		<see>love.filesystem.newFile, love.filesystem.close</see>
-	  </overload>
-	</func>
-	
-	<func name="closes" brief="Closes the file.">
-	  <overload>
-	    <param name="file" brief="A File object of the file to close." />
-		<ret type="boolean" brief="Whether the operation was successful." />
-		<see>love.filesystem.newFile, love.filesystem.open</see>
-	  </overload>
-	</func>
-	
-	<func name="read" brief="Reads bytes from an opened file.">
-	  <overload>
-	    <param name="file" brief="An opened File object of the file to read." />
-		<ret type="string" brief="The bytes contained in the file." />
-		<see>love.filesystem.newFile, love.filesystem.open</see>
-	  </overload>
-	  <overload>
-	    <param name="file" brief="An opened File object of the file to read." />
-		<param name="bytes" brief="The amount of bytes to open." />
-		<ret type="string" brief="The bytes contained in the file." />
-		<see>love.filesystem.newFile, love.filesystem.open</see>
-	  </overload>
-	</func>
-	
-	<func name="write" brief="Writes bytes to an opened file.">
-	  <overload>
-	    <param name="file" brief="An opened File object of the file to write to." />
-		<param name="data" brief="A string of bytes to write to the file." />
-		<ret type="boolean" brief="Whether the operation was successful." />
-		<see>love.filesystem.newFile, love.filesystem.open</see>
-	  </overload>
-	</func>
-	
-	<func name="eof" brief="Check if end-of-file is reached.">
-	  <overload>
-	    <param name="file" brief="A File object." />
-		<ret type="boolean" brief="Whether the EOF has been reached." />
-		<see>love.filesystem.read</see>
-	  </overload>
-	</func>
-	
-	<func name="tell" brief="Gets the current position in a file.">
-	  <overload>
-	    <param name="file" brief="A File object." />
-		<ret type="number" brief="The current position." />
-		<see>love.filesystem.read</see>
-	  </overload>
-	</func>
-	
-	<func name="seek" brief="Seek to a position within a file.">
-	  <overload>
-	    <param name="file" brief="A File object." />
-		<param name="pos" brief="The position to seek to." />
-		<ret type="boolean" brief="Whether the operation was successful." />
-		<see>love.filesystem.read</see>
-	  </overload>
-	</func>
-	
-	<func name="enumerate" brief="Gets a list of files in the given directory.">
-	  <overload>
-      <param name="dir" brief="A directory." />
-		<ret type="list" brief="All the files (and subdirs) in the directory." />
-	  </overload>
-	</func>
-	
-	<func name="require" brief="Includes and runs a Lua file (once).">
-	  <overload>
+
+    <func name="newFile" brief="Constructs a File with the given filename.">
+      <overload>
+        <param name="filename" brief="The filename." />
+        <ret type="File" brief="The newly created file." />
+        The file is in read mode only.
+      </overload>
+      <overload>
+        <param name="filename" brief="The filename." />
+        <param name="mode" brief="The filesystem mode (read, write, append)." />
+        <ret type="File" brief="The newly created file." />
+      </overload>
+    </func>
+
+    <func name="exists" brief="Check whether a file exists.">
+      <overload>
+        <param name="filename" brief="The name of the file to check." />
+        <ret type="boolean" brief="Whether the file exists." />
+      </overload>
+    </func>
+
+    <func name="isDirectory" brief="Check whether something is a directory.">
+      <overload>
+        <param name="dirname" brief="Name of the directory to check." />
+        <ret type="boolean" brief="Whether it's a directory." />
+      </overload>
+    </func>
+
+    <func name="isFile" brief="Check whether something is a file.">
+      <overload>
+        <param name="filename" brief="Name of the file to check." />
+        <ret type="boolean" brief="Whether it's a file." />
+      </overload>
+    </func>
+
+    <func name="mkdir" brief="Creates a directory.">
+      <overload>
+        <param name="dirname" brief="Name of the new directory." />
+        <ret type="boolean" brief="Whether the operation was successful." />
+      </overload>
+    </func>
+
+    <func name="remove" brief="Removes a file (or directory).">
+      <overload>
+        <param name="filename" brief="Name of the file (or directory(." />
+        <ret type="boolean" brief="Whether the operation was successful." />
+      </overload>
+    </func>
+
+    <func name="open" brief="Opens the file for reading/writing (depending on its mode).">
+      <overload>
+        <param name="file" brief="A File object of the file to open." />
+        <ret type="boolean" brief="Whether the operation was successful." />
+        <see>love.filesystem.newFile, love.filesystem.close</see>
+      </overload>
+    </func>
+
+    <func name="closes" brief="Closes the file.">
+      <overload>
+        <param name="file" brief="A File object of the file to close." />
+        <ret type="boolean" brief="Whether the operation was successful." />
+        <see>love.filesystem.newFile, love.filesystem.open</see>
+      </overload>
+    </func>
+
+    <func name="read" brief="Reads bytes from an opened file.">
+      <overload>
+        <param name="file" brief="An opened File object of the file to read." />
+        <ret type="string" brief="The bytes contained in the file." />
+        <see>love.filesystem.newFile, love.filesystem.open</see>
+      </overload>
+      <overload>
+        <param name="file" brief="An opened File object of the file to read." />
+        <param name="bytes" brief="The amount of bytes to open." />
+        <ret type="string" brief="The bytes contained in the file." />
+        <see>love.filesystem.newFile, love.filesystem.open</see>
+      </overload>
+    </func>
+
+    <func name="write" brief="Writes bytes to an opened file.">
+      <overload>
+        <param name="file" brief="An opened File object of the file to write to." />
+        <param name="data" brief="A string of bytes to write to the file." />
+        <ret type="boolean" brief="Whether the operation was successful." />
+        <see>love.filesystem.newFile, love.filesystem.open</see>
+      </overload>
+    </func>
+
+    <func name="eof" brief="Check if end-of-file is reached.">
+      <overload>
+        <param name="file" brief="A File object." />
+        <ret type="boolean" brief="Whether the EOF has been reached." />
+        <see>love.filesystem.read</see>
+      </overload>
+    </func>
+
+    <func name="tell" brief="Gets the current position in a file.">
+      <overload>
+        <param name="file" brief="A File object." />
+        <ret type="number" brief="The current position." />
+        <see>love.filesystem.read</see>
+      </overload>
+    </func>
+
+    <func name="seek" brief="Seek to a position within a file.">
+      <overload>
+        <param name="file" brief="A File object." />
+        <param name="pos" brief="The position to seek to." />
+        <ret type="boolean" brief="Whether the operation was successful." />
+        <see>love.filesystem.read</see>
+      </overload>
+    </func>
+
+    <func name="enumerate" brief="Gets a list of files in the given directory.">
+      <overload>
+        <param name="dir" brief="A directory." />
+        <ret type="list" brief="All the files (and subdirs) in the directory." />
+      </overload>
+    </func>
+
+    <func name="require" brief="Includes and runs a Lua file (once).">
+      <overload>
         <param name="filename" brief="The filename of the file to read." />
-	    It is safe to require the same file more than once. LÖVE keeps track of required
+        It is safe to require the same file more than once. LÖVE keeps track of required
         files to prevent reparsing. (If you want the same file to be executed multiple
         times, take a look at {love.filesystem.include}.
         <see>
-        love.filesystem.include
+          love.filesystem.include
         </see>
-	  </overload>
+      </overload>
     </func>
 
     <func name="include" brief="Includes and runs a Lua file.">
-	  <overload>
+      <overload>
         <param name="filename" brief="The filename of the file to read." />
-	    Includes and runs a Lua file every time the function is called. (Does not check if the file is included already).
+        Includes and runs a Lua file every time the function is called. (Does not check if the file is included already).
 
         <see>
-        love.filesystem.require
+          love.filesystem.require
         </see>
-     
-     </overload>
+
+      </overload>
     </func>
-  
+
   </module>
   <module name="love.timer">
 
@@ -1757,46 +1876,39 @@
     </func>
   </module>
 
-
   <callback name="load" brief="Called when the game should load.">
     This function is called exacly once at the beginning of the game. This is where
     resources such as images and sounds should be loaded.
     <example id="51" />
   </callback>
-
   <callback name="update" brief="Called each timestep when the game should be updated.">
     This function should update the state of the game according to the time value dt.
     <param name="dt" brief="The time since last update in seconds." />
-	<example id="51" />
+    <example id="51" />
   </callback>
-  
   <callback name="draw" brief="Called each timestep right after update.">
     This is where you should draw things onto the screen.
-	<example id="51" />
+    <example id="51" />
   </callback>
-  
   <callback name="mousepressed" brief="Called when the mouse is pressed.">
     <param name="x" brief="The position of the mouse on the x-axis." />
     <param name="y" brief="The position of the mouse on the y-axis." />
     <param name="button" brief="Which button is pressed." />
-	<example id="52" />
+    <example id="52" />
   </callback>
-  
   <callback name="mousereleased" brief="Called when the mouse is released.">
     <param name="x" brief="The position of the mouse on the x-axis." />
     <param name="y" brief="The position of the mouse on the y-axis." />
     <param name="button" brief="Which button is released." />
-	<example id="52" />
+    <example id="52" />
   </callback>
-  
   <callback name="keypressed" brief="Called when a key is pressed.">
     <param name="key" brief="The key code of the pressed key." />
-	<example id="53" />
+    <example id="53" />
   </callback>
-  
   <callback name="keyreleased" brief="Called when a key is released.">
     <param name="key" brief="The key code of the released key." />
-	<example id="53" />
+    <example id="53" />
   </callback>
 
   <misc name="Constants" title="List of constants">
@@ -1966,22 +2078,22 @@
 
     <item name="love.blend_normal" brief="Normal blendig mode." />
     <item name="love.blend_additive" brief="Additive blending mode." space="true" />
-	
+
     <item name="love.color_normal" brief="Normal color mode." />
     <item name="love.color_modulate" brief="Modulation color mode." space="true" />
-	
+
     <item name="love.file_read" brief="For file reading." />
     <item name="love.file_write" brief="For file writing." />
     <item name="love.file_append" brief="For file appending." space="true" />
-	
+
     <item name="love.default_font" brief="The default font (Vera)." space="true" />
-	
+
     <item name="love.draw_line" brief="Draws the primitive using lines." />
     <item name="love.draw_fill" brief="Draws a filled primitive." space="true" />
-	
+
     <item name="love.line_smooth" brief="Sets the lines as smooth." />
     <item name="love.line_rough" brief="Sets the lines as rough (best when drawing straight 1px wide lines)." space="true" />
-	
+
     <item name="love.audio_loop" brief="Loops music or sound." />
     <item name="love.audio_mode_mono" brief="Sets the audio mode as mono." />
     <item name="love.audio_mode_stereo" brief="Sets the audio mode as stereo." />
@@ -1989,7 +2101,7 @@
     <item name="love.audio_quality_medium" brief="Designates medium audio quality (22.050KHz)." />
     <item name="love.audio_quality_high" brief="Designates high audio quality (44.100KHz)." />
     <item name="love.audio_buffer_default" brief="The default buffer size for audio mixing." space="true" />
-	
+
     <item name="love.image_pad" brief="Used to pad an image upon creation." />
     <item name="love.image_optimize" brief="Used to optimize an image upon creation." />
     <item name="love.image_pad_and_optimize" brief="Used to pad &amp; optimize an image upon creation." />
@@ -1997,28 +2109,27 @@
 
 
   </misc>
-
   <misc name="Config Files" title="List of config file attributes">
-  
+
     Each game should have a config file that specifies game title, author, version, etc. The name of this file must be "game.conf".
     A full listing of available attributes is presented below. [br /]
     [br /]
     All values are optional, but it is highly recommended to at least include title, author, and [b]love_version[/b].[br /]
-	[br /]
-	
-   [div class="section"]
-   [div class="title"]Example[/div]
-   [div class="synopsis"]
-      [i]# Title / author[/i][br /]
-      title = "Epic Quest III"[br /]
-      author = "Awesome Games"[br /]
-      [i]# Display resolution[/i][br /]
-      width = 800[br /]
-      height = 600[br /]
-      [i]# Was made for this version of LOVE:[/i][br /]
-      love_version = "0.3.2"[br /]
-   [/div]
-   [/div]
+    [br /]
+
+    [div class="section"]
+    [div class="title"]Example[/div]
+    [div class="synopsis"]
+    [i]# Title / author[/i][br /]
+    title = "Epic Quest III"[br /]
+    author = "Awesome Games"[br /]
+    [i]# Display resolution[/i][br /]
+    width = 800[br /]
+    height = 600[br /]
+    [i]# Was made for this version of LOVE:[/i][br /]
+    love_version = "0.3.2"[br /]
+    [/div]
+    [/div]
 
     <item name="title" type="string" brief="The game title."/>
     <item name="author" type="string" brief="The author of the game."/>
@@ -2029,7 +2140,7 @@
     <item name="fsaa" brief="Number of FSAA-buffers." />
     <item name="display_auto" type="boolean" brief="Set this to false if you want to configure the display in Lua manually." />
     <item name="love_version" type="string" brief="The LOVE-version this game was made for."/>
-  
+
   </misc>
-  
+
 </nzai>

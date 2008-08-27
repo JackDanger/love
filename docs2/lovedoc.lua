@@ -229,9 +229,25 @@ function lovedoc.urlsym()
 end
 
 function lovedoc.symbolize(text)
-		  text = string.gsub(text, "{(.-)}", lovedoc.url.gsub)
-		  text = string.gsub(text, "%[(.-)%]", '<%1>')
-		  return text
+	text = string.gsub(text, "([%a%.:]+)",
+		function (c)
+			if lovedoc.url.gsub[c] then 
+				return lovedoc.url.gsub[c]
+			elseif string.len(c) >= 1 then
+				local last = string.sub(c, -1)
+				if string.find(last, "%p") then
+					local first = string.sub(c, 1, string.len(c)-1)
+					if lovedoc.url.gsub[first] then
+						return lovedoc.url.gsub[first] .. last
+					end
+				end
+			end
+			return c
+		end
+	)
+	--text = string.gsub(text, "{(.-)}", lovedoc.url.gsub)
+	text = string.gsub(text, "%[(.-)%]", '<%1>')
+	return text
 end
 ----------------------------------------------------
 -- Buffer
@@ -595,11 +611,13 @@ function cluster_section_end(b, title)
 end
 
 function cluster_item(b, name, desc)
-        b:div("item")
-        b:push("span", "name"); b:write(name); b:pop()
-        b:push("span", "desc"); b:write(lovedoc.symbolize(desc)); b:pop()
-        b:pop()
+	local n = lovedoc.url.gsub[name] or name
+	b:div("item")
+	b:push("span", "name"); b:write(n); b:pop()
+	b:push("span", "desc"); b:write(lovedoc.symbolize(desc)); b:pop()
+	b:pop()
 end
+
 
 function list_section_begin(b, title)
         section_begin(b, title)
