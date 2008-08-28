@@ -24,7 +24,7 @@
 
     <section name="Summary">
 
-      L&amp;Ouml; is licensed under the terms of the ZLIB license. This is a short license to begin with,
+      L&amp;Ouml;VE is licensed under the terms of the ZLIB license. This is a short license to begin with,
       but for the lazy, here's a summary:
 
       [ul]
@@ -36,7 +36,7 @@
 
     <section name="ZLIB license (full)">
 
-      Copyright &amp;copy; 2006-2008 L&amp;Ouml; Development Team[br /]
+      Copyright &amp;copy; 2006-2008 L&amp;Ouml;VE Development Team[br /]
       [br /]
       This software is provided 'as-is', without any express or implied
       warranty. In no event will the authors be held liable for any damages
@@ -194,10 +194,37 @@
 
   </page>
   <page name="Manual Improvements">
-    <section name="Help us help you">
+    <section name="Contact Us">
+      If you have suggestions as to how the manual can be improved,
+      please don't hesitate to [a href="http://love2d.org/?page=credits"]contact us[/a].
+      That goes for things like:
+      [ul]
+      [li]Corrections.[/li]
+      [li]Example requests. [/li]
+      [li]Rephrasing.[/li]
+      [li]Presentation improvements.[/li]
+      [/ul]
+      Or anything else you can think of. (These are just examples).
 
     </section>
-    <section name="Submit an Example">
+    <section name="Submit An Example">
+      Most pages in the documentation does currently not contain examples. Eventually, [i]all[/i]
+      items will have at least one example, but that represents way too much work as a
+      pre-release activity. Instead, the plan is to gradually add examples as people are bothered to
+      create them, or when the need emerges.[br /]
+      [br /]
+      If you would like to contribute to the documentation by adding an example, please [a href="http://love2d.org/?page=credits"]contact us[/a]!
+      Do note the following, however:
+      [ul]
+      [li]The example must be runnable.[/li]
+      [li]Keep it short.[/li]
+      [li]Let us know where you want the example present. The same example can be displayed on multiple pages.[/li]
+      [li]If you need to use Images, Sounds or other resoures, 
+      check if you can use something already present in 
+      [a href="http://love2d.org/examples/images"]/examples/images[/a] and similar 
+      folders. Otherwise, you can submit a resource, but keep it small, and make sure it's free.[/li]
+      [/ul]
+      Thanks!
     </section>
   </page>
 
