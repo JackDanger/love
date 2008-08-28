@@ -32,6 +32,8 @@ case "$1" in
 		cd ../../../
 		tar -czf love/platform/unix/love-$2-src.tar.gz --exclude=.svn love/demos/* love/*.txt love/Makefile love/src/ && \
 		echo "  * love-$2-src.tar.gz created"
+		tar -cjf love/platform/unix/love-$2-src.tar.bz2 --exclude=.svn love/demos/* love/*.txt love/Makefile love/src/ && \
+		echo "  * love-$2-src.tar.gz created"
 		zip -9q love/platform/unix/love-$2-src.zip love/*.txt love/demos/* love/Makefile `find love/src/* | grep -viE svn` && \
 		echo "  * love-$2-src.zip created"
 		;;
