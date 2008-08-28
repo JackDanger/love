@@ -8,9 +8,10 @@ namespace love_box2d
 	
 		float getX();
 		float getY();
+		
 		float getAngle();
-
 		float getSpin() const;
+		
 		float getMass() const;
 		float getInertia() const;
 		
@@ -19,17 +20,21 @@ namespace love_box2d
 
 		void applyImpulse(float jx, float jy);
 		void applyImpulse(float jx, float jy, float rx, float ry);
-		void applyTorque(float t);
+		void applyForce(float fx, float fy);
 		void applyForce(float fx, float fy, float rx, float ry);
+		void applyTorque(float t);
 	
 		void setX(float x);
 		void setY(float y);
+		void setPosition(float x, float y);
 		void setVelocity(float x, float y);
+		
 		void setAngle(float d);
 		void setSpin(float r);
-		void setPosition(float x, float y);
+		
 		void setMassFromShapes();
 		void setMass(float x, float y, float m, float i);
+		
 		void setAngularDamping(float d);
 		void setDamping(float d);
 

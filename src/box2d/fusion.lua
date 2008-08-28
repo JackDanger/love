@@ -6,6 +6,7 @@ local t =
 		{
 			-- actualMethodName = "exposedMethodName"
 			getPosition = "getPosition",
+			getVelocity = "getVelocity",
 			getWorldCenter = "getWorldCenter",
 			getLocalCenter = "getLocalCenter",
 			getWorldPoint = "getWorldPoint",

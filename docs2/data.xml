@@ -1332,10 +1332,340 @@
   <module name="love.physics">
 
     <type name="World" brief="Contains all Bodies and joints.">
+      <func name="update" brief="Updates the state of the objects in the World." space="true">
+        <overload>
+          <param name="dt" brief="The time since last frame." />
+        </overload>
+      </func>
+      <func name="setGravity" brief="Sets the gravity.">
+        <overload>
+          <param name="x" brief="The x-component of the gravity vector." />
+          <param name="y" brief="The y-component of the gravity vector." />
+        </overload>
+      </func>
+      <func name="getGravity" brief="Gets the gravity." space="true">
+        <overload>
+          <ret type="number" name="x" brief="The x-component of the gravity vector." />
+          <ret type="number" name="y" brief="The y-component of the gravity vector." />
+        </overload>
+      </func>
+
+      <func name="setCallback" brief="Sets the collision callback.">
+        <overload>
+          <param name="f" brief="A Lua function." />
+        </overload>
+      </func>
+
+      <func name="getCallback" brief="Sets the collision callback." space="true">
+        <overload>
+          <ret type="function" name="f" brief="The current callback function, or nil if none." />
+        </overload>
+      </func>
+      
+      <func name="getBodyCount" brief="Gets the number of Bodies in the World.">
+        <overload>
+          <ret name="num" type="number" brief="The number of Bodies."/>
+        </overload>
+      </func>
+      <func name="getJointCount" brief="Gets the number of joints in the World.">
+        <overload>
+          <ret name="num" type="number" brief="The number of joints."/>
+        </overload>
+      </func>
     </type>
+    
     <type name="Contact" brief="Represents a contact point between two shapes.">
+      
+      
+      <func name="getFriction" brief="Gets the mixed friction between the two shapes.">
+        <overload>
+          <ret name="friction" type="number" brief="The mixed friction" />
+        </overload>
+      </func>
+      <func name="getRestitution" brief="Gets the mixed restitution between the two shapes." space="true">
+        <overload>
+          <ret name="restitution" type="number" brief="The mixed restitution" />
+        </overload>
+      </func>
+
+      <func name="getSeparation" brief="Gets the separation of the two shapes.">
+        <overload>
+          <ret name="separation" brief="The separation. Negative if overlapping." />
+        </overload>
+      </func>
+      <func name="getPosition" brief="Gets the position of the Contact point.">
+        <overload>
+          <ret name="x" type="number" brief="The x-component of the point." />
+          <ret name="y" type="number" brief="The y-component of the point." />
+        </overload>
+      </func>
+      <func name="getVelocity" brief="Gets the velocity at the Contact point.">
+        <overload>
+          <ret name="x" type="number" brief="The x-component of the velocity." />
+          <ret name="y" type="number" brief="The y-component of the velocity." />
+        </overload>
+      </func>
+      <func name="getNormal" brief="Gets the Contact normal.">
+        <overload>
+          <ret name="x" type="number" brief="The x-component of the normal." />
+          <ret name="y" type="number" brief="The y-component of the normal." />
+        </overload>
+      </func>
+      
     </type>
+    
     <type name="Body" plural="Bodies" brief="A Body is a physical entity with position and orientation." space="true">
+
+      <func name="getX" brief="Gets the x-component of the position.">
+        <overload>
+          <ret name="x" type="number" brief="The x-component of the position." />
+        </overload>
+      </func>
+      <func name="getY" brief="Gets the y-component of the position.">
+        <overload>
+          <ret name="y" type="number" brief="The y-component of the position." />
+        </overload>
+      </func>
+      <func name="getPosition" brief="Gets the position of the Body.">
+        <overload>
+          <ret name="x" type="number" brief="The x-component of the position." />
+          <ret name="y" type="number" brief="The y-component of the position." />
+        </overload>
+      </func>
+      <func name="getVelocity" brief="Gets the velocity of the Body." space="true">
+        <overload>
+          <ret name="x" type="number" brief="The x-component of the velocity." />
+          <ret name="y" type="number" brief="The y-component of the velocity." />
+        </overload>
+      </func>
+      
+      <func name="getAngle" brief="Gets the current angle of the Body.">
+        <overload>
+          <ret name="angle" type="number" brief="The angle in degrees." />
+        </overload> 
+      </func>
+      <func name="getSpin" brief="Gets the current spin of the Body." space="true">
+        <overload>
+          <ret name="angle" type="number" brief="The spin in degrees/second." />
+        </overload>
+      </func>
+
+      <func name="getMass" brief="Gets the mass of Body.">
+        <overload>
+          <ret name="mass" type="number" brief="The mass of the Body." />
+        </overload>
+      </func>
+      <func name="getInertia" brief="Gets the inertia of Body." space="true">
+        <overload>
+          <ret name="inertia" type="number" brief="The inertia of the Body." />
+        </overload>
+      </func>
+
+      <func name="getDamping" brief="Gets linear damping.">
+        <overload>
+          <ret name="damping" type="number" brief="The linear damping" />
+        </overload>
+      </func>
+
+      <func name="getAngularDamping" brief="Gets angular damping." space="true">
+        <overload>
+          <ret name="damping" type="number" brief="The angular damping" />
+        </overload>
+      </func>
+
+      <func name="getWorldCenter" brief="Gets the center of mass in world coordinates.">
+        <overload>
+          <ret name="x" type="number" brief="The x-component of the world point." />
+          <ret name="y" type="number" brief="The y-component of the world point." />
+        </overload>
+      </func>
+      <func name="getLocalCenter" brief="Gets the center of mass in local coordinates.">
+        <overload>
+          <ret name="x" type="number" brief="The x-component of the local point." />
+          <ret name="y" type="number" brief="The y-component of the local point." />
+        </overload>
+      </func>
+
+      <func name="getWorldPoint" brief="Transforms a point from local coordinates to world coordinates.">
+        <overload>
+          <param name="x" brief="The x-component of the local point." />
+          <param name="y" brief="The y-component of the local point." />
+          <ret name="x" type="number" brief="The x-component of the world point." />
+          <ret name="y" type="number" brief="The y-component of the world point." />
+        </overload>
+      </func>
+      <func name="getWorldVector" brief="Transforms a vector from local coordinates to world coordinates.">
+        <overload>
+          <param name="x" brief="The x-component of the local vector." />
+          <param name="y" brief="The y-component of the local vector." />
+          <ret name="x" type="number" brief="The x-component of the world vector." />
+          <ret name="y" type="number" brief="The y-component of the world vector." />
+        </overload>
+      </func>
+      <func name="getLocalPoint" brief="Transforms a point from world coordinates to local coordinates.">
+        <overload>
+          <param name="x" brief="The x-component of the world point." />
+          <param name="y" brief="The y-component of the world point." />
+          <ret name="x" type="number" brief="The x-component of the local point." />
+          <ret name="y" type="number" brief="The y-component of the local point." />
+        </overload>
+      </func>
+      <func name="getLocalVector" brief="Transforms a vector from world coordinates to local coordinates.">
+        <overload>
+          <param name="x" brief="The x-component of the world vector." />
+          <param name="y" brief="The y-component of the world vector." />
+          <ret name="x" type="number" brief="The x-component of the local vector." />
+          <ret name="y" type="number" brief="The y-component of the local vector." />
+        </overload>
+      </func>
+      <func name="getVelocityWorldPoint" brief="Gets the velocity on the Body for the given world point.">
+        <overload>
+          <param name="x" brief="The x-component of the world point." />
+          <param name="y" brief="The y-component of the world point." />
+          <ret name="x" type="number" brief="The x-component of the velocity vector." />
+          <ret name="x" type="number" brief="The x-component of the velocity vector." />
+        </overload>
+      </func>
+      <func name="getVelocityLocalPoint" brief="Gets the velocity on the Body for the given local point." space="true">
+        <overload>
+          <param name="x" brief="The x-component of the local point." />
+          <param name="y" brief="The y-component of the local point." />
+          <ret name="x" type="number" brief="The x-component of the velocity vector." />
+          <ret name="x" type="number" brief="The x-component of the velocity vector." />
+        </overload>
+      </func>
+
+      <func name="applyImpulse" brief="Applies an impulse to the Body.">
+        <overload>
+          <param name="jx" brief="The x-component of the impulse." />
+          <param name="jy" brief="The y-component of the impulse." />
+        </overload>
+        <overload brief="Applies an impulse to the Body with an offset.">
+          <param name="jx" brief="The x-component of the impulse." />
+          <param name="jy" brief="The y-component of the impulse." />
+          <param name="rx" brief="The x-component of the offset." />
+          <param name="ry" brief="The y-component of the offset." />
+        </overload>
+      </func>
+      <func name="applyForce" brief="Applies force to the Body.">
+        <overload>
+          <param name="fx" brief="The x-component of the force." />
+          <param name="fy" brief="The y-component of the force." />
+        </overload>
+        <overload brief="Applies force to the Body with an offset.">
+          <param name="fx" brief="The x-component of the force." />
+          <param name="fy" brief="The y-component of the force." />
+          <param name="rx" brief="The x-component of the offset." />
+          <param name="ry" brief="The y-component of the offset." />
+        </overload>
+      </func>
+      <func name="applyTorque" brief="Applies torque to the Body." space="true">
+        <overload>
+          <param name="t" brief="The torque to apply to the Body." />
+        </overload>
+      </func>
+      
+      
+
+
+
+      <func name="setX" brief="Sets the x-component of the position.">
+        <overload>
+          <param name="x" brief="The new x-component." />
+        </overload>
+      </func>
+      <func name="setY" brief="Sets the y-component of the position.">
+        <overload>
+          <param name="y" brief="The new y-component." />
+        </overload>
+      </func>
+      <func name="setPosition" brief="Sets the position of the Body.">
+        <overload>
+          <param name="x" brief="The x-component of the position." />
+          <param name="y" brief="The y-component of the position." />
+        </overload>
+      </func>
+      <func name="setVelocity" brief="Sets the velocity of the Body." space="true">
+        <overload>
+          <param name="x" brief="The x-component." />
+          <param name="y" brief="The y-component." />
+        </overload>
+      </func>
+      <func name="setAngle" brief="Sets the angle of the Body.">
+        <overload>
+          <param name="angle" brief="The angle in degrees." />
+        </overload>
+      </func>
+      <func name="setSpin" brief="Sets the spin of the Body." space="true">
+        <overload>
+          <param name="spin" brief="The spin in degrees/second" />
+        </overload>
+      </func>
+
+      <func name="setMassFromShapes" brief="Sets mass properties from attatched shapes.">
+        <overload>
+        </overload>
+      </func>
+      <func name="setMass" brief="Sets mass properies directly." space="true">
+        <overload brief="Sets mass properies directly.">
+          <param name="x" brief="The x-component of the center of mass in local coordinates." />
+          <param name="y" brief="The y-component of the center of mass in local coordinates." />
+          <param name="m" brief="The mass." />
+          <param name="i" brief="The interia." />
+        </overload>
+      </func>
+
+      <func name="setDamping" brief="Sets the linear damping of the Body.">
+        <overload>
+          <param name="damping" brief="The linear damping of the Body." />
+        </overload>
+      </func>
+
+      <func name="setAngularDamping" brief="Sets the angular damping of the Body." space="true">
+        <overload>
+          <param name="damping" brief="The angular damping of the Body." />
+        </overload>
+      </func>
+
+      <func name="isBullet" brief="Checks whether this Body should be treated as a bullet.">
+        <overload>
+        </overload>
+      </func>
+
+      <func name="setBullet" brief="Sets whether this Body should be treated as a Bullet." space="true">
+        <overload>
+          <param name="bullet" brief="True for bullet, false for normal." />
+        </overload>
+      </func>
+
+      <func name="isStatic" brief="Checks whether this Body is static.">
+        <overload></overload>
+      </func>
+
+      <func name="isDynamic" brief="Checks whether this Body is dynamic.">
+        <overload></overload>
+      </func>
+
+      <func name="isFrozen" brief="Checks whether this Body is frozen.">
+        <overload></overload>
+      </func>
+
+      <func name="isSleeping" brief="Checks whether this Body is sleeping" space="true">
+        <overload></overload>
+      </func>
+
+      <func name="setAllowSleep" brief="Allows or disallows sleeping for this Body.">
+        <overload>
+          <param name="allow" brief="True for allow, false for disallow" />
+        </overload>
+      </func>
+
+      <func name="setSleep" brief="Puts a Body to sleep or wakes it up.">
+        <overload>
+          <param name="sleep" brief="True to put to sleep, false to wake up." />
+        </overload>
+      </func>
+      
     </type>
 
     <type name="CircleShape" brief="A simple circle which can be attatched to Bodies.">
@@ -1455,15 +1785,6 @@
       </overload>
     </func>
 
-    <func name="newMouseJoint" brief="Creates a new MouseJoint">
-      <overload>
-        <param name="body" brief="The first Body to attatch the joint to." />
-        <param name="x" brief="The x-component of the anchor point." />
-        <param name="y" brief="The y-component of the anchor point." />
-        <ret name="mousejoint" type="MouseJoint" brief="The new MouseJoint." />
-      </overload>
-    </func>
-
     <func name="newRevoluteJoint" brief="Creates a new RevoluteJoint.">
       <overload>
         <param name="body1" brief="The first Body to attatch the joint to." />
@@ -1483,6 +1804,15 @@
         <param name="ax" brief="The x-component of the axis." />
         <param name="ay" brief="The y-component of the axis." />
         <ret name="prismaticjoint" type="PrismaticJoint" brief="The new PrismaticJoint." />
+      </overload>
+    </func>
+
+    <func name="newMouseJoint" brief="Creates a new MouseJoint">
+      <overload>
+        <param name="body" brief="The first Body to attatch the joint to." />
+        <param name="x" brief="The x-component of the anchor point." />
+        <param name="y" brief="The y-component of the anchor point." />
+        <ret name="mousejoint" type="MouseJoint" brief="The new MouseJoint." />
       </overload>
     </func>
 

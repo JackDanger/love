@@ -36,6 +36,11 @@ namespace love_box2d
 		return pushVector(L, body->GetPosition());
 	}
 
+	int Body::getVelocity(lua_State * L)
+	{
+		return pushVector(L, body->GetLinearVelocity());
+	}
+
 	float Body::getAngle()
 	{
 		return TODEG(body->GetAngle());
@@ -94,6 +99,11 @@ namespace love_box2d
 	void Body::applyForce(float fx, float fy, float rx, float ry)
 	{
 		body->ApplyForce(b2Vec2(fx, fy), b2Vec2(rx, rx));
+	}
+
+	void Body::applyForce(float fx, float fy)
+	{
+		applyForce(fx, fy, 0, 0);
 	}
 
 	void Body::setX(float x)

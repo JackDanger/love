@@ -84,6 +84,13 @@ namespace love_box2d
 		int getPosition(lua_State * L);
 
 		/**
+		* Gets the velocity in the current center of mass.
+		* @returns The x-component of the velocity.
+		* @returns The y-component of the velocity.
+		**/
+		int getVelocity(lua_State * L);
+
+		/**
 		* The current center of mass for the Body in world
 		* coordinates.
 		* @returns The x-component of the point.
@@ -138,6 +145,11 @@ namespace love_box2d
 		* Apply torque (t).
 		**/
 		void applyTorque(float t);
+
+		/**
+		* Apply force (fx, fy) with offset (0, 0).
+		**/
+		void applyForce(float fx, float fy);
 
 		/**
 		* Apply force (fx, fy) with offset (rx, ry).
