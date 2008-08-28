@@ -3181,10 +3181,15 @@
 
     <item name="love.image_pad" brief="Used to pad an image upon creation." />
     <item name="love.image_optimize" brief="Used to optimize an image upon creation." />
-    <item name="love.image_pad_and_optimize" brief="Used to pad &amp; optimize an image upon creation." />
+    <item name="love.image_pad_and_optimize" brief="Used to pad &amp; optimize an image upon creation." space="true"/>
 
-
-
+    <item name="love.shape_circle" brief="Represents a CircleShape." />
+    <item name="love.shape_polygon" brief="Represents a PolygonShape." />
+    <item name="love.joint_distance" brief="Represents a DistanceJoint." />
+    <item name="love.joint_revolute" brief="Represents a RevoluteJoint." />
+    <item name="love.joint_prismatic" brief="Represents a PrismaticJoint." />
+    <item name="love.joint_mouse" brief="Represents a MouseJoint." />
+    
   </misc>
   <misc name="Config Files" title="List of config file attributes">
 
