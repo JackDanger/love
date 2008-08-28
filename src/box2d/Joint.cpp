@@ -11,12 +11,12 @@ namespace love_box2d
 {
 
 	Joint::Joint(boost::shared_ptr<Body> body1)
-		: world(body1->world), body1(body1)
+		: body1(body1), world(body1->world)
 	{
 	}
 
 	Joint::Joint(boost::shared_ptr<Body> body1, boost::shared_ptr<Body> body2)
-		: world(body1->world), body1(body1), body2(body2)
+		: body1(body1), body2(body2), world(body1->world)
 	{
 	}
 
@@ -41,8 +41,9 @@ namespace love_box2d
 			return love::JOINT_MOUSE;
 		case e_gearJoint: 
 			return love::JOINT_GEAR;
+		default:
+			return -1;
 		}
-		return -1;
 	}
 
 	int Joint::getAnchors(lua_State * L)

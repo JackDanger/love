@@ -28,8 +28,9 @@ namespace love_box2d
 			return love::SHAPE_CIRCLE;
 		case e_polygonShape:
 			return love::SHAPE_POLYGON;
+		default:
+			return -1;
 		}
-		return -1;
 	}
 
 	void Shape::setFriction(float friction)
