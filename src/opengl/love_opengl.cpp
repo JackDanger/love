@@ -1457,7 +1457,8 @@ namespace love_opengl
 
 		// Save it.
 		ilEnable(IL_FILE_OVERWRITE);
-		ilSaveImage((const wchar_t *)filename);
+		//@todo This didn't work in Linux.
+		//ilSaveImage((const wchar_t *)filename);
 
 		// Cleanup.
 		ilDisable(IL_FILE_OVERWRITE);

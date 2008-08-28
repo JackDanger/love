@@ -1,5 +1,5 @@
 ######################################################################
-# "Ancient" LOVE makefile. (Works for 0.3-2)
+# "Ancient" LOVE makefile.
 # You may need to modify parts of this makefile for your system.
 ######################################################################
 
@@ -46,12 +46,14 @@ $(LIBLOVE_OBJDIR)/Exception.o \
 $(LIBLOVE_OBJDIR)/File.o \
 $(LIBLOVE_OBJDIR)/Game.o \
 $(LIBLOVE_OBJDIR)/modspec.o \
+$(LIBLOVE_OBJDIR)/luax.o \
 $(LIBLOVE_OBJDIR)/Module.o \
 $(LIBLOVE_OBJDIR)/MemoryFile.o \
 $(LIBLOVE_OBJDIR)/Resource.o \
+$(LIBLOVE_OBJDIR)/Reference.o \
 $(LIBLOVE_OBJDIR)/version.o
 
-LIBLOVE_INCLUDES = $(INCLUDE_SDL) $(INCLUDE_LIBLOVE)
+LIBLOVE_INCLUDES = $(INCLUDE_LUA) $(INCLUDE_SDL) $(INCLUDE_LIBLOVE)
 
 $(LIBLOVE_TARGET): $(LIBLOVE_OBJ)
 	ar crs $@ $^
@@ -171,6 +173,66 @@ $(SYSTEM_OBJDIR)/%.o: $(SYSTEM_SRCDIR)/%.cpp
 	
 $(SYSTEM_OBJDIR)/mod_system.o: $(SYSTEM_SRCDIR)/mod_system.cpp
 	$(CC) -fPIC $(CFLAGS_MOD) $(INCLUDE_COMMON) -c $< -o $@
+
+# Box2D
+
+BOX2D_OBJDIR = obj/box2d
+BOX2D_SRCDIR = src/box2d
+BOX2D_LIBSRCDIR = src/box2d/Source
+BOX2D_OBJ = \
+	$(BOX2D_SRCDIR)/graham/GrahamScanConvexHull.o \
+	$(BOX2D_LIBSRCDIR)/Collision/b2BroadPhase.o \
+	$(BOX2D_LIBSRCDIR)/Collision/b2CollideCircle.o \
+	$(BOX2D_LIBSRCDIR)/Collision/b2CollidePoly.o \
+	$(BOX2D_LIBSRCDIR)/Collision/b2Collision.o \
+	$(BOX2D_LIBSRCDIR)/Collision/b2Distance.o \
+	$(BOX2D_LIBSRCDIR)/Collision/b2BroadPhase.o \
+	$(BOX2D_LIBSRCDIR)/Collision/b2PairManager.o \
+	$(BOX2D_LIBSRCDIR)/Collision/b2TimeOfImpact.o \
+	$(BOX2D_LIBSRCDIR)/Collision/Shapes/b2Shape.o \
+	$(BOX2D_LIBSRCDIR)/Collision/Shapes/b2CircleShape.o \
+	$(BOX2D_LIBSRCDIR)/Collision/Shapes/b2PolygonShape.o \
+	$(BOX2D_LIBSRCDIR)/Common/b2BlockAllocator.o \
+	$(BOX2D_LIBSRCDIR)/Common/b2Math.o \
+	$(BOX2D_LIBSRCDIR)/Common/b2Settings.o \
+	$(BOX2D_LIBSRCDIR)/Common/b2StackAllocator.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/b2Body.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/b2ContactManager.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/b2Island.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/b2WorldCallbacks.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/b2World.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/Contacts/b2CircleContact.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/Contacts/b2Contact.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/Contacts/b2ContactSolver.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/Contacts/b2PolyAndCircleContact.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/Contacts/b2PolyContact.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/Joints/b2DistanceJoint.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/Joints/b2GearJoint.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/Joints/b2Joint.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/Joints/b2MouseJoint.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/Joints/b2PrismaticJoint.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/Joints/b2PulleyJoint.o \
+	$(BOX2D_LIBSRCDIR)/Dynamics/Joints/b2RevoluteJoint.o \
+	$(BOX2D_OBJDIR)/Body.o \
+	$(BOX2D_OBJDIR)/CircleShape.o \
+	$(BOX2D_OBJDIR)/Contact.o \
+	$(BOX2D_OBJDIR)/DistanceJoint.o \
+	$(BOX2D_OBJDIR)/Joint.o \
+	$(BOX2D_OBJDIR)/love_box2d.o \
+	$(BOX2D_OBJDIR)/mod_box2d.o \
+	$(BOX2D_OBJDIR)/MouseJoint.o \
+	$(BOX2D_OBJDIR)/PolygonShape.o \
+	$(BOX2D_OBJDIR)/PrismaticJoint.o \
+	$(BOX2D_OBJDIR)/RevoluteJoint.o \
+	$(BOX2D_OBJDIR)/Shape.o \
+	$(BOX2D_OBJDIR)/World.o
+
+
+$(BOX2D_OBJDIR)/%.o: $(BOX2D_SRCDIR)/%.cpp
+	$(CC) -fPIC $(CFLAGS) $(INCLUDE_COMMON) -I./$(BOX2D_SRCDIR)/Include -c $< -o $@
+	
+$(BOX2D_OBJDIR)/mod_system.o: $(BOX2D_SRCDIR)/mod_box2d.cpp
+	$(CC) -fPIC $(CFLAGS_MOD) $(INCLUDE_COMMON) -I./$(BOX2D_SRCDIR)/Include -c $< -o $@
 	
 #
 # LOVE (main binary)
@@ -186,7 +248,7 @@ LOVE_INCLUDES = $(INCLUDE_LUA) $(INCLUDE_SDL) $(INCLUDE_LIBLOVE)
 
 $(LOVE_TARGET): $(LOVE_OBJ) $(LIBLOVE_OBJ) $(SDLTIMER_OBJ) $(PHYSFS_OBJ) \
 		  $(OPENGL_OBJ) $(SDLKEYBOARD_OBJ) $(SDLMOUSE_OBJ) \
-		  $(SDLMIXER_OBJ) $(SYSTEM_OBJ)
+		  $(SDLMIXER_OBJ) $(SYSTEM_OBJ) $(BOX2D_OBJ)
 	$(CC) $(LOVE_LDFLAGS) -o $(BINDIR)/$@ $^
 
 $(LOVE_OBJDIR)/%.o: $(LOVE_SRCDIR)/%.cpp
@@ -196,11 +258,11 @@ $(LOVE_OBJDIR)/%.o: $(LOVE_SRCDIR)/%.cpp
 clean:
 	rm -f $(LIBLOVE_OBJ) $(LOVE_OBJ) $(SDLTIMER_OBJ) $(PHYSFS_OBJ) \
 		  $(OPENGL_OBJ) $(SDLKEYBOARD_OBJ) $(SDLMOUSE_OBJ) \
-		  $(SDLMIXER_OBJ) $(SYSTEM_OBJ)
+		  $(SDLMIXER_OBJ) $(SYSTEM_OBJ) $(BOX2D_OBJ)
 	rm -f $(BINDIR)/liblove.a $(BINDIR)/love
 	
 prep:
 	mkdir -p obj bin obj/liblove obj/love obj/sdltimer obj/physfs \
 		     obj/opengl obj/sdlkeyboard obj/sdlmouse obj/sdlmixer \
-		     obj/chipmunk obj/system 
+		     obj/chipmunk obj/system obj/box2d
 	
