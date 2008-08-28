@@ -1232,6 +1232,13 @@
       </overload>
     </func>
 
+    <func name="polygon" brief="Draws a polygon.">
+      <overload>
+        <param name="type" brief="The type of polygon. (outline/filled)." />
+        <param name="..." brief="The vertices of the polygon" />
+      </overload>
+    </func>
+
     <example id="1" />
   </module>
   <module name="love.audio">

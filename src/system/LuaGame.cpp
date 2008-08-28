@@ -457,6 +457,10 @@ namespace love_system
 			"default_logo_256 = 2,"
 			"default_moose = 3,"
 			"default_vermin = 4,"
+			"default_big_love_ball = 5,"
+			"default_freechan = 6,"
+			"default_green_ball = 7,"
+			"default_speak_cloud = 8,"
 
 			"point_sprite = 0,"
 

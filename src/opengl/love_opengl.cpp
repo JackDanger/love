@@ -379,6 +379,18 @@ namespace love_opengl
 		case love::DEFAULT_VERMIN:
 			return newImage(love::mutant_vermin_png, love::IMAGE_OPTIMIZE);
 			break;
+		case love::DEFAULT_BIG_LOVE_BALL:
+			return newImage(love::big_love_ball_png, love::IMAGE_OPTIMIZE);
+			break;
+		case love::DEFAULT_FREECHAN:
+			return newImage(love::freechan_png, love::IMAGE_OPTIMIZE);
+			break;
+		case love::DEFAULT_GREEN_BALL:
+			return newImage(love::green_ball_png, love::IMAGE_OPTIMIZE);
+			break;
+		case love::DEFAULT_SPEAK_CLOUD:
+			return newImage(love::speak_cloud_png, love::IMAGE_OPTIMIZE);
+			break;
 		default: // ALWAYS MOOSE:
 			return newImage(love::mini_moose_png);
 			break;
