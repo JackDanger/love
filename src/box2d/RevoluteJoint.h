@@ -117,8 +117,8 @@ namespace love_box2d
 		
 		/**
 		* Gets the limits in degrees.
-		* @returns The upper limit.
 		* @returns The lower limit.
+		* @returns The upper limit.
 		**/
 		int getLimits(lua_State * L);
 

@@ -249,8 +249,6 @@
 
     </type>
 
-
-
     <type name="Animation" brief="Represents a frame-by-frame animation.">
       Remember that Animations must be updated each frame. (See example)
 
@@ -356,7 +354,6 @@
       <example id="11" />
 
     </type>
-
 
     <type name="Font" brief="Represents a font.">
 
@@ -688,7 +685,6 @@
 
     </type>
 
-
     <func name="newImage" brief="Loads an image.">
       <overload brief="Creates an Image.">
         <param name="filename" brief="The filepath to the image file." />
@@ -771,7 +767,7 @@
       </overload>
     </func>
 
-    <func name="newParticleSystem" brief="Creates a particle emitter.">
+    <func name="newParticleSystem" brief="Creates a particle emitter." space="true">
       <overload>
         <param name="image" brief="An Image object." />
         <param name="buffer" brief="The maximum amount of particles that are allowed by the system." />
@@ -846,6 +842,12 @@
       </overload>
     </func>
 
+    <func name="setCaption" brief="Sets the window caption." space="true">
+      <overload>
+        <param name="caption" brief="The new window caption." />
+      </overload>
+    </func>
+
     <func name="setColor" brief="Sets the current color.">
       <overload>
         <param name="color" brief="A Color object." />
@@ -875,7 +877,7 @@
       </overload>
     </func>
 
-    <func name="setFont" brief="Sets the current font.">
+    <func name="setFont" brief="Sets the current font." space="true">
       <overload>
         <param name="font" brief="A Font object." />
       </overload>
@@ -910,7 +912,7 @@
       </overload>
     </func>
 
-    <func name="getLineStyle" brief="Gets the current line style.">
+    <func name="getLineStyle" brief="Gets the current line style." space="true">
       <overload>
         <ret name="number" brief="love.line_smooth or love.line_rough." />
       </overload>
@@ -930,9 +932,15 @@
       </overload>
     </func>
 
-    <func name="setCaption" brief="Sets the window caption.">
+    <func name="getBlendMode" brief="Gets the current blend mode.">
       <overload>
-        <param name="caption" brief="The new window caption." />
+        <ret type="number" brief="And int representing the current blend mode." />
+      </overload>
+    </func>
+
+    <func name="getColorMode" brief="Gets the current color mode." space="true">
+      <overload>
+        <ret type="number" brief="And int representing the current color mode." />
       </overload>
     </func>
 
@@ -948,19 +956,7 @@
       </overload>
     </func>
 
-    <func name="getBlendMode" brief="Gets the current blend mode.">
-      <overload>
-        <ret type="number" brief="And int representing the current blend mode." />
-      </overload>
-    </func>
-
-    <func name="getColorMode" brief="Gets the current color mode.">
-      <overload>
-        <ret type="number" brief="And int representing the current color mode." />
-      </overload>
-    </func>
-
-    <func name="getFont" brief="Gets the current font.">
+    <func name="getFont" brief="Gets the current font." space="true">
       <overload>
         <ret type="Font" brief="The current font." />
       </overload>
@@ -972,7 +968,7 @@
       </overload>
     </func>
 
-    <func name="getHeight" brief="Gets the height of the window.">
+    <func name="getHeight" brief="Gets the height of the window." space="true">
       <overload>
         <ret type="number" brief="The height of the game window." />
       </overload>
@@ -989,7 +985,7 @@
       </overload>
     </func>
 
-    <func name="getScissor" brief="Gets the current scissor box.">
+    <func name="getScissor" brief="Gets the current scissor box." space="true">
       <overload>
         <ret name="x" type="number" brief="The x-coordinate of the scissor box." />
         <ret name="y" type="number" brief="The y-coordinate of the scissor box." />
@@ -998,7 +994,7 @@
       </overload>
     </func>
 
-    <func name="draw" brief="Draws.">
+    <func name="draw" brief="Draws." space="true">
       <overload brief="Draws text on screen.">
         Draws text in the current color.
         <param name="string" brief="A text string." />
@@ -1062,7 +1058,7 @@
       </overload>
     </func>
 
-    <func name="drawf" brief="Draws formatted text on screen, with word wrap.">
+    <func name="drawf" brief="Draws formatted text on screen, with word wrap." space="true">
       <overload>
         Draws text in the current color, with word wrap.
         <param name="string" brief="A text string." />
@@ -1080,8 +1076,7 @@
       </overload>
     </func>
 
-
-    <func name="draws" brief="Draws a subsprite of an Image.">
+    <func name="draws" brief="Draws a subsprite of an Image." space="true">
       <overload brief="Draws a subsprite of an Image.">
         <param name="image" brief="An Image object." />
         <param name="x" brief="The position on the x-axis." />
@@ -1210,7 +1205,6 @@
       </overload>
     </func>
 
-
     <example id="1" />
   </module>
   <module name="love.audio">
@@ -1253,19 +1247,19 @@
       </overload>
     </func>
 
-    <func name="newMusic" brief="Loads a music file.">
+    <func name="newMusic" brief="Loads a music file." space="true">
       <overload>
         <param name="filename" brief="The filepath to the music file." />
         <ret type="Music" brief="A Music object containing the audio data." />
       </overload>
     </func>
 
-    <func name="play" brief="Plays a sound.">
+    <func name="play" brief="Plays a sound." space="true">
       <overload>
         <param name="sound" brief="The sound to play." />
         The Sound is played a single time, on the first available channel.
       </overload>
-      <overload>
+      <overload space="true">
         <param name="sound" brief="The sound to play." />
         <param name="loop" brief="The number of times to loop. (1 = play once, 0 = forever)." />
       </overload>
@@ -1291,7 +1285,7 @@
       </overload>
     </func>
 
-    <func name="stop" brief="Stops all audio playback.">
+    <func name="stop" brief="Stops all audio playback."  space="true">
       <overload>
       </overload>
     </func>
@@ -1302,7 +1296,7 @@
       </overload>
     </func>
 
-    <func name="isPaused" brief="Checks whether audio playback is paused or not.">
+    <func name="isPaused" brief="Checks whether audio playback is paused or not." space="true">
       <overload>
         <ret type="boolean" brief="True if audio is paused, false otherwise." />
       </overload>
@@ -1314,7 +1308,7 @@
       </overload>
     </func>
 
-    <func name="setMode" brief="Sets the mode for audio mixing and playback.">
+    <func name="setMode" brief="Sets the mode for audio mixing and playback." space="true">
       <overload>
         <param name="frequency" brief="The amount of Hz to use." />
         <param name="mode" brief="The audio mode (1 = mono, 2 = stereo)." />
@@ -1330,6 +1324,22 @@
 
   </module>
   <module name="love.physics">
+
+    The physics module is capable of deteting collisions between objects, and simulate
+    a realistic responses.[br /]
+    [br /]
+    The module is currently based on [a href="http://www.box2d.org/"]Box2D[/a]. The original
+    naming scheme is kept, and most of the functionality avaliable in Box2D is avaliable in LÖVE,
+    so you can also take a look at the
+    [a href="http://www.box2d.org/manual.html"]Box2D User Manual[/a] for detailed
+    documentation.[br /]
+    [br /]
+    Some limitations to keep in mind:
+    [ul]
+    [li]Only convex shapes are supported.[/li]
+    [li]The max vertex count for on a single polygon is 8.[/li]
+    [li]There are 16 shape categories.[/li]
+    [/ul]
 
     <type name="World" brief="Contains all Bodies and joints.">
       <func name="update" brief="Updates the state of the objects in the World." space="true">
@@ -1361,7 +1371,7 @@
           <ret type="function" name="f" brief="The current callback function, or nil if none." />
         </overload>
       </func>
-      
+
       <func name="getBodyCount" brief="Gets the number of Bodies in the World.">
         <overload>
           <ret name="num" type="number" brief="The number of Bodies."/>
@@ -1373,10 +1383,10 @@
         </overload>
       </func>
     </type>
-    
+
     <type name="Contact" brief="Represents a contact point between two shapes.">
-      
-      
+
+
       <func name="getFriction" brief="Gets the mixed friction between the two shapes.">
         <overload>
           <ret name="friction" type="number" brief="The mixed friction" />
@@ -1411,9 +1421,9 @@
           <ret name="y" type="number" brief="The y-component of the normal." />
         </overload>
       </func>
-      
+
     </type>
-    
+
     <type name="Body" plural="Bodies" brief="A Body is a physical entity with position and orientation." space="true">
 
       <func name="getX" brief="Gets the x-component of the position.">
@@ -1438,11 +1448,11 @@
           <ret name="y" type="number" brief="The y-component of the velocity." />
         </overload>
       </func>
-      
+
       <func name="getAngle" brief="Gets the current angle of the Body.">
         <overload>
           <ret name="angle" type="number" brief="The angle in degrees." />
-        </overload> 
+        </overload>
       </func>
       <func name="getSpin" brief="Gets the current spin of the Body." space="true">
         <overload>
@@ -1564,8 +1574,8 @@
           <param name="t" brief="The torque to apply to the Body." />
         </overload>
       </func>
-      
-      
+
+
 
 
 
@@ -1665,21 +1675,731 @@
           <param name="sleep" brief="True to put to sleep, false to wake up." />
         </overload>
       </func>
-      
+
     </type>
 
     <type name="CircleShape" brief="A simple circle which can be attatched to Bodies.">
+
+      <func name="getType" brief="Gets an integer representing the shape type." space="true">
+        <overload>
+          <ret name="type" type="number" brief="A constant integer." />
+        </overload>
+      </func>
+
+      <func name="getFriction" brief="Gets the friction of this shape.">
+        <overload>
+          <ret name="friction" type="number" brief="The friction of the shape." />
+        </overload>
+      </func>
+
+      <func name="getRestitution" brief="Gets the restitution of this shape." space="true">
+        <overload>
+          <ret name="restitution" type="number" brief="The restitution of the shape." />
+        </overload>
+      </func>
+
+      <func name="getCategoryBits" brief="Gets the category bits of the shape.">
+        <overload>
+          <ret name="bits" type="number" brief="An integer value representing the categories." />
+        </overload>
+      </func>
+
+      <func name="getCategory" brief="Gets the categories this shape is a member of.">
+        <overload>
+          <ret name="..." type="numbers" brief="Numbers from 1-16" />
+        </overload>
+      </func>
+
+      <func name="getMaskBits" brief="Gets the mask bits of the shape.">
+        <overload>
+          <ret name="bits" type="number" brief="An integer value representing the mask." />
+        </overload>
+      </func>
+
+      <func name="getMask" brief="Gets which categories this shape should collide with." space="true">
+        <overload>
+          <ret name="..." type="numbers" brief="Numbers from 1-16" />
+        </overload>
+      </func>
+
+
+      <func name="getData" brief="Gets the data set with setData.">
+        <overload>
+          <ret name="data" type="various" brief="The data previously set, or nil of none." />
+        </overload>
+      </func>
+
+      <func name="isSensor" brief="Checks whether this shape acts as a sensor or not" space="true">
+        <overload>
+          <ret name="sensor" type="boolean" brief="True if sensor, false otherwise." />
+        </overload>
+      </func>
+
+      <func name="setFriction" brief="Sets the friction of the shape.">
+        <overload>
+          <param name="friction" brief="The friction of the shape." />
+        </overload>
+      </func>
+
+      <func name="setRestitution" brief="Sets the restitution of the shape." space="true">
+        <overload>
+          <param name="restitution" brief="The restitution of the shape." />
+        </overload>
+      </func>
+
+      <func name="setCategoryBits" brief="Sets the category bits of the shape.">
+        <overload>
+          <param name="bits" brief="An integer value representing the categories." />
+        </overload>
+      </func>
+
+      <func name="setCategory" brief="Sets the categories this shape is a member of.">
+        <overload>
+          <param name="..." brief="Numbers from 1-16" />
+        </overload>
+      </func>
+
+      <func name="setMaskBits" brief="Sets the mask bits of the shape." >
+        <overload>
+          <param name="bits" brief="An integer value representing the mask." />
+        </overload>
+      </func>
+
+      <func name="setMask" brief="Sets which categories this shape should collide with." space="true">
+        <overload>
+          <param name="..." brief="Numbers from 1-16" />
+        </overload>
+      </func>
+
+      <func name="setData" brief="Sets data to be passed to the collision callback.">
+        <overload>
+          <param name="any" brief="Any Lua variable." />
+        </overload>
+      </func>
+
+      <func name="setSensor" brief="Sets whether this shape should act as a sensor." space="true">
+        <overload>
+          <param name="sensor" brief="True for sensor, false otherwise." />
+        </overload>
+      </func>
+
+      <func name="getBoundingBox" brief="Gets the bounding box of the shape.">
+        <overload>
+          <ret name="x1" type="number" brief="The x-component of the first vertex." />
+          <ret name="y1" type="number" brief="The y-component of the first vertex." />
+          <ret name="x2" type="number" brief="The x-component of the second vertex." />
+          <ret name="y2" type="number" brief="The y-component of the second vertex." />
+          <ret name="x3" type="number" brief="The x-component of the third vertex." />
+          <ret name="y3" type="number" brief="The y-component of the third vertex." />
+          <ret name="x4" type="number" brief="The x-component of the fourth vertex." />
+          <ret name="y4" type="number" brief="The y-component of the fourth vertex." />
+        </overload>
+      </func>
+
+      <func name="testPoint" brief="Checks whether a point lies inside the shape.">
+        <overload>
+          <param name="x" brief="The x-component of the point." />
+          <param name="y" brief="The y-component of the point." />
+          <ret name="hit" type="boolean" brief="True if inside, false if outside" />
+        </overload>
+      </func>
+
+      <func name="getRadius" brief="Gets the radius of the CircleShape.">
+        <overload>
+          <ret name="r" type="number" brief="The radius of the circle." />
+        </overload>
+      </func>
+
     </type>
     <type name="PolygonShape" brief="Convex polygon which can be attatched to Bodies." space="true">
+
+      <func name="getType" brief="Gets an integer representing the shape type." space="true">
+        <overload>
+          <ret name="type" type="number" brief="A constant integer." />
+        </overload>
+      </func>
+
+      <func name="getFriction" brief="Gets the friction of this shape.">
+        <overload>
+          <ret name="friction" type="number" brief="The friction of the shape." />
+        </overload>
+      </func>
+
+      <func name="getRestitution" brief="Gets the restitution of this shape." space="true">
+        <overload>
+          <ret name="restitution" type="number" brief="The restitution of the shape." />
+        </overload>
+      </func>
+
+      <func name="getCategoryBits" brief="Gets the category bits of the shape.">
+        <overload>
+          <ret name="bits" type="number" brief="An integer value representing the categories." />
+        </overload>
+      </func>
+
+      <func name="getCategory" brief="Gets the categories this shape is a member of.">
+        <overload>
+          <ret name="..." type="numbers" brief="Numbers from 1-16" />
+        </overload>
+      </func>
+
+      <func name="getMaskBits" brief="Gets the mask bits of the shape.">
+        <overload>
+          <ret name="bits" type="number" brief="An integer value representing the mask." />
+        </overload>
+      </func>
+
+      <func name="getMask" brief="Gets which categories this shape should collide with." space="true">
+        <overload>
+          <ret name="..." type="numbers" brief="Numbers from 1-16" />
+        </overload>
+      </func>
+
+
+      <func name="getData" brief="Gets the data set with setData.">
+        <overload>
+          <ret name="data" type="various" brief="The data previously set, or nil of none." />
+        </overload>
+      </func>
+
+      <func name="isSensor" brief="Checks whether this shape acts as a sensor or not" space="true">
+        <overload>
+          <ret name="sensor" type="boolean" brief="True if sensor, false otherwise." />
+        </overload>
+      </func>
+
+      <func name="setFriction" brief="Sets the friction of the shape.">
+        <overload>
+          <param name="friction" brief="The friction of the shape." />
+        </overload>
+      </func>
+
+      <func name="setRestitution" brief="Sets the restitution of the shape." space="true">
+        <overload>
+          <param name="restitution" brief="The restitution of the shape." />
+        </overload>
+      </func>
+
+      <func name="setCategoryBits" brief="Sets the category bits of the shape.">
+        <overload>
+          <param name="bits" brief="An integer value representing the categories." />
+        </overload>
+      </func>
+
+      <func name="setCategory" brief="Sets the categories this shape is a member of.">
+        <overload>
+          <param name="..." brief="Numbers from 1-16" />
+        </overload>
+      </func>
+
+      <func name="setMaskBits" brief="Sets the mask bits of the shape." >
+        <overload>
+          <param name="bits" brief="An integer value representing the mask." />
+        </overload>
+      </func>
+
+      <func name="setMask" brief="Sets which categories this shape should collide with." space="true">
+        <overload>
+          <param name="..." brief="Numbers from 1-16" />
+        </overload>
+      </func>
+
+      <func name="setData" brief="Sets data to be passed to the collision callback.">
+        <overload>
+          <param name="any" brief="Any Lua variable." />
+        </overload>
+      </func>
+
+      <func name="setSensor" brief="Sets whether this shape should act as a sensor." space="true">
+        <overload>
+          <param name="sensor" brief="True for sensor, false otherwise." />
+        </overload>
+      </func>
+
+      <func name="getBoundingBox" brief="Gets the bounding box of the shape.">
+        <overload>
+          <ret name="x1" type="number" brief="The x-component of the first vertex." />
+          <ret name="y1" type="number" brief="The y-component of the first vertex." />
+          <ret name="x2" type="number" brief="The x-component of the second vertex." />
+          <ret name="y2" type="number" brief="The y-component of the second vertex." />
+          <ret name="x3" type="number" brief="The x-component of the third vertex." />
+          <ret name="y3" type="number" brief="The y-component of the third vertex." />
+          <ret name="x4" type="number" brief="The x-component of the fourth vertex." />
+          <ret name="y4" type="number" brief="The y-component of the fourth vertex." />
+        </overload>
+      </func>
+
+      <func name="testPoint" brief="Checks whether a point lies inside the shape.">
+        <overload>
+          <param name="x" brief="The x-component of the point." />
+          <param name="y" brief="The y-component of the point." />
+          <ret name="hit" type="boolean" brief="True if inside, false if outside" />
+        </overload>
+      </func>
+
+      <func name="getPoints" brief="Gets the transformed points of the PolygonShape.">
+        <overload>
+          <ret name="..." type="numbers" brief="The vertices of the PolygonShape." />
+        </overload>
+      </func>
+
     </type>
 
     <type name="DistanceJoint" brief="Maintains a certain distance between Bodies.">
+
+
+      <!-- JOINT -->
+      <func name="getType" brief="Gets an integer representing the type.">
+        <overload>
+          <ret name="type" type="number" brief="A constant integer." />
+        </overload>
+      </func>
+
+      <func name="getAnchors" brief="Gets the anchor points of the joint" space="true">
+        <overload>
+          <ret name="x1" type="number" brief="The x-component of the anchor on Body 1." />
+          <ret name="y1" type="number" brief="The y-component of the anchor on Body 1." />
+          <ret name="x2" type="number" brief="The x-component of the anchor on Body 2." />
+          <ret name="y2" type="number" brief="The y-component of the anchor on Body 2." />
+        </overload>
+      </func>
+
+      <func name="getReactionForce" brief="Gets the reaction force on Body 2 at the joint anchor.">
+        <overload>
+          <ret name="x" type="number" brief="The x-component of the force" />
+          <ret name="y" type="number" brief="The y-component of the force" />
+        </overload>
+      </func>
+
+      <func name="getReactionTorque" brief="Gets the reaction torque on Body 2." space="true">
+        <overload>
+          <ret name="torque" type="number" brief="The reaction torque on Body 2" />
+        </overload>
+      </func>
+
+      <func name="getCollideConnected" brief="Gets whether the connected Bodies collide.">
+        <overload>
+          <ret name="collide" type="boolean" brief="True if they collide, false otherwise." />
+        </overload>
+      </func>
+
+      <func name="setCollideConnected" brief="Sets whether the connected Bodies should collide with eachother." space="true">
+        <overload>
+          <param name="collide" brief="True for the Bodies to collide, false otherwise." />
+        </overload>
+      </func>
+      <!-- JOINT END -->
+
+      <func name="getLength" brief="Gets the equilibrium distance between the two Bodies.">
+        <overload>
+          <ret name="length" type="number" brief="The length between the two Bodies." />
+        </overload>
+      </func>
+
+      <func name="getFrequency" brief="Gets the response speed.">
+        <overload>
+          <ret name="hz" type="number" brief="The response speed." />
+        </overload>
+      </func>
+
+      <func name="getDamping" brief="Gets the damping ratio." space="true">
+        <overload>
+          <ret name="damping" type="number" brief="The damping ratio." />
+        </overload>
+      </func>
+      
+
+
+
+
+      <func name="setLength" brief="Sets the equilibrium distance between the two Bodies.">
+        <overload>
+          <param name="length" brief="The length between the two Bodies." />
+        </overload>
+      </func>
+
+      <func name="setFrequency" brief="Sets the response speed.">
+        <overload>
+          <param name="hz" brief="The response speed" />
+        </overload>
+      </func>
+
+      <func name="setDamping" brief="Sets the damping ratio.">
+        <overload>
+          <param name="d" brief="The damping ratio." />
+        </overload>
+      </func>
+ 
+
+
     </type>
     <type name="RevoluteJoint" brief="Allow two Bodies to revolve around a shared point.">
+      <!-- JOINT -->
+      <func name="getType" brief="Gets an integer representing the type.">
+        <overload>
+          <ret name="type" type="number" brief="A constant integer." />
+        </overload>
+      </func>
+
+      <func name="getAnchors" brief="Gets the anchor points of the joint" space="true">
+        <overload>
+          <ret name="x1" type="number" brief="The x-component of the anchor on Body 1." />
+          <ret name="y1" type="number" brief="The y-component of the anchor on Body 1." />
+          <ret name="x2" type="number" brief="The x-component of the anchor on Body 2." />
+          <ret name="y2" type="number" brief="The y-component of the anchor on Body 2." />
+        </overload>
+      </func>
+
+      <func name="getReactionForce" brief="Gets the reaction force on Body 2 at the joint anchor.">
+        <overload>
+          <ret name="x" type="number" brief="The x-component of the force" />
+          <ret name="y" type="number" brief="The y-component of the force" />
+        </overload>
+      </func>
+
+      <func name="getReactionTorque" brief="Gets the reaction torque on Body 2." space="true">
+        <overload>
+          <ret name="torque" type="number" brief="The reaction torque on Body 2" />
+        </overload>
+      </func>
+
+      <func name="getCollideConnected" brief="Gets whether the connected Bodies collide.">
+        <overload>
+          <ret name="collide" type="boolean" brief="True if they collide, false otherwise." />
+        </overload>
+      </func>
+
+      <func name="setCollideConnected" brief="Sets whether the connected Bodies should collide with eachother." space="true">
+        <overload>
+          <param name="collide" brief="True for the Bodies to collide, false otherwise." />
+        </overload>
+      </func>
+      <!-- JOINT END -->
+
+      <func name="getAngle" brief="Get the current joint angle.">
+        <overload>
+          <ret name="angle" type="number" brief="The joint angle in degrees." />
+        </overload>
+      </func>
+
+      <func name="getSpeed" brief="Get the current joint angle speed." space="true">
+        <overload>
+          <ret name="" type="number" brief="Joint angle speed in degrees/second." />
+        </overload>
+      </func>
+
+      <func name="isMotorEnabled" brief="Checks whether the motor is enabled.">
+        <overload>
+          <ret name="enabled" type="boolean" brief="True if enabled, false if disabled." />
+        </overload>
+      </func>
+
+      <func name="getMaxMotorTorque" brief="Gets the maximum motor torque.">
+        <overload>
+          <ret name="torque" type="number" brief="The maximum motor torque, usually in N-m." />
+        </overload>
+      </func>
+
+      <func name="getMotorSpeed" brief="Gets the motor speed.">
+        <overload>
+          <ret name="speed" type="number" brief="The motor speed in degrees per second." />
+        </overload>
+      </func>
+
+      <func name="getMotorTorque" brief="Get the current motor torque." space="true">
+        <overload>
+          <ret name="torque" type="number" brief="The current motor torque, usually in N-m." />
+        </overload>
+      </func>
+
+      <func name="isLimitsEnabled" brief="Checks whether limits are enabled.">
+        <overload>
+          <ret name="enabled" type="number" brief="" />
+        </overload>
+      </func>
+
+      <func name="getLowerLimit" brief="Gets the lower limit.">
+        <overload>
+          <ret name="lower" type="number" brief="The lower limit in degrees." />
+        </overload>
+      </func>
+
+      <func name="getUpperLimit" brief="Gets the upper limit.">
+        <overload>
+          <ret name="upper" type="number" brief="The upper limit in degrees." />
+        </overload>
+      </func>
+
+      <func name="getLimits" brief="Gets the joint limits." space="true">
+        <overload>
+          <ret name="lower" type="number" brief="The lower limit in degrees." />
+          <ret name="upper" type="number" brief="The upper limit in degrees." />
+        </overload>
+      </func>
+
+      <func name="setMotorEnabled" brief="Enables/disables the joint motor.">
+        <overload>
+          <param name="motor" brief="True to enable, false to disable." />
+        </overload>
+      </func>
+
+      <func name="setMaxMotorTorque" brief="Set the maximum motor torque.">
+        <overload>
+          <param name="torque" brief="Motor torque, usually in N-m." />
+        </overload>
+      </func>
+
+      <func name="setMotorSpeed" brief="Sets the motor speed." space="true">
+        <overload>
+          <param name="speed" brief="Speed in degrees per second." />
+        </overload>
+      </func>
+
+      <func name="setLimitsEnabled" brief="Enables/disables the joint limit.">
+        <overload>
+          <param name="limit" brief="True to enable, false to disable." />
+        </overload>
+      </func>
+
+      <func name="setUpperLimit" brief="Sets the upper limit.">
+        <overload>
+          <param name="upper" brief="Limit in degrees." />
+        </overload>
+      </func>
+
+      <func name="setLowerLimit" brief="Sets the lower limit.">
+        <overload>
+          <param name="lower" brief="Limit in degrees." />
+        </overload>
+      </func>
+
+      <func name="setLimits" brief="Sets the limits.">
+        <overload>
+          <param name="lower" brief="Lower limit in degrees." />
+          <param name="upper" brief="Upper limit in degrees." />
+        </overload>
+      </func>
+      
     </type>
     <type name="PrismaticJoint" brief="Restricts relative motion between Bodies to one shared axis.">
+      <!-- JOINT -->
+      <func name="getType" brief="Gets an integer representing the type.">
+        <overload>
+          <ret name="type" type="number" brief="A constant integer." />
+        </overload>
+      </func>
+
+      <func name="getAnchors" brief="Gets the anchor points of the joint" space="true">
+        <overload>
+          <ret name="x1" type="number" brief="The x-component of the anchor on Body 1." />
+          <ret name="y1" type="number" brief="The y-component of the anchor on Body 1." />
+          <ret name="x2" type="number" brief="The x-component of the anchor on Body 2." />
+          <ret name="y2" type="number" brief="The y-component of the anchor on Body 2." />
+        </overload>
+      </func>
+
+      <func name="getReactionForce" brief="Gets the reaction force on Body 2 at the joint anchor.">
+        <overload>
+          <ret name="x" type="number" brief="The x-component of the force" />
+          <ret name="y" type="number" brief="The y-component of the force" />
+        </overload>
+      </func>
+
+      <func name="getReactionTorque" brief="Gets the reaction torque on Body 2." space="true">
+        <overload>
+          <ret name="torque" type="number" brief="The reaction torque on Body 2" />
+        </overload>
+      </func>
+
+      <func name="getCollideConnected" brief="Gets whether the connected Bodies collide.">
+        <overload>
+          <ret name="collide" type="boolean" brief="True if they collide, false otherwise." />
+        </overload>
+      </func>
+
+      <func name="setCollideConnected" brief="Sets whether the connected Bodies should collide with eachother." space="true">
+        <overload>
+          <param name="collide" brief="True for the Bodies to collide, false otherwise." />
+        </overload>
+      </func>
+      <!-- JOINT END -->
+
+
+      <func name="getTranslation" brief="Get the current joint translation.">
+        <overload>
+          <ret name="translation" type="number" brief="Joint translation, usually in meters.." />
+        </overload>
+      </func>
+
+      <func name="getSpeed" brief="Get the current joint angle speed." space="true">
+        <overload>
+          <ret name="speed" type="number" brief="Joint angle speed in meters/second." />
+        </overload>
+      </func>
+
+      <func name="isMotorEnabled" brief="Checks whether the motor is enabled.">
+        <overload>
+          <ret name="enabled" type="boolean" brief="True if enabled, false if disabled." />
+        </overload>
+      </func>
+
+      <func name="getMaxMotorForce" brief="Gets the maximum motor force.">
+        <overload>
+          <ret name="force" type="number" brief="The maximum motor force, usually in N." />
+        </overload>
+      </func>
+
+      <func name="getMotorSpeed" brief="Gets the motor speed.">
+        <overload>
+          <ret name="speed" type="number" brief="The motor speed, usually in meters per second." />
+        </overload>
+      </func>
+
+      <func name="getMotorForce" brief="Get the current motor force." space="true">
+        <overload>
+          <ret name="force" type="number" brief="The current motor force, usually in N." />
+        </overload>
+      </func>
+
+      <func name="isLimitsEnabled" brief="Checks whether limits are enabled.">
+        <overload>
+          <ret name="enabled" type="number" brief="" />
+        </overload>
+      </func>
+
+      <func name="getLowerLimit" brief="Gets the lower limit.">
+        <overload>
+          <ret name="lower" type="number" brief="The lower limit, usually in meters." />
+        </overload>
+      </func>
+
+      <func name="getUpperLimit" brief="Gets the upper limit.">
+        <overload>
+          <ret name="upper" type="number" brief="The upper limit, usually in meters." />
+        </overload>
+      </func>
+
+      <func name="getLimits" brief="Gets the joint limits." space="true">
+        <overload>
+          <ret name="lower" type="number" brief="The lower limit, usually in meters." />
+          <ret name="upper" type="number" brief="The upper limit, usually in meters." />
+        </overload>
+      </func>
+
+      <func name="setMotorEnabled" brief="Enables/disables the joint motor.">
+        <overload>
+          <param name="motor" brief="True to enable, false to disable." />
+        </overload>
+      </func>
+
+      <func name="setMaxMotorForce" brief="Set the maximum motor force.">
+        <overload>
+          <param name="force" brief="Motor force, usually in N." />
+        </overload>
+      </func>
+
+      <func name="setMotorSpeed" brief="Sets the motor speed." space="true">
+        <overload>
+          <param name="speed" brief="Speed, usually in meters per second." />
+        </overload>
+      </func>
+
+      <func name="setLimitsEnabled" brief="Enables/disables the joint limit.">
+        <overload>
+          <param name="limit" brief="True to enable, false to disable." />
+        </overload>
+      </func>
+
+      <func name="setUpperLimit" brief="Sets the upper limit.">
+        <overload>
+          <param name="upper" brief="Upper limit, usually in meters." />
+        </overload>
+      </func>
+
+      <func name="setLowerLimit" brief="Sets the lower limit.">
+        <overload>
+          <param name="lower" brief="Lower limit, usually in meters." />
+        </overload>
+      </func>
+
+      <func name="setLimits" brief="Sets the limits.">
+        <overload>
+          <param name="lower" brief="Lower limit, usually in meters." />
+          <param name="upper" brief="Upper limit, usually in meters." />
+        </overload>
+      </func>
+
     </type>
     <type name="MouseJoint" brief="For controlling objects with the mouse.">
+
+      <!-- JOINT -->
+      <func name="getType" brief="Gets an integer representing the type.">
+        <overload>
+          <ret name="type" type="number" brief="A constant integer." />
+        </overload>
+      </func>
+
+      <func name="getAnchors" brief="Gets the anchor points of the joint" space="true">
+        <overload>
+          <ret name="x1" type="number" brief="The x-component of the anchor on Body 1." />
+          <ret name="y1" type="number" brief="The y-component of the anchor on Body 1." />
+          <ret name="x2" type="number" brief="The x-component of the anchor on Body 2." />
+          <ret name="y2" type="number" brief="The y-component of the anchor on Body 2." />
+        </overload>
+      </func>
+
+      <func name="getReactionForce" brief="Gets the reaction force on Body 2 at the joint anchor.">
+        <overload>
+          <ret name="x" type="number" brief="The x-component of the force" />
+          <ret name="y" type="number" brief="The y-component of the force" />
+        </overload>
+      </func>
+
+      <func name="getReactionTorque" brief="Gets the reaction torque on Body 2." space="true">
+        <overload>
+          <ret name="torque" type="number" brief="The reaction torque on Body 2" />
+        </overload>
+      </func>
+
+      <func name="getCollideConnected" brief="Gets whether the connected Bodies collide.">
+        <overload>
+          <ret name="collide" type="boolean" brief="True if they collide, false otherwise." />
+        </overload>
+      </func>
+
+      <func name="setCollideConnected" brief="Sets whether the connected Bodies should collide with eachother." space="true">
+        <overload>
+          <param name="collide" brief="True for the Bodies to collide, false otherwise." />
+        </overload>
+      </func>
+      <!-- JOINT END -->
+
+      <func name="getTarget" brief="Gets the target point.">
+        <overload>
+          <ret name="x" type="number" brief="The x-component of the target." />
+          <ret name="y" type="number" brief="The x-component of the target." />
+        </overload>
+      </func>
+
+      <func name="getMaxForce" brief="Gets the max allowed force on the Body." space="true">
+        <overload>
+          <ret name="force" type="number" brief="The max allowed force." />
+        </overload>
+      </func>
+
+      <func name="setTarget" brief="Sets the target point.">
+        <overload>
+          <param name="x" brief="The x-component of the target." />
+          <param name="y" brief="The x-component of the target." />
+        </overload>  
+      </func>
+
+      <func name="setMaxForce" brief="Gets the max allowed force on the Body.">
+        <overload>
+          <ret name="force" type="number" brief="The max allowed force." />
+        </overload>
+      </func>
+
     </type>
 
     <func name="newWorld" brief="Creates a new World." space="true">
@@ -1960,7 +2680,7 @@
       <see>love.filesystem.newFile</see>
     </type>
 
-    <func name="newFile" brief="Constructs a File with the given filename.">
+    <func name="newFile" brief="Constructs a File with the given filename." space="true">
       <overload>
         <param name="filename" brief="The filename." />
         <ret type="File" brief="The newly created file." />
@@ -1987,7 +2707,7 @@
       </overload>
     </func>
 
-    <func name="isFile" brief="Check whether something is a file.">
+    <func name="isFile" brief="Check whether something is a file." space="true">
       <overload>
         <param name="filename" brief="Name of the file to check." />
         <ret type="boolean" brief="Whether it's a file." />
@@ -2001,7 +2721,7 @@
       </overload>
     </func>
 
-    <func name="remove" brief="Removes a file (or directory).">
+    <func name="remove" brief="Removes a file (or directory)." space="true">
       <overload>
         <param name="filename" brief="Name of the file (or directory(." />
         <ret type="boolean" brief="Whether the operation was successful." />
@@ -2016,7 +2736,7 @@
       </overload>
     </func>
 
-    <func name="closes" brief="Closes the file.">
+    <func name="close" brief="Closes the file." space="true">
       <overload>
         <param name="file" brief="A File object of the file to close." />
         <ret type="boolean" brief="Whether the operation was successful." />
@@ -2038,7 +2758,7 @@
       </overload>
     </func>
 
-    <func name="write" brief="Writes bytes to an opened file.">
+    <func name="write" brief="Writes bytes to an opened file." space="true">
       <overload>
         <param name="file" brief="An opened File object of the file to write to." />
         <param name="data" brief="A string of bytes to write to the file." />
@@ -2072,7 +2792,7 @@
       </overload>
     </func>
 
-    <func name="enumerate" brief="Gets a list of files in the given directory.">
+    <func name="enumerate" brief="Gets a list of files in the given directory." space="true">
       <overload>
         <param name="dir" brief="A directory." />
         <ret type="list" brief="All the files (and subdirs) in the directory." />
@@ -2167,7 +2887,7 @@
         <ret type="string" brief="String containing the codename." />
       </overload>
     </func>
-    <func name="getPlatform" brief="Gets the current platform.">
+    <func name="getPlatform" brief="Gets the current platform." space="true">
       <overload>
         <ret type="string" brief="String containing Windows, Linux ..." />
       </overload>
@@ -2189,7 +2909,7 @@
         call this func, use the built-in Lua func error() instead.
       </overload>
     </func>
-    <func name="resume" brief="Takes LOVE back to the main game.">
+    <func name="resume" brief="Takes LOVE back to the main game." space="true">
       <overload>
         This func is meant to be called from error handler scripts, and has no
         effect if called from a normal game.
