@@ -1,7 +1,13 @@
 LOVE 0.4.0
 ----------
 
-  * TACOS ^^
+  * Added love.physics. (YES!)
+  * Added love.audio.setMode().
+  * Added love.audio.setChannels().
+  * Added love.graphics.polygon().
+  * Added love.graphics.setScissor() and love.graphics.getScissor() to handle scissoring the graphical area.
+  * Fixed missing constants related to image optimization.
+  * Fixed memory leak related to love::File (thanks amnesiasoft!).
 
 
 LOVE 0.3.2
