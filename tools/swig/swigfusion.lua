@@ -246,6 +246,9 @@ function Module:add()
     
     table.insert(self.glue, "}")
     
+    -- Insert newline at end of file.
+    table.insert(self.glue, "\n");
+    
     end -- if self.types 
 
 end

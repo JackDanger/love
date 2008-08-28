@@ -25,12 +25,12 @@ namespace love_box2d
 
 	float RevoluteJoint::getAngle() const
 	{
-		return TODEG(joint->GetJointAngle());
+		return LOVE_TODEG(joint->GetJointAngle());
 	}
 
 	float RevoluteJoint::getSpeed() const
 	{
-		return TODEG(joint->GetJointSpeed());
+		return LOVE_TODEG(joint->GetJointSpeed());
 	}
 
 	void RevoluteJoint::setMotorEnabled(bool motor)
@@ -55,12 +55,12 @@ namespace love_box2d
 
 	void RevoluteJoint::setMotorSpeed(float speed)
 	{
-		joint->SetMotorSpeed(TORAD(speed));
+		joint->SetMotorSpeed(LOVE_TORAD(speed));
 	}
 
 	float RevoluteJoint::getMotorSpeed() const
 	{
-		return TODEG(joint->GetMotorSpeed());
+		return LOVE_TODEG(joint->GetMotorSpeed());
 	}
 
 	float RevoluteJoint::getMotorTorque() const
@@ -80,33 +80,33 @@ namespace love_box2d
 
 	void RevoluteJoint::setUpperLimit(float limit)
 	{
-		joint->SetLimits(joint->GetLowerLimit(), TORAD(limit));
+		joint->SetLimits(joint->GetLowerLimit(), LOVE_TORAD(limit));
 	}
 
 	void RevoluteJoint::setLowerLimit(float limit)
 	{
-		joint->SetLimits(TORAD(limit), joint->GetUpperLimit());
+		joint->SetLimits(LOVE_TORAD(limit), joint->GetUpperLimit());
 	}
 
 	void RevoluteJoint::setLimits(float lower, float upper)
 	{
-		joint->SetLimits(TORAD(lower), TORAD(upper));
+		joint->SetLimits(LOVE_TORAD(lower), LOVE_TORAD(upper));
 	}
 
 	float RevoluteJoint::getLowerLimit() const
 	{
-		return TODEG(joint->GetLowerLimit());
+		return LOVE_TODEG(joint->GetLowerLimit());
 	}
 
 	float RevoluteJoint::getUpperLimit() const
 	{
-		return TODEG(joint->GetUpperLimit());
+		return LOVE_TODEG(joint->GetUpperLimit());
 	}
 
 	int RevoluteJoint::getLimits(lua_State * L)
 	{
-		lua_pushnumber(L, TODEG(joint->GetLowerLimit()));
-		lua_pushnumber(L, TODEG(joint->GetUpperLimit()));
+		lua_pushnumber(L, LOVE_TODEG(joint->GetLowerLimit()));
+		lua_pushnumber(L, LOVE_TODEG(joint->GetUpperLimit()));
 		return 2;
 	}
 

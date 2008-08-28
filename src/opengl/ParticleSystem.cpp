@@ -141,12 +141,12 @@ namespace love_opengl
 
 	void ParticleSystem::setDirection(float direction)
 	{
-		this->direction = direction * M_TORAD;
+		this->direction = direction * LOVE_M_TORAD;
 	}
 
 	void ParticleSystem::setSpread(float spread)
 	{
-		this->spread = spread * M_TORAD;
+		this->spread = spread * LOVE_M_TORAD;
 	}
 
 	void ParticleSystem::setRelativeDirection(bool relative)
@@ -235,26 +235,26 @@ namespace love_opengl
 
 	void ParticleSystem::setSpin(float spin)
 	{
-		spinStart = spin * M_TORAD;
-		spinEnd = spin * M_TORAD;
+		spinStart = spin * LOVE_M_TORAD;
+		spinEnd = spin * LOVE_M_TORAD;
 	}
 
 	void ParticleSystem::setSpin(float start, float end)
 	{
-		spinStart = start * M_TORAD;
-		spinEnd = end * M_TORAD;
+		spinStart = start * LOVE_M_TORAD;
+		spinEnd = end * LOVE_M_TORAD;
 	}
 
 	void ParticleSystem::setSpin(float start, float end, float variation)
 	{
-		spinStart = start * M_TORAD;
-		spinEnd = end * M_TORAD;
-		spinVariation = variation * M_TORAD;
+		spinStart = start * LOVE_M_TORAD;
+		spinEnd = end * LOVE_M_TORAD;
+		spinVariation = variation * LOVE_M_TORAD;
 	}
 
 	void ParticleSystem::setSpinVariation(float variation)
 	{
-		spinVariation = variation * M_TORAD;
+		spinVariation = variation * LOVE_M_TORAD;
 	}
 
 	void ParticleSystem::setColor(pColor color)
@@ -281,12 +281,12 @@ namespace love_opengl
 
 	float ParticleSystem::getDirection() const
 	{
-		return direction * M_TODEG;
+		return direction * LOVE_M_TODEG;
 	}
 
 	float ParticleSystem::getSpread() const
 	{
-		return spread * M_TODEG;
+		return spread * LOVE_M_TODEG;
 	}
 
 	int ParticleSystem::count() const

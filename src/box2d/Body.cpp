@@ -43,7 +43,7 @@ namespace love_box2d
 
 	float Body::getAngle()
 	{
-		return TODEG(body->GetAngle());
+		return LOVE_TODEG(body->GetAngle());
 	}
 
 	int Body::getWorldCenter(lua_State * L)
@@ -58,7 +58,7 @@ namespace love_box2d
 
 	float Body::getSpin() const
 	{
-		return TODEG(body->GetAngularVelocity());
+		return LOVE_TODEG(body->GetAngularVelocity());
 	}
 
 	float Body::getMass() const
@@ -123,7 +123,7 @@ namespace love_box2d
 
 	void Body::setAngle(float d)
 	{
-		body->SetXForm(body->GetPosition(), TORAD(d));
+		body->SetXForm(body->GetPosition(), LOVE_TORAD(d));
 	}
 
 	void Body::setSpin(float r)
