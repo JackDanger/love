@@ -566,7 +566,7 @@ end
 
 function page_end_lite(b, header)
         b:div("foot")
-                b:write("Copyright &copy; 2006-2008 L&Ouml;VE Development Team")      
+                b:write("Copyright &copy; 2006-2008 L&Ouml;VE Development Team.")
                 b:div("links")
                 b:write('<a href="http://love2d.org">Visit homepage</a> - <a href="ManualImprovements.html">Help improve the manual</a>')
                 b:pop()

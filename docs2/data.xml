@@ -3,7 +3,7 @@
     <section name="Welcome">
 
 
-      Welcome to the official LÖVE documentation page. Here we have explanations of all the types and objects available for the Lua scripting.
+      Welcome to the official L&amp;Ouml;VE documentation page. Here we have explanations of all the types and objects available for the Lua scripting.
       This does not describe the inner-workings of the engine itself (but we do have an SVN repository available on SourceForge if that's what you're looking for).
       To understand anything that's going on it is recommended that you have a little bit of programming experience, but hopefully LÖVE is straight-forward and simple
       enough for even novices to get into game creation.
@@ -24,14 +24,11 @@
 
     <section name="Summary">
 
-      L&amp;Ouml;VE is licensed under the terms of the ZLIB license. This is a short license to begin with,
-      but for the lazy, here's a summary:
-
-      [ul]
-      [li]Do not claim that you made this software.[/li]
-      [li]Do not make an altered version and claim that it is the original software.[/li]
-      [li]Otherwise, feel free to use this software in any situation, including commercial.[/li]
-      [/ul]
+      L&amp;Ouml;VE (the software) is licensed under the terms of the ZLIB license. This is
+      a very liberal license with permits almost anything.[br /]
+		[br /]
+      The documentation is licensed under the The FreeBSD Documentation license. This is similar to
+      ZLIB, but meant for written documents as opposed to software.
     </section>
 
     <section name="ZLIB license (full)">
@@ -56,6 +53,33 @@
       [br /]
       3. This notice may not be removed or altered from any source
       distribution.[br /]
+
+    </section>
+
+    <section name="The FreeBSD Documentation license">
+    
+		Copyright &amp;copy; 2006-2008 L&amp;Ouml;VE Development Team. All rights reserved.[br /]
+		[br /]
+		Redistribution and use in source (XML) and compiled forms (HTML) with or without modification,
+		are permitted provided that the following conditions are met:[br /]
+		[br /]
+
+			1. Redistributions of source code (XML) must retain the above copyright notice,
+			this list of conditions and the following disclaimer as the first lines of this file unmodified.[br /]
+			[br /]
+
+			2. Redistributions in compiled form (HTML) must reproduce the above copyright notice, this list of conditions and
+			the following disclaimer in the documentation and/or other materials provided with the distribution.[br /]
+			[br /]
+
+		THIS DOCUMENTATION IS PROVIDED BY THE LOVE DEVELOPMENT TEAM "AS IS" AND ANY EXPRESS OR
+		IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND 
+		FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE LOVE DEVELOPMENT TEAM
+		BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+		BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+		PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+		OF THE USE OF THIS DOCUMENTATION, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     </section>
   </page>
