@@ -11,26 +11,20 @@
       We believe that thorough documentation is important for the survival of a program so if there is something missing or incorrect, please
       [a href="http://love2d.org/?page=credits"]contact us[/a].
     </section>
-
     <section name="Tutorials">
       This page has the bare documentation and, except for the simple examples, contain no actual tutorials.
       Tutorials are available from the tutorial page on the [a href="http://love2d.org/?page=documentation"]LÖVE website[/a].
     </section>
-
   </page>
-
   <page name="License">
-
-
     <section name="Summary">
 
       L&amp;Ouml;VE (the software) is licensed under the terms of the ZLIB license. This is
       a very liberal license with permits almost anything.[br /]
-		[br /]
+      [br /]
       The documentation is licensed under the The FreeBSD Documentation license. This is similar to
       ZLIB, but meant for written documents as opposed to software.
     </section>
-
     <section name="ZLIB license (full)">
 
       Copyright &amp;copy; 2006-2008 L&amp;Ouml;VE Development Team[br /]
@@ -55,31 +49,30 @@
       distribution.[br /]
 
     </section>
-
     <section name="The FreeBSD Documentation license">
-    
-		Copyright &amp;copy; 2006-2008 L&amp;Ouml;VE Development Team. All rights reserved.[br /]
-		[br /]
-		Redistribution and use in source (XML) and compiled forms (HTML) with or without modification,
-		are permitted provided that the following conditions are met:[br /]
-		[br /]
 
-			1. Redistributions of source code (XML) must retain the above copyright notice,
-			this list of conditions and the following disclaimer as the first lines of this file unmodified.[br /]
-			[br /]
+      Copyright &amp;copy; 2006-2008 L&amp;Ouml;VE Development Team. All rights reserved.[br /]
+      [br /]
+      Redistribution and use in source (XML) and compiled forms (HTML) with or without modification,
+      are permitted provided that the following conditions are met:[br /]
+      [br /]
 
-			2. Redistributions in compiled form (HTML) must reproduce the above copyright notice, this list of conditions and
-			the following disclaimer in the documentation and/or other materials provided with the distribution.[br /]
-			[br /]
+      1. Redistributions of source code (XML) must retain the above copyright notice,
+      this list of conditions and the following disclaimer as the first lines of this file unmodified.[br /]
+      [br /]
 
-		THIS DOCUMENTATION IS PROVIDED BY THE LOVE DEVELOPMENT TEAM "AS IS" AND ANY EXPRESS OR
-		IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND 
-		FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE LOVE DEVELOPMENT TEAM
-		BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
-		BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
-		PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-		CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
-		OF THE USE OF THIS DOCUMENTATION, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+      2. Redistributions in compiled form (HTML) must reproduce the above copyright notice, this list of conditions and
+      the following disclaimer in the documentation and/or other materials provided with the distribution.[br /]
+      [br /]
+
+      THIS DOCUMENTATION IS PROVIDED BY THE LOVE DEVELOPMENT TEAM "AS IS" AND ANY EXPRESS OR
+      IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+      FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE LOVE DEVELOPMENT TEAM
+      BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+      BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+      PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+      CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+      OF THE USE OF THIS DOCUMENTATION, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     </section>
   </page>
@@ -243,9 +236,9 @@
       [li]The example must be runnable.[/li]
       [li]Keep it short.[/li]
       [li]Let us know where you want the example present. The same example can be displayed on multiple pages.[/li]
-      [li]If you need to use Images, Sounds or other resoures, 
-      check if you can use something already present in 
-      [a href="http://love2d.org/examples/images"]/examples/images[/a] and similar 
+      [li]If you need to use Images, Sounds or other resoures,
+      check if you can use something already present in
+      [a href="http://love2d.org/examples/images"]/examples/images[/a] and similar
       folders. Otherwise, you can submit a resource, but keep it small, and make sure it's free.[/li]
       [/ul]
       Thanks!
@@ -1399,10 +1392,19 @@
     [li]There are 16 shape categories.[/li]
     [/ul]
 
+    <example id="100" />
+
     <type name="World" brief="Contains all Bodies and joints.">
+      A World is a container object for the bodies and joints. It also represents the actual space
+      the objects reside in, eg. the World has size and gravity properties.[br /]
+      [br /]
+      You can use several Worlds, but only objects in the same World can interact with eachother.
       <func name="update" brief="Updates the state of the objects in the World." space="true">
         <overload>
+          When this function is called, the physics simulation is run according to the specified 
+          timestep.
           <param name="dt" brief="The time since last frame." />
+          <example id="100" />
         </overload>
       </func>
       <func name="setGravity" brief="Sets the gravity.">
@@ -1420,12 +1422,17 @@
 
       <func name="setCallback" brief="Sets the collision callback.">
         <overload>
+          The callback (if any) will be called every time contact is made between two shapes in the World. 
+          The Lua function should accept three parameters: shapedata1, shapedata2 and a Contact object.
           <param name="f" brief="A Lua function." />
+          <example id="101" />
         </overload>
       </func>
 
-      <func name="getCallback" brief="Sets the collision callback." space="true">
+      <func name="getCallback" brief="Gets the collision callback." space="true">
         <overload>
+          Gets the function set with World:setCallback. If no function is set, nil will be 
+          returned.
           <ret type="function" name="f" brief="The current callback function, or nil if none." />
         </overload>
       </func>
@@ -1444,37 +1451,46 @@
 
     <type name="Contact" brief="Represents a contact point between two shapes.">
 
-
+      This objects contains information about the a contact point between two Shapes.
+      
+      <example id="102" />
+      
       <func name="getFriction" brief="Gets the mixed friction between the two shapes.">
         <overload>
+          <example id="102" />
           <ret name="friction" type="number" brief="The mixed friction" />
         </overload>
       </func>
       <func name="getRestitution" brief="Gets the mixed restitution between the two shapes." space="true">
         <overload>
+          <example id="102" />
           <ret name="restitution" type="number" brief="The mixed restitution" />
         </overload>
       </func>
 
       <func name="getSeparation" brief="Gets the separation of the two shapes.">
         <overload>
+          <example id="102" />
           <ret name="separation" brief="The separation. Negative if overlapping." />
         </overload>
       </func>
       <func name="getPosition" brief="Gets the position of the Contact point.">
         <overload>
+          <example id="102" />
           <ret name="x" type="number" brief="The x-component of the point." />
           <ret name="y" type="number" brief="The y-component of the point." />
         </overload>
       </func>
       <func name="getVelocity" brief="Gets the velocity at the Contact point.">
         <overload>
+          <example id="102" />
           <ret name="x" type="number" brief="The x-component of the velocity." />
           <ret name="y" type="number" brief="The y-component of the velocity." />
         </overload>
       </func>
       <func name="getNormal" brief="Gets the Contact normal.">
         <overload>
+          <example id="102" />
           <ret name="x" type="number" brief="The x-component of the normal." />
           <ret name="y" type="number" brief="The y-component of the normal." />
         </overload>
@@ -1484,6 +1500,15 @@
 
     <type name="Body" plural="Bodies" brief="A Body is a physical entity with position and orientation." space="true">
 
+      It's important to understand the difference between shapes and bodies. A Body has a position and 
+      orientation in the World cooridnate system, whereas shapes are attatched to a Body. Shapes simply
+      act as the collision geometry of the Body. Why bother differentiating betwen the two? Because it allows
+      us to create advanced Bodies composed of many shapes.[br /]
+      [br /]
+      It is worth noting that shapes collide, but Bodies don't. This means that even if you attatch several shapes
+      to a single Body (for instance a gradually destructible "boss"), you'll easily be able to detect which parts
+      collide with what.
+      
       <func name="getX" brief="Gets the x-component of the position.">
         <overload>
           <ret name="x" type="number" brief="The x-component of the position." />
@@ -2065,7 +2090,7 @@
           <ret name="damping" type="number" brief="The damping ratio." />
         </overload>
       </func>
-      
+
 
 
 
@@ -2087,7 +2112,7 @@
           <param name="d" brief="The damping ratio." />
         </overload>
       </func>
- 
+
 
 
     </type>
@@ -2237,7 +2262,7 @@
           <param name="upper" brief="Upper limit in degrees." />
         </overload>
       </func>
-      
+
     </type>
     <type name="PrismaticJoint" brief="Restricts relative motion between Bodies to one shared axis.">
       <!-- JOINT -->
@@ -2449,7 +2474,7 @@
         <overload>
           <param name="x" brief="The x-component of the target." />
           <param name="y" brief="The x-component of the target." />
-        </overload>  
+        </overload>
       </func>
 
       <func name="setMaxForce" brief="Gets the max allowed force on the Body.">
@@ -3220,7 +3245,7 @@
     <item name="love.joint_revolute" brief="Represents a RevoluteJoint." />
     <item name="love.joint_prismatic" brief="Represents a PrismaticJoint." />
     <item name="love.joint_mouse" brief="Represents a MouseJoint." />
-    
+
   </misc>
   <misc name="Config Files" title="List of config file attributes">
 
