@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="SDL.lib SDLmain.lib lua-d.lib liblove.lib physfs.lib opengl32.lib glu32.lib DevIL.lib ILU.lib freetype.lib SDL_mixer.lib"
+				AdditionalDependencies="SDL.lib SDLmain.lib lua-d.lib liblove.lib physfs.lib opengl32.lib glu32.lib DevIL.lib ILU.lib freetype.lib SDL_mixer.lib ws2_32.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="lib;debug"
 				GenerateManifest="true"
@@ -138,7 +138,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="SDL.lib SDLmain.lib lua.lib liblove.lib physfs.lib opengl32.lib glu32.lib DevIL.lib ILU.lib freetype.lib SDL_mixer.lib"
+				AdditionalDependencies="SDL.lib SDLmain.lib lua.lib liblove.lib physfs.lib opengl32.lib glu32.lib DevIL.lib ILU.lib freetype.lib SDL_mixer.lib ws2_32.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="lib;release"
 				GenerateDebugInformation="true"
@@ -691,6 +691,178 @@
 					</File>
 				</Filter>
 			</Filter>
+			<Filter
+				Name="luasocket"
+				>
+				<File
+					RelativePath="..\..\src\luasocket\love_luasocket.cpp"
+					>
+				</File>
+				<Filter
+					Name="luasocket"
+					>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\auxiliar.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CallingConvention="0"
+								CompileAs="1"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\buffer.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CallingConvention="0"
+								CompileAs="1"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\except.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CallingConvention="0"
+								CompileAs="1"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\inet.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CallingConvention="0"
+								CompileAs="1"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\io.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CallingConvention="0"
+								CompileAs="1"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\luasocket.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CallingConvention="0"
+								CompileAs="1"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\mime.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\options.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CallingConvention="0"
+								CompileAs="1"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\select.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CallingConvention="0"
+								CompileAs="1"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\tcp.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CallingConvention="0"
+								CompileAs="1"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\timeout.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CallingConvention="0"
+								CompileAs="1"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\udp.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CallingConvention="0"
+								CompileAs="1"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\wsocket.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								CallingConvention="0"
+								CompileAs="1"
+							/>
+						</FileConfiguration>
+					</File>
+				</Filter>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -916,6 +1088,114 @@
 					RelativePath="..\..\src\box2d\World.h"
 					>
 				</File>
+			</Filter>
+			<Filter
+				Name="luasocket"
+				>
+				<File
+					RelativePath="..\..\src\luasocket\love_luasocket.h"
+					>
+				</File>
+				<Filter
+					Name="luasocket"
+					>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\auxiliar.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\buffer.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\except.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\ftp.lua"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\http.lua"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\inet.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\io.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\ltn12.lua"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\luasocket.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\mime.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\mime.lua"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\options.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\select.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\smtp.lua"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\socket.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\socket.lua"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\tcp.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\timeout.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\tp.lua"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\udp.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\unix.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\url.lua"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\usocket.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\wsocket.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter

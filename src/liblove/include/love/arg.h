@@ -45,6 +45,8 @@ namespace love
 	**/
 	bool is_arg_absolute(const std::string path);
 
+	std::string get_leaf(const std::string full);
+
 } // love
 
 #endif // LOVE_ARG_H

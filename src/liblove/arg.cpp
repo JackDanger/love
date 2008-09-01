@@ -62,4 +62,28 @@ namespace love
 #endif
 	}
 
+	std::string get_leaf(const std::string full)
+	{
+#ifdef WIN32
+		string::size_type backslash = full.find_last_of("\\");
+		string::size_type slash = full.find_last_of("/");
+		string::size_type last;
+
+		if(backslash==string::npos)
+			last = slash;
+		else if(slash==string::npos)
+			last = backslash;
+		else
+			last = (backslash > slash) ? backslash : slash;		
+#else
+		string::size_type last = full.find_last_of("/", 0);
+#endif
+
+		if(last==string::npos)
+			return full;
+
+		string leaf = full.substr(last+1);
+		return leaf;
+	}
+
 } // love

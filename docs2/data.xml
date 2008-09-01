@@ -1762,7 +1762,7 @@
     </type>
 
     <type name="CircleShape" brief="A simple circle which can be attatched to Bodies.">
-
+    
       <func name="getType" brief="Gets an integer representing the shape type." space="true">
         <overload>
           <ret name="type" type="number" brief="A constant integer." />
@@ -1789,18 +1789,23 @@
 
       <func name="getCategory" brief="Gets the categories this shape is a member of.">
         <overload>
+          Returns the categories this shape is a member of. The number of categories
+          the shape is a member of is the number of return values.
           <ret name="..." type="numbers" brief="Numbers from 1-16" />
         </overload>
       </func>
 
       <func name="getMaskBits" brief="Gets the mask bits of the shape.">
         <overload>
+          Returns a 16-bit integer representing the masked categories.
           <ret name="bits" type="number" brief="An integer value representing the mask." />
         </overload>
       </func>
 
       <func name="getMask" brief="Gets which categories this shape should collide with." space="true">
         <overload>
+          Returns the masked categories. The number of masked categories
+          is the number of return values.
           <ret name="..." type="numbers" brief="Numbers from 1-16" />
         </overload>
       </func>

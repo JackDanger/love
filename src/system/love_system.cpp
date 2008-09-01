@@ -74,18 +74,38 @@ namespace love_system
 		// Check command line arguments.
 		std::string arg_game = love::get_arg_game(argc, argv);
 		bool nogame = arg_game.empty();
-		
-		// Arguments might be empty.
-		if(nogame)
+
+		// Get leaf.
+		std::string arg0 = std::string(argv[0]);
+		std::string leaf = love::get_leaf(arg0);
+
+		// True if embedded mode.
+#ifdef WIN32
+		bool embedded = (leaf.compare("love.exe") != 0);
+#else
+		bool embedded = (leaf.compare("love") != 0);
+#endif
+
+		std::string base;
+		bool absolute;
+		std::string game_source;
+
+		if(embedded)
+		{
+			// Create the game source.
+			base = std::string(filesystem->getBaseDirectory());
+			absolute = love::is_arg_absolute(arg0);
+			game_source = absolute ? arg0 : (base + "/" + leaf);
+			printf("%s\n", game_source.c_str());
+		}
+		else if(nogame) // Arguments might be empty.
 		{
 			std::cout << "Usage: love [FILE]" << std::endl;
 			std::cout << std::endl << "Examples:" << std::endl << "  love demo01.love";
 			std::cout << std::endl << "  love /home/nyan/mygame" << std::endl << std::endl;
-		}
 
-		// If no arguments, just load the no-game.
-		if(nogame)
-		{
+			// If no arguments, just load the no-game.
+
 			main_game.reset<love::Game>(new LuaGame(love::nogame_lua, core));
 			if(!main_game->load())
 			{
@@ -95,11 +115,13 @@ namespace love_system
 			current_game = main_game;
 			return true;
 		}
-
-		// Create the game source.
-		std::string base = std::string(filesystem->getBaseDirectory());
-		bool absolute = love::is_arg_absolute(arg_game);
-		std::string game_source = absolute ? (arg_game) : (base + "/" + arg_game);
+		else // Normal
+		{
+			// Create the game source.
+			base = std::string(filesystem->getBaseDirectory());
+			absolute = love::is_arg_absolute(arg_game);
+			game_source = absolute ? (arg_game) : (base + "/" + arg_game);
+		}
 
 		// Setup the save directory.
 		if(!filesystem->setSaveDirectory(game_source))
