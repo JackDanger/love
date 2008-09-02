@@ -16,11 +16,11 @@ function load()
     exf.smallfont = love.graphics.newFont(love.default_font, 12)
     exf.bigfont = love.graphics.newFont(love.default_font, 24)
     exf.list.font = exf.smallfont
-    
+
     exf.bigball = love.graphics.newImage("images/love-big-ball.png")
     
     -- Find available demos.
-    local files = love.filesystem.enumerate(".")
+    local files = love.filesystem.enumerate("")
     
     for i,v in ipairs(files) do
 	local unused1, unused2, n = string.find(v, "e(%d%d%d%d)%.lua")
