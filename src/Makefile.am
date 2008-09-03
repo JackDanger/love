@@ -1,44 +1,59 @@
-SUBDIRS = ./chipmunk/chipmunk
+SUBDIRS =
 AUTOMAKE_OPTIONS = subdir-objects
-AM_CPPFLAGS = -I/usr/include/freetype2  $(INCLUDE_LUA) -I/usr/include/SDL -Iliblove/include
+AM_CPPFLAGS = -I/usr/include/freetype2  $(INCLUDE_LUA) -I/usr/include/SDL -Iliblove/include -Ibox2d/Include
 
 # LÖVE executable
 bin_PROGRAMS = love
 love_LDFLAGS = -lfreetype -lGL -lGLU -lIL -lILU -lILUT -lphysfs -lSDL -lSDL_mixer
-love_LDADD = chipmunk/chipmunk/libchipmunk.a
+love_LDADD =
 
 love_SOURCES = love.cpp \
 \
-./chipmunk/mod_chipmunk.h \
-./chipmunk/Body.cpp \
-./chipmunk/Body.h \
-./chipmunk/BoundingBox.cpp \
-./chipmunk/BoundingBox.h \
-./chipmunk/CircleShape.cpp \
-./chipmunk/CircleShape.h \
-./chipmunk/GrooveJoint.cpp \
-./chipmunk/GrooveJoint.h \
-./chipmunk/Joint.cpp \
-./chipmunk/Joint.h \
-./chipmunk/love_chipmunk.cpp \
-./chipmunk/love_chipmunk.h \
-./chipmunk/mod_chipmunk.cpp \
-./chipmunk/PinJoint.cpp \
-./chipmunk/PinJoint.h \
-./chipmunk/PivotJoint.cpp \
-./chipmunk/PivotJoint.h \
-./chipmunk/PolygonShape.cpp \
-./chipmunk/PolygonShape.h \
-./chipmunk/SegmentShape.cpp \
-./chipmunk/SegmentShape.h \
-./chipmunk/Shape.cpp \
-./chipmunk/Shape.h \
-./chipmunk/SlideJoint.cpp \
-./chipmunk/SlideJoint.h \
-./chipmunk/Space.cpp \
-./chipmunk/Space.h \
-./chipmunk/Vector.cpp \
-./chipmunk/Vector.h \
+./box2d/graham/GrahamScanConvexHull.cpp \
+./box2d/Source/Collision/b2BroadPhase.cpp \
+./box2d/Source/Collision/b2CollideCircle.cpp \
+./box2d/Source/Collision/b2CollidePoly.cpp \
+./box2d/Source/Collision/b2Collision.cpp \
+./box2d/Source/Collision/b2Distance.cpp \
+./box2d/Source/Collision/b2PairManager.cpp \
+./box2d/Source/Collision/b2TimeOfImpact.cpp \
+./box2d/Source/Collision/Shapes/b2Shape.cpp \
+./box2d/Source/Collision/Shapes/b2CircleShape.cpp \
+./box2d/Source/Collision/Shapes/b2PolygonShape.cpp \
+./box2d/Source/Common/b2BlockAllocator.cpp \
+./box2d/Source/Common/b2Math.cpp \
+./box2d/Source/Common/b2Settings.cpp \
+./box2d/Source/Common/b2StackAllocator.cpp \
+./box2d/Source/Dynamics/b2Body.cpp \
+./box2d/Source/Dynamics/b2ContactManager.cpp \
+./box2d/Source/Dynamics/b2Island.cpp \
+./box2d/Source/Dynamics/b2WorldCallbacks.cpp \
+./box2d/Source/Dynamics/b2World.cpp \
+./box2d/Source/Dynamics/Contacts/b2CircleContact.cpp \
+./box2d/Source/Dynamics/Contacts/b2Contact.cpp \
+./box2d/Source/Dynamics/Contacts/b2ContactSolver.cpp \
+./box2d/Source/Dynamics/Contacts/b2PolyAndCircleContact.cpp \
+./box2d/Source/Dynamics/Contacts/b2PolyContact.cpp \
+./box2d/Source/Dynamics/Joints/b2DistanceJoint.cpp \
+./box2d/Source/Dynamics/Joints/b2GearJoint.cpp \
+./box2d/Source/Dynamics/Joints/b2Joint.cpp \
+./box2d/Source/Dynamics/Joints/b2MouseJoint.cpp \
+./box2d/Source/Dynamics/Joints/b2PrismaticJoint.cpp \
+./box2d/Source/Dynamics/Joints/b2PulleyJoint.cpp \
+./box2d/Source/Dynamics/Joints/b2RevoluteJoint.cpp \
+./box2d/Body.cpp \
+./box2d/CircleShape.cpp \
+./box2d/Contact.cpp \
+./box2d/DistanceJoint.cpp \
+./box2d/Joint.cpp \
+./box2d/love_box2d.cpp \
+./box2d/mod_box2d.cpp \
+./box2d/MouseJoint.cpp \
+./box2d/PolygonShape.cpp \
+./box2d/PrismaticJoint.cpp \
+./box2d/RevoluteJoint.cpp \
+./box2d/Shape.cpp \
+./box2d/World.cpp \
 \
 ./liblove/arg.cpp \
 ./liblove/Configuration.cpp \
@@ -56,23 +71,59 @@ love_SOURCES = love.cpp \
 ./liblove/include/love/Exception.h \
 ./liblove/include/love/File.h \
 ./liblove/include/love/Game.h \
+./liblove/include/love/luax.h \
 ./liblove/include/love/math.h \
 ./liblove/include/love/MemoryFile.h \
 ./liblove/include/love/mod.h \
 ./liblove/include/love/modspec.h \
 ./liblove/include/love/Module.h \
 ./liblove/include/love/platform.h \
+./liblove/include/love/Reference.h \
 ./liblove/include/love/Resource.h \
 ./liblove/include/love/StaticModule.h \
 ./liblove/include/love/Vector.h \
 ./liblove/include/love/version.h \
+./liblove/luax.cpp \
 ./liblove/MemoryFile.cpp \
 ./liblove/modspec.cpp \
 ./liblove/Module.cpp \
+./liblove/Reference.cpp \
 ./liblove/Resource.cpp \
 ./liblove/StaticModule.cpp \
 ./liblove/Vector.cpp \
 ./liblove/version.cpp \
+\
+./luasocket/luasocket/auxiliar.h \
+./luasocket/luasocket/inet.h \
+./luasocket/luasocket/mime.h \
+./luasocket/luasocket/socket.h \
+./luasocket/luasocket/udp.h \
+./luasocket/luasocket/buffer.h \
+./luasocket/luasocket/io.h \
+./luasocket/luasocket/options.h \
+./luasocket/luasocket/tcp.h \
+./luasocket/luasocket/unix.h \
+./luasocket/luasocket/except.h \
+./luasocket/luasocket/luasocket.h \
+./luasocket/luasocket/select.h \
+./luasocket/luasocket/timeout.h \
+./luasocket/luasocket/usocket.h \
+./luasocket/luasocket/auxiliar.c \
+./luasocket/luasocket/luasocket.c \
+./luasocket/luasocket/select.c \
+./luasocket/luasocket/timeout.c \
+./luasocket/luasocket/buffer.c \
+./luasocket/luasocket/inet.c \
+./luasocket/luasocket/mime.c \
+./luasocket/luasocket/usocket.c \
+./luasocket/luasocket/except.c \
+./luasocket/luasocket/io.c \
+./luasocket/luasocket/udp.c \
+./luasocket/luasocket/options.c \
+./luasocket/luasocket/tcp.c \
+./luasocket/luasocket/unix.c \
+./luasocket/love_luasocket.h \
+./luasocket/love_luasocket.cpp \
 \
 ./opengl/love_opengl.cpp \
 ./opengl/Animation.cpp \

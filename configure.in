@@ -20,6 +20,5 @@ libdir='${prefix}/lib/love'
 AC_CONFIG_FILES([
 	Makefile
 	src/Makefile
-	src/chipmunk/chipmunk/Makefile
 ])
 AC_OUTPUT

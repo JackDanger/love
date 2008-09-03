@@ -76,7 +76,7 @@ namespace love
 		else
 			last = (backslash > slash) ? backslash : slash;		
 #else
-		string::size_type last = full.find_last_of("/", 0);
+		string::size_type last = full.find_last_of("/");
 #endif
 
 		if(last==string::npos)
