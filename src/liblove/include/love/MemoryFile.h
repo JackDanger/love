@@ -27,6 +27,14 @@ namespace love
 	**/
 	class MemoryFile : public File
 	{
+	private:
+
+		// Pointer to the data.
+		char * data;
+
+		// The size of the data.
+		int size;
+
 	public:
 
 		/**
@@ -34,11 +42,21 @@ namespace love
 		* @param source The source from which to load the file. (Archive or directory)
 		* @param filename The relative filepath of the file to load from the source.
 		**/
-		MemoryFile(char *data, const unsigned long size, const std::string &filename, bool compiled = true);
-		~MemoryFile();
+		MemoryFile(char *data, int size, const std::string &filename);
+		virtual ~MemoryFile();
 
+		// Implements love::File.
+		int getSize();
+		char * getData();
 		bool load();
-		void unload();
+		void unload(); 
+		bool open();
+		bool close();
+		int read(char * dest, int count = -1);
+		bool write(const char * data);
+		bool eof();
+		int tell();
+		bool seek(int pos);
 
 	}; // MemoryFile
 

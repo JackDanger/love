@@ -492,166 +492,168 @@
 
     <type name="ParticleSystem" brief="Contains information for a particle system.">
       The particle systems are created and drawn on the screen using functions in love.graphics. They also need to be updated in the update(dt) callback
-      for you to see any changes in the particles emitted
+      for you to see any changes in the particles emitted.
 
       <func name="setBufferSize" brief="Sets the size of the buffer (the max allowed amount of particles in the system).">
         <overload>
-          <param name="size">The buffer size.</param>
+          <param name="size" brief="The buffer size." />
         </overload>
       </func>
 
-      <func name="setSprite" brief="Sets the image which is to be emitted.">
+      <func name="setSprite" space="true" brief="Sets the image which is to be emitted.">
         <overload>
-          <param name="sprite">An Image.</param>
+          <param name="sprite" brief="An Image." />
         </overload>
       </func>
 
       <func name="setEmissionRate" brief="Sets the amount of particles emitted per second.">
         <overload>
-          <param name="rate">The amount of particles per second.</param>
+          <param name="rate" brief="The amount of particles per second." />
         </overload>
       </func>
 
       <func name="setLifetime" brief="Sets how long the particle system should emit particles (if -1 then it emits particles forever).">
         <overload>
-          <param name="life">The lifetime of the emitter (in seconds).</param>
+          <param name="life" brief="The lifetime of the emitter (in seconds)." />
         </overload>
       </func>
 
-      <func name="setParticleLife" brief="Sets the life of the particles.">
+      <func name="setParticleLife" space="true" brief="Sets the life of the particles.">
         <overload>
-          <param name="life">The life of the particles (in seconds).</param>
+          <param name="life" brief="The life of the particles (in seconds)." />
         </overload>
         <overload>
-          <param name="min">The minumum life of the particles (in seconds).</param>
-          <param name="max">The maximum life of the particles (in seconds).</param>
+          <param name="min" brief="The minumum life of the particles (in seconds)." />
+          <param name="max" brief="The maximum life of the particles (in seconds)." />
           Every particle created will have a lifetime between min and max.
         </overload>
       </func>
 
       <func name="setPosition" brief="Sets the position of the emitter.">
         <overload>
-          <param name="x">The x-coordinate.</param>
-          <param name="y">The y-coordinate.</param>
+          <param name="x" brief="The x-coordinate." />
+          <param name="y" brief="The y-coordinate." />
         </overload>
       </func>
 
       <func name="setDirection" brief="Sets the direction the particles will be emitted in (in degrees).">
         <overload>
-          <param name="direction">The direction of the particles (in degrees).</param>
-        </overload>
-        <overload>
-          <param name="direction">The direction of the particles (in degrees).</param>
-          <param name="spread">The amount of spread.</param>
+          <param name="direction" brief="The direction of the particles (in degrees)." />
         </overload>
       </func>
 
-      <func name="setSpeed" brief="Sets the speed of the particles.">
+      <func name="setSpread" space="true" brief="Sets the amount of spread for the system.">
         <overload>
-          <param name="speed">The speed (in pixels per second).</param>
+          <param name="spread" brief="The amount of spread (degrees)." />
+        </overload>
+      </func>
+
+      <func name="setSpeed" space="true" brief="Sets the speed of the particles.">
+        <overload>
+          <param name="speed" brief="The speed (in pixels per second)." />
         </overload>
         <overload>
-          <param name="min">The minimum speed (in pixels per second).</param>
-          <param name="max">The maximum speed (in pixels per second).</param>
+          <param name="min" brief="The minimum speed (in pixels per second)." />
+          <param name="max" brief="The maximum speed (in pixels per second)." />
           Every particle created will have a speed between min and max.
         </overload>
       </func>
 
       <func name="setGravity" brief="Sets the gravity affecting the particles (acceleration along the y-axis).">
         <overload>
-          <param name="gravity">The amount of gravity.</param>
+          <param name="gravity" brief="The amount of gravity." />
         </overload>
         <overload>
-          <param name="min">The minimum gravity.</param>
-          <param name="max">The maximum gravity.</param>
+          <param name="min" brief="The minimum gravity." />
+          <param name="max" brief="The maximum gravity." />
           Every particle created will have a gravity between min and max.
         </overload>
       </func>
 
       <func name="setRadialAcceleration" brief="Sets the radial acceleration (acceleration towards the emitter).">
         <overload>
-          <param name="acceleration">The amount of acceleration.</param>
+          <param name="acceleration" brief="The amount of acceleration." />
         </overload>
         <overload>
-          <param name="min">The minimum acceleration.</param>
-          <param name="max">The maximum acceleration.</param>
+          <param name="min" brief="The minimum acceleration." />
+          <param name="max" brief="The maximum acceleration." />
           Every particle created will have an acceleration between min and max.
         </overload>
       </func>
 
-      <func name="setTangentialAcceleration" brief="Sets the tangential acceleration (acceleration perpendicular to the particle's direction).">
+      <func name="setTangentialAcceleration" space="true" brief="Sets the tangential acceleration (acceleration perpendicular to the particle's direction).">
         <overload>
-          <param name="acceleration">The amount of acceleration.</param>
+          <param name="acceleration" brie="The amount of acceleration." />
         </overload>
         <overload>
-          <param name="min">The minimum acceleration.</param>
-          <param name="max">The maximum acceleration.</param>
+          <param name="min" brief="The minimum acceleration." />
+          <param name="max" brief="The maximum acceleration." />
           Every particle created will have an acceleration between min and max.
         </overload>
       </func>
 
       <func name="setSize" brief="Sets the size of the image (1.0 being normal size).">
         <overload>
-          <param name="size">The size of the image.</param>
+          <param name="size" brief="The size of the image." />
         </overload>
         <overload>
-          <param name="start">The size of the image upon creation.</param>
-          <param name="end">The size of the image upon death.</param>
+          <param name="start" brief="The size of the image upon creation." />
+          <param name="end" brief="The size of the image upon death." />
           The particles will grow/shrink from the starting size to the ending size.
         </overload>
         <overload>
-          <param name="start">The size of the image upon creation.</param>
-          <param name="end">The size of the image upon death.</param>
-          <param name="variation">The degree of variation (0 meaning no variation and 1 meaning full variation between start and end).</param>
+          <param name="start" brief="The size of the image upon creation." />
+          <param name="end" brief="The size of the image upon death." />
+          <param name="variation" brief="The degree of variation (0 meaning no variation and 1 meaning full variation between start and end)." />
           The particles will grow/shrink from the starting size to the ending size. The variation affects starting size only.
         </overload>
       </func>
 
-      <func name="setSizeVariation" brief="Sets the degree of variation (0 meaning no variation and 1 meaning full variation between start and end).">
+      <func name="setSizeVariation" space="true" brief="Sets the degree of variation (0 meaning no variation and 1 meaning full variation between start and end).">
         <overload>
-          <param name="variation">The degree of variation.</param>
+          <param name="variation" brief="The degree of variation." />
         </overload>
       </func>
 
       <func name="setRotation" brief="Sets the rotation of the image upon particle creation (in degrees).">
         <overload>
-          <param name="rotation">The rotation of the image (in degrees).</param>
+          <param name="rotation" brief="The rotation of the image (in degrees)." />
         </overload>
         <overload>
-          <param name="min">The minimum amount of rotation.</param>
-          <param name="max">The maximum amount of rotation.</param>
+          <param name="min" brief="The minimum amount of rotation." />
+          <param name="max" brief="The maximum amount of rotation." />
           Every particle created will have a rotation between min and max.
         </overload>
       </func>
 
       <func name="setSpin" brief="Sets the spin of the sprite.">
         <overload>
-          <param name="size">The amount of spin.</param>
+          <param name="size" brief="The amount of spin." />
         </overload>
         <overload>
-          <param name="start">The amount of spin upon creation.</param>
-          <param name="end">The amount of spin upon death.</param>
+          <param name="start" brief="The amount of spin upon creation." />
+          <param name="end" brief="The amount of spin upon death." />
         </overload>
         <overload>
-          <param name="start">The amount of spin upon creation.</param>
-          <param name="end">The amount of spin upon death.</param>
-          <param name="variation">The degree of variation (0 meaning no variation and 1 meaning full variation between start and end).</param>
-        </overload>
-      </func>
-
-      <func name="setSpinVariation" brief="Sets the degree of variation (0 meaning no variation and 1 meaning full variation between start and end).">
-        <overload>
-          <param name="variation">The degree of variation.</param>
+          <param name="start" brief="The amount of spin upon creation." />
+          <param name="end" brief="The amount of spin upon death." />
+          <param name="variation" brief="The degree of variation (0 meaning no variation and 1 meaning full variation between start and end)." />
         </overload>
       </func>
 
-      <func name="setColor" brief="Sets the color of the image (color modulation needs to be activated for it to have any effect).">
+      <func name="setSpinVariation" space="true" brief="Sets the degree of variation (0 meaning no variation and 1 meaning full variation between start and end).">
         <overload>
-          <param name="color">A Color object.</param>
+          <param name="variation" brief="The degree of variation." />
+        </overload>
+      </func>
+
+      <func name="setColor" space="true" brief="Sets the color of the image (color modulation needs to be activated for it to have any effect).">
+        <overload>
+          <param name="color" brief="A Color object." />
         </overload>
         <overload>
-          <param name="start">A Color object.</param>
-          <param name="end">A Color object.</param>
+          <param name="start" brief="A Color object." />
+          <param name="end" brief="A Color object." />
         </overload>
       </func>
 
@@ -673,13 +675,13 @@
         </overload>
       </func>
 
-      <func name="getSpread" brief="Gets the amount of directional spread of the particle emitter (in degrees).">
+      <func name="getSpread" space="true" brief="Gets the amount of directional spread of the particle emitter (in degrees).">
         <overload>
           <ret type="number" brief="The amount of spread." />
         </overload>
       </func>
 
-      <func name="count" brief="Gets the amount of particles that are currently in the system.">
+      <func name="count" space="true" brief="Gets the amount of particles that are currently in the system.">
         <overload>
           <ret type="number" brief="The amount of particles." />
         </overload>
@@ -697,7 +699,7 @@
         <overload></overload>
       </func>
 
-      <func name="reset" brief="Resets the particle emitter, removing any existing particles and resetting the lifetime counter.">
+      <func name="reset" space="true" brief="Resets the particle emitter, removing any existing particles and resetting the lifetime counter.">
         <overload></overload>
       </func>
 
@@ -713,7 +715,7 @@
         </overload>
       </func>
 
-      <func name="isFull" brief="Checks whether the particle system is full of particles.">
+      <func name="isFull" space="true" brief="Checks whether the particle system is full of particles.">
         <overload>
           <ret type="boolean" brief="Whether the particle system is full." />
         </overload>
@@ -721,7 +723,7 @@
 
       <func name="update" brief="Updates the particle system; moving, creating and killing particles.">
         <overload>
-          <param name="dt">The amount of time that has passed since last time the function was called.</param>
+          <param name="dt" brief="The amount of time that has passed since last time the function was called." />
         </overload>
       </func>
 

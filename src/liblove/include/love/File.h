@@ -35,30 +35,8 @@ namespace love
 		// filename
 		std::string filename;
 
-		// The actual file data
-		char * data;
-
-		// The size of the data
-		unsigned long size;
-
-		// Whether this is a compiled resource or not.
-		bool compiled;
-
 		// The file-open mode. (Read, ReadWrite, etc)
 		int mode;
-
-		// True if the file is currently open.
-		bool isOpen;
-
-		/**
-		 * Constructor used by MemoryFile alone.
-		 * @param source	The source from which the file is loaded
-		 * @param filename	The name of the file loaded
-		 * @param data		The actual data loaded
-		 * @param size		The size of the loaded data
-		 * @param compiled	True if the file is compiled into the executable.
-		 **/
-		File(const std::string & filename, char *data, const unsigned long size, bool compiled);
 
 	public:
 
@@ -71,43 +49,35 @@ namespace love
 
 		virtual ~File();
 
-		virtual bool load() = 0;
-		virtual void unload() = 0; 
-
 		/**
 		* Gets the filename of the file we are loading.
 		**/
 		const std::string & getFilename() const;
-
-		/**
-		* Allocate the data array. Does nothing if data 
-		* is already allocated.
-		**/
-		void allocate(int size);
 			
-		/**
-		* Gets the size of the loaded file.
-		**/
-		unsigned long getSize() const;
-
-		/**
-		* Sets the filesize.
-		**/
-		void setSize(int size);
-
 		/**
 		* Gets the current file mode.
 		**/
 		int getMode() const;
 
 		/**
-		* Gets a pointer to the data.
+		* Gets the size of the loaded file.
 		**/
-		char * getData();
+		virtual int getSize() = 0;
 
-		void setData( char * data );
+		/**
+		* Gets a pointer to the loaded data.
+		**/
+		virtual char * getData() = 0;
 
-		bool isCompiled() const;
+		virtual bool load() = 0;
+		virtual void unload() = 0; 
+		virtual bool open() = 0;
+		virtual bool close() = 0;
+		virtual int read(char * dest, int count = -1) = 0;
+		virtual bool write(const char * data) = 0;
+		virtual bool eof() = 0;
+		virtual int tell() = 0;
+		virtual bool seek(int pos) = 0;
 
 	}; // File
 

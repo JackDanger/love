@@ -26,6 +26,9 @@ namespace love_physfs
 	{
 	private:
 
+		// Data for the file.
+		char * data;
+
 		// PHYSFS File handle.
 		PHYSFS_file * file;
 
@@ -40,18 +43,18 @@ namespace love_physfs
 
 		virtual ~File();
 		
+		// Implements love::File.
+		int getSize();
+		char * getData();
 		bool load();
-		void unload();
-
-		/**
-		* Returns the PhysFS file handle.
-		**/
-		PHYSFS_file * getHandle();
-
-		/**
-		* Sets the PhysFS file handle.
-		**/
-		void setHandle(PHYSFS_file * handle);
+		void unload(); 
+		bool open();
+		bool close();
+		int read(char * dest, int count = -1);
+		bool write(const char * data);
+		bool eof();
+		int tell();
+		bool seek(int pos);
 
 	}; // File
 

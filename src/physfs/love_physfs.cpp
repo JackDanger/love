@@ -414,60 +414,30 @@ namespace love_physfs
 
 		}
 
+		bool success = file->open();
 
-		// The to-be opened PhysFS file handle.
-		PHYSFS_file * f = 0;
-
-		switch(file->getMode())
-		{
-		case love::FILE_READ:
-			f = PHYSFS_openRead(file->getFilename().c_str());
-			break;
-		case love::FILE_APPEND:
-			f = PHYSFS_openAppend(file->getFilename().c_str());
-			break;
-		case love::FILE_WRITE:
-			f = PHYSFS_openWrite(file->getFilename().c_str());
-			break;
-		}
-
-		if(f == 0)
+		if(!success)
 		{
 			std::cerr << "Error, could not open file: " << PHYSFS_getLastError() << std::endl;
 			return false;
 		}
 		
-		file->setHandle(f);
 		open_count++;
 		return true;
 	}
 
 	bool close(pFile & file)
 	{
-		if(file->getHandle() == 0)
+		if(!file->close())
 			return false;
-
-		if(!PHYSFS_close(file->getHandle()))
-			return false;
-
-		file->setHandle(0);
 		open_count--;
 		return true;
 	}
 
 	char * read(pFile & file, int count)
 	{
-		if(file->getHandle() == 0)
-		{
-			std::stringstream err;
-			err << "Could not read from file \"" << file->getFilename() << 
-					"\". File does not appear to be open.";
-			core->error(err.str().c_str());
-			return 0;
-		}
-
 		if(count == -1)
-			count = (int)PHYSFS_fileLength(file->getHandle());
+			count = file->getSize();
 
 		if(buffer != 0)
 		{
@@ -477,7 +447,7 @@ namespace love_physfs
 
 		buffer = new char[count];
 
-		if(PHYSFS_read(file->getHandle(), buffer, 1, count) == -1)
+		if(file->read(buffer, count) == -1)
 			return 0;
 
 		return buffer;
@@ -485,42 +455,22 @@ namespace love_physfs
 
 	bool write(pFile & file, const char * data)
 	{
-		// Try to write.
-		int written = static_cast<int>(PHYSFS_write(file->getHandle(), data, 1, (PHYSFS_uint32)strlen(data)));
-
-		// Check that correct amount of data was written.
-		if(written != (int)strlen(data))
-			return false;
-
-		return true;
+		return file->write(data);
 	}
 
 	bool eof(pFile & file)
 	{
-		if(file->getHandle() == 0)
-			return false;
-
-		if(PHYSFS_eof(file->getHandle()))
-			return true;
-		return false;
+		return file->eof();
 	}
 
 	int tell(pFile & file)
 	{
-		if(file->getHandle() == 0)
-			return -1;
-
-		return (int)PHYSFS_tell(file->getHandle());
+		return file->tell();
 	}
 
 	bool seek(pFile & file, int pos)
 	{
-		if(file->getHandle() == 0)
-			return false;
-		
-		if(!PHYSFS_seek(file->getHandle(), (PHYSFS_uint64)pos))
-			return false;
-		return true;
+		return file->seek(pos);
 	}
 
 	int enumerate(lua_State * L)
