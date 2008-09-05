@@ -266,9 +266,9 @@ namespace love_physfs
 		return appdata.str();
 	}
 
-	love::pFile * getFile(const char * filename)
+	love::pFile * getFile(const char * filename, int mode)
 	{
-		love::pFile * file = new love::pFile(new File(std::string(filename)));
+		love::pFile * file = new love::pFile(new File(std::string(filename), mode));
 		return file;
 	}
 	
@@ -292,6 +292,48 @@ namespace love_physfs
 	{
 		if(!PHYSFS_setWriteDir(0))
 			return false;
+		return true;
+	}
+
+	bool setupWriteDirectory()
+	{
+		if(save_dir.empty())
+		{
+			std::cerr << "Write directory is not set!" << std::endl;
+			return false;
+		}
+
+		std::string appdata = getAppdata();
+
+		// Create directory.
+		if(!setWriteDirectory(appdata))
+		{
+			std::cerr << "Could not set write directory: " << PHYSFS_getLastError() << std::endl;
+			return false;
+		}
+
+		if(!mkdir(save_dir.c_str()))
+		{
+			std::cerr << "Could not create directory " << save_dir << ": " << PHYSFS_getLastError() << std::endl;
+			return false;
+		}
+
+		disableWriteDirectory();
+
+		std::stringstream full;
+		full << appdata << "/" << save_dir;
+
+		if(!setWriteDirectory(full.str()))
+		{
+			std::cerr << "Could not set write directory: " << PHYSFS_getLastError() << std::endl;
+			return false;
+		}
+
+		if(!addDirectory(full.str()))
+		{
+			std::cerr << "Could not add directory to search path: " << PHYSFS_getLastError() << std::endl;
+			return false;
+		}
 		return true;
 	}
 
@@ -371,49 +413,6 @@ namespace love_physfs
 	bool open(pFile & file)
 	{
 
-		// Check whether the write directory is set.
-		if((file->getMode() == love::FILE_APPEND || file->getMode() == love::FILE_WRITE) && (PHYSFS_getWriteDir() == 0))
-		{
-			if(save_dir.empty())
-			{
-				std::cerr << "Write directory is not set!" << std::endl;
-				return false;
-			}
-
-			std::string appdata = getAppdata();
-
-			// Create directory.
-			if(!setWriteDirectory(appdata))
-			{
-				std::cerr << "Could not set write directory: " << PHYSFS_getLastError() << std::endl;
-				return false;
-			}
-
-			if(!mkdir(save_dir.c_str()))
-			{
-				std::cerr << "Could not create directory " << save_dir << ": " << PHYSFS_getLastError() << std::endl;
-				return false;
-			}
-
-			disableWriteDirectory();
-
-			std::stringstream full;
-			full << appdata << "/" << save_dir;
-
-			if(!setWriteDirectory(full.str()))
-			{
-				std::cerr << "Could not set write directory: " << PHYSFS_getLastError() << std::endl;
-				return false;
-			}
-
-			if(!addDirectory(full.str()))
-			{
-				std::cerr << "Could not add directory to search path: " << PHYSFS_getLastError() << std::endl;
-				return false;
-			}
-
-		}
-
 		bool success = file->open();
 
 		if(!success)
@@ -434,10 +433,28 @@ namespace love_physfs
 		return true;
 	}
 
-	char * read(pFile & file, int count)
+	int read(lua_State * L)
 	{
-		if(count == -1)
-			count = file->getSize();
+		// The file to read from.
+		pFile file;
+		bool close;
+		
+		if(mod_is_file(L, 1))
+		{
+			file = mod_to_file(L, 1);
+			close = false;
+		}
+		else if(lua_isstring(L, 1))
+		{
+			file.reset<File>(new File(lua_tostring(L, 1)));
+			close = true;
+			if(!open(file))
+				return luaL_error(L, "Could not open file %s.", lua_tostring(L, 1));
+		}
+		else
+			return luaL_error(L, "Expected filename or file handle.");
+
+		int count = luaL_optint(L, 2, file->getSize());
 
 		if(buffer != 0)
 		{
@@ -447,15 +464,65 @@ namespace love_physfs
 
 		buffer = new char[count];
 
-		if(file->read(buffer, count) == -1)
-			return 0;
+		int read = file->read(buffer, count);
 
-		return buffer;
+		// Close the file, if applicable.
+		if(close)
+			love_physfs::close(file);
+
+		if(read < 0)
+			return luaL_error(L, "File could not be read (is it open?).");
+
+		lua_pushlstring(L, buffer, read);
+		return 1;
 	}
 
-	bool write(pFile & file, const char * data)
+	int write(lua_State * L)
 	{
-		return file->write(data);
+		// The file to write to.
+		pFile file;
+		bool close;
+		
+		if(mod_is_file(L, 1))
+		{
+			file = mod_to_file(L, 1);
+			close = false;
+		}
+		else if(lua_isstring(L, 1))
+		{
+
+			close = true;
+
+			// It should be possible to use append mode.
+			int mode = luaL_optint(L, 3, love::FILE_WRITE);
+			mode = (mode == love::FILE_APPEND) ? love::FILE_APPEND : love::FILE_WRITE;
+
+			// Open the file.
+			file.reset<File>(new File(lua_tostring(L, 1), mode));
+
+			if(!open(file))
+				return luaL_error(L, "Could not open file %s.", lua_tostring(L, 1));
+		}
+		else
+			return luaL_error(L, "Expected filename or file handle.");
+
+		if(!lua_isstring(L, 2))
+			return luaL_error(L, "Second argument must be a string.");
+
+		// Get the data.
+		const char * data = lua_tostring(L, 2);
+
+		// Write the data.
+		bool success = file->write(data);
+
+		if(close)
+			love_physfs::close(file);
+
+		if(!success)
+			return luaL_error(L, "Data could not be written.");
+
+		lua_pushboolean(L, success);
+		return 1;
 	}
 
 	bool eof(pFile & file)
@@ -503,6 +570,112 @@ namespace love_physfs
 		PHYSFS_freeList(rc);
 
 		return 1;
+	}
+
+	int lines(lua_State * L)
+	{
+		pFile file;
+
+		if(mod_is_file(L, 1))
+		{
+			file = mod_to_file(L, 1);
+			lua_pushboolean(L, 0); // 0 = do not close.
+		}
+		else if(lua_isstring(L, 1))
+		{
+			file.reset<File>(new File(lua_tostring(L, 1)));
+			if(!open(file))
+				return luaL_error(L, "Could not open file %s.\n", lua_tostring(L, 1)); 
+			lua_pop(L, 1);
+			mod_push_file(L, file);
+			lua_pushboolean(L, 1); // 1 = autoclose.
+		}
+		else
+			return luaL_error(L, "Expected filename or file handle.");
+
+		// Reset the file position.
+		if(!file->seek(0))
+			return luaL_error(L, "File does not appear to be open.\n");
+
+		lua_pushcclosure(L, lines_iterator, 2);
+		return 1;
+	}
+
+	int lines_iterator(lua_State * L)
+	{
+		// We're using a 1k buffer.
+		const static int bufsize = 8;
+		static char buf[bufsize];
+
+		pFile file = mod_to_file(L, lua_upvalueindex(1));
+		int close = (int)lua_tointeger(L, lua_upvalueindex(2));
+
+		// Find the next newline.
+		// pos must be at the start of the line we're trying to find.
+		int pos = file->tell();
+		int newline = -1;
+		int totalread = 0;
+
+		while(!file->eof())
+		{
+			int current = file->tell();
+			int read = file->read(buf, bufsize);
+			totalread += read;
+
+			if(read < 0)
+				return luaL_error(L, "Readline failed!");
+
+			for(int i = 0;i<read;i++)
+			{
+				if(buf[i] == '\n')
+				{
+					newline = current+i;
+					break;
+				}
+			}
+				
+			if(newline > 0)
+				break;
+		}
+
+		// Special case for the last "line".
+		if(newline <= 0 && file->eof() && totalread > 0)
+			newline = pos + totalread;
+
+		// We've got a newline.
+		if(newline > 0)
+		{
+			// Ok, we've got a line.
+			int linesize = (newline-pos);
+
+			// Allocate memory for the string.
+			char * str = new char[linesize];
+
+			// Read it.
+			file->seek(pos); 
+			if(file->read(str, linesize) == -1)
+				return luaL_error(L, "Read error.");
+
+			if(str[linesize-1]=='\r')
+				linesize -= 1;
+			
+			lua_pushlstring(L, str, linesize);
+
+			// Free the memory. Lua has a copy now.
+			delete[] str;
+
+			// Set the beginning of the next line.
+			if(!file->eof())
+				file->seek(newline+1);
+			
+			return 1;
+		}
+
+		if(close)
+			love_physfs::close(file);
+
+		// else: (newline <= 0)
+		return 0;
 	}
 
 } // love_physfs

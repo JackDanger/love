@@ -207,8 +207,8 @@ function Module:add()
             
     {
         love_]]..self.name..[[::p]]..s..[[ * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,]]..l..[[,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,]]..l..[[,0))){
               luaL_error(L, "Error, argument is not type ]]..s..[[.");
         }
         return *arg;
@@ -312,10 +312,8 @@ mods = {
     opengl = Module:new("opengl"),
     physfs = Module:new("physfs"),
     system = Module:new("system"),
-    chipmunk = Module:new("chipmunk"),
     sdljoystick = Module:new("sdljoystick"),
-    box2d = Module:new("box2d"), 
-    luasocket = Module:new("luasocket")
+    box2d = Module:new("box2d"),
 }
 
 -- If there's a param,

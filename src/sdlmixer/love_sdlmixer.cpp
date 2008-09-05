@@ -82,7 +82,7 @@ namespace love_sdlmixer
 
 	pSound newSound(const char * filename)
 	{
-		love::pFile * file = filesystem->getFile(filename);
+		love::pFile * file = filesystem->getFile(filename, love::FILE_READ);
 		pSound sound(new Sound(*file));
 		if(!sound->load())
 		{
@@ -96,7 +96,7 @@ namespace love_sdlmixer
 	
 	pMusic newMusic(const char * filename)
 	{
-		love::pFile * file = filesystem->getFile( filename );
+		love::pFile * file = filesystem->getFile( filename , love::FILE_READ);
 		pMusic music(new Music(*file));
 		if(!music->load())
 		{

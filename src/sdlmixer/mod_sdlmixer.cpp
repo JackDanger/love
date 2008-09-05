@@ -2604,8 +2604,8 @@ namespace love_sdlmixer
 	boost::shared_ptr<Sound> mod_to_sound(lua_State * L, int idx)            
     {
         love_sdlmixer::pSound * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_sdlmixer__Sound_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_sdlmixer__Sound_t,0))){
               luaL_error(L, "Error, argument is not type Sound.");
         }
         return *arg;
@@ -2631,8 +2631,8 @@ namespace love_sdlmixer
 	boost::shared_ptr<Music> mod_to_music(lua_State * L, int idx)            
     {
         love_sdlmixer::pMusic * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_sdlmixer__Music_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_sdlmixer__Music_t,0))){
               luaL_error(L, "Error, argument is not type Music.");
         }
         return *arg;

@@ -27,14 +27,15 @@ namespace love_physfs
 	bool remove(const char * file);
 	bool open(pFile & file);
 	bool close(pFile & file);
-	char * read(pFile & file, int count = -1);
-	bool write(pFile & file, const char * data);
 	bool eof(pFile & file);
 	int tell(pFile & file);
 	bool seek(pFile & file, int pos);
 }
 
 %native(enumerate) int love_physfs::enumerate(lua_State * L);
+%native(lines) int love_physfs::lines(lua_State * L);
+%native(read) int love_physfs::read(lua_State * L);
+%native(write) int love_physfs::write(lua_State * L);
 
 %luacode {
 love.filesystem = mod_physfs

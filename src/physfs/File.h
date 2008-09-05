@@ -51,7 +51,7 @@ namespace love_physfs
 		bool open();
 		bool close();
 		int read(char * dest, int count = -1);
-		bool write(const char * data);
+		bool write(const char * data, int count = -1);
 		bool eof();
 		int tell();
 		bool seek(int pos);

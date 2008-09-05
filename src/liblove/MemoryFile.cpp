@@ -48,7 +48,7 @@ namespace love
 		return -1;
 	}
 
-	bool MemoryFile::write(const char * data)
+	bool MemoryFile::write(const char * data, int count)
 	{
 		return false;
 	}

@@ -2,6 +2,7 @@
 
 namespace love_physfs
 {
+	extern bool setupWriteDirectory();
 
 	File::File(const std::string & filename, int mode) 
 		: love::File(filename, mode), data(0), file(0)
@@ -66,6 +67,11 @@ namespace love_physfs
 
 	bool File::open()
 	{
+		// Check whether the write directory is set.
+		if((mode == love::FILE_APPEND || mode == love::FILE_WRITE) && (PHYSFS_getWriteDir() == 0))
+			if(!setupWriteDirectory())
+				return false;
+
 		switch(mode)
 		{
 		case love::FILE_READ:
@@ -101,13 +107,15 @@ namespace love_physfs
 		return (int)PHYSFS_read(file, dest, 1, count);
 	}
 
-	bool File::write(const char * data)
+	bool File::write(const char * data, int count)
 	{
+		count = (count == -1) ? (PHYSFS_uint32)strlen(data) : count;
+
 		// Try to write.
-		int written = static_cast<int>(PHYSFS_write(file, data, 1, (PHYSFS_uint32)strlen(data)));
+		int written = static_cast<int>(PHYSFS_write(file, data, 1, count));
 
 		// Check that correct amount of data was written.
-		if(written != (int)strlen(data))
+		if(written != count)
 			return false;
 
 		return true;
@@ -116,8 +124,8 @@ namespace love_physfs
 	bool File::eof()
 	{
 		if(file == 0 || PHYSFS_eof(file))
-			return false;
-		return true;
+			return true;
+		return false;
 	}
 
 	int File::tell()

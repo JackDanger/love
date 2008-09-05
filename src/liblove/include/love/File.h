@@ -74,7 +74,7 @@ namespace love
 		virtual bool open() = 0;
 		virtual bool close() = 0;
 		virtual int read(char * dest, int count = -1) = 0;
-		virtual bool write(const char * data) = 0;
+		virtual bool write(const char * data, int count = -1) = 0;
 		virtual bool eof() = 0;
 		virtual int tell() = 0;
 		virtual bool seek(int pos) = 0;

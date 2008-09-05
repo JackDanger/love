@@ -138,19 +138,19 @@ namespace love_system
 		}
 
 		// Create configuration.
-		love::pFile * conf = filesystem->getFile(GAME_CONF);
+		love::pFile * conf = filesystem->getFile(GAME_CONF, love::FILE_READ);
 		love::Configuration gc(*conf);
 		delete conf;
 
 		// Get entry point and create game.
-		love::pFile * main = filesystem->getFile(GAME_MAIN);
+		love::pFile * main = filesystem->getFile(GAME_MAIN, love::FILE_READ);
 		main_game.reset<love::Game>(new LuaGame(*main, core));
 		delete main;
 
 		// Also create error game, but load nothing yet.
 		if(filesystem->exists(std::string(GAME_ERROR)))
 		{
-			love::pFile * error_main = filesystem->getFile(GAME_ERROR);
+			love::pFile * error_main = filesystem->getFile(GAME_ERROR, love::FILE_READ);
 			error_game.reset<love::Game>(new LuaGame(*error_main, core));
 			delete error_main;
 		}
@@ -297,7 +297,7 @@ namespace love_system
 		const char * filename = lua_tostring(L, 1);
 
 		// Get the file.
-		love::pFile * file = filesystem->getFile(filename);
+		love::pFile * file = filesystem->getFile(filename, love::FILE_READ);
 
 		if(!(*file)->load())
 		{

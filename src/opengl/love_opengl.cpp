@@ -399,7 +399,7 @@ namespace love_opengl
 
 	pImage newImage(const char * filename)
 	{
-		love::pFile * file = filesystem->getFile(filename);
+		love::pFile * file = filesystem->getFile(filename, love::FILE_READ);
 		pImage image = newImage(*file);
 		delete file;
 		return image;
@@ -458,7 +458,7 @@ namespace love_opengl
 
 	pImage newImage(const char * filename, int mode)
 	{
-		love::pFile * file = filesystem->getFile(filename);
+		love::pFile * file = filesystem->getFile(filename, love::FILE_READ);
 
 		// Create the new image.
 		pImage image = newImage(*file);
@@ -470,7 +470,7 @@ namespace love_opengl
 
 	pFont newFont(const char * filename, int size)
 	{
-		love::pFile * file = filesystem->getFile(filename);
+		love::pFile * file = filesystem->getFile(filename, love::FILE_READ);
 		pFont font(new TrueTypeFont(*file, size));
 		delete file;
 
@@ -499,7 +499,7 @@ namespace love_opengl
 
 	pFont newImageFont(const char * filename, const char * glyphs, float spacing)
 	{
-		love::pFile * file = filesystem->getFile(filename);
+		love::pFile * file = filesystem->getFile(filename, love::FILE_READ);
 		pFont font(new ImageFont(*file, std::string(glyphs)));
 		delete file;
 		font->setSpacing(spacing);
@@ -1462,20 +1462,32 @@ namespace love_opengl
 		// Read the pixels on the screen.
 		glReadPixels(0, 0, w, h, GL_RGB, GL_UNSIGNED_BYTE, pixels);
 
-		// Create the image.
 		ilGenImages(1, &image);
 		ilBindImage(image);
 		ilTexImage(w, h, 1, 3, IL_RGB, IL_UNSIGNED_BYTE, (ILvoid*)pixels);
 
-		// Save it.
-		ilEnable(IL_FILE_OVERWRITE);
-		//@todo This didn't work in Linux.
-		//ilSaveImage((const wchar_t *)filename);
+		// Create the image.
+		ilSaveL(IL_BMP, pixels, 0);
 
-		// Cleanup.
-		ilDisable(IL_FILE_OVERWRITE);
+		love::pFile * file = filesystem->getFile(filename, love::FILE_WRITE);
+
+		bool error = false;
+
+		if((*file)->open())
+		{
+			if(!(*file)->write((const char *)pixels, 3*w*h))
+				error = true;
+			(*file)->close();
+		}
+		else
+			error = true;
+
+		delete file;
 		delete pixels;
 		ilDeleteImages(1, &image);
+
+		if(error)
+			core->error("Could not store screenshot.");
 	}
 
 

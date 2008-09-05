@@ -10654,8 +10654,8 @@ namespace love_box2d
 	boost::shared_ptr<PolygonShape> mod_to_polygonshape(lua_State * L, int idx)            
     {
         love_box2d::pPolygonShape * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
               luaL_error(L, "Error, argument is not type PolygonShape.");
         }
         return *arg;
@@ -10745,8 +10745,8 @@ namespace love_box2d
 	boost::shared_ptr<Shape> mod_to_shape(lua_State * L, int idx)            
     {
         love_box2d::pShape * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
               luaL_error(L, "Error, argument is not type Shape.");
         }
         return *arg;
@@ -10772,8 +10772,8 @@ namespace love_box2d
 	boost::shared_ptr<Body> mod_to_body(lua_State * L, int idx)            
     {
         love_box2d::pBody * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
               luaL_error(L, "Error, argument is not type Body.");
         }
         return *arg;
@@ -10879,8 +10879,8 @@ namespace love_box2d
 	boost::shared_ptr<CircleShape> mod_to_circleshape(lua_State * L, int idx)            
     {
         love_box2d::pCircleShape * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
               luaL_error(L, "Error, argument is not type CircleShape.");
         }
         return *arg;
@@ -10962,8 +10962,8 @@ namespace love_box2d
 	boost::shared_ptr<PrismaticJoint> mod_to_prismaticjoint(lua_State * L, int idx)            
     {
         love_box2d::pPrismaticJoint * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
               luaL_error(L, "Error, argument is not type PrismaticJoint.");
         }
         return *arg;
@@ -11013,8 +11013,8 @@ namespace love_box2d
 	boost::shared_ptr<RevoluteJoint> mod_to_revolutejoint(lua_State * L, int idx)            
     {
         love_box2d::pRevoluteJoint * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
               luaL_error(L, "Error, argument is not type RevoluteJoint.");
         }
         return *arg;
@@ -11064,8 +11064,8 @@ namespace love_box2d
 	boost::shared_ptr<MouseJoint> mod_to_mousejoint(lua_State * L, int idx)            
     {
         love_box2d::pMouseJoint * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t,0))){
               luaL_error(L, "Error, argument is not type MouseJoint.");
         }
         return *arg;
@@ -11115,8 +11115,8 @@ namespace love_box2d
 	boost::shared_ptr<Joint> mod_to_joint(lua_State * L, int idx)            
     {
         love_box2d::pJoint * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t,0))){
               luaL_error(L, "Error, argument is not type Joint.");
         }
         return *arg;
@@ -11142,8 +11142,8 @@ namespace love_box2d
 	boost::shared_ptr<Contact> mod_to_contact(lua_State * L, int idx)            
     {
         love_box2d::pContact * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Contact_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Contact_t,0))){
               luaL_error(L, "Error, argument is not type Contact.");
         }
         return *arg;
@@ -11193,8 +11193,8 @@ namespace love_box2d
 	boost::shared_ptr<DistanceJoint> mod_to_distancejoint(lua_State * L, int idx)            
     {
         love_box2d::pDistanceJoint * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,0))){
               luaL_error(L, "Error, argument is not type DistanceJoint.");
         }
         return *arg;
@@ -11236,8 +11236,8 @@ namespace love_box2d
 	boost::shared_ptr<World> mod_to_world(lua_State * L, int idx)            
     {
         love_box2d::pWorld * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t,0))){
               luaL_error(L, "Error, argument is not type World.");
         }
         return *arg;

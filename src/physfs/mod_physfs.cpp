@@ -1964,133 +1964,6 @@ fail:
 }
 
 
-static int _wrap_read__SWIG_0(lua_State* L) {
-  int SWIG_arg = -1;
-  love_physfs::pFile *arg1 = 0 ;
-  int arg2 ;
-  char *result = 0 ;
-  
-  SWIG_check_num_args("love_physfs::read",2,2)
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_physfs::read",1,"love_physfs::pFile &");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_physfs::read",2,"int");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_physfs__File_t,0))){
-    SWIG_fail_ptr("read",1,SWIGTYPE_p_boost__shared_ptrT_love_physfs__File_t);
-  }
-  
-  arg2 = (int)lua_tonumber(L, 2);
-  result = (char *)love_physfs::read(*arg1,arg2);
-  SWIG_arg=0;
-  lua_pushstring(L,(const char*)result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_read__SWIG_1(lua_State* L) {
-  int SWIG_arg = -1;
-  love_physfs::pFile *arg1 = 0 ;
-  char *result = 0 ;
-  
-  SWIG_check_num_args("love_physfs::read",1,1)
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_physfs::read",1,"love_physfs::pFile &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_physfs__File_t,0))){
-    SWIG_fail_ptr("read",1,SWIGTYPE_p_boost__shared_ptrT_love_physfs__File_t);
-  }
-  
-  result = (char *)love_physfs::read(*arg1);
-  SWIG_arg=0;
-  lua_pushstring(L,(const char*)result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_read(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 1) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_physfs__File_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      return _wrap_read__SWIG_1(L);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_physfs__File_t, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_read__SWIG_0(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"No matching function for overloaded 'read'");
-  lua_error(L);return 0;
-}
-
-
-static int _wrap_write(lua_State* L) {
-  int SWIG_arg = -1;
-  love_physfs::pFile *arg1 = 0 ;
-  char *arg2 = (char *) 0 ;
-  bool result;
-  
-  SWIG_check_num_args("love_physfs::write",2,2)
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg("love_physfs::write",1,"love_physfs::pFile &");
-  if(!lua_isstring(L,2)) SWIG_fail_arg("love_physfs::write",2,"char const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_boost__shared_ptrT_love_physfs__File_t,0))){
-    SWIG_fail_ptr("write",1,SWIGTYPE_p_boost__shared_ptrT_love_physfs__File_t);
-  }
-  
-  arg2 = (char *)lua_tostring(L, 2);
-  result = (bool)love_physfs::write(*arg1,(char const *)arg2);
-  SWIG_arg=0;
-  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_eof(lua_State* L) {
   int SWIG_arg = -1;
   love_physfs::pFile *arg1 = 0 ;
@@ -2182,12 +2055,13 @@ static const struct luaL_reg swig_commands[] = {
     { "remove", _wrap_remove},
     { "open", _wrap_open},
     { "close", _wrap_close},
-    { "read",_wrap_read},
-    { "write", _wrap_write},
     { "eof", _wrap_eof},
     { "tell", _wrap_tell},
     { "seek", _wrap_seek},
     { "enumerate",love_physfs::enumerate},
+    { "lines",love_physfs::lines},
+    { "read",love_physfs::read},
+    { "write",love_physfs::write},
     {0,0}
 };
 
@@ -2568,8 +2442,8 @@ namespace love_physfs
 	boost::shared_ptr<File> mod_to_file(lua_State * L, int idx)            
     {
         love_physfs::pFile * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_physfs__File_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_physfs__File_t,0))){
               luaL_error(L, "Error, argument is not type File.");
         }
         return *arg;

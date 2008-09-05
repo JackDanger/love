@@ -119,9 +119,9 @@ echo.
 echo Creating .love ...
 
 :: Make example.love.
-chdir diff/examples
-zip -r -9 ../examples.love * > ../examples_log.txt
-chdir ../../
+chdir examples
+zip -r -9 ../diff/examples.love * > ../examples_log.txt
+chdir ..
 
 echo.
 

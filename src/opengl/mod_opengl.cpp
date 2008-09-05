@@ -11521,8 +11521,8 @@ namespace love_opengl
 	boost::shared_ptr<Sprite> mod_to_sprite(lua_State * L, int idx)            
     {
         love_opengl::pSprite * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Sprite_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Sprite_t,0))){
               luaL_error(L, "Error, argument is not type Sprite.");
         }
         return *arg;
@@ -11548,8 +11548,8 @@ namespace love_opengl
 	boost::shared_ptr<Image> mod_to_image(lua_State * L, int idx)            
     {
         love_opengl::pImage * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Image_t,0))){
               luaL_error(L, "Error, argument is not type Image.");
         }
         return *arg;
@@ -11575,8 +11575,8 @@ namespace love_opengl
 	boost::shared_ptr<Animation> mod_to_animation(lua_State * L, int idx)            
     {
         love_opengl::pAnimation * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Animation_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Animation_t,0))){
               luaL_error(L, "Error, argument is not type Animation.");
         }
         return *arg;
@@ -11602,8 +11602,8 @@ namespace love_opengl
 	boost::shared_ptr<Color> mod_to_color(lua_State * L, int idx)            
     {
         love_opengl::pColor * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Color_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Color_t,0))){
               luaL_error(L, "Error, argument is not type Color.");
         }
         return *arg;
@@ -11629,8 +11629,8 @@ namespace love_opengl
 	boost::shared_ptr<ParticleSystem> mod_to_particlesystem(lua_State * L, int idx)            
     {
         love_opengl::pParticleSystem * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_opengl__ParticleSystem_t,0))){
               luaL_error(L, "Error, argument is not type ParticleSystem.");
         }
         return *arg;
@@ -11656,8 +11656,8 @@ namespace love_opengl
 	boost::shared_ptr<Font> mod_to_font(lua_State * L, int idx)            
     {
         love_opengl::pFont * arg;
-        if(!lua_isuserdata(L,1)) luaL_error(L, "Error, argument is not userdata.");
-        if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Font_t,0))){
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Font_t,0))){
               luaL_error(L, "Error, argument is not type Font.");
         }
         return *arg;

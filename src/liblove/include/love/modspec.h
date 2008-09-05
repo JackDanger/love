@@ -47,7 +47,7 @@ namespace love
 		Filesystem();
 
 		// Function pointers.
-		pFile * (*getFile)(const char *);
+		pFile * (*getFile)(const char *, int);
 		bool (*exists)(const std::string &);
 		bool (*setSaveDirectory)(const std::string &);
 		bool (*addDirectory)(const std::string &);

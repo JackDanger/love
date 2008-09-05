@@ -80,7 +80,7 @@ namespace love_physfs
 	* must be freed by the caller.
 	* @param filename The filename (and path) of the file.
 	**/
-	love::pFile * getFile(const char * filename);
+	love::pFile * getFile(const char * filename, int mode);
 
 	/**
 	* A filesystem state. Contains a list of current search
@@ -144,6 +144,13 @@ namespace love_physfs
 	bool disableWriteDirectory();
 
 	/**
+	* This sets up the save directory. If the 
+	* it is already set up, nothing happens.
+	* @return True on success, false otherwise.
+	**/
+	bool setupWriteDirectory();
+
+	/**
 	* Gets the size of a file.
 	**/
 	int size(pFile & file);
@@ -200,18 +207,19 @@ namespace love_physfs
 
 	/**
 	* Reads count bytes from an open file.
-	* @param file The file handle.
-	* @param count The number of bytes to read. Defaults
-	* to the size of the file.
+	* The first parameter is either a File or 
+	* a string. An optional second parameter specified the
+	* max number of bytes to read.
 	**/
-	char * read(pFile & file, int count = -1);
+	int read(lua_State * L);
 
 	/**
 	* Write the bytes in data to the file. File
 	* must be opened for write.
-	* @param file The file handle to write to.
+	* The first parameter is either a File or 
+	* a string.
 	**/ 
-	bool write(pFile & file, const char * data);
+	int write(lua_State * L);
 
 	/**
 	* Check if end-of-file is reached.
@@ -236,6 +244,15 @@ namespace love_physfs
 	* files in a given directory.
 	**/
 	int enumerate(lua_State * L);
+
+	/**
+	* Returns an iterator which iterates over
+	* lines in files.
+	**/
+	int lines(lua_State * L);
+
+	// DO NOT EXPOSE.
+	int lines_iterator(lua_State * L);
 
 } // love_physfs
 
