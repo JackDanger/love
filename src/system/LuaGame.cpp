@@ -35,7 +35,7 @@ namespace love_system
 
 		// Rename load. (Prevents the built-in load from 
 		// being detected.
-		luaL_dostring(L, "stdload = load; load = nil; love.refs = {}");
+		luaL_dostring(L, "stdload = load; load = nil;");
 
 		// Custom libs.
 		if(!core->open((void*)L))
@@ -445,6 +445,8 @@ namespace love_system
 			
 			"line_smooth = 1,"
 			"line_rough = 2,"
+			"point_smooth = 3,"
+			"point_rough = 4,"
 
 			"tag_error = 0,"
 			"tag_warning = 1,"

@@ -37,8 +37,8 @@ namespace love_opengl
 	pImage newImage(int image);
 	pImage newImage(const char * filename);
 	pImage newImage(const char * filename, int mode);
-	pFont newFont(const char * filename, int size);
-	pFont newFont(int f, int size);
+	pFont newFont(const char * filename, int size = 12);
+	pFont newFont(int f, int size = 12);
 	pFont newImageFont(const char * filename, const char * glyphs, float spacing = 1);
 	
 	pAnimation newAnimation(pImage image);
@@ -75,12 +75,24 @@ namespace love_opengl
 	void setLineWidth( float width );
 	void setLineStyle( int style );
 	void setLine( float width, int style = 0 );
+	void setLineStipple();
+	void setLineStipple(unsigned short pattern, int repeat = 1);
 	
 	float getLineWidth();
 	int getLineStyle();
+	// int getLineStipple(lua_State * L);
+	
+	void setPointSize( float size );
+	void setPointStyle( int style );
+	void setPoint( float size, int style );
+	float getPointSize();
+	int getPointStyle();
+	int getMaxPointSize();
 	
 	void setFont( pFont font );
-	pFont getFont();
+	void setFont( const char * filename, int size = 12 );
+	void setFont( int font, int size = 12 );
+	// pFont getFont(); // (Now native)
 	
 	void draw( const char * str, float x, float y );
 	void draw( const char * str, float x, float y, float angle );
@@ -116,8 +128,13 @@ namespace love_opengl
 	void triangle( int type, float x1, float y1, float x2, float y2, float x3, float y3 );
 	void rectangle( int type, float x, float y, float w, float h );
 	void quad( int type, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 );
-	void oldQuad( int type, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 );
 	void circle( int type, float x, float y, float radius, int points = 10 );
+	
+	void push();
+	void pop();
+	void rotate(float r);
+	void scale(float x, float y = 1.0f);
+	void translate(float x, float y);
 	
 	// Screenshot
 	void screenshot(const char * filename);
@@ -127,6 +144,8 @@ namespace love_opengl
 %native(getScissor) int love_opengl::getScissor(lua_State * L);
 %native(polygon) int love_opengl::polygon(lua_State * L);
 %native(polygong) int love_opengl::polygong(lua_State * L);
+%native(getFont) int love_opengl::getFont(lua_State * L);
+%native(getLineStipple) int love_opengl::getLineStipple(lua_State * L);
 
 %luacode{
 love.graphics = mod_opengl

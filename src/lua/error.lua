@@ -9,7 +9,7 @@ c =
 }
 
 -- This will be displayed at any time.
-display = 
+display =
 {
 	message = "",
 	title = "ERROR"
@@ -29,14 +29,15 @@ function save_state()
 	state.font = love.graphics.getFont()
 	state.color_mode = love.graphics.getColorMode()
 	state.blend_mode = love.graphics.getBlendMode()
-	
+	state.scissor = { love.graphics.getScissor() }
+
 	-- Set new values.
 	love.graphics.setFont(font)
 	love.graphics.setColor(255, 255, 255)
 	love.graphics.setBackgroundColor(c[1].r, c[1].g, c[1].b)
 	love.graphics.setColorMode(love.color_normal)
 	love.graphics.setBlendMode(love.blend_normal)
-	
+	love.graphics.setScissor()
 end
 
 -- This restores the graphics state when 
@@ -48,6 +49,7 @@ function restore_state()
 		if state.font then love.graphics.setFont(state.font) end
 		if state.color_mode then love.graphics.setColorMode(state.color_mode) end
 		if state.blend_mode then love.graphics.setBlendMode(state.blend_mode) end
+		if state.scissor[1] then love.graphics.setScissor(state.scissor[1], state.scissor[2], state.scissor[3], state.scissor[4]) end
 	end
 end
 
@@ -60,14 +62,14 @@ function load()
 			x = 20, y = wh-42, 
 			w = 150, h = 24,
 			label = "(Q)uit", 
-			key = love.key_q, 
+			key = love.key_q,
 			action = love.system.exit, 
 			hover = false
 		}, 
 		{ 
 			x = 171, y = wh-42, 
 			w = 150, h = 24,
-			label = "(R)estart", 
+			label = "(R)estart",
 			key = love.key_r, 
 			action = game_restart, 
 			hover = false
@@ -124,6 +126,7 @@ function message(msg, tag)
 end
 
 function draw()
+	love.graphics.setBackgroundColor(c[1].r, c[1].g, c[1].b)
 	love.graphics.setColor(255, 255, 255)
 	love.graphics.draw(display.title, 50, 50)
 	love.graphics.drawf(display.message, 50, 100, ww-100)

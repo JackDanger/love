@@ -41,7 +41,7 @@ namespace love_opengl
 	bool module_init(int argc, char ** argv, love::Core * core);
 	bool module_quit();
 	bool module_open(void * vm);
-
+		
 	/**
 	* Checks whether a display mode is supported or not. Note
 	* that fullscreen is assumed, because windowed modes are
@@ -84,16 +84,6 @@ namespace love_opengl
 	* presented on screen).
 	**/
 	void present();
-
-	/**
-	* Draws the console on screen.
-	**/
-	void draw_console();
-
-	/**
-	* Prints a message in the console.
-	**/
-	void print(const char * str);
 
 	/**
 	* Sets the windows caption.
@@ -159,12 +149,12 @@ namespace love_opengl
 	/**
 	* Creates a Font object.
 	**/
-	pFont newFont(const char * filename, int size);
+	pFont newFont(const char * filename, int size = 12);
 
 	/**
 	* Creates a Font object (using default fonts).
 	**/
-	pFont newFont(int f, int size);
+	pFont newFont(int f, int size = 12);
 
 	/**
 	* Creates an ImageFont object.
@@ -273,10 +263,13 @@ namespace love_opengl
 	**/
 	void setFont( pFont font );
 
+	void setFont( const char * filename, int size = 12 );
+	void setFont( int font, int size = 12 );
+
 	/**
 	* Gets the current Font.
 	**/
-	pFont getFont();
+	int getFont(lua_State * L);
 
 	/**
 	* Sets the current blend mode.
@@ -305,9 +298,19 @@ namespace love_opengl
 	* Sets the type of line used to draw primitives.
 	**/
 	void setLine( float width, int style = 0 );
+	void setLineStipple();
+	void setLineStipple(unsigned short pattern, int repeat = 1);
 
 	float getLineWidth();
 	int getLineStyle();
+	int getLineStipple(lua_State * L);
+
+	void setPointSize( float size );
+	void setPointStyle( int style );
+	void setPoint( float size, int style );
+	float getPointSize();
+	int getPointStyle();
+	int getMaxPointSize();
 
 	/**
 	* Draw text on screen at the specified coordiantes (automatically breaks \n characters).
@@ -578,6 +581,12 @@ namespace love_opengl
 	* @param filename The filename for where the file should be saved.
 	**/
 	void screenshot(const char * filename);
+
+	void push();
+	void pop();
+	void rotate(float r);
+	void scale(float x, float y = 1.0f);
+	void translate(float x, float y);
 
 	// Special member functions.
 	int _Color_getRGB(lua_State * L);

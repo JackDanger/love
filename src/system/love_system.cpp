@@ -484,9 +484,7 @@ namespace love_system
 		{
 			// msg now holds the complete error message (with stack trace).
 			const char * msg = lua_tostring(L, -1);
-			std::stringstream ss;
-			ss << "Run-time error: " << msg << std::endl;
-			syserr(ss.str().c_str());
+			syserr(msg);
 		}
 
 		return 1;

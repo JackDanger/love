@@ -1,4 +1,5 @@
 -- Example: Cursor Visibility
+
 function load()
     -- Hide mouse on startup.
     love.mouse.setVisible(false)

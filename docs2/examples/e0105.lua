@@ -3,7 +3,7 @@
 angle = 0
 
 function load()
-    image = love.graphics.newImage("images/love-ball.png", love.image_optimize)
+   image = love.graphics.newImage("images/love-ball.png", love.image_optimize)
 end
 
 function update(dt)

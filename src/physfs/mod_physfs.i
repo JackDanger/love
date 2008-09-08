@@ -36,6 +36,7 @@ namespace love_physfs
 %native(lines) int love_physfs::lines(lua_State * L);
 %native(read) int love_physfs::read(lua_State * L);
 %native(write) int love_physfs::write(lua_State * L);
+%native(load) int love_physfs::load(lua_State * L);
 
 %luacode {
 love.filesystem = mod_physfs

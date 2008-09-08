@@ -2062,6 +2062,7 @@ static const struct luaL_reg swig_commands[] = {
     { "lines",love_physfs::lines},
     { "read",love_physfs::read},
     { "write",love_physfs::write},
+    { "load",love_physfs::load},
     {0,0}
 };
 

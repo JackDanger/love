@@ -254,6 +254,12 @@ namespace love_physfs
 	// DO NOT EXPOSE.
 	int lines_iterator(lua_State * L);
 
+	int load(lua_State * L);
+
+	// A physfs-compatible package.loader.
+	// DO NOT EXPOSE.
+	int loader(lua_State * L);
+
 } // love_physfs
 
 #endif // LOVE_MOD_PHYSFS_H 

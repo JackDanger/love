@@ -7857,6 +7857,30 @@ fail:
 
 static int _wrap_newFont__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
+  char *arg1 = (char *) 0 ;
+  love_opengl::pFont result;
+  
+  SWIG_check_num_args("love_opengl::newFont",1,1)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("love_opengl::newFont",1,"char const *");
+  arg1 = (char *)lua_tostring(L, 1);
+  result = love_opengl::newFont((char const *)arg1);
+  SWIG_arg=0;
+  {
+    love_opengl::pFont * resultptr = new love_opengl::pFont((love_opengl::pFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Font_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_newFont__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
   int arg1 ;
   int arg2 ;
   love_opengl::pFont result;
@@ -7882,6 +7906,30 @@ fail:
 }
 
 
+static int _wrap_newFont__SWIG_3(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  love_opengl::pFont result;
+  
+  SWIG_check_num_args("love_opengl::newFont",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::newFont",1,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  result = love_opengl::newFont(arg1);
+  SWIG_arg=0;
+  {
+    love_opengl::pFont * resultptr = new love_opengl::pFont((love_opengl::pFont &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Font_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_newFont(lua_State* L) {
   int argc;
   int argv[3]={
@@ -7889,6 +7937,24 @@ static int _wrap_newFont(lua_State* L) {
   };
   
   argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_newFont__SWIG_3(L);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_newFont__SWIG_1(L);
+    }
+  }
   if (argc == 2) {
     int _v;
     {
@@ -7899,7 +7965,7 @@ static int _wrap_newFont(lua_State* L) {
         _v = lua_isnumber(L,argv[1]);
       }
       if (_v) {
-        return _wrap_newFont__SWIG_1(L);
+        return _wrap_newFont__SWIG_2(L);
       }
     }
   }
@@ -9149,6 +9215,105 @@ static int _wrap_setLine(lua_State* L) {
 }
 
 
+static int _wrap_setLineStipple__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  
+  SWIG_check_num_args("love_opengl::setLineStipple",0,0)
+  love_opengl::setLineStipple();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setLineStipple__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  unsigned short arg1 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("love_opengl::setLineStipple",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::setLineStipple",1,"unsigned short");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::setLineStipple",2,"int");
+  arg1 = (unsigned short)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  love_opengl::setLineStipple(arg1,arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setLineStipple__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  unsigned short arg1 ;
+  
+  SWIG_check_num_args("love_opengl::setLineStipple",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::setLineStipple",1,"unsigned short");
+  arg1 = (unsigned short)lua_tonumber(L, 1);
+  love_opengl::setLineStipple(arg1);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setLineStipple(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 0) {
+    return _wrap_setLineStipple__SWIG_0(L);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_setLineStipple__SWIG_2(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_setLineStipple__SWIG_1(L);
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'setLineStipple'");
+  lua_error(L);return 0;
+}
+
+
 static int _wrap_getLineWidth(lua_State* L) {
   int SWIG_arg = -1;
   float result;
@@ -9185,7 +9350,124 @@ fail:
 }
 
 
-static int _wrap_setFont(lua_State* L) {
+static int _wrap_setPointSize(lua_State* L) {
+  int SWIG_arg = -1;
+  float arg1 ;
+  
+  SWIG_check_num_args("love_opengl::setPointSize",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::setPointSize",1,"float");
+  arg1 = (float)lua_tonumber(L, 1);
+  love_opengl::setPointSize(arg1);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setPointStyle(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  
+  SWIG_check_num_args("love_opengl::setPointStyle",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::setPointStyle",1,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  love_opengl::setPointStyle(arg1);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setPoint(lua_State* L) {
+  int SWIG_arg = -1;
+  float arg1 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("love_opengl::setPoint",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::setPoint",1,"float");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::setPoint",2,"int");
+  arg1 = (float)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  love_opengl::setPoint(arg1,arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getPointSize(lua_State* L) {
+  int SWIG_arg = -1;
+  float result;
+  
+  SWIG_check_num_args("love_opengl::getPointSize",0,0)
+  result = (float)love_opengl::getPointSize();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getPointStyle(lua_State* L) {
+  int SWIG_arg = -1;
+  int result;
+  
+  SWIG_check_num_args("love_opengl::getPointStyle",0,0)
+  result = (int)love_opengl::getPointStyle();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getMaxPointSize(lua_State* L) {
+  int SWIG_arg = -1;
+  int result;
+  
+  SWIG_check_num_args("love_opengl::getMaxPointSize",0,0)
+  result = (int)love_opengl::getMaxPointSize();
+  SWIG_arg=0;
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setFont__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   love_opengl::pFont arg1 ;
   love_opengl::pFont *argp1 ;
@@ -9211,17 +9493,19 @@ fail:
 }
 
 
-static int _wrap_getFont(lua_State* L) {
+static int _wrap_setFont__SWIG_1(lua_State* L) {
   int SWIG_arg = -1;
-  love_opengl::pFont result;
+  char *arg1 = (char *) 0 ;
+  int arg2 ;
   
-  SWIG_check_num_args("love_opengl::getFont",0,0)
-  result = love_opengl::getFont();
+  SWIG_check_num_args("love_opengl::setFont",2,2)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("love_opengl::setFont",1,"char const *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::setFont",2,"int");
+  arg1 = (char *)lua_tostring(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  love_opengl::setFont((char const *)arg1,arg2);
   SWIG_arg=0;
-  {
-    love_opengl::pFont * resultptr = new love_opengl::pFont((love_opengl::pFont &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_opengl__Font_t,1); SWIG_arg++;
-  }
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -9229,6 +9513,142 @@ static int _wrap_getFont(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
+}
+
+
+static int _wrap_setFont__SWIG_2(lua_State* L) {
+  int SWIG_arg = -1;
+  char *arg1 = (char *) 0 ;
+  
+  SWIG_check_num_args("love_opengl::setFont",1,1)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("love_opengl::setFont",1,"char const *");
+  arg1 = (char *)lua_tostring(L, 1);
+  love_opengl::setFont((char const *)arg1);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setFont__SWIG_3(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  int arg2 ;
+  
+  SWIG_check_num_args("love_opengl::setFont",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::setFont",1,"int");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::setFont",2,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  arg2 = (int)lua_tonumber(L, 2);
+  love_opengl::setFont(arg1,arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setFont__SWIG_4(lua_State* L) {
+  int SWIG_arg = -1;
+  int arg1 ;
+  
+  SWIG_check_num_args("love_opengl::setFont",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::setFont",1,"int");
+  arg1 = (int)lua_tonumber(L, 1);
+  love_opengl::setFont(arg1);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setFont(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_boost__shared_ptrT_love_opengl__Font_t, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      return _wrap_setFont__SWIG_0(L);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_setFont__SWIG_4(L);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_setFont__SWIG_2(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_setFont__SWIG_3(L);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_setFont__SWIG_1(L);
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'setFont'");
+  lua_error(L);return 0;
 }
 
 
@@ -10879,50 +11299,6 @@ fail:
 }
 
 
-static int _wrap_oldQuad(lua_State* L) {
-  int SWIG_arg = -1;
-  int arg1 ;
-  float arg2 ;
-  float arg3 ;
-  float arg4 ;
-  float arg5 ;
-  float arg6 ;
-  float arg7 ;
-  float arg8 ;
-  float arg9 ;
-  
-  SWIG_check_num_args("love_opengl::oldQuad",9,9)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::oldQuad",1,"int");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::oldQuad",2,"float");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("love_opengl::oldQuad",3,"float");
-  if(!lua_isnumber(L,4)) SWIG_fail_arg("love_opengl::oldQuad",4,"float");
-  if(!lua_isnumber(L,5)) SWIG_fail_arg("love_opengl::oldQuad",5,"float");
-  if(!lua_isnumber(L,6)) SWIG_fail_arg("love_opengl::oldQuad",6,"float");
-  if(!lua_isnumber(L,7)) SWIG_fail_arg("love_opengl::oldQuad",7,"float");
-  if(!lua_isnumber(L,8)) SWIG_fail_arg("love_opengl::oldQuad",8,"float");
-  if(!lua_isnumber(L,9)) SWIG_fail_arg("love_opengl::oldQuad",9,"float");
-  arg1 = (int)lua_tonumber(L, 1);
-  arg2 = (float)lua_tonumber(L, 2);
-  arg3 = (float)lua_tonumber(L, 3);
-  arg4 = (float)lua_tonumber(L, 4);
-  arg5 = (float)lua_tonumber(L, 5);
-  arg6 = (float)lua_tonumber(L, 6);
-  arg7 = (float)lua_tonumber(L, 7);
-  arg8 = (float)lua_tonumber(L, 8);
-  arg9 = (float)lua_tonumber(L, 9);
-  love_opengl::oldQuad(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
-  SWIG_arg=0;
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_circle__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   int arg1 ;
@@ -11050,6 +11426,162 @@ static int _wrap_circle(lua_State* L) {
 }
 
 
+static int _wrap_push(lua_State* L) {
+  int SWIG_arg = -1;
+  
+  SWIG_check_num_args("love_opengl::push",0,0)
+  love_opengl::push();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_pop(lua_State* L) {
+  int SWIG_arg = -1;
+  
+  SWIG_check_num_args("love_opengl::pop",0,0)
+  love_opengl::pop();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_rotate(lua_State* L) {
+  int SWIG_arg = -1;
+  float arg1 ;
+  
+  SWIG_check_num_args("love_opengl::rotate",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::rotate",1,"float");
+  arg1 = (float)lua_tonumber(L, 1);
+  love_opengl::rotate(arg1);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_scale__SWIG_0(lua_State* L) {
+  int SWIG_arg = -1;
+  float arg1 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("love_opengl::scale",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::scale",1,"float");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::scale",2,"float");
+  arg1 = (float)lua_tonumber(L, 1);
+  arg2 = (float)lua_tonumber(L, 2);
+  love_opengl::scale(arg1,arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_scale__SWIG_1(lua_State* L) {
+  int SWIG_arg = -1;
+  float arg1 ;
+  
+  SWIG_check_num_args("love_opengl::scale",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::scale",1,"float");
+  arg1 = (float)lua_tonumber(L, 1);
+  love_opengl::scale(arg1);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_scale(lua_State* L) {
+  int argc;
+  int argv[3]={
+    1,2,3
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_scale__SWIG_1(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isnumber(L,argv[1]);
+      }
+      if (_v) {
+        return _wrap_scale__SWIG_0(L);
+      }
+    }
+  }
+  
+  lua_pushstring(L,"No matching function for overloaded 'scale'");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_translate(lua_State* L) {
+  int SWIG_arg = -1;
+  float arg1 ;
+  float arg2 ;
+  
+  SWIG_check_num_args("love_opengl::translate",2,2)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("love_opengl::translate",1,"float");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("love_opengl::translate",2,"float");
+  arg1 = (float)lua_tonumber(L, 1);
+  arg2 = (float)lua_tonumber(L, 2);
+  love_opengl::translate(arg1,arg2);
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_screenshot(lua_State* L) {
   int SWIG_arg = -1;
   char *arg1 = (char *) 0 ;
@@ -11101,10 +11633,16 @@ static const struct luaL_reg swig_commands[] = {
     { "setLineWidth", _wrap_setLineWidth},
     { "setLineStyle", _wrap_setLineStyle},
     { "setLine",_wrap_setLine},
+    { "setLineStipple",_wrap_setLineStipple},
     { "getLineWidth", _wrap_getLineWidth},
     { "getLineStyle", _wrap_getLineStyle},
-    { "setFont", _wrap_setFont},
-    { "getFont", _wrap_getFont},
+    { "setPointSize", _wrap_setPointSize},
+    { "setPointStyle", _wrap_setPointStyle},
+    { "setPoint", _wrap_setPoint},
+    { "getPointSize", _wrap_getPointSize},
+    { "getPointStyle", _wrap_getPointStyle},
+    { "getMaxPointSize", _wrap_getMaxPointSize},
+    { "setFont",_wrap_setFont},
     { "drawf",_wrap_drawf},
     { "draws",_wrap_draws},
     { "draw",_wrap_draw},
@@ -11113,13 +11651,19 @@ static const struct luaL_reg swig_commands[] = {
     { "triangle", _wrap_triangle},
     { "rectangle", _wrap_rectangle},
     { "quad", _wrap_quad},
-    { "oldQuad", _wrap_oldQuad},
     { "circle",_wrap_circle},
+    { "push", _wrap_push},
+    { "pop", _wrap_pop},
+    { "rotate", _wrap_rotate},
+    { "scale",_wrap_scale},
+    { "translate", _wrap_translate},
     { "screenshot", _wrap_screenshot},
     { "getModes",love_opengl::getModes},
     { "getScissor",love_opengl::getScissor},
     { "polygon",love_opengl::polygon},
     { "polygong",love_opengl::polygong},
+    { "getFont",love_opengl::getFont},
+    { "getLineStipple",love_opengl::getLineStipple},
     {0,0}
 };
 

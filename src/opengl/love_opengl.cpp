@@ -37,6 +37,33 @@ namespace love_opengl
 		bool vsync; // Vsync enabled (true), or disabled (false).
 		int fsaa; // 0 for no FSAA, otherwise 1, 2 or 4.
 	};
+
+	// During display mode changing, certain
+	// variables about the OpenGL context are
+	// lost.
+	struct display_state
+	{
+		// Colors.
+		pColor color, background;
+
+		// Blend and color modes.
+		int blend_mode, color_mode;
+
+		// Line.
+		float line_width;
+		int line_style;
+		bool stipple;
+		int stipple_repeat;
+		int stipple_pattern;
+
+		// Point.
+		float point_size;
+		int point_style;
+
+		// Scissor.
+		bool scissor;
+		GLint scissor_box[4];
+	};
 	
 	// The one and only display_mode instance.
 	display_mode current_mode;
@@ -144,27 +171,86 @@ namespace love_opengl
 		return (bpp >= 16);	
 	}
 
+	display_state save_display_state()
+	{
+		display_state s;
+		s.color = getColor();
+		s.background = getBackgroundColor();
+		s.blend_mode = getBlendMode();
+		s.color_mode = getColorMode();
+		s.line_width = getLineWidth();
+		s.line_style = getLineStyle();
+		s.point_size = getPointSize();
+		s.point_style = getPointStyle();
+
+		s.stipple = (glIsEnabled(GL_LINE_STIPPLE) == GL_TRUE);
+		if(s.stipple)
+		{
+			glGetIntegerv(GL_LINE_STIPPLE_PATTERN, &s.stipple_pattern);
+			glGetIntegerv(GL_LINE_STIPPLE_REPEAT, &s.stipple_repeat);
+		}
+
+		s.scissor = (glIsEnabled(GL_SCISSOR_TEST) == GL_TRUE);
+		if(s.scissor) 
+		{
+			glGetIntegerv(GL_SCISSOR_BOX, s.scissor_box);
+			s.scissor_box[1] = getHeight() - (s.scissor_box[1] + s.scissor_box[3]);
+		}
+
+		return s;
+	}
+
+	display_state default_display_state()
+	{
+		display_state s;
+
+		s.color.reset<Color>(new Color(255, 255, 255, 255));
+		s.background.reset<Color>(new Color(0, 0, 0, 255));
+
+		s.blend_mode = love::BLEND_NORMAL;
+		s.color_mode = love::COLOR_NORMAL;
+
+		s.line_width = 1.0f;
+		s.line_style = love::LINE_SMOOTH;
+		s.stipple = false;
+
+		s.point_style = love::POINT_SMOOTH;
+		s.point_size = 1.0f;
+
+		s.scissor = false;
+		return s;
+	}
+
+	void restore_display_state(const display_state & s)
+	{
+		setColor(s.color);
+		setBackgroundColor(s.background);
+		setBlendMode(s.blend_mode);
+		setColorMode(s.color_mode);
+		setLine(s.line_width, s.line_style);
+		setPoint(s.point_size, s.point_style);
+		if(s.stipple) setLineStipple(s.stipple_pattern, s.stipple_repeat);
+		if(s.scissor) setScissor(s.scissor_box[0], s.scissor_box[1], s.scissor_box[2], s.scissor_box[3]);
+		
+	}
+
 	bool setMode(int width, int height, bool fullscreen, bool vsync, int fsaa)
 	{
 
-		// Temp variables that holds the saved
-		// graphics state if we are *changing* display mode.
-		pColor color, bg;
-		int blend_mode = love::BLEND_NORMAL, color_mode = love::COLOR_NORMAL;
-		float line_width = 1.0f;
-		int line_style = love::LINE_SMOOTH;
+		display_state state;
 
-		// If screen is already created, then we're about to 
-		// change the display mode.
-		if(isCreated())
+		if(!isCreated())
 		{
+			// First time ...
+			state = default_display_state();
+		}
+		else
+		{
+			// If screen is already created, then we're about to 
+			// change the display mode.
+
 			// Save the state.
-			color = getColor();
-			bg = getBackgroundColor();
-			blend_mode = getBlendMode();
-			color_mode = getColorMode();
-			line_style = getLineStyle();
-			line_width = getLineWidth();
+			state = save_display_state();
 
 			// Caption too.
 			std::string caption = getCaption();
@@ -237,9 +323,11 @@ namespace love_opengl
 		// "Normal" blending
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		// Enable line smoothing.
-		glEnable (GL_LINE_SMOOTH);
-		glHint (GL_LINE_SMOOTH_HINT, GL_NICEST);
+		// Enable line/point smoothing.
+		glEnable(GL_LINE_SMOOTH);
+		glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+		glEnable(GL_POINT_SMOOTH);
+		glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
 
 		// Cull backface
 		glEnable(GL_CULL_FACE);		// Enable face culling (no need to render surfaces we can't see
@@ -265,20 +353,6 @@ namespace love_opengl
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 
-		// Restore the saved state, if any.
-		if(isCreated())
-		{
-			if(!Volatile::loadAll())
-				std::cerr << "Could not reload all volatile objects." << std::endl;
-
-			// Restore the state.
-			setColor(color);
-			setBackgroundColor(bg);
-			setBlendMode(blend_mode);
-			setColorMode(color_mode);
-			setLine(line_width, line_style);
-		}
-
 		// Set the new display mode as the current display mode.
 		current_mode.width = width;
 		current_mode.height = height;
@@ -286,6 +360,16 @@ namespace love_opengl
 		current_mode.fsaa = fsaa;
 		current_mode.fullscreen = fullscreen;
 		current_mode.vsync = vsync;
+
+		// Restore the saved state, if any.
+		if(isCreated())
+		{
+			if(!Volatile::loadAll())
+				std::cerr << "Could not reload all volatile objects." << std::endl;
+
+			// Restore the state.
+			restore_display_state(state);
+		}
 
 		return true;
 	}
@@ -303,11 +387,8 @@ namespace love_opengl
 
 	void reset()
 	{
-		setColor(255, 255, 255);
-		setBackgroundColor(0, 0, 0);
-		setBlendMode(love::BLEND_NORMAL);
-		setColorMode(love::COLOR_NORMAL);
-		setLine(1, love::LINE_SMOOTH);
+		display_state s = default_display_state();
+		restore_display_state(s);
 	}
 
 	void clear()
@@ -615,15 +696,16 @@ namespace love_opengl
 
 	int getScissor(lua_State * L)
 	{
-		GLint * scissor = new GLint[4];
+		if(glIsEnabled(GL_SCISSOR_TEST) == GL_FALSE)
+			return 0;
+
+		GLint scissor[4];
 		glGetIntegerv(GL_SCISSOR_BOX, scissor);
 
 		lua_pushnumber(L, scissor[0]);
 		lua_pushnumber(L, getHeight() - (scissor[1] + scissor[3])); // Compensates for the fact that our y-coordinate is reverse of OpenGLs.
 		lua_pushnumber(L, scissor[2]);
 		lua_pushnumber(L, scissor[3]);
-
-		delete scissor;
 
 		return 4;
 	}
@@ -676,9 +758,23 @@ namespace love_opengl
 		current_font = font;
 	}
 
-	pFont getFont()
+	void setFont( const char * filename, int size )
 	{
-		return current_font;
+		current_font = newFont(filename, size );
+	}
+
+	void setFont( int font, int size )
+	{
+		current_font = newFont( font, size );
+	}
+
+	int getFont(lua_State * L)
+	{
+		if(current_font != 0)
+			mod_push_font(L, current_font);
+		else
+			lua_pushnil(L);
+		return 1;
 	}
 
 	void setBlendMode( int mode )
@@ -703,9 +799,9 @@ namespace love_opengl
 		glGetIntegerv(GL_BLEND_DST, &dst);
 		glGetIntegerv(GL_BLEND_SRC, &src);
 
-		if(dst == GL_SRC_ALPHA && src == GL_ONE)
+		if(src == GL_SRC_ALPHA && dst == GL_ONE)
 			return love::BLEND_ADDITIVE;
-		else // dst == GL_SRC_ALPHA && src == GL_ONE_MINUS_SRC_ALPHA
+		else // src == GL_SRC_ALPHA && dst == GL_ONE_MINUS_SRC_ALPHA
 			return love::BLEND_NORMAL;
 	}
 
@@ -750,7 +846,17 @@ namespace love_opengl
 			glEnable (GL_LINE_SMOOTH);
 			glHint (GL_LINE_SMOOTH_HINT, GL_NICEST);
 		}
+	}
 
+	void setLineStipple()
+	{
+		glDisable(GL_LINE_STIPPLE);
+	}
+
+	void setLineStipple(unsigned short pattern, int repeat)
+	{
+		glEnable(GL_LINE_STIPPLE);
+		glLineStipple((GLint)repeat, (GLshort)pattern);
 	}
 
 	float getLineWidth()
@@ -766,6 +872,64 @@ namespace love_opengl
 			return love::LINE_SMOOTH;
 		else
 			return love::LINE_ROUGH;
+	}
+
+	int getLineStipple(lua_State * L)
+	{
+		if(glIsEnabled(GL_LINE_STIPPLE) == GL_FALSE)
+			return 0;
+	
+		GLint factor, pattern;
+		glGetIntegerv(GL_LINE_STIPPLE_PATTERN, &pattern);
+		glGetIntegerv(GL_LINE_STIPPLE_REPEAT, &factor);
+		lua_pushinteger(L, pattern);
+		lua_pushinteger(L, factor);
+		return 2;
+	}
+
+	void setPointSize( float size )
+	{
+		glPointSize((GLfloat)size);
+	}
+
+	void setPointStyle( int style )
+	{
+		if( style == love::POINT_SMOOTH )
+			glEnable(GL_POINT_SMOOTH);
+		else // love::POINT_ROUGH
+			glDisable(GL_POINT_SMOOTH);
+	}
+
+	void setPoint( float size, int style )
+	{
+		if( style == love::POINT_SMOOTH )
+			glEnable(GL_POINT_SMOOTH);
+		else // love::POINT_ROUGH
+			glDisable(GL_POINT_SMOOTH);
+
+		glPointSize((GLfloat)size);
+	}
+
+	float getPointSize()
+	{
+		GLfloat size;
+		glGetFloatv(GL_POINT_SIZE, &size);
+		return (float)size;
+	}
+
+	int getPointStyle()
+	{
+		if(glIsEnabled(GL_POINT_SMOOTH) == GL_TRUE)
+			return love::POINT_SMOOTH;
+		else
+			return love::POINT_ROUGH;
+	}
+
+	int getMaxPointSize()
+	{
+		GLint max;
+		glGetIntegerv(GL_POINT_SIZE_MAX, &max);
+		return (int)max;
 	}
 
 	float push_color_mode()
@@ -1074,7 +1238,6 @@ namespace love_opengl
 
 	void point( float x, float y )
 	{
-		glPointSize(1.0f);
 		glDisable(GL_TEXTURE_2D);
 		glBegin(GL_POINTS);
 			glVertex2f(x, y);
@@ -1096,6 +1259,7 @@ namespace love_opengl
 
 	void triangle( int type, float x1, float y1, float x2, float y2, float x3, float y3 )
 	{
+		glDisable(GL_CULL_FACE);
 		glDisable(GL_TEXTURE_2D);
 		glPushMatrix();
 
@@ -1121,6 +1285,7 @@ namespace love_opengl
 
 		glPopMatrix();
 		glEnable(GL_TEXTURE_2D);
+		glEnable(GL_CULL_FACE);
 	}
 
 	void rectangle( int type, float x, float y, float w, float h )
@@ -1185,37 +1350,6 @@ namespace love_opengl
 		glPopMatrix();
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_CULL_FACE);
-	}
-
-	void oldQuad( int type, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4 )
-	{
-		glDisable(GL_TEXTURE_2D);
-		glPushMatrix();
-
-		switch(type)
-		{
-		case love::DRAW_LINE:
-			glBegin(GL_LINE_LOOP);
-				glVertex2f(x1, y1);				
-				glVertex2f(x2, y2);
-				glVertex2f(x3, y3);
-				glVertex2f(x4, y4);
-			glEnd();
-			break;
-
-		default:
-		case love::DRAW_FILL:
-			glBegin(GL_QUADS);
-				glVertex2f(x1, y1);
-				glVertex2f(x2, y2);
-				glVertex2f(x3, y3);
-				glVertex2f(x4, y4);
-			glEnd();
-			break;
-		}
-
-		glPopMatrix();
-		glEnable(GL_TEXTURE_2D);
 	}
 
 	void circle( int type, float x, float y, float radius, int points )
@@ -1491,6 +1625,31 @@ namespace love_opengl
 	}
 
 
+	void push()
+	{
+		glPushMatrix();
+	}
+
+	void pop()
+	{
+		glPopMatrix();
+	}
+
+	void rotate(float r)
+	{
+		glRotatef(r, 0, 0, 1);
+	}
+
+	void scale(float x, float y)
+	{
+		glScalef(x, y, 1);
+	}
+
+	void translate(float x, float y)
+	{
+		glTranslatef(x, y, 1);
+	}
+
 	/**
 	* Special member functions.
 	**/
@@ -1506,5 +1665,7 @@ namespace love_opengl
 		lua_pushnumber(L, c->getBlue());
 		return 3;
 	}
+
+
 
 } // love_opengl

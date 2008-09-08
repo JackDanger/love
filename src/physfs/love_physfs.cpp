@@ -95,10 +95,20 @@ namespace love_physfs
 
 	bool module_open(void * vm)
 	{
-		lua_State * s = (lua_State *)vm;
-		if(s == 0)
+		lua_State * L = (lua_State *)vm;
+		if(L == 0)
 			return false;
-		luaopen_mod_physfs(s);
+		
+		luaopen_mod_physfs(L);
+
+		// Add the loader function.
+		lua_getglobal(L, "package");
+		lua_getfield(L, -1, "loaders");
+		int next = (int)lua_objlen(L, -1)+1;
+		lua_pushcfunction(L, loader);
+		lua_rawseti(L, -2, next);
+		lua_pop(L, 2);
+
 		return true;
 	}
 
@@ -676,6 +686,58 @@ namespace love_physfs
 
 		// else: (newline <= 0)
 		return 0;
+	}
+
+	int load(lua_State * L)
+	{
+		// Need only one arg.
+		love::luax_assert_argc(L, 1, 1);
+
+		// Must be string.
+		if(!lua_isstring(L, -1))
+			return luaL_error(L, "The argument must be a string.");
+
+		const char * filename = lua_tostring(L, -1);
+		
+		// The file must exist.
+		if(!exists(filename))
+			return luaL_error(L, "File %s does not exist.", filename);
+
+		// Create the file.
+		pFile file = newFile(filename);
+
+		if(!file->load())
+			return luaL_error(L, "File %s could not be loaded.", filename);
+
+		// Get the data from the file.
+		const char * data = file->getData();
+		int size = file->getSize();
+
+		// Load the chunk, but don't run it.
+		switch (luaL_loadbuffer(L, data, size, filename))
+		{
+		case LUA_ERRMEM:
+			return luaL_error(L, "Memory allocation error: %s\n", lua_tostring(L, -1));
+		case LUA_ERRSYNTAX:
+			return luaL_error(L, "Syntax error: %s\n", lua_tostring(L, -1));
+		default: // success
+			return 1;
+		}
+	}
+
+	int loader(lua_State * L)
+	{
+		const char * filename = lua_tostring(L, -1);
+
+		// Check whether file exists.
+		if(!exists(filename))
+		{
+			lua_pushfstring(L, "\n\tno file \"%s\" in LOVE game directories.\n", filename);
+			return 1;
+		}
+	
+		// Ok, load it.
+		return load(L);
 	}
 
 } // love_physfs

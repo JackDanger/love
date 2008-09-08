@@ -25,7 +25,6 @@ namespace love
 		lua_State * L;
 		int ref;
 	public:
-		static const char * TABLE;
 		Reference(lua_State * L);
 		~Reference();
 		void push();

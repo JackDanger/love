@@ -149,7 +149,9 @@ namespace love
 	enum
 	{
 		LINE_SMOOTH	= 1,
-		LINE_ROUGH	= 2
+		LINE_ROUGH	= 2, 
+		POINT_SMOOTH = 3, 
+		POINT_ROUGH = 4,
 	};
 
 	// Mouse constants.
