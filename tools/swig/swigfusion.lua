@@ -128,7 +128,7 @@ extern "C" {
         for s,l in pairs(self.types) do
             file:write("\t"..self:getIsType(s)..";\n")
             file:write("\t"..self:getToType(s)..";\n")
-            file:write("\t"..self:getPushType(s)..";\n")           
+            file:write("\t"..self:getPushType(s)..";\n")
             file:write("\n")
         end
         
@@ -152,7 +152,7 @@ function Module:prepend()
     local i = 1
     
     table.insert(self.glue, i, [[
-    
+
 // SWIGFUSION ^.^
     
 // Lua
@@ -169,6 +169,12 @@ struct lua_State;
         for s,l in pairs(self.types) do
             if self.ftab and self.ftab.methods and self.ftab.methods[s] then
                 for im, m in pairs(self.ftab.methods[s]) do
+                    table.insert(self.glue, i, "\t" .. self:getFuseFunc(s, m) .. ";")
+                    i = i + 1
+                end
+            end
+            if self.ftab and self.ftab.rawmethods and self.ftab.rawmethods[s] then
+                for im, m in pairs(self.ftab.rawmethods[s]) do
                     table.insert(self.glue, i, "\t" .. self:getFuseFunc(s, m) .. ";")
                     i = i + 1
                 end
@@ -214,7 +220,7 @@ function Module:add()
         return *arg;
     }
         ]])
-        
+
         table.insert(self.glue, "\t" .. self:getPushType(s) .. [[
             
     {
@@ -240,6 +246,23 @@ function Module:add()
         
             end -- for
         end -- if
+        
+        if self.ftab and self.ftab.rawmethods and self.ftab.rawmethods[s] then
+            for im, m in pairs(self.ftab.rawmethods[s]) do
+            
+        -- Fusion for this type.
+        table.insert(self.glue, "\t" .. self:getFuseFunc(s, m) .. [[
+        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        ]]..self:getTypeName(s)..[[ p = ]].. self:getToTypeName(s) .. [[(L, 1);
+        return p->]]..im..[[(L);
+    }
+        ]])
+        
+        
+            end -- for
+        end -- if
     
     
     end
@@ -256,6 +279,12 @@ end
 function Module:fusion(line)
     table.insert(self.glue, line)
     
+    local insertglue = function(i, im, m)
+    	table.insert(self.glue, "\t{\"" .. m .. "\", love_" .. self.name .. "::" .. self:getFuse(i, m) .. "},")
+    	print(" * Fused: " ..i.."::".. im .. " => " .. self:getFuse(i, m))
+    	table.insert(self.fusion_log,  i.."::" .. im .. " => " .. self:getFuse(i, m))
+    end
+
     -- Check for fusion.
     if self.types then
         for i,t in pairs(self.types) do
@@ -263,9 +292,12 @@ function Module:fusion(line)
             if match then
                 if self.ftab and self.ftab.methods and self.ftab.methods[i] then
                     for im, m in pairs(self.ftab.methods[i]) do
-                        table.insert(self.glue, "\t{\"" .. m .. "\", love_" .. self.name .. "::" .. self:getFuse(i, m) .. "},")
-                        print(" * Fused: " ..i.."::".. im .. " => " .. self:getFuse(i, m))
-                        table.insert(self.fusion_log,  i.."::" .. im .. " => " .. self:getFuse(i, m))
+                        insertglue(i, im, m)
+                    end
+                end
+                if self.ftab and self.ftab.rawmethods and self.ftab.rawmethods[i] then
+                    for im, m in pairs(self.ftab.rawmethods[i]) do
+                        insertglue(i, im, m)
                     end
                 end
             end

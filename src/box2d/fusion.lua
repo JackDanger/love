@@ -39,7 +39,7 @@ local t =
 			getMask = "getMask",
 			getBoundingBox = "getBoundingBox",
 		},
-		PolygonShape = 
+		PolygonShape =
 		{
 			setData = "setData", 
 			getData = "getData",
@@ -75,7 +75,17 @@ local t =
 			getReactionForce = "getReactionForce",
 			getLimits = "getLimits",
 		},
-		
+	},
+	rawmethods = 
+	{
+		Shape =
+		{
+			destroy = "destroy",
+		},
+		MouseJoint =
+		{
+			destroy = "destroy",
+		}
 	}
 }
 return t

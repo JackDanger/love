@@ -43,5 +43,4 @@ namespace love_box2d
 		return joint->m_maxForce;
 	}
 
-
 } // love_box2d

@@ -174,6 +174,12 @@ namespace love_box2d
 		return 8;
 	}
 
+	int Shape::destroy(lua_State * L)
+	{
+
+		return 0;
+	}
+
 	uint16 Shape::getBits(lua_State * L)
 	{
 		// Get number of args.

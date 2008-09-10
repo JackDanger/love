@@ -7,6 +7,9 @@
 // STD
 #include <bitset>
 
+// Boost
+#include <boost/any.hpp>
+
 namespace love_box2d
 {
 
@@ -89,5 +92,15 @@ namespace love_box2d
 		world->world->DestroyJoint(joint);
 	}
 		
+	int Joint::destroy(lua_State * L)
+	{
+		/**
+		lua_newtable(L);
+		lua_pushcfunction(L, __destroy_metatable);
+		lua_setfield(L, -2, "__index");
+		lua_setmetatable(L, 1);
+		**/
+		return 0;
+	}
 
 } // love_box2d

@@ -219,6 +219,8 @@ namespace love_box2d
 		**/ 
 		int getBoundingBox(lua_State * L);
 
+		int destroy(lua_State * L);
+
 	private:
 
 		/**

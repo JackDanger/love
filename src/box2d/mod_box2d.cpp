@@ -1,4 +1,4 @@
-    
+
 // SWIGFUSION ^.^
     
 // Lua
@@ -15,6 +15,7 @@ namespace love_box2d
 	int _wrap_method_PolygonShape_setData(lua_State * L);
 	int _wrap_method_PolygonShape_getMask(lua_State * L);
 	int _wrap_method_PolygonShape_setMask(lua_State * L);
+	int _wrap_method_Shape_destroy(lua_State * L);
 	int _wrap_method_Body_getLocalPoint(lua_State * L);
 	int _wrap_method_Body_getLocalCenter(lua_State * L);
 	int _wrap_method_Body_getWorldPoint(lua_State * L);
@@ -41,6 +42,7 @@ namespace love_box2d
 	int _wrap_method_MouseJoint_getReactionForce(lua_State * L);
 	int _wrap_method_MouseJoint_getTarget(lua_State * L);
 	int _wrap_method_MouseJoint_getAnchors(lua_State * L);
+	int _wrap_method_MouseJoint_destroy(lua_State * L);
 	int _wrap_method_Contact_getPosition(lua_State * L);
 	int _wrap_method_Contact_getVelocity(lua_State * L);
 	int _wrap_method_Contact_getNormal(lua_State * L);
@@ -4976,6 +4978,7 @@ boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::S
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_Shape_Sg__methods[] = {
+	{"destroy", love_box2d::_wrap_method_Shape_destroy},
     {"__deref__", _wrap_SmartShape___deref__}, 
     {"getType", _wrap_SmartShape_getType}, 
     {"setFriction", _wrap_SmartShape_setFriction}, 
@@ -7371,6 +7374,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_MouseJoint_Sg__method
 	{"getReactionForce", love_box2d::_wrap_method_MouseJoint_getReactionForce},
 	{"getTarget", love_box2d::_wrap_method_MouseJoint_getTarget},
 	{"getAnchors", love_box2d::_wrap_method_MouseJoint_getAnchors},
+	{"destroy", love_box2d::_wrap_method_MouseJoint_destroy},
     {"__deref__", _wrap_SmartMouseJoint___deref__}, 
     {"setTarget", _wrap_SmartMouseJoint_setTarget}, 
     {"setMaxForce", _wrap_SmartMouseJoint_setMaxForce}, 
@@ -10661,6 +10665,16 @@ namespace love_box2d
         return *arg;
     }
         
+	boost::shared_ptr<PolygonShape> * mod_to_polygonshape_ptr(lua_State * L, int idx)            
+    {
+        love_box2d::pPolygonShape * arg;
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,0))){
+              luaL_error(L, "Error, argument is not type PolygonShape.");
+        }
+        return arg;
+    }
+        
 	void mod_push_polygonshape(lua_State * L, boost::shared_ptr<PolygonShape> polygonshape)            
     {
         love_box2d::pPolygonShape * resultptr = new love_box2d::pPolygonShape((love_box2d::pPolygonShape &) polygonshape);
@@ -10752,10 +10766,27 @@ namespace love_box2d
         return *arg;
     }
         
+	boost::shared_ptr<Shape> * mod_to_shape_ptr(lua_State * L, int idx)            
+    {
+        love_box2d::pShape * arg;
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,0))){
+              luaL_error(L, "Error, argument is not type Shape.");
+        }
+        return arg;
+    }
+        
 	void mod_push_shape(lua_State * L, boost::shared_ptr<Shape> shape)            
     {
         love_box2d::pShape * resultptr = new love_box2d::pShape((love_box2d::pShape &) shape);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,1);
+    }
+        
+	int _wrap_method_Shape_destroy(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pShape p = mod_to_shape(L, 1);
+        return p->destroy(L);
     }
         
 	bool mod_is_body(lua_State * L, int idx)            
@@ -10777,6 +10808,16 @@ namespace love_box2d
               luaL_error(L, "Error, argument is not type Body.");
         }
         return *arg;
+    }
+        
+	boost::shared_ptr<Body> * mod_to_body_ptr(lua_State * L, int idx)            
+    {
+        love_box2d::pBody * arg;
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Body_t,0))){
+              luaL_error(L, "Error, argument is not type Body.");
+        }
+        return arg;
     }
         
 	void mod_push_body(lua_State * L, boost::shared_ptr<Body> body)            
@@ -10886,6 +10927,16 @@ namespace love_box2d
         return *arg;
     }
         
+	boost::shared_ptr<CircleShape> * mod_to_circleshape_ptr(lua_State * L, int idx)            
+    {
+        love_box2d::pCircleShape * arg;
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__CircleShape_t,0))){
+              luaL_error(L, "Error, argument is not type CircleShape.");
+        }
+        return arg;
+    }
+        
 	void mod_push_circleshape(lua_State * L, boost::shared_ptr<CircleShape> circleshape)            
     {
         love_box2d::pCircleShape * resultptr = new love_box2d::pCircleShape((love_box2d::pCircleShape &) circleshape);
@@ -10969,6 +11020,16 @@ namespace love_box2d
         return *arg;
     }
         
+	boost::shared_ptr<PrismaticJoint> * mod_to_prismaticjoint_ptr(lua_State * L, int idx)            
+    {
+        love_box2d::pPrismaticJoint * arg;
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PrismaticJoint_t,0))){
+              luaL_error(L, "Error, argument is not type PrismaticJoint.");
+        }
+        return arg;
+    }
+        
 	void mod_push_prismaticjoint(lua_State * L, boost::shared_ptr<PrismaticJoint> prismaticjoint)            
     {
         love_box2d::pPrismaticJoint * resultptr = new love_box2d::pPrismaticJoint((love_box2d::pPrismaticJoint &) prismaticjoint);
@@ -11018,6 +11079,16 @@ namespace love_box2d
               luaL_error(L, "Error, argument is not type RevoluteJoint.");
         }
         return *arg;
+    }
+        
+	boost::shared_ptr<RevoluteJoint> * mod_to_revolutejoint_ptr(lua_State * L, int idx)            
+    {
+        love_box2d::pRevoluteJoint * arg;
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__RevoluteJoint_t,0))){
+              luaL_error(L, "Error, argument is not type RevoluteJoint.");
+        }
+        return arg;
     }
         
 	void mod_push_revolutejoint(lua_State * L, boost::shared_ptr<RevoluteJoint> revolutejoint)            
@@ -11071,6 +11142,16 @@ namespace love_box2d
         return *arg;
     }
         
+	boost::shared_ptr<MouseJoint> * mod_to_mousejoint_ptr(lua_State * L, int idx)            
+    {
+        love_box2d::pMouseJoint * arg;
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__MouseJoint_t,0))){
+              luaL_error(L, "Error, argument is not type MouseJoint.");
+        }
+        return arg;
+    }
+        
 	void mod_push_mousejoint(lua_State * L, boost::shared_ptr<MouseJoint> mousejoint)            
     {
         love_box2d::pMouseJoint * resultptr = new love_box2d::pMouseJoint((love_box2d::pMouseJoint &) mousejoint);
@@ -11101,6 +11182,13 @@ namespace love_box2d
         return p->getAnchors(L);
     }
         
+	int _wrap_method_MouseJoint_destroy(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pMouseJoint p = mod_to_mousejoint(L, 1);
+        return p->destroy(L);
+    }
+        
 	bool mod_is_joint(lua_State * L, int idx)            
     {
         swig_lua_userdata* usr = 0;
@@ -11120,6 +11208,16 @@ namespace love_box2d
               luaL_error(L, "Error, argument is not type Joint.");
         }
         return *arg;
+    }
+        
+	boost::shared_ptr<Joint> * mod_to_joint_ptr(lua_State * L, int idx)            
+    {
+        love_box2d::pJoint * arg;
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Joint_t,0))){
+              luaL_error(L, "Error, argument is not type Joint.");
+        }
+        return arg;
     }
         
 	void mod_push_joint(lua_State * L, boost::shared_ptr<Joint> joint)            
@@ -11147,6 +11245,16 @@ namespace love_box2d
               luaL_error(L, "Error, argument is not type Contact.");
         }
         return *arg;
+    }
+        
+	boost::shared_ptr<Contact> * mod_to_contact_ptr(lua_State * L, int idx)            
+    {
+        love_box2d::pContact * arg;
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Contact_t,0))){
+              luaL_error(L, "Error, argument is not type Contact.");
+        }
+        return arg;
     }
         
 	void mod_push_contact(lua_State * L, boost::shared_ptr<Contact> contact)            
@@ -11200,6 +11308,16 @@ namespace love_box2d
         return *arg;
     }
         
+	boost::shared_ptr<DistanceJoint> * mod_to_distancejoint_ptr(lua_State * L, int idx)            
+    {
+        love_box2d::pDistanceJoint * arg;
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__DistanceJoint_t,0))){
+              luaL_error(L, "Error, argument is not type DistanceJoint.");
+        }
+        return arg;
+    }
+        
 	void mod_push_distancejoint(lua_State * L, boost::shared_ptr<DistanceJoint> distancejoint)            
     {
         love_box2d::pDistanceJoint * resultptr = new love_box2d::pDistanceJoint((love_box2d::pDistanceJoint &) distancejoint);
@@ -11241,6 +11359,16 @@ namespace love_box2d
               luaL_error(L, "Error, argument is not type World.");
         }
         return *arg;
+    }
+        
+	boost::shared_ptr<World> * mod_to_world_ptr(lua_State * L, int idx)            
+    {
+        love_box2d::pWorld * arg;
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_box2d__World_t,0))){
+              luaL_error(L, "Error, argument is not type World.");
+        }
+        return arg;
     }
         
 	void mod_push_world(lua_State * L, boost::shared_ptr<World> world)            
