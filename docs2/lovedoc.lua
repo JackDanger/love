@@ -501,10 +501,10 @@ end
 
 function lovedoc.parser.example(t, p)
 	local o = lovedoc.newtag()
-        o._id = t.attr.id or error("Missing required attribute \"id\".")
-        o._name = "Example "..exnum(o._id)
-        o._data = exget(o._id)
-        lovedoc.insert(t, p, o)
+    o._id = t.attr.id or error("Missing ID attribute.")
+    o._name = "Example "..exnum(o._id)
+    o._data = exget(o._id)
+    lovedoc.insert(t, p, o)
 end
 
 function lovedoc.parser.see(t, p)
@@ -527,7 +527,9 @@ function lovedoc.parser.misc(t, p)
 	o._name = t.attr.name or "No Name"
 	o._text = ""
 	o._title = t.attr.title or o._name
+	o._file = t.attr.file
 	o.item = {}
+	o.example = {}
 	lovedoc.insert(t, p, o)
 end
 
@@ -774,7 +776,7 @@ function example_section(b, list)
         b:pop()
         b:div("content")
         for ei,e in ipairs(list) do
-                local code, title, id = exgen(e._data)
+        		local code, title, id = exgen(e._data)
                 code = code or error("No code")
                 title = title or error("No title")
                 b:div("example")
@@ -833,10 +835,20 @@ function lovedoc.docwriter.misc(m)
 		local b = lovedoc.newbuffer()
 		b:header()
 		b:menu(m:name())
-			
-		page_begin(b, "Miscellaneous", m:name(), m:text())
-		item_section(b, m.item, m._title)
-		page_end(b)
+
+
+		
+		if m._file then
+			local f = loadfile(m._file)
+			local t = f()
+			t.write(b, m)
+		else
+			page_begin(b, "Miscellaneous", m:name(), m:text())
+			item_section(b, m.item, m._title)
+			page_end(b)
+		end
+
+
 		
 		b:tofile(m:url())
 end

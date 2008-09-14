@@ -823,6 +823,9 @@
 
     <func name="checkMode" brief="Checks if a display mode is supported.">
       <overload>
+      	This function checks whether a display mode is supported without changing
+      	the display mode. You should always make sure that a mode is supported before trying to
+      	set it with love.graphics.setMode.
         <param name="width" brief="Display width." />
         <param name="height" brief="Display height." />
         <param name="fullscreen" brief="Fullscreen (true), or windowed (false)." />
@@ -838,6 +841,7 @@
         <param name="vsync" brief="True if LOVE should wait for vsync, false otherwise (normally true)." />
         <param name="fsaa" brief="The number of FSAA-buffers (normally 0)." />
         <ret type="boolean" brief="True if successful, false otherwise" />
+        <see>love.graphics.checkMode</see>
 
         Do not change the display mode unless you know that that mode is supported. Use love.graphics.checkMode to
         check whether a mode is supported or not. [br /]
@@ -849,9 +853,9 @@
         [br /]
         [br /]
         FSAA stands for Full Scene Anti-Aliasing, and it is recommended to set this number to 0 (the default),
-        unless you need anti-aliasing of the edges on primitves and images. Most machines who support this feature support
-        1, 2 and 4 FSAA buffers. The more buffers, the better the anti-aliasing and the slower the performance.
-        Assuming you're not using filled primites, you do not really need FSAA as long as you pad the sprites with some empty space; in this case FSAA will have no effect
+        unless you need anti-aliasing of the edges on primitves and images. Most machines which support this feature support
+        1, 2 and 4 FSAA buffers. The more buffers, the better the anti-aliasing and the bigger the performance hit.
+        Assuming you're not using filled primitives, you do not really need FSAA as long as you pad the sprites with some empty space; in this case FSAA will have no effect
         on the visuals at all, it will only hinder performance.
       </overload>
     </func>
@@ -890,6 +894,7 @@
 
     <func name="setCaption" brief="Sets the window caption." space="true">
       <overload>
+      	You can also set the caption with the "title" attribute in the config file.
         <param name="caption" brief="The new window caption." />
       </overload>
     </func>
@@ -1513,34 +1518,50 @@
       
       <func name="getX" brief="Gets the x-component of the position.">
         <overload>
+        	This function gets only the x-component, which may be useful in rare cases. Normally though, 
+        	you would want to get both x- and y-components, in which case Body:getPosition is more
+        	appropriate.
           <ret name="x" type="number" brief="The x-component of the position." />
+          <see>Body:getPosition</see>
         </overload>
       </func>
       <func name="getY" brief="Gets the y-component of the position.">
         <overload>
+        	This function gets only the y-component, which may be useful in rare cases. Normally though,
+        	you would want to get both x- and y-components, in which case Body:getPosition is more
+        	appropriate.
           <ret name="y" type="number" brief="The y-component of the position." />
+          <see>Body:getPosition</see>
         </overload>
       </func>
       <func name="getPosition" brief="Gets the position of the Body.">
         <overload>
+        	Gets the position of the Body in world coordinates. Note that the position not necessarily is
+			the same as the Body's center of mass.
           <ret name="x" type="number" brief="The x-component of the position." />
           <ret name="y" type="number" brief="The y-component of the position." />
+          <see>Body:getWorldCenter</see>
         </overload>
       </func>
       <func name="getVelocity" brief="Gets the velocity of the Body." space="true">
         <overload>
+        Gets the linear velocity of the Body at the center of mass.
           <ret name="x" type="number" brief="The x-component of the velocity." />
           <ret name="y" type="number" brief="The y-component of the velocity." />
+          <see>Body:getSpin</see>
         </overload>
       </func>
 
       <func name="getAngle" brief="Gets the current angle of the Body.">
         <overload>
+        	Gets the angle of the Body in degrees. This is useful when you want
+        	to draw a rotated image to match the Body's angular movements.
           <ret name="angle" type="number" brief="The angle in degrees." />
         </overload>
       </func>
       <func name="getSpin" brief="Gets the current spin of the Body." space="true">
         <overload>
+        	The spin is the angular velocity, measured in degrees per second.
           <ret name="angle" type="number" brief="The spin in degrees/second." />
         </overload>
       </func>
@@ -1666,43 +1687,71 @@
 
       <func name="setX" brief="Sets the x-component of the position.">
         <overload>
+        	In rare cases, you might want to set just the x-component of a Body, but when
+        	you need to set both components, you should use Body:setPosition.
           <param name="x" brief="The new x-component." />
+          <see>Body:setPosition</see>
         </overload>
       </func>
       <func name="setY" brief="Sets the y-component of the position.">
         <overload>
+            In rare cases, you might want to set just the y-component of a Body, but when
+        	you need to set both components, you should use Body:setPosition.
           <param name="y" brief="The new y-component." />
+          <see>Body:setPosition</see>
         </overload>
       </func>
       <func name="setPosition" brief="Sets the position of the Body.">
         <overload>
+        	Note that setting the position directly is not a great way to move Bodies. This function
+        	should only be used for initial placement of Bodies, or when stuff needs to "warp" from one
+        	place to another. When you want Bodies to move, and not warp, use Body:applyImpulse
+			or Body:setVelocity.[br /]
+			[br /]Also note that it is very possible to move Bodies into a collision state with
+        	another Body. This does not have catastrophic consequences, but a number of simulation cycles will
+        	be required to move the Bodies out of the collison state.
           <param name="x" brief="The x-component of the position." />
           <param name="y" brief="The y-component of the position." />
+          <see>Body:applyImpulse, Body:setVelocity</see>
         </overload>
       </func>
       <func name="setVelocity" brief="Sets the velocity of the Body." space="true">
         <overload>
+        	Sets a new linear velocity for the Body. This function will not accumulate anything; 
+        	any impulses previously applied since the last call to World:update will be lost.
           <param name="x" brief="The x-component." />
           <param name="y" brief="The y-component." />
         </overload>
       </func>
       <func name="setAngle" brief="Sets the angle of the Body.">
         <overload>
+        	Sets the current angle of the Body directly. Like Body:setPosition, it is possible to turn a Body 
+        	into a collision state with another Body.
           <param name="angle" brief="The angle in degrees." />
         </overload>
       </func>
       <func name="setSpin" brief="Sets the spin of the Body." space="true">
         <overload>
+        	Sets the angular velocity of the Body (how fast it should rotate).
           <param name="spin" brief="The spin in degrees/second" />
         </overload>
       </func>
 
       <func name="setMassFromShapes" brief="Sets mass properties from attatched shapes.">
         <overload>
+        	If you feel that finding the correct mass properties is tricky, then this function
+        	may be able to help you. After creating the needed shapes on the Body, a call to
+        	this function will set the mass properties based on those shapes. Remember to call
+        	this function [i]after[/i] adding the shapes.[br /]
+        	[br /]
+        	Setting the mass properties this way always results in a realistic (or at least good-looking)
+        	simulation, so using it is highly recommended.
         </overload>
       </func>
       <func name="setMass" brief="Sets mass properies directly." space="true">
         <overload brief="Sets mass properies directly.">
+        	Sets the mass properties directly. If you're not sure what all this stuff means, you
+        	can use Body:setMassFromShapes after adding shapes instead.
           <param name="x" brief="The x-component of the center of mass in local coordinates." />
           <param name="y" brief="The y-component of the center of mass in local coordinates." />
           <param name="m" brief="The mass." />
@@ -1724,40 +1773,62 @@
 
       <func name="isBullet" brief="Checks whether this Body should be treated as a bullet.">
         <overload>
+        	<see>CircleShape:setBullet</see>
         </overload>
       </func>
 
       <func name="setBullet" brief="Sets whether this Body should be treated as a Bullet." space="true">
         <overload>
+        	Normal Bodies will be able to pass through other Bodies if they move at sufficient speed, unless they
+        	are treated as bullets. When a Body is treated as a bullet, continuous collision detection is performed, 
+        	which means that even collision between frames are detected.[br /]
+        	[br /]
+        	The drawback of using this method is additional (and significant) computational complexity. Only set
+        	Bodies as bullets if you expect them to move really fast.
           <param name="bullet" brief="True for bullet, false for normal." />
         </overload>
       </func>
 
       <func name="isStatic" brief="Checks whether this Body is static.">
-        <overload></overload>
+        <overload>
+		A static Body is one that can't be moved, i.e. "terrain".
+		</overload>
       </func>
 
       <func name="isDynamic" brief="Checks whether this Body is dynamic.">
-        <overload></overload>
+        <overload>
+		A dynamic Body is one that isn't static.
+		<see>Body:isStatic</see>
+		</overload>
       </func>
 
       <func name="isFrozen" brief="Checks whether this Body is frozen.">
-        <overload></overload>
+        <overload>
+		When a Body hits the Word boundary, it freezes. This function checks if
+		a Body is in that state.
+		</overload>
       </func>
 
       <func name="isSleeping" brief="Checks whether this Body is sleeping" space="true">
-        <overload></overload>
+        <overload>
+        <see>Body:setAllowSleep</see>
+		</overload>
       </func>
 
       <func name="setAllowSleep" brief="Allows or disallows sleeping for this Body.">
         <overload>
+    		When nothing happens to a Body in a while (nothing collides with it), it may be put to sleep
+			to avoid simulation of that Body for a period of time. This method can be used to disable or enable
+			this feature. (Enabled by default).
           <param name="allow" brief="True for allow, false for disallow" />
         </overload>
       </func>
 
       <func name="setSleep" brief="Puts a Body to sleep or wakes it up.">
         <overload>
+        	A Body can be manually put to sleep (woken  up) using this function.
           <param name="sleep" brief="True to put to sleep, false to wake up." />
+          <see>Body:setAllowSleep</see>
         </overload>
       </func>
 
@@ -1767,6 +1838,7 @@
     
       <func name="getType" brief="Gets an integer representing the shape type." space="true">
         <overload>
+        	This function can be useful for conditional debug drawing.
           <ret name="type" type="number" brief="A constant integer." />
         </overload>
       </func>
@@ -1774,17 +1846,21 @@
       <func name="getFriction" brief="Gets the friction of this shape.">
         <overload>
           <ret name="friction" type="number" brief="The friction of the shape." />
+          <see>CircleShape:setFriction</see>
         </overload>
       </func>
 
       <func name="getRestitution" brief="Gets the restitution of this shape." space="true">
         <overload>
           <ret name="restitution" type="number" brief="The restitution of the shape." />
+          <see>CircleShape:setRestitution</see>
         </overload>
       </func>
 
       <func name="getCategoryBits" brief="Gets the category bits of the shape.">
         <overload>
+        	Gets the categories as a 16-bit integer. A set bit indicates membership
+        	of that category.
           <ret name="bits" type="number" brief="An integer value representing the categories." />
         </overload>
       </func>
@@ -1792,14 +1868,16 @@
       <func name="getCategory" brief="Gets the categories this shape is a member of.">
         <overload>
           Returns the categories this shape is a member of. The number of categories
-          the shape is a member of is the number of return values.
+          the shape is a member of is the number of return values. Categories are used for
+          allowing/disallowing certain collision.
           <ret name="..." type="numbers" brief="Numbers from 1-16" />
         </overload>
       </func>
 
       <func name="getMaskBits" brief="Gets the mask bits of the shape.">
         <overload>
-          Returns a 16-bit integer representing the masked categories.
+          Returns a 16-bit integer representing the masked categories. A set bit means
+          that a collision occurs with members of that category.
           <ret name="bits" type="number" brief="An integer value representing the mask." />
         </overload>
       </func>
@@ -1815,66 +1893,93 @@
 
       <func name="getData" brief="Gets the data set with setData.">
         <overload>
+        	Gets the variable set with CircleShape:setData.
           <ret name="data" type="various" brief="The data previously set, or nil of none." />
+          <see>CircleShape:setData</see>
         </overload>
       </func>
 
       <func name="isSensor" brief="Checks whether this shape acts as a sensor or not" space="true">
         <overload>
           <ret name="sensor" type="boolean" brief="True if sensor, false otherwise." />
+          <see>CircleShape:setSensor</see>
         </overload>
       </func>
 
       <func name="setFriction" brief="Sets the friction of the shape.">
         <overload>
+        	Friction determines how shapes react when they "slide" along other shapes.
+        	Low friction indicates a slippery surface, like ice, while high friction indicates
+			a rough surface, like concrete. Range: 0.0 - 1.0.
           <param name="friction" brief="The friction of the shape." />
         </overload>
       </func>
 
       <func name="setRestitution" brief="Sets the restitution of the shape." space="true">
         <overload>
+        	Restitution indicates the "bounciness" of the shape. High restitution
+        	can be used to model stuff like a rubber ball, while low restitution
+        	can bse used for "dull" objects, like a bag of sand.
           <param name="restitution" brief="The restitution of the shape." />
         </overload>
       </func>
 
       <func name="setCategoryBits" brief="Sets the category bits of the shape.">
         <overload>
+        	Sets the categories of this shape directly. This function is faster, but
+        	more difficult to use than CircleShape:setCategory.
           <param name="bits" brief="An integer value representing the categories." />
         </overload>
       </func>
 
       <func name="setCategory" brief="Sets the categories this shape is a member of.">
         <overload>
+        	Sets the categories of this shape by specifying numbers from 1-16 as parameters. Categories
+        	can be used to prevent certain shapes from colliding.
           <param name="..." brief="Numbers from 1-16" />
+          <see>CircleShape:setMask</see>
         </overload>
       </func>
 
       <func name="setMaskBits" brief="Sets the mask bits of the shape." >
         <overload>
+        	Sets the mask bits directly. This function is faster, but more difficult to use
+        	than CircleShape:setMask.
           <param name="bits" brief="An integer value representing the mask." />
+          <see>CircleShape:setMask</see>
         </overload>
       </func>
 
       <func name="setMask" brief="Sets which categories this shape should collide with." space="true">
         <overload>
+        	With this function, you can exclude certain shape categories from collisions with 
+        	this shape. The categories passed as parameters will be excluded from collisions - all others
+        	included.
           <param name="..." brief="Numbers from 1-16" />
         </overload>
       </func>
 
       <func name="setData" brief="Sets data to be passed to the collision callback.">
         <overload>
+        	When a shape collides, whatever value set here will be passed to the collision callback as one
+			of the parameters. Typically, you would want to store a table reference here, 
+			but any value can be used.
           <param name="any" brief="Any Lua variable." />
         </overload>
       </func>
 
       <func name="setSensor" brief="Sets whether this shape should act as a sensor." space="true">
         <overload>
+        	Set the shape as a sensor if you want to be notified when collision between shapes occur, but don't want a
+        	physical response (for instance, maybe you want enemies to appear when the player "touches" a
+        	a certain point).
           <param name="sensor" brief="True for sensor, false otherwise." />
         </overload>
       </func>
 
       <func name="getBoundingBox" brief="Gets the bounding box of the shape.">
         <overload>
+        	This function can be used in a nested fashion with love.graphics.polygon.
           <ret name="x1" type="number" brief="The x-component of the first vertex." />
           <ret name="y1" type="number" brief="The y-component of the first vertex." />
           <ret name="x2" type="number" brief="The x-component of the second vertex." />
@@ -1888,6 +1993,9 @@
 
       <func name="testPoint" brief="Checks whether a point lies inside the shape.">
         <overload>
+        	This is particularly useful for mouse interaction with the shapes. By looping through
+			all shapes and testing the mouse position with this function, we can find which shapes 
+			the mouse touches.
           <param name="x" brief="The x-component of the point." />
           <param name="y" brief="The y-component of the point." />
           <ret name="hit" type="boolean" brief="True if inside, false if outside" />
@@ -1896,6 +2004,7 @@
 
       <func name="getRadius" brief="Gets the radius of the CircleShape.">
         <overload>
+        	Gets the radius of the CircleShape. Note that there is no way to set the radius.
           <ret name="r" type="number" brief="The radius of the circle." />
         </overload>
       </func>
@@ -3254,27 +3363,12 @@
     <item name="love.joint_mouse" brief="Represents a MouseJoint." />
 
   </misc>
-  <misc name="Config Files" title="List of config file attributes">
+  <misc name="Config Files" title="List of config file attributes" file="configfiles.lua">
 
     Each game should have a config file that specifies game title, author, version, etc. The name of this file must be "game.conf".
     A full listing of available attributes is presented below. [br /]
     [br /]
-    All values are optional, but it is highly recommended to at least include title, author, and [b]love_version[/b].[br /]
-    [br /]
-
-    [div class="section"]
-    [div class="title"]Example[/div]
-    [div class="synopsis"]
-    [i]# Title / author[/i][br /]
-    title = "Epic Quest III"[br /]
-    author = "Awesome Games"[br /]
-    [i]# Display resolution[/i][br /]
-    width = 800[br /]
-    height = 600[br /]
-    [i]# Was made for this version of LOVE:[/i][br /]
-    love_version = "0.3.2"[br /]
-    [/div]
-    [/div]
+    All values are optional, but it is highly recommended to at least include title, author, and [b]love_version[/b].
 
     <item name="title" type="string" brief="The game title."/>
     <item name="author" type="string" brief="The author of the game."/>
@@ -3286,6 +3380,11 @@
     <item name="display_auto" type="boolean" brief="Set this to false if you want to configure the display in Lua manually." />
     <item name="love_version" type="string" brief="The LOVE-version this game was made for."/>
 
+  </misc>
+  
+  <misc name="Example List" title="List of Examples" file="elist.lua">
+	A list of all examples in the documentation is presented below. All examples are runnable as
+	standalone applications, or via the [a href="http://love2d.org/?page=documentation"]example browser[/a].
   </misc>
 
 </nzai>

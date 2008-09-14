@@ -91,7 +91,8 @@ namespace love_sdljoystick
 	int getBallX(int index, int ball);
 
 	/**
-	* Gets the relative y-axis status of a trackball available on the desired gamepad (since last call of this function).
+	* Gets the relative y-axis status of a trackball available on the desired gamepad 
+	* (since last call of this function).
 	* @param index The index of the desired gamepad.
 	* @param ball The index of the desired trackball.
 	**/

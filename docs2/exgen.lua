@@ -1,4 +1,5 @@
 
+dofile("syx.lua")
 
 -- Formats input text as HTML'd
 -- lua code.
@@ -42,30 +43,14 @@ end
 
 function extitle(data)
     local s, e, m, m2 = string.find(data[1], "(%-%- Example: )(.*)")
-    if s then
-        table.remove(data, 1)
-    end
     return m2
 end
 
 function exgen(data)
-
-    local title = extitle(data)
-
-    local s = false
-    for i in ipairs(data) do
-        data[i], s = excomment(data[i])
-        if not s then
-           
-            data[i] = exsubn(data[i],
-                "keyword",
-                'break', 'do', 'end', 'else',
-                'elseif', 'function', 'if', 'local',
-                'nil', 'not', 'or', 'repeat',
-                'return', 'then', 'until', 'while')
-        end
-    end
-    return "<pre>"..trim(table.concat(data, "\n")).."</pre>", title
+	local title = extitle(data)
+	local d = trim(table.concat(data, "\n"))
+	local formatted = syx.dostring(d)
+	return formatted, title
 end
 
 function exnum(n)

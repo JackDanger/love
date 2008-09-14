@@ -240,18 +240,15 @@ a:hover
 	border: 1px solid #d1d9fd;
 }
 
-.example .code
-{
-	background: #f1f9fd;
-	font-size: 13px;
-	padding: 10px;
-	
+.example .title {
+	border-bottom: 1px solid #d1d9fd;
 }
 
-.example .code pre
+.example .code
 {
-	margin: 0px;
-	line-height: 1.1;
+	font-size: 13px;
+	padding: 10px 10px 10px 0px;
+	background: #f1f9fd;
 }
 
 .synopsis
@@ -290,16 +287,44 @@ code
 	font-weight: bold;
 }
 
-.keyword
+.syx {
+	font-family: monospace;
+	color: #333;
+}
+
+.syx .keyword
 {
 	color: #0d8bca;
 	font-weight: bold;
 }
 
-.comment
+.syx .comment
 {
 	color: #888;
 	font-weight: normal;
 }
 
+.syx .string
+{
+	color: #008000;
+}
 
+.syx .number
+{
+	color: red;
+}
+
+.syx .operator {
+	color: #000;
+}
+
+.syx ol {
+	margin: 0px;
+	list-style-type: decimal;
+}
+
+.syx li 
+{
+	border-left: 1px solid #d1d9fd;
+	padding-left: 10px;
+}
