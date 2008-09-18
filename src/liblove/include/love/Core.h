@@ -44,7 +44,7 @@ namespace love
 		Audio audio;
 		Mouse mouse;
 		Keyboard keyboard;
-		Gamepad gamepad;
+		Joystick joystick;
 
 		// All Modules, in the order they're loaded.
 		std::vector<pModule> modules;
@@ -110,7 +110,7 @@ namespace love
 		Audio * getAudio();
 		Mouse * getMouse();
 		Keyboard * getKeyboard();
-		Gamepad * getGamepad();
+		Joystick * getJoystick();
 
 
 	}; // Core

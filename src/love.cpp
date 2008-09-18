@@ -149,21 +149,21 @@ int main(int argc, char* argv[])
 				case SDL_MOUSEMOTION:
 					game->mouseMoved(e.button.x, e.button.y);
 					break;
-				case SDL_JOYAXISMOTION:
-					game->gamepadAxisMoved(e.jaxis.which, e.jaxis.axis, e.jaxis.value);
-					break;
+				//case SDL_JOYAXISMOTION:
+				//	game->gamepadAxisMoved(e.jaxis.which, e.jaxis.axis, e.jaxis.value);
+				//	break;
 				case SDL_JOYBUTTONDOWN:
-					game->gamepadButtonPressed(e.jbutton.which, e.jbutton.button);
+					game->joystickPressed(e.jbutton.which, e.jbutton.button);
 					break;
 				case SDL_JOYBUTTONUP:
-					game->gamepadButtonReleased(e.jbutton.which, e.jbutton.button);
+					game->joystickReleased(e.jbutton.which, e.jbutton.button);
 					break;
-				case SDL_JOYBALLMOTION:
-					game->gamepadBallMoved(e.jball.which, e.jball.ball, e.jball.xrel, e.jball.yrel);
-					break;
-				case SDL_JOYHATMOTION:
-					game->gamepadHatMoved(e.jhat.which, e.jhat.hat, e.jhat.value);
-					break;
+				//case SDL_JOYBALLMOTION:
+				//	game->gamepadBallMoved(e.jball.which, e.jball.ball, e.jball.xrel, e.jball.yrel);
+				//	break;
+				//case SDL_JOYHATMOTION:
+				//	game->gamepadHatMoved(e.jhat.which, e.jhat.hat, e.jhat.value);
+				//	break;
 				case SDL_QUIT:
 					running = false; // Bye bye.
 					break;

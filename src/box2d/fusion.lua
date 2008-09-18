@@ -38,6 +38,7 @@ local t =
 			setMask = "setMask",
 			getMask = "getMask",
 			getBoundingBox = "getBoundingBox",
+			testSegment = "testSegment",
 		},
 		PolygonShape =
 		{
@@ -49,6 +50,7 @@ local t =
 			setMask = "setMask",
 			getMask = "getMask",
 			getBoundingBox = "getBoundingBox",
+			testSegment = "testSegment",
 		},
 		
 
@@ -76,16 +78,18 @@ local t =
 			getLimits = "getLimits",
 		},
 	},
-	rawmethods = 
+	rawmethods =
 	{
-		Shape =
-		{
-			destroy = "destroy",
-		},
-		MouseJoint =
-		{
-			destroy = "destroy",
-		}
-	}
+	},
+	destroy = 
+	{
+		Body = true,
+		PolygonShape = true,
+		CircleShape = true,
+		MouseJoint = true,
+		DistanceJoint = true,
+		RevoluteJoint = true,
+		PrismaticJoint = true,
+	},
 }
 return t

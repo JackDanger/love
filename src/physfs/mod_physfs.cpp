@@ -1,4 +1,4 @@
-    
+
 // SWIGFUSION ^.^
     
 // Lua
@@ -7,6 +7,7 @@ struct lua_State;
 // Forward declarations of fused methods: 
 namespace love_physfs
 {
+	int __error_index(lua_State * L);
 }
 
 
@@ -1809,6 +1810,24 @@ static int _wrap_newFile(lua_State* L) {
 }
 
 
+static int _wrap_getWorkingDirectory(lua_State* L) {
+  int SWIG_arg = -1;
+  char *result = 0 ;
+  
+  SWIG_check_num_args("love_physfs::getWorkingDirectory",0,0)
+  result = (char *)love_physfs::getWorkingDirectory();
+  SWIG_arg=0;
+  lua_pushstring(L,(const char*)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_exists(lua_State* L) {
   int SWIG_arg = -1;
   char *arg1 = (char *) 0 ;
@@ -2048,6 +2067,7 @@ fail:
 
 static const struct luaL_reg swig_commands[] = {
     { "newFile",_wrap_newFile},
+    { "getWorkingDirectory", _wrap_getWorkingDirectory},
     { "exists", _wrap_exists},
     { "isDirectory", _wrap_isDirectory},
     { "isFile", _wrap_isFile},
@@ -2063,6 +2083,7 @@ static const struct luaL_reg swig_commands[] = {
     { "read",love_physfs::read},
     { "write",love_physfs::write},
     { "load",love_physfs::load},
+    { "getSaveDirectory",love_physfs::getSaveDirectory},
     {0,0}
 };
 
@@ -2429,6 +2450,11 @@ void SWIG_init_user(lua_State* L)
 
 namespace love_physfs
 {
+	int __error_index(lua_State * L)	
+	{
+		return luaL_error(L, "Attempt to index destroyed object.");
+	}
+    
 	bool mod_is_file(lua_State * L, int idx)            
     {
         swig_lua_userdata* usr = 0;
@@ -2448,6 +2474,16 @@ namespace love_physfs
               luaL_error(L, "Error, argument is not type File.");
         }
         return *arg;
+    }
+        
+	boost::shared_ptr<File> * mod_to_file_ptr(lua_State * L, int idx)            
+    {
+        love_physfs::pFile * arg;
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_physfs__File_t,0))){
+              luaL_error(L, "Error, argument is not type File.");
+        }
+        return arg;
     }
         
 	void mod_push_file(lua_State * L, boost::shared_ptr<File> file)            

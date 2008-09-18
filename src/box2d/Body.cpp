@@ -128,7 +128,7 @@ namespace love_box2d
 
 	void Body::setSpin(float r)
 	{
-		body->SetAngularVelocity(r);
+		body->SetAngularVelocity(LOVE_TORAD(r));
 	}
 
 	void Body::setPosition(float x, float y)

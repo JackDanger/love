@@ -43,6 +43,14 @@ function Module:getToType(type)
     return "boost::shared_ptr<"..type.."> "..self:getToTypeName(type).."(lua_State * L, int idx)"
 end
 
+function Module:getToTypePtr(type)
+    return "mod_to_"..string.lower(type).."_ptr"
+end
+
+function Module:getToTypePtrFunc(type)
+    return "boost::shared_ptr<"..type.."> * "..self:getToTypePtr(type).."(lua_State * L, int idx)"
+end
+
 function Module:getPushType(type)
     return "void mod_push_"..string.lower(type).."(lua_State * L, boost::shared_ptr<"..type.."> "..string.lower(type)..")"
 end
@@ -53,6 +61,22 @@ end
 
 function Module:getFuseFunc(type, method)
     return "int " ..  self:getFuse(type, method) .. "(lua_State * L)"
+end
+
+function Module:getErrorIndex()
+    return "__error_index"
+end
+
+function Module:getErrorIndexFunc()
+    return "int " ..  self:getErrorIndex() .. "(lua_State * L)"
+end
+
+function Module:getDestroy(type)
+    return "_wrap_method_" .. type .. "_destroy"
+end
+
+function Module:getDestroyFunc(type)
+    return "int " ..  self:getDestroy(type) .. "(lua_State * L)"
 end
 
 
@@ -161,10 +185,14 @@ struct lua_State;
 // Forward declarations of fused methods: ]])
 
     i = i + 1
-    
+
     table.insert(self.glue, i, "namespace love_"..self.name.."\n{")
     i = i + 1
-    
+
+
+	 table.insert(self.glue, i, "\t" .. self:getErrorIndexFunc()..";")
+	 i = i+1
+
     if self.types then
         for s,l in pairs(self.types) do
             if self.ftab and self.ftab.methods and self.ftab.methods[s] then
@@ -179,6 +207,10 @@ struct lua_State;
                     i = i + 1
                 end
             end
+           if self.ftab and self.ftab.destroy and self.ftab.destroy[s] then
+	        	table.insert(self.glue, i, "\t" .. self:getDestroyFunc(s)..";")
+	        	i = i + 1
+	        end
         end
     end
     
@@ -193,6 +225,13 @@ function Module:add()
 
     table.insert(self.glue, "namespace love_"..self.name)
     table.insert(self.glue, "{")
+    
+    table.insert(self.glue, "\t"..self:getErrorIndexFunc() .. [[
+	
+	{
+		return luaL_error(L, "Attempt to index destroyed object.");
+	}
+    ]]);
 
     for s,l in pairs(self.types) do
 
@@ -221,6 +260,18 @@ function Module:add()
     }
         ]])
 
+        table.insert(self.glue, "\t" .. self:getToTypePtrFunc(s) .. [[
+            
+    {
+        love_]]..self.name..[[::p]]..s..[[ * arg;
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,]]..l..[[,0))){
+              luaL_error(L, "Error, argument is not type ]]..s..[[.");
+        }
+        return arg;
+    }
+        ]])
+
         table.insert(self.glue, "\t" .. self:getPushType(s) .. [[
             
     {
@@ -243,7 +294,7 @@ function Module:add()
     }
         ]])
         
-        
+
             end -- for
         end -- if
         
@@ -252,18 +303,44 @@ function Module:add()
             
         -- Fusion for this type.
         table.insert(self.glue, "\t" .. self:getFuseFunc(s, m) .. [[
-        
+
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
         ]]..self:getTypeName(s)..[[ p = ]].. self:getToTypeName(s) .. [[(L, 1);
         return p->]]..im..[[(L);
     }
         ]])
-        
-        
+
             end -- for
         end -- if
+
     
+        if self.ftab and self.ftab.destroy and self.ftab.destroy[s] then
+
+        -- Fusion for this type.
+        table.insert(self.glue, "\t" .. self:getDestroyFunc(s, m) .. [[
+        
+	{
+		if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+		]]..self:getTypeName(s)..[[ * p = ]].. self:getToTypePtr(s) .. [[(L, 1);
+		
+		// This will destroy memory if it's the last reference.
+		p->reset();
+
+		// Create the metatable.
+		lua_newtable(L);
+		lua_pushcfunction(L, ]]..self:getErrorIndex()..[[);
+		lua_setfield(L, -2, "__index");
+
+		// Set the metatable.
+		lua_setmetatable(L, -2);
+
+		return 0;
+	}
+        ]])
+
+        end -- if
+
     
     end
     
@@ -300,6 +377,9 @@ function Module:fusion(line)
                         insertglue(i, im, m)
                     end
                 end
+                if self.ftab and self.ftab.destroy and self.ftab.destroy[i] then
+                   insertglue(i, self:getDestroyFunc(i), "destroy")
+	             end
             end
         end
     end

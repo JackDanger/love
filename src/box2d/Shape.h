@@ -137,6 +137,11 @@ namespace love_box2d
 		bool testPoint(float x, float y) const;
 
 		/**
+		* Tests whether a line segment intersects a Shape.
+		**/
+		int testSegment(lua_State * L);
+
+		/**
 		* Sets the category bits of a Shape. This is
 		* way faster than setCategory.
 		* @param bits A 16-bits integer representing the categories.
@@ -218,8 +223,6 @@ namespace love_box2d
 		* passed directly to love.graphics.polygon.
 		**/ 
 		int getBoundingBox(lua_State * L);
-
-		int destroy(lua_State * L);
 
 	private:
 

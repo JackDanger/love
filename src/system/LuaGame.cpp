@@ -54,11 +54,8 @@ namespace love_system
 		if(isFunction("keyreleased")) callbacks[CALLBACK_KEYRELEASED] = true;
 		if(isFunction("mousepressed")) callbacks[CALLBACK_MOUSEPRESSED] = true;
 		if(isFunction("mousereleased")) callbacks[CALLBACK_MOUSERELEASED] = true;
-		if(isFunction("gamepadaxismoved")) callbacks[CALLBACK_GAMEPADAXISMOVED] = true;
-		if(isFunction("gamepadbuttonpressed")) callbacks[CALLBACK_GAMEPADBUTTONPRESSED] = true;
-		if(isFunction("gamepadbuttonreleased")) callbacks[CALLBACK_GAMEPADBUTTONRELEASED] = true;
-		if(isFunction("gamepadballmoved")) callbacks[CALLBACK_GAMEPADBALLMOVED] = true;
-		if(isFunction("gamepadhatmoved")) callbacks[CALLBACK_GAMEPADHATMOVED] = true;
+		if(isFunction("joystickpressed")) callbacks[CALLBACK_JOYSTICKPRESSED] = true;
+		if(isFunction("joystickreleased")) callbacks[CALLBACK_JOYSTICKRELEASED] = true;
 		if(isFunction("message")) callbacks[CALLBACK_MESSAGE] = true;
 		if(isFunction("event")) callbacks[CALLBACK_EVENT] = true;
 
@@ -152,58 +149,24 @@ namespace love_system
 		call(2, 0);
 	}
 
-	void LuaGame::gamepadAxisMoved(int index, int axis, int value)
+	void LuaGame::joystickPressed(int index, int button)
 	{
-		if(!callbacks[CALLBACK_GAMEPADAXISMOVED])
+		if(!callbacks[CALLBACK_JOYSTICKPRESSED])
 			return;
-		lua_getglobal(L, "gamepadaxismoved");
-		lua_pushnumber(L, index);
-		lua_pushnumber(L, axis);
-		lua_pushnumber(L, value);
-		call(3, 0);
-	}
-
-	void LuaGame::gamepadButtonPressed(int index, int button)
-	{
-		if(!callbacks[CALLBACK_GAMEPADBUTTONPRESSED])
-			return;
-		lua_getglobal(L, "gamepadbuttonpressed");
+		lua_getglobal(L, "joystickpressed");
 		lua_pushnumber(L, index);
 		lua_pushnumber(L, button);
 		call(2, 0);
 	}
 
-	void LuaGame::gamepadButtonReleased(int index, int button)
+	void LuaGame::joystickReleased(int index, int button)
 	{
-		if(!callbacks[CALLBACK_GAMEPADBUTTONRELEASED])
+		if(!callbacks[CALLBACK_JOYSTICKRELEASED])
 			return;
-		lua_getglobal(L, "gamepadbuttonreleased");
+		lua_getglobal(L, "joystickreleased");
 		lua_pushnumber(L, index);
 		lua_pushnumber(L, button);
 		call(2, 0);
-	}
-
-	void LuaGame::gamepadBallMoved(int index, int ball, int x, int y)
-	{
-		if(!callbacks[CALLBACK_GAMEPADBALLMOVED])
-			return;
-		lua_getglobal(L, "gamepadballmoved");
-		lua_pushnumber(L, index);
-		lua_pushnumber(L, ball);
-		lua_pushnumber(L, x);
-		lua_pushnumber(L, y);
-		call(4, 0);
-	}
-
-	void LuaGame::gamepadHatMoved(int index, int hat, int direction)
-	{
-		if(!callbacks[CALLBACK_GAMEPADHATMOVED])
-			return;
-		lua_getglobal(L, "gamepadhatmoved");
-		lua_pushnumber(L, index);
-		lua_pushnumber(L, hat);
-		lua_pushnumber(L, direction);
-		call(3, 0);
 	}
 
 	void LuaGame::message(const char * msg, int tag)

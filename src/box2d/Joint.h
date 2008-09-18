@@ -94,8 +94,6 @@ namespace love_box2d
 		**/
 		bool getCollideConnected() const;
 
-		virtual int destroy(lua_State * L);
-
 	protected:
 
 		/**

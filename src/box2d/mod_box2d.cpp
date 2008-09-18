@@ -7,15 +7,17 @@ struct lua_State;
 // Forward declarations of fused methods: 
 namespace love_box2d
 {
-	int _wrap_method_PolygonShape_getCategory(lua_State * L);
+	int __error_index(lua_State * L);
 	int _wrap_method_PolygonShape_getData(lua_State * L);
-	int _wrap_method_PolygonShape_getPoints(lua_State * L);
-	int _wrap_method_PolygonShape_getBoundingBox(lua_State * L);
 	int _wrap_method_PolygonShape_setCategory(lua_State * L);
+	int _wrap_method_PolygonShape_getBoundingBox(lua_State * L);
+	int _wrap_method_PolygonShape_getCategory(lua_State * L);
+	int _wrap_method_PolygonShape_getPoints(lua_State * L);
+	int _wrap_method_PolygonShape_testSegment(lua_State * L);
 	int _wrap_method_PolygonShape_setData(lua_State * L);
 	int _wrap_method_PolygonShape_getMask(lua_State * L);
 	int _wrap_method_PolygonShape_setMask(lua_State * L);
-	int _wrap_method_Shape_destroy(lua_State * L);
+	int _wrap_method_PolygonShape_destroy(lua_State * L);
 	int _wrap_method_Body_getLocalPoint(lua_State * L);
 	int _wrap_method_Body_getLocalCenter(lua_State * L);
 	int _wrap_method_Body_getWorldPoint(lua_State * L);
@@ -26,19 +28,24 @@ namespace love_box2d
 	int _wrap_method_Body_getVelocity(lua_State * L);
 	int _wrap_method_Body_getWorldVector(lua_State * L);
 	int _wrap_method_Body_getWorldCenter(lua_State * L);
+	int _wrap_method_Body_destroy(lua_State * L);
 	int _wrap_method_CircleShape_getCategory(lua_State * L);
 	int _wrap_method_CircleShape_getData(lua_State * L);
+	int _wrap_method_CircleShape_testSegment(lua_State * L);
 	int _wrap_method_CircleShape_getBoundingBox(lua_State * L);
 	int _wrap_method_CircleShape_setCategory(lua_State * L);
 	int _wrap_method_CircleShape_setData(lua_State * L);
 	int _wrap_method_CircleShape_getMask(lua_State * L);
 	int _wrap_method_CircleShape_setMask(lua_State * L);
+	int _wrap_method_CircleShape_destroy(lua_State * L);
 	int _wrap_method_PrismaticJoint_getLimits(lua_State * L);
 	int _wrap_method_PrismaticJoint_getReactionForce(lua_State * L);
 	int _wrap_method_PrismaticJoint_getAnchors(lua_State * L);
+	int _wrap_method_PrismaticJoint_destroy(lua_State * L);
 	int _wrap_method_RevoluteJoint_getLimits(lua_State * L);
 	int _wrap_method_RevoluteJoint_getReactionForce(lua_State * L);
 	int _wrap_method_RevoluteJoint_getAnchors(lua_State * L);
+	int _wrap_method_RevoluteJoint_destroy(lua_State * L);
 	int _wrap_method_MouseJoint_getReactionForce(lua_State * L);
 	int _wrap_method_MouseJoint_getTarget(lua_State * L);
 	int _wrap_method_MouseJoint_getAnchors(lua_State * L);
@@ -48,6 +55,7 @@ namespace love_box2d
 	int _wrap_method_Contact_getNormal(lua_State * L);
 	int _wrap_method_DistanceJoint_getReactionForce(lua_State * L);
 	int _wrap_method_DistanceJoint_getAnchors(lua_State * L);
+	int _wrap_method_DistanceJoint_destroy(lua_State * L);
 	int _wrap_method_World_getGravity(lua_State * L);
 	int _wrap_method_World_getCallback(lua_State * L);
 	int _wrap_method_World_setCallback(lua_State * L);
@@ -4038,6 +4046,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_Body_Sg__methods[] = 
 	{"getVelocity", love_box2d::_wrap_method_Body_getVelocity},
 	{"getWorldVector", love_box2d::_wrap_method_Body_getWorldVector},
 	{"getWorldCenter", love_box2d::_wrap_method_Body_getWorldCenter},
+	{"destroy", love_box2d::_wrap_method_Body_destroy},
     {"__deref__", _wrap_SmartBody___deref__}, 
     {"getX", _wrap_SmartBody_getX}, 
     {"getY", _wrap_SmartBody_getY}, 
@@ -4978,7 +4987,6 @@ boost::shared_ptr< love_box2d::Shape > *arg1 = (boost::shared_ptr< love_box2d::S
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_Shape_Sg__methods[] = {
-	{"destroy", love_box2d::_wrap_method_Shape_destroy},
     {"__deref__", _wrap_SmartShape___deref__}, 
     {"getType", _wrap_SmartShape_getType}, 
     {"setFriction", _wrap_SmartShape_setFriction}, 
@@ -5547,11 +5555,13 @@ delete arg1;
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_CircleShape_Sg__methods[] = {
 	{"getCategory", love_box2d::_wrap_method_CircleShape_getCategory},
 	{"getData", love_box2d::_wrap_method_CircleShape_getData},
+	{"testSegment", love_box2d::_wrap_method_CircleShape_testSegment},
 	{"getBoundingBox", love_box2d::_wrap_method_CircleShape_getBoundingBox},
 	{"setCategory", love_box2d::_wrap_method_CircleShape_setCategory},
 	{"setData", love_box2d::_wrap_method_CircleShape_setData},
 	{"getMask", love_box2d::_wrap_method_CircleShape_getMask},
 	{"setMask", love_box2d::_wrap_method_CircleShape_setMask},
+	{"destroy", love_box2d::_wrap_method_CircleShape_destroy},
     {"__deref__", _wrap_SmartCircleShape___deref__}, 
     {"getRadius", _wrap_SmartCircleShape_getRadius}, 
     {"getType", _wrap_SmartCircleShape_getType}, 
@@ -6068,14 +6078,16 @@ boost::shared_ptr< love_box2d::PolygonShape > *arg1 = (boost::shared_ptr< love_b
 delete arg1;
 }
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_PolygonShape_Sg__methods[] = {
-	{"getCategory", love_box2d::_wrap_method_PolygonShape_getCategory},
 	{"getData", love_box2d::_wrap_method_PolygonShape_getData},
-	{"getPoints", love_box2d::_wrap_method_PolygonShape_getPoints},
-	{"getBoundingBox", love_box2d::_wrap_method_PolygonShape_getBoundingBox},
 	{"setCategory", love_box2d::_wrap_method_PolygonShape_setCategory},
+	{"getBoundingBox", love_box2d::_wrap_method_PolygonShape_getBoundingBox},
+	{"getCategory", love_box2d::_wrap_method_PolygonShape_getCategory},
+	{"getPoints", love_box2d::_wrap_method_PolygonShape_getPoints},
+	{"testSegment", love_box2d::_wrap_method_PolygonShape_testSegment},
 	{"setData", love_box2d::_wrap_method_PolygonShape_setData},
 	{"getMask", love_box2d::_wrap_method_PolygonShape_getMask},
 	{"setMask", love_box2d::_wrap_method_PolygonShape_setMask},
+	{"destroy", love_box2d::_wrap_method_PolygonShape_destroy},
     {"__deref__", _wrap_SmartPolygonShape___deref__}, 
     {"getType", _wrap_SmartPolygonShape_getType}, 
     {"setFriction", _wrap_SmartPolygonShape_setFriction}, 
@@ -7094,6 +7106,7 @@ delete arg1;
 static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_DistanceJoint_Sg__methods[] = {
 	{"getReactionForce", love_box2d::_wrap_method_DistanceJoint_getReactionForce},
 	{"getAnchors", love_box2d::_wrap_method_DistanceJoint_getAnchors},
+	{"destroy", love_box2d::_wrap_method_DistanceJoint_destroy},
     {"__deref__", _wrap_SmartDistanceJoint___deref__}, 
     {"setLength", _wrap_SmartDistanceJoint_setLength}, 
     {"getLength", _wrap_SmartDistanceJoint_getLength}, 
@@ -8335,6 +8348,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_RevoluteJoint_Sg__met
 	{"getLimits", love_box2d::_wrap_method_RevoluteJoint_getLimits},
 	{"getReactionForce", love_box2d::_wrap_method_RevoluteJoint_getReactionForce},
 	{"getAnchors", love_box2d::_wrap_method_RevoluteJoint_getAnchors},
+	{"destroy", love_box2d::_wrap_method_RevoluteJoint_destroy},
     {"__deref__", _wrap_SmartRevoluteJoint___deref__}, 
     {"getAngle", _wrap_SmartRevoluteJoint_getAngle}, 
     {"getSpeed", _wrap_SmartRevoluteJoint_getSpeed}, 
@@ -9308,6 +9322,7 @@ static swig_lua_method swig_boost_shared_ptr_Sl_love_box2d_PrismaticJoint_Sg__me
 	{"getLimits", love_box2d::_wrap_method_PrismaticJoint_getLimits},
 	{"getReactionForce", love_box2d::_wrap_method_PrismaticJoint_getReactionForce},
 	{"getAnchors", love_box2d::_wrap_method_PrismaticJoint_getAnchors},
+	{"destroy", love_box2d::_wrap_method_PrismaticJoint_destroy},
     {"__deref__", _wrap_SmartPrismaticJoint___deref__}, 
     {"getTranslation", _wrap_SmartPrismaticJoint_getTranslation}, 
     {"getSpeed", _wrap_SmartPrismaticJoint_getSpeed}, 
@@ -10644,6 +10659,11 @@ void SWIG_init_user(lua_State* L)
 
 namespace love_box2d
 {
+	int __error_index(lua_State * L)	
+	{
+		return luaL_error(L, "Attempt to index destroyed object.");
+	}
+    
 	bool mod_is_polygonshape(lua_State * L, int idx)            
     {
         swig_lua_userdata* usr = 0;
@@ -10681,14 +10701,6 @@ namespace love_box2d
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__PolygonShape_t,1);
     }
         
-	int _wrap_method_PolygonShape_getCategory(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
-        lua_remove(L, 1);
-        return p->getCategory(L);
-    }
-        
 	int _wrap_method_PolygonShape_getData(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
@@ -10697,12 +10709,12 @@ namespace love_box2d
         return p->getData(L);
     }
         
-	int _wrap_method_PolygonShape_getPoints(lua_State * L)        
+	int _wrap_method_PolygonShape_setCategory(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
         love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
         lua_remove(L, 1);
-        return p->getPoints(L);
+        return p->setCategory(L);
     }
         
 	int _wrap_method_PolygonShape_getBoundingBox(lua_State * L)        
@@ -10713,12 +10725,28 @@ namespace love_box2d
         return p->getBoundingBox(L);
     }
         
-	int _wrap_method_PolygonShape_setCategory(lua_State * L)        
+	int _wrap_method_PolygonShape_getCategory(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
         love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
         lua_remove(L, 1);
-        return p->setCategory(L);
+        return p->getCategory(L);
+    }
+        
+	int _wrap_method_PolygonShape_getPoints(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
+        lua_remove(L, 1);
+        return p->getPoints(L);
+    }
+        
+	int _wrap_method_PolygonShape_testSegment(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pPolygonShape p = mod_to_polygonshape(L, 1);
+        lua_remove(L, 1);
+        return p->testSegment(L);
     }
         
 	int _wrap_method_PolygonShape_setData(lua_State * L)        
@@ -10744,6 +10772,25 @@ namespace love_box2d
         lua_remove(L, 1);
         return p->setMask(L);
     }
+        
+	int _wrap_method_PolygonShape_destroy(lua_State * L)        
+	{
+		if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+		love_box2d::pPolygonShape * p = mod_to_polygonshape_ptr(L, 1);
+		
+		// This will destroy memory if it's the last reference.
+		p->reset();
+
+		// Create the metatable.
+		lua_newtable(L);
+		lua_pushcfunction(L, __error_index);
+		lua_setfield(L, -2, "__index");
+
+		// Set the metatable.
+		lua_setmetatable(L, -2);
+
+		return 0;
+	}
         
 	bool mod_is_shape(lua_State * L, int idx)            
     {
@@ -10780,13 +10827,6 @@ namespace love_box2d
     {
         love_box2d::pShape * resultptr = new love_box2d::pShape((love_box2d::pShape &) shape);
         SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_boost__shared_ptrT_love_box2d__Shape_t,1);
-    }
-        
-	int _wrap_method_Shape_destroy(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pShape p = mod_to_shape(L, 1);
-        return p->destroy(L);
     }
         
 	bool mod_is_body(lua_State * L, int idx)            
@@ -10906,6 +10946,25 @@ namespace love_box2d
         return p->getWorldCenter(L);
     }
         
+	int _wrap_method_Body_destroy(lua_State * L)        
+	{
+		if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+		love_box2d::pBody * p = mod_to_body_ptr(L, 1);
+		
+		// This will destroy memory if it's the last reference.
+		p->reset();
+
+		// Create the metatable.
+		lua_newtable(L);
+		lua_pushcfunction(L, __error_index);
+		lua_setfield(L, -2, "__index");
+
+		// Set the metatable.
+		lua_setmetatable(L, -2);
+
+		return 0;
+	}
+        
 	bool mod_is_circleshape(lua_State * L, int idx)            
     {
         swig_lua_userdata* usr = 0;
@@ -10959,6 +11018,14 @@ namespace love_box2d
         return p->getData(L);
     }
         
+	int _wrap_method_CircleShape_testSegment(lua_State * L)        
+    {
+        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+        love_box2d::pCircleShape p = mod_to_circleshape(L, 1);
+        lua_remove(L, 1);
+        return p->testSegment(L);
+    }
+        
 	int _wrap_method_CircleShape_getBoundingBox(lua_State * L)        
     {
         if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
@@ -10998,6 +11065,25 @@ namespace love_box2d
         lua_remove(L, 1);
         return p->setMask(L);
     }
+        
+	int _wrap_method_CircleShape_destroy(lua_State * L)        
+	{
+		if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+		love_box2d::pCircleShape * p = mod_to_circleshape_ptr(L, 1);
+		
+		// This will destroy memory if it's the last reference.
+		p->reset();
+
+		// Create the metatable.
+		lua_newtable(L);
+		lua_pushcfunction(L, __error_index);
+		lua_setfield(L, -2, "__index");
+
+		// Set the metatable.
+		lua_setmetatable(L, -2);
+
+		return 0;
+	}
         
 	bool mod_is_prismaticjoint(lua_State * L, int idx)            
     {
@@ -11060,6 +11146,25 @@ namespace love_box2d
         return p->getAnchors(L);
     }
         
+	int _wrap_method_PrismaticJoint_destroy(lua_State * L)        
+	{
+		if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+		love_box2d::pPrismaticJoint * p = mod_to_prismaticjoint_ptr(L, 1);
+		
+		// This will destroy memory if it's the last reference.
+		p->reset();
+
+		// Create the metatable.
+		lua_newtable(L);
+		lua_pushcfunction(L, __error_index);
+		lua_setfield(L, -2, "__index");
+
+		// Set the metatable.
+		lua_setmetatable(L, -2);
+
+		return 0;
+	}
+        
 	bool mod_is_revolutejoint(lua_State * L, int idx)            
     {
         swig_lua_userdata* usr = 0;
@@ -11120,6 +11225,25 @@ namespace love_box2d
         lua_remove(L, 1);
         return p->getAnchors(L);
     }
+        
+	int _wrap_method_RevoluteJoint_destroy(lua_State * L)        
+	{
+		if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+		love_box2d::pRevoluteJoint * p = mod_to_revolutejoint_ptr(L, 1);
+		
+		// This will destroy memory if it's the last reference.
+		p->reset();
+
+		// Create the metatable.
+		lua_newtable(L);
+		lua_pushcfunction(L, __error_index);
+		lua_setfield(L, -2, "__index");
+
+		// Set the metatable.
+		lua_setmetatable(L, -2);
+
+		return 0;
+	}
         
 	bool mod_is_mousejoint(lua_State * L, int idx)            
     {
@@ -11183,11 +11307,23 @@ namespace love_box2d
     }
         
 	int _wrap_method_MouseJoint_destroy(lua_State * L)        
-    {
-        if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
-        love_box2d::pMouseJoint p = mod_to_mousejoint(L, 1);
-        return p->destroy(L);
-    }
+	{
+		if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+		love_box2d::pMouseJoint * p = mod_to_mousejoint_ptr(L, 1);
+		
+		// This will destroy memory if it's the last reference.
+		p->reset();
+
+		// Create the metatable.
+		lua_newtable(L);
+		lua_pushcfunction(L, __error_index);
+		lua_setfield(L, -2, "__index");
+
+		// Set the metatable.
+		lua_setmetatable(L, -2);
+
+		return 0;
+	}
         
 	bool mod_is_joint(lua_State * L, int idx)            
     {
@@ -11339,6 +11475,25 @@ namespace love_box2d
         lua_remove(L, 1);
         return p->getAnchors(L);
     }
+        
+	int _wrap_method_DistanceJoint_destroy(lua_State * L)        
+	{
+		if(lua_gettop(L) < 1) return luaL_error(L, "Incorrect number of parameters.");
+		love_box2d::pDistanceJoint * p = mod_to_distancejoint_ptr(L, 1);
+		
+		// This will destroy memory if it's the last reference.
+		p->reset();
+
+		// Create the metatable.
+		lua_newtable(L);
+		lua_pushcfunction(L, __error_index);
+		lua_setfield(L, -2, "__index");
+
+		// Set the metatable.
+		lua_setmetatable(L, -2);
+
+		return 0;
+	}
         
 	bool mod_is_world(lua_State * L, int idx)            
     {

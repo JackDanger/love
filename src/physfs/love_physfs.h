@@ -161,6 +161,16 @@ namespace love_physfs
 	pFile newFile(const char * file, int mode = love::FILE_READ);
 
 	/**
+	* Gets the full path of the save folder.
+	**/
+	int getSaveDirectory(lua_State * L);
+
+	/**
+	* Gets the current working directory.
+	**/
+	const char * getWorkingDirectory();
+
+	/**
 	* Checks whether a file exists in the current search path
 	* or not. 
 	* @param file The filename to check.

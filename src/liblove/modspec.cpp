@@ -126,9 +126,9 @@ namespace love
 		return true;
 	}
 
-	bool Gamepad::verify()
+	bool Joystick::verify()
 	{
-		CHECK_LOAD("Gamepad");
+		CHECK_LOAD("Joystick");
 		return true;
 	}
 

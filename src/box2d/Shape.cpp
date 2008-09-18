@@ -83,6 +83,31 @@ namespace love_box2d
 		return shape->TestPoint(shape->GetBody()->GetXForm(), b2Vec2(x, y));
 	}
 
+	int Shape::testSegment(lua_State * L)
+	{
+		love::luax_assert_argc(L, 4, 4);
+
+		b2Segment s;
+
+		s.p1.x = (float)lua_tonumber(L, 1);
+		s.p1.y = (float)lua_tonumber(L, 2);
+		s.p2.x = (float)lua_tonumber(L, 3);
+		s.p2.y = (float)lua_tonumber(L, 4);
+
+		float lambda;
+		b2Vec2 normal;
+		
+		if(shape->TestSegment(shape->GetBody()->GetXForm(), &lambda, &normal, s, 1.0f))
+		{
+			lua_pushnumber(L, lambda);
+			lua_pushnumber(L, normal.x);
+			lua_pushnumber(L, normal.y);
+			return 3;
+		}
+
+		return 0;
+	}
+
 	void Shape::setCategoryBits(int bits)
 	{
 		b2FilterData f = shape->GetFilterData();
@@ -172,12 +197,6 @@ namespace love_box2d
 		lua_pushnumber(L, bb.upperBound.y);
 
 		return 8;
-	}
-
-	int Shape::destroy(lua_State * L)
-	{
-
-		return 0;
 	}
 
 	uint16 Shape::getBits(lua_State * L)

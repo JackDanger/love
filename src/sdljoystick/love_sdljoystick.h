@@ -4,7 +4,7 @@
 * Licence: ZLIB/libpng
 * Copyright (c) 2006-2008 LOVE Development Team
 *
-* An interface to add gamepad devices via SDL.
+* An interface to add joystick devices via SDL.
 * 
 * @author Michael Enger
 * @date 2008-08-01
@@ -27,94 +27,93 @@ namespace love_sdljoystick
 	/**
 	* Gets whether the passed index is valid and if not prints out an error.
 	**/
-	bool checkIndex(int index);
+	bool checkJoystickIndex(int index);
 
 	/**
-	* Gets the amount of gamepads that are connected to the computer.
+	* Gets the amount of joysticks that are connected to the computer.
 	**/
-	int getNumGamepads();
+	int getNumJoysticks();
 
 	/**
-	* Gets the name of a gamepad based on its index.
-	* @param index The index of the desired gamepad.
+	* Gets the name of a joystick based on its index.
+	* @param index The index of the desired joystick.
 	**/
 	const char * getName(int index);
 
 	/**
-	* Opens a gamepad for callback monitoring.
-	* @param index The index of the desired gamepad.
+	* Opens a joystick for callback monitoring.
+	* @param index The index of the desired joystick.
 	**/
 	void open(int index);
 
 	/**
-	* Checks whether a gamepad is open for input reading.
-	* @param index The index of the desired gamepad.
+	* Checks whether a joystick is open for input reading.
+	* @param index The index of the desired joystick.
 	**/
 	bool isOpen(int index);
 
 	/**
-	* Gets the amount of axes available on the desired gamepad.
-	* @param index The index of the desired gamepad.
+	* Gets the amount of axes available on the desired joystick.
+	* @param index The index of the desired joystick.
 	**/
 	int getNumAxes(int index);
 
 	/**
-	* Gets the amount of trackballs available on the desired gamepad.
-	* @param index The index of the desired gamepad.
+	* Gets the amount of trackballs available on the desired joystick.
+	* @param index The index of the desired joystick.
 	**/
 	int getNumBalls(int index);
 
 	/**
-	* Gets the amount of buttons available on the desired gamepad.
-	* @param index The index of the desired gamepad.
+	* Gets the amount of buttons available on the desired joystick.
+	* @param index The index of the desired joystick.
 	**/
 	int getNumButtons(int index);
 
 	/**
-	* Gets the amount of viewhats available on the desired gamepad.
-	* @param index The index of the desired gamepad.
+	* Gets the amount of viewhats available on the desired joystick.
+	* @param index The index of the desired joystick.
 	**/
 	int getNumHats(int index);
 
 	/**
-	* Gets the status of an axis available on the desired gamepad.
-	* @param index The index of the desired gamepad.
+	* Gets the status of an axis available on the desired joystick.
+	* @param index The index of the desired joystick.
 	* @param axis The index of the desired axis.
 	**/
-	int getAxis(int index, int axis);
+	float getAxis(int index, int axis);
 
 	/**
-	* Gets the relative x-axis status of a trackball available on the desired gamepad (since last call of this function).
-	* @param index The index of the desired gamepad.
-	* @param ball The index of the desired trackball.
+	* Gets the status of all the axes on the joystick.
+	* @param index The index of the desired joystick.
 	**/
-	int getBallX(int index, int ball);
+	int getAxes(lua_State * L);
 
 	/**
-	* Gets the relative y-axis status of a trackball available on the desired gamepad 
+	* Gets the relative axis status of a trackball available on the desired joystick 
 	* (since last call of this function).
-	* @param index The index of the desired gamepad.
+	* @param index The index of the desired joystick.
 	* @param ball The index of the desired trackball.
 	**/
-	int getBallY(int index, int ball);
+	int getBall(lua_State * L);
 
 	/**
-	* Gets the status of an button available on the desired gamepad.
-	* @param index The index of the desired gamepad.
+	* Gets the status of an button available on the desired joystick.
+	* @param index The index of the desired joystick.
 	* @param button The index of the desired button.
 	**/
-	int getButton(int index, int button);
+	bool isDown(int index, int button);
 
 	/**
-	* Gets the status of an viewhat available on the desired gamepad.
-	* @param index The index of the desired gamepad.
+	* Gets the status of an viewhat available on the desired joystick.
+	* @param index The index of the desired joystick.
 	* @param hat The index of the desired hat.
 	**/
 	int getHat(int index, int hat);
 
 	/**
-	* Closes a gamepad, so that no events are fired from that gamepad.
-	* @param index The index of the desired gamepad.
+	* Closes a joystick, so that no events are fired from that joystick.
+	* @param index The index of the desired joystick.
 	**/
 	void close(int index);
 

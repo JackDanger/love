@@ -25,8 +25,10 @@
 // application folder, but in Linux, we like .love.
 #ifdef WIN32
 #	define LOVE_APPDATA_FOLDER "LOVE"
+#	define LOVE_PATH_SEPARATOR "\\"
 #else
 #	define LOVE_APPDATA_FOLDER ".love"
+#	define LOVE_PATH_SEPARATOR "/"
 #endif
 
 namespace love_physfs
@@ -211,7 +213,7 @@ namespace love_physfs
 		std::string appdata = getAppdata();
 
 		// Save this for later.
-		save_dir = std::string(LOVE_APPDATA_FOLDER "/") + gameid;
+		save_dir = std::string(LOVE_APPDATA_FOLDER LOVE_PATH_SEPARATOR) + gameid;
 
 		// Add the directory if it exists.
 		// (No error check. If it fails, it's because it 
@@ -385,6 +387,22 @@ namespace love_physfs
 
 		pFile f(new File(std::string(file), mode));
 		return f;
+	}
+
+
+	int getSaveDirectory(lua_State * L)
+	{
+		std::string temp = getAppdata();
+		temp += LOVE_PATH_SEPARATOR;
+		temp += save_dir;
+
+		lua_pushstring(L, temp.c_str());
+		return 1;		
+	}
+
+	const char * getWorkingDirectory()
+	{
+		return getBaseDirectory();
 	}
 
 	bool exists(const char * file)

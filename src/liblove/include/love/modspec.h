@@ -120,7 +120,7 @@ namespace love
 		bool verify();
 	};
 
-	struct Gamepad : public modspec 
+	struct Joystick : public modspec 
 	{
 		// From module.
 		bool verify();

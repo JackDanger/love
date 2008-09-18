@@ -106,7 +106,6 @@ namespace love
 		if(!audio.verify()) return false;
 		if(!mouse.verify()) return false;
 		if(!keyboard.verify()) return false;
-		//if(!gamepad.verify()) return false;
 		return true;
 	}
 
@@ -123,6 +122,6 @@ namespace love
 	Audio * Core::getAudio() { return &audio; }
 	Mouse * Core::getMouse() { return &mouse; }
 	Keyboard * Core::getKeyboard() { return &keyboard; }
-	Gamepad * Core::getGamepad() { return &gamepad; }
+	Joystick * Core::getJoystick() { return &joystick; }
 
 } // love
