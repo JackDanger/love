@@ -897,6 +897,10 @@
 				Name="system"
 				>
 				<File
+					RelativePath="..\..\src\system\constants.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\system\love_system.h"
 					>
 				</File>

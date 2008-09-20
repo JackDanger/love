@@ -264,6 +264,12 @@ namespace love_physfs
 	// DO NOT EXPOSE.
 	int lines_iterator(lua_State * L);
 
+	/**
+	* Loads a file without running it. The loaded
+	* chunk is returned as a function.
+	* @param filename The filename of the file to load.
+	* @return A function.
+	**/
 	int load(lua_State * L);
 
 	// A physfs-compatible package.loader.

@@ -9,6 +9,9 @@
 #include <SDL.h>
 #include <SDL_Joystick.h>
 
+// STD
+#include <cmath>
+
 namespace love_sdljoystick
 {
 	// Requires Core (for error messages).
@@ -123,7 +126,6 @@ namespace love_sdljoystick
 		}
 
 		return joysticks[index] != 0 ? true : false;
-		//return SDL_JoystickOpened(index) == 1 ? true : false;
 	}
 
 	bool verifyJoystick(int index)
@@ -167,6 +169,14 @@ namespace love_sdljoystick
 		return verifyJoystick(index) ? SDL_JoystickNumHats(joysticks[index]) : 0;
 	}
 
+	float clamp(float x)
+	{
+		if(fabs((double)x) < 0.01) return 0.0f;
+		if(x < -0.99f) return -1.0f;
+		if(x > 0.99f) return 1.0f;
+		return x;
+	}
+
 	float getAxis(int index, int axis)
 	{
 		if(!verifyJoystick(index))
@@ -179,8 +189,8 @@ namespace love_sdljoystick
 			core->error(err.str().c_str());
 			return 0;
 		}
-
-		return ((float)SDL_JoystickGetAxis(joysticks[index], axis))/32768.0f;
+		
+		return clamp(((float)SDL_JoystickGetAxis(joysticks[index], axis))/32768.0f);
 	}
 
 	int getAxes(lua_State * L)
@@ -193,8 +203,8 @@ namespace love_sdljoystick
 
 		int num = getNumAxes(index);
 
-		for(int i = num; i<num; i++)
-			lua_pushnumber(L, ((float)SDL_JoystickGetAxis(joysticks[index], i))/32768.0f);
+		for(int i = 0; i<num; i++)
+			lua_pushnumber(L, clamp(((float)SDL_JoystickGetAxis(joysticks[index], i))/32768.0f));
 		return num;
 	}
 

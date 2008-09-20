@@ -1,21 +1,26 @@
--- Example: Filler
-
-angle = 0
+-- Example: Line Iterators
 
 function load()
-    image = love.graphics.newImage("images/love-ball.png", love.image_optimize)
-end
 
-function update(dt)
-    angle = angle + dt
-    x, y = 400 + math.cos(angle)*100, 300 + math.sin(angle)*100
+	-- Set the font.
+	love.graphics.setFont(love.default_font, 8)
+
+	-- Store the lines in this table.
+	lines = {}
+
+	-- Open the file main.lua and loop through the first
+	-- 50 lines.
+	for line in love.filesystem.lines("main.lua") do
+		table.insert(lines, line)
+		if #lines >= 50 then break end
+	end
+
 end
 
 function draw()
-    local rot = angle*180/math.pi
-    local sx = math.cos(angle)*3
-    local sy = math.sin(angle)*2
-    love.graphics.draw(image, x, y, rot, sx, sy)
+	-- Draw the loaded lines.
+	for i = 1,#lines do
+		love.graphics.draw("Line " .. i .. ": " .. lines[i], 50, 50+(i*10))
+	end
 end
-
 

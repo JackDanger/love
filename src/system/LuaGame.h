@@ -108,11 +108,6 @@ namespace love_system
 		**/
 		int call(int narg, int nres);
 
-		/**
-		* Creates the global love table, and adds constants.
-		**/
-		void installConstants();
-
 	}; // LuaGame
 
 	typedef boost::shared_ptr<LuaGame> pLuaGame;

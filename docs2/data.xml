@@ -782,6 +782,10 @@
     </func>
 
     <func name="newFont" brief="Creates a new font by loading the font file.">
+      <overload brief="Creates a new Font with size 12.">
+        <param name="filename" brief="The filepath to the font file." />
+        <ret type="Font" brief="A Font object containing the font data." />
+      </overload>
       <overload>
         <param name="filename" brief="The filepath to the font file." />
         <param name="size" brief="The size of the font." />
@@ -932,6 +936,13 @@
       <overload>
         <param name="font" brief="A Font object." />
       </overload>
+      <overload brief="Loads a font, and sets it as current.">
+        <param name="filename" brief="Filepath to a Font file." />
+      </overload>
+      <overload brief="Loads a font, and sets it as current.">
+        <param name="filename" brief="Filepath to a Font file." />
+        <param name="size" brief="The size of the Font." />
+      </overload>
     </func>
 
     <func name="setLineWidth" brief="Sets the line width.">
@@ -956,6 +967,17 @@
         <param name="type" brief="The type of line (smooth/rough)." />
       </overload>
     </func>
+    <func name="setLineStipple" brief="Sets a line stipple pattern.">
+      <overload brief="Disables line stipple.">
+      </overload>
+      <overload brief="Sets a new stipple pattern.">
+        <param name="pattern" brief="A 16-bit pattern." />
+      </overload>
+      <overload brief="Sets a new stipple pattern.">
+        <param name="pattern" brief="A 16-bit pattern." />
+        <param name="repeat" brief="Repeat factor." />
+      </overload>
+    </func>
 
     <func name="getLineWidth" brief="Gets the current line width.">
       <overload>
@@ -963,9 +985,53 @@
       </overload>
     </func>
 
-    <func name="getLineStyle" brief="Gets the current line style." space="true">
+    <func name="getLineStyle" brief="Gets the current line style.">
       <overload>
         <ret name="number" brief="love.line_smooth or love.line_rough." />
+      </overload>
+    </func>
+
+    <func name="getLineStipple" brief="Gets the current stipple pattern." space="true">
+      <overload>
+        <ret type="number" name="pattern" brief="A 16-bit pattern." />
+        <ret type="number" name="rep" brief="Repeat factor." />
+      </overload>
+    </func>
+
+    <func name="setPointSize" brief="Sets the point size.">
+      <overload>
+        <param name="size" brie="The new point size." />
+      </overload>
+    </func>
+
+    <func name="setPointStyle" brief="Sets the point style.">
+      <overload>
+        <param name="style" brief="The point style (love.point_smooth/rough)." />
+      </overload>
+    </func>
+
+    <func name="setPoint" brief="Sets the point size and style.">
+      <overload>
+        <param name="size" brief="The point size." />
+        <param name="style" brief="The point style (love.point_smooth/rough)." />
+      </overload>
+    </func>
+
+    <func name="getPointSize" brief="Gets the current point size.">
+      <overload>
+        <ret type="number" name="size" brief="The point size." />
+      </overload>
+    </func>
+
+    <func name="getPointStyle" brief="Gets the current point style.">
+      <overload>
+        <ret type="number" name="style" brief="The point style (love.point_smooth/rough)." />
+      </overload>
+    </func>
+
+    <func name="getMaxPointSize" brief="Gets the max supported point size." space="true">
+      <overload>
+        <ret type="number" name="max" brief="The max supported size." />
       </overload>
     </func>
 
@@ -1256,10 +1322,19 @@
       </overload>
     </func>
 
-    <func name="polygon" brief="Draws a polygon.">
+    <func name="polygon" brief="Draws a polygon." space="true">
       <overload>
         <param name="type" brief="The type of polygon. (outline/filled)." />
         <param name="..." brief="The vertices of the polygon" />
+      </overload>
+    </func>
+
+    <func name="screenshot" brief="Save a screenshot as BMP.">
+      <overload>
+        The file will be stored in the save folder (see love.filesystem).
+        Support for additional formats will be added later. 
+        <param name="filename" brief="The filename of the screenshot." />
+        <see>love.filesystem</see>
       </overload>
     </func>
 
@@ -1824,11 +1899,25 @@
         </overload>
       </func>
 
-      <func name="setSleep" brief="Puts a Body to sleep or wakes it up.">
+      <func name="setSleep" brief="Puts a Body to sleep or wakes it up." space="true">
         <overload>
         	A Body can be manually put to sleep (woken  up) using this function.
           <param name="sleep" brief="True to put to sleep, false to wake up." />
           <see>Body:setAllowSleep</see>
+        </overload>
+      </func>
+
+      <func name="destroy" brief="Explicitly destroys the Body.">
+        <overload>
+          When you don't have time to wait for garbage collection, this function may be used to
+          free the object immediately, but note that an error will occur if you attempt to
+          use the object after calling this function.[br /]
+          [br /]
+          Also note that shapes and joints keep internal references to their relevant Bodies in
+          order to prevent them from being deallocated while still in use. This means that the Body
+          will only be destroyed immediately [i]if[/i] all attatched shapes and joints have been destroyed. 
+          If you call Body:destroy before destroying the attatched shapes and joints, the Body will not
+          really be destroyed until all relevant shapes and joints are destroyed too.
         </overload>
       </func>
 
@@ -2001,14 +2090,38 @@
           <ret name="hit" type="boolean" brief="True if inside, false if outside" />
         </overload>
       </func>
-
-      <func name="getRadius" brief="Gets the radius of the CircleShape.">
+      <func name="testSegment" brief="Checks whether a line segment intersects a shape." space="true">
         <overload>
-        	Gets the radius of the CircleShape. Note that there is no way to set the radius.
+          This function will either return the "time" of impact and the surface normal
+          at the point of collision, or nil if the line does not intersect the shape.
+          The "time" is a value between 0.0 and 1.0 and can be used to calculate where
+          the collision occured.
+          <param name="x1" brief="The x-component of the first endpoint." />
+          <param name="y1" brief="The y-component of the first endpoint." />
+          <param name="x2" brief="The x-component of the second endpoint." />
+          <param name="y2" brief="The y-component of the second endpoint." />
+          <ret name="t" type="number" brief="The time of impact, or nil if no impact." />
+          <ret name="xn" type="number" brief="The x-component of the surface normal." />
+          <ret name="yn" type="number" brief="The y-component of the surface normal." />
+        </overload>
+      </func>
+ 
+      <func name="getRadius" brief="Gets the radius of the CircleShape." space="true">
+        <overload>
+          Gets the radius of the CircleShape. Note that there is no way to set the radius.
           <ret name="r" type="number" brief="The radius of the circle." />
         </overload>
       </func>
 
+      <func name="destroy" brief="Explicitly destroys the CircleShape.">
+        <overload>
+          When you don't have time to wait for garbage collection, this function 
+          may be used to free the object immediately, but note that an error will 
+          occur if you attempt to use the object after calling this function.
+          <see>Body:destroy</see>
+        </overload>
+      </func>
+      
     </type>
     <type name="PolygonShape" brief="Convex polygon which can be attatched to Bodies." space="true">
 
@@ -2136,12 +2249,37 @@
         </overload>
       </func>
 
-      <func name="getPoints" brief="Gets the transformed points of the PolygonShape.">
+      <func name="testSegment" brief="Checks whether a line segment intersects a shape." space="true">
+        <overload>
+          This function will either return the "time" of impact and the surface normal
+          at the point of collision, or nil if the line does not intersect the shape.
+          The "time" is a value between 0.0 and 1.0 and can be used to calculate where
+          the collision occured.
+          <param name="x1" brief="The x-component of the first endpoint." />
+          <param name="y1" brief="The y-component of the first endpoint." />
+          <param name="x2" brief="The x-component of the second endpoint." />
+          <param name="y2" brief="The y-component of the second endpoint." />
+          <ret name="t" type="number" brief="The time of impact, or nil if no impact." />
+          <ret name="xn" type="number" brief="The x-component of the surface normal." />
+          <ret name="yn" type="number" brief="The y-component of the surface normal." />
+        </overload>
+      </func>
+
+      <func name="getPoints" brief="Gets the transformed points of the PolygonShape." space="true">
         <overload>
           <ret name="..." type="numbers" brief="The vertices of the PolygonShape." />
         </overload>
       </func>
 
+      <func name="destroy" brief="Explicitly destroys the PolygonShape.">
+        <overload>
+          When you don't have time to wait for garbage collection, this function
+          may be used to free the object immediately, but note that an error will
+          occur if you attempt to use the object after calling this function.
+          <see>Body:destroy</see>
+        </overload>
+      </func>
+      
     </type>
 
     <type name="DistanceJoint" brief="Maintains a certain distance between Bodies.">
@@ -2223,13 +2361,20 @@
         </overload>
       </func>
 
-      <func name="setDamping" brief="Sets the damping ratio.">
+      <func name="setDamping" brief="Sets the damping ratio." space="true">
         <overload>
           <param name="d" brief="The damping ratio." />
         </overload>
       </func>
 
-
+      <func name="destroy" brief="Explicitly destroys the DistanceJoint.">
+        <overload>
+          When you don't have time to wait for garbage collection, this function
+          may be used to free the object immediately, but note that an error will
+          occur if you attempt to use the object after calling this function.
+          <see>Body:destroy</see>
+        </overload>
+      </func>
 
     </type>
     <type name="RevoluteJoint" brief="Allow two Bodies to revolve around a shared point.">
@@ -2372,13 +2517,22 @@
         </overload>
       </func>
 
-      <func name="setLimits" brief="Sets the limits.">
+      <func name="setLimits" brief="Sets the limits." space="true">
         <overload>
           <param name="lower" brief="Lower limit in degrees." />
           <param name="upper" brief="Upper limit in degrees." />
         </overload>
       </func>
 
+      <func name="destroy" brief="Explicitly destroys the RevoluteJoint.">
+        <overload>
+          When you don't have time to wait for garbage collection, this function
+          may be used to free the object immediately, but note that an error will
+          occur if you attempt to use the object after calling this function.
+          <see>Body:destroy</see>
+        </overload>
+      </func>
+      
     </type>
     <type name="PrismaticJoint" brief="Restricts relative motion between Bodies to one shared axis.">
       <!-- JOINT -->
@@ -2521,10 +2675,19 @@
         </overload>
       </func>
 
-      <func name="setLimits" brief="Sets the limits.">
+      <func name="setLimits" brief="Sets the limits." space="true">
         <overload>
           <param name="lower" brief="Lower limit, usually in meters." />
           <param name="upper" brief="Upper limit, usually in meters." />
+        </overload>
+      </func>
+
+      <func name="destroy" brief="Explicitly destroys the PrismaticJoint.">
+        <overload>
+          When you don't have time to wait for garbage collection, this function
+          may be used to free the object immediately, but note that an error will
+          occur if you attempt to use the object after calling this function.
+          <see>Body:destroy</see>
         </overload>
       </func>
 
@@ -2593,9 +2756,18 @@
         </overload>
       </func>
 
-      <func name="setMaxForce" brief="Gets the max allowed force on the Body.">
+      <func name="setMaxForce" brief="Gets the max allowed force on the Body." space="true">
         <overload>
           <ret name="force" type="number" brief="The max allowed force." />
+        </overload>
+      </func>
+
+      <func name="destroy" brief="Explicitly destroys the MouseJoint.">
+        <overload>
+          When you don't have time to wait for garbage collection, this function
+          may be used to free the object immediately, but note that an error will
+          occur if you attempt to use the object after calling this function.
+          <see>Body:destroy</see>
         </overload>
       </func>
 
@@ -2824,6 +2996,7 @@
     <example id="2" />
 
   </module>
+
   <module name="love.keyboard">
     Keeps track of the state of the keyboard.
 
@@ -2840,6 +3013,111 @@
     </func>
     <example id="10" />
   </module>
+
+  <module name="love.joystick">
+    This module provides access to information and events regarding joysticks, gamepads,
+    steering wheels, and similar devices. [br /]
+    [br /]
+    Since we need to deal with multiple joysticks on the same system, they are
+    given a numeric value from 0 and up (the "first" joystick is #0, the "second" is #1).
+    <func name="getName" brief="Gets the name of a joystick.">
+      <overload>
+        <param name="joystick" brief="The joystick number." />
+        <ret name="name" type="string" brief="The name of the joystick" />
+      </overload>
+    </func>
+    <func name="getNumJoysticks" brief="Gets the number of joysticks.">
+      <overload>
+        <ret name="num" type="number" brief="The number of joysticks" />
+      </overload>
+    </func>
+    <func name="getNumAxes" brief="Gets the number of axes on a joystick">
+      <overload>
+        <param name="joystick" brief="The joystick number." />
+        <ret name="num" type="number" brief="The number of axes." />
+      </overload>
+    </func>
+    <func name="getNumBalls" brief="Gets the number of trackballs on a joystick">
+      <overload>
+        <param name="joystick" brief="The joystick number." />
+        <ret name="num" type="number" brief="The number of trackballs." />
+      </overload>
+    </func>
+    <func name="getNumButtons" brief="Gets the number buttons on a joystick">
+      <overload>
+        <param name="joystick" brief="The joystick number." />
+        <ret name="num" type="number" brief="The number of buttons." />
+      </overload>
+    </func>
+    <func name="getNumHats" brief="Gets the number viewhats on a joystick" space="true">
+      <overload>
+        <param name="joystick" brief="The joystick number." />
+        <ret name="num" type="number" brief="The number of viewhats." />
+      </overload>
+    </func>
+
+    <func name="isDown" brief="Checks if a button is down.">
+      <overload>
+        <param name="joystick" brief="The joystick number." />
+        <param name="button" brief="The button number." />
+        <ret name="down" type="boolean" brief="True if down, false if not." />
+      </overload>
+    </func>
+    <func name="getAxis" brief="Gets the state of an axis.">
+      <overload>
+        <param name="joystick" brief="The joystick number." />
+        <param name="axis" brief="The axis number." />
+        <ret name="pos" type="number" brief="The position of the axis." />
+        <see>love.joystick.getNumAxes</see>
+      </overload>
+    </func>
+    <func name="getAxes" brief="Gets the states of the axes.">
+      <overload>
+        The range of an axis is -1.0 to 1.0. The number of return values
+        is the number returned by love.joystick.getNumAxes.
+        <param name="joystick" brief="The joystick number." />
+        <ret name="..." brief="The positions of the axes." />
+        <see>love.joystick.getNumAxes</see>
+      </overload>
+    </func>
+    <func name="getBall" brief="Gets the relative position of a trackball.">
+      <overload>
+        <param name="joystick" brief="The joystick number." />
+        <param name="ball" brief="The ball number." />
+        <ret name="x" type="number" brief="The change on the x-axis since last call." />
+        <ret name="y" type="number" brief="The change on the y-axis since last call." />
+      </overload>
+    </func>
+    <func name="getHat" brief="Gets the state of a viewhat." space="true">
+      <overload>
+        <param name="joystick" brief="The joystick number." />
+        <param name="viewhat" brief="The viewhat number." />
+        <ret name="state" type="number" brief="A constant indicating the state. (See Constants)." />
+      </overload>
+    </func>
+    <func name="open" brief="Opens a joystick.">
+      <overload>
+        Note that all joysticks are automatically opened. You only need to use this if
+        you previously closed a joystick.
+        <param name="joystick" brief="The joystick number"/>
+      </overload>
+    </func>
+    <func name="isOpen" brief="Checks whether a joystick is open.">
+      <overload>
+        <param name="joystick" brief="The joystick number"/>
+        <ret name="open" type="boolean" brief="True if open, false if closed." />
+      </overload>
+    </func>
+    <func name="close" brief="Closes a joystick">
+      <overload>
+        Although leaving joysticks open cause no harm, you
+        can choose to close them if you don't need them.
+        <param name="joystick" brief="The joystick number" />
+      </overload>
+    </func>
+
+  </module>
+ 
   <module name="love.filesystem">
     This module provides access to Files in two places, and two places only:
     [ul]
@@ -2850,7 +3128,7 @@
     Full access to normal file I/O is no longer present due to security concerns.
     The directories will typically be something like:
     [ul]
-    [li]C:\Documents and Settings\user\.love\game[/li]
+    [li]C:\Documents and Settings\user\Application Data\LOVE\game[/li]
     [li]/home/user/.love/game[/li]
     [/ul]
     Files that are opened for write or append will always be created in the
@@ -2889,6 +3167,18 @@
         <param name="filename" brief="The filename." />
         <param name="mode" brief="The filesystem mode (read, write, append)." />
         <ret type="File" brief="The newly created file." />
+      </overload>
+    </func>
+
+    <func name="getWorkingDirectory" brief="Gets the current working directory.">
+      <overload>
+        <ret name="cwd" type="string" brief="The current working directory." />
+      </overload>
+    </func>
+
+    <func name="getSaveDirectory" brief="Gets the full path to the designated save directory." space="true">
+      <overload>
+        <ret name="savedir" type="string" brief="The save directory." />
       </overload>
     </func>
 
@@ -2943,26 +3233,61 @@
       </overload>
     </func>
 
-    <func name="read" brief="Reads bytes from an opened file.">
+    <func name="read" brief="Reads bytes from an opened File.">
       <overload>
         <param name="file" brief="An opened File object of the file to read." />
-        <ret type="string" brief="The bytes contained in the file." />
+        <ret type="string" name="contents" brief="The bytes contained in the file." />
         <see>love.filesystem.newFile, love.filesystem.open</see>
       </overload>
       <overload>
         <param name="file" brief="An opened File object of the file to read." />
         <param name="bytes" brief="The amount of bytes to open." />
-        <ret type="string" brief="The bytes contained in the file." />
+        <ret type="string" name="contents" brief="The bytes contained in the file." />
         <see>love.filesystem.newFile, love.filesystem.open</see>
+      </overload>
+      <overload brief="Quick read using filename.">
+        When using filenames instead of filehandles, a File object is created, opened and closed
+        for you behind the scenes.
+        <param name="filename" brief="The filepath to the File." />
+        <ret type="string" name="contents" brief="The bytes contained in the file." />
+      </overload>
+      <overload brief="Quick read using filename.">
+        When using filenames instead of filehandles, a File object is created, opened and closed
+        for you behind the scenes.
+        <param name="filename" brief="The filepath to the File." />
+        <param name="bytes" brief="The amount of bytes to open." />
+        <ret type="string" name="contents" brief="The bytes contained in the file." />
       </overload>
     </func>
 
-    <func name="write" brief="Writes bytes to an opened file." space="true">
+    <func name="write" brief="Writes bytes to an opened File." space="true">
       <overload>
         <param name="file" brief="An opened File object of the file to write to." />
         <param name="data" brief="A string of bytes to write to the file." />
-        <ret type="boolean" brief="Whether the operation was successful." />
+        <ret type="boolean" name="success" brief="Whether the operation was successful." />
         <see>love.filesystem.newFile, love.filesystem.open</see>
+      </overload>
+      <overload brief="Quick write using filename.">
+        When using filenames instead of filehandles, a File object is created, opened and closed
+        for you behind the scenes.
+        <param name="filename" brief="Filename of the File to write." />
+        <param name="data" brief="A string of bytes to write to the file." />
+        <ret type="boolean" name="success" brief="Whether the operation was successful." />
+      </overload>
+    </func>
+
+    <func name="lines" brief="Iterate the lines in a File." space="true">
+      <overload>
+        This function returns an iterator function which can be used with Lua's generic for.
+        <param name="file" brief="An open File handle." />
+        <example id="103" />
+      </overload>
+      <overload>
+        This function returns an iterator function which can be used with Lua's generic for.
+        When using filenames instead of filehandles, a File object is created, opened and closed
+        for you behind the scenes.
+        <param name="filename" brief="Filename of the File to read." />
+        <example id="103" />
       </overload>
     </func>
 
@@ -3019,6 +3344,14 @@
           love.filesystem.require
         </see>
 
+      </overload>
+    </func>
+
+    <func name="load" brief="Loads a Lua-file without running it.">
+      <overload>
+        The loaded Lua chunk is returned as a function.
+        <param name="filename" brief="The filename of the File to read." />
+        <ret name="f" type="function" brief="The loaded chunk." />
       </overload>
     </func>
 
@@ -3158,6 +3491,14 @@
   <callback name="keyreleased" brief="Called when a key is released.">
     <param name="key" brief="The key code of the released key." />
     <example id="53" />
+  </callback>
+  <callback name="joystickpressed" brief="Called when a button on the joystick is pressed.">
+    <param name="joystick" brief="The joystick number" />
+    <param name="button" brief="The button number" />
+  </callback>
+  <callback name="joystickreleased" brief="Called when a button on the joystick is released.">
+    <param name="joystick" brief="The joystick number" />
+    <param name="button" brief="The button number" />
   </callback>
 
   <misc name="Constants" title="List of constants">
@@ -3311,6 +3652,18 @@
     <item name="love.mouse_right" brief="The right mouse button."  />
     <item name="love.mouse_wheelup" brief="Mouse wheel scrolled upwards."  />
     <item name="love.mouse_wheeldown" brief="Mouse wheel scrolled downwards."  space="true" />
+
+    <item name="love.joystick_axis_horizontal" brief="Horizontal joystick axis (0)." />
+    <item name="love.joystick_axis_vertical" brief="Verrtical joystick axis (1)." />
+    <item name="love.joystick_hat_centered" brief="Viewhat state centered." />
+    <item name="love.joystick_hat_up" brief="Viewhat state up." />
+    <item name="love.joystick_hat_right" brief="Viewhat state right." />
+    <item name="love.joystick_hat_down" brief="Viewhat state down." />
+    <item name="love.joystick_hat_left" brief="Viewhat state left." />
+    <item name="love.joystick_hat_rightup" brief="Viewhat state right and up." />
+    <item name="love.joystick_hat_rightdown" brief="Viewhat state right and down." />
+    <item name="love.joystick_hat_leftup" brief="Viewhat state left and up." />
+    <item name="love.joystick_hat_leftdown" brief="Viewhat state left and down." space="true" />
 
     <item name="love.align_left" brief="Align to the left side." />
     <item name="love.align_center" brief="Align in the center (vertically or horizontally)." />

@@ -22,13 +22,13 @@ namespace love_luasocket
 {
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
-		std::cout << "INIT lib [LuaSocket] "<< std::endl;
+		std::cout << "INIT love.lib [LuaSocket] "<< std::endl;
 		return true;
 	}
 
 	bool module_quit()
 	{
-		std::cout << "QUIT lib [LuaSocket] "<< std::endl;
+		std::cout << "QUIT love.lib [LuaSocket] "<< std::endl;
 		return true;
 	}
 

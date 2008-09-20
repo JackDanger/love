@@ -260,14 +260,30 @@ namespace love_opengl
 
 	/**
 	* Sets the current font.
+	* @parm font A Font object.
 	**/
 	void setFont( pFont font );
 
+	/**
+	* Sets the current font from a filename. The font is
+	* loaded and sent to the GPU every time this is called, 
+	* so no over-using.
+	* @param filename The filename of a font.
+	* @param size The size of the font.
+	**/
 	void setFont( const char * filename, int size = 12 );
+
+	/**
+	* Sets a default font. The font is
+	* loaded and sent to the GPU every time this is called, 
+	* so no over-using.
+	* @param font The interal font ID.
+	* @param size The size of the font.
+	**/
 	void setFont( int font, int size = 12 );
 
 	/**
-	* Gets the current Font.
+	* Gets the current Font, or nil if none.
 	**/
 	int getFont(lua_State * L);
 
@@ -291,25 +307,81 @@ namespace love_opengl
 	**/
 	int getColorMode();
 
+	/**
+	* Sets the line width.
+	* @param width The new width of the line.
+	**/
 	void setLineWidth( float width );
+
+	/**
+	* Sets the line style.
+	* @param style LINE_ROUGH or LINE_SMOOTH.
+	**/
 	void setLineStyle( int style );
 
 	/**
 	* Sets the type of line used to draw primitives.
+	* A shorthand for setLineWidth and setLineStyle.
 	**/
 	void setLine( float width, int style = 0 );
+
+	/**
+	* Disables line stippling.
+	**/
 	void setLineStipple();
+
+	/**
+	* Sets a line stipple pattern.
+	**/
 	void setLineStipple(unsigned short pattern, int repeat = 1);
 
+	/**
+	* Gets the line width.
+	**/
 	float getLineWidth();
+
+	/**
+	* Gets the line style.
+	**/
 	int getLineStyle();
+
+	/**
+	* Gets the line stipple pattern and repeat factor.
+	* @return pattern The stipplie bit-pattern.
+	* @return repeat The reapeat factor.
+	**/
 	int getLineStipple(lua_State * L);
 
+	/**
+	* Sets the size of points.
+	**/
 	void setPointSize( float size );
+
+	/**
+	* Sets the style of points.
+	* @param style POINT_SMOOTH or POINT_ROUGH.
+	**/
 	void setPointStyle( int style );
+
+	/**
+	* Shorthand for setPointSize and setPointStyle.
+	**/
 	void setPoint( float size, int style );
+
+	/**
+	* Gets the point size.
+	**/
 	float getPointSize();
+
+	/**
+	* Gets the point style.
+	**/
 	int getPointStyle();
+
+	/**
+	* Gets the maximum point size supported. 
+	* This may vary from computer to computer.
+	**/
 	int getMaxPointSize();
 
 	/**
@@ -573,7 +645,14 @@ namespace love_opengl
 	**/
 	void circle( int type, float x, float y, float radius, int points = 10 );
 
+	/**
+	* Draws a polygon with an arbitrary number of vertices.
+	* @param type The type of drawing (line/filled).
+	* @param ... Vertex components (x1, y1, x2, y2, etc).
+	**/
 	int polygon( lua_State * L );
+
+	// Unfinished ...
 	int polygong( lua_State * L );
 
 	/**
