@@ -25,7 +25,7 @@
 // application folder, but in Linux, we like .love.
 #ifdef WIN32
 #	define LOVE_APPDATA_FOLDER "LOVE"
-#	define LOVE_PATH_SEPARATOR "\\"
+#	define LOVE_PATH_SEPARATOR "/"
 #else
 #	define LOVE_APPDATA_FOLDER ".love"
 #	define LOVE_PATH_SEPARATOR "/"
@@ -529,7 +529,7 @@ namespace love_physfs
 			file.reset<File>(new File(lua_tostring(L, 1), mode));
 
 			if(!open(file))
-				return luaL_error(L, "Could not open file %s.", lua_tostring(L, 1));
+				return luaL_error(L, "Could not open file.");
 		}
 		else
 			return luaL_error(L, "Expected filename or file handle.");
