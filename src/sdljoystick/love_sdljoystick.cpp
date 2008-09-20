@@ -7,7 +7,7 @@
 
 // SDL
 #include <SDL.h>
-#include <SDL_Joystick.h>
+#include <SDL_joystick.h>
 
 // STD
 #include <cmath>

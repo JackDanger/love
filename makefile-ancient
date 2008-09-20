@@ -143,6 +143,19 @@ $(SDLMOUSE_OBJDIR)/%.o: $(SDLMOUSE_SRCDIR)/%.cpp
 $(SDLMOUSE_OBJDIR)/mod_sdlmouse.o: $(SDLMOUSE_SRCDIR)/mod_sdlmouse.cpp
 	$(CC) -fPIC $(CFLAGS_MOD) $(INCLUDE_COMMON) -c $< -o $@
 	
+# sdljoystick
+SDLJOYSTICK_OBJDIR = obj/sdljoystick
+SDLJOYSTICK_SRCDIR = src/sdljoystick
+SDLJOYSTICK_OBJ = \
+	$(SDLJOYSTICK_OBJDIR)/love_sdljoystick.o \
+	$(SDLJOYSTICK_OBJDIR)/mod_sdljoystick.o
+
+$(SDLJOYSTICK_OBJDIR)/%.o: $(SDLJOYSTICK_SRCDIR)/%.cpp
+	$(CC) -fPIC $(CFLAGS) $(INCLUDE_COMMON) -c $< -o $@
+	
+$(SDLJOYSTICK_OBJDIR)/mod_sdljoystick.o: $(SDLJOYSTICK_SRCDIR)/mod_sdljoystick.cpp
+	$(CC) -fPIC $(CFLAGS_MOD) $(INCLUDE_COMMON) -c $< -o $@
+	
 # SDLMixer
 SDLMIXER_OBJDIR = obj/sdlmixer
 SDLMIXER_SRCDIR = src/sdlmixer
@@ -234,6 +247,33 @@ $(BOX2D_OBJDIR)/%.o: $(BOX2D_SRCDIR)/%.cpp
 $(BOX2D_OBJDIR)/mod_system.o: $(BOX2D_SRCDIR)/mod_box2d.cpp
 	$(CC) -fPIC $(CFLAGS_MOD) $(INCLUDE_COMMON) -I./$(BOX2D_SRCDIR)/Include -c $< -o $@
 	
+# LuaSocket
+LUASOCKET_OBJDIR = obj/luasocket
+LUASOCKET_SRCDIR = src/luasocket
+LUASOCKET_LIBSRCDIR = src/luasocket/luasocket
+LUASOCKET_OBJ = \
+	$(LUASOCKET_OBJDIR)/love_luasocket.o \
+	$(LUASOCKET_OBJDIR)/auxiliar.o \
+	$(LUASOCKET_OBJDIR)/luasocket.o \
+	$(LUASOCKET_OBJDIR)/select.o \
+	$(LUASOCKET_OBJDIR)/timeout.o \
+	$(LUASOCKET_OBJDIR)/buffer.o \
+	$(LUASOCKET_OBJDIR)/inet.o \
+	$(LUASOCKET_OBJDIR)/mime.o \
+	$(LUASOCKET_OBJDIR)/usocket.o \
+	$(LUASOCKET_OBJDIR)/except.o \
+	$(LUASOCKET_OBJDIR)/io.o \
+	$(LUASOCKET_OBJDIR)/udp.o \
+	$(LUASOCKET_OBJDIR)/options.o \
+	$(LUASOCKET_OBJDIR)/tcp.o \
+	$(LUASOCKET_OBJDIR)/unix.o \
+
+$(LUASOCKET_OBJDIR)/%.o: $(LUASOCKET_LIBSRCDIR)/%.c
+	gcc -fPIC $(CFLAGS) $(INCLUDE_COMMON) -c $< -o $@
+	
+$(LUASOCKET_OBJDIR)/love_luasocket.o: $(LUASOCKET_SRCDIR)/love_luasocket.cpp
+	$(CC) -fPIC $(CFLAGS) $(INCLUDE_COMMON) -c $< -o $@
+	
 #
 # LOVE (main binary)
 #
@@ -247,8 +287,8 @@ LOVE_LDFLAGS = $(LD_SDL) $(LD_LUA) $(LD_PHYSFS) $(LD_FREETYPE) $(LD_GL) $(LD_IL)
 LOVE_INCLUDES = $(INCLUDE_LUA) $(INCLUDE_SDL) $(INCLUDE_LIBLOVE)
 
 $(LOVE_TARGET): $(LOVE_OBJ) $(LIBLOVE_OBJ) $(SDLTIMER_OBJ) $(PHYSFS_OBJ) \
-		  $(OPENGL_OBJ) $(SDLKEYBOARD_OBJ) $(SDLMOUSE_OBJ) \
-		  $(SDLMIXER_OBJ) $(SYSTEM_OBJ) $(BOX2D_OBJ)
+		  $(OPENGL_OBJ) $(SDLKEYBOARD_OBJ) $(SDLMOUSE_OBJ) $(SDLJOYSTICK_OBJ) \
+		  $(SDLMIXER_OBJ) $(SYSTEM_OBJ) $(BOX2D_OBJ) $(LUASOCKET_OBJ)
 	$(CC) $(LOVE_LDFLAGS) -o $(BINDIR)/$@ $^
 
 $(LOVE_OBJDIR)/%.o: $(LOVE_SRCDIR)/%.cpp
@@ -257,12 +297,12 @@ $(LOVE_OBJDIR)/%.o: $(LOVE_SRCDIR)/%.cpp
 
 clean:
 	rm -f $(LIBLOVE_OBJ) $(LOVE_OBJ) $(SDLTIMER_OBJ) $(PHYSFS_OBJ) \
-		  $(OPENGL_OBJ) $(SDLKEYBOARD_OBJ) $(SDLMOUSE_OBJ) \
-		  $(SDLMIXER_OBJ) $(SYSTEM_OBJ) $(BOX2D_OBJ)
+		  $(OPENGL_OBJ) $(SDLKEYBOARD_OBJ) $(SDLMOUSE_OBJ) $(SDLJOYSTICK_OBJ) \
+		  $(SDLMIXER_OBJ) $(SYSTEM_OBJ) $(BOX2D_OBJ) $(LUASOCKET_OBJ)
 	rm -f $(BINDIR)/liblove.a $(BINDIR)/love
 	
 prep:
 	mkdir -p obj bin obj/liblove obj/love obj/sdltimer obj/physfs \
-		     obj/opengl obj/sdlkeyboard obj/sdlmouse obj/sdlmixer \
-		     obj/chipmunk obj/system obj/box2d
+		     obj/opengl obj/sdlkeyboard obj/sdlmouse obj/sdljoystick obj/sdlmixer \
+		     obj/chipmunk obj/system obj/box2d obj/luasocket
 	
