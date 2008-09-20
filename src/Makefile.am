@@ -180,6 +180,11 @@ love_SOURCES = love.cpp \
 ./sdlmouse/mod_sdlmouse.cpp \
 ./sdlmouse/mod_sdlmouse.h \
 \
+./sdljoystick/love_sdljoystick.cpp \
+./sdljoystick/love_sdljoystick.h \
+./sdljoystick/mod_sdljoystick.cpp \
+./sdljoystick/mod_sdljoystick.h \
+\
 ./sdltimer/love_sdltimer.cpp \
 ./sdltimer/love_sdltimer.h \
 ./sdltimer/mod_sdltimer.cpp \
@@ -192,4 +197,5 @@ love_SOURCES = love.cpp \
 ./system/mod_system.cpp \
 ./system/mod_system.h \
 ./system/resources.cpp \
-./system/resources.h
+./system/resources.h \
+./system/constants.h
