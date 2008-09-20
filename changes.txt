@@ -1,3 +1,39 @@
+
+LOVE 0.5.0
+----------
+
+  * Added love.joystick.
+  * Added network support via LuaSocket.
+  * Added support for loading of appended .love-file.
+
+  * Added love.filesystem.lines().
+  * Added a loader function to enable use of normal require().
+  * Added love.filesystem.load().
+  * Added love.filesystem.getSaveDirectory()
+  * Added love.filesystem.getWorkingDirectory()
+
+  * Added optional explicit destruction of Box2D objects.
+  * Added shape:testSegment().
+  * Added love.graphics.screenshot() (.bmp only).
+  * Added default size (12) to font-related functions.
+  * Added love.graphics.setFont( filename, size )
+  * Added love.graphics.setLineStippe and related functions.
+  * Added love.graphics.setPointSize and related functions.
+
+  * Changed love.filesystem.read() to accept file name.
+  * Changed love.filesystem.write() to accept file name.
+  * Changed love.graphics.triangle() to accept CCW and CW ordering.
+
+  * Fixed love.graphics.read adding bogus characters at the end of string.
+  * Fixed epic swigfusion bug.
+  * Fixed love.graphics.getFont so it returns nil if no font is present.
+  * Fixed bug where love.graphics.getBlendMode() always returns blend_normal.
+  * Fixed bug which caused error screen to be scissored (when enabled).
+  * Fixed Body:setAngle to accept degrees like everything else.
+
+  * Cleaned up love::File and love_physfs.
+  * Cleaned up love::Reference so it stores its reference in _G.
+
 LOVE 0.4.0
 ----------
 
