@@ -11,6 +11,6 @@ love_LDFLAGS = -lfreetype -lGL -lGLU -lIL -lILU -lILUT -lphysfs -lSDL -lSDL_mixe
 love_LDADD =
 
 love_SOURCES = \ ' > Makefile.am
-find . \( -iname "*.c" -o -iname "*.cpp" -o -iname "*.h" \) -exec echo '{}' \\ \; >> Makefile.am
+find . \( \( -iname "*.c" -a -iname !"wsocket.*" \) -o -iname "*.cpp" -o -iname "*.h" \) -exec echo '{}' \\ \; >> Makefile.am
 cd ..
-echo src/Makefile.am is updated!
+echo src/Makefile.am is updated! Please remove the trailing backslash before compiling. :\)
