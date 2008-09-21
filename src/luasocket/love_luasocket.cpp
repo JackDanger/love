@@ -56,56 +56,56 @@ namespace love_luasocket
 
 	int luaopen_luasocket_socket(lua_State * L)
 	{
-		#include "luasocket/socket.lua.c"
+		#include "luasocket/socket.lua.h"
 		lua_getglobal(L, "socket");
 		return 1;
 	}
 
 	int luaopen_luasocket_ftp(lua_State * L)
 	{
-		#include "luasocket/ftp.lua.c"
+		#include "luasocket/ftp.lua.h"
 		lua_getglobal(L, "socket.ftp");
 		return 1;
 	}
 
 	int luaopen_luasocket_http(lua_State * L)
 	{
-		#include "luasocket/http.lua.c"
+		#include "luasocket/http.lua.h"
 		lua_getglobal(L, "socket.http");
 		return 1;
 	}
 
 	int luaopen_luasocket_ltn12(lua_State * L)
 	{
-		#include "luasocket/ltn12.lua.c"
+		#include "luasocket/ltn12.lua.h"
 		lua_getglobal(L, "ltn12");
 		return 1;
 	}
 
 	int luaopen_luasocket_mime(lua_State * L)
 	{
-		#include "luasocket/mime.lua.c"
+		#include "luasocket/mime.lua.h"
 		lua_getglobal(L, "mime");
 		return 1;
 	}
 
 	int luaopen_luasocket_smtp(lua_State * L)
 	{
-		#include "luasocket/smtp.lua.c"
+		#include "luasocket/smtp.lua.h"
 		lua_getglobal(L, "socket.smtp");
 		return 1;
 	}
 
 	int luaopen_luasocket_tp(lua_State * L)
 	{
-		#include "luasocket/tp.lua.c"
+		#include "luasocket/tp.lua.h"
 		lua_getglobal(L, "socket.tp");
 		return 1;
 	}
 
 	int luaopen_luasocket_url(lua_State * L)
 	{
-		#include "luasocket/url.lua.c"
+		#include "luasocket/url.lua.h"
 		lua_getglobal(L, "socket.url");
 		return 1;
 	}
