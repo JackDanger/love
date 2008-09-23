@@ -85,7 +85,7 @@ function Module:header()
     file:write([[
 /*
 * LOVE: Totally Awesome 2D Gaming.
-* Website: http://love.sourceforge.net
+* Website: http://love2d.org
 * Licence: ZLIB/libpng
 * Copyright (c) 2006-]]..os.date("%Y")..[[ LOVE Development Team
 *

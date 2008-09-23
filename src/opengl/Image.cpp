@@ -2,13 +2,11 @@
 
 // STD
 #include <cmath>
+#include <iostream>
 using std::string;
 
-
-
-
 // DevIL
-#include <IL/ilu.h>
+#include <IL/il.h>
 
 namespace love_opengl
 {
@@ -176,7 +174,10 @@ namespace love_opengl
 
 		// Check for errors
 		if(!success)
-			printf((const char *)iluErrorString(ilGetError()));
+		{
+			std::cerr << "Could not load image \"" << file->getFilename() << "\": " << getErrorString(ilGetError()) << "." << std::endl;
+			return false;
+		}
 
 		this->width	= (float)ilGetInteger(IL_IMAGE_WIDTH);
 		this->height = (float)ilGetInteger(IL_IMAGE_HEIGHT);
@@ -525,6 +526,33 @@ namespace love_opengl
 		this->textureHeight = height;
 		this->width = (float)width;
 		this->height = (float)height;
+	}
+
+	const char * Image::getErrorString(int error)
+	{
+		switch(error)
+		{
+		case IL_INVALID_ENUM: return "IL_INVALID_ENUM";
+		case IL_OUT_OF_MEMORY: return "IL_OUT_OF_MEMORY";
+		case IL_FORMAT_NOT_SUPPORTED: return "IL_FORMAT_NOT_SUPPORTED";
+		case IL_INTERNAL_ERROR: return "IL_INTERNAL_ERROR";
+		case IL_INVALID_VALUE: return "IL_INVALID_VALUE";
+		case IL_ILLEGAL_OPERATION: return "IL_ILLEGAL_OPERATION";
+		case IL_ILLEGAL_FILE_VALUE: return "IL_ILLEGAL_FILE_VALUE";
+		case IL_INVALID_FILE_HEADER: return "IL_INVALID_FILE_HEADER";
+		case IL_INVALID_PARAM: return "IL_INVALID_PARAM";
+		case IL_COULD_NOT_OPEN_FILE: return "IL_COULD_NOT_OPEN_FILE";
+		case IL_INVALID_EXTENSION: return "IL_INVALID_EXTENSION";
+		case IL_FILE_ALREADY_EXISTS: return "IL_FILE_ALREADY_EXISTS";
+		case IL_OUT_FORMAT_SAME: return "IL_OUT_FORMAT_SAME";
+		case IL_STACK_OVERFLOW: return "IL_STACK_OVERFLOW";
+		case IL_STACK_UNDERFLOW: return "IL_STACK_UNDERFLOW";
+		case IL_INVALID_CONVERSION: return "IL_INVALID_CONVERSION";
+		case IL_BAD_DIMENSIONS: return "IL_BAD_DIMENSIONS";
+		case IL_FILE_READ_ERROR: return "IL_FILE_READ_ERROR";
+		default:
+			return 0;
+		}
 	}
 	
 } // love

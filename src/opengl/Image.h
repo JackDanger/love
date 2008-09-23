@@ -1,6 +1,6 @@
 /*
 * LOVE: Totally Awesome 2D Gaming.
-* Website: http://love.sourceforge.net
+* Website: http://love2d.org
 * Licence: ZLIB/libpng
 * Copyright (c) 2006-2008 LOVE Development Team
 */
@@ -152,6 +152,12 @@ namespace love_opengl
 		* so yourself.
 		**/
 		void setPixels(rgba * data, int width, int height);
+
+		/**
+		* Returns string representations of DevIL error codes.
+		* @error The error code.
+		**/
+		static const char * getErrorString(int error);
 		
 	}; // Image
 

@@ -1,5 +1,8 @@
 #include "File.h"
 
+// STD
+#include <string.h>
+
 namespace love_physfs
 {
 	extern bool setupWriteDirectory();

@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="SDL.lib SDLmain.lib lua-d.lib liblove.lib physfs.lib opengl32.lib glu32.lib DevIL.lib ILU.lib freetype.lib SDL_mixer.lib ws2_32.lib"
+				AdditionalDependencies="SDL.lib SDLmain.lib lua-d.lib liblove.lib physfs.lib opengl32.lib glu32.lib DevIL.lib freetype.lib SDL_mixer.lib ws2_32.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="lib;debug"
 				GenerateManifest="true"
