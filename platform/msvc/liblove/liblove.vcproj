@@ -202,6 +202,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\liblove\Shared.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\liblove\StaticModule.cpp"
 				>
 			</File>
@@ -289,6 +293,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\liblove\include\love\Resource.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\liblove\include\love\Shared.h"
 				>
 			</File>
 			<File

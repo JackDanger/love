@@ -1,4 +1,4 @@
-    
+
 // SWIGFUSION ^.^
     
 // Lua
@@ -7,6 +7,7 @@ struct lua_State;
 // Forward declarations of fused methods: 
 namespace love_sdlmixer
 {
+	int __error_index(lua_State * L);
 }
 
 
@@ -2590,6 +2591,11 @@ void SWIG_init_user(lua_State* L)
 
 namespace love_sdlmixer
 {
+	int __error_index(lua_State * L)	
+	{
+		return luaL_error(L, "Attempt to index destroyed object.");
+	}
+    
 	bool mod_is_sound(lua_State * L, int idx)            
     {
         swig_lua_userdata* usr = 0;
@@ -2609,6 +2615,16 @@ namespace love_sdlmixer
               luaL_error(L, "Error, argument is not type Sound.");
         }
         return *arg;
+    }
+        
+	boost::shared_ptr<Sound> * mod_to_sound_ptr(lua_State * L, int idx)            
+    {
+        love_sdlmixer::pSound * arg;
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_sdlmixer__Sound_t,0))){
+              luaL_error(L, "Error, argument is not type Sound.");
+        }
+        return arg;
     }
         
 	void mod_push_sound(lua_State * L, boost::shared_ptr<Sound> sound)            
@@ -2636,6 +2652,16 @@ namespace love_sdlmixer
               luaL_error(L, "Error, argument is not type Music.");
         }
         return *arg;
+    }
+        
+	boost::shared_ptr<Music> * mod_to_music_ptr(lua_State * L, int idx)            
+    {
+        love_sdlmixer::pMusic * arg;
+        if(!lua_isuserdata(L,idx)) luaL_error(L, "Error, argument is not userdata.");
+        if (!SWIG_IsOK(SWIG_ConvertPtr(L,idx,(void**)&arg,SWIGTYPE_p_boost__shared_ptrT_love_sdlmixer__Music_t,0))){
+              luaL_error(L, "Error, argument is not type Music.");
+        }
+        return arg;
     }
         
 	void mod_push_music(lua_State * L, boost::shared_ptr<Music> music)            

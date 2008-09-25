@@ -68,6 +68,7 @@ namespace love
 	// Image optimization, etc.
 	enum
 	{
+		IMAGE_NORMAL = 0,
 		IMAGE_OPTIMIZE = 1, 
 		IMAGE_PAD, 
 		IMAGE_PAD_AND_OPTIMIZE

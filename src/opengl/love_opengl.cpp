@@ -73,21 +73,10 @@ namespace love_opengl
 
 	// Required modules + Core.
 	love::Core * core = 0;
-	love::Filesystem * filesystem = 0;
 
 	bool module_init(int argc, char ** argv, love::Core * core)
 	{
 		std::cout << "INIT love.graphics [" << "OpenGL/DevIL/FreeType" << "]" << std::endl;
-	
-		// Get modules.
-		filesystem = core->getFilesystem();
-
-		// Verify all.
-		if(!filesystem->verify())
-		{
-			std::cerr << "Required module filesystem not loaded." << std::endl;
-			return false;
-		}
 
 		love_opengl::core = core;
 
@@ -447,63 +436,7 @@ namespace love_opengl
 		return c;
 	}
 
-	pImage newImage(int image)
-	{
-		switch(image)
-		{
-		case love::DEFAULT_LOGO_128:
-			return newImage(love::logo128x64_png);
-			break;
-		case love::DEFAULT_LOGO_256:
-			return newImage(love::logo256x128_png);
-			break;
-		case love::DEFAULT_VERMIN:
-			return newImage(love::mutant_vermin_png, love::IMAGE_OPTIMIZE);
-			break;
-		case love::DEFAULT_BIG_LOVE_BALL:
-			return newImage(love::big_love_ball_png, love::IMAGE_OPTIMIZE);
-			break;
-		case love::DEFAULT_FREECHAN:
-			return newImage(love::freechan_png, love::IMAGE_OPTIMIZE);
-			break;
-		case love::DEFAULT_GREEN_BALL:
-			return newImage(love::green_ball_png, love::IMAGE_OPTIMIZE);
-			break;
-		case love::DEFAULT_SPEAK_CLOUD:
-			return newImage(love::speak_cloud_png, love::IMAGE_OPTIMIZE);
-			break;
-		default: // ALWAYS MOOSE:
-			return newImage(love::mini_moose_png);
-			break;
-		}
-	}
-
-	pImage newImage(const char * filename)
-	{
-		love::pFile * file = filesystem->getFile(filename, love::FILE_READ);
-		pImage image = newImage(*file);
-		delete file;
-		return image;
-	}
-
-	pImage newImage(love::pFile file)
-	{
-		// Create the image file.
-		pImage image(new Image(file));
-
-		// Load the image. Check for errors.
-		if(!image->load())
-		{
-			std::stringstream ss;
-			ss << "Could not load image \"" << file->getFilename() << "\".";
-
-			// Trigger error.
-			core->error(ss.str().c_str());
-		}
-		return image;
-	}
-
-	pImage newImage(love::pFile file, int mode)
+	pImage newImagef(love::pFile file, int mode)
 	{
 		// Create the new image.
 		pImage image(new Image(file));
@@ -537,36 +470,67 @@ namespace love_opengl
 		return image;
 	}
 
-	pImage newImage(const char * filename, int mode)
+
+
+	pImage newImagev(void * ptr, int mode)
 	{
-		love::pFile * file = filesystem->getFile(filename, love::FILE_READ);
-
-		// Create the new image.
-		pImage image = newImage(*file);
-
-		delete file;
-
-		return image;
+		love::pFile * file = (love::pFile *)ptr;
+		return newImagef(*file, mode);
 	}
 
-	pFont newFont(const char * filename, int size)
+	pImage newImagei(int image)
 	{
-		love::pFile * file = filesystem->getFile(filename, love::FILE_READ);
-		pFont font(new TrueTypeFont(*file, size));
-		delete file;
+		switch(image)
+		{
+		case love::DEFAULT_LOGO_128:
+			return newImagef(love::logo128x64_png);
+			break;
+		case love::DEFAULT_LOGO_256:
+			return newImagef(love::logo256x128_png);
+			break;
+		case love::DEFAULT_VERMIN:
+			return newImagef(love::mutant_vermin_png, love::IMAGE_OPTIMIZE);
+			break;
+		case love::DEFAULT_BIG_LOVE_BALL:
+			return newImagef(love::big_love_ball_png, love::IMAGE_OPTIMIZE);
+			break;
+		case love::DEFAULT_FREECHAN:
+			return newImagef(love::freechan_png, love::IMAGE_OPTIMIZE);
+			break;
+		case love::DEFAULT_GREEN_BALL:
+			return newImagef(love::green_ball_png, love::IMAGE_OPTIMIZE);
+			break;
+		case love::DEFAULT_SPEAK_CLOUD:
+			return newImagef(love::speak_cloud_png, love::IMAGE_OPTIMIZE);
+			break;
+		default: // ALWAYS MOOSE:
+			return newImagef(love::mini_moose_png);
+			break;
+		}
+	}
+
+	pFont newFontf(love::pFile file, int size)
+	{
+		pFont font(new TrueTypeFont(file, size));
 
 		// Load it and check for errors.
 		if(!font->load())
 		{
 			std::stringstream err;
-			err << "Could not load font \"" << filename << "\".";
+			err << "Could not load font \"" << file->getFilename() << "\".";
 			core->error(err.str().c_str());
 		}
 
 		return font;
 	}
 
-	pFont newFont(int f, int size)
+	pFont newFontv(void * ptr, int size)
+	{
+		love::pFile * file = (love::pFile *)ptr;
+		return newFontf(*file, size);
+	}
+
+	pFont newFonti(int f, int size)
 	{
 		
 		// There's only one default font yet, so
@@ -578,22 +542,26 @@ namespace love_opengl
 		return font;
 	}
 
-	pFont newImageFont(const char * filename, const char * glyphs, float spacing)
+	pFont newImageFontf(love::pFile file, const char * glyphs, float spacing)
 	{
-		love::pFile * file = filesystem->getFile(filename, love::FILE_READ);
-		pFont font(new ImageFont(*file, std::string(glyphs)));
-		delete file;
+		pFont font(new ImageFont(file, std::string(glyphs)));
 		font->setSpacing(spacing);
 
 		// Load it and check for errors.
 		if(!font->load())
 		{
 			std::stringstream err;
-			err << "Could not load imagefont \"" << filename << "\".";
+			err << "Could not load imagefont \"" << file->getFilename() << "\".";
 			core->error(err.str().c_str());
 		}
 
 		return font;
+	}
+
+	pFont newImageFontv(void * ptr, const char * glyphs, float spacing)
+	{
+		love::pFile * file = (love::pFile *)ptr;
+		return newImageFontf(*file, glyphs, spacing);
 	}
 
 	pAnimation newAnimation(pImage image)
@@ -607,40 +575,6 @@ namespace love_opengl
 	{
 		// Create the animation.
 		pAnimation anim(new Animation(image, fw, fh, delay, num));
-		return anim;
-	}
-
-	pAnimation newAnimation(const char * filename)
-	{
-		// Load the image.
-		pImage img = newImage(filename);
-
-		if(!img->load())
-		{
-			std::stringstream err;
-			err << "Could not load animation \"" << filename << "\".";
-			core->error(err.str().c_str());
-		}
-
-		// Create the animation.
-		pAnimation anim(new Animation(img));
-		return anim;
-	}
-
-	pAnimation newAnimation(const char * filename, float fw, float fh, float delay, int num)
-	{
-		// Load the image.
-		pImage img = newImage(filename);
-
-		if(!img->load())
-		{
-			std::stringstream err;
-			err << "Could not load animation \"" << filename << "\".";
-			core->error(err.str().c_str());
-		}
-
-		// Create the animation.
-		pAnimation anim(new Animation(img, fw, fh, delay, num));
 		return anim;
 	}
 
@@ -753,19 +687,14 @@ namespace love_opengl
 		return clr;
 	}
 
-	void setFont( pFont font )
+	void setFontf( pFont font )
 	{
 		current_font = font;
 	}
 
-	void setFont( const char * filename, int size )
+	void setFonti( int font, int size )
 	{
-		current_font = newFont(filename, size );
-	}
-
-	void setFont( int font, int size )
-	{
-		current_font = newFont( font, size );
+		current_font = newFonti( font, size );
 	}
 
 	int getFont(lua_State * L)
@@ -1584,13 +1513,14 @@ namespace love_opengl
 		return 0;
 	}
 
-	void screenshot(const char * filename)
+	void screenshotv(void * ptr)
 	{
 		int w = getWidth();
 		int h = getHeight();
 
 		// Declare some storage.
 		GLubyte * pixels = new GLubyte[3*w*h];
+		GLubyte * screenshot = new GLubyte[3*w*h];
 		ILuint image;
 
 		// Read the pixels on the screen.
@@ -1600,24 +1530,25 @@ namespace love_opengl
 		ilBindImage(image);
 		ilTexImage(w, h, 1, 3, IL_RGB, IL_UNSIGNED_BYTE, (ILvoid*)pixels);
 
-		// Create the image.
-		ilSaveL(IL_BMP, pixels, 0);
+		delete [] pixels;
 
-		love::pFile * file = filesystem->getFile(filename, love::FILE_WRITE);
+		// Create the image.
+		ilSaveL(IL_BMP, screenshot, 3*w*h);
+
+		love::pFile * file = (love::pFile*)ptr;
 
 		bool error = false;
 
 		if((*file)->open())
 		{
-			if(!(*file)->write((const char *)pixels, 3*w*h))
+			if(!(*file)->write((const char *)screenshot, 3*w*h))
 				error = true;
 			(*file)->close();
 		}
 		else
 			error = true;
 
-		delete file;
-		delete pixels;
+		delete [] screenshot;
 		ilDeleteImages(1, &image);
 
 		if(error)

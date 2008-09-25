@@ -234,6 +234,7 @@ namespace love_system
 		{ "audio_quality_high", 44100 },
 		{ "audio_buffer_default", 1024 },
 
+		{ "image_normal", 0 },
 		{ "image_optimize", 1 },
 		{ "image_pad", 2 },
 		{ "image_pad_and_optimize", 3 },

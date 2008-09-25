@@ -1,4 +1,4 @@
-    
+
 // SWIGFUSION ^.^
     
 // Lua
@@ -7,6 +7,7 @@ struct lua_State;
 // Forward declarations of fused methods: 
 namespace love_sdlmouse
 {
+	int __error_index(lua_State * L);
 }
 
 

@@ -4,6 +4,9 @@ using std::string;
 
 namespace love
 {
+	File::File()
+	{
+	}
 
 	File::File(const string & filename, int mode) 
 		: filename(filename), mode(mode)

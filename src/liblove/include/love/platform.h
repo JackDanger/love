@@ -4,7 +4,7 @@
 * Licence: ZLIB/libpng
 * Copyright (c) 2006-2008 LOVE Development Team
 * 
-* Create pretty platform defines.
+* Creates pretty platform defines.
 * 
 * @author Anders Ruud
 * @date 2008-07-01

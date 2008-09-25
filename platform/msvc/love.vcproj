@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="include;include\SDL;../../src/liblove/include;../../src/box2d/Include"
+				AdditionalIncludeDirectories="include;include\SDL;include\AL;../../src/liblove/include;../../src/box2d/Include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="SDL.lib SDLmain.lib lua-d.lib liblove.lib physfs.lib opengl32.lib glu32.lib DevIL.lib freetype.lib SDL_mixer.lib ws2_32.lib"
+				AdditionalDependencies="SDL.lib SDLmain.lib lua-d.lib liblove.lib physfs.lib opengl32.lib glu32.lib DevIL.lib freetype.lib openal32.lib alut.lib ws2_32.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="lib;debug"
 				GenerateManifest="true"
@@ -387,42 +387,6 @@
 					</File>
 					<File
 						RelativePath="..\..\src\opengl\Sprite.i"
-						>
-					</File>
-				</Filter>
-			</Filter>
-			<Filter
-				Name="sdlmixer"
-				>
-				<File
-					RelativePath="..\..\src\sdlmixer\love_sdlmixer.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdlmixer\mod_sdlmixer.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdlmixer\Music.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdlmixer\Sound.cpp"
-					>
-				</File>
-				<Filter
-					Name="swig"
-					>
-					<File
-						RelativePath="..\..\src\sdlmixer\mod_sdlmixer.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\sdlmixer\Music.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\sdlmixer\Sound.i"
 						>
 					</File>
 				</Filter>
@@ -863,6 +827,40 @@
 					</File>
 				</Filter>
 			</Filter>
+			<Filter
+				Name="openal"
+				>
+				<File
+					RelativePath="..\..\src\openal\love_openal.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\openal\mod_openal.i"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\openal\Sound.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1002,26 +1000,6 @@
 				</File>
 				<File
 					RelativePath="..\..\src\opengl\Volatile.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="sdlmixer"
-				>
-				<File
-					RelativePath="..\..\src\sdlmixer\love_sdlmixer.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdlmixer\mod_sdlmixer.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdlmixer\Music.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdlmixer\Sound.h"
 					>
 				</File>
 			</Filter>
@@ -1200,6 +1178,18 @@
 						>
 					</File>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="openal"
+				>
+				<File
+					RelativePath="..\..\src\openal\love_openal.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\openal\Sound.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter

@@ -41,7 +41,7 @@ namespace love_opengl
 	bool module_init(int argc, char ** argv, love::Core * core);
 	bool module_quit();
 	bool module_open(void * vm);
-		
+
 	/**
 	* Checks whether a display mode is supported or not. Note
 	* that fullscreen is assumed, because windowed modes are
@@ -121,45 +121,35 @@ namespace love_opengl
 	pColor newColor( int r, int g, int b, int a = 255 );
 
 	/**
+	* Creates an Image object with padding and/or optimization.
+	**/
+	pImage newImagef(love::pFile file, int mode = love::IMAGE_NORMAL);
+
+	pImage newImagev(void * ptr, int mode = love::IMAGE_NORMAL);
+
+	/**
 	* Creates an Image object from one of the built-in ones.
 	* (Just for internal use).
 	**/
-	pImage newImage(int image);	
-
-	/**
-	* Creates an Image object.
-	**/
-	pImage newImage(const char * filename);	
-
-	/**
-	* Creates an Image object with padding and/or optimization.
-	**/
-	pImage newImage(const char * filename, int mode);	
-
-	/**
-	* Creates an Image object. (This is not exposed in Lua).
-	**/
-	pImage newImage(love::pFile file);
-
-	/**
-	* Creates an Image object with padding and/or optimization.
-	**/
-	pImage newImage(love::pFile file, int mode);
+	pImage newImagei(int image);	
 
 	/**
 	* Creates a Font object.
 	**/
-	pFont newFont(const char * filename, int size = 12);
+	pFont newFontf(love::pFile file, int size = 12);
+
+	pFont newFontv(void * ptr, int size = 12);
 
 	/**
 	* Creates a Font object (using default fonts).
 	**/
-	pFont newFont(int f, int size = 12);
+	pFont newFonti(int f, int size = 12);
 
 	/**
 	* Creates an ImageFont object.
 	**/
-	pFont newImageFont(const char * filename, const char * glyphs, float spacing = 1);
+	pFont newImageFontf(love::pFile file, const char * glyphs, float spacing = 1);
+	pFont newImageFontv(void * ptr, const char * glyphs, float spacing = 1);
 
 	/**
 	* Creates an Animation object with no frames.
@@ -171,15 +161,6 @@ namespace love_opengl
 	**/
 	pAnimation newAnimation(pImage image, float fw, float fh, float delay, int num = 0);
 
-	/**
-	* Creates an Animation object with no frames.
-	**/
-	pAnimation newAnimation(const char * filename);
-
-	/**
-	* Creates an Animation object with generated frames in a grid.
-	**/
-	pAnimation newAnimation(const char * filename, float fw, float fh, float delay, int num = 0);
 
 	/**
 	* Creates a ParticleSystem object with the specified buffer size and using the specified sprite.
@@ -262,16 +243,7 @@ namespace love_opengl
 	* Sets the current font.
 	* @parm font A Font object.
 	**/
-	void setFont( pFont font );
-
-	/**
-	* Sets the current font from a filename. The font is
-	* loaded and sent to the GPU every time this is called, 
-	* so no over-using.
-	* @param filename The filename of a font.
-	* @param size The size of the font.
-	**/
-	void setFont( const char * filename, int size = 12 );
+	void setFontf( pFont font );
 
 	/**
 	* Sets a default font. The font is
@@ -280,7 +252,7 @@ namespace love_opengl
 	* @param font The interal font ID.
 	* @param size The size of the font.
 	**/
-	void setFont( int font, int size = 12 );
+	void setFonti( int font, int size = 12 );
 
 	/**
 	* Gets the current Font, or nil if none.
@@ -657,9 +629,9 @@ namespace love_opengl
 
 	/**
 	* Creates a screenshot of the view and saves it to the default folder.
-	* @param filename The filename for where the file should be saved.
+	* @param file The file to write the screenshot to.
 	**/
-	void screenshot(const char * filename);
+	void screenshotv(void * ptr);
 
 	void push();
 	void pop();

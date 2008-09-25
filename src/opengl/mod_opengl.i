@@ -25,7 +25,6 @@ namespace boost {
 
 namespace love_opengl
 {
-
 	bool feature(int f);
 
 	// Display mode control.
@@ -34,17 +33,19 @@ namespace love_opengl
 	bool toggleFullscreen();
 
 	pColor newColor( int r, int g, int b, int a = 255 );
-	pImage newImage(int image);
-	pImage newImage(const char * filename);
-	pImage newImage(const char * filename, int mode);
-	pFont newFont(const char * filename, int size = 12);
-	pFont newFont(int f, int size = 12);
-	pFont newImageFont(const char * filename, const char * glyphs, float spacing = 1);
+
+	pImage newImagev(void * ptr, int mode = love::IMAGE_NORMAL);
+	pImage newImagei(int image);
+	
+	pFont newFontv(void * ptr, int size = 12);
+	pFont newFonti(int f, int size = 12);
+	
+	pFont newImageFontv(void * ptr, const char * glyphs, float spacing = 1);
 	
 	pAnimation newAnimation(pImage image);
 	pAnimation newAnimation(pImage image, float fw, float fh, float delay, int num = 0);
-	pAnimation newAnimation(const char * filename);
-	pAnimation newAnimation(const char * filename, float fw, float fh, float delay, int num = 0);
+	// TODO: RESTORE pAnimation newAnimation(const char * filename);
+	// TODO: RESTORE pAnimation newAnimation(const char * filename, float fw, float fh, float delay, int num = 0);
 	
 	pParticleSystem newParticleSystem(pImage sprite, unsigned int size);
 	pParticleSystem newParticleSystem(pImage sprite, unsigned int size, int mode);
@@ -89,9 +90,8 @@ namespace love_opengl
 	int getPointStyle();
 	int getMaxPointSize();
 	
-	void setFont( pFont font );
-	void setFont( const char * filename, int size = 12 );
-	void setFont( int font, int size = 12 );
+	void setFontf( pFont font );
+	void setFonti( int font, int size = 12 );
 	// pFont getFont(); // (Now native)
 	
 	void draw( const char * str, float x, float y );
@@ -137,7 +137,7 @@ namespace love_opengl
 	void translate(float x, float y);
 	
 	// Screenshot
-	void screenshot(const char * filename);
+	void screenshotv(void * ptr);
 }
 
 %native(getModes) int love_opengl::getModes(lua_State * L);
@@ -149,4 +149,65 @@ namespace love_opengl
 
 %luacode{
 love.graphics = mod_opengl
+mod_opengl = nil
+
+
+function love.graphics.newImage(a, mode)
+	mode = mode or love.image_normal
+	if type(a) == "string" then
+		local file = love.filesystem.newFile(a)
+		return love.graphics.newImagev(file, mode)
+	elseif type(a) == "number" then
+		return love.graphics.newImagei(a, mode)
+	else
+		return error("Incorrect parameter type: expected string or number.")
+	end
+end
+
+function love.graphics.newFont(a, size)
+	size = size or 12
+	if type(a) == "string" then
+		local file = love.filesystem.newFile(a)
+		return love.graphics.newFontv(file, size)
+	elseif type(a) == "number" then
+		return love.graphics.newFonti(a, size)
+	else
+		return error("Incorrect parameter type: expected string or number.")
+	end	
+end
+
+function love.graphics.newImageFont(a, glyphs, spacing)
+	spacing = spacing or 1
+	if type(a) == "string" and type(glyphs) == "string" then
+		local file = love.filesystem.newFile(a)
+		return love.graphics.newImageFontv(file, glyphs, spacing)
+	else
+		return error("Incorrect parameter type: expected string.")
+	end	
+end
+
+function love.graphics.setFont(a, size)
+	size = size or 12
+	if type(a) == "userdata" then
+		love.graphics.setFontf(a)
+	elseif type(a) == "string" then
+		local font = love.graphics.newFont(a, size)
+		love.graphics.setFontf(font)
+	elseif type(a) == "number" then
+		local font = love.graphics.newFont(a, size)
+		love.graphics.setFontf(font)
+	else
+		return error("Incorrect parameter type: expected string or Font.")
+	end		
+end
+
+function love.graphics.screenshot(a)
+		if type(a) == "string" then
+			local file = love.filesystem.newFile(a, love.file_write)
+			love.graphics.screenshotv(file)
+		else
+			return error("Incorrect parameter type. Expected string.")
+		end
+end
+
 }

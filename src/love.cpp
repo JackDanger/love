@@ -28,6 +28,7 @@
 #include <love/Exception.h>
 #include <love/version.h>
 #include <love/events.h>
+#include <love/Shared.h>
 
 // This neat macro makes static module 
 // configuration prettier.
@@ -47,7 +48,8 @@
 // Static module conf.
 STATIC_MOD_EXTERN(love_physfs);
 STATIC_MOD_EXTERN(love_opengl);
-STATIC_MOD_EXTERN(love_sdlmixer);
+//STATIC_MOD_EXTERN(love_sdlmixer);
+STATIC_MOD_EXTERN(love_openal);
 STATIC_MOD_EXTERN(love_sdltimer);
 STATIC_MOD_EXTERN(love_sdlmouse);
 STATIC_MOD_EXTERN(love_sdlkeyboard);
@@ -60,6 +62,7 @@ using namespace love;
 
 int main(int argc, char* argv[])
 {	
+
 	// Create a core.
 	pCore core(new Core());
 
@@ -79,7 +82,8 @@ int main(int argc, char* argv[])
 	// Add modules. (Modules are immediately inited, so the order is important).
 	STATIC_MOD_INIT(love_physfs);
 	STATIC_MOD_INIT(love_opengl);
-	STATIC_MOD_INIT(love_sdlmixer);
+	//STATIC_MOD_INIT(love_sdlmixer);
+	STATIC_MOD_INIT(love_openal);
 	STATIC_MOD_INIT(love_sdltimer);
 	STATIC_MOD_INIT(love_sdlmouse);
 	STATIC_MOD_INIT(love_sdlkeyboard);

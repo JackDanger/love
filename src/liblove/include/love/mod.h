@@ -33,4 +33,12 @@
 #include "luax.h"
 #include "Reference.h"
 
+namespace love
+{
+	extern Core * core;
+
+	void init(Core * core, int m);
+
+} // love
+
 #endif // LOVE_MOD_H
