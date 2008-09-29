@@ -9,12 +9,12 @@
 #define LOVE_CORE_H
 
 // LOVE
-#include "DynamicModule.h"
-#include "StaticModule.h"
-#include "modspec.h"
+#include "Module.h"
+#include "Game.h"
 
 // STD
 #include <vector>
+#include <sstream>
 
 namespace love
 {
@@ -32,32 +32,16 @@ namespace love
 	{
 	private:
 
-		// Command line arguments.
-		int argc;
-		char ** argv;
-
-		// The standard, static modules.
-		Filesystem filesystem;
-		Graphics graphics;
-		Timer timer;
-		System system;
-		Audio audio;
-		Mouse mouse;
-		Keyboard keyboard;
-		Joystick joystick;
-
 		// All Modules, in the order they're loaded.
-		std::vector<pModule> modules;
-
-		// Dynamic modules, accessible by name. (This only contains
-		// the dynamic modules, while "modules" contain both dynamic
-		// and static).
-		std::map<std::string, pDynamicModule> dynamic_modules;
+		std::vector<Module> modules;
+		
+		// The currently running state.
+		lua_State * L;
 
 	public:
 
 		/**
-		* Initializes some members.
+		* Creates the Lua state and initializes it.
 		**/
 		Core();
 
@@ -65,57 +49,41 @@ namespace love
 		* Calls module_quit on all modules.
 		**/
 		~Core();
-			
-		/**
-		* Sets the command line arguments.
-		* @param argc Number of command line arguments.
-		* @param argv Command line arguments.
-		**/
-		void setArgs(int argc, char ** argv);
 
-		bool insmod(pModule m);
+		/**
+		* Calls love.init().
+		**/
+		int init();
+
+		/**
+		* Sets the arg table with the command line arguments.
+		**/
+		void setArg(int argc, char ** argv);
+
+		void addSearcher(lua_CFunction f);
 
 		/**
 		* Attach a module to the Core. The module will be loaded immediately.
-		* @param init Function pointer to the module init function.
-		* @param quit Function pointer to the module quit function.
-		* @param open Function pointer to the module (lua)open function.
+		* @param module The module to insert. (Will be automatically freed).
 		**/
-		bool insmod(fptr_init init, fptr_quit quit, fptr_open open);
-
-		bool insmod(const std::string & name);
+		bool insert(Module module);
 
 		/**
-		* Opens all Modules. This is useful when love.system needs
-		* to create a new game.
-		* @param vm A pointer to the virtual machine. (In the Lua-case, this
-		*           would be the lua_State.
+		* Triggers an error.
 		**/
-		bool open(void * vm);
-
-		bool verify();
+		bool error(const char * fmt, ...);
 
 		/**
-		* Calls the error function in the system module. This 
-		* will halt the current game and display the error message.
-		* @param msg The message to display.
+		* Allows the core to be used as a lua_State.
 		**/
-		void error(const char * msg);
-
-		// Accessor functions for the standard modules.
-		Filesystem * getFilesystem();
-		Graphics * getGraphics();
-		Timer * getTimer();
-		System * getSystem();
-		Audio * getAudio();
-		Mouse * getMouse();
-		Keyboard * getKeyboard();
-		Joystick * getJoystick();
-
+		inline lua_State * getL()
+		{
+			return L;
+		}
 
 	}; // Core
 
-	typedef boost::shared_ptr<Core> pCore;
+	extern Core * core;
 
 } // love
 

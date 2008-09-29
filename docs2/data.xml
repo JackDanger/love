@@ -890,10 +890,11 @@
 
     <func name="getModes" brief="Gets a list of supported fullscreen modes.">
       <overload>
-        <ret type="table" brief="A table of width/height pairs." />
+        <ret type="table" name="modes"  brief="A table of width/height pairs." />
         This function does not include windowed modes, because they are generally supported with
         any screen resolution. To see the exact nature of the returned table, see example below.
-      </overload>
+        <example id="104" />     
+     </overload>
     </func>
 
     <func name="setCaption" brief="Sets the window caption." space="true">

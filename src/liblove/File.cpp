@@ -1,14 +1,12 @@
 #include <love/File.h>
 
-using std::string;
-
 namespace love
 {
 	File::File()
 	{
 	}
 
-	File::File(const string & filename, int mode) 
+	File::File(const std::string & filename, int mode) 
 		: filename(filename), mode(mode)
 	{
 	}
@@ -17,7 +15,7 @@ namespace love
 	{
 	}
 
-	const string & File::getFilename() const
+	const std::string & File::getFilename() const
 	{
 		return filename;
 	}

@@ -3,75 +3,47 @@
 * Website: http://love2d.org
 * Licence: ZLIB/libpng
 * Copyright (c) 2006-2008 LOVE Development Team
+* 
+* Represents a loadable love module.
+* 
+* @author Anders Ruud
+* @date 2008-03-14
 */
 
 #ifndef LOVE_MODULE_H
 #define LOVE_MODULE_H
 
-// LOVE
-
-
-// STD
-#include <string>
-#include <typeinfo>
-#include <map>
-
-// Boost
-#include <boost/shared_ptr.hpp>
-
 namespace love
 {
+	// Forward declarions.
 	class Core;
 
 	// Common function typedefs.
-	typedef bool (*fptr_init)(int, char **, Core *);
-	typedef bool (*fptr_quit)();
-	typedef bool  (*fptr_open)(void *);
+	typedef bool (*fptr_core)(Core *);
 	
-	/**
-	* Abstract Module. 
-	* 
-	* @author Anders Ruud
-	* @date 2008-03-14
-	**/
 	class Module
 	{
-	protected:
-
 		// Friends.
 		friend class Core;
 
-		// Functions that all modules must have, dynamic
-		// as well as static.
-		fptr_init module_init;
-		fptr_quit module_quit;
-		fptr_open module_open;
+	private:
+
+		// Function pointers.
+		fptr_core init, quit, open;
 
 	public:
 
 		/**
 		* Creates a new Module.
 		**/
-		Module();
+		Module(fptr_core init, fptr_core quit, fptr_core open);
 
 		/**
 		* Calls unload.
 		**/
-		virtual ~Module();
-
-		/**
-		* Loads this Module.
-		**/
-		virtual bool load() = 0;
-
-		/**
-		* Unloads this Module.
-		**/
-		virtual void unload() = 0;
+		~Module();
 
 	}; // Module
-
-	typedef boost::shared_ptr<Module> pModule;
 
 } // love
 

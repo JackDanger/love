@@ -21,9 +21,9 @@ namespace love_system
 {
 	
 	// Standard module functions.
-	bool module_init(int argc, char ** argv, love::Core * core);
-	bool module_quit();
-	bool module_open(void * vm);
+	bool module_init(love::Core * core);
+	bool module_quit(love::Core * core);
+	bool module_open(love::Core * core);
 
 	/**
 	* This function takes LOVE into suspended mode, 

@@ -4,195 +4,101 @@
 * Licence: ZLIB/libpng
 * Copyright (c) 2006-2008 LOVE Development Team
 * 
-* This is the executable. It does the following:
-*
-* - Inits SDL. 
-* - Creates a love::Core.
-* - Inserts all the modules into the core.
-* - And finally enters update/render loop.
-* 
 * @author Anders Ruud
 * @date 2008-03-15
 */
 
 // STD
-#include <iostream>
-#include <fstream>
 
 // SDL
 #include <SDL.h>
 
 // LOVE
 #include <love/Core.h>
-#include <love/Game.h>
-#include <love/Exception.h>
-#include <love/version.h>
-#include <love/events.h>
-#include <love/Shared.h>
 
 // This neat macro makes static module 
 // configuration prettier.
 #define STATIC_MOD_EXTERN(ns) \
 	namespace ns { \
-		extern bool module_init(int argc, char ** argv, love::Core * core); \
-		extern bool module_quit(); \
-		extern bool module_open(void * vm); \
+		extern bool module_init(love::Core * core); \
+		extern bool module_quit(love::Core * core); \
+		extern bool module_open(love::Core * core); \
 	} \
 
-// This other neat macro makes static module
-// initialization prettier.
-#define STATIC_MOD_INIT(ns) \
-	if(!core->insmod(ns::module_init, ns::module_quit, ns::module_open)) \
-		return 1; \
+#define LOVE_MOD(ns) \
+	love::Module(ns::module_init, ns::module_quit, ns::module_open) \
 
 // Static module conf.
+STATIC_MOD_EXTERN(love_sdlsystem);
+STATIC_MOD_EXTERN(love_sdlkeyboard);
+STATIC_MOD_EXTERN(love_sdlmouse);
+STATIC_MOD_EXTERN(love_sdljoystick);
+STATIC_MOD_EXTERN(love_sdltimer);
 STATIC_MOD_EXTERN(love_physfs);
 STATIC_MOD_EXTERN(love_opengl);
-//STATIC_MOD_EXTERN(love_sdlmixer);
-STATIC_MOD_EXTERN(love_openal);
-STATIC_MOD_EXTERN(love_sdltimer);
-STATIC_MOD_EXTERN(love_sdlmouse);
-STATIC_MOD_EXTERN(love_sdlkeyboard);
 STATIC_MOD_EXTERN(love_box2d);
 STATIC_MOD_EXTERN(love_luasocket);
-STATIC_MOD_EXTERN(love_sdljoystick);
-STATIC_MOD_EXTERN(love_system);
 
-using namespace love;
+typedef struct
+{
+	const char * name;
+	const char * provides;
+	love::Module module;
+} modentry;
 
-int main(int argc, char* argv[])
-{	
+// Module list.
+const static modentry love_libs[] = 
+{
+	{ "love_sdlsystem",		"love.system",		LOVE_MOD(love_sdlsystem) },
+	{ "love_sdlkeyboard",	"love.keyboard",	LOVE_MOD(love_sdlkeyboard) },
+	{ "love_sdlmouse",		"love.mouse",		LOVE_MOD(love_sdlmouse) },
+	{ "love_sdljoystick",	"love.joystick",	LOVE_MOD(love_sdljoystick) },
+	{ "love_sdltimer",		"love.timer",		LOVE_MOD(love_sdltimer) },
+	{ "love_physfs",		"love.filesystem",	LOVE_MOD(love_physfs) },
+	{ "love_opengl",		"love.graphics",	LOVE_MOD(love_opengl) },
+	{ "love_box2d",			"love.physics",		LOVE_MOD(love_box2d) },
+	{ "love_luasocket",		"love.luasocket",	LOVE_MOD(love_luasocket) },
+	{ 0, 0, love::Module(0,0,0) }, // End
+};
 
-	// Create a core.
-	pCore core(new Core());
+int modloader(lua_State * L)
+{
+	int i = (int)lua_tointeger(L, lua_upvalueindex(1));
+	love::core->insert(love_libs[i].module);
+	return 0;
+}
 
-	// Init SDL.
-	if(SDL_Init(0))
+int modseacher(lua_State * L)
+{
+	// Get the module name.
+	const char * name = lua_tostring(L, -1);
+
+	// Find the module.
+	for(int i = 0; love_libs[i].name != 0; i++)
 	{
-		std::cerr << "Could not init SDL. " << SDL_GetError() << std::endl;
-		return false;
-	}
-
-	// Print welcome message.
-	std::cout << "This is LOVE " << LOVE_VERSION_FULL_STR << "." << std::endl << std::endl;
-
-	// Set command line arguments.
-	core->setArgs(argc, argv);
-
-	// Add modules. (Modules are immediately inited, so the order is important).
-	STATIC_MOD_INIT(love_physfs);
-	STATIC_MOD_INIT(love_opengl);
-	//STATIC_MOD_INIT(love_sdlmixer);
-	STATIC_MOD_INIT(love_openal);
-	STATIC_MOD_INIT(love_sdltimer);
-	STATIC_MOD_INIT(love_sdlmouse);
-	STATIC_MOD_INIT(love_sdlkeyboard);
-	STATIC_MOD_INIT(love_box2d);
-	STATIC_MOD_INIT(love_luasocket);
-	STATIC_MOD_INIT(love_sdljoystick);
-
-	// System shoud even go after dynamic modules, since it
-	// creates the Lua VM, etc.
-	STATIC_MOD_INIT(love_system);
-
-	// Verifies that all required function pointers 
-	// have been set for the standard modules.
-	if(!core->verify())
-	{
-		std::cerr << "Core verification FAILED." << std::endl;
-		return 1;
-	}
-
-	// Get pointers to the devices we use.
-	Timer * timer = core->getTimer();
-	Graphics * graphics = core->getGraphics();
-	System * system = core->getSystem();
-
-	/**
-	* Main loop section.
-	**/
-	
-	// Enable UNICODE. This is needed for input to work properly.
-	SDL_EnableUNICODE(1);
-
-	// The union used to get SDL events. 
-	SDL_Event e;
-
-	bool running = true;
-
-	while(running)
-	{
-		const pGame & game = system->getGame();
-		if(!game)
+		if(strcmp(name, love_libs[i].name) == 0)
 		{
-			std::cerr << "ERROR! No game." << std::endl;
+			lua_pushinteger(L, i);
+			lua_pushcclosure(L, modloader, 1);
 			return 1;
 		}
+	}
+	lua_pushstring(L, "No such module.");
+	return 1;
+}
 
-		timer->step();
-		game->update(timer->getDelta());
-		graphics->clear();
-		game->draw();		
+int main(int argc, char ** argv)
+{
+	love::Core core;
+	core.setArg(argc, argv);
+	core.addSearcher(modseacher);
+	int status = core.init();
 
-		while(SDL_PollEvent(&e))
-		{
-			// Do events.
-			switch(e.type)
-			{
-				case SDL_KEYDOWN:			
-					game->keyPressed(e.key.keysym.sym);
-					break;
-				case SDL_KEYUP:
-					game->keyReleased(e.key.keysym.sym);
-					break;
-				case SDL_MOUSEBUTTONDOWN:
-					game->mousePressed(e.button.x, e.button.y, e.button.button);
-					break;
-				case SDL_MOUSEBUTTONUP:
-					game->mouseReleased(e.button.x, e.button.y, e.button.button);
-					break;
-				case SDL_MOUSEMOTION:
-					game->mouseMoved(e.button.x, e.button.y);
-					break;
-				//case SDL_JOYAXISMOTION:
-				//	game->gamepadAxisMoved(e.jaxis.which, e.jaxis.axis, e.jaxis.value);
-				//	break;
-				case SDL_JOYBUTTONDOWN:
-					game->joystickPressed(e.jbutton.which, e.jbutton.button);
-					break;
-				case SDL_JOYBUTTONUP:
-					game->joystickReleased(e.jbutton.which, e.jbutton.button);
-					break;
-				//case SDL_JOYBALLMOTION:
-				//	game->gamepadBallMoved(e.jball.which, e.jball.ball, e.jball.xrel, e.jball.yrel);
-				//	break;
-				//case SDL_JOYHATMOTION:
-				//	game->gamepadHatMoved(e.jhat.which, e.jhat.hat, e.jhat.value);
-				//	break;
-				case SDL_QUIT:
-					running = false; // Bye bye.
-					break;
-				case EVENT_RESTART:
-					// Restarting must happen here, since we don't want to
-					// be in the middle of a Lua call while restarting.
-					if(!game->reload())
-					{
-						std::cerr << "An error occurred while reloading." << std::endl;
-						running = false;
-					}
-					break;
-				default:
-					break;
-			}
-		}
-
-		graphics->present();
+	if(status!=0)
+	{
+		printf("Error: %i\n", status);
+		getchar();
 	}
 
-	// Destroy the core.
-	core.reset();
-
-	SDL_Quit();
-
-	return 0;
-} // main
+	return status;
+}

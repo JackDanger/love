@@ -3,7 +3,7 @@
 angle = 0
 
 function load()
-   image = love.graphics.newImage("images/love-ball.png", love.image_optimize)
+    image = love.graphics.newImage("images/love-ball.png", love.image_optimize)
 end
 
 function update(dt)
@@ -17,5 +17,3 @@ function draw()
     local sy = math.sin(angle)*2
     love.graphics.draw(image, x, y, rot, sx, sy)
 end
-
-

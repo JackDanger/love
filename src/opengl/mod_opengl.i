@@ -28,6 +28,8 @@ namespace love_opengl
 	bool feature(int f);
 
 	// Display mode control.
+	void clear();
+	void present();
 	bool checkMode(int width, int height, bool fullscreen);
 	bool setMode(int width, int height, bool fullscreen, bool vsync, int fsaa);
 	bool toggleFullscreen();

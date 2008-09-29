@@ -9,24 +9,21 @@
 
 namespace love_box2d
 {
-	bool module_init(int argc, char ** argv, love::Core * core)
+	bool module_init(love::Core * core)
 	{
 		std::cout << "INIT love.physics [" << "Box2D" << "]" << std::endl;
 		return true;
 	}
 
-	bool module_quit()
+	bool module_quit(love::Core * core)
 	{
 		std::cout << "QUIT love.physics [" << "Box2D" << "]" << std::endl;
 		return true;
 	}
 
-	bool module_open(void * vm)
+	bool module_open(love::Core * core)
 	{
-		lua_State * s = (lua_State *)vm;
-		if(s == 0)
-			return false;
-		luaopen_mod_box2d(s);
+		luaopen_mod_box2d(core->getL());
 		return true;
 	}
 

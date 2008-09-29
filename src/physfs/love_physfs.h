@@ -24,124 +24,9 @@
 namespace love_physfs
 {
 	// Standard module functions.
-	bool module_init(int argc, char ** argv, love::Core * core);
-	bool module_quit();
-	bool module_open(void * vm);
-
-	/**
-	* Pushes the filesystem state if possible. All directories
-	* are removed from the search path. No files can be open
-	* when this is called.
-	**/
-	bool push();
-
-	/**
-	* Removes the current filesystem state, and activates
-	* the next filesystem state, if any. No files can be
-	* open when this is called.
-	**/
-	bool pop();
-
-	/**
-	* Adds a directory to the search path.
-	**/
-	bool addDirectory(const std::string & dir);
-
-	/**
-	* Adds the base directory to the search path.
-	**/
-	bool addBaseDirectory();
-
-	/**
-	* Checks if some file exists in the current search path.
-	* @param f The file (or directory) to check for.
-	**/
-	bool exists(const std::string & f);
-
-	/**
-	* Gets the user home directory.
-	**/ 
-	const char * getUserDirectory();
-
-	/**
-	* Gets the directory from which the application 
-	* was run.
-	**/
-	const char * getBaseDirectory();
-
-	/**
-	* Setup a save directory for a certain game. 
-	* @param game The full or relative path to the game.
-	**/
-	bool setSaveDirectory( const std::string & game );
-
-	/**
-	* Gets a pointer to a file in the search path. The object
-	* must be freed by the caller.
-	* @param filename The filename (and path) of the file.
-	**/
-	love::pFile * getFile(const char * filename, int mode);
-
-	/**
-	* A filesystem state. Contains a list of current search
-	* paths, and the current write directory.
-	**/
-	struct state
-	{
-		std::vector<std::string> search; // Search paths.
-		std::string write; // Write directory.
-	};
-
-	/**
-	* Gets the leaf node in a full path.
-	**/
-	std::string getLeaf(const std::string & full);
-
-	/**
-	* Gets the APPDATA directory. On Windows, this is the folder
-	* in the %APPDATA% enviroment variable. On Linux, this is the
-	* user home folder.
-	**/
-	std::string getAppdata();
-
-	/**
-	* This can be called when Physfs encounters an error. 
-	* @return Always false.
-	**/
-	bool error(const std::string & s);
-
-	/**
-	* Adds a state to the stack and to the 
-	* PhysFS state.
-	**/
-	bool addState( state & s );
-
-	/**
-	* Removes a state from the PhysFS state only.
-	* (Stack must be popped).
-	**/
-	bool removeState( state & s );
-
-	/**
-	* Removes a directory from the PhysFS search path.
-	**/
-	bool removeDirectory(const std::string & dir);
-
-	/**
-	* Gets the current write directory, if any. An empty
-	* string will be returned if no directory is set.
-	**/
-	std::string getWriteDirectory();
-
-	/**
-	* Sets the current write directory.
-	**/
-	bool setWriteDirectory(const std::string & dir);
-
-	/**
-	* Disables the write directory.
-	**/
-	bool disableWriteDirectory();
+	bool module_init(love::Core * core);
+	bool module_quit(love::Core * core);
+	bool module_open(love::Core * core);
 
 	/**
 	* This sets up the save directory. If the 
@@ -151,9 +36,18 @@ namespace love_physfs
 	bool setupWriteDirectory();
 
 	/**
-	* Gets the size of a file.
+	* Sets the name of the save folder.
+	* @param ident The name of the game. Will be used to
+	* to create the folder in the LOVE data folder.
 	**/
-	int size(pFile & file);
+	bool setIdentity(const char * ident);
+
+	/**
+	* Sets the path to the game source.
+	* This can only be set once.
+	* @param source Path to a directory or a .love-file.
+	**/
+	bool setSource(const char * source);
 
 	/**
 	* Creates a new file.
@@ -161,14 +55,26 @@ namespace love_physfs
 	pFile newFile(const char * file, int mode = love::FILE_READ);
 
 	/**
-	* Gets the full path of the save folder.
-	**/
-	int getSaveDirectory(lua_State * L);
-
-	/**
 	* Gets the current working directory.
 	**/
 	const char * getWorkingDirectory();
+
+	/**
+	* Gets the user home directory.
+	**/ 
+	const char * getUserDirectory();
+
+	/**
+	* Gets the APPDATA directory. On Windows, this is the folder
+	* in the %APPDATA% enviroment variable. On Linux, this is the
+	* user home folder.
+	**/
+	const char * getAppdataDirectory();
+
+	/**
+	* Gets the full path of the save folder.
+	**/
+	const char * getSaveDirectory();
 
 	/**
 	* Checks whether a file exists in the current search path
@@ -261,8 +167,10 @@ namespace love_physfs
 	**/
 	int lines(lua_State * L);
 
-	// DO NOT EXPOSE.
-	int lines_iterator(lua_State * L);
+	/**
+	* The line iterator function.
+	**/
+	int lines_i(lua_State * L);
 
 	/**
 	* Loads a file without running it. The loaded

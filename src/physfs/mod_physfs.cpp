@@ -1723,6 +1723,48 @@ static swig_lua_class *swig_boost_shared_ptr_Sl_love_physfs_File_Sg__bases[] = {
 static const char *swig_boost_shared_ptr_Sl_love_physfs_File_Sg__base_names[] = {0};
 static swig_lua_class _wrap_class_boost_shared_ptr_Sl_love_physfs_File_Sg_ = { "SmartFile_physfs", &SWIGTYPE_p_boost__shared_ptrT_love_physfs__File_t,0, swig_delete_SmartFile_physfs, swig_boost_shared_ptr_Sl_love_physfs_File_Sg__methods, swig_boost_shared_ptr_Sl_love_physfs_File_Sg__attributes, swig_boost_shared_ptr_Sl_love_physfs_File_Sg__bases, swig_boost_shared_ptr_Sl_love_physfs_File_Sg__base_names };
 
+static int _wrap_setIdentity(lua_State* L) {
+  int SWIG_arg = -1;
+  char *arg1 = (char *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("love_physfs::setIdentity",1,1)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("love_physfs::setIdentity",1,"char const *");
+  arg1 = (char *)lua_tostring(L, 1);
+  result = (bool)love_physfs::setIdentity((char const *)arg1);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_setSource(lua_State* L) {
+  int SWIG_arg = -1;
+  char *arg1 = (char *) 0 ;
+  bool result;
+  
+  SWIG_check_num_args("love_physfs::setSource",1,1)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("love_physfs::setSource",1,"char const *");
+  arg1 = (char *)lua_tostring(L, 1);
+  result = (bool)love_physfs::setSource((char const *)arg1);
+  SWIG_arg=0;
+  lua_pushboolean(L,(int)(result==true)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_newFile__SWIG_0(lua_State* L) {
   int SWIG_arg = -1;
   char *arg1 = (char *) 0 ;
@@ -1816,6 +1858,60 @@ static int _wrap_getWorkingDirectory(lua_State* L) {
   
   SWIG_check_num_args("love_physfs::getWorkingDirectory",0,0)
   result = (char *)love_physfs::getWorkingDirectory();
+  SWIG_arg=0;
+  lua_pushstring(L,(const char*)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getUserDirectory(lua_State* L) {
+  int SWIG_arg = -1;
+  char *result = 0 ;
+  
+  SWIG_check_num_args("love_physfs::getUserDirectory",0,0)
+  result = (char *)love_physfs::getUserDirectory();
+  SWIG_arg=0;
+  lua_pushstring(L,(const char*)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getAppdataDirectory(lua_State* L) {
+  int SWIG_arg = -1;
+  char *result = 0 ;
+  
+  SWIG_check_num_args("love_physfs::getAppdataDirectory",0,0)
+  result = (char *)love_physfs::getAppdataDirectory();
+  SWIG_arg=0;
+  lua_pushstring(L,(const char*)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_getSaveDirectory(lua_State* L) {
+  int SWIG_arg = -1;
+  char *result = 0 ;
+  
+  SWIG_check_num_args("love_physfs::getSaveDirectory",0,0)
+  result = (char *)love_physfs::getSaveDirectory();
   SWIG_arg=0;
   lua_pushstring(L,(const char*)result); SWIG_arg++;
   return SWIG_arg;
@@ -2066,8 +2162,13 @@ fail:
 #endif
 
 static const struct luaL_reg swig_commands[] = {
+    { "setIdentity", _wrap_setIdentity},
+    { "setSource", _wrap_setSource},
     { "newFile",_wrap_newFile},
     { "getWorkingDirectory", _wrap_getWorkingDirectory},
+    { "getUserDirectory", _wrap_getUserDirectory},
+    { "getAppdataDirectory", _wrap_getAppdataDirectory},
+    { "getSaveDirectory", _wrap_getSaveDirectory},
     { "exists", _wrap_exists},
     { "isDirectory", _wrap_isDirectory},
     { "isFile", _wrap_isFile},
@@ -2083,7 +2184,6 @@ static const struct luaL_reg swig_commands[] = {
     { "read",love_physfs::read},
     { "write",love_physfs::write},
     { "load",love_physfs::load},
-    { "getSaveDirectory",love_physfs::getSaveDirectory},
     {0,0}
 };
 

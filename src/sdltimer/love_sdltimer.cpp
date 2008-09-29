@@ -30,7 +30,7 @@ namespace love_sdltimer
 	// The current timestep.
 	float dt = 0;
 
-	bool module_init(int argc, char ** argv, love::Core * core)
+	bool module_init(love::Core * core)
 	{
 		std::cout << "INIT love.timer [" << "SDL" << "]" << std::endl;
 		
@@ -41,32 +41,21 @@ namespace love_sdltimer
 			return false;
 		}
 		
-		// Set function pointers and load module.
-		{
-			love::Timer * t = core->getTimer();
-			t->getDelta = love_sdltimer::getDelta;
-			t->step = love_sdltimer::step;
-			t->loaded = true;
-		}
-
 		time_init = SDL_GetTicks();
 
 		return true;
 	}
 
-	bool module_quit()
+	bool module_quit(love::Core * core)
 	{
 		SDL_QuitSubSystem(SDL_INIT_TIMER);
 		std::cout << "QUIT love.timer [" << "SDL" << "]" << std::endl;
 		return true;
 	}
 
-	bool module_open(void * vm)
+	bool module_open(love::Core * core)
 	{
-		lua_State * s = (lua_State *)vm;
-		if(s == 0)
-			return false;
-		luaopen_mod_sdltimer(s);
+		luaopen_mod_sdltimer(core->getL());
 		return true;
 	}
 

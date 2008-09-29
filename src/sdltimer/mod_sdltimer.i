@@ -4,6 +4,7 @@
 
 namespace love_sdltimer
 {
+	void step();
 	float getDelta();
 	float getFPS();	
 	void sleep(int ms);

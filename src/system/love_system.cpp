@@ -23,6 +23,34 @@
 #define GAME_ERROR "error.lua"
 #define GAME_CONF "game.conf"
 
+// This neat macro makes static module 
+// configuration prettier.
+#define STATIC_MOD_EXTERN(ns) \
+	namespace ns { \
+		extern bool module_init(love::Core * core); \
+		extern bool module_quit(love::Core * core); \
+		extern bool module_open(love::Core * core); \
+	} \
+
+// This other neat macro makes static module
+// initialization prettier.
+#define STATIC_MOD_INIT(ns) \
+	if(!core->insmod(ns::module_init, ns::module_quit, ns::module_open)) \
+		return 1; \
+
+// Static module conf.
+STATIC_MOD_EXTERN(love_physfs);
+STATIC_MOD_EXTERN(love_opengl);
+STATIC_MOD_EXTERN(love_openal);
+STATIC_MOD_EXTERN(love_sdltimer);
+STATIC_MOD_EXTERN(love_sdlmouse);
+STATIC_MOD_EXTERN(love_sdlkeyboard);
+STATIC_MOD_EXTERN(love_box2d);
+STATIC_MOD_EXTERN(love_luasocket);
+STATIC_MOD_EXTERN(love_sdljoystick);
+
+
+
 namespace love_system
 {
 	// The game pointed to by this object will be
@@ -40,10 +68,17 @@ namespace love_system
 	love::Filesystem * filesystem = 0;
 	love::Graphics * graphics = 0;
 
-	bool module_init(int argc, char ** argv, love::Core * core)
+	bool module_init(love::Core * core)
 	{
 		//std::cout << "argv[0] = " << argv[0] << std::endl;
 		std::cout << "INIT love.system [" << "Generic" << "]" << std::endl;
+
+		// Init SDL.
+		if(SDL_Init(0))
+		{
+			std::cerr << "Could not init SDL. " << SDL_GetError() << std::endl;
+			return false;
+		}
 
 		// Get used modules.
 		filesystem = core->getFilesystem();
@@ -228,7 +263,9 @@ namespace love_system
 		return true;
 	}
 
-	bool module_quit()
+
+
+	bool module_quit(love::Core * core)
 	{
 
 		// Clean global data.
@@ -237,6 +274,7 @@ namespace love_system
 		current_game.reset();
 
 		std::cout << "QUIT love.system [" << "Generic" << "]" << std::endl;
+		SDL_Quit();
 		return true;
 	}
 

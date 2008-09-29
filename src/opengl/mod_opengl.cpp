@@ -7512,6 +7512,40 @@ fail:
 }
 
 
+static int _wrap_clear(lua_State* L) {
+  int SWIG_arg = -1;
+  
+  SWIG_check_num_args("love_opengl::clear",0,0)
+  love_opengl::clear();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_present(lua_State* L) {
+  int SWIG_arg = -1;
+  
+  SWIG_check_num_args("love_opengl::present",0,0)
+  love_opengl::present();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_checkMode(lua_State* L) {
   int SWIG_arg = -1;
   int arg1 ;
@@ -11408,6 +11442,8 @@ fail:
 
 static const struct luaL_reg swig_commands[] = {
     { "feature", _wrap_feature},
+    { "clear", _wrap_clear},
+    { "present", _wrap_present},
     { "checkMode", _wrap_checkMode},
     { "setMode", _wrap_setMode},
     { "toggleFullscreen", _wrap_toggleFullscreen},

@@ -21,14 +21,12 @@
 // LOVE
 #include <love/mod.h>
 
-// Creating a separate namespace to avoid conflicts
-// with standard library functions.
 namespace love_luasocket
 {
 	// Standard module functions.
-	bool module_init(int argc, char ** argv, love::Core * core);
-	bool module_quit();
-	bool module_open(void * vm);
+	bool module_init(love::Core * core);
+	bool module_quit(love::Core * core);
+	bool module_open(love::Core * core);
 
 	// Loaders for all lua files. We want to be able
 	// to load these dynamically. (Identical in the LuaSocket 

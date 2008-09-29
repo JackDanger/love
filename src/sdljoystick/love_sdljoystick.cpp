@@ -14,23 +14,13 @@
 
 namespace love_sdljoystick
 {
-	// Requires Core (for error messages).
-	love::Core * core = 0;
 	// Array of opened joysticks.
 	SDL_Joystick ** joysticks = 0;
 
-	bool module_init(int argc, char ** argv, love::Core * core)
+	bool module_init(love::Core * core)
 	{
 		std::cout << "INIT love.joystick [" << "SDL" << "]" << std::endl;
 		
-		// Set function pointers and load module.
-		{
-			love::Joystick * g = core->getJoystick();
-			g->loaded = true;
-		}
-
-		love_sdljoystick::core = core;
-
 		// Initialize the joystick.
 		if(SDL_InitSubSystem(SDL_INIT_JOYSTICK) < 0)
 		{
@@ -51,7 +41,7 @@ namespace love_sdljoystick
 		return true;
 	}
 
-	bool module_quit()
+	bool module_quit(love::Core * core)
 	{
 		// Closes any open joysticks.
 		for(int i = 0; i != getNumJoysticks(); i++)
@@ -66,12 +56,9 @@ namespace love_sdljoystick
 		return true;
 	}
 
-	bool module_open(void * vm)
+	bool module_open(love::Core * core)
 	{
-		lua_State * s = (lua_State *)vm;
-		if(s == 0)
-			return false;
-		luaopen_mod_sdljoystick(s);
+		luaopen_mod_sdljoystick(core->getL());
 		return true;
 	}
 
@@ -100,17 +87,13 @@ namespace love_sdljoystick
 
 		if(!checkIndex(index))
 		{
-			std::stringstream err;
-			err << "Could not open joystick with index " << index << ": Invalid joystick index.";
-			core->error(err.str().c_str());
+			love::core->error("Could not open joystick with index %d: Invalid joystick index.", index);
 			return;
 		}
 
-		if( !(joysticks[index] = SDL_JoystickOpen(index)) )
+		if(!(joysticks[index] = SDL_JoystickOpen(index)) )
 		{
-			std::stringstream err;
-			err << "Could not open joystick with index " << index << ": Unknown error.";
-			core->error(err.str().c_str());
+			love::core->error("Could not open joystick with index %d: Unknown error.", index);
 			return;
 		}
 	}
@@ -118,12 +101,7 @@ namespace love_sdljoystick
 	bool isOpen(int index)
 	{
 		if(!checkIndex(index))
-		{
-			std::stringstream err;
-			err << "Could not check joystick with index " << index << ": Invalid joystick index.";
-			core->error(err.str().c_str());
-			return false;
-		}
+			return love::core->error("Could not check joystick with index %d: Invalid joystick index.", index);
 
 		return joysticks[index] != 0 ? true : false;
 	}
@@ -131,20 +109,10 @@ namespace love_sdljoystick
 	bool verifyJoystick(int index)
 	{
 		if(!checkIndex(index))
-		{
-			std::stringstream err;
-			err << "Invalid joystick index: " << index << ".";
-			core->error(err.str().c_str());
-			return false;
-		}
+			return love::core->error("Invalid joystick index: %d", index);
 
 		if(!isOpen(index))
-		{
-			std::stringstream err;
-			err << "Joystick with index " << index << "is not open.";
-			core->error(err.str().c_str());
-			return false;
-		}
+			return love::core->error("Joystick with index %d is not open.", index);
 
 		return true;
 	}
@@ -184,9 +152,7 @@ namespace love_sdljoystick
 
 		if(axis >= getNumAxes(index))
 		{
-			std::stringstream err;
-			err << "Could not get axis status of joystick with index " << index << ": Axis " << axis << " is invalid.";
-			core->error(err.str().c_str());
+			love::core->error("Could not get axis status of joystick with index %d: axis %d is invalid.", axis);
 			return 0;
 		}
 		
@@ -219,9 +185,7 @@ namespace love_sdljoystick
 
 		if(ball >= getNumBalls(index))
 		{
-			std::stringstream err;
-			err << "Could not get trackball status of joystick with index " << index << ": Trackball " << ball << " is invalid.";
-			core->error(err.str().c_str());
+			love::core->error("Could not get trackball status of joystick with index %d: trackball %d is invalid.", ball);
 			return 0;
 		}
 
@@ -239,12 +203,7 @@ namespace love_sdljoystick
 			return false;
 
 		if(button >= getNumButtons(index))
-		{
-			std::stringstream err;
-			err << "Could not get button status of joystick with index " << index << ": Button " << button << " is invalid.";
-			core->error(err.str().c_str());
-			return 0;
-		}
+			return love::core->error("Could not get button status of joystick with index %d: button %d is invalid.", button);
 
 		return (SDL_JoystickGetButton(joysticks[index], button) == 1);
 	}
@@ -256,9 +215,7 @@ namespace love_sdljoystick
 
 		if(hat >= getNumHats(index))
 		{
-			std::stringstream err;
-			err << "Could not get viewhat status of joystick with index " << index << ": Hat " << hat << " is invalid.";
-			core->error(err.str().c_str());
+			love::core->error("Could not get viewhat status of joystick with index %d: viewhat %d is invalid.", hat);
 			return 0;
 		}
 
@@ -269,9 +226,7 @@ namespace love_sdljoystick
 	{
 		if(!checkIndex(index))
 		{
-			std::stringstream err;
-			err << "Invalid joystick index: " << index << ".";
-			core->error(err.str().c_str());
+			love::core->error("Invalid joystick index: %d", index);
 			return;
 		}
 

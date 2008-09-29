@@ -1,21 +1,25 @@
--- Example: Filler
-
-angle = 0
+-- Example: Dispay modes
+-- Author: surtic
 
 function load()
-    image = love.graphics.newImage("images/love-ball.png", love.image_optimize)
-end
 
-function update(dt)
-    angle = angle + dt
-    x, y = 400 + math.cos(angle)*100, 300 + math.sin(angle)*100
+	-- Get the display modes.
+   modes = love.graphics.getModes()
+   
+	-- The table looks like this:
+	-- modes = {
+	--	  { width = 800, height = 600 },
+	--	  { width = 1024, height = 768 },
+	-- }
+
+   local font = love.graphics.newFont(love.default_font)
+   love.graphics.setFont(font)
 end
 
 function draw()
-    local rot = angle*180/math.pi
-    local sx = math.cos(angle)*3
-    local sy = math.sin(angle)*2
-    love.graphics.draw(image, x, y, rot, sx, sy)
+	love.graphics.draw("Supported modes: ", 50, 50)
+   for i, mode in ipairs(modes) do
+      local desc = string.format("mode %d: %dx%d", i, mode.width, mode.height)
+      love.graphics.draw(desc, 50, 50 + i * 20)
+   end
 end
-
-

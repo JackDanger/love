@@ -11,6 +11,7 @@
 #define LOVE_BOX2D_JOINT_H
 
 // LOVE
+#include <love/constants.h>
 #include <love/mod.h>
 
 // Boost

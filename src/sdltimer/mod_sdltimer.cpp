@@ -1519,6 +1519,23 @@ typedef struct{} LANGUAGE_OBJ;
 #ifdef __cplusplus
 extern "C" {
 #endif
+static int _wrap_step(lua_State* L) {
+  int SWIG_arg = -1;
+  
+  SWIG_check_num_args("love_sdltimer::step",0,0)
+  love_sdltimer::step();
+  SWIG_arg=0;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_getDelta(lua_State* L) {
   int SWIG_arg = -1;
   float result;
@@ -1598,6 +1615,7 @@ fail:
 #endif
 
 static const struct luaL_reg swig_commands[] = {
+    { "step", _wrap_step},
     { "getDelta", _wrap_getDelta},
     { "getFPS", _wrap_getFPS},
     { "sleep", _wrap_sleep},

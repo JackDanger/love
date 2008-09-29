@@ -26,16 +26,15 @@
 #ifdef WIN32
 #	define LOVE_APPDATA_FOLDER "LOVE"
 #	define LOVE_PATH_SEPARATOR "/"
+#	define LOVE_MAX_PATH _MAX_PATH
 #else
 #	define LOVE_APPDATA_FOLDER ".love"
 #	define LOVE_PATH_SEPARATOR "/"
+#	define LOVE_MAX_PATH MAXPATHLEN
 #endif
 
 namespace love_physfs
 {
-
-	// List of filesystem states.
-	std::vector<state> states;
 
 	// Counts open files.
 	int open_count = 0;
@@ -44,147 +43,150 @@ namespace love_physfs
 	char * buffer = 0;
 	
 	// Buffer used for getcwd in Linux.
-#ifdef WIN32
-	char cwdbuffer[_MAX_PATH];
-#else
-	char cwdbuffer[MAXPATHLEN];
-#endif
+	char cwdbuffer[LOVE_MAX_PATH];
 
-	// This directory will be set at the 
-	// first file write.
-	std::string save_dir;
+	// This name will be used to create the folder
+	// in the appdata/userdata folder.
+	std::string save_identity;
 
-	love::Core * core = 0;
+	// Full and relative paths of the game save folder. 
+	// (Relative to the %APPDATA% folder, meaning that the
+	// relative string will look something like: ./LOVE/game)
+	std::string save_path_relative, save_path_full;
 
-	bool module_init(int argc, char ** argv, love::Core * core)
+	// The full path to the source of the game.
+	std::string game_source;
+
+	bool module_init(love::Core * core)
 	{
 		std::cout << "INIT love.filesystem [" << "PhysFS" << "]" << std::endl;
 
-		love_physfs::core = core;
-
-		if(!PHYSFS_init(argv[0]))
+		if(!PHYSFS_init("love.exe"))
 		{
 			std::cerr << "Count not init PhysFS" << std::endl;
 			return false;
 		}
 
-		if(!push())
-		{
-			std::cerr << "Could not push filesystem state." << std::endl;
-			return false;
-		}
-
-		// Set function pointers and load module.
-		{
-			love::Filesystem * f = core->getFilesystem();
-			f->getFile = love_physfs::getFile;
-			f->exists = love_physfs::exists;
-			f->setSaveDirectory = love_physfs::setSaveDirectory;
-			f->addDirectory = love_physfs::addDirectory;
-			f->getBaseDirectory = love_physfs::getBaseDirectory;
-			f->loaded = true;
-		}
 		return true;
 	}
 
-	bool module_quit()
+	bool module_quit(love::Core * core)
 	{
-		if(!PHYSFS_deinit())
-			return false;
+		PHYSFS_deinit();
+		save_path_full.clear();
+		save_path_relative.clear();
+		save_identity.clear();
+		game_source.clear();
 		std::cout << "QUIT love.filesystem [" << "PhysFS" << "]" << std::endl;
 		return true;
 	}
 
-	bool module_open(void * vm)
+	bool module_open(love::Core * core)
 	{
-		lua_State * L = (lua_State *)vm;
-		if(L == 0)
-			return false;
-		
+		lua_State * L = core->getL();
 		luaopen_mod_physfs(L);
 
 		// Add the loader function.
-		lua_getglobal(L, "package");
-		lua_getfield(L, -1, "loaders");
-		int next = (int)lua_objlen(L, -1)+1;
-		lua_pushcfunction(L, loader);
-		lua_rawseti(L, -2, next);
-		lua_pop(L, 2);
+		core->addSearcher(loader);
 
 		return true;
 	}
 
-	bool push()
+	bool setIdentity( const char * ident )
 	{
-		// We can only push if no files are open.
-		if(open_count != 0)
-			return false;
+		// Check whether save directory is already set.
+		if(!save_identity.empty() || PHYSFS_getWriteDir() != 0)
+			return love::core->error("Identifier has already been set");
 
-		// Remove the current state from PhysFS, if any.
-		if(!states.empty())
-			removeState(states.back());
+		// Store the save directory.
+		save_identity = std::string(ident);
 
-		// Okay, push a fresh state.
-		state s;
-		states.push_back(s);
+		// Generate the relative path to the game save folder.
+		save_path_relative = std::string(LOVE_APPDATA_FOLDER LOVE_PATH_SEPARATOR) + save_identity;
+
+		// Generate the full path to the game save folder.
+		save_path_full = std::string(getAppdataDirectory()) + std::string(LOVE_PATH_SEPARATOR);
+		save_path_full += save_path_relative;
+
+		std::cout << save_path_full << std::endl;
+
+		// We now have something like:
+		// save_identity: game
+		// save_path_relative: ./LOVE/game
+		// save_path_full: C:\Documents and Settings\user\Application Data/LOVE/game
+
+		// Try to add the save directory to the search path.
+		// (No error on fail, it means that the path doesn't exist).
+		PHYSFS_addToSearchPath(save_path_full.c_str(), 1);
+
 		return true;
 	}
 
-	bool pop()
+	bool setSource(const char * source)
 	{
-		// We can only pop if no files are open.
-		if(open_count != 0)
-			return false;
+		// Check whether directory is already set.
+		if(!game_source.empty())
+			return love::core->error("Game source has already been set");
 
-		// Do not pop an empty state stack.
-		if(states.empty())
-			return false;
+		// Add the directory.
+		if(!PHYSFS_addToSearchPath(source, 0))
+			return love::core->error("Could not add directory: %s", PHYSFS_getLastError());
 
-		// Remove the old state from PhysFS.
-		removeState(states.back());
+		// Save the game source.
+		game_source = std::string(source);
 
-		// Remove the old state from stack.
-		states.pop_back();
-
-		// Restore previous state.
-		if(!states.empty())
-			addState(states.back());
-			
 		return true;
 	}
-	
-	bool addState( state & s )
+
+	bool setupWriteDirectory()
 	{
-		// Add search directories.
-		std::vector<std::string>::iterator i = s.search.begin();
-		while( i != s.search.end() )
+		// These must all be set.
+		if(save_identity.empty() || save_path_full.empty() || save_path_relative.empty())
+			return love::core->error("Can't write files, game save identifier not set.");
+
+		// Set the appdata folder as writable directory.
+		// (We must create the save folder before mounting it).
+		if(!PHYSFS_setWriteDir(getAppdataDirectory()))
+			return love::core->error("Could not set write directory: %s", PHYSFS_getLastError());
+
+		// Create the save folder. (We're now "at" %APPDATA%).
+		if(!mkdir(save_path_relative.c_str()))
+		{	
+			PHYSFS_setWriteDir(0); // Clear the write directory in case of error.
+			return love::core->error("Could not mkdir: %s", PHYSFS_getLastError());
+		}	
+
+		// Set the final write directory.
+		if(!PHYSFS_setWriteDir(save_path_full.c_str()))
+			return love::core->error("Could not set write directory: %s", PHYSFS_getLastError());
+
+		// Add the directory. (Well not be readded if already present).
+		if(!PHYSFS_addToSearchPath(save_path_full.c_str(), 1))
 		{
-			if(!addDirectory((*i)))
-				return false;
-			i++;
+			PHYSFS_setWriteDir(0); // Clear the write directory in case of error.
+			return love::core->error("Could not add directory: %s", PHYSFS_getLastError());
 		}
 
-		// Set write directory.
-		if(!setWriteDirectory(s.write))
-			return false;
 		return true;
 	}
 
-	bool removeState( state & s )
+	pFile newFile(const char * file, int mode)
 	{
-		// Remove search directories.
-		std::vector<std::string>::iterator i = s.search.begin();
-		while( i != s.search.end() )
-		{
-			if(!removeDirectory((*i)))
-				return false;
-			i++;
-		}
+		if(mode == love::FILE_READ && !exists(file))
+			love::core->error("Could not load file \"%s\": file does not exist.", file);
 
-		// Remove write directory.
-		if(!disableWriteDirectory())
-			return false;
-		return true;
+		pFile f(new File(std::string(file), mode));
+		return f;
+	}
+
+	const char * getWorkingDirectory()
+	{
+		#ifdef WIN32
+				_getcwd(cwdbuffer, _MAX_PATH);
+		#else
+				getcwd(cwdbuffer, MAXPATHLEN);
+		#endif
+				return cwdbuffer;
 	}
 
 	const char * getUserDirectory()
@@ -192,217 +194,18 @@ namespace love_physfs
 		return PHYSFS_getUserDir();
 	}
 
-	const char * getBaseDirectory()
+	const char * getAppdataDirectory()
 	{
 #ifdef WIN32
-		_getcwd(cwdbuffer, _MAX_PATH);
+		return getenv("APPDATA");
 #else
-		getcwd(cwdbuffer, MAXPATHLEN);
+		return getUserDirectory();
 #endif
-		return cwdbuffer;
 	}
 
-	bool setSaveDirectory( const std::string & game )
+	const char * getSaveDirectory()
 	{
-		// Get the "id" of the game.
-		std::string gameid = getLeaf(game);
-
-		if(gameid.empty())
-			return false;
-
-		std::string appdata = getAppdata();
-
-		// Save this for later.
-		save_dir = std::string(LOVE_APPDATA_FOLDER LOVE_PATH_SEPARATOR) + gameid;
-
-		// Add the directory if it exists.
-		// (No error check. If it fails, it's because it 
-		// does not exist).
-		std::stringstream full;
-		full << appdata << "/" << save_dir;
-		addDirectory(full.str());
-
-		return true;
-	}
-
-	std::string getLeaf(const std::string & full)
-	{
-
-		std::string leaf;
-		std::string l = full;
-
-#ifdef WIN32
-		
-		// Replace all \ with /
-		{
-			size_t pos = l.find("\\");
-			while(pos != std::string::npos)
-			{
-				l.replace(pos, 1, "/");
-				pos = l.find("\\", pos+1);
-			}
-		}
-#endif
-
-		// Get the name after the last slash.
-		size_t pos = l.find_last_of("/");
-
-		// If / is the last char, remove it.
-		while(pos == l.length() - 1 && l.length() > 0)
-		{
-			l = l.substr(0, l.length()-1);
-			pos = l.find_last_of("/"); // Update position.
-		}
-
-		if(pos == std::string::npos)
-		{
-			// The path is already the leaf.
-			leaf = l;
-			return leaf;
-		}
-
-		// Extract leaf.
-		leaf = l.substr(pos+1);
-
-		return leaf;
-	}
-
-	std::string getAppdata()
-	{
-		std::stringstream appdata; 
-#ifdef WIN32
-		appdata << getenv("APPDATA");
-#else
-		appdata << getUserDirectory();
-#endif
-		return appdata.str();
-	}
-
-	love::pFile * getFile(const char * filename, int mode)
-	{
-		love::pFile * file = new love::pFile(new File(std::string(filename), mode));
-		return file;
-	}
-	
-
-	std::string getWriteDirectory()
-	{
-		const char * dir = PHYSFS_getUserDir();
-		if(dir == 0)
-			return std::string();
-		return std::string(dir);
-	}
-
-	bool setWriteDirectory(const std::string & dir)
-	{
-		if(!PHYSFS_setWriteDir(dir.c_str()))
-			return false;
-		return true;
-	}
-
-	bool disableWriteDirectory()
-	{
-		if(!PHYSFS_setWriteDir(0))
-			return false;
-		return true;
-	}
-
-	bool setupWriteDirectory()
-	{
-		if(save_dir.empty())
-		{
-			std::cerr << "Write directory is not set!" << std::endl;
-			return false;
-		}
-
-		std::string appdata = getAppdata();
-
-		// Create directory.
-		if(!setWriteDirectory(appdata))
-		{
-			std::cerr << "Could not set write directory: " << PHYSFS_getLastError() << std::endl;
-			return false;
-		}
-
-		if(!mkdir(save_dir.c_str()))
-		{
-			std::cerr << "Could not create directory " << save_dir << ": " << PHYSFS_getLastError() << std::endl;
-			return false;
-		}
-
-		disableWriteDirectory();
-
-		std::stringstream full;
-		full << appdata << "/" << save_dir;
-
-		if(!setWriteDirectory(full.str()))
-		{
-			std::cerr << "Could not set write directory: " << PHYSFS_getLastError() << std::endl;
-			return false;
-		}
-
-		if(!addDirectory(full.str()))
-		{
-			std::cerr << "Could not add directory to search path: " << PHYSFS_getLastError() << std::endl;
-			return false;
-		}
-		return true;
-	}
-
-	bool addDirectory(const std::string & dir)
-	{
-		if(!PHYSFS_addToSearchPath(dir.c_str(), 1))
-			return false;
-		states.back().search.push_back(dir);
-		return true;
-	}
-
-	bool exists(const std::string & f)
-	{
-		return exists(f.c_str());
-	}
-
-	bool addBaseDirectory()
-	{
-		std::string base = std::string(getBaseDirectory());
-		return addDirectory(base);
-	}
-
-	bool removeDirectory(const std::string & dir)
-	{
-		if(!PHYSFS_removeFromSearchPath(dir.c_str()))
-			return false;
-		return true;
-	}
-
-
-	pFile newFile(const char * file, int mode)
-	{
-		if(mode == love::FILE_READ && !exists(file))
-		{
-			std::stringstream err;
-			err << "Could not load file \"" << file << "\". (File does not exist).";
-			core->error(err.str().c_str());			
-		}
-
-		pFile f(new File(std::string(file), mode));
-		return f;
-	}
-
-
-	int getSaveDirectory(lua_State * L)
-	{
-		std::string temp = getAppdata();
-		temp += LOVE_PATH_SEPARATOR;
-		temp += save_dir;
-
-		lua_pushstring(L, temp.c_str());
-		return 1;		
-	}
-
-	const char * getWorkingDirectory()
-	{
-		return getBaseDirectory();
+		return save_path_full.c_str();
 	}
 
 	bool exists(const char * file)
@@ -625,11 +428,11 @@ namespace love_physfs
 		if(!file->seek(0))
 			return luaL_error(L, "File does not appear to be open.\n");
 
-		lua_pushcclosure(L, lines_iterator, 2);
+		lua_pushcclosure(L, lines_i, 2);
 		return 1;
 	}
 
-	int lines_iterator(lua_State * L)
+	int lines_i(lua_State * L)
 	{
 		// We're using a 1k buffer.
 		const static int bufsize = 8;

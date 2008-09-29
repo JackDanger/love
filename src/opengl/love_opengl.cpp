@@ -4,7 +4,6 @@
 // LOVE
 #include <love/version.h>
 #include <love/constants.h>
-#include <love/Exception.h>
 #include <love/Core.h>
 
 // Module.
@@ -74,7 +73,7 @@ namespace love_opengl
 	// Required modules + Core.
 	love::Core * core = 0;
 
-	bool module_init(int argc, char ** argv, love::Core * core)
+	bool module_init(love::Core * core)
 	{
 		std::cout << "INIT love.graphics [" << "OpenGL/DevIL/FreeType" << "]" << std::endl;
 
@@ -97,23 +96,11 @@ namespace love_opengl
 
 		current_mode.width = 0;
 		current_mode.height = 0;
-		
-		// Set function pointers and load module.
-		{
-			love::Graphics * g = core->getGraphics();
-			g->clear = love_opengl::clear;
-			g->present = love_opengl::present;
-			g->reset = love_opengl::reset;
-			g->setMode = love_opengl::setMode;
-			g->isCreated = love_opengl::isCreated;
-			g->setCaption = love_opengl::setCaption;
-			g->loaded = true;
-		}
 
 		return true;
 	}
 
-	bool module_quit()
+	bool module_quit(love::Core * core)
 	{
 		// Reset global data.
 		current_font.reset();
@@ -123,12 +110,9 @@ namespace love_opengl
 		return true;
 	}
 
-	bool module_open(void * vm)
+	bool module_open(love::Core * core)
 	{
-		lua_State * s = (lua_State *)vm;
-		if(s == 0)
-			return false;
-		luaopen_mod_opengl(s);
+		luaopen_mod_opengl(core->getL());
 		return true;
 	}
 

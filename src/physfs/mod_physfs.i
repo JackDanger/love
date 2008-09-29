@@ -19,8 +19,13 @@ namespace boost {
 
 namespace love_physfs
 {
+	bool setIdentity(const char * ident);
+	bool setSource(const char * source);
 	pFile newFile(const char * file, int mode = READ);
 	const char * getWorkingDirectory();
+	const char * getUserDirectory();
+	const char * getAppdataDirectory();
+	const char * getSaveDirectory();
 	bool exists(const char * file);
 	bool isDirectory(const char * file);
 	bool isFile(const char * file);
@@ -39,8 +44,6 @@ namespace love_physfs
 %native(write) int love_physfs::write(lua_State * L);
 %native(load) int love_physfs::load(lua_State * L);
 
-%native(getSaveDirectory) int love_physfs::getSaveDirectory(lua_State * L);
-
 %luacode {
 love.filesystem = mod_physfs
 
@@ -48,7 +51,8 @@ love.filesystem = mod_physfs
 love.filesystem.is_included = {}
 
 function love.filesystem.include(filename)
-	return love.system.include(filename)
+	local f = love.filesystem.load(filename)
+	return f()
 end
 
 function love.filesystem.require(filename)

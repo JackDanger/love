@@ -20,24 +20,22 @@ extern "C" {
 
 namespace love_luasocket
 {
-	bool module_init(int argc, char ** argv, love::Core * core)
+	bool module_init(love::Core * core)
 	{
-		std::cout << "INIT love.lib [LuaSocket] "<< std::endl;
+		std::cout << "INIT love.luasocket [LuaSocket] "<< std::endl;
 		return true;
 	}
 
-	bool module_quit()
+	bool module_quit(love::Core * core)
 	{
-		std::cout << "QUIT love.lib [LuaSocket] "<< std::endl;
+		std::cout << "QUIT love.luasocket [LuaSocket] "<< std::endl;
 		return true;
 	}
 
-	bool module_open(void * vm)
+	bool module_open(love::Core * core)
 	{
-		lua_State * L = (lua_State *)vm;
-		if(L == 0)
-			return false;
-		
+		lua_State * L = core->getL();
+
 		// Preload code from LuaSocket.
 		PRELOAD("socket.core", luaopen_socket_core);
 		PRELOAD("mime.core", luaopen_mime_core);

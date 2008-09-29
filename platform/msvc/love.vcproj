@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="SDL.lib SDLmain.lib lua-d.lib liblove.lib physfs.lib opengl32.lib glu32.lib DevIL.lib freetype.lib openal32.lib alut.lib ws2_32.lib"
+				AdditionalDependencies="SDL.lib SDLmain.lib lua-d.lib liblove.lib physfs.lib opengl32.lib glu32.lib glee-d.lib DevIL.lib freetype-d.lib openal32.lib alut.lib ws2_32.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="lib;debug"
 				GenerateManifest="true"
@@ -138,7 +138,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="SDL.lib SDLmain.lib lua.lib liblove.lib physfs.lib opengl32.lib glu32.lib DevIL.lib ILU.lib freetype.lib SDL_mixer.lib ws2_32.lib"
+				AdditionalDependencies="SDL.lib SDLmain.lib lua.lib liblove.lib physfs.lib opengl32.lib glu32.lib glee.lib DevIL.lib ILU.lib freetype.lib SDL_mixer.lib ws2_32.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="lib;release"
 				GenerateDebugInformation="true"
@@ -181,23 +181,19 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
-			<File
-				RelativePath="..\..\src\love.cpp"
-				>
-			</File>
 			<Filter
-				Name="sdltimer"
+				Name="sdlsystem"
 				>
 				<File
-					RelativePath="..\..\src\sdltimer\love_sdltimer.cpp"
+					RelativePath="..\..\src\sdlsystem\love_sdlsystem.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\sdltimer\mod_sdltimer.cpp"
+					RelativePath="..\..\src\sdlsystem\mod_sdlsystem.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\sdltimer\mod_sdltimer.i"
+					RelativePath="..\..\src\sdlsystem\mod_sdlsystem.i"
 					>
 				</File>
 			</Filter>
@@ -218,70 +214,6 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="system"
-				>
-				<File
-					RelativePath="..\..\src\system\love_system.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\system\LuaGame.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\system\mod_system.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\system\mod_system.i"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\system\resources.cpp"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="sdlmouse"
-				>
-				<File
-					RelativePath="..\..\src\sdlmouse\love_sdlmouse.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdlmouse\mod_sdlmouse.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdlmouse\mod_sdlmouse.i"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="physfs"
-				>
-				<File
-					RelativePath="..\..\src\physfs\File.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physfs\File.i"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physfs\love_physfs.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physfs\mod_physfs.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physfs\mod_physfs.i"
-					>
-				</File>
-			</Filter>
-			<Filter
 				Name="opengl"
 				>
 				<File
@@ -294,10 +226,6 @@
 				</File>
 				<File
 					RelativePath="..\..\src\opengl\Font.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\opengl\GLee.c"
 					>
 				</File>
 				<File
@@ -327,24 +255,6 @@
 				<File
 					RelativePath="..\..\src\opengl\resources.cpp"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(InputName)1.obj"
-							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(InputName)1.obj"
-							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\opengl\Sprite.cpp"
@@ -389,7 +299,67 @@
 						RelativePath="..\..\src\opengl\Sprite.i"
 						>
 					</File>
+					<File
+						RelativePath="..\..\src\opengl\TrueTypeFont.i"
+						>
+					</File>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="physfs"
+				>
+				<File
+					RelativePath="..\..\src\physfs\File.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\physfs\File.i"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\physfs\love_physfs.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\physfs\mod_physfs.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\physfs\mod_physfs.i"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="sdltimer"
+				>
+				<File
+					RelativePath="..\..\src\sdltimer\love_sdltimer.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\sdltimer\mod_sdltimer.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\sdltimer\mod_sdltimer.i"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="sdlmouse"
+				>
+				<File
+					RelativePath="..\..\src\sdlmouse\love_sdlmouse.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\sdlmouse\mod_sdlmouse.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\sdlmouse\mod_sdlmouse.i"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="sdljoystick"
@@ -406,6 +376,70 @@
 					RelativePath="..\..\src\sdljoystick\mod_sdljoystick.i"
 					>
 				</File>
+			</Filter>
+			<Filter
+				Name="luasocket"
+				>
+				<File
+					RelativePath="..\..\src\luasocket\love_luasocket.cpp"
+					>
+				</File>
+				<Filter
+					Name="luasocket"
+					>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\auxiliar.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\buffer.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\except.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\inet.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\io.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\luasocket.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\mime.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\options.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\select.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\tcp.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\timeout.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\udp.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\luasocket\luasocket\wsocket.c"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="box2d"
@@ -610,10 +644,6 @@
 						>
 					</File>
 					<File
-						RelativePath="..\..\src\box2d\fusion.lua"
-						>
-					</File>
-					<File
 						RelativePath="..\..\src\box2d\Joint.i"
 						>
 					</File>
@@ -647,219 +677,13 @@
 					</File>
 				</Filter>
 				<Filter
-					Name="graham"
+					Name="garaham"
 					>
 					<File
 						RelativePath="..\..\src\box2d\graham\GrahamScanConvexHull.cpp"
 						>
 					</File>
 				</Filter>
-			</Filter>
-			<Filter
-				Name="luasocket"
-				>
-				<File
-					RelativePath="..\..\src\luasocket\love_luasocket.cpp"
-					>
-				</File>
-				<Filter
-					Name="luasocket"
-					>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\auxiliar.c"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CallingConvention="0"
-								CompileAs="1"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\buffer.c"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CallingConvention="0"
-								CompileAs="1"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\except.c"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CallingConvention="0"
-								CompileAs="1"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\inet.c"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CallingConvention="0"
-								CompileAs="1"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\io.c"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CallingConvention="0"
-								CompileAs="1"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\luasocket.c"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CallingConvention="0"
-								CompileAs="1"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\mime.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\options.c"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CallingConvention="0"
-								CompileAs="1"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\select.c"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CallingConvention="0"
-								CompileAs="1"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\tcp.c"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CallingConvention="0"
-								CompileAs="1"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\timeout.c"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CallingConvention="0"
-								CompileAs="1"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\udp.c"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CallingConvention="0"
-								CompileAs="1"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\wsocket.c"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								CallingConvention="0"
-								CompileAs="1"
-							/>
-						</FileConfiguration>
-					</File>
-				</Filter>
-			</Filter>
-			<Filter
-				Name="openal"
-				>
-				<File
-					RelativePath="..\..\src\openal\love_openal.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\openal\mod_openal.i"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\openal\Sound.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(InputName)1.obj"
-							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(InputName)1.obj"
-							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
-						/>
-					</FileConfiguration>
-				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -868,14 +692,14 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<Filter
-				Name="sdltimer"
+				Name="sdlsystem"
 				>
 				<File
-					RelativePath="..\..\src\sdltimer\love_sdltimer.h"
+					RelativePath="..\..\src\sdlsystem\love_sdlsystem.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\sdltimer\mod_sdltimer.h"
+					RelativePath="..\..\src\sdlsystem\mod_sdlsystem.h"
 					>
 				</File>
 			</Filter>
@@ -888,58 +712,6 @@
 				</File>
 				<File
 					RelativePath="..\..\src\sdlkeyboard\mod_sdlkeyboard.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="system"
-				>
-				<File
-					RelativePath="..\..\src\system\constants.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\system\love_system.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\system\LuaGame.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\system\mod_system.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\system\resources.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="sdlmouse"
-				>
-				<File
-					RelativePath="..\..\src\sdlmouse\love_sdlmouse.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdlmouse\mod_sdlmouse.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="physfs"
-				>
-				<File
-					RelativePath="..\..\src\physfs\File.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physfs\love_physfs.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physfs\mod_physfs.h"
 					>
 				</File>
 			</Filter>
@@ -1004,6 +776,46 @@
 				</File>
 			</Filter>
 			<Filter
+				Name="physfs"
+				>
+				<File
+					RelativePath="..\..\src\physfs\File.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\physfs\love_physfs.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\physfs\mod_physfs.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="sdltimer"
+				>
+				<File
+					RelativePath="..\..\src\sdltimer\love_sdltimer.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\sdltimer\mod_sdltimer.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="sdlmouse"
+				>
+				<File
+					RelativePath="..\..\src\sdlmouse\love_sdlmouse.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\sdlmouse\mod_sdlmouse.h"
+					>
+				</File>
+			</Filter>
+			<Filter
 				Name="sdljoystick"
 				>
 				<File
@@ -1016,180 +828,16 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="box2d"
-				>
-				<File
-					RelativePath="..\..\src\box2d\Body.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\CircleShape.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\Contact.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\DistanceJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\Joint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\love_box2d.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\mod_box2d.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\MouseJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\PolygonShape.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\PrismaticJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\RevoluteJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\Shape.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\World.h"
-					>
-				</File>
-			</Filter>
-			<Filter
 				Name="luasocket"
 				>
 				<File
 					RelativePath="..\..\src\luasocket\love_luasocket.h"
 					>
 				</File>
-				<Filter
-					Name="luasocket"
-					>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\auxiliar.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\buffer.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\except.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\ftp.lua"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\http.lua"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\inet.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\io.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\ltn12.lua"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\luasocket.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\mime.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\mime.lua"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\options.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\select.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\smtp.lua"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\socket.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\socket.lua"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\tcp.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\timeout.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\tp.lua"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\udp.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\unix.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\url.lua"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\usocket.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\wsocket.h"
-						>
-					</File>
-				</Filter>
 			</Filter>
 			<Filter
-				Name="openal"
+				Name="box2d"
 				>
-				<File
-					RelativePath="..\..\src\openal\love_openal.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\openal\Sound.h"
-					>
-				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -1206,6 +854,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\src\love.cpp"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

@@ -424,6 +424,7 @@ mods = {
     opengl = Module:new("opengl"),
     physfs = Module:new("physfs"),
     system = Module:new("system"),
+    sdlsystem = Module:new("sdlsystem"),
     sdljoystick = Module:new("sdljoystick"),
     box2d = Module:new("box2d"),
 }

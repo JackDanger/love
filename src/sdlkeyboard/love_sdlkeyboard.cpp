@@ -9,31 +9,21 @@
 
 namespace love_sdlkeyboard
 {
-	bool module_init(int argc, char ** argv, love::Core * core)
+	bool module_init(love::Core * core)
 	{
 		std::cout << "INIT love.keyboard [" << "SDL" << "]" << std::endl;
-		
-		// Set function pointers and load module.
-		{
-			love::Keyboard * k = core->getKeyboard();
-			k->loaded = true;
-		}
-		
 		return true;
 	}
 
-	bool module_quit()
+	bool module_quit(love::Core * core)
 	{
 		std::cout << "QUIT love.keyboard [" << "SDL" << "]" << std::endl;
 		return true;
 	}
 
-	bool module_open(void * vm)
+	bool module_open(love::Core * core)
 	{
-		lua_State * s = (lua_State *)vm;
-		if(s == 0)
-			return false;
-		luaopen_mod_sdlkeyboard(s);
+		luaopen_mod_sdlkeyboard(core->getL());
 		return true;
 	}
 
