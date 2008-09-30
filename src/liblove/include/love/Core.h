@@ -9,12 +9,11 @@
 #define LOVE_CORE_H
 
 // LOVE
+#include "luax.h"
 #include "Module.h"
-#include "Game.h"
 
 // STD
 #include <vector>
-#include <sstream>
 
 namespace love
 {

@@ -11,6 +11,7 @@
 #define LOVE_BOX2D_WORLD_H
 
 // LOVE
+#include <love/Reference.h>
 #include <love/mod.h>
 
 // STD

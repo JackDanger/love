@@ -11,6 +11,7 @@
 #define LOVE_BOX2D_SHAPE_H
 
 // LOVE
+#include <love/Reference.h>
 #include <love/constants.h>
 #include <love/mod.h>
 

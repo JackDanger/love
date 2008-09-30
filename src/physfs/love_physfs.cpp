@@ -14,7 +14,7 @@
 // For great CWD. (Current Working Directory)
 // Using this instead of boost::filesystem which totally
 // cramped our style.
-#ifdef WIN32
+#ifdef LOVE_WINDOWS
 #	include <direct.h>
 #else
 #	include <sys/param.h>
@@ -23,7 +23,7 @@
 
 // In Windows, we would like to use "LOVE" as the 
 // application folder, but in Linux, we like .love.
-#ifdef WIN32
+#ifdef LOVE_WINDOWS
 #	define LOVE_APPDATA_FOLDER "LOVE"
 #	define LOVE_PATH_SEPARATOR "/"
 #	define LOVE_MAX_PATH _MAX_PATH
@@ -181,7 +181,7 @@ namespace love_physfs
 
 	const char * getWorkingDirectory()
 	{
-		#ifdef WIN32
+		#ifdef LOVE_WINDOWS
 				_getcwd(cwdbuffer, _MAX_PATH);
 		#else
 				getcwd(cwdbuffer, MAXPATHLEN);
@@ -196,7 +196,7 @@ namespace love_physfs
 
 	const char * getAppdataDirectory()
 	{
-#ifdef WIN32
+#ifdef LOVE_WINDOWS
 		return getenv("APPDATA");
 #else
 		return getUserDirectory();
