@@ -1,9 +1,73 @@
 
-print("File is done")
 
-love.temp = {}
+setup = {}
 
-function love.temp.getSource()
+setup.options = {
+	["--game"] = {
+		description = "The love file or directory to load.",
+		narg = 1,
+	},
+	["--help"] = {
+		description = "Prints this message.",
+		narg = 0,
+	},
+	["--version"] = {
+		description = "Prints the version of the program.",
+		narg = 0,
+	},
+	["--verbose"] = {
+		description = "Prints extra information to standard out.",
+		narg = 0,
+	},
+	["--width"] = {
+		description = "Sets the window width.",
+		narg = 1,
+	},
+	["--height"] = {
+		description = "Sets the window width.",
+		narg = 1,
+	},
+	["--disable-system"] = {
+		description = "Loads without a system module.",
+		narg = 0,
+	},
+	["--disable-filesystem"] = {
+		description = "Loads without a filesystem module.",
+		narg = 0,
+	},
+	["--disable-graphics"] = {
+		description = "Loads without a graphics module.",
+		narg = 0,
+	},
+	["--disable-keyboard"] = {
+		description = "Loads without a keyboard module.",
+		narg = 0,
+	},
+	["--disable-timer"] = {
+		description = "Loads without a timer module.",
+		narg = 0,
+	},
+	["--disable-mouse"] = {
+		description = "Loads without a mouse module.",
+		narg = 0,
+	},
+	["--disable-joystick"] = {
+		description = "Loads without a joystick module.",
+		narg = 0,
+	},
+	["--disable-audio"] = {
+		description = "Loads without a audio module.",
+		narg = 0,
+	},
+	["--disable-physics"] = {
+		description = "Loads without a physics module.",
+		narg = 0,
+	},
+}
+
+function setup.getsource()
+
+	if not arg[0] then return nil end
 
 	-- Get the working directory.
 	local wd = string.gsub(love.filesystem.getWorkingDirectory(), "\\", "/")
@@ -21,34 +85,131 @@ function love.temp.getSource()
 
 end
 
+function setup.parseoptions()
+
+	local t = {}
+
+	for i,v in pairs(arg) do
+		
+		local s, e, o = string.find(v, "(%-%-[%w%-]+)")
+		if s then
+
+			-- Is this a valid option?
+			if not setup.options[o] then
+				return error("Invalid option: " .. o)
+			end
+			
+			-- The option is valid. Create it.
+			t[o] = { args = {} }
+
+			-- Get arguments.
+			for j=(i+1),(i+setup.options[o].narg) do
+				if not arg[j] then return error(setup.options[o].narg.." parameter(s) expected for option " .. o .. ".") end
+				table.insert(t[o].args, arg[j])
+			end
+
+		end
+
+	end
+	
+	return t
+end
+
 function love.init()
-	print("Init called")
+
+	-- Get the full path to the game source.
+	local success, options = xpcall(setup.parseoptions,
+		function (msg)
+			print(msg, debug.traceback())
+		end)
+
+	--[[
+	if options then
+		for i,v in pairs(options) do
+			print(i,unpack(v.args))
+		end
+	end
+	--]]
+
+	local opt = function(q)
+		return options[q]
+	end
+
+	local creq = function(n,m)
+		if not opt("--disable-"..n) then
+			require(m)
+		end
+	end
+
+	if opt("--help") then
+
+		local atleast = function(str, min)
+			local size = #str
+			if size < min then 
+				return str .. str.rep(" ", min-size)
+			end
+			return str
+		end
+
+		local pad = "  "
+		print("\nWant to learn how to LOVE?")
+		print("--------------------------\n")
+		print("Usage:")
+		print("------\n")
+		print(pad.."love [options] game\n")
+		print("Examples:")
+		print("---------\n")
+		print(pad.."love mygame.love")
+		print(pad.."love /path/to/game")
+		print(pad.."love ../game")
+		print(pad.."love --disable-audio game.love")
+		print()
+		print("Options:")
+		print("--------\n")
+		
+		for i,v in pairs(setup.options) do
+			local args = ""
+			for j=1,v.narg do args = " arg"..j end
+			print(atleast(pad..i..args, 25) .. v.description)
+		end
+
+		return true
+	end
 
 	-- Let's require some modules.
-	require("love_sdlsystem")
-	require("love_physfs")
-	require("love_opengl")
-	require("love_sdlkeyboard")
-	require("love_sdltimer")
-	require("love_sdlmouse")
-	require("love_sdljoystick")
-	require("love_luasocket")
-	require("love_box2d")
+	creq("system", "love_sdlsystem")
+	creq("filesystem", "love_physfs")
+	creq("graphics", "love_opengl")
+	creq("keyboard", "love_sdlkeyboard")
+	creq("timer", "love_sdltimer")
+	creq("mouse", "love_sdlmouse")
+	creq("joystick", "love_sdljoystick")
+	creq("luasocket", "love_luasocket")
+	creq("box2d", "love_box2d")
+
+	if not false then return true end
 
 	love.graphics.setMode(800, 600, false, true, 0)
 	love.filesystem.setIdentity("test9000")
 
-	-- Get the full path to the game source.
-	local source = love.temp.getSource()
-	print("Source is: " .. source)
-	love.filesystem.setSource(source)
+
+	
+	if true then return false end
+	
+	if source then
+		print("Source is: " .. source)
+		love.filesystem.setSource(source)
+	else
+		print("There is no source: load nogame.")
+		return false
+	end
 
 	-- Parse main file.
 	if love.filesystem.exists("main.lua") then
 		require("main.lua")
 	end
 
-	love.temp = nil
+	setup = nil
 	collectgarbage()
 
 	-- Call love.run.

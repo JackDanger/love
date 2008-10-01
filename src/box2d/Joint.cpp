@@ -7,9 +7,6 @@
 // STD
 #include <bitset>
 
-// Boost
-#include <boost/any.hpp>
-
 namespace love_box2d
 {
 
