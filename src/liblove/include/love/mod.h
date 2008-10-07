@@ -15,13 +15,6 @@
 #ifndef LOVE_MOD_H
 #define LOVE_MOD_H
 
-// For correct linkage across compilers.
-#ifdef WIN32
-#	define DECLSPEC __declspec(dllexport)
-#else
-#	define DECLSPEC
-#endif
-
 // STD
 #include <cstring>
 #include <string>
@@ -33,5 +26,12 @@
 #include "luax.h"
 #include "Core.h"
 #include "Reference.h"
+
+// For correct linkage across compilers.
+#ifdef LOVE_WINDOWS
+#	define DECLSPEC __declspec(dllexport)
+#else
+#	define DECLSPEC
+#endif
 
 #endif // LOVE_MOD_H

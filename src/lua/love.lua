@@ -1,71 +1,8 @@
 
 
-setup = {}
+love.setup = {}
 
-setup.options = {
-	["--game"] = {
-		description = "The love file or directory to load.",
-		narg = 1,
-	},
-	["--help"] = {
-		description = "Prints this message.",
-		narg = 0,
-	},
-	["--version"] = {
-		description = "Prints the version of the program.",
-		narg = 0,
-	},
-	["--verbose"] = {
-		description = "Prints extra information to standard out.",
-		narg = 0,
-	},
-	["--width"] = {
-		description = "Sets the window width.",
-		narg = 1,
-	},
-	["--height"] = {
-		description = "Sets the window width.",
-		narg = 1,
-	},
-	["--disable-system"] = {
-		description = "Loads without a system module.",
-		narg = 0,
-	},
-	["--disable-filesystem"] = {
-		description = "Loads without a filesystem module.",
-		narg = 0,
-	},
-	["--disable-graphics"] = {
-		description = "Loads without a graphics module.",
-		narg = 0,
-	},
-	["--disable-keyboard"] = {
-		description = "Loads without a keyboard module.",
-		narg = 0,
-	},
-	["--disable-timer"] = {
-		description = "Loads without a timer module.",
-		narg = 0,
-	},
-	["--disable-mouse"] = {
-		description = "Loads without a mouse module.",
-		narg = 0,
-	},
-	["--disable-joystick"] = {
-		description = "Loads without a joystick module.",
-		narg = 0,
-	},
-	["--disable-audio"] = {
-		description = "Loads without a audio module.",
-		narg = 0,
-	},
-	["--disable-physics"] = {
-		description = "Loads without a physics module.",
-		narg = 0,
-	},
-}
-
-function setup.getsource()
+function love.setup.getSource()
 
 	if not arg[0] then return nil end
 
@@ -85,123 +22,101 @@ function setup.getsource()
 
 end
 
-function setup.parseoptions()
+-- Removes trailing and leading whitespace 
+-- from a string.
+function love.setup.trim(s)
+  return (s:gsub("^%s*(.-)%s*$", "%1"))
+end
 
-	local t = {}
+function love.setup.getConf()
 
-	for i,v in pairs(arg) do
+	local conf = {
+
+		["width"] = 800, 
+		["height"] = 600,
+		["fullscreen"] = false,
+		["vsync"] = true,
+		["fsaa"] = 0,
+		["display_auto"] = true,
+
+		["title"] = "Untitled Game",
+		["author"] = "Unknown Author",
+
+		["disable_graphics"] = false,
+		["disable_audio"] = false,
+		["disable_physics"] = false,
+		["disable_keyboard"] = false,
+		["disable_mouse"] = false,
+		["disable_timer"] = false,
+		["disable_joystick"] = false,
+		["disable_luasocket"] = false,
 		
-		local s, e, o = string.find(v, "(%-%-[%w%-]+)")
-		if s then
+		["love_version"] = "0.6.0",
+	}
 
-			-- Is this a valid option?
-			if not setup.options[o] then
-				return error("Invalid option: " .. o)
-			end
+	-- Read the file, if any.
+	if love.filesystem.exists("game.conf") then
+		for line in love.filesystem.lines("game.conf") do
+			local u1, u2, key, value = string.find(line, "([%w_ ]+)=(.+)")
 			
-			-- The option is valid. Create it.
-			t[o] = { args = {} }
-
-			-- Get arguments.
-			for j=(i+1),(i+setup.options[o].narg) do
-				if not arg[j] then return error(setup.options[o].narg.." parameter(s) expected for option " .. o .. ".") end
-				table.insert(t[o].args, arg[j])
-			end
-
+			-- Remove leading/trailing whitespace.
+			key = love.setup.trim(key)
+			value = love.setup.trim(value)
+			
+			-- Overwrite default values in conf table.
+			conf[key] = value
 		end
-
 	end
-	
-	return t
+
+	return conf
+end
+
+function love.setup.filesystem()
+
+	local source = love.setup.getSource()
+
+	if source then
+		print("Source is: " .. source)
+		love.filesystem.setSource(source)
+		love.filesystem.setIdentity("test9000")
+	else
+		print("There is no source: load nogame.")
+		return false
+	end
+	return true
 end
 
 function love.init()
 
-	-- Get the full path to the game source.
-	local success, options = xpcall(setup.parseoptions,
-		function (msg)
-			print(msg, debug.traceback())
-		end)
+	-- These are ALWAYS required.
+	require("love_sdlsystem")
+	require("love_physfs")
 
-	--[[
-	if options then
-		for i,v in pairs(options) do
-			print(i,unpack(v.args))
-		end
-	end
-	--]]
-
-	local opt = function(q)
-		return options[q]
-	end
-
-	local creq = function(n,m)
-		if not opt("--disable-"..n) then
-			require(m)
-		end
-	end
-
-	if opt("--help") then
-
-		local atleast = function(str, min)
-			local size = #str
-			if size < min then 
-				return str .. str.rep(" ", min-size)
-			end
-			return str
-		end
-
-		local pad = "  "
-		print("\nWant to learn how to LOVE?")
-		print("--------------------------\n")
-		print("Usage:")
-		print("------\n")
-		print(pad.."love [options] game\n")
-		print("Examples:")
-		print("---------\n")
-		print(pad.."love mygame.love")
-		print(pad.."love /path/to/game")
-		print(pad.."love ../game")
-		print(pad.."love --disable-audio game.love")
-		print()
-		print("Options:")
-		print("--------\n")
-		
-		for i,v in pairs(setup.options) do
-			local args = ""
-			for j=1,v.narg do args = " arg"..j end
-			print(atleast(pad..i..args, 25) .. v.description)
-		end
-
-		return true
-	end
-
-	-- Let's require some modules.
-	creq("system", "love_sdlsystem")
-	creq("filesystem", "love_physfs")
-	creq("graphics", "love_opengl")
-	creq("keyboard", "love_sdlkeyboard")
-	creq("timer", "love_sdltimer")
-	creq("mouse", "love_sdlmouse")
-	creq("joystick", "love_sdljoystick")
-	creq("luasocket", "love_luasocket")
-	creq("box2d", "love_box2d")
-
-	if not false then return true end
-
-	love.graphics.setMode(800, 600, false, true, 0)
-	love.filesystem.setIdentity("test9000")
-
-
-	
-	if true then return false end
-	
-	if source then
-		print("Source is: " .. source)
-		love.filesystem.setSource(source)
-	else
-		print("There is no source: load nogame.")
+	-- Setup the filesystem folders.
+	if not love.setup.filesystem() then
 		return false
+	end
+	
+	-- Read the config file.
+	local conf = love.setup.getConf()
+
+	-- These are all optional.
+	require("love_opengl")
+	require("love_sdlkeyboard")
+	require("love_sdltimer")
+	require("love_sdlmouse")
+	require("love_sdljoystick")
+	require("love_luasocket")
+	require("love_box2d")
+
+	-- Auto-configure display, unless otherwise specified.
+	if conf["display_auto"] then
+		love.graphics.setMode(
+			conf["width"], 
+			conf["height"], 
+			conf["fullscreen"],
+			conf["vsync"],
+			conf["fsaa"])
 	end
 
 	-- Parse main file.
@@ -209,7 +124,7 @@ function love.init()
 		require("main.lua")
 	end
 
-	setup = nil
+	love.setup = nil
 	collectgarbage()
 
 	-- Call love.run.
@@ -269,13 +184,3 @@ love.handlers = {
 		return
 	end,
 }
-
-function keypressed(key)
-	print("getWorkingDirectory", love.filesystem.getWorkingDirectory())
-	print("getUserDirectory", love.filesystem.getUserDirectory())
-	print("getAppdataDirectory", love.filesystem.getAppdataDirectory())
-	print("getSaveDirectory", love.filesystem.getSaveDirectory())
-	for i,v in pairs(arg) do
-		print(i,v)
-	end
-end
