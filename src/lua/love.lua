@@ -119,10 +119,16 @@ function love.init()
 			conf["fsaa"])
 	end
 
-	-- Parse main file.
-	if love.filesystem.exists("main.lua") then
-		require("main.lua")
+	-- Parse main file, unless a love.main has been preloaded.
+	if not love.main and love.filesystem.exists("main.lua") then
+		love.main = love.filesystem.load("main.lua")
 	end
+	
+	-- Call love.main.
+	if love.main then
+		love.main()
+	end
+
 
 	love.setup = nil
 	collectgarbage()

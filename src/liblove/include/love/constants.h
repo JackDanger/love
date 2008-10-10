@@ -11,6 +11,15 @@
 namespace love
 {
 
+	// Core status messages.
+	enum
+	{
+		STATUS_OK,
+		STATUS_NO_INIT,
+		STATUS_ERROR,
+
+	};
+		
 	// Events. Not all of these needs
 	// exposing.
 	enum

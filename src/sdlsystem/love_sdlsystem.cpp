@@ -9,6 +9,8 @@
 
 // LOVE
 #include <love/Core.h>
+#include <love/version.h>
+#include <love/constants.h>
 
 namespace love_sdlsystem
 {
@@ -46,6 +48,48 @@ namespace love_sdlsystem
 	{
 		luaopen_mod_sdlsystem(core->getL());
 		return true;
+	}
+
+	const char * getVersion()
+	{
+		return LOVE_VERSION_STR;
+	}
+
+	const char * getCodename()
+	{
+		return LOVE_VERSION_CODENAME;
+	}
+
+	const char * getPlatform()
+	{
+#ifdef WIN32
+		return "Windows";
+#else
+		return "Linux";
+#endif
+	}
+
+	void exit()
+	{
+		//SDL_Event e;
+		//e.type = love::EVENT_QUIT;
+		//SDL_PushEvent(&e);
+		::exit(0);
+	}
+
+	void restart()
+	{
+		SDL_Event e;
+		e.type = love::EVENT_QUIT;
+		SDL_PushEvent(&e);
+	}
+
+	void grabInput(bool grab)
+	{
+		if(grab)
+			SDL_WM_GrabInput(SDL_GRAB_ON);
+		else
+			SDL_WM_GrabInput(SDL_GRAB_OFF);
 	}
 
 	int events(lua_State * L)
@@ -93,5 +137,12 @@ namespace love_sdlsystem
 		// No pending events.
 		return 0;
 	}
+
+	int waitEvent()
+	{
+		static SDL_Event e;
+		SDL_WaitEvent(&e);
+		return e.type;
+	};
 
 } // love_sdlsystem

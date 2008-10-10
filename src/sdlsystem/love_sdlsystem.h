@@ -22,6 +22,40 @@ namespace love_sdlsystem
 	bool module_open(love::Core * core);
 
 	/**
+	* Gets the current version of LOVE.
+	* @return Return values will be on the format "0.2.1".
+	**/
+	const char * getVersion();
+
+	/**
+	* Gets the codename for this version. (For fun :)
+	* @return A string containing the codename, such as "Mini-Moose".
+	**/
+	const char * getCodename();
+
+	/**
+	* Get a string representing the current platform.
+	* @return "Windows" or "Linux", currently.
+	**/
+	const char * getPlatform();
+
+	/**
+	* Immediately quits LOVE.
+	**/
+	void exit();
+
+	/**
+	* Restarts the current game.
+	**/
+	void restart();
+
+	/**
+	* Grabs or ungrabs input.
+	* @grab True grabs input, false ungrabs.
+	**/
+	void grabInput(bool grab);
+
+	/**
 	* Returns an iterator function for
 	* iterating over pending events.
 	**/
@@ -32,6 +66,12 @@ namespace love_sdlsystem
 	* pending SDL events.
 	**/
 	int events_i(lua_State * L);
+
+	/**
+	* Blocks until some event occurs, then
+	* returns the event.
+	**/
+	int waitEvent();
 
 } // love_sdlsystem
 

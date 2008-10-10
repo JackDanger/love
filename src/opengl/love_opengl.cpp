@@ -1151,6 +1151,7 @@ namespace love_opengl
 
 	void point( float x, float y )
 	{
+		exit(0);
 		glDisable(GL_TEXTURE_2D);
 		glBegin(GL_POINTS);
 			glVertex2f(x, y);

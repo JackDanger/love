@@ -41,7 +41,7 @@ namespace love
 		// being detected.
 		luaL_dostring(L, "stdload = load; load = nil;");
 		
-		luaL_dofile(L, "love.lua");
+		luaL_dofile(L, "..\\..\\src\\lua\\love.lua");
 	
 		love::core = this;
 	}

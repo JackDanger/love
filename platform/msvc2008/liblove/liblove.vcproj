@@ -198,10 +198,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\liblove\include\love\events.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\liblove\include\love\File.h"
 				>
 			</File>

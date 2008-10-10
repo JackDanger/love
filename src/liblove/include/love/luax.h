@@ -5,7 +5,7 @@
 * Copyright (c) 2006-2008 LOVE Development Team
 * 
 * Lua auxiliary library. Not much here yet; functions
-* will be added as development requires.
+* will be added as development requires them.
 *
 * @author Anders Ruud
 * @date 2008-08-06

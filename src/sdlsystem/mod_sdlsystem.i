@@ -4,7 +4,14 @@
 
 namespace mod_sdlsystem
 {
+	const char * getVersion();
+	const char * getCodename();
+	const char * getPlatform();
 	
+	void exit();
+	void restart();
+	
+	void grabInput(bool grab);
 }
 
 %native(events) int love_sdlsystem::events(lua_State * L);
