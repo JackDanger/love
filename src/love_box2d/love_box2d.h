@@ -12,9 +12,9 @@
 #define LOVE_MODULE_BOX2D_H
 
 // LOVE
-#include <love/config.h>
-#include <love/luax.h>
-#include <love/types.h>
+#include "../liblove/config.h"
+#include "../liblove/luax.h"
+#include "../liblove/types.h"
 
 // Module
 #include "World.h"

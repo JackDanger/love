@@ -1,6 +1,6 @@
 #include "Body.h"
 
-#include <love/math.h>
+#include "../liblove/math.h"
 
 #include "World.h"
 

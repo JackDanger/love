@@ -12,9 +12,9 @@
 #define LOVE_OPENGL_TEXTURE_H
 
 // LOVE
-#include <love/Object.h>
-#include <love/File.h>
-#include <love/Volatile.h>
+#include "../liblove/Object.h"
+#include "../liblove/File.h"
+#include "../liblove/Volatile.h"
 
 namespace love
 {

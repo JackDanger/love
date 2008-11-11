@@ -12,7 +12,7 @@
 #define LOVE_OPENGL_COLOR_H
 
 // LOVE
-#include <love/Object.h>
+#include "../liblove/Object.h"
 
 namespace love
 {

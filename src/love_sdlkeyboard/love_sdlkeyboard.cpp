@@ -15,7 +15,7 @@
 
 // Include the wrapper code.
 #define LOVE_WRAP_NAMESPACE sdlkeyboard
-#include <love/wkeyboard.h>
+#include "../liblove/wkeyboard.h"
 
 namespace love
 {

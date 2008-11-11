@@ -15,7 +15,7 @@
 
 // Include the wrapper code.
 #define LOVE_WRAP_NAMESPACE sdlmouse
-#include <love/wmouse.h>
+#include "../liblove/wmouse.h"
 
 namespace love
 {

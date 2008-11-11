@@ -15,8 +15,8 @@
 #include <cmath>
 
 // LOVE
-#include <love/version.h>
-#include <love/constants.h>
+#include "../liblove/version.h"
+#include "../liblove/constants.h"
 
 // SDL
 #include <SDL.h>
@@ -28,7 +28,7 @@
 // Include the wrapper code.
 #define LOVE_WRAP_NAMESPACE opengl
 #define LOVE_WRAP_BITS LOVE_OPENGL_BITS
-#include <love/wgraphics.h>
+#include "../liblove/wgraphics.h"
 
 namespace love
 {

@@ -15,7 +15,7 @@
 
 // Include the wrapper code.
 #define LOVE_WRAP_NAMESPACE sdlsystem
-#include <love/wsystem.h>
+#include "../liblove/wsystem.h"
 
 namespace love
 {

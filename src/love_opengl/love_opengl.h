@@ -12,10 +12,10 @@
 #define LOVE_MODULE_OPENGL_H
 
 // LOVE
-#include <love/config.h>
-#include <love/File.h>
-#include <love/luax.h>
-#include <love/types.h>
+#include "../liblove/config.h"
+#include "../liblove/File.h"
+#include "../liblove/luax.h"
+#include "../liblove/types.h"
 
 // Module
 #include "Image.h"

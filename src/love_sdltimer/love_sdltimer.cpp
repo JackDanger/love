@@ -15,7 +15,7 @@
 
 // Include the wrapper code.
 #define LOVE_WRAP_NAMESPACE sdltimer
-#include <love/wtimer.h>
+#include "../liblove/wtimer.h"
 
 namespace love
 {

@@ -1,6 +1,6 @@
 #include "RevoluteJoint.h"
 
-#include <love/math.h>
+#include "../liblove/math.h"
 
 // Module
 #include "Body.h"

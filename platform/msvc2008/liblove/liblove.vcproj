@@ -143,195 +143,191 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="..\..\..\src\love\config.h"
+			RelativePath="..\..\..\src\liblove\constants.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\constants.h"
+			RelativePath="..\..\..\src\liblove\Drawable.cpp"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\Drawable.cpp"
+			RelativePath="..\..\..\src\liblove\Drawable.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\Drawable.h"
+			RelativePath="..\..\..\src\liblove\File.cpp"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\File.cpp"
+			RelativePath="..\..\..\src\liblove\File.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\File.h"
+			RelativePath="..\..\..\src\liblove\luax.cpp"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\luax.cpp"
+			RelativePath="..\..\..\src\liblove\luax.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\luax.h"
+			RelativePath="..\..\..\src\liblove\math.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\math.h"
+			RelativePath="..\..\..\src\liblove\Object.cpp"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\Object.cpp"
+			RelativePath="..\..\..\src\liblove\Object.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\Object.h"
+			RelativePath="..\..\..\src\liblove\platform.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\platform.h"
+			RelativePath="..\..\..\src\liblove\Reference.cpp"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\Reference.cpp"
+			RelativePath="..\..\..\src\liblove\Reference.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\Reference.h"
+			RelativePath="..\..\..\src\liblove\types.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\types.h"
+			RelativePath="..\..\..\src\liblove\Vector.cpp"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\Vector.cpp"
+			RelativePath="..\..\..\src\liblove\Vector.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\Vector.h"
+			RelativePath="..\..\..\src\liblove\version.cpp"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\version.cpp"
+			RelativePath="..\..\..\src\liblove\version.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\version.h"
+			RelativePath="..\..\..\src\liblove\Volatile.cpp"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\Volatile.cpp"
+			RelativePath="..\..\..\src\liblove\Volatile.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\Volatile.h"
+			RelativePath="..\..\..\src\liblove\wAnimation.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wAnimation.h"
+			RelativePath="..\..\..\src\liblove\wBody.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wBody.h"
+			RelativePath="..\..\..\src\liblove\wCircleShape.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wCircleShape.h"
+			RelativePath="..\..\..\src\liblove\wColor.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wColor.h"
+			RelativePath="..\..\..\src\liblove\wContact.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wContact.h"
+			RelativePath="..\..\..\src\liblove\wDistanceJoint.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wDistanceJoint.h"
+			RelativePath="..\..\..\src\liblove\wDrawable.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wDrawable.h"
+			RelativePath="..\..\..\src\liblove\wFile.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wFile.h"
+			RelativePath="..\..\..\src\liblove\wfilesystem.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wfilesystem.h"
+			RelativePath="..\..\..\src\liblove\wFont.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wFont.h"
+			RelativePath="..\..\..\src\liblove\wgraphics.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wgraphics.h"
+			RelativePath="..\..\..\src\liblove\wImage.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wImage.h"
+			RelativePath="..\..\..\src\liblove\wJoint.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wJoint.h"
+			RelativePath="..\..\..\src\liblove\wjoystick.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wjoystick.h"
+			RelativePath="..\..\..\src\liblove\wkeyboard.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wkeyboard.h"
+			RelativePath="..\..\..\src\liblove\wmouse.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wmouse.h"
+			RelativePath="..\..\..\src\liblove\wMouseJoint.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wMouseJoint.h"
+			RelativePath="..\..\..\src\liblove\wParticleSystem.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wParticleSystem.h"
+			RelativePath="..\..\..\src\liblove\wphysics.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wphysics.h"
+			RelativePath="..\..\..\src\liblove\wPolygonShape.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wPolygonShape.h"
+			RelativePath="..\..\..\src\liblove\wPrismaticJoint.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wPrismaticJoint.h"
+			RelativePath="..\..\..\src\liblove\wRevoluteJoint.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wRevoluteJoint.h"
+			RelativePath="..\..\..\src\liblove\wShape.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wShape.h"
+			RelativePath="..\..\..\src\liblove\wsystem.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wsystem.h"
+			RelativePath="..\..\..\src\liblove\wtimer.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wtimer.h"
+			RelativePath="..\..\..\src\liblove\wWorld.h"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\src\love\wWorld.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\..\src\love\wwrap.h"
+			RelativePath="..\..\..\src\liblove\wwrap.h"
 			>
 		</File>
 	</Files>

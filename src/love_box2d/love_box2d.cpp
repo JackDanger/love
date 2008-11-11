@@ -10,14 +10,14 @@
 
 #include "love_box2d.h"
 
-#include <love/math.h>
+#include "../liblove/math.h"
 
 #include "graham/GrahamScanConvexHull.h"
 
 // Include the wrapper code.
 #define LOVE_WRAP_NAMESPACE box2d
 #define LOVE_WRAP_BITS LOVE_BOX2D_BITS
-#include <love/wphysics.h>
+#include "../liblove/wphysics.h"
 
 namespace love
 {

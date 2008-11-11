@@ -1,5 +1,5 @@
 /*
-* LOVE: Totally Awesome 2D Gaming.
+* LOVE: Free 2D Game Engine.
 * Website: http://love2d.org
 * Licence: ZLIB/libpng
 * Copyright (c) 2006-2008 LOVE Development Team
@@ -9,8 +9,8 @@
 #define LOVE_OPENGL_FONT_H
 
 // LOVE
-#include <love/File.h>
-#include <love/Volatile.h>
+#include "../liblove/File.h"
+#include "../liblove/Volatile.h"
 
 namespace love
 {

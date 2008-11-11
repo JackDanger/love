@@ -12,8 +12,8 @@
 #define LOVE_MODULE_PHYSFS_H
 
 // LOVE
-#include <love/config.h>
-#include <love/luax.h>
+#include "../liblove/config.h"
+#include "../liblove/luax.h"
 
 // Module
 #include "File.h"

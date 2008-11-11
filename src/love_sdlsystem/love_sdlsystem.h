@@ -12,7 +12,7 @@
 #define LOVE_MODULE_SDLSYSTEM_H
 
 // LOVE
-#include <love/luax.h>
+#include "../liblove/luax.h"
 
 namespace love
 {

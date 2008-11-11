@@ -18,7 +18,7 @@
 
 // Include the wrapper code.
 #define LOVE_WRAP_NAMESPACE sdljoystick
-#include <love/wjoystick.h>
+#include "../liblove/wjoystick.h"
 
 namespace love
 {

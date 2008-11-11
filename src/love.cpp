@@ -16,9 +16,9 @@
 #include <SDL.h>
 
 // LOVE
-#include <love/config.h>
-#include <love/luax.h>
-#include <love/constants.h>
+#include "liblove/config.h"
+#include "liblove/luax.h"
+#include "liblove/constants.h"
 
 // Modules
 #include "love_sdltimer/love_sdltimer.h"

@@ -1,5 +1,5 @@
 /**
-* LOVE: Totally Awesome 2D Gaming.
+* LOVE: Free 2D Game Engine.
 * Website: http://love2d.org
 * Licence: ZLIB/libpng
 * Copyright (c) 2006-2008 LOVE Development Team

@@ -12,8 +12,8 @@
 #define LOVE_OPENGL_IMAGE_H
 
 // LOVE
-#include <love/config.h>
-#include <love/Drawable.h>
+#include "../liblove/config.h"
+#include "../liblove/Drawable.h"
 
 // Module
 #include "Texture.h"

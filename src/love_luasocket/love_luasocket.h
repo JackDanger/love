@@ -19,7 +19,7 @@
 #define LOVE_MODULE_LUASOCKET_H
 
 // LOVE
-#include <love/luax.h>
+#include "../liblove/luax.h"
 
 namespace love
 {
