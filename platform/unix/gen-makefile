@@ -3,7 +3,7 @@ echo Generating src/Makefile.am ...
 cd src
 echo 'SUBDIRS =
 AUTOMAKE_OPTIONS = subdir-objects
-AM_CPPFLAGS = -I/usr/include/freetype2  $(INCLUDE_LUA) -I/usr/include/SDL -Ilove/include -Ilove_box2d/Include
+AM_CPPFLAGS = -I/usr/include/freetype2  $(INCLUDE_LUA) -I/usr/include/SDL
 
 # LÖVE executable
 bin_PROGRAMS = love

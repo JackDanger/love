@@ -16,6 +16,7 @@
 #include <SDL.h>
 
 // LOVE
+#include "liblove/version.h"
 #include "liblove/config.h"
 #include "liblove/luax.h"
 #include "liblove/constants.h"
@@ -122,8 +123,9 @@ int main(int argc, char ** argv)
 	// TODO: This is obviously test code.
 	luaL_dofile(L, "test.lua");
 	lua_close(L);
-
+	printf("(press key)\n");
 	getchar();
+	printf("Done. This was: %s (%s)\n", LOVE_VERSION_STR, LOVE_VERSION_CODENAME);
 	return 0;
 }
 

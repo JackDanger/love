@@ -1,7 +1,6 @@
 SUBDIRS =
 AUTOMAKE_OPTIONS = subdir-objects
-AM_CPPFLAGS = -I/usr/include/freetype2  $(INCLUDE_LUA) -I/usr/include/SDL
-#-Ilove/include -Ilove_box2d/Include
+AM_CPPFLAGS = -I/usr/include/freetype2  $(INCLUDE_LUA) -I/usr/include/SDL -Ilove/include -Ilove_box2d/Include
 
 # LÖVE executable
 bin_PROGRAMS = love
@@ -9,6 +8,54 @@ love_LDFLAGS = -lfreetype -lGL -lGLU -lIL -lphysfs -lSDL
 love_LDADD =
 
 love_SOURCES = \
+./liblove/wJoint.h \
+./liblove/wDistanceJoint.h \
+./liblove/Volatile.h \
+./liblove/version.h \
+./liblove/wShape.h \
+./liblove/wDrawable.h \
+./liblove/wphysics.h \
+./liblove/File.cpp \
+./liblove/version.cpp \
+./liblove/wtimer.h \
+./liblove/Volatile.cpp \
+./liblove/wPrismaticJoint.h \
+./liblove/Drawable.h \
+./liblove/Vector.cpp \
+./liblove/wParticleSystem.h \
+./liblove/luax.cpp \
+./liblove/wPolygonShape.h \
+./liblove/Drawable.cpp \
+./liblove/File.h \
+./liblove/wgraphics.h \
+./liblove/wImage.h \
+./liblove/wwrap.h \
+./liblove/config.h \
+./liblove/wmouse.h \
+./liblove/wAnimation.h \
+./liblove/wFont.h \
+./liblove/wFile.h \
+./liblove/constants.h \
+./liblove/wRevoluteJoint.h \
+./liblove/luax.h \
+./liblove/wjoystick.h \
+./liblove/wContact.h \
+./liblove/platform.h \
+./liblove/wColor.h \
+./liblove/Object.h \
+./liblove/Object.cpp \
+./liblove/wCircleShape.h \
+./liblove/types.h \
+./liblove/Reference.cpp \
+./liblove/wWorld.h \
+./liblove/wsystem.h \
+./liblove/wfilesystem.h \
+./liblove/Reference.h \
+./liblove/wBody.h \
+./liblove/wkeyboard.h \
+./liblove/math.h \
+./liblove/Vector.h \
+./liblove/wMouseJoint.h \
 ./love_physfs/File.cpp \
 ./love_physfs/love_physfs.h \
 ./love_physfs/File.h \
@@ -81,54 +128,6 @@ love_SOURCES = \
 ./love_luasocket/luasocket/tcp.c \
 ./love_luasocket/love_luasocket.h \
 ./love_luasocket/love_luasocket.cpp \
-./love/wJoint.h \
-./love/wDistanceJoint.h \
-./love/Volatile.h \
-./love/version.h \
-./love/wShape.h \
-./love/wDrawable.h \
-./love/wphysics.h \
-./love/File.cpp \
-./love/version.cpp \
-./love/wtimer.h \
-./love/Volatile.cpp \
-./love/wPrismaticJoint.h \
-./love/Drawable.h \
-./love/Vector.cpp \
-./love/wParticleSystem.h \
-./love/luax.cpp \
-./love/wPolygonShape.h \
-./love/Drawable.cpp \
-./love/File.h \
-./love/wgraphics.h \
-./love/wImage.h \
-./love/wwrap.h \
-./love/config.h \
-./love/wmouse.h \
-./love/wAnimation.h \
-./love/wFont.h \
-./love/wFile.h \
-./love/constants.h \
-./love/wRevoluteJoint.h \
-./love/luax.h \
-./love/wjoystick.h \
-./love/wContact.h \
-./love/platform.h \
-./love/wColor.h \
-./love/Object.h \
-./love/Object.cpp \
-./love/wCircleShape.h \
-./love/types.h \
-./love/Reference.cpp \
-./love/wWorld.h \
-./love/wsystem.h \
-./love/wfilesystem.h \
-./love/Reference.h \
-./love/wBody.h \
-./love/wkeyboard.h \
-./love/math.h \
-./love/Vector.h \
-./love/wMouseJoint.h \
 ./love_box2d/PrismaticJoint.cpp \
 ./love_box2d/PrismaticJoint.h \
 ./love_box2d/CircleShape.cpp \
@@ -218,5 +217,4 @@ love_SOURCES = \
 ./love_box2d/Shape.h \
 ./love_box2d/PolygonShape.h \
 ./love_sdlmouse/love_sdlmouse.h \
-./love_sdlmouse/love_sdlmouse.cpp
-
+./love_sdlmouse/love_sdlmouse.cpp \
