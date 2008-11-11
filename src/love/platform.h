@@ -28,9 +28,13 @@
 
 // For correct linkage across compilers.
 #ifdef LOVE_WINDOWS
-#	define DECLSPEC __declspec(dllexport)
+#	ifndef DECLSPEC
+#		define DECLSPEC __declspec(dllexport)
+#	endif
 #else
-#	define DECLSPEC
+#	ifndef DECLSPEC
+#		define DECLSPEC
+#	endif
 #endif
 
 #endif //LOVE_PLATFORM_H

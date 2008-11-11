@@ -2,6 +2,7 @@
 
 #include <SDL_opengl.h>
 #include <cmath>
+#include <cstdlib>
 
 namespace love
 {

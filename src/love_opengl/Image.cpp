@@ -10,6 +10,9 @@
 
 #include "Image.h"
 
+// STD
+#include <cstring> // For memcpy
+
 // Module
 #include "Texture.h"
 

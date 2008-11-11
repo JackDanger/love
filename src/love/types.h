@@ -16,7 +16,7 @@
 
 namespace love
 {
-	static const enum
+	enum
 	{
 		// Cross-module types.
 		LOVE_OBJECT_ID = 0,

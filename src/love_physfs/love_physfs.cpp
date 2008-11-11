@@ -198,7 +198,9 @@ namespace physfs
 		#ifdef LOVE_WINDOWS
 				_getcwd(cwdbuffer, _MAX_PATH);
 		#else
-				getcwd(cwdbuffer, MAXPATHLEN);
+				char * temp = getcwd(cwdbuffer, MAXPATHLEN);
+				if(temp == 0)
+					return 0;
 		#endif
 				return cwdbuffer;
 	}

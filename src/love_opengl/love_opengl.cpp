@@ -708,7 +708,7 @@ namespace opengl
 				int lines = 0;
 				text = "";
 				
-				for(unsigned int i = 0; i < std::strlen(str); i++)
+				for(unsigned int i = 0; i < strlen(str); i++)
 				{
 					if(str[i] == '\n')
 					{
@@ -762,7 +762,7 @@ namespace opengl
 			float width = 0;
 			float lines = 0;
 			
-			for(unsigned int i = 0; i < std::strlen(str); i++)
+			for(unsigned int i = 0; i < strlen(str); i++)
 			{
 				if(str[i] == '\n')
 				{
