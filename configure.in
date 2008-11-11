@@ -8,12 +8,13 @@ AC_PROG_LIBTOOL
 AC_PROG_CC
 AC_PROG_CXX
 AC_SEARCH_LIBS([sqrt], [m], [], AC_MSG_ERROR([Lua needs C math library]))
-AC_SEARCH_LIBS([FT_Load_Glyph], [freetype], [], AC_MSG_ERROR([Can't LÖVE without FreeType]))
+AC_SEARCH_LIBS([SDL_Init], [SDL], [], AC_MSG_ERROR([Can't LÖVE without SDL]))
+AC_SEARCH_LIBS([Sound_Init], [SDL_sound], [], AC_MSG_ERROR([Can't LÖVE without SDL Sound]))
 AC_SEARCH_LIBS([glLoadIdentity], [GL], [], AC_MSG_ERROR([Can't LÖVE without OpenGL]))
 AC_SEARCH_LIBS([gluOrtho2D], [GLU], [], AC_MSG_ERROR([Can't LÖVE without OpenGL Utility Library]))
-AC_SEARCH_LIBS([ilInit], [IL], [], AC_MSG_ERROR([Can't LÖVE without DevIL]))
-# 0.6.0 Also removes this dependency.
-# AC_SEARCH_LIBS([iluErrorString], [ILU], [], AC_MSG_ERROR([Can't LÖVE without DevIL Utility]))
+AC_SEARCH_LIBS([alSourcePlay], [openal], [], AC_MSG_ERROR([Can't LÖVE without OpenAL]))
+#AC_SEARCH_LIBS([alcOpenDevice], [ALC], [], AC_MSG_ERROR([Can't LÖVE without OpenAL Context]))
+#AC_SEARCH_LIBS([alutInit], [ALUT], [], AC_MSG_ERROR([Can't LÖVE without OpenAL Utility Library]))
 AC_SEARCH_LIBS(
 	[lua_pcall],
 	[lua lua5.1],
@@ -22,10 +23,11 @@ AC_SEARCH_LIBS(
 	fi,
 	AC_MSG_ERROR([Can't LÖVE without Lua])
 )
+AC_SEARCH_LIBS([mng_initialize], [mng], [], AC_MSG_ERROR([DevIL needs MNG]))
+AC_SEARCH_LIBS([TIFFOpen], [tiff], [], AC_MSG_ERROR([DevIL needs TIFF]))
+AC_SEARCH_LIBS([ilInit], [IL], [], AC_MSG_ERROR([Can't LÖVE without DevIL]))
+AC_SEARCH_LIBS([FT_Load_Glyph], [freetype], [], AC_MSG_ERROR([Can't LÖVE without FreeType]))
 AC_SEARCH_LIBS([PHYSFS_init], [physfs], [], AC_MSG_ERROR([Can't LÖVE without PhysicsFS]))
-AC_SEARCH_LIBS([SDL_Init], [SDL], [], AC_MSG_ERROR([Can't LÖVE without SDL]))
-# 0.6.0 Does not need SDL_mixer. It will need OpenAL and SDL_sound (later), though.
-# AC_SEARCH_LIBS([Mix_OpenAudio], [SDL_mixer], [], AC_MSG_ERROR([Can't LÖVE without SDL_mixer]))
 AC_PREFIX_DEFAULT([/usr])
 bindir='${prefix}/bin'
 libdir='${prefix}/lib/love'

@@ -7,10 +7,10 @@ AM_CPPFLAGS = -I/usr/include/freetype2  $(INCLUDE_LUA) -I/usr/include/SDL
 
 # LÖVE executable
 bin_PROGRAMS = love
-love_LDFLAGS = -lfreetype -lGL -lGLU -lIL -lphysfs -lSDL
-love_LDADD =
+#love_LDFLAGS =
+#love_LDADD =
 
 love_SOURCES = \' > Makefile.am
 find . \( \( -iname "*.c" -o -iname "*.cpp" -o -iname "*.h" \) -a ! -iname "wsocket.*" \) -exec echo '{}' \\ \; >> Makefile.am
 cd ..
-echo src/Makefile.am is updated! Please remove the trailing backslash before compiling. ^.^
+echo src/Makefile.am is updated! Please remove the trailing backslash before compiling. \^.^
