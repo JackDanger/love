@@ -245,6 +245,49 @@
     </section>
   </page>
 
+  <page name="Game Distribution">
+    <section name="Introduction">
+      Many people are (understandably) concerned about what end-users need to do in order
+      to run a LOVE-game. If users recieve a .love-file alone, they will naturally need
+      LOVE installed (or at least unzipped) in order to run it. But, as of LOVE 0.5.0, you can
+      merge the .love file with the love exeutable.
+      [br /][br /]
+      In general, it's recommended to offer a .love for download, and optionally "merged" versions for the
+      platforms where this makes things simpler.
+      [br /][br /]
+      Two things should be noted:
+      [ol]
+      [li]The end result will not be a single executable, you must also include some DDLs in your zip-file.[/li]
+      [li]The resulting executable from the merge will still be readable by archiving software, such as WinZip.[/li]
+      [/ol]
+    </section>
+    <section name="Windows">
+      Here's how to do it on Windows. In a console, type this:
+      [code]
+      copy /b love.exe+game.love game.exe
+      [/code]
+      Then, all you have to do is zip game.exe and required DLLs, and distribute them. Yes; this does mean that the game will have a
+      private copy of LOVE, but there's nothing wrong with that. It also means that you will have to create one package for
+      each platform you would like to support, or simply offer the .love alone for the other platforms.
+    </section>
+    <section name="Linux">
+      On Linux, it's similar:
+      [code]
+      cat love game.love > game
+      [/code]
+      Then, you'll have to make a package for various packaging systems with dependencies
+      as the love package. Were you to make a .deb package this way, for instance, the user would
+      not have to install the love package separately.
+      [br /][br /]
+      Eventually, we will provide scripts which does this automatically for various
+      package systems. You'll have to figure it out yourself until then.
+    </section>
+    <section name="Mac OS X">
+      We do not have any Macs, so we can't provide binaries for this plaform yet. Why is this section even here?
+      Just to remind everyone that we do intend to support Mac OS X in future.
+    </section>
+  </page>
+  
   <module name="love.graphics">
     The graphics module is responsible for things like window management, Images, Animations,
     Fonts, and more.

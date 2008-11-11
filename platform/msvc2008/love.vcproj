@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="include;..\..\src\liblove\include;include\SDL;..\..\src\box2d\Include"
+				AdditionalIncludeDirectories="include;..\..\src;include\SDL"
 				PreprocessorDefinitions="_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -114,7 +114,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="include;..\..\src\liblove\include;include\SDL;..\..\src\box2d\Include"
+				AdditionalIncludeDirectories="include;..\..\src;include\SDL"
 				PreprocessorDefinitions="_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
@@ -132,7 +132,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="liblove.lib lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib"
+				AdditionalDependencies="liblove.lib lua.lib SDLmain-d.lib SDL-d.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib"
 				AdditionalLibraryDirectories="lib;Release"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -167,739 +167,685 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Source Files"
-			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			Name="sdltimer"
 			>
 			<File
-				RelativePath="..\..\src\love.cpp"
+				RelativePath="..\..\src\love_sdltimer\love_sdltimer.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(SafeParentName)\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\love_sdltimer\love_sdltimer.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="opengl"
+			>
+			<File
+				RelativePath="..\..\src\love_opengl\Animation.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\Animation.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\Color.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(SafeParentName)\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\Color.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\Font.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(SafeParentName)\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\Font.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\GLee.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\Image.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(SafeParentName)\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\Image.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\ImageFont.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\ImageFont.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\love_opengl.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(SafeParentName)\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\love_opengl.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\ParticleSystem.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\ParticleSystem.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\Texture.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(SafeParentName)\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\Texture.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\TrueTypeFont.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(SafeParentName)\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\TrueTypeFont.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="physfs"
+			>
+			<File
+				RelativePath="..\..\src\love_physfs\File.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(SafeParentName)\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\love_physfs\File.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_physfs\love_physfs.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(SafeParentName)\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\love_physfs\love_physfs.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="sdlsystem"
+			>
+			<File
+				RelativePath="..\..\src\love_sdlsystem\love_sdlsystem.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(SafeParentName)\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\love_sdlsystem\love_sdlsystem.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="box2d"
+			>
+			<File
+				RelativePath="..\..\src\love_box2d\Body.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\Body.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\CircleShape.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\CircleShape.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\Contact.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\Contact.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\DistanceJoint.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\DistanceJoint.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\Joint.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\Joint.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\love_box2d.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\love_box2d.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\MouseJoint.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\MouseJoint.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\PolygonShape.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\PolygonShape.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\PrismaticJoint.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\PrismaticJoint.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\RevoluteJoint.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\RevoluteJoint.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\Shape.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\Shape.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\World.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_box2d\World.h"
 				>
 			</File>
 			<Filter
-				Name="sdlsystem"
-				>
-				<File
-					RelativePath="..\..\src\sdlsystem\love_sdlsystem.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdlsystem\mod_sdlsystem.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdlsystem\mod_sdlsystem.i"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="opengl"
-				>
-				<File
-					RelativePath="..\..\src\opengl\Animation.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\opengl\Color.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\opengl\Font.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\opengl\GLee.c"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\opengl\Image.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\opengl\ImageFont.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\opengl\love_opengl.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\opengl\mod_opengl.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\opengl\ParticleSystem.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\opengl\PointParticleSystem.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\opengl\resources.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\opengl\Sprite.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\opengl\TrueTypeFont.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\opengl\Volatile.cpp"
-					>
-				</File>
-				<Filter
-					Name="swig"
-					>
-					<File
-						RelativePath="..\..\src\opengl\Animation.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\opengl\Color.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\opengl\Font.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\opengl\Image.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\opengl\mod_opengl.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\opengl\ParticleSystem.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\opengl\Sprite.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\opengl\TrueTypeFont.i"
-						>
-					</File>
-				</Filter>
-			</Filter>
-			<Filter
-				Name="physfs"
-				>
-				<File
-					RelativePath="..\..\src\physfs\File.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physfs\File.i"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physfs\love_physfs.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physfs\mod_physfs.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physfs\mod_physfs.i"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="sdlkeyboard"
-				>
-				<File
-					RelativePath="..\..\src\sdlkeyboard\love_sdlkeyboard.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdlkeyboard\mod_sdlkeyboard.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdlkeyboard\mod_sdlkeyboard.i"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="sdlmouse"
-				>
-				<File
-					RelativePath="..\..\src\sdlmouse\love_sdlmouse.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdlmouse\mod_sdlmouse.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdlmouse\mod_sdlmouse.i"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="sdltimer"
-				>
-				<File
-					RelativePath="..\..\src\sdltimer\love_sdltimer.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdltimer\mod_sdltimer.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdltimer\mod_sdltimer.i"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="luasocket"
-				>
-				<File
-					RelativePath="..\..\src\luasocket\love_luasocket.cpp"
-					>
-				</File>
-				<Filter
-					Name="luasocket"
-					>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\auxiliar.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\buffer.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\except.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\inet.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\io.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\luasocket.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\mime.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\options.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\select.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\tcp.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\timeout.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\udp.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\luasocket\luasocket\wsocket.c"
-						>
-					</File>
-				</Filter>
-			</Filter>
-			<Filter
-				Name="sdljoystick"
-				>
-				<File
-					RelativePath="..\..\src\sdljoystick\love_sdljoystick.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdljoystick\mod_sdljoystick.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdljoystick\mod_sdljoystick.i"
-					>
-				</File>
-			</Filter>
-			<Filter
 				Name="box2d"
 				>
 				<File
-					RelativePath="..\..\src\box2d\Body.cpp"
+					RelativePath="..\..\src\love_box2d\Source\Common\b2BlockAllocator.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\box2d\CircleShape.cpp"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\b2Body.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\box2d\Contact.cpp"
+					RelativePath="..\..\src\love_box2d\Source\Collision\b2BroadPhase.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\box2d\DistanceJoint.cpp"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\Contacts\b2CircleContact.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\box2d\Joint.cpp"
+					RelativePath="..\..\src\love_box2d\Source\Collision\Shapes\b2CircleShape.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\box2d\love_box2d.cpp"
+					RelativePath="..\..\src\love_box2d\Source\Collision\b2CollideCircle.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\box2d\mod_box2d.cpp"
+					RelativePath="..\..\src\love_box2d\Source\Collision\b2CollidePoly.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\box2d\MouseJoint.cpp"
+					RelativePath="..\..\src\love_box2d\Source\Collision\b2Collision.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\box2d\PolygonShape.cpp"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\Contacts\b2Contact.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\box2d\PrismaticJoint.cpp"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\b2ContactManager.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\box2d\RevoluteJoint.cpp"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\Contacts\b2ContactSolver.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\box2d\Shape.cpp"
+					RelativePath="..\..\src\love_box2d\Source\Collision\b2Distance.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\box2d\World.cpp"
-					>
-				</File>
-				<Filter
-					Name="swig"
-					>
-					<File
-						RelativePath="..\..\src\box2d\Body.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\CircleShape.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Contact.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\DistanceJoint.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\fusion.lua"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Joint.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\mod_box2d.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\MouseJoint.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\PolygonShape.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\PrismaticJoint.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\RevoluteJoint.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Shape.i"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\World.i"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="box2d"
-					>
-					<File
-						RelativePath="..\..\src\box2d\Source\Common\b2BlockAllocator.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\b2Body.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Collision\b2BroadPhase.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\Contacts\b2CircleContact.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Collision\Shapes\b2CircleShape.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Collision\b2CollideCircle.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Collision\b2CollidePoly.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Collision\b2Collision.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\Contacts\b2Contact.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\b2ContactManager.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\Contacts\b2ContactSolver.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Collision\b2Distance.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\Joints\b2DistanceJoint.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\Joints\b2GearJoint.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\b2Island.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\Joints\b2Joint.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Common\b2Math.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\Joints\b2MouseJoint.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Collision\b2PairManager.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\Contacts\b2PolyAndCircleContact.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\Contacts\b2PolyContact.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Collision\Shapes\b2PolygonShape.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\Joints\b2PrismaticJoint.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\Joints\b2PulleyJoint.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\Joints\b2RevoluteJoint.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Common\b2Settings.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Collision\Shapes\b2Shape.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Common\b2StackAllocator.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Collision\b2TimeOfImpact.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\b2World.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\box2d\Source\Dynamics\b2WorldCallbacks.cpp"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="graham"
-					>
-					<File
-						RelativePath="..\..\src\box2d\graham\GrahamScanConvexHull.cpp"
-						>
-					</File>
-				</Filter>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
-			>
-			<Filter
-				Name="sdlsystem"
-				>
-				<File
-					RelativePath="..\..\src\sdlsystem\love_sdlsystem.h"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\Joints\b2DistanceJoint.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\sdlsystem\mod_sdlsystem.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="opengl"
-				>
-				<File
-					RelativePath="..\..\src\opengl\Animation.h"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\Joints\b2GearJoint.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\opengl\Color.h"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\b2Island.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\opengl\Font.h"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\Joints\b2Joint.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\opengl\GLee.h"
+					RelativePath="..\..\src\love_box2d\Source\Common\b2Math.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\opengl\Image.h"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\Joints\b2MouseJoint.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\opengl\ImageFont.h"
+					RelativePath="..\..\src\love_box2d\Source\Collision\b2PairManager.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\opengl\love_opengl.h"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\Contacts\b2PolyAndCircleContact.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\opengl\mod_opengl.h"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\Contacts\b2PolyContact.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\opengl\ParticleSystem.h"
+					RelativePath="..\..\src\love_box2d\Source\Collision\Shapes\b2PolygonShape.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\opengl\PointParticleSystem.h"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\Joints\b2PrismaticJoint.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\opengl\resources.h"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\Joints\b2PulleyJoint.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\opengl\Sprite.h"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\Joints\b2RevoluteJoint.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\opengl\TrueTypeFont.h"
+					RelativePath="..\..\src\love_box2d\Source\Common\b2Settings.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\opengl\Volatile.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="physfs"
-				>
-				<File
-					RelativePath="..\..\src\physfs\File.h"
+					RelativePath="..\..\src\love_box2d\Source\Collision\Shapes\b2Shape.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\physfs\love_physfs.h"
+					RelativePath="..\..\src\love_box2d\Source\Common\b2StackAllocator.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\physfs\mod_physfs.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="sdlkeyboard"
-				>
-				<File
-					RelativePath="..\..\src\sdlkeyboard\love_sdlkeyboard.h"
+					RelativePath="..\..\src\love_box2d\Source\Collision\b2TimeOfImpact.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\sdlkeyboard\mod_sdlkeyboard.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="sdlmouse"
-				>
-				<File
-					RelativePath="..\..\src\sdlmouse\love_sdlmouse.h"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\b2World.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\sdlmouse\mod_sdlmouse.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="sdltimer"
-				>
-				<File
-					RelativePath="..\..\src\sdltimer\love_sdltimer.h"
+					RelativePath="..\..\src\love_box2d\Source\Dynamics\b2WorldCallbacks.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\sdltimer\mod_sdltimer.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="luasocket"
-				>
-				<File
-					RelativePath="..\..\src\luasocket\love_luasocket.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="sdljoystick"
-				>
-				<File
-					RelativePath="..\..\src\sdljoystick\love_sdljoystick.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sdljoystick\mod_sdljoystick.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="box2d"
-				>
-				<File
-					RelativePath="..\..\src\box2d\Body.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\CircleShape.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\Contact.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\DistanceJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\Joint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\love_box2d.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\mod_box2d.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\MouseJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\PolygonShape.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\PrismaticJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\RevoluteJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\Shape.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\box2d\World.h"
+					RelativePath="..\..\src\box2d\graham\GrahamScanConvexHull.cpp"
 					>
 				</File>
 			</Filter>
 		</Filter>
 		<Filter
-			Name="Resource Files"
-			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
-			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			Name="sdlkeyboard"
 			>
+			<File
+				RelativePath="..\..\src\love_sdlkeyboard\love_sdlkeyboard.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(SafeParentName)\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\love_sdlkeyboard\love_sdlkeyboard.h"
+				>
+			</File>
 		</Filter>
+		<Filter
+			Name="luasocket"
+			>
+			<File
+				RelativePath="..\..\src\love_luasocket\love_luasocket.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(SafeParentName)\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\love_luasocket\love_luasocket.h"
+				>
+			</File>
+			<Filter
+				Name="luasocket"
+				>
+				<File
+					RelativePath="..\..\src\love_luasocket\luasocket\auxiliar.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\love_luasocket\luasocket\buffer.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\love_luasocket\luasocket\except.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\love_luasocket\luasocket\inet.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\love_luasocket\luasocket\io.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\love_luasocket\luasocket\luasocket.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\love_luasocket\luasocket\mime.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\love_luasocket\luasocket\options.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\love_luasocket\luasocket\select.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\love_luasocket\luasocket\tcp.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\love_luasocket\luasocket\timeout.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\love_luasocket\luasocket\udp.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\love_luasocket\luasocket\wsocket.c"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="sdljoystick"
+			>
+			<File
+				RelativePath="..\..\src\love_sdljoystick\love_sdljoystick.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(SafeParentName)\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\love_sdljoystick\love_sdljoystick.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="sdlmouse"
+			>
+			<File
+				RelativePath="..\..\src\love_sdlmouse\love_sdlmouse.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(SafeParentName)\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\love_sdlmouse\love_sdlmouse.h"
+				>
+			</File>
+		</Filter>
+		<File
+			RelativePath="..\..\src\love.cpp"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

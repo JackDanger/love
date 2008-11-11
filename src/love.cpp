@@ -1,12 +1,14 @@
-/*
-* LOVE: Totally Awesome 2D Gaming.
+/**
+* LOVE: Free 2D Game Engine
 * Website: http://love2d.org
 * Licence: ZLIB/libpng
 * Copyright (c) 2006-2008 LOVE Development Team
 * 
 * @author Anders Ruud
-* @date 2008-03-15
-*/
+* @date 2008-10-28
+**/
+
+// Test change.
 
 // STD
 
@@ -14,91 +16,115 @@
 #include <SDL.h>
 
 // LOVE
-#include <love/Core.h>
+#include <love/config.h>
+#include <love/luax.h>
+#include <love/constants.h>
 
-// This neat macro makes static module 
-// configuration prettier.
-#define STATIC_MOD_EXTERN(ns) \
-	namespace ns { \
-		extern bool module_init(love::Core * core); \
-		extern bool module_quit(love::Core * core); \
-		extern bool module_open(love::Core * core); \
-	} \
+// Modules
+#include "love_sdltimer/love_sdltimer.h"
+#include "love_opengl/love_opengl.h"
+#include "love_physfs/love_physfs.h"
+#include "love_sdlsystem/love_sdlsystem.h"
+#include "love_sdlmouse/love_sdlmouse.h"
+#include "love_sdlkeyboard/love_sdlkeyboard.h"
+#include "love_box2d/love_box2d.h"
 
-#define LOVE_MOD(ns) \
-	love::Module(ns::module_init, ns::module_quit, ns::module_open) \
-
-// Static module conf.
-STATIC_MOD_EXTERN(love_sdlsystem);
-STATIC_MOD_EXTERN(love_sdlkeyboard);
-STATIC_MOD_EXTERN(love_sdlmouse);
-STATIC_MOD_EXTERN(love_sdljoystick);
-STATIC_MOD_EXTERN(love_sdltimer);
-STATIC_MOD_EXTERN(love_physfs);
-STATIC_MOD_EXTERN(love_opengl);
-STATIC_MOD_EXTERN(love_box2d);
-STATIC_MOD_EXTERN(love_luasocket);
-
-typedef struct
+int luaopen_love(lua_State * L)
 {
-	const char * name;
-	const char * provides;
-	love::Module module;
-} modentry;
+	// Create the love table.
+	lua_newtable(L);
 
-// Module list.
-const static modentry love_libs[] = 
-{
-	{ "love_sdlsystem",		"love.system",		LOVE_MOD(love_sdlsystem) },
-	{ "love_sdlkeyboard",	"love.keyboard",	LOVE_MOD(love_sdlkeyboard) },
-	{ "love_sdlmouse",		"love.mouse",		LOVE_MOD(love_sdlmouse) },
-	{ "love_sdljoystick",	"love.joystick",	LOVE_MOD(love_sdljoystick) },
-	{ "love_sdltimer",		"love.timer",		LOVE_MOD(love_sdltimer) },
-	{ "love_physfs",		"love.filesystem",	LOVE_MOD(love_physfs) },
-	{ "love_opengl",		"love.graphics",	LOVE_MOD(love_opengl) },
-	{ "love_box2d",			"love.physics",		LOVE_MOD(love_box2d) },
-	{ "love_luasocket",		"love.luasocket",	LOVE_MOD(love_luasocket) },
-	{ 0, 0, love::Module(0,0,0) }, // End
-};
+	// TODO:
+	// Install constants.
+	for(int i = 0; love::lua_constants[i].name != 0; i++)
+	{
+		lua_pushinteger(L, love::lua_constants[i].value);
+		lua_setfield(L, -2, love::lua_constants[i].name);
+	}
 
-int modloader(lua_State * L)
-{
-	int i = (int)lua_tointeger(L, lua_upvalueindex(1));
-	love::core->insert(love_libs[i].module);
+	// __mod table.
+	lua_newtable(L);
+	lua_setfield(L, -2, "__mod");
+
+	// __fin table.
+	lua_newtable(L);
+	lua_setfield(L, -2, "__fin");
+
+	// Set the love table.
+	lua_setglobal(L, "love");
+
+	//
+	// This will create a table roughly
+	// equal to this: 
+	// 
+	// love.__mod = {
+	//   graphics = {
+	//      opengl = { ... },
+	//      directx = { ... }
+	//   },
+	//   timer = {
+	//      sdltimer = { ... },
+	//      wintimer = { ... },
+	//   },
+	//   -- etc
+	//  
+
+	// Advertise here.
+
+	love::sdlsystem::luainfo(L);
+	love::opengl::luainfo(L);
+	love::sdltimer::luainfo(L);
+	love::physfs::luainfo(L);
+	love::sdlmouse::luainfo(L);
+	love::sdlkeyboard::luainfo(L);
+	love::box2d::luainfo(L);
+
 	return 0;
 }
 
-int modseacher(lua_State * L)
-{
-	// Get the module name.
-	const char * name = lua_tostring(L, -1);
-
-	// Find the module.
-	for(int i = 0; love_libs[i].name != 0; i++)
-	{
-		if(strcmp(name, love_libs[i].name) == 0)
-		{
-			lua_pushinteger(L, i);
-			lua_pushcclosure(L, modloader, 1);
-			return 1;
-		}
-	}
-	lua_pushstring(L, "No such module.");
-	return 1;
-}
+#if LOVE_BUILD_EXE
 
 int main(int argc, char ** argv)
 {
-	love::Core core;
-	core.setArg(argc, argv);
-	core.addSearcher(modseacher);
-	int status = core.init();
+	// Create the virtual machine.
+	lua_State * L = lua_open();
+	luaL_openlibs(L);
 
-	if(status!=0)
+	luaopen_love(L);
+
+	// Add command line arguments to love.__args
 	{
-		printf("Error: %i\n", status);
-		getchar();
+		lua_getglobal(L, "love");
+		lua_newtable(L);
+		for(int i = 0;i<argc;i++)
+		{
+			lua_pushstring(L, argv[i]);
+			lua_rawseti(L, -2, i);
+		}
+		lua_setfield(L, -2, "__args");
+		lua_pop(L, 1);
 	}
 
-	return status;
+	// Add love.__exe = true.
+	// This indicates that we're running the 
+	// standalone version of love, and not the
+	// DLL version.
+	{
+		lua_getglobal(L, "love");
+		lua_pushboolean(L, 1);
+		lua_setfield(L, -2, "__exe");
+		lua_pop(L, 1);
+	}
+
+	// This is where we should run the built-in Lua code
+	// which gets everything started.
+
+	// TODO: This is obviously test code.
+	luaL_dofile(L, "test.lua");
+	lua_close(L);
+
+	getchar();
+	return 0;
 }
+
+#endif

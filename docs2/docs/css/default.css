@@ -1,9 +1,11 @@
 
 body
 {
-	background: url(../gfx/bar-bg.png) repeat-y;
+	background: url("../gfx/bar-bg.png") repeat-y;
+	background-color: white;
 	margin: 0px;
 	padding: 0px;
+	color: #555;
 }
 
 div
