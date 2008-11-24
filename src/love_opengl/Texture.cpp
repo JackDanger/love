@@ -122,7 +122,7 @@ namespace opengl
 		padTwoPower();
 
 		// Pass on to OGL
-		glGenTextures(1,&texture);
+		glGenTextures(1,(GLuint*)&texture);
 		glBindTexture(GL_TEXTURE_2D, texture);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -191,7 +191,7 @@ namespace opengl
 	{
 		// Delete the hardware texture.
 		if(texture != 0)
-			glDeleteTextures(1, &texture);
+			glDeleteTextures(1, (GLuint*)&texture);
 	}
 
 	void Texture::padTwoPower()
