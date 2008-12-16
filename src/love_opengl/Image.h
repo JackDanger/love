@@ -13,7 +13,7 @@
 
 // LOVE
 #include "../liblove/config.h"
-#include "../liblove/Drawable.h"
+#include "../liblove/graphics/Drawable.h"
 
 // Module
 #include "Texture.h"

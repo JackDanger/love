@@ -18,6 +18,6 @@
 
 // Define this to include extra code which
 // ensures LOVE 0.5.0 compatibility.
-#define LOVE_COMPAT_050
+//#define LOVE_COMPAT_050
 
 #endif // LOVE_CONFIG_H

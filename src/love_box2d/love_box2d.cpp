@@ -17,7 +17,7 @@
 // Include the wrapper code.
 #define LOVE_WRAP_NAMESPACE box2d
 #define LOVE_WRAP_BITS LOVE_BOX2D_BITS
-#include "../liblove/wphysics.h"
+#include "../liblove/physics/wphysics.h"
 
 namespace love
 {

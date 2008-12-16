@@ -22,6 +22,7 @@ namespace love
 		LOVE_OBJECT_ID = 0,
 		LOVE_FILE_ID, 
 		LOVE_DRAWABLE_ID,
+		LOVE_DATA_ID,
 
 		// Module specific types.
 
@@ -31,6 +32,9 @@ namespace love
 		LOVE_COLOR_ID,
 		LOVE_FONT_ID,
 		LOVE_PARTICLE_SYSTEM_ID,
+
+		// Image
+		LOVE_IMAGE_DATA_ID,
 
 		// Physics
 		LOVE_WORLD_ID,
@@ -50,6 +54,7 @@ namespace love
 		LOVE_OPENGL_ID, 
 		LOVE_DIRECT3D_ID,
 		LOVE_BOX2D_ID,
+		LOVE_DEVIL_ID,
 
 		// Count the number of bits needed.
 		LOVE_BIT_SIZE
@@ -60,6 +65,7 @@ namespace love
 	static const bits LOVE_OBJECT_BITS = bits(1) << LOVE_OBJECT_ID;
 	static const bits LOVE_FILE_BITS = (bits(1) << LOVE_FILE_ID) | LOVE_OBJECT_BITS;
 	static const bits LOVE_DRAWABLE_BITS = (bits(1) << LOVE_DRAWABLE_ID) | LOVE_OBJECT_BITS;
+	static const bits LOVE_DATA_BITS = (bits(1) << LOVE_DATA_ID) | LOVE_OBJECT_BITS;
 
 	// Graphics.
 	static const bits LOVE_IMAGE_BITS = (bits(1) << LOVE_IMAGE_ID) | LOVE_DRAWABLE_BITS;
@@ -68,6 +74,9 @@ namespace love
 	static const bits LOVE_FONT_BITS = (bits(1) << LOVE_FONT_ID) | LOVE_OBJECT_BITS;
 	static const bits LOVE_PARTICLE_SYSTEM_BITS = (bits(1) << LOVE_PARTICLE_SYSTEM_ID) | LOVE_DRAWABLE_BITS;
 
+	// Image.
+	static const bits LOVE_IMAGE_DATA_BITS = (bits(1) << LOVE_IMAGE_DATA_ID) | LOVE_DATA_BITS;
+	
 	// Physics.
 	static const bits LOVE_WORLD_BITS = (bits(1) << LOVE_WORLD_ID) | LOVE_OBJECT_BITS;
 	static const bits LOVE_CONTACT_BITS = (bits(1) << LOVE_CONTACT_ID) | LOVE_OBJECT_BITS;
@@ -85,6 +94,7 @@ namespace love
 	static const bits LOVE_OPENGL_BITS = bits(1) << LOVE_OPENGL_ID;
 	static const bits LOVE_DIRECT3D_BITS = bits(1) << LOVE_DIRECT3D_ID;
 	static const bits LOVE_BOX2D_BITS = bits(1) << LOVE_BOX2D_ID;
+	static const bits LOVE_DEVIL_BITS = bits(1) << LOVE_DEVIL_ID;
 
 	// Wraps all userdata pointers.
 	struct userdata

@@ -10,6 +10,9 @@
 
 #include "Animation.h"
 
+// LOVE
+#include "../liblove/constants.h"
+
 // STD
 #include <cmath>
 

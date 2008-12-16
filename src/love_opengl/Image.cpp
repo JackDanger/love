@@ -30,7 +30,7 @@ namespace opengl
 	}
 
 	Image::Image(Texture * texture)
-		: x(0), y(0), width(texture->width), height(texture->height)
+		: x(0), y(0), width((float)texture->width), height((float)texture->height)
 	{
 		texture->retain();
 		this->texture = texture;
@@ -46,8 +46,8 @@ namespace opengl
 			w2, -h2
 		};
 
-		float tw = width/texture->textureWidth;
-		float th = height/texture->textureHeight;
+		float tw = width/texture->width;
+		float th = height/texture->height;
 
 		const float temp_texels [] = 
 		{
@@ -78,10 +78,10 @@ namespace opengl
 			w2, -h2
 		};
 
-		float tx = this->x/(texture->textureWidth);
-		float ty = this->y/(texture->textureHeight);
-		float tw = this->width/(texture->textureWidth);
-		float th = this->height/(texture->textureHeight);
+		float tx = this->x/(texture->width);
+		float ty = this->y/(texture->height);
+		float tw = this->width/(texture->width);
+		float th = this->height/(texture->height);
 
 		const float temp_texels [] = 
 		{

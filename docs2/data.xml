@@ -1874,7 +1874,7 @@
           <param name="x" brief="The x-component of the center of mass in local coordinates." />
           <param name="y" brief="The y-component of the center of mass in local coordinates." />
           <param name="m" brief="The mass." />
-          <param name="i" brief="The interia." />
+          <param name="i" brief="The inertia." />
         </overload>
       </func>
 
@@ -2329,7 +2329,7 @@
     <type name="DistanceJoint" brief="Maintains a certain distance between Bodies.">
 
 
-      <!-- JOINT -->
+      <!-- JOINT 
       <func name="getType" brief="Gets an integer representing the type.">
         <overload>
           <ret name="type" type="number" brief="A constant integer." />
@@ -2369,7 +2369,7 @@
           <param name="collide" brief="True for the Bodies to collide, false otherwise." />
         </overload>
       </func>
-      <!-- JOINT END -->
+      JOINT END -->
 
       <func name="getLength" brief="Gets the equilibrium distance between the two Bodies.">
         <overload>
@@ -2422,7 +2422,7 @@
 
     </type>
     <type name="RevoluteJoint" brief="Allow two Bodies to revolve around a shared point.">
-      <!-- JOINT -->
+      <!-- JOINT 
       <func name="getType" brief="Gets an integer representing the type.">
         <overload>
           <ret name="type" type="number" brief="A constant integer." />
@@ -2462,7 +2462,7 @@
           <param name="collide" brief="True for the Bodies to collide, false otherwise." />
         </overload>
       </func>
-      <!-- JOINT END -->
+      JOINT END -->
 
       <func name="getAngle" brief="Get the current joint angle.">
         <overload>
@@ -2579,7 +2579,7 @@
       
     </type>
     <type name="PrismaticJoint" brief="Restricts relative motion between Bodies to one shared axis.">
-      <!-- JOINT -->
+      <!-- JOINT 
       <func name="getType" brief="Gets an integer representing the type.">
         <overload>
           <ret name="type" type="number" brief="A constant integer." />
@@ -2619,7 +2619,7 @@
           <param name="collide" brief="True for the Bodies to collide, false otherwise." />
         </overload>
       </func>
-      <!-- JOINT END -->
+      JOINT END -->
 
 
       <func name="getTranslation" brief="Get the current joint translation.">
@@ -2738,7 +2738,7 @@
     </type>
     <type name="MouseJoint" brief="For controlling objects with the mouse.">
 
-      <!-- JOINT -->
+      <!-- JOINT 
       <func name="getType" brief="Gets an integer representing the type.">
         <overload>
           <ret name="type" type="number" brief="A constant integer." />
@@ -2778,7 +2778,7 @@
           <param name="collide" brief="True for the Bodies to collide, false otherwise." />
         </overload>
       </func>
-      <!-- JOINT END -->
+      JOINT END -->
 
       <func name="getTarget" brief="Gets the target point.">
         <overload>

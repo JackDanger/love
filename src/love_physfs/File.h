@@ -9,7 +9,7 @@
 #define LOVE_PHYSFS_FILE_H
 
 // LOVE
-#include "../liblove/File.h"
+#include "../liblove/filesystem/File.h"
 
 // PhysFS
 #include <physfs.h>

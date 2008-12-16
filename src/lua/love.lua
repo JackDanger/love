@@ -1,192 +1,77 @@
 
+-- Make sure love table exists.
+if not love then love = {} end
 
-love.setup = {}
-
-function love.setup.getSource()
-
-	if not arg[0] then return nil end
-
-	-- Get the working directory.
-	local wd = string.gsub(love.filesystem.getWorkingDirectory(), "\\", "/")
-
-	-- Get the argument.
-	local a = string.gsub(arg[0], "\\", "/")
-
-	local absolute = string.sub(a,1,1) == "/" or string.find(string.sub(a,1,3), "%a:/")
-
-	if absolute then
-		return a
-	else
-		return wd .. "/" .. a
+function love.insmod(name, provides)
+	if love.__mod[provides] and love.__mod[provides][name] then
+		love.__mod[provides][name].open()
+		print("Opened " .. provides .. " module " .. name .. ".")
 	end
-
-end
-
--- Removes trailing and leading whitespace 
--- from a string.
-function love.setup.trim(s)
-  return (s:gsub("^%s*(.-)%s*$", "%1"))
-end
-
-function love.setup.getConf()
-
-	local conf = {
-
-		["width"] = 800, 
-		["height"] = 600,
-		["fullscreen"] = false,
-		["vsync"] = true,
-		["fsaa"] = 0,
-		["display_auto"] = true,
-
-		["title"] = "Untitled Game",
-		["author"] = "Unknown Author",
-
-		["disable_graphics"] = false,
-		["disable_audio"] = false,
-		["disable_physics"] = false,
-		["disable_keyboard"] = false,
-		["disable_mouse"] = false,
-		["disable_timer"] = false,
-		["disable_joystick"] = false,
-		["disable_luasocket"] = false,
-		
-		["love_version"] = "0.6.0",
-	}
-
-	-- Read the file, if any.
-	if love.filesystem.exists("game.conf") then
-		for line in love.filesystem.lines("game.conf") do
-			local u1, u2, key, value = string.find(line, "([%w_ ]+)=(.+)")
-			
-			-- Remove leading/trailing whitespace.
-			key = love.setup.trim(key)
-			value = love.setup.trim(value)
-			
-			-- Overwrite default values in conf table.
-			conf[key] = value
-		end
-	end
-
-	return conf
-end
-
-function love.setup.filesystem()
-
-	local source = love.setup.getSource()
-
-	if source then
-		print("Source is: " .. source)
-		love.filesystem.setSource(source)
-		love.filesystem.setIdentity("test9000")
-	else
-		print("There is no source: load nogame.")
-		return false
-	end
-	return true
 end
 
 function love.init()
 
-	-- These are ALWAYS required.
-	require("love_sdlsystem")
-	require("love_physfs")
-
-	-- Setup the filesystem folders.
-	if not love.setup.filesystem() then
-		return false
+	if love.__args then
+		for i,v in pairs(love.__args) do
+			print(i,v)
+		end
 	end
 	
-	-- Read the config file.
-	local conf = love.setup.getConf()
+	love.insmod("sdltimer", "timer")
+	love.insmod("devil", "image")
+	love.insmod("opengl", "graphics")
+	love.insmod("sdlsystem", "system")
 
-	-- These are all optional.
-	require("love_opengl")
-	require("love_sdlkeyboard")
-	require("love_sdltimer")
-	require("love_sdlmouse")
-	require("love_sdljoystick")
-	require("love_luasocket")
-	require("love_box2d")
-
-	-- Auto-configure display, unless otherwise specified.
-	if conf["display_auto"] then
-		love.graphics.setMode(
-			conf["width"], 
-			conf["height"], 
-			conf["fullscreen"],
-			conf["vsync"],
-			conf["fsaa"])
+	if love.graphics.checkMode(800, 600, false) then
+		print("800x600 is supported")
+		love.graphics.setMode(800, 600, false, false)
 	end
 
-	-- Parse main file, unless a love.main has been preloaded.
-	if not love.main and love.filesystem.exists("main.lua") then
-		love.main = love.filesystem.load("main.lua")
+	formats = love.image.getFormats()
+	print(formats)
+	data = love.image.newImageData(128, 128)
+
+	up = function (x, y, r, g, b, a)
+		local g = (x/128)*255
+		return g, g, g, 255
 	end
-	
-	-- Call love.main.
-	if love.main then
-		love.main()
-	end
 
+	data:mapPixel(up)
 
-	love.setup = nil
-	collectgarbage()
+	image = love.graphics.newImage(data)
 
-	-- Call love.run.
-	local result = xpcall(love.run,
-		function (msg)
-			print(msg, debug.traceback())
-		end)
-
-	return result
+	love.run()
 end
 
 function love.run()
 
-	if load then load() end
-
 	-- Main loop time.
 	while true do
 
-		love.timer.step()
-		if update then update(love.timer.getDelta()) end
+		--love.timer.step()
+		--if update then update(love.timer.getDelta()) end
+
 		love.graphics.clear()
-		if draw then draw() end
+
+		love.graphics.draw(image, 200, 200)
 
 		-- Process events.
 		for e,a,b,c in love.system.events() do
 			if e == love.event_quit then return end
-			love.handlers[e](a,b,c)
+			print(e, a, b, c)
+			--love.handlers[e](a,b,c)
 		end
-		
+
 		love.graphics.present()
 
 	end
 
 end
 
--- Standard callback handlers.
-love.handlers = {
-	[love.event_keypressed] = function (b)
-		if keypressed then keypressed(b) end
-	end,
-	[love.event_keyreleased] = function (b)
-		if keyreleased then keyreleased(b) end
-	end,
-	[love.event_mousepressed] = function (x,y,b)
-		if mousepressed then mousepressed(x,y,b) end
-	end,
-	[love.event_mousereleased] = function (x,y,b)
-		if mousereleased then mousereleased(x,y,b) end
-	end,
-	[love.event_joystickpressed] = function (j,b)
-		if joystickpressed then joystickpressed(j,b) end
-	end,
-	[love.event_joystickreleased] = function (j,b)
-		if joystickreleased then joystickreleased(j,b) end
-	end,
-	[love.event_quit] = function ()
-		return
-	end,
-}
+local result = xpcall(love.init,
+	function (msg)
+		print(msg, debug.traceback())
+	end)
+
+
+print("Done.")

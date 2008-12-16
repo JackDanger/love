@@ -48,6 +48,15 @@ namespace love
 	int luax_getfunction(lua_State * L, const char * mod, const char * fn);
 
 	/**
+	* Converts an object into another object
+	* by the specified function mod.fn. The function must accept
+	* a single file as a parameter, and return one value.
+	* 
+	* Note that the initial object is converted, i.e. replaced.
+	**/
+	int luax_convobj(lua_State * L, int idx, const char * mod, const char * fn);
+
+	/**
 	* Converts a string into a File object. Note that the 
 	* string is replaced by the new File object at the
 	* specified index, and NOT pushed onto the stack.

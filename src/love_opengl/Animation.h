@@ -12,7 +12,7 @@
 #define LOVE_OPENGL_ANIMATION_H
 
 // LOVE
-#include "../liblove/Drawable.h"
+#include "../liblove/graphics/Drawable.h"
 
 // Module.
 #include "Image.h"

@@ -29,6 +29,7 @@
 #include "love_sdlmouse/love_sdlmouse.h"
 #include "love_sdlkeyboard/love_sdlkeyboard.h"
 #include "love_box2d/love_box2d.h"
+#include "love_devil/love_devil.h"
 
 int luaopen_love(lua_State * L)
 {
@@ -79,6 +80,7 @@ int luaopen_love(lua_State * L)
 	love::sdlmouse::luainfo(L);
 	love::sdlkeyboard::luainfo(L);
 	love::box2d::luainfo(L);
+	love::devil::luainfo(L);
 
 	return 0;
 }
@@ -121,7 +123,7 @@ int main(int argc, char ** argv)
 	// which gets everything started.
 
 	// TODO: This is obviously test code.
-	luaL_dofile(L, "test.lua");
+	luaL_dofile(L, "../../src/lua/love.lua");
 	lua_close(L);
 	printf("(press key)\n");
 	getchar();

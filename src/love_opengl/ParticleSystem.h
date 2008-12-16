@@ -12,7 +12,7 @@
 
 #include "../liblove/math.h"
 #include "../liblove/constants.h"
-#include "../liblove/Drawable.h"
+#include "../liblove/graphics/Drawable.h"
 
 // Module
 #include "Color.h"

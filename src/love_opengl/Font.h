@@ -9,8 +9,8 @@
 #define LOVE_OPENGL_FONT_H
 
 // LOVE
-#include "../liblove/File.h"
-#include "../liblove/Volatile.h"
+#include "../liblove/filesystem/File.h"
+#include "../liblove/graphics/Volatile.h"
 
 namespace love
 {

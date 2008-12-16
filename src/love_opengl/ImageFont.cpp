@@ -179,11 +179,11 @@ namespace opengl
 				
 				texture->bind();
 
-				float xTex = x/(float)texture->getTextureWidth();
-				float yTex = y/(float)texture->getTextureHeight();
+				float xTex = x/(float)texture->getWidth();
+				float yTex = y/(float)texture->getHeight();
 
-				float wTex = w/(float)texture->getTextureWidth();
-				float hTex = h/(float)texture->getTextureHeight();
+				float wTex = w/(float)texture->getWidth();
+				float hTex = h/(float)texture->getHeight();
 
 				glBegin(GL_QUADS);
 					glTexCoord2f(xTex,yTex);				glVertex2f(0,0);

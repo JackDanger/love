@@ -28,7 +28,7 @@
 // Include the wrapper code.
 #define LOVE_WRAP_NAMESPACE opengl
 #define LOVE_WRAP_BITS LOVE_OPENGL_BITS
-#include "../liblove/wgraphics.h"
+#include "../liblove/graphics/wgraphics.h"
 
 namespace love
 {
@@ -410,31 +410,13 @@ namespace opengl
 		return 4;
 	}
 
-	Image * newImage(File * file, int mode)
+	Image * newImage(ImageData * data)
 	{
-		Texture * texture = new Texture(file);
+		Texture * texture = new Texture(data);
 
-		// Read the image.
-		if(!texture->read())
-		{	
-			std::cerr << "Could not load image \"" << file->getFilename() << "\".";
-			texture->release();
-			return 0;
-		}
-
-		// Optionally pad.
-		if(mode == IMAGE_PAD || mode == IMAGE_PAD_AND_OPTIMIZE)
-			texture->pad();
-
-		// Optionally optimize.
-		if(mode == IMAGE_OPTIMIZE || mode == IMAGE_PAD_AND_OPTIMIZE)
-			texture->optimize();
-
-		// Lock the image.
-		if(!texture->lock())
+		if(!texture->load())
 		{
-			std::cerr << "Could not lock image \"" << file->getFilename() << "\".";
-			texture->release();
+			delete texture;
 			return 0;
 		}
 

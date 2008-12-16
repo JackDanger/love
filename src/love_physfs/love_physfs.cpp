@@ -19,7 +19,7 @@
 // Include the wrapper code.
 #define LOVE_WRAP_NAMESPACE physfs
 #define LOVE_WRAP_BITS LOVE_PHYSFS_BITS
-#include "../liblove/wfilesystem.h"
+#include "../liblove/filesystem/wfilesystem.h"
 
 // For great CWD. (Current Working Directory)
 // Using this instead of boost::filesystem which totally

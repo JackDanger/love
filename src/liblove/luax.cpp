@@ -160,14 +160,19 @@ namespace love
 		return 0;
 	}
 
-	int luax_strtofile(lua_State * L, int idx)
+	int luax_convobj(lua_State * L, int idx, const char * mod, const char * fn)
 	{
 		// Convert string to a file.
-		luax_getfunction(L, "filesystem", "newFile");
-		lua_pushvalue(L, idx); // The string argument.
+		luax_getfunction(L, mod, fn);
+		lua_pushvalue(L, idx); // The initial argument.
 		lua_call(L, 1, 1); // Call the function, one arg, one return value.
-		lua_replace(L, idx); // Replace the string argument with the File.
+		lua_replace(L, idx); // Replace the initial argument with the new object.
 		return 0;
+	}
+
+	int luax_strtofile(lua_State * L, int idx)
+	{
+		return luax_convobj(L, idx, "filesystem", "newFile");
 	}
 
 } // love

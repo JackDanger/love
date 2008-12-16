@@ -13,7 +13,7 @@
 
 // LOVE
 #include "../liblove/config.h"
-#include "../liblove/File.h"
+#include "../liblove/filesystem/File.h"
 #include "../liblove/luax.h"
 #include "../liblove/types.h"
 
@@ -142,7 +142,8 @@ namespace opengl
 	/**
 	* Creates an Image object with padding and/or optimization.
 	**/
-	Image * newImage(File * file, int mode = IMAGE_NORMAL);
+	Image * newImage(File * file);
+	Image * newImage(ImageData * data);
 	Image * newImage(Image * image, float x, float y, float w, float h);
 
 	/**
