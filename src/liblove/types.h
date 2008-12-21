@@ -36,6 +36,14 @@ namespace love
 		// Image
 		LOVE_IMAGE_DATA_ID,
 
+		// Audio
+		LOVE_AUDIBLE_ID,
+		LOVE_SOUND_ID,
+		LOVE_MUSIC_ID,
+
+		// Sound
+		LOVE_SOUND_DATA_ID,
+
 		// Physics
 		LOVE_WORLD_ID,
 		LOVE_CONTACT_ID,
@@ -55,6 +63,8 @@ namespace love
 		LOVE_DIRECT3D_ID,
 		LOVE_BOX2D_ID,
 		LOVE_DEVIL_ID,
+		LOVE_SDLSOUND_ID,
+		LOVE_OPENAL_ID,
 
 		// Count the number of bits needed.
 		LOVE_BIT_SIZE
@@ -77,6 +87,14 @@ namespace love
 	// Image.
 	static const bits LOVE_IMAGE_DATA_BITS = (bits(1) << LOVE_IMAGE_DATA_ID) | LOVE_DATA_BITS;
 	
+	// Audio.
+	static const bits LOVE_AUDIBLE_BITS = (bits(1) << LOVE_AUDIBLE_ID) | LOVE_OBJECT_BITS;
+	static const bits LOVE_SOUND_BITS = (bits(1) << LOVE_SOUND_ID) | LOVE_AUDIBLE_BITS;
+	static const bits LOVE_MUSIC_BITS = (bits(1) << LOVE_MUSIC_ID) | LOVE_AUDIBLE_BITS;
+
+	// Sound.
+	static const bits LOVE_SOUND_DATA_BITS = (bits(1) << LOVE_SOUND_DATA_ID) | LOVE_DATA_BITS;
+
 	// Physics.
 	static const bits LOVE_WORLD_BITS = (bits(1) << LOVE_WORLD_ID) | LOVE_OBJECT_BITS;
 	static const bits LOVE_CONTACT_BITS = (bits(1) << LOVE_CONTACT_ID) | LOVE_OBJECT_BITS;
@@ -90,11 +108,14 @@ namespace love
 	static const bits LOVE_PRISMATIC_JOINT_BITS = (bits(1) << LOVE_PRISMATIC_JOINT_ID) | LOVE_JOINT_BITS;
 	static const bits LOVE_REVOLUTE_JOINT_BITS = (bits(1) << LOVE_REVOLUTE_JOINT_ID) | LOVE_JOINT_BITS;
 
+	// Modules.
 	static const bits LOVE_PHYSFS_BITS = bits(1) << LOVE_PHYSFS_ID;
 	static const bits LOVE_OPENGL_BITS = bits(1) << LOVE_OPENGL_ID;
 	static const bits LOVE_DIRECT3D_BITS = bits(1) << LOVE_DIRECT3D_ID;
 	static const bits LOVE_BOX2D_BITS = bits(1) << LOVE_BOX2D_ID;
 	static const bits LOVE_DEVIL_BITS = bits(1) << LOVE_DEVIL_ID;
+	static const bits LOVE_SDLSOUND_BITS = bits(1) << LOVE_SDLSOUND_ID;
+	static const bits LOVE_OPENAL_BITS = bits(1) << LOVE_OPENAL_ID;
 
 	// Wraps all userdata pointers.
 	struct userdata

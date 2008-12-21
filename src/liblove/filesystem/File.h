@@ -56,6 +56,11 @@ namespace love
 		* Gets the filename of the file we are loading.
 		**/
 		const std::string & getFilename() const;
+
+		/**
+		* Gets the extention of the file.
+		**/
+		std::string getExtention() const;
 			
 		/**
 		* Gets the current file mode.

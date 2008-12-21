@@ -86,10 +86,10 @@ namespace devil
 		return height;
 	}
 
-	char * ImageData::getData()
+	void * ImageData::getData()
 	{
 		ilBindImage(image);
-		return (char *)ilGetData();
+		return ilGetData();
 	}
 
 	int ImageData::getSize()

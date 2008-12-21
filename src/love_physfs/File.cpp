@@ -23,6 +23,13 @@ namespace physfs
 	{
 		if(!open())
 			return false;
+
+		// If data already present, then delete.
+		if(data != 0)
+		{
+			delete [] data;
+			data = 0;
+		}
 		
 		// Okay, get the filesize and allocate that much memory.
 		int size = (int)PHYSFS_fileLength(file);

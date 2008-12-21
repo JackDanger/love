@@ -20,6 +20,24 @@ namespace love
 		return filename;
 	}
 
+	std::string File::getExtention() const
+	{
+		std::string::size_type idx;
+
+		idx = filename.rfind('.');
+
+		if(idx != std::string::npos)
+		{
+			std::string extension = filename.substr(idx+1);
+			return extension;
+		}
+		else
+		{
+			// Empty.
+			return std::string();
+		}		
+	}
+
 	int File::getMode() const
 	{
 		return mode;

@@ -30,6 +30,8 @@
 #include "love_sdlkeyboard/love_sdlkeyboard.h"
 #include "love_box2d/love_box2d.h"
 #include "love_devil/love_devil.h"
+#include "love_openal/love_openal.h"
+#include "love_sdlsound/love_sdlsound.h"
 
 int luaopen_love(lua_State * L)
 {
@@ -81,6 +83,8 @@ int luaopen_love(lua_State * L)
 	love::sdlkeyboard::luainfo(L);
 	love::box2d::luainfo(L);
 	love::devil::luainfo(L);
+	love::openal::luainfo(L);
+	love::sdlsound::luainfo(L);
 
 	return 0;
 }
@@ -131,4 +135,4 @@ int main(int argc, char ** argv)
 	return 0;
 }
 
-#endif
+#endif // LOVE_BUILD_EXE

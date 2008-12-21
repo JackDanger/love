@@ -322,6 +322,46 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="sound"
+			>
+			<File
+				RelativePath="..\..\..\src\liblove\sound\SoundData.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\liblove\sound\SoundData.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\liblove\sound\wsound.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\liblove\sound\wSoundData.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="audio"
+			>
+			<File
+				RelativePath="..\..\..\src\liblove\audio\wAudible.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\liblove\audio\waudio.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\liblove\audio\wMusic.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\liblove\audio\wSound.h"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\..\src\liblove\config.h"
 			>
@@ -388,10 +428,6 @@
 		</File>
 		<File
 			RelativePath="..\..\..\src\liblove\version.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\..\src\liblove\wwrap.h"
 			>
 		</File>
 	</Files>

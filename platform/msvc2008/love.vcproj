@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="include;include\SDL"
+				AdditionalIncludeDirectories="include;include\SDL;include\AL"
 				PreprocessorDefinitions="_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -59,7 +59,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="liblove.lib lua-d.lib SDLmain-d.lib SDL-d.lib opengl32.lib glu32.lib DevIL.lib freetype-d.lib physfs-d.lib ws2_32.lib"
+				AdditionalDependencies="liblove.lib lua-d.lib SDLmain-d.lib SDL-d.lib opengl32.lib glu32.lib DevIL.lib freetype-d.lib physfs-d.lib ws2_32.lib openal32.lib alut.lib SDL_sound.lib"
 				AdditionalLibraryDirectories="lib;Debug"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -375,6 +375,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\love_devil\love_devil.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\liblove\wwrap.h"
 				>
 			</File>
 		</Filter>
@@ -849,6 +853,70 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="openal"
+			>
+			<File
+				RelativePath="..\..\src\love_openal\Audible.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_openal\Audible.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_openal\Channel.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_openal\Channel.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_openal\love_openal.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_openal\love_openal.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_openal\Music.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_openal\Music.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_openal\Sound.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_openal\Sound.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="sdlsound"
+			>
+			<File
+				RelativePath="..\..\src\love_sdlsound\love_sdlsound.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_sdlsound\love_sdlsound.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_sdlsound\SoundData.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_sdlsound\SoundData.h"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\src\love.cpp"

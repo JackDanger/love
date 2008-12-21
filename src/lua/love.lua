@@ -17,10 +17,17 @@ function love.init()
 		end
 	end
 	
+	love.insmod("physfs", "filesystem")
+	
+	love.filesystem.setIdentity("love");
+	love.filesystem.setSource("H:\\rude\\love\\src\\lua")
+
 	love.insmod("sdltimer", "timer")
 	love.insmod("devil", "image")
 	love.insmod("opengl", "graphics")
 	love.insmod("sdlsystem", "system")
+	love.insmod("openal", "audio")
+	love.insmod("sdlsound", "sound")
 
 	if love.graphics.checkMode(800, 600, false) then
 		print("800x600 is supported")
@@ -40,28 +47,50 @@ function love.init()
 
 	image = love.graphics.newImage(data)
 
+	soundData = love.sound.newSoundData("startup.wav")
+	sound = love.audio.newSound(soundData)
+	
+	soundData2 = love.sound.newSoundData("godfather.mid")
+	music = love.audio.newMusic(soundData2)
+
+	love.audio.play(music)
+
+
+	print(sound)
+
 	love.run()
 end
 
+a = 0
+
 function love.run()
+
+
 
 	-- Main loop time.
 	while true do
 
-		--love.timer.step()
+
+
+		love.timer.step()
+		
+		a = a + math.pi*love.timer.getDelta()
+
 		--if update then update(love.timer.getDelta()) end
 
 		love.graphics.clear()
 
-		love.graphics.draw(image, 200, 200)
+		love.graphics.draw(image, 200, 200, a)
 
 		-- Process events.
 		for e,a,b,c in love.system.events() do
 			if e == love.event_quit then return end
 			print(e, a, b, c)
+			love.audio.play(music)
 			--love.handlers[e](a,b,c)
 		end
 
+		love.timer.sleep(10)
 		love.graphics.present()
 
 	end

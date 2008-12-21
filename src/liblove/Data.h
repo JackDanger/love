@@ -27,7 +27,7 @@ namespace love
 		/**
 		* Gets a pointer to the data.
 		**/
-		virtual char * getData() = 0;
+		virtual void * getData() = 0;
 
 		/**
 		* Gets the size of the data buffer.

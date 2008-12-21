@@ -48,7 +48,7 @@ namespace devil
 		virtual ~ImageData();
 
 		// Implements Data.
-		char * getData();
+		void * getData();
 		int getSize();
 
 		// Implements ImageData.
