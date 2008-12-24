@@ -40,6 +40,7 @@ namespace love
 		LOVE_AUDIBLE_ID,
 		LOVE_SOUND_ID,
 		LOVE_MUSIC_ID,
+		LOVE_CHANNEL_ID,
 
 		// Sound
 		LOVE_SOUND_DATA_ID,
@@ -91,6 +92,7 @@ namespace love
 	static const bits LOVE_AUDIBLE_BITS = (bits(1) << LOVE_AUDIBLE_ID) | LOVE_OBJECT_BITS;
 	static const bits LOVE_SOUND_BITS = (bits(1) << LOVE_SOUND_ID) | LOVE_AUDIBLE_BITS;
 	static const bits LOVE_MUSIC_BITS = (bits(1) << LOVE_MUSIC_ID) | LOVE_AUDIBLE_BITS;
+	static const bits LOVE_CHANNEL_BITS = (bits(1) << LOVE_CHANNEL_ID) | LOVE_OBJECT_BITS;
 
 	// Sound.
 	static const bits LOVE_SOUND_DATA_BITS = (bits(1) << LOVE_SOUND_DATA_ID) | LOVE_DATA_BITS;

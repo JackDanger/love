@@ -354,6 +354,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\liblove\audio\wChannel.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\liblove\audio\wMusic.h"
 				>
 			</File>

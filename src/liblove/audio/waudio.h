@@ -25,6 +25,7 @@
 #include "wAudible.h"
 #include "wSound.h"
 #include "wMusic.h"
+#include "wChannel.h"
 
 namespace love
 {
@@ -82,6 +83,7 @@ namespace LOVE_WRAP_NAMESPACE
 		luax_register_module(L, "audio", module_fn);
 		luax_register_type(L, "Sound", Sound_mt);
 		luax_register_type(L, "Music", Music_mt);
+		luax_register_type(L, "Channel", Channel_mt);
 		return 0;
 	}
 

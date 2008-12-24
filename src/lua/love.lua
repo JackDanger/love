@@ -50,7 +50,7 @@ function love.init()
 	soundData = love.sound.newSoundData("startup.wav")
 	sound = love.audio.newSound(soundData)
 	
-	soundData2 = love.sound.newSoundData("godfather.mid")
+	soundData2 = love.sound.newSoundData("paradox1.xm")
 	music = love.audio.newMusic(soundData2)
 
 	love.audio.play(music)
@@ -86,7 +86,7 @@ function love.run()
 		for e,a,b,c in love.system.events() do
 			if e == love.event_quit then return end
 			print(e, a, b, c)
-			love.audio.play(music)
+			--love.audio.play(music)
 			--love.handlers[e](a,b,c)
 		end
 
