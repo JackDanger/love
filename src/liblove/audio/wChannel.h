@@ -38,11 +38,28 @@ namespace LOVE_WRAP_NAMESPACE
 		return 1;
 	}
 
+	int _wrap_Channel_setVolume(lua_State * L)
+	{
+		Channel * t = luax_checkchannel(L, 1);
+		float p = (float)luaL_checknumber(L, 2);
+		t->setVolume(p);
+		return 0;
+	}
+
+	int _wrap_Channel_getVolume(lua_State * L)
+	{
+		Channel * t = luax_checkchannel(L, 1);
+		lua_pushnumber(L, t->getVolume());
+		return 1;
+	}
+
 	static const luaL_Reg Channel_mt[] = {
 		{ "__index", _wrap__index },
 		{ "__gc", _wrap__gc },
 		{ "setPitch", _wrap_Channel_setPitch },
 		{ "getPitch", _wrap_Channel_getPitch },
+		{ "setVolume", _wrap_Channel_setVolume },
+		{ "getVolume", _wrap_Channel_getVolume },
 		{ 0, 0 }
 	};
 

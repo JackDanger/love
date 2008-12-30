@@ -26,6 +26,7 @@ namespace openal
 	Music::~Music()
 	{
 		data->release();
+		alDeleteBuffers(NUM_BUFFERS, buffers);
 	}
 
 	Music * Music::clone()
@@ -74,6 +75,18 @@ namespace openal
 		ALuint bufs[NUM_BUFFERS];
 		alSourceStop(source);
 		alSourceUnqueueBuffers(source, NUM_BUFFERS, bufs);
+	}
+
+	void Music::rewind(ALuint source)
+	{
+		// Stop source, unqueue buffers.
+		quit(source);
+
+		// Rewind data pointer.
+		data->rewind();
+
+		// Requeue buffers.
+		init(source);
 	}
 
 	bool Music::stream(ALuint buffer)

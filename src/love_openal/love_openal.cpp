@@ -199,5 +199,22 @@ namespace openal
 		channel->pause();
 	}
 
+	void rewind(Channel * channel)
+	{
+		channel->rewind();
+	}
+
+	void setVolume(float volume)
+	{
+		alListenerf(AL_GAIN, volume);
+	}
+
+	float getVolume()
+	{
+		ALfloat volume;
+		alGetListenerf(AL_GAIN, &volume);
+		return volume;
+	}
+
 } // openal
 } // love

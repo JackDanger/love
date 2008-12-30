@@ -37,6 +37,7 @@ namespace openal
 		void init(ALuint source);
 		void update(ALuint source);
 		void quit(ALuint source);
+		void rewind(ALuint source);
 	}; // Sound
 
 } // openal

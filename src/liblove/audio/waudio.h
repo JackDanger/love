@@ -107,6 +107,26 @@ namespace LOVE_WRAP_NAMESPACE
 		return 0;
 	}
 
+	int _wrap_rewind(lua_State * L)
+	{
+		Channel * c = luax_checkchannel(L, 1);
+		rewind(c);
+		return 0;
+	}
+
+	int _wrap_setVolume(lua_State * L)
+	{
+		float v = (float)luaL_checknumber(L, 1);
+		setVolume(v);
+		return 0;
+	}
+
+	int _wrap_getVolume(lua_State * L)
+	{
+		lua_pushnumber(L, getVolume());
+		return 1;
+	}
+
 	// List of functions to wrap.
 	static const luaL_Reg module_fn[] = {
 		{ "newSound",  _wrap_newSound },
@@ -115,6 +135,9 @@ namespace LOVE_WRAP_NAMESPACE
 		{ "play",  _wrap_play },
 		{ "stop",  _wrap_stop },
 		{ "pause",  _wrap_pause },
+		{ "rewind",  _wrap_rewind },
+		{ "setVolume",  _wrap_setVolume },
+		{ "getVolume",  _wrap_getVolume },
 		{ 0, 0 }
 	};
 

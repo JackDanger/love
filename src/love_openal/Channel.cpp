@@ -26,7 +26,12 @@ namespace openal
 	Channel::~Channel()
 	{
 		if(audible != 0)
+		{
+			this->audible->quit(source);
 			audible->release();
+		}
+
+		alDeleteSources(1, &source);
 		std::cout << "Channel destroyed." << std::endl;
 	}
 
@@ -66,6 +71,11 @@ namespace openal
 		alSourcePause(source);
 	}
 
+	void Channel::rewind()
+	{
+		audible->rewind(source);
+	}
+
 	bool Channel::isDone()
 	{
 		ALenum state;
@@ -89,6 +99,18 @@ namespace openal
 		ALfloat pitch;
 		alGetSourcef(source, AL_PITCH, &pitch);
 		return pitch;
+	}
+
+	void Channel::setVolume(float volume)
+	{
+		alSourcef(source, AL_GAIN, volume);
+	}
+
+	float Channel::getVolume()
+	{
+		ALfloat volume;
+		alGetSourcef(source, AL_GAIN, &volume);
+		return volume;
 	}
 
 } // openal

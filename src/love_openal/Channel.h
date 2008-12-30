@@ -36,10 +36,15 @@ namespace openal
 		void play();
 		void stop();
 		void pause();
+		void rewind();
 		bool isDone();
 		void update();
+
 		void setPitch(float pitch);
 		float getPitch();
+
+		void setVolume(float volume);
+		float getVolume();
 	}; // Channel
 
 } // openal

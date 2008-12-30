@@ -41,6 +41,10 @@ namespace openal
 
 	void stop(Channel * channel);
 	void pause(Channel * channel);
+	void rewind(Channel * channel);
+
+	void setVolume(float volume);
+	float getVolume();
 
 } // openal
 } // love

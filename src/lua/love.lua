@@ -137,9 +137,13 @@ function love.keypressed(k)
 	if k == love.key_q then
 		love.audio.pause(channel)
 	end
-	
+
 	if k == love.key_p then
 		love.audio.play(sound, channel)
+	end
+	
+	if k == love.key_r then
+		love.audio.rewind(channel)
 	end
 	
 	if k == love.key_up then
@@ -149,6 +153,24 @@ function love.keypressed(k)
 	if k == love.key_down then
 		channel:setPitch(channel:getPitch() - 0.1)
 	end
+	
+	if k == love.key_left then
+		channel:setVolume(channel:getVolume() - 0.1)
+	end
+	
+	if k == love.key_right then
+		channel:setVolume(channel:getVolume() + 0.1)
+	end
+	
+	if k == love.key_8 then
+		love.audio.setVolume(love.audio.getVolume() - 0.1)
+	end
+	
+	if k == love.key_9 then
+		love.audio.setVolume(love.audio.getVolume() + 0.1)
+	end
+
+	print("Master: " .. love.audio.getVolume() .. ", Volume: " ..channel:getVolume()..", Pitch: " .. channel:getPitch())
 
 end
 

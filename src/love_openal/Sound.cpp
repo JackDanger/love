@@ -30,6 +30,7 @@ namespace openal
 
 	Sound::~Sound()
 	{
+		alDeleteBuffers(1, &buffer);
 	}
 
 	void Sound::init(ALuint source)
@@ -46,6 +47,11 @@ namespace openal
 	void Sound::quit(ALuint source)
 	{
 		// Also no need.
+	}
+
+	void Sound::rewind(ALuint source)
+	{
+		alSourceRewind(source);
 	}
 
 } // openal
