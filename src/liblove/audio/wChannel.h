@@ -31,10 +31,18 @@ namespace LOVE_WRAP_NAMESPACE
 		return 0;
 	}
 
+	int _wrap_Channel_getPitch(lua_State * L)
+	{
+		Channel * t = luax_checkchannel(L, 1);
+		lua_pushnumber(L, t->getPitch());
+		return 1;
+	}
+
 	static const luaL_Reg Channel_mt[] = {
 		{ "__index", _wrap__index },
 		{ "__gc", _wrap__gc },
 		{ "setPitch", _wrap_Channel_setPitch },
+		{ "getPitch", _wrap_Channel_getPitch },
 		{ 0, 0 }
 	};
 

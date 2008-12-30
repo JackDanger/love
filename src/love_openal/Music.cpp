@@ -69,6 +69,13 @@ namespace openal
 		}
 	}
 
+	void Music::quit(ALuint source)
+	{
+		ALuint bufs[NUM_BUFFERS];
+		alSourceStop(source);
+		alSourceUnqueueBuffers(source, NUM_BUFFERS, bufs);
+	}
+
 	bool Music::stream(ALuint buffer)
 	{
 		// Get more sound data.

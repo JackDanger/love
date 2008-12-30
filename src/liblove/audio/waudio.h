@@ -63,10 +63,47 @@ namespace LOVE_WRAP_NAMESPACE
 		return 1;
 	}
 
+	int _wrap_newChannel(lua_State * L)
+	{
+		Channel * t = newChannel();
+		luax_newtype(L, "Channel", LOVE_WRAP_CHANNEL_BITS, (void*)t);
+		return 1;
+	}
+
 	int _wrap_play(lua_State * L)
 	{
-		Audible * t = luax_checkaudible(L, 1);
-		play(t);
+		int top = lua_gettop(L);
+
+		// play( audible )
+		if(top == 1)
+		{
+			Audible * a = luax_checkaudible(L, 1);
+			play(a);
+			return 0;
+		}
+		// play( audible, channel )
+		else if(top == 2)
+		{
+			Audible * a = luax_checkaudible(L, 1);
+			Channel * c = luax_checkchannel(L, 2);
+			play(a, c);
+			return 0;
+		}
+
+		return luaL_error(L, "No matching overload");
+	}
+
+	int _wrap_stop(lua_State * L)
+	{
+		Channel * c = luax_checkchannel(L, 1);
+		stop(c);
+		return 0;
+	}
+
+	int _wrap_pause(lua_State * L)
+	{
+		Channel * c = luax_checkchannel(L, 1);
+		pause(c);
 		return 0;
 	}
 
@@ -74,7 +111,10 @@ namespace LOVE_WRAP_NAMESPACE
 	static const luaL_Reg module_fn[] = {
 		{ "newSound",  _wrap_newSound },
 		{ "newMusic",  _wrap_newMusic },
+		{ "newChannel",  _wrap_newChannel },
 		{ "play",  _wrap_play },
+		{ "stop",  _wrap_stop },
+		{ "pause",  _wrap_pause },
 		{ 0, 0 }
 	};
 

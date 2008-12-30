@@ -52,6 +52,20 @@ namespace openal
 	SDL_mutex * channels_mutex = 0;
 	SDL_Thread * channel_update_thread = 0;
 
+	// Checks whether a channel is already present.
+	bool channel_playing(Channel * c)
+	{
+		std::list<Channel *>::iterator p = playing_channels.begin();
+
+		while(p != playing_channels.end())
+		{
+			if(*p == c)
+				return true;
+			p++;
+		}
+		return false;
+	}
+
 	// Prepares a channel for playing.
 	void channel_insert(Channel * c)
 	{
@@ -81,6 +95,7 @@ namespace openal
 				{
 					(*p)->release();
 					playing_channels.erase(p++);
+					std::cout << "Channel removed" << std::endl;
 				}
 				else
 				{
@@ -149,15 +164,39 @@ namespace openal
 		return new Music(data);
 	}
 
+	Channel * newChannel()
+	{
+		return new Channel();
+	}
+
+	void play(Audible * audible, Channel * channel)
+	{
+		// Set the audible, overwrite if necessary.
+		channel->setAudible(audible);
+		
+		// Play the channel.
+		channel->play();
+
+		// Insert only if not already playing.	
+		if(!channel_playing(channel))
+			channel_insert(channel);
+	}
+
 	void play(Audible * audible)
 	{
-		Music * m = (Music*)audible;
-		Music * mc = m->clone();
-		Channel * c = new Channel(mc);
-		mc->release();
-		c->play();
-		channel_insert(c);
+		Channel * c = new Channel();
+		play(audible, c);
 		c->release();
+	}
+
+	void stop(Channel * channel)
+	{
+		channel->stop();
+	}
+
+	void pause(Channel * channel)
+	{
+		channel->pause();
 	}
 
 } // openal

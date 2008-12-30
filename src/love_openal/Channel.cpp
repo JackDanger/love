@@ -16,24 +16,54 @@ namespace love
 {
 namespace openal
 {
-	Channel::Channel(Audible * audible)
-		: source(0), audible(audible)
+	Channel::Channel()
+		: source(0), audible(0)
 	{
-		audible->retain();
 		alGenSources(1, &source);
 		std::cout << "Channel created." << std::endl;
 	}
 
 	Channel::~Channel()
 	{
-		audible->release();
+		if(audible != 0)
+			audible->release();
 		std::cout << "Channel destroyed." << std::endl;
+	}
+
+	void Channel::setAudible(Audible * audible)
+	{
+		if(this->audible != 0)
+		{
+			this->audible->quit(source);
+			this->audible->release();
+		}
+
+		this->audible = audible;
+		audible->retain();
 	}
 
 	void Channel::play()
 	{
-		audible->init(source);
+		if(audible != 0)
+			audible->init(source);
 		alSourcePlay(source);
+	}
+
+	void Channel::stop()
+	{
+		alSourceStop(source);
+
+		if(this->audible != 0)
+		{
+			this->audible->quit(source);
+			this->audible->release();
+			this->audible = 0;
+		}
+	}
+
+	void Channel::pause()
+	{
+		alSourcePause(source);
 	}
 
 	bool Channel::isDone()
@@ -45,12 +75,20 @@ namespace openal
 
 	void Channel::update()
 	{
-		audible->update(source);
+		if(audible != 0)
+			audible->update(source);
 	}
 	
 	void Channel::setPitch(float pitch)
 	{
 		alSourcef(source, AL_PITCH, pitch);
+	}
+
+	float Channel::getPitch()
+	{
+		ALfloat pitch;
+		alGetSourcef(source, AL_PITCH, &pitch);
+		return pitch;
 	}
 
 } // openal

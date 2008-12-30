@@ -36,6 +36,7 @@ namespace openal
 		virtual ~Sound();
 		void init(ALuint source);
 		void update(ALuint source);
+		void quit(ALuint source);
 	}; // Sound
 
 } // openal

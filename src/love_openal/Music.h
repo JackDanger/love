@@ -33,6 +33,7 @@ namespace openal
 		Music * clone();
 		void init(ALuint source);
 		void update(ALuint source);
+		void quit(ALuint source);
 	private:
 		bool stream(ALuint buffer);
 	}; // Sound

@@ -34,7 +34,13 @@ namespace openal
 
 	Sound * newSound(SoundData * data);
 	Music * newMusic(SoundData * data);
+	Channel * newChannel();
+
+	void play(Audible * audible, Channel * channel);
 	void play(Audible * audible);
+
+	void stop(Channel * channel);
+	void pause(Channel * channel);
 
 } // openal
 } // love

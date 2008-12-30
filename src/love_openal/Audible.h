@@ -27,6 +27,7 @@ namespace openal
 		virtual ~Audible();
 		virtual void init(ALuint source) = 0;
 		virtual void update(ALuint source) = 0;
+		virtual void quit(ALuint source) = 0;
 	}; // Audible
 
 } // openal

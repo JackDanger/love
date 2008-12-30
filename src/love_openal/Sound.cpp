@@ -43,5 +43,10 @@ namespace openal
 		// No need.
 	}
 
+	void Sound::quit(ALuint source)
+	{
+		// Also no need.
+	}
+
 } // openal
 } // love

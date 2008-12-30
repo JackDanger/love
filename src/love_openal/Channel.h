@@ -30,12 +30,16 @@ namespace openal
 		ALuint source;
 		Audible * audible;
 	public:
-		Channel(Audible * audible);
+		Channel();
 		virtual ~Channel();
+		void setAudible(Audible * audible);
 		void play();
+		void stop();
+		void pause();
 		bool isDone();
 		void update();
 		void setPitch(float pitch);
+		float getPitch();
 	}; // Channel
 
 } // openal
