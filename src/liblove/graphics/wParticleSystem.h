@@ -319,10 +319,6 @@ namespace LOVE_WRAP_NAMESPACE
 		{ "isEmpty", _wrap_ParticleSystem_isEmpty },
 		{ "isFull", _wrap_ParticleSystem_isFull },
 		{ "update", _wrap_ParticleSystem_update },
-
-		// From drawable.
-		{ "setOffset", _wrap_Drawable_setOffset },
-		{ "getOffset", _wrap_Drawable_getOffset },
 		{ 0, 0 }
 	};
 

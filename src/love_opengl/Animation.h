@@ -148,10 +148,7 @@ namespace opengl
 		// From Sprite
 		void update(float dt);
 
-		void draw(float x, float y, float angle, float sx, float sy) const;
-
-		void setOffset(float x, float y);
-
+		void draw(float x, float y, float angle, float sx, float sy, float ox, float oy) const;
 	};
 
 } // opengl

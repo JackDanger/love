@@ -45,7 +45,7 @@ function love.init()
 	love.insmod("physfs", "filesystem")
 	
 	love.filesystem.setIdentity("love");
-	love.filesystem.setSource("H:\\rude\\love\\src\\lua")
+	love.filesystem.setSource("D:\\projects\\love\\src\\lua")
 
 	love.insmod("sdltimer", "timer")
 	love.insmod("devil", "image")
@@ -93,8 +93,13 @@ end
 -----------------------------------------------------------
 
 a = 0
+playsound = false
+frames = 0
 
 function love.load()
+
+	--[[
+
 	formats = love.image.getFormats()
 	print(formats)
 	data = love.image.newImageData(128, 128)
@@ -105,73 +110,136 @@ function love.load()
 	end
 
 	data:mapPixel(up)
-
 	image = love.graphics.newImage(data)
+	--]]
 
-	soundData = love.sound.newSoundData("startup.wav")
-	sound = love.audio.newSound(soundData)
+	imageData = love.image.newImageData("planet1.png")
+	planet = love.graphics.newImage(imageData)
+
+	if playsound then
+		soundData = love.sound.newSoundData("startup.wav")
+		sound = love.audio.newSound(soundData)
+		
+		soundData2 = love.sound.newSoundData("jazz.flac")
+		music = love.audio.newMusic(soundData2)
+		
+		soundData3 = love.sound.newSoundData("paradox1.xm")
+		chip = love.audio.newMusic(soundData3)
 	
-	soundData2 = love.sound.newSoundData("jazz.flac")
-	music = love.audio.newMusic(soundData2)
+		channel = love.audio.newChannel()
+	
+		love.audio.play(music, channel)
+	end
+	
+	num_planets = 300
+	max_frames = 1000
+	planets = {}
+	for i=1,num_planets do
+		table.insert(planets, {x = math.random(0, 800), y = math.random(0, 600), a = math.random(0, 6)})
+	end
 
-	channel = love.audio.newChannel()
-
-	love.audio.play(music)
-
-	print(sound)
 end
+
+--[[
+
+love.graphics.draw(image, x, y, a, sx, sy, ox, oy)
+love.graphics.draws(image, x, y, a, sx, sy, ox, oy, xs, ys, ws, hw)
+
+sb:draw(image, x, y, a, sx, sy, ox, oy)
+
+--]]
 
 function love.update(dt)
 	a = a + math.pi*dt
+	
+	if first_draw and frames < max_frames then
+		if (frames % 60) == 0 then
+			print("Planets: " .. num_planets .. " FRAMES: " .. frames)
+		end
+	end
+	
+	if frames == max_frames then
+		print("TIME PER FRAME: " .. ((love.timer.getTime()-first_draw)/frames))
+	end
 end
 
 function love.draw()
-	love.graphics.draw(image, 200, 200, a)
+	--love.graphics.draw(image, 200, 200, a)
+	--love.graphics.print("fist", 400, 200)
+
+	if not first_draw then first_draw = love.timer.getTime() end
+
+	for i,v in ipairs(planets) do
+		love.graphics.draw(planet, v.x, v.y, v.a)
+	end
+	
+	frames = frames + 1
 end
 
 function love.keypressed(k)
-	if k == love.key_s then
-		love.audio.stop(channel)
-	end
-	
-	if k == love.key_q then
-		love.audio.pause(channel)
-	end
 
-	if k == love.key_p then
-		love.audio.play(sound, channel)
-	end
-	
-	if k == love.key_r then
-		love.audio.rewind(channel)
-	end
-	
-	if k == love.key_up then
-		channel:setPitch(channel:getPitch() + 0.1)
-	end
-	
-	if k == love.key_down then
-		channel:setPitch(channel:getPitch() - 0.1)
-	end
-	
-	if k == love.key_left then
-		channel:setVolume(channel:getVolume() - 0.1)
-	end
-	
-	if k == love.key_right then
-		channel:setVolume(channel:getVolume() + 0.1)
-	end
-	
-	if k == love.key_8 then
-		love.audio.setVolume(love.audio.getVolume() - 0.1)
-	end
-	
-	if k == love.key_9 then
-		love.audio.setVolume(love.audio.getVolume() + 0.1)
-	end
+	if playsound then
 
-	print("Master: " .. love.audio.getVolume() .. ", Volume: " ..channel:getVolume()..", Pitch: " .. channel:getPitch())
-
+		if k == love.key_c then
+			love.audio.play(chip)
+		end
+	
+		if k == love.key_s then
+			love.audio.stop(channel)
+		end
+		
+		if k == love.key_q then
+			love.audio.pause(channel)
+		end
+	
+		if k == love.key_p then
+			love.audio.play(sound, channel)
+		end
+		
+		if k == love.key_r then
+			love.audio.rewind(channel)
+		end
+		
+		if k == love.key_up then
+			channel:setPitch(channel:getPitch() + 0.1)
+		end
+		
+		if k == love.key_down then
+			channel:setPitch(channel:getPitch() - 0.1)
+		end
+	
+		if k == love.key_left then
+			channel:setVolume(channel:getVolume() - 0.1)
+		end
+	
+		if k == love.key_right then
+			channel:setVolume(channel:getVolume() + 0.1)
+		end
+		
+		if k == love.key_8 then
+			love.audio.setVolume(love.audio.getVolume() - 0.1)
+		end
+		
+		if k == love.key_9 then
+			love.audio.setVolume(love.audio.getVolume() + 0.1)
+		end
+		
+		if k == love.key_m then
+			if love.audio.getVolume() > 0.1 then
+				stvol = love.audio.getVolume()
+				love.audio.setVolume(0)
+			else
+				love.audio.setVolume(stvol or 1)
+			end
+		end
+		
+		if k == love.key_i then
+			love.audio.play(music)
+		end
+	
+	
+		print("( "..love.audio.getNumChannels()..") Master: " .. love.audio.getVolume() .. ", Volume: " ..channel:getVolume()..", Pitch: " .. channel:getPitch())
+	end -- playsound
 end
 
 -----------------------------------------------------------

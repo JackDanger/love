@@ -21,28 +21,9 @@ namespace LOVE_WRAP_NAMESPACE
 	// This macro makes checking for the correct type slightly more compact.
 	#define luax_checkdrawable(L, idx) luax_checktype<Drawable>(L, idx, "Drawable", LOVE_DRAWABLE_BITS)
 
-	int _wrap_Drawable_setOffset(lua_State * L)
-	{
-		Drawable * t = luax_checkdrawable(L, 1);
-		float x = (float)luaL_checknumber(L, 2);
-		float y = (float)luaL_checknumber(L, 3);
-		t->setOffset(x, y);
-		return 0;
-	}
-
-	int _wrap_Drawable_getOffset(lua_State * L)
-	{
-		Drawable * t = luax_checkdrawable(L, 1);
-		lua_pushnumber(L, t->getOffsetX());
-		lua_pushnumber(L, t->getOffsetY());
-		return 2;
-	}
-
 	static const luaL_Reg Drawable_mt[] = {
 		{ "__index", _wrap__index },
 		{ "__gc", _wrap__gc },
-		{ "setOffset", _wrap_Drawable_setOffset },
-		{ "getOffset", _wrap_Drawable_getOffset },
 		{ 0, 0 }
 	};
 

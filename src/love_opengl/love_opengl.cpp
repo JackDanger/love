@@ -412,19 +412,14 @@ namespace opengl
 
 	Image * newImage(ImageData * data)
 	{
-		Texture * texture = new Texture(data);
+		// Create the image.
+		Image * image = new Image(data);
 
-		if(!texture->load())
+		if(!image->load())
 		{
-			delete texture;
+			image->release();
 			return 0;
 		}
-
-		// Create the image.
-		Image * image = new Image(texture);
-
-		// Image has a copy of the texture now.
-		texture->release();
 
 		return image;
 	}
@@ -432,11 +427,6 @@ namespace opengl
 	Color * newColor(int r, int g, int b, int a)
 	{
 		return new Color(r, g, b, a);
-	}
-
-	Image * newImage(Image * image, float x, float y, float w, float h)
-	{
-		return new Image(image, x, y, w, h);
 	}
 
 	Font * newFont(File * file, int size)
@@ -453,6 +443,7 @@ namespace opengl
 		return font;
 	}
 
+	/*
 	Animation * newAnimation(Image * image)
 	{
 		return new Animation(image);
@@ -462,6 +453,7 @@ namespace opengl
 	{
 		return new Animation(image, fw, fh, delay, num);
 	}
+	*/
 
 	void setColor( int r, int g, int b, int a)
 	{

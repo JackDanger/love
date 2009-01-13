@@ -190,14 +190,6 @@
 			Name="opengl"
 			>
 			<File
-				RelativePath="..\..\src\love_opengl\Animation.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\love_opengl\Animation.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\love_opengl\Color.cpp"
 				>
 				<FileConfiguration
@@ -270,19 +262,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\love_opengl\Texture.cpp"
+				RelativePath="..\..\src\love_opengl\SpriteBatch.cpp"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)\$(SafeParentName)\"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\src\love_opengl\Texture.h"
+				RelativePath="..\..\src\love_opengl\SpriteBatch.h"
 				>
 			</File>
 			<File

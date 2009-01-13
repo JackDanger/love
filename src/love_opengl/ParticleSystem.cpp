@@ -349,7 +349,7 @@ namespace opengl
 		return pLast == pEnd;
 	}
 
-	void ParticleSystem::draw(float x, float y, float angle, float sx, float sy) const
+	void ParticleSystem::draw(float x, float y, float angle, float sx, float sy, float ox, float oy) const
 	{
 		if(sprite == 0) return; // just in case of failure
 
@@ -359,7 +359,7 @@ namespace opengl
 		glTranslatef(x, y, 0);
 		glRotatef(angle, 0, 0, 1.0f);
 		glScalef(sx, sy, 1.0f);
-		glTranslatef( offsetX, offsetY, 0);
+		glTranslatef( ox, oy, 0);
 
 		particle * p = pStart;
 		while(p != pLast)
@@ -370,7 +370,7 @@ namespace opengl
 			glTranslatef(p->position[0],p->position[1],0.0f);
 			glRotatef(p->rotation * 57.29578f, 0.0f, 0.0f, 1.0f); // rad * (180 / pi)
 			glScalef(p->size,p->size,1.0f);
-			sprite->draw(0,0, 0, 1, 1);
+			sprite->draw(0,0, 0, 1, 1, 0, 0);
 
 			glPopMatrix();
 			p++;

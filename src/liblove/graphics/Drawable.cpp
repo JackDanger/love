@@ -14,29 +14,11 @@ namespace love
 {
 
 	Drawable::Drawable()
-		: offsetX(0), offsetY(0)
 	{
 	}
 
 	Drawable::~Drawable()
 	{
 	}
-
-	void Drawable::setOffset(float x, float y)
-	{
-		this->offsetX = x;
-		this->offsetY = y;
-	}
-
-	float Drawable::getOffsetX() const
-	{
-		return offsetX;
-	}
-
-	float Drawable::getOffsetY() const
-	{
-		return offsetY;
-	}
-
 
 } // love

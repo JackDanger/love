@@ -31,6 +31,12 @@ namespace love
 {
 namespace LOVE_WRAP_NAMESPACE
 {
+	int _wrap_getNumChannels(lua_State * L)
+	{
+		lua_pushinteger(L, getNumChannels());
+		return 1;
+	}
+
 	int _wrap_newSound(lua_State * L)
 	{
 		// Convert to File, if necessary.
@@ -70,7 +76,7 @@ namespace LOVE_WRAP_NAMESPACE
 		return 1;
 	}
 
-	int _wrap_play(lua_State * L)
+	int _internal_play_audible(lua_State * L)
 	{
 		int top = lua_gettop(L);
 
@@ -91,6 +97,29 @@ namespace LOVE_WRAP_NAMESPACE
 		}
 
 		return luaL_error(L, "No matching overload");
+	}
+
+	int _wrap_play(lua_State * L)
+	{
+		if(luax_istype(L, 1, LOVE_WRAP_MUSIC_BITS))
+		{
+			// In the case of music, we need to make a copy of the
+			// SoundData object and replace it with the one on the stack.
+			Music * m = luax_checkmusic(L, 1);
+
+			// Get a copy.
+			Music * clone = m->clone();
+
+			// Push it onto the stack.
+			luax_newtype(L, "Music", LOVE_WRAP_MUSIC_BITS, (void*)clone);
+
+			// Replace the current music object. 
+			lua_replace(L, 1);
+		}
+		// Else: a sound object is being passed, in which 
+		// case we do not need to copy the SoundData object.
+
+		return _internal_play_audible(L);
 	}
 
 	int _wrap_stop(lua_State * L)
@@ -129,6 +158,7 @@ namespace LOVE_WRAP_NAMESPACE
 
 	// List of functions to wrap.
 	static const luaL_Reg module_fn[] = {
+		{ "getNumChannels", _wrap_getNumChannels },
 		{ "newSound",  _wrap_newSound },
 		{ "newMusic",  _wrap_newMusic },
 		{ "newChannel",  _wrap_newChannel },

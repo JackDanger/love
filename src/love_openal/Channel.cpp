@@ -20,7 +20,7 @@ namespace openal
 		: source(0), audible(0)
 	{
 		alGenSources(1, &source);
-		std::cout << "Channel created." << std::endl;
+		std::cout << "+Channel created." << std::endl;
 	}
 
 	Channel::~Channel()
@@ -32,7 +32,7 @@ namespace openal
 		}
 
 		alDeleteSources(1, &source);
-		std::cout << "Channel destroyed." << std::endl;
+		std::cout << "-Channel destroyed." << std::endl;
 	}
 
 	void Channel::setAudible(Audible * audible)

@@ -40,7 +40,7 @@ namespace sdlsound
 		std::string ext = file->getExtention();
 		const char * ext_c = ext.empty() ? 0 : ext.c_str();
 
-		sample = Sound_NewSample(rwops, ext_c, &desired, 1024*4);
+		sample = Sound_NewSample(rwops, ext_c, &desired, 1024);
 
 		if(sample == 0)
 		{

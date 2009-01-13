@@ -18,22 +18,10 @@ namespace love
 	class Drawable : public Object
 	{
 	protected:
-
-		// The offset of the drawable.
-		float offsetX, offsetY;
-
 	public:
 		Drawable();
 		virtual ~Drawable();
-		virtual void draw(float x, float y, float angle, float sx, float sy) const = 0;
-
-		/**
-		* Sets the offset of the sprite. (The "center").
-		**/
-		virtual void setOffset(float x, float y);
-
-		float getOffsetX() const;
-		float getOffsetY() const;
+		virtual void draw(float x, float y, float angle, float sx, float sy, float ox, float oy) const = 0;
 	};
 
 } // love

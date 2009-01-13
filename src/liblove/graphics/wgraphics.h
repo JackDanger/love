@@ -26,7 +26,7 @@
 #include "wFont.h"
 #include "wDrawable.h"
 #include "wImage.h"
-#include "wAnimation.h"
+//#include "wAnimation.h"
 #include "wParticleSystem.h"
 
 namespace love
@@ -140,28 +140,6 @@ namespace LOVE_WRAP_NAMESPACE
 
 	int _wrap_newImage(lua_State * L)
 	{
-
-		// Case 1:
-		// Create a subimage from an existing image.
-		if(luax_istype(L, 1, LOVE_WRAP_IMAGE_BITS))
-		{
-			Image * i = luax_checkimage(L, 1);
-			float x = (float)luaL_checknumber(L, 2);
-			float y = (float)luaL_checknumber(L, 3);
-			float w = (float)luaL_checknumber(L, 4);
-			float h = (float)luaL_checknumber(L, 5);
-			if(w < 0 || h < 0)
-				return luaL_error(L, "Negative subimage dimensions.");
-			Image * image = new Image(i, x, y, w, h);
-			if(image == 0)
-				return luaL_error(L, "Could not create image.");
-			luax_newtype(L, "Image", LOVE_WRAP_IMAGE_BITS, (void*)image);
-			return 1;
-		}
-
-		// Case 2:
-		// Create a new Image from a File or string.
-
 		// Convert to File, if necessary.
 		if(lua_isstring(L, 1))
 			luax_strtofile(L, 1);
@@ -207,6 +185,7 @@ namespace LOVE_WRAP_NAMESPACE
 		return 1;
 	}
 
+	/*
 	int _wrap_newAnimation(lua_State * L)
 	{
 		// If string, then convert to file.
@@ -250,6 +229,7 @@ namespace LOVE_WRAP_NAMESPACE
 		luax_newtype(L, "Animation", LOVE_WRAP_ANIMATION_BITS, (void*)animation);
 		return 1;
 	}
+	*/
 
 	int _wrap_setColor(lua_State * L)
 	{
@@ -460,75 +440,22 @@ namespace LOVE_WRAP_NAMESPACE
 	* @param angle The amount of rotation.
 	* @param sx The scale factor along the x-axis. (1 = normal).
 	* @param sy The scale factor along the y-axis. (1 = normal).
+	* @param ox The offset along the x-axis.
+	* @param oy The offset along the y-axis.
 	**/
 	int _wrap_draw(lua_State * L)
 	{
-		if(luax_istype(L, 1, LOVE_DRAWABLE_BITS))
-		{
-			Drawable * drawable = luax_checktype<Drawable>(L, 1, "Drawable", LOVE_DRAWABLE_BITS);
-			float x = (float)luaL_optnumber(L, 2, 0.0f);
-			float y = (float)luaL_optnumber(L, 3, 0.0f);
-			float angle = (float)luaL_optnumber(L, 4, 0.0f);
-			float sx = (float)luaL_optnumber(L, 5, 1.0f);
-			float sy = (float)luaL_optnumber(L, 6, sx);
-			drawable->draw(x, y, angle, sx, sy);
-			return 0;
-		}
-#ifdef LOVE_COMPAT_050
-		else if(lua_isstring(L, 1))
-		{
-			const char * str = lua_tostring(L, 1);
-			float x = (float)luaL_checknumber(L, 2);
-			float y = (float)luaL_checknumber(L, 3);
-			float angle = (float)luaL_optnumber(L, 4, 0.0f);
-			float sx = (float)luaL_optnumber(L, 5, 1.0f);
-			float sy = (float)luaL_optnumber(L, 6, sx);
-
-			switch(lua_gettop(L))
-			{
-			case 3:
-				print(str, x, y);
-				break;
-			case 4:
-				print(str, x, y, angle);
-				break;
-			case 5:
-				print(str, x, y, angle, sx);
-				break;
-			case 6:
-				print(str, x, y, angle, sx, sy);
-				break;
-			default:
-				return luaL_error(L, "Incorrect number of parameters");
-			}
-
-			return 0;
-		}
-#endif
-		return 0;
-	}
-
-#ifdef LOVE_COMPAT_050
-
-	int _wrap_draws(lua_State * L)
-	{
-		Image * image = luax_checktype<Image>(L, 1, "Image", LOVE_WRAP_IMAGE_BITS);
+		Drawable * drawable = luax_checktype<Drawable>(L, 1, "Drawable", LOVE_DRAWABLE_BITS);
 		float x = (float)luaL_optnumber(L, 2, 0.0f);
 		float y = (float)luaL_optnumber(L, 3, 0.0f);
-		float cx = (float)luaL_optnumber(L, 4, 0.0f);
-		float cy = (float)luaL_optnumber(L, 5, 0.0f);
-		float w = (float)luaL_optnumber(L, 6, image->getWidth());
-		float h = (float)luaL_optnumber(L, 7, image->getHeight());
-		float angle = (float)luaL_optnumber(L, 8, 0.0f);
-		float sx = (float)luaL_optnumber(L, 9, 1.0f);
-		float sy = (float)luaL_optnumber(L, 10, sx);
-		float ox = (float)luaL_optnumber(L, 11, (image->getWidth()/2.0f)-image->getOffsetX());
-		float oy = (float)luaL_optnumber(L, 12, (image->getHeight()/2.0f)-image->getOffsetY());
-		image->draws(x, y, cx, cy, w, h, angle, sx, sy, ox, oy);
+		float angle = (float)luaL_optnumber(L, 4, 0.0f);
+		float sx = (float)luaL_optnumber(L, 5, 1.0f);
+		float sy = (float)luaL_optnumber(L, 6, sx);
+		float ox = (float)luaL_optnumber(L, 7, 0);
+		float oy = (float)luaL_optnumber(L, 8, 0);
+		drawable->draw(x, y, angle, sx, sy, ox, oy);
 		return 0;
 	}
-
-#endif
 
 	int _wrap_print(lua_State * L)
 	{
@@ -686,7 +613,7 @@ namespace LOVE_WRAP_NAMESPACE
 		{ "newImage", _wrap_newImage },
 		{ "newFont", _wrap_newFont },
 
-		{ "newAnimation", _wrap_newAnimation },
+		//{ "newAnimation", _wrap_newAnimation },
 
 		{ "setColor", _wrap_setColor },
 		{ "getColor", _wrap_getColor },
@@ -714,9 +641,7 @@ namespace LOVE_WRAP_NAMESPACE
 		{ "getMaxPointSize", _wrap_getMaxPointSize },
 
 		{ "draw", _wrap_draw },
-#ifdef LOVE_COMPAT_050
-		{ "draws", _wrap_draws },
-#endif
+
 		{ "print", _wrap_print },
 		{ "printf", _wrap_printf },
 
@@ -758,7 +683,7 @@ namespace LOVE_WRAP_NAMESPACE
 		luax_register_type(L, "Font", Font_mt);
 		luax_register_type(L, "Drawable", Drawable_mt);
 		luax_register_type(L, "Image", Image_mt);
-		luax_register_type(L, "Animation", Animation_mt);
+		//luax_register_type(L, "Animation", Animation_mt);
 		luax_register_type(L, "ParticleSystem", ParticleSystem_mt);
 		return 0;
 	}

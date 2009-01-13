@@ -73,6 +73,7 @@ namespace openal
 
 		// Need mutex lock.
 		MUTEX_ASSERT(SDL_mutexP(channels_mutex), 0);
+		std::cout << " --> Channel inserted." << std::endl;
 		playing_channels.push_back(c);
 		MUTEX_ASSERT(SDL_mutexV(channels_mutex), 0);
 
@@ -95,7 +96,7 @@ namespace openal
 				{
 					(*p)->release();
 					playing_channels.erase(p++);
-					std::cout << "Channel removed" << std::endl;
+					std::cout << " <-- Channel removed." << std::endl;
 				}
 				else
 				{
@@ -152,6 +153,11 @@ namespace openal
 
 		alutExit();
 		return 0;
+	}
+
+	int getNumChannels()
+	{
+		return playing_channels.size();
 	}
 
 	Sound * newSound(SoundData * data)

@@ -13,32 +13,30 @@
 
 // LOVE
 #include "../liblove/config.h"
+#include "../liblove/image/ImageData.h"
 #include "../liblove/graphics/Drawable.h"
 
 // Module
-#include "Texture.h"
+#include "../liblove/graphics/Volatile.h"
 
 namespace love
 {
 namespace opengl
 {
 	/**
-	* OpenGL-specific image loader and renderer. Uses DevIL image
-	* library for support for all relevant formats.
+	* OpenGL-specific image loader and renderer. 
 	**/
-	class Image : public Drawable
+	class Image : public Drawable, public Volatile
 	{
 	private:
 
-		Texture * texture;
+		ImageData * data;
 
-		// An image represents a part of a texture defined
-		// by the top-left point (x,y) and the size (w,h).
-		float x, y, width, height;
+		// Width and height of the hardware texture.
+		float width, height;
 
-		// Contains vertex and texel information.
-		float texels[8];
-		float vertices[8];
+		// OpenGL texture identifier.
+		unsigned int texture;
 
 	public:
 	
@@ -47,26 +45,30 @@ namespace opengl
 		* before load is called.
 		* @param file The file from which to load the image.
 		**/
-		Image();
-		Image(Texture * texture);
-		Image(Image * image, float x, float y, float w, float h);
+		Image(ImageData * data);
 		
 		virtual ~Image();
 
 		float getWidth() const;
 		float getHeight() const;
 
+		// Implements Drawable.
+		void draw(float x, float y, float angle, float sx, float sy, float ox, float oy) const;
 
-		void draw(float x, float y, float angle, float sx, float sy) const;
-
-#ifdef LOVE_COMPAT_050
-	
-		void setCenter(float x, float y);
-		void draws(float x, float y, float cx, float cy, float w, float h, float angle, float sx, float sy, float ox, float oy);
-
-#endif
-
+		/**
+		* This function draws a section of the image.
+		**/
+		void draws(float x, float y, float angle, float sx, float sy, float ox, float oy, float rx, float ry, float rw, float rh) const;
 		
+		void bind() const;
+
+		bool load();
+		void unload();
+
+		// Implements Volatile.
+		bool loadVolatile();
+		void unloadVolatile();		
+
 	}; // Image
 	
 } // opengl

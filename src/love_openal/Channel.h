@@ -45,6 +45,7 @@ namespace openal
 
 		void setVolume(float volume);
 		float getVolume();
+
 	}; // Channel
 
 } // openal

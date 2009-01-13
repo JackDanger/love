@@ -144,7 +144,6 @@ namespace opengl
 	**/
 	Image * newImage(File * file);
 	Image * newImage(ImageData * data);
-	Image * newImage(Image * image, float x, float y, float w, float h);
 
 	/**
 	* Creates a Font object.
@@ -159,12 +158,12 @@ namespace opengl
 	/**
 	* Creates an Animation object with no frames.
 	**/
-	Animation * newAnimation(Image * image);
+	//Animation * newAnimation(Image * image);
 
 	/**
 	* Creates an Animation object with generated frames in a grid.
 	**/
-	Animation * newAnimation(Image * image, float fw, float fh, float delay, int num = 0);
+	//Animation * newAnimation(Image * image, float fw, float fh, float delay, int num = 0);
 
 	/**
 	* Creates a ParticleSystem object with the specified buffer size and using the specified sprite.

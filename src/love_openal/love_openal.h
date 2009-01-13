@@ -32,6 +32,8 @@ namespace openal
 	int luaopen(lua_State * L);
 	int luagc(lua_State * L);
 
+	int getNumChannels();
+
 	Sound * newSound(SoundData * data);
 	Music * newMusic(SoundData * data);
 	Channel * newChannel();

@@ -199,23 +199,13 @@ namespace opengl
 		}
 	}
 
-	void Animation::draw(float x, float y, float angle, float sx, float sy) const
+	void Animation::draw(float x, float y, float angle, float sx, float sy, float ox, float oy) const
 	{
 		if(frames.size() <= 0)
 			return;
 
 		const AnimationFrame & f = frames[current];
-		f.image->draw(x, y, angle, sx, sy);
-	}
-
-	void Animation::setOffset(float x, float y)
-	{
-		this->offsetX = x;
-		this->offsetY = y;
-		
-		// Set the offset of all frames.
-		for(int i = 0;i<(int)frames.size();i++)
-			frames[i].image->setOffset(x, y);
+		f.image->draw(x, y, angle, sx, sy, float ox, float oy);
 	}
 
 } // opengl

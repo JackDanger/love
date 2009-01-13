@@ -14,6 +14,9 @@
 // STD
 #include <cmath>
 
+// LOVE
+#include "Matrix.h"
+
 namespace love
 {
 	/**
@@ -77,6 +80,8 @@ namespace love
 		**/
 		Vector operator - (const Vector & v) const;
 
+		Vector operator * (const Matrix & m) const;
+
 		/**
 		* Resizes a Vector by a scalar.
 		* @param s The scalar with which to resize the Vector.
@@ -114,6 +119,8 @@ namespace love
 		* @param s The scalar by which we want to resize the Vector.
 		**/
 		void operator *= (float s);
+
+		void operator *= (const Matrix & m);
 
 		/**
 		* Resizes the Vector, and also saves changes in the first Vector.
@@ -214,6 +221,11 @@ namespace love
 		return Vector(x*s, y*s);
 	}
 
+	inline Vector Vector::operator * (const Matrix & m) const
+	{
+		return Vector(m.e[0][0]*x+m.e[0][1]*y+m.e[0][2], m.e[1][0]*x+m.e[1][1]*y+m.e[1][2]);
+	}
+
 	inline Vector Vector::operator / (float s) const
 	{
 		return Vector(x/s, y/s);
@@ -240,6 +252,13 @@ namespace love
 	{
 		x *= s;
 		y *= s;
+	}
+
+	inline void Vector::operator *= (const Matrix & m)
+	{
+		Vector v = (*this) * m;
+		x = v.x;
+		y = v.y;
 	}
 
 	inline void Vector::operator /= (float s)

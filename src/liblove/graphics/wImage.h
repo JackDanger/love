@@ -44,10 +44,6 @@ namespace LOVE_WRAP_NAMESPACE
 		{ "__gc", _wrap__gc },
 		{ "getWidth", _wrap_Image_getWidth },
 		{ "getHeight", _wrap_Image_getHeight },
-
-		// From drawable.
-		{ "setOffset", _wrap_Drawable_setOffset },
-		{ "getOffset", _wrap_Drawable_getOffset },
 		{ 0, 0 }
 	};
 
