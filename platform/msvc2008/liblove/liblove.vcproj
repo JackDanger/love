@@ -205,6 +205,10 @@
 				RelativePath="..\..\..\src\liblove\graphics\wParticleSystem.h"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\src\liblove\graphics\wSpriteBatch.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="image"

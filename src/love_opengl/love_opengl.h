@@ -23,6 +23,7 @@
 #include "Color.h"
 #include "TrueTypeFont.h"
 #include "ParticleSystem.h"
+#include "SpriteBatch.h"
 
 namespace love
 {
@@ -176,6 +177,8 @@ namespace opengl
 	**/
 	//pParticleSystem newParticleSystem(Image * image, unsigned int size, int mode);
 
+	SpriteBatch * newSpriteBatch(Image * image, int size);
+		
 	/**
 	* Sets the foreground color.
 	**/
@@ -462,6 +465,8 @@ namespace opengl
 	void rotate(float r);
 	void scale(float x, float y = 1.0f);
 	void translate(float x, float y);
+
+	void drawTest(Image * image, float x, float y, float a, float sx, float sy, float ox, float oy);
 
 } // opengl
 } // love

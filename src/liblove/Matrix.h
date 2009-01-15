@@ -14,14 +14,15 @@
 // STD
 #include <cmath>
 
+// LOVE
+#include "../liblove/math.h"
+
 namespace love
 {
-	/**
-	* 2D Vector class.
-	* 
-	* @author Anders Ruud
-	* @date 2006-05-13
-	**/
+
+	// Forward declarations.
+	class Vector;
+
 	class Matrix
 	{
 		friend class Vector;
@@ -52,6 +53,14 @@ namespace love
 		void translate(float x, float y);
 		void rotate(float rad);
 		void scale(float sx, float sy);
+
+		void transform(Vector * dst, Vector * src, int size = 1);
+		
+		/**
+		* Transforms an array of vertices.
+		* @stride Stride in bytes.
+		**/
+		void transform(vertex2v2t * dst, vertex2v2t * src, int size);
 
 	};
 

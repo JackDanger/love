@@ -17,6 +17,7 @@
 // LOVE
 #include "../liblove/version.h"
 #include "../liblove/constants.h"
+#include "../liblove/Vector.h"
 
 // SDL
 #include <SDL.h>
@@ -247,9 +248,6 @@ namespace opengl
 		glEnable(GL_CULL_FACE);		// Enable face culling (no need to render surfaces we can't see
 		glCullFace(GL_BACK);		// Do not render back face.
 
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
 		// TODO:
 		//reset();
 
@@ -454,6 +452,11 @@ namespace opengl
 		return new Animation(image, fw, fh, delay, num);
 	}
 	*/
+
+	SpriteBatch * newSpriteBatch(Image * image, int size)
+	{
+		return new SpriteBatch(image, size);
+	}
 
 	void setColor( int r, int g, int b, int a)
 	{
@@ -1239,6 +1242,37 @@ namespace opengl
 	void translate(float x, float y)
 	{
 		glTranslatef(x, y, 1);
+	}
+
+	static Vector test_verts[4];
+
+	void drawTest(Image * image, float x, float y, float a, float sx, float sy, float ox, float oy)
+	{
+		image->bind();
+
+		// Half-sizes.
+		float w2 = image->getWidth()/2.0f;
+		float h2 = image->getHeight()/2.0f;
+
+		test_verts[0] = Vector(-w2, -h2);
+		test_verts[1] = Vector(-w2, h2);
+		test_verts[2] = Vector(w2, h2);
+		test_verts[3] = Vector(w2, -h2);
+
+		Matrix t;
+		t.translate(x, y);
+		t.scale(sx, sy);
+		t.rotate(a);
+		t.transform(test_verts, test_verts, 4);
+
+		glPushMatrix();
+		glBegin(GL_QUADS);
+		glVertex2f(test_verts[0].x, test_verts[0].y); glTexCoord2f(0, 0);
+		glVertex2f(test_verts[1].x, test_verts[1].y); glTexCoord2f(0, 1);
+		glVertex2f(test_verts[2].x, test_verts[2].y); glTexCoord2f(1, 1);
+		glVertex2f(test_verts[3].x, test_verts[3].y); glTexCoord2f(1, 0);
+		glEnd();
+		glPopMatrix();
 	}
 
 } // opengl

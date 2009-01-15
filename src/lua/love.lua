@@ -54,9 +54,8 @@ function love.init()
 	love.insmod("openal", "audio")
 	love.insmod("sdlsound", "sound")
 
-	if love.graphics.checkMode(800, 600, false) then
-		print("800x600 is supported")
-		love.graphics.setMode(800, 600, false, false)
+	if love.graphics.checkMode(800, 600, true) then
+		love.graphics.setMode(800, 600, true, false)
 	end
 
 	love.run()
@@ -116,6 +115,9 @@ function love.load()
 	imageData = love.image.newImageData("planet1.png")
 	planet = love.graphics.newImage(imageData)
 
+	particle = love.graphics.newImage(love.image.newImageData("part1.png"))
+	hare = love.graphics.newImage(love.image.newImageData("zazaka.png"))
+
 	if playsound then
 		soundData = love.sound.newSoundData("startup.wav")
 		sound = love.audio.newSound(soundData)
@@ -130,27 +132,56 @@ function love.load()
 	
 		love.audio.play(music, channel)
 	end
-	
-	num_planets = 300
-	max_frames = 1000
+
+	num_planets = 1000
+	max_frames = 300
 	planets = {}
+	sb = love.graphics.newSpriteBatch(hare, num_planets)
 	for i=1,num_planets do
-		table.insert(planets, {x = math.random(0, 800), y = math.random(0, 600), a = math.random(0, 6)})
+		table.insert(planets, {x = math.random(0, 800), y = math.random(0, 600), a = math.random(0, 90), s = math.random(1, 2)})
 	end
+	
+	sp_update = sp1_update
+	sp_draw = sp1_draw
+	
+	sb:clear()
+	for i=1,num_planets do
+		sb:add(math.random(0, love.graphics.getWidth()), math.random(0, love.graphics.getHeight()))
+	end
+	
+end
+
+
+-- Speed tests:
+
+function sp1_update(dt)
+end
+
+function sp1_draw()
+	for i,v in ipairs(planets) do
+		love.graphics.draw(hare, v.x, v.y)
+	end
+end
+
+function sp2_update(dt)
+end
+
+function sp2_draw()
+	for i,v in ipairs(planets) do
+		love.graphics.drawTest(hare, v.x, v.y)
+	end
+end
+
+function sp3_update(dt)
 
 end
 
---[[
-
-love.graphics.draw(image, x, y, a, sx, sy, ox, oy)
-love.graphics.draws(image, x, y, a, sx, sy, ox, oy, xs, ys, ws, hw)
-
-sb:draw(image, x, y, a, sx, sy, ox, oy)
-
---]]
+function sp3_draw()
+	love.graphics.draw(sb, 0, 0)
+end
 
 function love.update(dt)
-	a = a + math.pi*dt
+
 	
 	if first_draw and frames < max_frames then
 		if (frames % 60) == 0 then
@@ -161,18 +192,14 @@ function love.update(dt)
 	if frames == max_frames then
 		print("TIME PER FRAME: " .. ((love.timer.getTime()-first_draw)/frames))
 	end
+	
+	sp_update(dt)
+
 end
 
 function love.draw()
-	--love.graphics.draw(image, 200, 200, a)
-	--love.graphics.print("fist", 400, 200)
-
 	if not first_draw then first_draw = love.timer.getTime() end
-
-	for i,v in ipairs(planets) do
-		love.graphics.draw(planet, v.x, v.y, v.a)
-	end
-	
+	sp_draw()
 	frames = frames + 1
 end
 
@@ -237,9 +264,20 @@ function love.keypressed(k)
 			love.audio.play(music)
 		end
 	
-	
+
 		print("( "..love.audio.getNumChannels()..") Master: " .. love.audio.getVolume() .. ", Volume: " ..channel:getVolume()..", Pitch: " .. channel:getPitch())
 	end -- playsound
+
+	
+	if k == love.key_1 or k == love.key_2 or love.key_3 then
+		first_draw = nil
+		frames = 0
+	end
+	
+	if k == love.key_1 then sp_update = sp1_update; sp_draw = sp1_draw; print("Mode: normal") end
+	if k == love.key_2 then sp_update = sp2_update; sp_draw = sp2_draw; print("Mode: test") end
+	if k == love.key_3 then sp_update = sp3_update; sp_draw = sp3_draw; print("Mode: sb") end
+
 end
 
 -----------------------------------------------------------

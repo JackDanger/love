@@ -11,6 +11,7 @@
 // LOVE
 
 #include "../liblove/math.h"
+#include "../liblove/Vector.h"
 #include "../liblove/constants.h"
 #include "../liblove/graphics/Drawable.h"
 

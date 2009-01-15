@@ -32,6 +32,7 @@ namespace love
 		LOVE_COLOR_ID,
 		LOVE_FONT_ID,
 		LOVE_PARTICLE_SYSTEM_ID,
+		LOVE_SPRITE_BATCH_ID,
 
 		// Image
 		LOVE_IMAGE_DATA_ID,
@@ -84,6 +85,7 @@ namespace love
 	static const bits LOVE_COLOR_BITS = (bits(1) << LOVE_COLOR_ID) | LOVE_OBJECT_BITS;
 	static const bits LOVE_FONT_BITS = (bits(1) << LOVE_FONT_ID) | LOVE_OBJECT_BITS;
 	static const bits LOVE_PARTICLE_SYSTEM_BITS = (bits(1) << LOVE_PARTICLE_SYSTEM_ID) | LOVE_DRAWABLE_BITS;
+	static const bits LOVE_SPRITE_BATCH_BITS = (bits(1) << LOVE_SPRITE_BATCH_ID) | LOVE_DRAWABLE_BITS;
 
 	// Image.
 	static const bits LOVE_IMAGE_DATA_BITS = (bits(1) << LOVE_IMAGE_DATA_ID) | LOVE_DATA_BITS;

@@ -28,6 +28,7 @@
 #include "wImage.h"
 //#include "wAnimation.h"
 #include "wParticleSystem.h"
+#include "wSpriteBatch.h"
 
 namespace love
 {
@@ -230,6 +231,15 @@ namespace LOVE_WRAP_NAMESPACE
 		return 1;
 	}
 	*/
+
+	int _wrap_newSpriteBatch(lua_State * L)
+	{
+		Image * image = luax_checktype<Image>(L, 1, "Image", LOVE_WRAP_IMAGE_BITS);
+		int size = luaL_optint(L, 2, 1000);
+		SpriteBatch * t = newSpriteBatch(image, size);
+		luax_newtype(L, "SpriteBatch", LOVE_WRAP_SPRITE_BATCH_BITS, (void*)t);
+		return 1;
+	}
 
 	int _wrap_setColor(lua_State * L)
 	{
@@ -457,6 +467,20 @@ namespace LOVE_WRAP_NAMESPACE
 		return 0;
 	}
 
+	int _wrap_drawTest(lua_State * L)
+	{
+		Image * image = luax_checktype<Image>(L, 1, "Image", LOVE_WRAP_IMAGE_BITS);
+		float x = (float)luaL_optnumber(L, 2, 0.0f);
+		float y = (float)luaL_optnumber(L, 3, 0.0f);
+		float angle = (float)luaL_optnumber(L, 4, 0.0f);
+		float sx = (float)luaL_optnumber(L, 5, 1.0f);
+		float sy = (float)luaL_optnumber(L, 6, sx);
+		float ox = (float)luaL_optnumber(L, 7, 0);
+		float oy = (float)luaL_optnumber(L, 8, 0);
+		drawTest(image, x, y, angle, sx, sy, ox, oy);
+		return 0;
+	}
+
 	int _wrap_print(lua_State * L)
 	{
 		const char * str = luaL_checkstring(L, 1);
@@ -612,6 +636,7 @@ namespace LOVE_WRAP_NAMESPACE
 		{ "newColor", _wrap_newColor },
 		{ "newImage", _wrap_newImage },
 		{ "newFont", _wrap_newFont },
+		{ "newSpriteBatch", _wrap_newSpriteBatch },
 
 		//{ "newAnimation", _wrap_newAnimation },
 
@@ -641,6 +666,7 @@ namespace LOVE_WRAP_NAMESPACE
 		{ "getMaxPointSize", _wrap_getMaxPointSize },
 
 		{ "draw", _wrap_draw },
+		{ "drawTest", _wrap_drawTest },
 
 		{ "print", _wrap_print },
 		{ "printf", _wrap_printf },
@@ -685,6 +711,7 @@ namespace LOVE_WRAP_NAMESPACE
 		luax_register_type(L, "Image", Image_mt);
 		//luax_register_type(L, "Animation", Animation_mt);
 		luax_register_type(L, "ParticleSystem", ParticleSystem_mt);
+		luax_register_type(L, "SpriteBatch", SpriteBatch_mt);
 		return 0;
 	}
 

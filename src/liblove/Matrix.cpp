@@ -1,7 +1,11 @@
 #include "Matrix.h"
 
+// STD
 #include <cstring>
 #include <cmath>
+
+// LOVE
+#include "Vector.h"
 
 namespace love
 {
@@ -96,5 +100,26 @@ namespace love
 		t.setScale(sx, sy);
 		this->operator *=(t);
 	}
+
+	void Matrix::transform(Vector * dst, Vector * src, int size)
+	{
+		for(int i = 0;i<size;i++)
+			dst[i] = src[i] * (*this);
+	}
+
+
+	void Matrix::transform(vertex2v2t * dst, vertex2v2t * src, int size)
+	{
+		for(int i = 0;i<size;i++)
+		{
+			// Store in temp variables in case src = dst
+			float x = e[0][0]*src[i].x+e[0][1]*src[i].y+e[0][2];
+			float y = e[1][0]*src[i].x+e[1][1]*src[i].y+e[1][2];
+
+			dst[i].x = x;
+			dst[i].y = y;
+		}
+	}
+
 
 } // love

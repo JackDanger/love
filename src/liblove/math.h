@@ -42,7 +42,16 @@
 #define LOVE_TORAD(x)	(float)(x*LOVE_M_TORAD)
 #define LOVE_TODEG(x)	(float)(x*LOVE_M_TODEG)
 
-// LOVE
-#include "Vector.h"
+namespace love
+{
+
+struct vertex2v2t
+{
+	float x, y;
+	float s, t;
+};
+
+} // love
+
 
 #endif // LOVE_MATH_H

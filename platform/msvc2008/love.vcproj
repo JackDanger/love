@@ -114,7 +114,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="include;..\..\src;include\SDL"
+				AdditionalIncludeDirectories="include;include\SDL;include\AL"
 				PreprocessorDefinitions="_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
@@ -132,7 +132,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="liblove.lib lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib"
+				AdditionalDependencies="liblove.lib lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib openal32.lib alut.lib SDL_sound.lib"
 				AdditionalLibraryDirectories="lib;Release"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -219,6 +219,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\love_opengl\Font.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\GLee.c"
 				>
 			</File>
 			<File
