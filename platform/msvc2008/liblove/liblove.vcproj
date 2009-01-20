@@ -209,6 +209,10 @@
 				RelativePath="..\..\..\src\liblove\graphics\wSpriteBatch.h"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\src\liblove\graphics\wVertexBuffer.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="image"

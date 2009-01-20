@@ -2,7 +2,7 @@
 * LOVE: Free 2D Game Engine
 * Website: http://love2d.org
 * Licence: ZLIB/libpng
-* Copyright (c) 2006-2008 LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This file contains information about which 
 * LOVE version this is, and a function for checking

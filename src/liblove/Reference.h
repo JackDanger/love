@@ -2,7 +2,7 @@
 * LOVE: Free 2D Game Engine.
 * Website: http://love2d.org
 * Licence: ZLIB/libpng
-* Copyright (c) 2006-2008 LOVE Development
+* Copyright (c) 2006-2009 LOVE Development
 *  
 * This class wraps the reference functionality built into
 * Lua, which allows C++ code to refer to Lua variables.

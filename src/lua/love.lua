@@ -54,8 +54,8 @@ function love.init()
 	love.insmod("openal", "audio")
 	love.insmod("sdlsound", "sound")
 
-	if love.graphics.checkMode(800, 600, true) then
-		love.graphics.setMode(800, 600, true, false)
+	if love.graphics.checkMode(800, 600, false) then
+		love.graphics.setMode(800, 600, false, false)
 	end
 
 	love.run()
@@ -91,192 +91,61 @@ end
 -- Regular code goes here.
 -----------------------------------------------------------
 
-a = 0
-playsound = false
-frames = 0
-
 function love.load()
 
-	--[[
-
-	formats = love.image.getFormats()
-	print(formats)
-	data = love.image.newImageData(128, 128)
-
-	up = function (x, y, r, g, b, a)
-		local g = (x/128)*255
-		return g, g, g, 255
-	end
-
-	data:mapPixel(up)
-	image = love.graphics.newImage(data)
-	--]]
 
 	imageData = love.image.newImageData("planet1.png")
 	planet = love.graphics.newImage(imageData)
 
-	particle = love.graphics.newImage(love.image.newImageData("part1.png"))
-	hare = love.graphics.newImage(love.image.newImageData("zazaka.png"))
+	num = 300
 
-	if playsound then
-		soundData = love.sound.newSoundData("startup.wav")
-		sound = love.audio.newSound(soundData)
-		
-		soundData2 = love.sound.newSoundData("jazz.flac")
-		music = love.audio.newMusic(soundData2)
-		
-		soundData3 = love.sound.newSoundData("paradox1.xm")
-		chip = love.audio.newMusic(soundData3)
-	
-		channel = love.audio.newChannel()
-	
-		love.audio.play(music, channel)
+	vb = love.graphics.newVertexBuffer(num, love.type_points, love.usage_array)
+
+	for i=1,num do
+		vb:add(math.random(0, 800),math.random(0, 600))
 	end
 
-	num_planets = 1000
-	max_frames = 300
+
+	sb = love.graphics.newSpriteBatch(planet, num)
+
 	planets = {}
-	sb = love.graphics.newSpriteBatch(hare, num_planets)
-	for i=1,num_planets do
-		table.insert(planets, {x = math.random(0, 800), y = math.random(0, 600), a = math.random(0, 90), s = math.random(1, 2)})
+
+	for i=1,num do
+		table.insert(planets, { x = math.random(0, 800), y = math.random(0, 600), a = math.pi*200/math.random(1, 100) })
 	end
-	
-	sp_update = sp1_update
-	sp_draw = sp1_draw
-	
-	sb:clear()
-	for i=1,num_planets do
-		sb:add(math.random(0, love.graphics.getWidth()), math.random(0, love.graphics.getHeight()))
-	end
-	
-end
-
-
--- Speed tests:
-
-function sp1_update(dt)
-end
-
-function sp1_draw()
-	for i,v in ipairs(planets) do
-		love.graphics.draw(hare, v.x, v.y)
-	end
-end
-
-function sp2_update(dt)
-end
-
-function sp2_draw()
-	for i,v in ipairs(planets) do
-		love.graphics.drawTest(hare, v.x, v.y)
-	end
-end
-
-function sp3_update(dt)
 
 end
 
-function sp3_draw()
-	love.graphics.draw(sb, 0, 0)
-end
+a = 0
 
 function love.update(dt)
-
-	
-	if first_draw and frames < max_frames then
-		if (frames % 60) == 0 then
-			print("Planets: " .. num_planets .. " FRAMES: " .. frames)
-		end
-	end
-	
-	if frames == max_frames then
-		print("TIME PER FRAME: " .. ((love.timer.getTime()-first_draw)/frames))
-	end
-	
-	sp_update(dt)
-
+	a = a + dt
 end
 
 function love.draw()
-	if not first_draw then first_draw = love.timer.getTime() end
-	sp_draw()
-	frames = frames + 1
+
+	sb:clear()
+	for i,v in ipairs(planets) do
+		sb:add(v.x + math.sin(a) * 100, v.y, v.a + a)
+	end
+
+	--love.graphics.draw(vb, 0, 0)
+	love.graphics.draw(sb, 0, 0)
+
+	love.graphics.setColor(255, 0, 0, 255)
+
+	love.graphics.drawTest(planet, 200, 200, a, 2)
+	love.graphics.draw(planet, 264, 200, a, 2)
+
 end
 
 function love.keypressed(k)
-
-	if playsound then
-
-		if k == love.key_c then
-			love.audio.play(chip)
-		end
-	
-		if k == love.key_s then
-			love.audio.stop(channel)
-		end
-		
-		if k == love.key_q then
-			love.audio.pause(channel)
-		end
-	
-		if k == love.key_p then
-			love.audio.play(sound, channel)
-		end
-		
-		if k == love.key_r then
-			love.audio.rewind(channel)
-		end
-		
-		if k == love.key_up then
-			channel:setPitch(channel:getPitch() + 0.1)
-		end
-		
-		if k == love.key_down then
-			channel:setPitch(channel:getPitch() - 0.1)
-		end
-	
-		if k == love.key_left then
-			channel:setVolume(channel:getVolume() - 0.1)
-		end
-	
-		if k == love.key_right then
-			channel:setVolume(channel:getVolume() + 0.1)
-		end
-		
-		if k == love.key_8 then
-			love.audio.setVolume(love.audio.getVolume() - 0.1)
-		end
-		
-		if k == love.key_9 then
-			love.audio.setVolume(love.audio.getVolume() + 0.1)
-		end
-		
-		if k == love.key_m then
-			if love.audio.getVolume() > 0.1 then
-				stvol = love.audio.getVolume()
-				love.audio.setVolume(0)
-			else
-				love.audio.setVolume(stvol or 1)
-			end
-		end
-		
-		if k == love.key_i then
-			love.audio.play(music)
-		end
 	
 
-		print("( "..love.audio.getNumChannels()..") Master: " .. love.audio.getVolume() .. ", Volume: " ..channel:getVolume()..", Pitch: " .. channel:getPitch())
-	end -- playsound
+	if k == love.key_f then print(love.timer.getFPS()) end
+	if k == love.key_t then if toggle then toggle = true else toggle = nil end end
 
-	
-	if k == love.key_1 or k == love.key_2 or love.key_3 then
-		first_draw = nil
-		frames = 0
-	end
-	
-	if k == love.key_1 then sp_update = sp1_update; sp_draw = sp1_draw; print("Mode: normal") end
-	if k == love.key_2 then sp_update = sp2_update; sp_draw = sp2_draw; print("Mode: test") end
-	if k == love.key_3 then sp_update = sp3_update; sp_draw = sp3_draw; print("Mode: sb") end
+
 
 end
 

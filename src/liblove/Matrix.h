@@ -1,12 +1,12 @@
-/*
+/**
 * LOVE: Free 2D Game Engine.
 * Website: http://love2d.org
 * Licence: ZLIB/libpng
-* Copyright (c) 2006-2008 LOVE Development
+* Copyright (c) 2006-2009 LOVE Development
 * 
 * @author Anders Ruud
 * @date 2009-01-09
-*/
+**/
 
 #ifndef LOVE_MATRIX_H
 #define LOVE_MATRIX_H
@@ -29,23 +29,42 @@ namespace love
 
 	public:
 
-		// The elements of the matrix.
-		// The first dimension is rows.
-		//       j1  j2  j3
-		// i0: [ 0,0 0,1 0,2 ]
-		// i1: [ 1,0 1,1 1,2 ]
-		// i2: [ 2,0 2,1 2,2 ]
-		float e[3][3];
+		// | e0 e4 e8  e12 |
+		// | e1 e5 e9  e13 |
+		// | e2 e6 e10 e14 |
+		// | e3 e7 e11 e15 |
+		float e[16];
 
 		/**
 		* Creates a new identity matrix.
 		**/
 		Matrix();
+
+		/**
+		* Creates a transformation with a certain position, orientation, scale
+		* and offset.
+		* 
+		* @param x The translation along the x-axis.
+		* @param y The translation along the y-axis.
+		* @param angle The rotation (rad) around the center with offset (ox,oy).
+		* @param sx Scale along x-axis.
+		* @param sy Scale along y-axis.
+		* @param ox The offset for rotation along the x-axis.
+		* @param oy The offset for rotation along the y-axis.
+		**/
+		Matrix(float x, float y, float angle, float sx, float sy, float ox, float oy);
+
+		/**
+		* Destructor.
+		**/
 		~Matrix();
 
 		Matrix operator * (const Matrix & m) const;
 		void operator *= (const Matrix & m) const;
 
+		const float * getElements() const;
+
+		void setIdentity();
 		void setTranslation(float x, float y);
 		void setRotation(float rad);
 		void setScale(float sx, float sy);
@@ -53,14 +72,12 @@ namespace love
 		void translate(float x, float y);
 		void rotate(float rad);
 		void scale(float sx, float sy);
-
-		void transform(Vector * dst, Vector * src, int size = 1);
 		
 		/**
 		* Transforms an array of vertices.
 		* @stride Stride in bytes.
 		**/
-		void transform(vertex2v2t * dst, vertex2v2t * src, int size);
+		void transform(vertex * dst, const vertex * src, int size);
 
 	};
 

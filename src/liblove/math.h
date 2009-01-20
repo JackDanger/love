@@ -2,7 +2,7 @@
 * LOVE: Free 2D Game Engine.
 * Website: http://love2d.org
 * Licence: ZLIB/libpng
-* Copyright (c) 2006-2008 LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 */
 
 #ifndef LOVE_MATH_H
@@ -45,8 +45,9 @@
 namespace love
 {
 
-struct vertex2v2t
+struct vertex
 {
+	unsigned char r, g, b, a;
 	float x, y;
 	float s, t;
 };

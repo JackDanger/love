@@ -2,7 +2,7 @@
 * LOVE: Free 2D Game Engine
 * Website: http://love2d.org
 * Licence: ZLIB/libpng
-* Copyright (c) 2006-2008 LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * @author Anders Ruud
 * @date 2008-10-28
@@ -245,6 +245,7 @@ namespace opengl
 		glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
 
 		// Cull backface
+		glFrontFace(GL_CCW);
 		glEnable(GL_CULL_FACE);		// Enable face culling (no need to render surfaces we can't see
 		glCullFace(GL_BACK);		// Do not render back face.
 
@@ -453,9 +454,14 @@ namespace opengl
 	}
 	*/
 
-	SpriteBatch * newSpriteBatch(Image * image, int size)
+	SpriteBatch * newSpriteBatch(Image * image, int size, int usage)
 	{
-		return new SpriteBatch(image, size);
+		return new SpriteBatch(image, size, usage);
+	}
+
+	VertexBuffer * newVertexBuffer(Image * image, int size, int type, int usage)
+	{
+		return new VertexBuffer(image, size, type, usage);
 	}
 
 	void setColor( int r, int g, int b, int a)
@@ -1244,35 +1250,29 @@ namespace opengl
 		glTranslatef(x, y, 1);
 	}
 
-	static Vector test_verts[4];
-
 	void drawTest(Image * image, float x, float y, float a, float sx, float sy, float ox, float oy)
 	{
 		image->bind();
 
-		// Half-sizes.
-		float w2 = image->getWidth()/2.0f;
-		float h2 = image->getHeight()/2.0f;
-
-		test_verts[0] = Vector(-w2, -h2);
-		test_verts[1] = Vector(-w2, h2);
-		test_verts[2] = Vector(w2, h2);
-		test_verts[3] = Vector(w2, -h2);
+		// Buffer for transforming the image.
+		vertex buf[4];
 
 		Matrix t;
 		t.translate(x, y);
-		t.scale(sx, sy);
 		t.rotate(a);
-		t.transform(test_verts, test_verts, 4);
+		t.scale(sx, sy);
+		t.translate(ox, oy);
+		t.transform(buf, image->getVertices(), 4);
 
-		glPushMatrix();
-		glBegin(GL_QUADS);
-		glVertex2f(test_verts[0].x, test_verts[0].y); glTexCoord2f(0, 0);
-		glVertex2f(test_verts[1].x, test_verts[1].y); glTexCoord2f(0, 1);
-		glVertex2f(test_verts[2].x, test_verts[2].y); glTexCoord2f(1, 1);
-		glVertex2f(test_verts[3].x, test_verts[3].y); glTexCoord2f(1, 0);
-		glEnd();
-		glPopMatrix();
+		const vertex * vertices = image->getVertices();
+
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		glVertexPointer(2, GL_FLOAT, sizeof(vertex), (GLvoid*)&buf[0].x);
+		glTexCoordPointer(2, GL_FLOAT, sizeof(vertex), (GLvoid*)&vertices[0].s);
+		glDrawArrays(GL_QUADS, 0, 4);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		glDisableClientState(GL_VERTEX_ARRAY);
 	}
 
 } // opengl

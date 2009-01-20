@@ -289,6 +289,14 @@
 				RelativePath="..\..\src\love_opengl\TrueTypeFont.h"
 				>
 			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\VertexBuffer.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\love_opengl\VertexBuffer.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="physfs"

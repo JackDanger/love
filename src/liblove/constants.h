@@ -2,7 +2,7 @@
 * LOVE: Free 2D Game Engine.
 * Website: http://love2d.org
 * Licence: ZLIB/libpng
-* Copyright (c) 2006-2008 LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 */
 
 #ifndef LOVE_CONSTANTS_H
@@ -10,6 +10,30 @@
 
 namespace love
 {
+
+	// Primitive types.
+	// Note: unlike most of LOVE, this is modeled after the enum
+	// D3DPRIMITIVETYPE in the DirectX SDK. Quads are NOT supported.
+	enum
+	{
+		TYPE_POINTS,
+		TYPE_LINES,
+		TYPE_LINE_STRIP,
+		TYPE_TRIANGLES,
+		TYPE_TRIANGLE_STRIP,
+		TYPE_TRIANGLE_FAN,
+		TYPE_NUM
+	};
+
+	// Vertex Buffer directives.
+	enum 
+	{
+		USAGE_ARRAY, 
+		USAGE_DYNAMIC,
+		USAGE_STATIC,
+		USAGE_STREAM,
+		USAGE_NUM
+	};
 
 	// Events. Not all of these needs
 	// exposing.
@@ -614,11 +638,11 @@ namespace love
 		{ "key_euro", 321 },
 		{ "key_undo", 322 },
 
-		{ "mouse_left", love::MOUSE_LEFT },
-		{ "mouse_middle", love::MOUSE_MIDDLE },
-		{ "mouse_right", love::MOUSE_RIGHT },
-		{ "mouse_wheelup", love::MOUSE_WHEELUP },
-		{ "mouse_wheeldown", love::MOUSE_WHEELDOWN },
+		{ "mouse_left", MOUSE_LEFT },
+		{ "mouse_middle", MOUSE_MIDDLE },
+		{ "mouse_right", MOUSE_RIGHT },
+		{ "mouse_wheelup", MOUSE_WHEELUP },
+		{ "mouse_wheeldown", MOUSE_WHEELDOWN },
 
 		{ "align_left", 0 },
 		{ "align_right", 1 },
@@ -642,10 +666,10 @@ namespace love
 		{ "draw_line", 1 },
 		{ "draw_fill", 2 },
 
-		{ "line_smooth", love::LINE_SMOOTH },
-		{ "line_rough", love::LINE_ROUGH },
-		{ "point_smooth", love::POINT_SMOOTH },
-		{ "point_rough", love::POINT_ROUGH },
+		{ "line_smooth", LINE_SMOOTH },
+		{ "line_rough", LINE_ROUGH },
+		{ "point_smooth", POINT_SMOOTH },
+		{ "point_rough", POINT_ROUGH },
 
 		{ "tag_error", 0 },
 		{ "tag_warning", 1 },
@@ -678,34 +702,48 @@ namespace love
 		{ "image_pad", 2 },
 		{ "image_pad_and_optimize", 3 },
 
-		{ "shape_circle", love::SHAPE_CIRCLE },
-		{ "shape_polygon", love::SHAPE_POLYGON },
-		{ "joint_distance", love::JOINT_DISTANCE },
-		{ "joint_revolute", love::JOINT_REVOLUTE },
-		{ "joint_prismatic", love::JOINT_PRISMATIC },
-		{ "joint_mouse", love::JOINT_MOUSE },	
-		{ "joint_pulley", love::JOINT_PULLEY },	
-		{ "joint_gear", love::JOINT_GEAR },
+		{ "shape_circle", SHAPE_CIRCLE },
+		{ "shape_polygon", SHAPE_POLYGON },
+		{ "joint_distance", JOINT_DISTANCE },
+		{ "joint_revolute", JOINT_REVOLUTE },
+		{ "joint_prismatic", JOINT_PRISMATIC },
+		{ "joint_mouse", JOINT_MOUSE },	
+		{ "joint_pulley", JOINT_PULLEY },	
+		{ "joint_gear", JOINT_GEAR },
 
-		{ "joystick_axis_horizontal", love::JOYSTICK_AXIS_HORIZONTAL },
-		{ "joystick_axis_vertical", love::JOYSTICK_AXIS_VERITCAL },
-		{ "joystick_hat_centered", love::JOYSTICK_HAT_CENTERED },
-		{ "joystick_hat_up", love::JOYSTICK_HAT_UP },
-		{ "joystick_hat_right", love::JOYSTICK_HAT_RIGHT },
-		{ "joystick_hat_down", love::JOYSTICK_HAT_DOWN },
-		{ "joystick_hat_left", love::JOYSTICK_HAT_LEFT },
-		{ "joystick_hat_rightup", love::JOYSTICK_HAT_RIGHTUP },
-		{ "joystick_hat_rightdown", love::JOYSTICK_HAT_RIGHTDOWN },
-		{ "joystick_hat_leftup", love::JOYSTICK_HAT_LEFTUP },
-		{ "joystick_hat_leftdown", love::JOYSTICK_HAT_LEFTDOWN },
+		{ "joystick_axis_horizontal", JOYSTICK_AXIS_HORIZONTAL },
+		{ "joystick_axis_vertical", JOYSTICK_AXIS_VERITCAL },
+		{ "joystick_hat_centered", JOYSTICK_HAT_CENTERED },
+		{ "joystick_hat_up", JOYSTICK_HAT_UP },
+		{ "joystick_hat_right", JOYSTICK_HAT_RIGHT },
+		{ "joystick_hat_down", JOYSTICK_HAT_DOWN },
+		{ "joystick_hat_left", JOYSTICK_HAT_LEFT },
+		{ "joystick_hat_rightup", JOYSTICK_HAT_RIGHTUP },
+		{ "joystick_hat_rightdown", JOYSTICK_HAT_RIGHTDOWN },
+		{ "joystick_hat_leftup", JOYSTICK_HAT_LEFTUP },
+		{ "joystick_hat_leftdown", JOYSTICK_HAT_LEFTDOWN },
 
-		{ "event_keypressed", love::EVENT_KEYDOWN },
-		{ "event_keyreleased", love::EVENT_KEYUP },
-		{ "event_mousepressed", love::EVENT_MOUSEBUTTONDOWN },
-		{ "event_mousereleased", love::EVENT_MOUSEBUTTONUP },
-		{ "event_joystickpressed", love::EVENT_JOYBUTTONDOWN },
-		{ "event_joystickreleased", love::EVENT_JOYBUTTONUP },
-		{ "event_quit", love::EVENT_QUIT },
+		{ "event_keypressed", EVENT_KEYDOWN },
+		{ "event_keyreleased", EVENT_KEYUP },
+		{ "event_mousepressed", EVENT_MOUSEBUTTONDOWN },
+		{ "event_mousereleased", EVENT_MOUSEBUTTONUP },
+		{ "event_joystickpressed", EVENT_JOYBUTTONDOWN },
+		{ "event_joystickreleased", EVENT_JOYBUTTONUP },
+		{ "event_quit", EVENT_QUIT },
+
+		{ "type_points", TYPE_POINTS },
+		{ "type_lines", TYPE_LINES },
+		{ "type_line_strip", TYPE_LINE_STRIP },
+		{ "type_triangles", TYPE_TRIANGLES },
+		{ "type_triangle_strip", TYPE_TRIANGLE_STRIP },
+		{ "type_triangle_fan", TYPE_TRIANGLE_FAN },
+		{ "type_num", TYPE_NUM },
+
+		{ "usage_array", USAGE_ARRAY },
+		{ "usage_dynamic", USAGE_DYNAMIC },
+		{ "usage_static", USAGE_STATIC },
+		{ "usage_stream", USAGE_STREAM },
+		{ "usage_num", USAGE_NUM },
 
 		{0, 0}, // Indicates the end
 

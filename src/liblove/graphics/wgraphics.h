@@ -2,7 +2,7 @@
 * LOVE: Free 2D Game Engine
 * Website: http://love2d.org
 * Licence: ZLIB/libpng
-* Copyright (c) 2006-2008 LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * @author Anders Ruud
 * @date 2008-10-28
@@ -29,6 +29,7 @@
 //#include "wAnimation.h"
 #include "wParticleSystem.h"
 #include "wSpriteBatch.h"
+#include "wVertexBuffer.h"
 
 namespace love
 {
@@ -236,8 +237,36 @@ namespace LOVE_WRAP_NAMESPACE
 	{
 		Image * image = luax_checktype<Image>(L, 1, "Image", LOVE_WRAP_IMAGE_BITS);
 		int size = luaL_optint(L, 2, 1000);
-		SpriteBatch * t = newSpriteBatch(image, size);
+		int usage = luaL_optint(L, 3, USAGE_ARRAY);
+		SpriteBatch * t = newSpriteBatch(image, size, usage);
 		luax_newtype(L, "SpriteBatch", LOVE_WRAP_SPRITE_BATCH_BITS, (void*)t);
+		return 1;
+	}
+
+	int _wrap_newVertexBuffer(lua_State * L)
+	{
+
+		Image * image;
+		int type, usage, size;
+
+		if(luax_istype(L, 1, LOVE_WRAP_IMAGE_BITS))
+		{
+			image = luax_checktype<Image>(L, 1, "Image", LOVE_WRAP_IMAGE_BITS);
+			size = luaL_optint(L, 2, 100);
+			type = luaL_optint(L, 3, TYPE_TRIANGLES);
+			usage = luaL_optint(L, 4, USAGE_ARRAY);
+		}
+		else if(lua_isnumber(L, 1))
+		{
+			image = 0;
+			size = luaL_optint(L, 1, 100);
+			type = luaL_optint(L, 2, TYPE_TRIANGLES);
+			usage = luaL_optint(L, 3, USAGE_ARRAY);
+		}
+		else return luaL_error(L, "Expected type image or number");
+
+		VertexBuffer * t = newVertexBuffer(image, size, type, usage);
+		luax_newtype(L, "VertexBuffer", LOVE_WRAP_VERTEX_BUFFER_BITS, (void*)t);
 		return 1;
 	}
 
@@ -251,9 +280,9 @@ namespace LOVE_WRAP_NAMESPACE
 		}
 
 		int r = luaL_checkint(L, 1);
-		int g = luaL_checkint(L, 1);
-		int b = luaL_checkint(L, 1);
-		int a = luaL_optint(L, 1, 255);
+		int g = luaL_checkint(L, 2);
+		int b = luaL_checkint(L, 3);
+		int a = luaL_optint(L, 4, 255);
 
 		setColor(r, g, b, a);
 
@@ -637,6 +666,7 @@ namespace LOVE_WRAP_NAMESPACE
 		{ "newImage", _wrap_newImage },
 		{ "newFont", _wrap_newFont },
 		{ "newSpriteBatch", _wrap_newSpriteBatch },
+		{ "newVertexBuffer", _wrap_newVertexBuffer },
 
 		//{ "newAnimation", _wrap_newAnimation },
 
@@ -712,6 +742,7 @@ namespace LOVE_WRAP_NAMESPACE
 		//luax_register_type(L, "Animation", Animation_mt);
 		luax_register_type(L, "ParticleSystem", ParticleSystem_mt);
 		luax_register_type(L, "SpriteBatch", SpriteBatch_mt);
+		luax_register_type(L, "VertexBuffer", VertexBuffer_mt);
 		return 0;
 	}
 

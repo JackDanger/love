@@ -2,7 +2,7 @@
 * LOVE: Free 2D Game Engine
 * Website: http://love2d.org
 * Licence: ZLIB/libpng
-* Copyright (c) 2006-2008 LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * @author Anders Ruud
 * @date 2008-10-28
@@ -24,6 +24,7 @@
 #include "TrueTypeFont.h"
 #include "ParticleSystem.h"
 #include "SpriteBatch.h"
+#include "VertexBuffer.h"
 
 namespace love
 {
@@ -177,7 +178,8 @@ namespace opengl
 	**/
 	//pParticleSystem newParticleSystem(Image * image, unsigned int size, int mode);
 
-	SpriteBatch * newSpriteBatch(Image * image, int size);
+	SpriteBatch * newSpriteBatch(Image * image, int size, int usage);
+	VertexBuffer * newVertexBuffer(Image * image, int size, int type, int usage);
 		
 	/**
 	* Sets the foreground color.

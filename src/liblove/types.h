@@ -2,7 +2,7 @@
 * LOVE: Free 2D Game Engine.
 * Website: http://love2d.org
 * Licence: ZLIB/libpng
-* Copyright (c) 2006-2008 LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * @author Anders Ruud
 * @date 2008-10-30
@@ -33,6 +33,7 @@ namespace love
 		LOVE_FONT_ID,
 		LOVE_PARTICLE_SYSTEM_ID,
 		LOVE_SPRITE_BATCH_ID,
+		LOVE_VERTEX_BUFFER_ID,
 
 		// Image
 		LOVE_IMAGE_DATA_ID,
@@ -86,6 +87,7 @@ namespace love
 	static const bits LOVE_FONT_BITS = (bits(1) << LOVE_FONT_ID) | LOVE_OBJECT_BITS;
 	static const bits LOVE_PARTICLE_SYSTEM_BITS = (bits(1) << LOVE_PARTICLE_SYSTEM_ID) | LOVE_DRAWABLE_BITS;
 	static const bits LOVE_SPRITE_BATCH_BITS = (bits(1) << LOVE_SPRITE_BATCH_ID) | LOVE_DRAWABLE_BITS;
+	static const bits LOVE_VERTEX_BUFFER_BITS = (bits(1) << LOVE_VERTEX_BUFFER_ID) | LOVE_DRAWABLE_BITS;
 
 	// Image.
 	static const bits LOVE_IMAGE_DATA_BITS = (bits(1) << LOVE_IMAGE_DATA_ID) | LOVE_DATA_BITS;

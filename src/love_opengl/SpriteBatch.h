@@ -2,7 +2,7 @@
 * LOVE: Free 2D Game Engine
 * Website: http://love2d.org
 * Licence: ZLIB/libpng
-* Copyright (c) 2006-2008 LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * @author Anders Ruud
 * @date 2009-01-14
@@ -18,18 +18,13 @@
 #include "../liblove/Vector.h"
 #include "../liblove/Matrix.h"
 
-// Module.
-#include "Image.h"
-
-// OpenGL
-#include "GLee.h"
-#include <SDL/SDL_opengl.h>
-
 namespace love
 {
 namespace opengl
 {
-	typedef vertex2v2t SpriteBatchElement[4];
+	// Forward declarations.
+	class VertexBuffer;
+	class Image;
 
 	class SpriteBatch : public Drawable
 	{
@@ -38,20 +33,16 @@ namespace opengl
 		// Max number of sprites in the batch.
 		int size;
 
-		Image * image;
-
-		// Contains the sprites to be drawn.
-		SpriteBatchElement * sprites;
-
 		// The next free element.
 		int next;
 
-		GLuint vbo_buf;
+		// Vertex Buffer.
+		VertexBuffer * buffer;
 
 	public:
 
-		SpriteBatch(Image * image, int size = 1000);
-		~SpriteBatch();
+		SpriteBatch(Image * image, int size, int usage);
+		virtual ~SpriteBatch();
 
 		void add(float x, float y, float a, float sx, float sy, float ox, float oy);
 		void clear();

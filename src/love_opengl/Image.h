@@ -2,7 +2,7 @@
 * LOVE: Free 2D Game Engine
 * Website: http://love2d.org
 * Licence: ZLIB/libpng
-* Copyright (c) 2006-2008 LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * @author Anders Ruud
 * @date 2007-08-19
@@ -15,6 +15,7 @@
 #include "../liblove/config.h"
 #include "../liblove/image/ImageData.h"
 #include "../liblove/graphics/Drawable.h"
+#include "../liblove/math.h"
 
 // Module
 #include "../liblove/graphics/Volatile.h"
@@ -38,6 +39,9 @@ namespace opengl
 		// OpenGL texture identifier.
 		unsigned int texture;
 
+		// Vertices of the image.
+		vertex vertices[4];
+
 	public:
 	
 		/**
@@ -51,6 +55,22 @@ namespace opengl
 
 		float getWidth() const;
 		float getHeight() const;
+
+		const vertex * getVertices() const;
+
+		/**
+		* Generate vertices according to a subimage.
+		* 
+		* Note: out-of-range values will be clamped. 
+		* Note: the vertex colors will not be changed.
+		* 
+		* @param x The top-left corner of the subimage along the x-axis.
+		* @param y The top-left corner of the subimage along the y-axis.
+		* @param w The width of the subimage.
+		* @param h The height of the subimage.
+		* @param vertices A vertex array of size four.
+		**/
+		void getRectangleVertices(int x, int y, int w, int h, vertex * vertices);
 
 		// Implements Drawable.
 		void draw(float x, float y, float angle, float sx, float sy, float ox, float oy) const;
