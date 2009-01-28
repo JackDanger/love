@@ -182,35 +182,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\liblove\graphics\wColor.h"
+				RelativePath="..\..\..\src\liblove\graphics\wrap_Drawable.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\liblove\graphics\wDrawable.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\liblove\graphics\wFont.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\liblove\graphics\wgraphics.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\liblove\graphics\wImage.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\liblove\graphics\wParticleSystem.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\liblove\graphics\wSpriteBatch.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\liblove\graphics\wVertexBuffer.h"
+				RelativePath="..\..\..\src\liblove\graphics\wrap_Drawable.h"
 				>
 			</File>
 		</Filter>
@@ -444,6 +420,14 @@
 		</File>
 		<File
 			RelativePath="..\..\..\src\liblove\version.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\src\liblove\wrap.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\src\liblove\wrap.h"
 			>
 		</File>
 	</Files>

@@ -5,7 +5,7 @@
 * Copyright (c) 2006-2009 LOVE Development Team
 * 
 * @author Anders Ruud
-* @date 2008-10-28
+* @date 2009-01-27
 **/
 
 // STD
@@ -14,22 +14,24 @@
 #include <SDL.h>
 
 // LOVE
-#include "liblove/version.h"
-#include "liblove/config.h"
-#include "liblove/luax.h"
-#include "liblove/constants.h"
+#include "config.h"
+#include "luax.h"
+#include "constants.h"
 
 // Modules
-#include "love_sdltimer/love_sdltimer.h"
-#include "love_opengl/love_opengl.h"
-#include "love_physfs/love_physfs.h"
-#include "love_sdlsystem/love_sdlsystem.h"
-#include "love_sdlmouse/love_sdlmouse.h"
-#include "love_sdlkeyboard/love_sdlkeyboard.h"
-#include "love_box2d/love_box2d.h"
-#include "love_devil/love_devil.h"
-#include "love_openal/love_openal.h"
-#include "love_sdlsound/love_sdlsound.h"
+#include "timer/sdltimer/Timer.h"
+#include "system/sdlsystem/System.h"
+#include "graphics/opengl/Graphics.h"
+#include "mouse/sdlmouse/Mouse.h"
+#include "keyboard/sdlkeyboard/Keyboard.h"
+#include "image/devil/Image.h"
+#include "sound/sdlsound/Sound.h"
+#include "audio/openal/Audio.h"
+#include "physics/box2d/Physics.h"
+#include "joystick/sdljoystick/Joystick.h"
+
+#include "luasocket/luasocket.h"
+
 
 int luaopen_love(lua_State * L)
 {
@@ -72,17 +74,18 @@ int luaopen_love(lua_State * L)
 	//  
 
 	// Advertise here.
+	love::timer::sdltimer::Timer::__advertise(L);
+	love::system::sdlsystem::System::__advertise(L);
+	love::keyboard::sdlkeyboard::Keyboard::__advertise(L);
+	love::mouse::sdlmouse::Mouse::__advertise(L);
+	love::graphics::opengl::Graphics::__advertise(L);
+	love::image::devil::Image::__advertise(L);
+	love::sound::sdlsound::Sound::__advertise(L);
+	love::audio::openal::Audio::__advertise(L);
+	love::physics::box2d::Physics::__advertise(L);
+	love::joystick::sdljoystick::Joystick::__advertise(L);
 
-	love::sdlsystem::luainfo(L);
-	love::opengl::luainfo(L);
-	love::sdltimer::luainfo(L);
-	love::physfs::luainfo(L);
-	love::sdlmouse::luainfo(L);
-	love::sdlkeyboard::luainfo(L);
-	love::box2d::luainfo(L);
-	love::devil::luainfo(L);
-	love::openal::luainfo(L);
-	love::sdlsound::luainfo(L);
+	love::luasocket::__open(L);
 
 	return 0;
 }
@@ -125,11 +128,11 @@ int main(int argc, char ** argv)
 	// which gets everything started.
 
 	// TODO: This is obviously test code.
-	luaL_dofile(L, "../../src/lua/love.lua");
+	luaL_dofile(L, "../../src/lua/love2.lua");
 	lua_close(L);
 	printf("(press key)\n");
 	getchar();
-	printf("Done. This was: %s (%s)\n", LOVE_VERSION_STR, LOVE_VERSION_CODENAME);
+	printf("Done. This was: %s (%s)\n", LOVE_VERSION_STR.c_str(), LOVE_VERSION_CODENAME.c_str());
 	return 0;
 }
 

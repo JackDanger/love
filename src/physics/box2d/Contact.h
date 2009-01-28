@@ -1,0 +1,97 @@
+/*
+* LOVE: Free 2D Game Engine.
+* Website: http://love2d.org
+* Licence: ZLIB/libpng
+* Copyright (c) 2006-2009 LOVE Development Team
+* 
+* @author Anders Ruud
+* @date 2008-08-10
+*/
+#ifndef LOVE_PHYSICS_BOX2D_CONTACT_H
+#define LOVE_PHYSICS_BOX2D_CONTACT_H
+
+// LOVE
+#include "../../Object.h"
+#include "../../luax.h"
+
+// Box2D
+#include "Include/Box2D.h"
+
+namespace love
+{
+namespace physics
+{
+namespace box2d
+{
+	/**
+	* A Contact represents a collision point between
+	* two shapes.
+	**/
+	class Contact : public Object
+	{
+		// Friends.
+		friend class World;
+
+	private:
+
+		// The Box2D contact point.
+		b2ContactPoint point;
+
+	public:
+
+		/**
+		* Creates a new Contact by copying a Box2D contact
+		* point. It does not store the pointer, but copy the
+		* data pointed to.
+		* @param point Pointer to the Box2D contact.
+		**/
+		Contact(const b2ContactPoint * point);
+
+		~Contact();
+
+		/**
+		* Gets the position of the Contact.
+		* @return The position along the x-axis.
+		* @return The position along the y-axis.
+		**/
+		int getPosition(lua_State * L);
+
+		/**
+		* Gets the linear impact velocity.
+		* @return The velocity along the x-axis.
+		* @return The velocity along the y-axis.
+		**/
+		int getVelocity(lua_State * L);
+
+		/**
+		* Gets the collision normal.
+		* @return The x-component of the normal.
+		* @return The y-component of the normal.
+		**/
+		int getNormal(lua_State * L);
+
+		/**
+		* How far apart the shapes are. If they are intersecting
+		* this value is negative.
+		**/
+		float getSeparation() const;
+
+		/**
+		* The mixed friction between the two shapes at
+		* the point of impact.
+		**/
+		float getFriction() const;
+
+		/**
+		* The mixed restitution of the two shapes
+		* at the point of impact.
+		**/
+		float getRestitution() const;
+
+	};
+
+} // box2d
+} // physics
+} // love
+
+#endif // LOVE_PHYSICS_BOX2D_CONTACT_H

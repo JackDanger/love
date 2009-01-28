@@ -41,11 +41,11 @@ function love.init()
 			print(i,v)
 		end
 	end
-	
+
 	love.insmod("physfs", "filesystem")
 	
 	love.filesystem.setIdentity("love");
-	love.filesystem.setSource("D:\\projects\\love\\src\\lua")
+	love.filesystem.setSource("H:\\rude\\love\\src\\lua")
 
 	love.insmod("sdltimer", "timer")
 	love.insmod("devil", "image")
@@ -80,7 +80,7 @@ function love.run()
 			love.handlers[e](a,b,c)
 		end
 
-		love.timer.sleep(10)
+		--love.timer.sleep(10)
 		love.graphics.present()
 
 	end
@@ -97,14 +97,13 @@ function love.load()
 	imageData = love.image.newImageData("planet1.png")
 	planet = love.graphics.newImage(imageData)
 
-	num = 300
+	num = 10000
 
-	vb = love.graphics.newVertexBuffer(num, love.type_points, love.usage_array)
+	vb = love.graphics.newVertexBuffer(num, love.type_points)
 
 	for i=1,num do
 		vb:add(math.random(0, 800),math.random(0, 600))
 	end
-
 
 	sb = love.graphics.newSpriteBatch(planet, num)
 
@@ -120,22 +119,27 @@ a = 0
 
 function love.update(dt)
 	a = a + dt
+	love.system.setTitle(love.timer.getFPS())
 end
 
 function love.draw()
 
-	sb:clear()
-	for i,v in ipairs(planets) do
-		sb:add(v.x + math.sin(a) * 100, v.y, v.a + a)
+	--love.graphics.draw(vb, 0, 0)
+
+	if not toggle then
+		sb:clear()
+		for i,v in ipairs(planets) do
+			sb:add(v.x, v.y, v.a + a)
+		end
+		love.graphics.draw(sb, 0, 0)
+	else
+		for i,v in ipairs(planets) do
+			love.graphics.draw(planet, v.x, v.y, v.a + a)
+		end
 	end
 
-	--love.graphics.draw(vb, 0, 0)
-	love.graphics.draw(sb, 0, 0)
-
-	love.graphics.setColor(255, 0, 0, 255)
-
-	love.graphics.drawTest(planet, 200, 200, a, 2)
-	love.graphics.draw(planet, 264, 200, a, 2)
+	--love.graphics.drawTest(planet, 200, 200, a, 2)
+	--love.graphics.draw(planet, 264, 200, a, 2)
 
 end
 
@@ -143,7 +147,7 @@ function love.keypressed(k)
 	
 
 	if k == love.key_f then print(love.timer.getFPS()) end
-	if k == love.key_t then if toggle then toggle = true else toggle = nil end end
+	if k == love.key_t then if toggle then toggle = nil else toggle = true end end
 
 
 
