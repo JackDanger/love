@@ -2830,8 +2830,8 @@
         the given gravity, and sleeping turned on or off.
         <param name="lx" brief="X-component of lower left corner of the World area." />
         <param name="ly" brief="Y-component of lower left corner of the World area." />
-        <param name="ux" brief="X-component of upper left corner of the World area." />
-        <param name="uy" brief="Y-component of upper left corner of the World area." />
+        <param name="ux" brief="X-component of upper right corner of the World area." />
+        <param name="uy" brief="Y-component of upper right corner of the World area." />
         <param name="gx" brief="X-component of the gravity." />
         <param name="gy" brief="Y-component of the gravity." />
         <param name="sleep" brief="True to allow sleep, false otherwise." />
