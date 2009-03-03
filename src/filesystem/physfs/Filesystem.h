@@ -259,8 +259,6 @@ namespace physfs
 		// DO NOT EXPOSE.
 		static int loader(lua_State * L);
 
-		// TODO: Add require, include
-
 	}; // Filesystem
 
 } // physfs

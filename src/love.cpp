@@ -44,6 +44,7 @@
 #include "audio/openal/Audio.h"
 #include "physics/box2d/Physics.h"
 #include "joystick/sdljoystick/Joystick.h"
+#include "filesystem/physfs/Filesystem.h"
 
 #include "luasocket/luasocket.h"
 
@@ -89,6 +90,7 @@ int luaopen_love(lua_State * L)
 	//  
 
 	// Advertise here.
+	love::filesystem::physfs::Filesystem::__advertise(L);
 	love::timer::sdltimer::Timer::__advertise(L);
 	love::system::sdlsystem::System::__advertise(L);
 	love::keyboard::sdlkeyboard::Keyboard::__advertise(L);

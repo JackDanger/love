@@ -9,7 +9,7 @@ function keypressed(key)
 end
 
 -- Keyreleased: Called whenever a key was released.
-function mousereleased(key)
+function keyreleased(key)
 	-- I don't want to register spaces.
 	if key ~= love.key_space then
 		lastkey = key .. " released"

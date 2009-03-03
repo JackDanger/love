@@ -70,7 +70,7 @@ namespace devil
 		{ 0, 0 }
 	};
 
-	int luareg(lua_State * L)
+	int wrap_Image_open(lua_State * L)
 	{
 		luax_register_module(L, "image", wrap_Image_functions);
 		wrap_ImageData_open(L);

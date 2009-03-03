@@ -29,7 +29,7 @@
 #include <IL/il.h>
 
 // LOVE
-#include "wrap_ImageData.h"
+#include "wrap_Image.h"
 
 namespace love
 {
@@ -64,7 +64,7 @@ namespace devil
 	int Image::__open(lua_State * L)
 	{
 		ilInit();
-		wrap_ImageData_open(L);
+		wrap_Image_open(L);
 		luax_register_gc(L, "devil", &__garbagecollect);
 		return 0;
 	}

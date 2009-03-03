@@ -70,6 +70,16 @@ namespace physfs
 
 		wrap_Filesystem_open(L);
 		luax_register_gc(L, "physfs", &__garbagecollect);
+
+		// Add the package loader to the package.loaders table.
+		lua_getglobal(L, "package");
+		lua_getfield(L, -1, "loaders");
+		int len = lua_objlen(L, -1);
+		lua_pushinteger(L, len+1);
+		lua_pushcfunction(L, Filesystem::loader);
+		lua_settable(L, -3);
+		lua_pop(L, 2);
+
 		return 0;
 	}
 

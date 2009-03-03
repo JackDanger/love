@@ -176,13 +176,13 @@ namespace love
 	{
 		lua_getglobal(L, "love");
 		if(lua_isnil(L, -1)) return luaL_error(L, "Could not find global love!");
-		lua_getfield(L, -1, "filesystem");
+		lua_getfield(L, -1, mod);
 		if(lua_isnil(L, -1)) return luaL_error(L, "Could not find love.%s!", mod);
-		lua_getfield(L, -1, "newFile");
+		lua_getfield(L, -1, fn);
 		if(lua_isnil(L, -1)) return luaL_error(L, "Could not find love.%s.%s!", mod, fn);
 		
-		lua_remove(L, -2); // remove filesystem
-		lua_remove(L, -2); // remove love
+		lua_remove(L, -2); // remove mod
+		lua_remove(L, -2); // remove fn
 		return 0;
 	}
 

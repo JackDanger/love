@@ -2,11 +2,71 @@
 -- Make sure love table exists.
 if not love then love = {} end
 
+-- Used for setup:
+love.path = {}
+
 function love.insmod(name, provides)
 	if love.__mod[provides] and love.__mod[provides][name] then
 		love.__mod[provides][name].open()
 		print("Opened " .. provides .. " module " .. name .. ".")
 	end
+end
+
+-- Replace any \ with /.
+function love.path.normalslashes(p)
+	return string.gsub(p, "\\", "/")
+end
+
+-- Makes sure there is a slash at the end
+-- of a path.
+function love.path.endslash(p)
+	if string.sub(p, string.len(p)-1) ~= "/" then
+		return p .. "/"
+	else
+		return p
+	end
+end
+
+-- Checks whether a path is absolute or not.
+function love.path.abs(p)
+
+	local tmp = love.path.normalslashes(p)
+
+	-- Path is absolute if it starts with a "/".
+	if string.find(tmp, "/") == 1 then
+		return true
+	end
+
+	-- Path is absolute if it starts with a 
+	-- letter followed by a colon.
+	if string.find(tmp, "%a:") == 1 then
+		return true
+	end
+	
+	-- Relative.
+	return false
+
+end
+
+-- Converts any path into a full path.
+function love.path.getfull(p)
+
+	if love.path.abs(p) then
+		return love.path.normalslashes(p)
+	end
+
+	local cwd = love.filesystem.getWorkingDirectory()
+	cwd = love.path.normalslashes(cwd)
+	cwd = love.path.endslash(cwd)
+	
+	-- Construct a full path.
+	return cwd .. love.path.normalslashes(p)
+
+end
+
+-- Returns the leaf of a full path.
+function love.path.leaf(p)
+
 end
 
 -- Standard callback handlers.
@@ -41,7 +101,7 @@ function love.init()
 			print(i,v)
 		end
 	end
-	
+
 	love.insmod("physfs", "filesystem")
 	love.insmod("opengl", "graphics")
 	love.insmod("devil", "image")
@@ -54,14 +114,23 @@ function love.init()
 	love.insmod("openal", "audio")
 	love.insmod("box2d", "physics")
 
-	if love.graphics.checkMode(800, 600, false) then
-		love.graphics.setMode(800, 600, false, false)
+	if love.__args[1] and love.__args[1] ~= "" then
+		love.filesystem.setSource(love.path.getfull(love.__args[1]))
+		require("main.lua")
 	end
 
 	love.run()
 end
 
 function love.run()
+
+	-- CONFIG BEGINS
+
+	if love.graphics.checkMode(800, 600, false) then
+		love.graphics.setMode(800, 600, false, false)
+	end
+
+	-- CONFIG ENDS
 
 	if love.load then love.load() end
 
@@ -78,7 +147,7 @@ function love.run()
 			love.handlers[e](a,b,c)
 		end
 
-		--love.timer.sleep(10)
+		love.timer.sleep(10)
 		love.graphics.present()
 
 	end
@@ -86,7 +155,27 @@ function love.run()
 end
 
 -----------------------------------------------------------
--- Regular code ends.
+-- Default screen.
+-----------------------------------------------------------
+
+function love.defaultscreen()
+
+	-- Main loop goes here.
+
+end
+
+-----------------------------------------------------------
+-- Error screen.
+-----------------------------------------------------------
+
+function love.errorscreen()
+	
+	-- Main loop goes here.
+
+end
+
+-----------------------------------------------------------
+-- The root of all calls.
 -----------------------------------------------------------
 
 local result = xpcall(love.init,
