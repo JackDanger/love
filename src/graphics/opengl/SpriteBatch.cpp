@@ -65,6 +65,8 @@ namespace opengl
 			float w2 = buffer->image->getWidth()/2.0f;
 			float h2 = buffer->image->getHeight()/2.0f;
 
+			// MASSIVE TODO: just copy vertices from image.
+
 			v[0].x = -w2; v[0].y = -h2;
 			v[1].x = -w2; v[1].y = h2;
 			v[2].x = w2; v[2].y = h2;

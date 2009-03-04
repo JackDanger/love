@@ -48,16 +48,12 @@ namespace opengl
 		data->retain();
 		this->data = data;
 
-		// Generate vertices.
-		float w2 = width/2.0f;
-		float h2 = height/2.0f;
-
 		memset(vertices, 255, sizeof(vertex)*4);
 
-		vertices[0].x = -w2; vertices[0].y = -h2;
-		vertices[1].x = -w2; vertices[1].y = h2;
-		vertices[2].x = w2; vertices[2].y = h2;
-		vertices[3].x = w2; vertices[3].y = -h2;
+		vertices[0].x = 0; vertices[0].y = 0;
+		vertices[1].x = 0; vertices[1].y = height;
+		vertices[2].x = width; vertices[2].y = height;
+		vertices[3].x = width; vertices[3].y = 0;
 
 		vertices[0].s = 0; vertices[0].t = 0;
 		vertices[1].s = 0; vertices[1].t = 1;
@@ -98,14 +94,10 @@ namespace opengl
 		x = (x < 0) ? 0 : x;
 		y = (y < 0) ? 0 : y;
 
-		// Half width/height of the 
-		float w2 = (float)w/2.0f;
-		float h2 = (float)h/2.0f;
-
-		vertices[0].x = -w2; vertices[0].y = -h2;
-		vertices[1].x = -w2; vertices[1].y = h2;
-		vertices[2].x = w2; vertices[2].y = h2;
-		vertices[3].x = w2; vertices[3].y = -h2;
+		vertices[0].x = 0; vertices[0].y = 0;
+		vertices[1].x = 0; vertices[1].y = (float)h;
+		vertices[2].x = (float)w; vertices[2].y = (float)h;
+		vertices[3].x = (float)w; vertices[3].y = 0;
 
 		float tx = (float)x/width;
 		float ty = (float)y/height;
@@ -120,16 +112,25 @@ namespace opengl
 
 	void Image::draw(float x, float y, float angle, float sx, float sy, float ox, float oy) const
 	{
+
+		// This might as well be static.
+		static Matrix transform;
+
 		bind();
 
-		//Matrix t(x, y, angle, sx, sy, ox, oy);
-
-		//glMultMatrixf((const GLfloat*)t.getElements());
 		glPushMatrix();
+
+		// CPU version:
+		transform.setTransformation(x, y, angle, sx, sy, ox, oy);
+		glMultMatrixf((const GLfloat*)transform.getElements());
+
+		/**
+		// GPU version
 		glTranslatef(x, y, 0);
 		glRotatef(LOVE_TODEG(angle), 0, 0, 1);
 		glScalef(sx, sy, 1);
 		glTranslatef(ox, oy, 0);
+		*/
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		glVertexPointer(2, GL_FLOAT, sizeof(vertex), (GLvoid*)&vertices[0].x);
@@ -148,7 +149,7 @@ namespace opengl
 	void Image::bind() const
 	{
 		if(texture != 0)
-		glBindTexture(GL_TEXTURE_2D,texture);
+			glBindTexture(GL_TEXTURE_2D,texture);
 	}
 
 	bool Image::load()

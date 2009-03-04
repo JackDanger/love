@@ -49,15 +49,6 @@ namespace love
 	{
 	}
 
-	Matrix::Matrix(float x, float y, float angle, float sx, float sy, float ox, float oy)
-	{
-		// TODO: This works fine, but should consider speeding this up a little.
-		translate(x, y);
-		rotate(angle);
-		scale(sx, sy);
-		translate(ox, oy);
-	}
-
 	//                 | e0 e4 e8  e12 |
 	//                 | e1 e5 e9  e13 |
 	//                 | e2 e6 e10 e14 |
@@ -131,6 +122,16 @@ namespace love
 		setIdentity();
 		e[0] = sx;
 		e[5] = sy;
+	}
+
+	void Matrix::setTransformation(float x, float y, float angle, float sx, float sy, float ox, float oy)
+	{
+		// TODO: This works fine, but should consider speeding this up a little.
+		setIdentity();
+		translate(x, y);
+		rotate(angle);
+		scale(sx, sy);
+		translate(ox, oy);
 	}
 
 	void Matrix::translate(float x, float y)

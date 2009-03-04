@@ -56,6 +56,7 @@ namespace opengl
 
 		// Vertices of the image.
 		vertex vertices[4];
+		vertex cache[4];
 
 	public:
 	

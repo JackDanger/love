@@ -56,20 +56,6 @@ namespace love
 		Matrix();
 
 		/**
-		* Creates a transformation with a certain position, orientation, scale
-		* and offset.
-		* 
-		* @param x The translation along the x-axis.
-		* @param y The translation along the y-axis.
-		* @param angle The rotation (rad) around the center with offset (ox,oy).
-		* @param sx Scale along x-axis.
-		* @param sy Scale along y-axis.
-		* @param ox The offset for rotation along the x-axis.
-		* @param oy The offset for rotation along the y-axis.
-		**/
-		Matrix(float x, float y, float angle, float sx, float sy, float ox, float oy);
-
-		/**
 		* Destructor.
 		**/
 		~Matrix();
@@ -83,6 +69,20 @@ namespace love
 		void setTranslation(float x, float y);
 		void setRotation(float rad);
 		void setScale(float sx, float sy);
+
+		/**
+		* Creates a transformation with a certain position, orientation, scale
+		* and offset.
+		* 
+		* @param x The translation along the x-axis.
+		* @param y The translation along the y-axis.
+		* @param angle The rotation (rad) around the center with offset (ox,oy).
+		* @param sx Scale along x-axis.
+		* @param sy Scale along y-axis.
+		* @param ox The offset for rotation along the x-axis.
+		* @param oy The offset for rotation along the y-axis.
+		**/
+		void setTransformation(float x, float y, float angle, float sx, float sy, float ox, float oy);
 
 		void translate(float x, float y);
 		void rotate(float rad);
