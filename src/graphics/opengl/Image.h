@@ -40,12 +40,16 @@ namespace graphics
 namespace opengl
 {
 	/**
-	* OpenGL-specific image loader and renderer. 
+	* A drawable image based on OpenGL-textures. This class takes ImageData
+	* objects and create textures on the GPU for fast drawing. 
+	* 
+	* @author Anders Ruud
 	**/
 	class Image : public Drawable, public Volatile
 	{
 	private:
 
+		// The ImageData from which the texture is created.
 		love::image::ImageData * data;
 
 		// Width and height of the hardware texture.
@@ -55,18 +59,22 @@ namespace opengl
 		unsigned int texture;
 
 		// Vertices of the image.
-		vertex vertices[4];
-		vertex cache[4];
+		vertex vertices[4]; // The source vertices.
+		vertex cache[4]; // Used for transformations during draw.
 
 	public:
 	
 		/**
 		* Creates a new Image. Not that anything is ready to use
 		* before load is called.
+		* 
 		* @param file The file from which to load the image.
 		**/
 		Image(love::image::ImageData * data);
 		
+		/**
+		* Destructor. Deletes the hardware texture and other resources.
+		**/
 		virtual ~Image();
 
 		float getWidth() const;
@@ -88,11 +96,19 @@ namespace opengl
 		**/
 		void getRectangleVertices(int x, int y, int w, int h, vertex * vertices);
 
-		// Implements Drawable.
+		/**
+		* @copydoc Drawable::draw()
+		**/
 		void draw(float x, float y, float angle, float sx, float sy, float ox, float oy) const;
 
 		/**
 		* This function draws a section of the image.
+		*
+		* @copydetails Drawable::draw()
+		* @param rx The upper-left corner of the source rectangle along the x-axis.
+		* @param ry The upper-left corner of the source rectangle along the y-axis.
+		* @param rw The width of the source rectangle.
+		* @param rw The height of the source rectangle.
 		**/
 		void draws(float x, float y, float angle, float sx, float sy, float ox, float oy, float rx, float ry, float rw, float rh) const;
 		

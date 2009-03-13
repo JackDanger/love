@@ -25,13 +25,15 @@
 
 #include "Animation.h"
 
-// LOVE
-#include "../liblove/constants.h"
-
 // STD
 #include <cmath>
 
+// LOVE
+#include "../../constants.h"
+
 namespace love
+{
+namespace graphics
 {
 namespace opengl
 {
@@ -66,15 +68,6 @@ namespace opengl
 
 	Animation::~Animation()
 	{
-		for(int i = 0;i<(int)frames.size();i++)
-		{
-			if(frames[i].image != 0)
-			{
-				frames[i].image->release();
-				frames[i].image = 0;
-			}
-		}
-
 		if(image != 0)
 			image->release();
 	}
@@ -86,8 +79,10 @@ namespace opengl
 
 		// Add frame.
 		AnimationFrame f;
-		f.image = new Image(image, x, y, w, h);
-		f.image->setOffset(offsetX, offsetY);
+		f.x = x;
+		f.y = y;
+		f.w = w;
+		f.h = h;
 		f.postDelay = (int)delays.size() - 1;
 
 		frames.push_back(f);
@@ -220,8 +215,10 @@ namespace opengl
 			return;
 
 		const AnimationFrame & f = frames[current];
-		f.image->draw(x, y, angle, sx, sy, float ox, float oy);
+		image->draws(x, y, angle, sx, sy, ox, oy, f.x, f.y, f.w, f.h);
 	}
 
 } // opengl
+} // graphics
 } // love
+

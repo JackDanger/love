@@ -30,12 +30,9 @@ namespace love
 namespace graphics
 {
 
-	Drawable::Drawable()
-	{
-	}
-
 	Drawable::~Drawable()
 	{
+		// PURE VIRUTAL!
 	}
 
 } // graphics

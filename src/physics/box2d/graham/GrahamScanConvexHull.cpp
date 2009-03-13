@@ -1,5 +1,7 @@
 #include "GrahamScanConvexHull.h"
 
+#include <cmath>
+
 bool GrahamScanConvexHull::operator()(const std::vector < point2d >& pnt, std::vector< point2d >& final_hull)
 {
    final_hull.clear();

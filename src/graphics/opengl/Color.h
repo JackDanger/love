@@ -36,6 +36,9 @@ namespace graphics
 namespace opengl
 {
 
+	/**
+	* @author Michael Enger
+	**/
 	class Color : public Object
 	{
 	protected:

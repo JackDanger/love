@@ -36,9 +36,10 @@ namespace love
 
 	Object::~Object()
 	{
+		// PURE VIRUTAL!
 	}
 
-	int Object::refcount() const
+	int Object::getReferenceCount() const
 	{
 		return count;
 	}

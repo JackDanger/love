@@ -29,27 +29,54 @@
 namespace love
 {
 	/**
-	* Superclass for all object that should be able to 
-	* cross the Lua/C border (this pertains to most objects).
+	* Superclass for all object that should be able to  cross the Lua/C border 
+	* (this pertains to most objects).
 	*
-	* This class is an alternative to using smart pointers;
-	* it contains retain/release methods, and will delete
-	* itself with the reference count hits zero.
+	* This class is an alternative to using smart pointers; it contains retain/release 
+	* methods, and will delete itself with the reference count hits zero. The wrapper 
+	* code assumes that all userdata inherits from this class.
 	* 
-	* The wrapper code assumes that all userdata inherits from
-	* this class.
+	* @author Anders Ruud
 	**/
 	class Object
 	{
 	private:
+
+		// The reference count.
 		int count;
+
 	public:
+
+		/**
+		* Constructor. Sets reference count to one.
+		**/
 		Object();
-		virtual ~Object();
-		int refcount() const;
+
+		/**
+		* Destructor.
+		**/
+		virtual ~Object() = 0;
+
+		/**
+		* Gets the reference count of this Object.
+		* @returns The reference count.
+		**/
+		int getReferenceCount() const;
+
+		/**
+		* Retains the Object, i.e. increases the 
+		* reference count by one.
+		**/
 		void retain();
+
+		/**
+		* Releases one reference to the Object, i.e. decrements the
+		* reference count by one, and potentially deletes the Object
+		* if there are no more references.
+		**/
 		void release();
-	};
+
+	}; // Object
 
 } // love
 

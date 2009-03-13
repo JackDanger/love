@@ -2884,7 +2884,7 @@
       <overload brief="Creates a new rectangle with an offset.">
         <param name="body" brief="The Body to attatch the rectangle to." />
         <param name="x" brief="The x-component of the offset." />
-        <param name="x" brief="The y-component of the offset." />
+        <param name="y" brief="The y-component of the offset." />
         <param name="w" brief="The width of the rectangle." />
         <param name="h" brief="The height of the rectangle." />
         <ret name="rectangle" type="PolygonShape" brief="A rectangular PolygonShape." />
@@ -2892,7 +2892,7 @@
       <overload brief="Creates a new rectangle with offset and orientation.">
         <param name="body" brief="The Body to attatch the rectangle to." />
         <param name="x" brief="The x-component of the offset." />
-        <param name="x" brief="The y-component of the offset." />
+        <param name="y" brief="The y-component of the offset." />
         <param name="w" brief="The width of the rectangle." />
         <param name="h" brief="The height of the rectangle." />
         <param name="angle" brief="The orientation of the rectangle (degrees)." />

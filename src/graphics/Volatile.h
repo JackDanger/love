@@ -33,24 +33,63 @@ namespace love
 {
 namespace graphics
 {
+	/**
+	* This class is the superclass of all objects which must completely or
+	* partially reload when the user changes the display resolution. All
+	* volatile objects will be notified when the display mode changes.
+	*
+	* @author Anders Ruud
+	**/
 	class Volatile
 	{
 	private:
 
-		// A list of all Volatile objcets currently alive.
+		// A list of all Volatile object currently alive.
 		static std::list<Volatile *> all;
 
 	public:
+
+		/**
+		* Constructor. Automatically adds \c this into the list
+		* of volatile objects.
+		**/
 		Volatile();
+
+		/**
+		* Destructor. Removes \c this from the list of volatile
+		* objects.
+		**/
 		virtual ~Volatile();
 
+		/**
+		* Loads the part(s) of the object which is destroyed when
+		* the display mode is changed.
+		* 
+		* @return True if successful, false on errors.
+		**/
 		virtual bool loadVolatile() = 0;
+
+		/**
+		* Unloads the part(s) of the objects which would be destroyed
+		* anyway when the display mode is changed.
+		**/
 		virtual void unloadVolatile() = 0;
 
+	// Static: 
+
+		/**
+		* Calls \c loadVolatile() on each element in the list of volatiles.
+		* 
+		* @return True if all elements succeeded, false if one or more failed.
+		**/
 		static bool loadAll();
+
+		/**
+		* Calls \c unloadVolatile() on each element in the list of volatiles.
+		**/
 		static void unloadAll();
 
-	};
+	}; // Volatile
 
 } // graphics
 } // love

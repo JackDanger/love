@@ -44,7 +44,7 @@ namespace devil
 		}
 
 		// Generate DevIL image.
-		image = ilGenImage();
+		ilGenImages(1, &image);
 
 		// Bind the image.
 		ilBindImage(image);
@@ -80,7 +80,7 @@ namespace devil
 		: width(width), height(height), origin(IL_ORIGIN_UPPER_LEFT), bpp(4)
 	{
 		// Generate DevIL image.
-		image = ilGenImage();
+		ilGenImages(1, &image);
 
 		// Bind the image.
 		ilBindImage(image);	
@@ -90,7 +90,7 @@ namespace devil
 
 	ImageData::~ImageData()
 	{
-		ilDeleteImage(1);
+		ilDeleteImages(1, &image);
 	}
 
 	int ImageData::getWidth()

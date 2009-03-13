@@ -26,18 +26,37 @@
 #ifndef LOVE_GRAPHICS_DRAWABLE_H
 #define LOVE_GRAPHICS_DRAWABLE_H
 
+// LOVE
 #include "../Object.h"
 
 namespace love
 {
 namespace graphics
 {
+	/**
+	* A Drawable is anything that can be drawn on screen with a
+	* position, scale and orientation.
+	**/
 	class Drawable : public Object
 	{
-	protected:
 	public:
-		Drawable();
-		virtual ~Drawable();
+
+		/**
+		* Destructor.
+		**/
+		virtual ~Drawable() = 0;
+
+		/**
+		* Draws the object with the specified transformation.
+		* 
+		* @param x The position of the object along the x-axis.
+		* @param y The position of the object along the y-axis.
+		* @param angle The angle of the object (in radians).
+		* @param sx The scale factor along the x-axis.
+		* @param sy The scale factor along the y-axis.
+		* @param ox The origin offset along the x-axis.
+		* @param oy The origin offset along the y-axis.
+		**/
 		virtual void draw(float x, float y, float angle, float sx, float sy, float ox, float oy) const = 0;
 	};
 

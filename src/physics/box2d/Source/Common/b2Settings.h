@@ -20,7 +20,7 @@
 #define B2_SETTINGS_H
 
 #include <assert.h>
-#include <math.h>
+#include <cmath>
 
 #define B2_NOT_USED(x) x
 #define b2Assert(A) assert(A)

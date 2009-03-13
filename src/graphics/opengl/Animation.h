@@ -27,9 +27,7 @@
 #define LOVE_OPENGL_ANIMATION_H
 
 // LOVE
-#include "../liblove/graphics/Drawable.h"
-
-// Module.
+#include "../Drawable.h"
 #include "Image.h"
 
 // STD
@@ -37,13 +35,16 @@
 
 namespace love
 {
+namespace graphics
+{
 namespace opengl
 {
 
 	// Represents a single frame.
 	struct AnimationFrame
 	{
-		Image * image;
+		float x, y;    // Top left corner of the frame.
+		float w, h;    // Size of the frame.
 		int preDelay;  // Delay to previous frame.
 		int postDelay; // Delay to next frame.
 	};
@@ -160,13 +161,13 @@ namespace opengl
 		**/
 		float getSpeed() const;
 
-		// From Sprite
 		void update(float dt);
 
 		void draw(float x, float y, float angle, float sx, float sy, float ox, float oy) const;
 	};
 
 } // opengl
+} // graphics
 } // love
 
 #endif // LOVE_OPENGL_ANIMATION_H

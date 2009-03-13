@@ -349,6 +349,22 @@
 				Name="opengl"
 				>
 				<File
+					RelativePath="..\..\src\graphics\opengl\Animation.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\graphics\opengl\Animation.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\graphics\opengl\Color.cpp"
 					>
 					<FileConfiguration
