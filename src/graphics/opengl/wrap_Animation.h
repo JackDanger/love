@@ -23,63 +23,37 @@
 * -- LOVE Development Team, http://love2d.org
 **/
 
-#ifndef LOVE_OPENGL_TEXTURE_H
-#define LOVE_OPENGL_TEXTURE_H
+#ifndef LOVE_GRAPHICS_OPENGL_WRAP_ANIMATION_H
+#define LOVE_GRAPHICS_OPENGL_WRAP_ANIMATION_H
 
 // LOVE
-#include "../liblove/Object.h"
-#include "../liblove/image/ImageData.h"
-#include "../liblove/graphics/Volatile.h"
+#include "../../wrap.h"
+#include "Animation.h"
 
 namespace love
 {
+namespace graphics
+{
 namespace opengl
 {
-
-	class Texture : public Object, public Volatile
-	{
-		// Friends.
-		friend class Image;
-
-	private:
-
-		ImageData * data;
-
-		// The size of the actual texture in hardware
-		// memory. This may be different to normal width/height 
-		// due to power-of-two conversion. 
-		int width;
-		int height;
-
-		// OpenGL texture identifier.
-		unsigned int texture;
-
-	public:
-	
-		/**
-		* Creates a new Image. Not that anything is ready to use
-		* before load is called.
-		**/
-		Texture(ImageData * data);
-		
-		virtual ~Texture();
-
-		int getWidth() const;
-		int getHeight() const;
-		
-		void bind() const;
-
-		// From Resource
-		bool load();
-		void unload();
-
-		// From Volatile
-		bool loadVolatile();
-		void unloadVolatile();		
-		
-	}; // Texture	
+	Animation * luax_checkanimation(lua_State * L, int idx);
+	int _wrap_Animation_addFrame(lua_State * L);
+	int _wrap_Animation_play(lua_State * L);
+	int _wrap_Animation_stop(lua_State * L);
+	int _wrap_Animation_reset(lua_State * L);
+	int _wrap_Animation_seek(lua_State * L);
+	int _wrap_Animation_getCurrentFrame(lua_State * L);
+	int _wrap_Animation_getSize(lua_State * L);
+	int _wrap_Animation_setDelay(lua_State * L);
+	int _wrap_Animation_setSpeed(lua_State * L);
+	int _wrap_Animation_getSpeed(lua_State * L);
+	int _wrap_Animation_update(lua_State * L);
+	int _wrap_Animation_getWidth(lua_State * L);
+	int _wrap_Animation_getHeight(lua_State * L);
+	int wrap_Animation_open(lua_State * L);
 
 } // opengl
+} // graphics
 } // love
 
-#endif // LOVE_OPENGL_TEXTURE_H
+#endif // LOVE_GRAPHICS_OPENGL_WRAP_ANIMATION_H

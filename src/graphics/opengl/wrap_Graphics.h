@@ -30,6 +30,7 @@
 #include "wrap_Color.h"
 #include "wrap_Font.h"
 #include "wrap_Image.h"
+#include "wrap_Animation.h"
 #include "wrap_ParticleSystem.h"
 #include "wrap_SpriteBatch.h"
 #include "wrap_VertexBuffer.h"
@@ -56,7 +57,9 @@ namespace opengl
 	int _wrap_getScissor(lua_State * L);
 	int _wrap_newColor(lua_State * L);
 	int _wrap_newImage(lua_State * L);
+	int _wrap_newAnimation(lua_State * L);
 	int _wrap_newFont(lua_State * L);
+	int _wrap_newImageFont(lua_State * L);
 	int _wrap_newSpriteBatch(lua_State * L);
 	int _wrap_newVertexBuffer(lua_State * L);
 	int _wrap_setColor(lua_State * L);
@@ -83,6 +86,7 @@ namespace opengl
 	int _wrap_getPointStyle(lua_State * L);
 	int _wrap_getMaxPointSize(lua_State * L);
 	int _wrap_draw(lua_State * L);
+	int _wrap_draws(lua_State * L);
 	int _wrap_drawTest(lua_State * L);
 	int _wrap_print(lua_State * L);
 	int _wrap_printf(lua_State * L);

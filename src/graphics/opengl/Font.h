@@ -58,7 +58,7 @@ namespace opengl
 		* @param file The file containing the OpenGLFont data.
 		* @param size The size of the OpenGLFont.
 		**/
-		Font(love::filesystem::File * file, int size);
+		Font(int size);
 		
 		virtual ~Font();
 

@@ -145,6 +145,9 @@ namespace opengl
 
 	void VertexBuffer::draw(float x, float y, float angle, float sx, float sy, float ox, float oy) const
 	{
+		glPushMatrix();
+		glTranslatef(x, y, 0);
+
 		if(image == 0)
 			glDisable(GL_TEXTURE_2D);
 		else
@@ -181,6 +184,8 @@ namespace opengl
 		// Enable textures again.
 		if(image == 0)
 			glEnable(GL_TEXTURE_2D);
+
+		glPopMatrix();
 	}
 
 } // opengl

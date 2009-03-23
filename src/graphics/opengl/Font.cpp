@@ -31,10 +31,9 @@ namespace graphics
 {
 namespace opengl
 {
-	Font::Font(love::filesystem::File * file, int size) : size(size), lineHeight(1), mSpacing(1)
+	Font::Font(int size) 
+		: size(size), lineHeight(1), mSpacing(1)
 	{
-		this->file = file;
-		file->retain();
 		for(unsigned int i = 0; i < MAX_CHARS; i++)
 		{
 			widths[i] = 0;
@@ -44,7 +43,6 @@ namespace opengl
 
 	Font::~Font()
 	{
-		file->release();
 	}
 
 	float Font::getHeight() const

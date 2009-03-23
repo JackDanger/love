@@ -218,6 +218,22 @@ namespace opengl
 		image->draws(x, y, angle, sx, sy, ox, oy, f.x, f.y, f.w, f.h);
 	}
 
+	float Animation::getWidth() const
+	{
+		if(frames.size() <= 0)
+			return 0;
+
+		return frames[current].w;
+	}
+
+	float Animation::getHeight() const
+	{
+		if(frames.size() <= 0)
+			return 0;
+
+		return frames[current].h;
+	}
+
 } // opengl
 } // graphics
 } // love

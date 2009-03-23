@@ -26,14 +26,16 @@
 #ifndef LOVE_OPENGL_IMAGE_FONT_H
 #define LOVE_OPENGL_IMAGE_FONT_H
 
-// Module
+#include "../../image/ImageData.h"
 #include "Font.h"
-#include "Texture.h"
+#include "Image.h"
 
 // STD
 #include <string>
 
 namespace love
+{
+namespace graphics
 {
 namespace opengl
 {
@@ -48,7 +50,7 @@ namespace opengl
 	{
 	protected:
 		
-		Texture * texture;
+		Image * image;
 		
 		// List of glyphs.
 		std::string glyphs;
@@ -66,7 +68,7 @@ namespace opengl
 		* @param file The image file.
 		* @param glyphs A list of the characters as they appear in the image.
 		**/
-		ImageFont(File * file, std::string glyphs);
+		ImageFont(Image * image, std::string glyphs);
 
 		/**
 		* Calls unload().
@@ -99,6 +101,7 @@ namespace opengl
 	}; // ImageFont
 
 } // opengl
+} // graphics
 } // love
 
 #endif // LOVE_OPENGL_IMAGE_FONT_H

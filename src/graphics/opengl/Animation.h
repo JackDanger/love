@@ -164,6 +164,10 @@ namespace opengl
 		void update(float dt);
 
 		void draw(float x, float y, float angle, float sx, float sy, float ox, float oy) const;
+	
+		float getWidth() const;
+
+		float getHeight() const;
 	};
 
 } // opengl

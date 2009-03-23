@@ -1,3 +1,7 @@
+LOVE 0.6.0
+----------
+
+  * Added unicode parameter to keypressed().
 
 LOVE 0.5.0
 ----------

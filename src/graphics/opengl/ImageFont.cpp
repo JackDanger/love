@@ -31,18 +31,21 @@ using std::string;
 
 namespace love
 {	
+namespace graphics
+{
 namespace opengl
 {
-	ImageFont::ImageFont(File * file, std::string glyphs) : Font(file, 0)
+	ImageFont::ImageFont(Image * image, std::string glyphs) 
+		: Font(0), glyphs(glyphs), image(image)
+
 	{
-		this->glyphs = glyphs;
-		texture = new Texture(file);
+		image->retain();
 	}	
 
 	ImageFont::~ImageFont()
 	{
 		unload();
-		delete texture;
+		image->release();
 	}
 
 	void ImageFont::print(string text, float x, float y) const
@@ -87,30 +90,26 @@ namespace opengl
 
 	void ImageFont::unload()
 	{
-		texture->unload();
 		unloadVolatile();
 	}
 	
 	bool ImageFont::loadVolatile()
 	{
-		if(!texture->read())
-			return false;
-
-		rgba * pixels = texture->getData();
+		love::image::rgba * pixels = (love::image::rgba *)(image->getData()->getData());
 		
 		// Reading texture data begins
-		size = (int)texture->getHeight();
+		size = (int)image->getHeight();
 		
 		for(unsigned int i = 0; i < MAX_CHARS; i++) positions[i] = -1;
 		
-		rgba spacer = pixels[0];
+		love::image::rgba spacer = pixels[0];
 		unsigned int current = 0;
 		int width = 0;
 		int space = 0;
 
 		// Finds out where the first character starts
 		int firstchar = 0;
-		for(int i = 0; i != (int)texture->getWidth(); i++)
+		for(int i = 0; i != (int)image->getWidth(); i++)
 		{
 			if(spacer.r == pixels[i].r && spacer.g == pixels[i].g && spacer.b == pixels[i].b && spacer.a == pixels[i].a)
 				continue;
@@ -121,7 +120,7 @@ namespace opengl
 			}
 		}
 		
-		for(int i = firstchar; i != (int)texture->getWidth(); i++)
+		for(int i = firstchar; i != (int)image->getWidth(); i++)
 		{			
 			if(spacer.r == pixels[i].r && spacer.g == pixels[i].g && spacer.b == pixels[i].b && spacer.a == pixels[i].a)
 			{
@@ -131,7 +130,7 @@ namespace opengl
 						printf("Error reading texture font '%s': Character '%c' is out of range.", file->getFilename().c_str(), glyphs[current]);
 					else
 					{
-						widths[(int)glyphs[current]] = width;
+						widths[(int)glyphs[current]] = width - 1;
 						positions[(int)glyphs[current]] = i - width;
 					}
 					
@@ -151,7 +150,7 @@ namespace opengl
 
 					current++;
 					if(current == glyphs.size())
-						i = (int)texture->getWidth() - 1; // just to end it when the last character is found
+						i = (int)image->getWidth() - 1; // just to end it when the last character is found
 
 					space = 0;
 					//width++; // start counting the width
@@ -161,9 +160,8 @@ namespace opengl
 		}
 		// Reading image data ends
 
-
 		// Replace spacer color with an empty pixel
-		for(int i = 0; i < (int)(texture->getWidth() * texture->getHeight()); i++)
+		for(int i = 0; i < (int)(image->getWidth() * image->getHeight()); i++)
 		{
 			if(spacer.r == pixels[i].r && spacer.g == pixels[i].g && spacer.b == pixels[i].b && spacer.a == pixels[i].a)
 			{
@@ -173,19 +171,6 @@ namespace opengl
 				pixels[i].a = 0;
 			}
 		}
-
-		// Pad and optimize
-		texture->pad(1);
-		texture->optimize();
-		
-		// Send to hardware
-		if(!texture->lock())
-		{
-			texture->free();
-			return false;
-		}
-
-		texture->free();
 
 		// Create display lists
 		list = glGenLists(MAX_CHARS);
@@ -202,13 +187,13 @@ namespace opengl
 				float w = (float)widths[i];
 				float h = (float)size+1;
 				
-				texture->bind();
+				image->bind();
 
-				float xTex = x/(float)texture->getWidth();
-				float yTex = y/(float)texture->getHeight();
+				float xTex = x/(float)image->getWidth();
+				float yTex = y/(float)image->getHeight();
 
-				float wTex = w/(float)texture->getWidth();
-				float hTex = h/(float)texture->getHeight();
+				float wTex = w/(float)image->getWidth();
+				float hTex = h/(float)image->getHeight();
 
 				glBegin(GL_QUADS);
 					glTexCoord2f(xTex,yTex);				glVertex2f(0,0);
@@ -241,4 +226,5 @@ namespace opengl
 	}
 
 } // opengl
+} // graphics
 } // love

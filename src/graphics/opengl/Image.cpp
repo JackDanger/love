@@ -84,7 +84,12 @@ namespace opengl
 		return vertices;
 	}
 
-	void Image::getRectangleVertices(int x, int y, int w, int h, vertex * vertices)
+	love::image::ImageData * Image::getData() const
+	{
+		return data;
+	}
+
+	void Image::getRectangleVertices(int x, int y, int w, int h, vertex * vertices) const
 	{
 		// Check upper.
 		x = (x+w > (int)width) ? (int)width-w : x;
@@ -120,17 +125,9 @@ namespace opengl
 
 		glPushMatrix();
 
-		// CPU version:
 		transform.setTransformation(x, y, angle, sx, sy, ox, oy);
 		glMultMatrixf((const GLfloat*)transform.getElements());
 
-		/**
-		// GPU version
-		glTranslatef(x, y, 0);
-		glRotatef(LOVE_TODEG(angle), 0, 0, 1);
-		glScalef(sx, sy, 1);
-		glTranslatef(ox, oy, 0);
-		*/
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		glVertexPointer(2, GL_FLOAT, sizeof(vertex), (GLvoid*)&vertices[0].x);
@@ -138,12 +135,35 @@ namespace opengl
 		glDrawArrays(GL_QUADS, 0, 4);
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 		glDisableClientState(GL_VERTEX_ARRAY);
+
 		glPopMatrix();
 	}
 	
 	void Image::draws(float x, float y, float angle, float sx, float sy, float ox, float oy, float rx, float ry, float rw, float rh) const
 	{
-		// TODO
+		// This might as well be static.
+		static Matrix transform;
+		
+		static vertex v[8];
+
+		getRectangleVertices((int)rx, (int)ry, (int)rw, (int)rh, v);
+
+		bind();
+
+		glPushMatrix();
+
+		transform.setTransformation(x, y, angle, sx, sy, ox, oy);
+		glMultMatrixf((const GLfloat*)transform.getElements());
+
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		glVertexPointer(2, GL_FLOAT, sizeof(vertex), (GLvoid*)&v[0].x);
+		glTexCoordPointer(2, GL_FLOAT, sizeof(vertex), (GLvoid*)&v[0].s);
+		glDrawArrays(GL_QUADS, 0, 4);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		glDisableClientState(GL_VERTEX_ARRAY);
+
+		glPopMatrix();
 	}
 
 	void Image::bind() const

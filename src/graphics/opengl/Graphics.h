@@ -38,8 +38,10 @@
 // LOVE
 #include "../../luax.h"
 #include "Image.h"
+#include "Animation.h"
 #include "Color.h"
 #include "TrueTypeFont.h"
+#include "ImageFont.h"
 #include "ParticleSystem.h"
 #include "SpriteBatch.h"
 #include "VertexBuffer.h"
@@ -250,17 +252,17 @@ namespace opengl
 		/**
 		* Creates an ImageFont object.
 		**/
-		//pFont newImageFont(File * file, const char * glyphs, float spacing = 1);
+		Font * newImageFont(Image * image, const char * glyphs, float spacing = 1);
 		
 		/**
 		* Creates an Animation object with no frames.
 		**/
-		//Animation * newAnimation(Image * image);
+		Animation * newAnimation(Image * image);
 
 		/**
 		* Creates an Animation object with generated frames in a grid.
 		**/
-		//Animation * newAnimation(Image * image, float fw, float fh, float delay, int num = 0);
+		Animation * newAnimation(Image * image, float fw, float fh, float delay, int num = 0);
 
 		/**
 		* Creates a ParticleSystem object with the specified buffer size and using the specified sprite.

@@ -200,11 +200,6 @@ namespace opengl
 		glEnable(GL_POINT_SMOOTH);
 		glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
 
-		// Cull backface
-		glFrontFace(GL_CCW);
-		glEnable(GL_CULL_FACE);		// Enable face culling (no need to render surfaces we can't see
-		glCullFace(GL_BACK);		// Do not render back face.
-
 		// TODO:
 		//reset();
 
@@ -396,6 +391,30 @@ namespace opengl
 		}
 
 		return font;
+	}
+
+	Font * Graphics::newImageFont(Image * image, const char * glyphs, float spacing)
+	{
+		Font * font = new ImageFont(image, std::string(glyphs));
+
+		// Load it and check for errors.
+		if(!font->load())
+		{
+			delete font;
+			return 0;
+		}
+
+		return font;
+	}
+
+	Animation * Graphics::newAnimation(Image * image)
+	{
+		return new Animation(image);
+	}
+
+	Animation * Graphics::newAnimation(Image * image, float fw, float fh, float delay, int num)
+	{
+		return new Animation(image, fw, fh, delay, num);
 	}
 
 	SpriteBatch * Graphics::newSpriteBatch(Image * image, int size, int usage)

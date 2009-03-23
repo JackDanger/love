@@ -71,8 +71,8 @@ end
 
 -- Standard callback handlers.
 love.handlers = {
-	[love.event_keypressed] = function (b)
-		if love.keypressed then love.keypressed(b) end
+	[love.event_keypressed] = function (b, u)
+		if love.keypressed then love.keypressed(b, u) end
 	end,
 	[love.event_keyreleased] = function (b)
 		if love.keyreleased then love.keyreleased(b) end
@@ -147,7 +147,7 @@ function love.run()
 			love.handlers[e](a,b,c)
 		end
 
-		love.timer.sleep(10)
+		--love.timer.sleep(10)
 		love.graphics.present()
 
 	end

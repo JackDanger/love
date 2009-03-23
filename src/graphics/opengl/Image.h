@@ -81,6 +81,8 @@ namespace opengl
 		float getHeight() const;
 
 		const vertex * getVertices() const;
+		
+		love::image::ImageData * getData() const;
 
 		/**
 		* Generate vertices according to a subimage.
@@ -94,7 +96,7 @@ namespace opengl
 		* @param h The height of the subimage.
 		* @param vertices A vertex array of size four.
 		**/
-		void getRectangleVertices(int x, int y, int w, int h, vertex * vertices);
+		void getRectangleVertices(int x, int y, int w, int h, vertex * vertices) const;
 
 		/**
 		* @copydoc Drawable::draw()
@@ -111,7 +113,7 @@ namespace opengl
 		* @param rw The height of the source rectangle.
 		**/
 		void draws(float x, float y, float angle, float sx, float sy, float ox, float oy, float rx, float ry, float rw, float rh) const;
-		
+
 		void bind() const;
 
 		bool load();

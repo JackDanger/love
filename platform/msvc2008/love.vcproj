@@ -314,18 +314,6 @@
 			Name="graphics"
 			>
 			<File
-				RelativePath="..\..\src\graphics\Drawable.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)\$(SafeParentName)\"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="..\..\src\graphics\Drawable.h"
 				>
 			</File>
@@ -379,6 +367,18 @@
 				<File
 					RelativePath="..\..\src\graphics\opengl\Color.h"
 					>
+				</File>
+				<File
+					RelativePath="..\..\src\graphics\Drawable.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\graphics\opengl\Font.cpp"
@@ -445,6 +445,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\graphics\opengl\ImageFont.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\graphics\opengl\ImageFont.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\graphics\opengl\ParticleSystem.cpp"
 					>
 					<FileConfiguration
@@ -506,6 +514,14 @@
 				</File>
 				<File
 					RelativePath="..\..\src\graphics\opengl\VertexBuffer.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\graphics\opengl\wrap_Animation.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\graphics\opengl\wrap_Animation.h"
 					>
 				</File>
 				<File

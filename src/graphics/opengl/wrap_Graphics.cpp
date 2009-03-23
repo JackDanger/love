@@ -171,6 +171,45 @@ namespace opengl
 		return 1;
 	}
 
+	int _wrap_newAnimation(lua_State * L)
+	{
+		// If string -> file
+		if(lua_isstring(L, 1))
+			luax_strtofile(L, 1);
+
+		// file -> imagedata
+		if(luax_istype(L, 1, LOVE_FILESYSTEM_FILE_BITS))
+			luax_convobj(L, 1, "image", "newImageData");
+
+		// imagedata -> image
+		if(luax_istype(L, 1, LOVE_IMAGE_IMAGE_DATA_BITS))
+			luax_convobj(L, 1, "graphics", "newImage");
+
+		// Check the value.
+		Image * image = luax_checktype<Image>(L, 1, "Image", LOVE_GRAPHICS_IMAGE_BITS);
+
+		Animation * animation = 0;
+
+		if(lua_gettop(L) == 1)
+		{
+			animation = Graphics::__getinstance()->newAnimation(image);
+		}
+		else 
+		{
+			float fw = (float)luaL_checknumber(L, 2);
+			float fh = (float)luaL_checknumber(L, 3);
+			float delay = (float)luaL_checknumber(L, 4);
+			int num = luaL_optint(L, 5, 0);
+			animation = Graphics::__getinstance()->newAnimation(image, fw, fh, delay, num);
+		}
+
+		if(animation == 0)
+			return luaL_error(L, "Could not load the Animation");
+		
+		luax_newtype(L, "Animation", LOVE_GRAPHICS_ANIMATION_BITS, (void*)animation);
+		return 1;
+	}
+
 	int _wrap_newFont(lua_State * L)
 	{
 		// Convert to File, if necessary.
@@ -193,51 +232,30 @@ namespace opengl
 		return 1;
 	}
 
-	/*
-	int _wrap_newAnimation(lua_State * L)
+	int _wrap_newImageFont(lua_State * L)
 	{
-		// If string, then convert to file.
+		// Convert to File, if necessary.
 		if(lua_isstring(L, 1))
 			luax_strtofile(L, 1);
 
-		// Convert to ImageData, if necessary.
+		// Convert to Image, if necessary.
 		if(luax_istype(L, 1, LOVE_FILESYSTEM_FILE_BITS))
-			luax_convobj(L, 1, "image", "newImageData");
-
-		// If file, then convert to image.
-		if(luax_istype(L, 1, LOVE_IMAGE_DATA_BITS))
-		{
-			ImageData * data = luax_checktype<ImageData>(L, 1, "ImageData", LOVE_IMAGE_DATA_BITS);
-			Image * image = newImage(data);
-			luax_newtype(L, "Image", LOVE_GRAPHICS_IMAGE_BITS, (void*)image);
-			lua_replace(L, 1);
-		}
+			luax_convobj(L, 1, "graphics", "newImage");
 
 		// Check the value.
 		Image * image = luax_checktype<Image>(L, 1, "Image", LOVE_GRAPHICS_IMAGE_BITS);
 
-		Animation * animation = 0;
+		const char * glyphs = luaL_checkstring(L, 2);
 
-		if(lua_gettop(L) == 1)
-		{
-			animation = newAnimation(image);
-		}
-		else 
-		{
-			float fw = (float)luaL_checknumber(L, 2);
-			float fh = (float)luaL_checknumber(L, 3);
-			float delay = (float)luaL_checknumber(L, 4);
-			int num = luaL_optint(L, 5, 0);
-			animation = newAnimation(image, fw, fh, delay, num);
-		}
+		Font * font = Graphics::__getinstance()->newImageFont(image, glyphs);
 
-		if(animation == 0)
-			return luaL_error(L, "Could not load the Animation");
+		if(font == 0)
+			return luaL_error(L, "Could not load the font");
+
+		luax_newtype(L, "Font", LOVE_GRAPHICS_FONT_BITS, (void*)font);
 		
-		luax_newtype(L, "Animation", LOVE_ANIMATION_BITS, (void*)animation);
 		return 1;
 	}
-	*/
 
 	int _wrap_newSpriteBatch(lua_State * L)
 	{
@@ -505,6 +523,39 @@ namespace opengl
 		return 0;
 	}
 
+	/**
+	* Draws an Image at the specified coordinates, with rotation and 
+	* scaling along both axes.
+	* @param x The x-coordinate.
+	* @param y The y-coordinate.
+	* @param angle The amount of rotation.
+	* @param sx The scale factor along the x-axis. (1 = normal).
+	* @param sy The scale factor along the y-axis. (1 = normal).
+	* @param ox The offset along the x-axis.
+	* @param oy The offset along the y-axis.
+	* @param rx The upper-left corner of the source rectangle along the x-axis.
+	* @param ry The upper-left corner of the source rectangle along the y-axis.
+	* @param rw The width of the source rectangle.
+	* @param rw The height of the source rectangle.
+	**/
+	int _wrap_draws(lua_State * L)
+	{
+		Image * image = luax_checktype<Image>(L, 1, "Image", LOVE_GRAPHICS_IMAGE_BITS);
+		float x = (float)luaL_optnumber(L, 2, 0.0f);
+		float y = (float)luaL_optnumber(L, 3, 0.0f);
+		float angle = (float)luaL_optnumber(L, 4, 0.0f);
+		float sx = (float)luaL_optnumber(L, 5, 1.0f);
+		float sy = (float)luaL_optnumber(L, 6, sx);
+		float ox = (float)luaL_optnumber(L, 7, 0);
+		float oy = (float)luaL_optnumber(L, 8, 0);
+		float rx = (float)luaL_optnumber(L, 9, 0);
+		float ry = (float)luaL_optnumber(L, 10, 0);
+		float rw = (float)luaL_optnumber(L, 11, image->getWidth());
+		float rh = (float)luaL_optnumber(L, 12, image->getHeight());
+		image->draws(x, y, angle, sx, sy, ox, oy, rx, ry, rw, rh);
+		return 0;
+	}
+
 	int _wrap_drawTest(lua_State * L)
 	{
 		Image * image = luax_checktype<Image>(L, 1, "Image", LOVE_GRAPHICS_IMAGE_BITS);
@@ -678,11 +729,11 @@ namespace opengl
 
 		{ "newColor", _wrap_newColor },
 		{ "newImage", _wrap_newImage },
+		{ "newAnimation", _wrap_newAnimation },
 		{ "newFont", _wrap_newFont },
+		{ "newImageFont", _wrap_newImageFont },
 		{ "newSpriteBatch", _wrap_newSpriteBatch },
 		{ "newVertexBuffer", _wrap_newVertexBuffer },
-
-		//{ "newAnimation", _wrap_newAnimation },
 
 		{ "setColor", _wrap_setColor },
 		{ "getColor", _wrap_getColor },
@@ -710,6 +761,7 @@ namespace opengl
 		{ "getMaxPointSize", _wrap_getMaxPointSize },
 
 		{ "draw", _wrap_draw },
+		{ "draws", _wrap_draws },
 		{ "drawTest", _wrap_drawTest },
 
 		{ "print", _wrap_print },
@@ -752,6 +804,7 @@ namespace opengl
 		wrap_Color_open(L);
 		wrap_Font_open(L);
 		wrap_Image_open(L);
+		wrap_Animation_open(L);
 		wrap_ParticleSystem_open(L);
 		wrap_SpriteBatch_open(L);
 		wrap_VertexBuffer_open(L);

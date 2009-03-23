@@ -1,137 +1,147 @@
 /**
-* LOVE: Free 2D Game Engine
-* Website: http://love2d.org
-* Licence: ZLIB/libpng
-* Copyright (c) 2006-2008 LOVE Development Team
+* LOVE -- Free 2D Game Engine
+* Version $(DOC_VERSION), $(DOC_DATE)
 * 
-* @author Anders Ruud
-* @date 2008-11-08
+* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* 
+* This software is provided 'as-is', without any express or implied
+* warranty.  In no event will the authors be held liable for any damages
+* arising from the use of this software.
+* 
+* Permission is granted to anyone to use this software for any purpose,
+* including commercial applications, and to alter it and redistribute it
+* freely, subject to the following restrictions:
+* 
+* 1. The origin of this software must not be misrepresented; you must not
+*    claim that you wrote the original software. If you use this software
+*    in a product, an acknowledgment in the product documentation would be
+*    appreciated but is not required.
+* 2. Altered source versions must be plainly marked as such, and must not be
+*    misrepresented as being the original software.
+* 3. This notice may not be removed or altered from any source distribution.
+* 
+* -- LOVE Development Team, http://love2d.org
 **/
 
-#ifndef LOVE_ANIMATION_W
-#define LOVE_ANIMATION_W
-
-#include "../luax.h"
-#include "../wwrap.h"
+// LOVE
+#include "wrap_Animation.h"
 
 namespace love
 {
-namespace LOVE_WRAP_NAMESPACE
+namespace graphics
 {
-	static const bits LOVE_WRAP_ANIMATION_BITS = (LOVE_ANIMATION_BITS | LOVE_WRAP_BITS);
-
-	// This macro makes checking for the correct type slightly more compact.
-	#define luax_checkanimation(L, idx) luax_checktype<Animation>(L, idx, "Animation", LOVE_WRAP_ANIMATION_BITS)
+namespace opengl
+{
+	Animation * luax_checkanimation(lua_State * L, int idx)
+	{
+		return luax_checktype<Animation>(L, idx, "Animation", LOVE_GRAPHICS_ANIMATION_BITS);
+	}
 
 	int _wrap_Animation_addFrame(lua_State * L)
 	{
-		Animation * a = luax_checkanimation(L, 1);
+		Animation * t = luax_checkanimation(L, 1);
 		float x = (float)luaL_checknumber(L, 2);
 		float y = (float)luaL_checknumber(L, 3);
 		float w = (float)luaL_checknumber(L, 4);
 		float h = (float)luaL_checknumber(L, 5);
-		float delay = (float)luaL_checknumber(L, 6);
-		a->addFrame(x, y, w, h, delay);
-		return 0;
-	}
-
-	int _wrap_Animation_setMode(lua_State * L)
-	{
-		Animation * a = luax_checkanimation(L, 1);
-		int mode = luaL_checkint(L, 2);
-		a->setMode(mode);
+		float d = (float)luaL_checknumber(L, 6);
+		t->addFrame(x, y, w, h, d);
 		return 0;
 	}
 
 	int _wrap_Animation_play(lua_State * L)
 	{
-		Animation * a = luax_checkanimation(L, 1);
-		a->play();
+		Animation * t = luax_checkanimation(L, 1);
+		t->play();
 		return 0;
 	}
 
 	int _wrap_Animation_stop(lua_State * L)
 	{
-		Animation * a = luax_checkanimation(L, 1);
-		a->stop();
+		Animation * t = luax_checkanimation(L, 1);
+		t->stop();
 		return 0;
 	}
 
 	int _wrap_Animation_reset(lua_State * L)
 	{
-		Animation * a = luax_checkanimation(L, 1);
-		a->reset();
+		Animation * t = luax_checkanimation(L, 1);
+		t->reset();
 		return 0;
 	}
 
 	int _wrap_Animation_seek(lua_State * L)
 	{
-		Animation * a = luax_checkanimation(L, 1);
+		Animation * t = luax_checkanimation(L, 1);
 		int frame = luaL_checkint(L, 2);
-		a->seek(frame);
+		t->seek(frame);
 		return 0;
 	}
 
 	int _wrap_Animation_getCurrentFrame(lua_State * L)
 	{
-		Animation * a = luax_checkanimation(L, 1);
-		lua_pushinteger(L, a->getCurrentFrame());
+		Animation * t = luax_checkanimation(L, 1);
+		lua_pushnumber(L, t->getCurrentFrame());
 		return 1;
 	}
 
 	int _wrap_Animation_getSize(lua_State * L)
 	{
-		Animation * a = luax_checkanimation(L, 1);
-		lua_pushinteger(L, a->getSize());
+		Animation * t = luax_checkanimation(L, 1);
+		lua_pushnumber(L, t->getSize());
 		return 1;
 	}
 
 	int _wrap_Animation_setDelay(lua_State * L)
 	{
-		Animation * a = luax_checkanimation(L, 1);
+		Animation * t = luax_checkanimation(L, 1);
 		int frame = luaL_checkint(L, 2);
 		float delay = (float)luaL_checknumber(L, 3);
-		a->setDelay(frame, delay);
+		t->setDelay(frame, delay);
 		return 0;
 	}
 
 	int _wrap_Animation_setSpeed(lua_State * L)
 	{
-		Animation * a = luax_checkanimation(L, 1);
+		Animation * t = luax_checkanimation(L, 1);
 		float speed = (float)luaL_checknumber(L, 2);
-		a->setSpeed(speed);
+		t->setSpeed(speed);
 		return 0;
 	}
 
 	int _wrap_Animation_getSpeed(lua_State * L)
 	{
-		Animation * a = luax_checkanimation(L, 1);
-		lua_pushnumber(L, a->getSpeed());
+		Animation * t = luax_checkanimation(L, 1);
+		lua_pushnumber(L, t->getSpeed());
 		return 1;
 	}
 
 	int _wrap_Animation_update(lua_State * L)
 	{
-		Animation * a = luax_checkanimation(L, 1);
+		Animation * t = luax_checkanimation(L, 1);
 		float dt = (float)luaL_checknumber(L, 2);
-		a->update(dt);
+		t->update(dt);
 		return 0;
 	}
 
-	int _wrap_Animation_setOffset(lua_State * L)
+	int _wrap_Animation_getWidth(lua_State * L)
 	{
-		Animation * a = luax_checkanimation(L, 1);
-		float x = (float)luaL_checknumber(L, 2);
-		float y = (float)luaL_checknumber(L, 3);
-		a->setOffset(x, y);
-		return 0;
+		Animation * t = luax_checkanimation(L, 1);
+		lua_pushnumber(L, t->getWidth());
+		return 1;
 	}
 
-	static const luaL_Reg Animation_mt[] = {
+	int _wrap_Animation_getHeight(lua_State * L)
+	{
+		Animation * t = luax_checkanimation(L, 1);
+		lua_pushnumber(L, t->getHeight());
+		return 1;
+	}
+
+	static const luaL_Reg wrap_Animation_functions[] = {
 		{ "__index", _wrap__index },
 		{ "__gc", _wrap__gc },
 		{ "addFrame", _wrap_Animation_addFrame },
-		{ "setMode", _wrap_Animation_setMode },
 		{ "play", _wrap_Animation_play },
 		{ "stop", _wrap_Animation_stop },
 		{ "reset", _wrap_Animation_reset },
@@ -142,11 +152,17 @@ namespace LOVE_WRAP_NAMESPACE
 		{ "setSpeed", _wrap_Animation_setSpeed },
 		{ "getSpeed", _wrap_Animation_getSpeed },
 		{ "update", _wrap_Animation_update },
-		{ "setOffset", _wrap_Animation_setOffset },
+		{ "getWidth", _wrap_Animation_getWidth },
+		{ "getHeight", _wrap_Animation_getHeight },
 		{ 0, 0 }
 	};
 
-} // love
-} // LOVE_WRAP_NAMESPACE
+	int wrap_Animation_open(lua_State * L)
+	{
+		luax_register_type(L, "Animation", wrap_Animation_functions);
+		return 0;
+	}
 
-#endif // LOVE_ANIMATION_W
+} // opengl
+} // graphics
+} // love

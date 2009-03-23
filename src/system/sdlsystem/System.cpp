@@ -85,6 +85,8 @@ namespace sdlsystem
 
 	int System::events_i(lua_State * L)
 	{
+		SDL_EnableUNICODE(1);
+
 		// The union used to get SDL events. 
 		static SDL_Event e;
 
@@ -94,6 +96,10 @@ namespace sdlsystem
 			switch(e.type)
 			{
 			case SDL_KEYDOWN:
+				lua_pushinteger(L, e.type);
+				lua_pushinteger(L, e.key.keysym.sym);
+				lua_pushinteger(L, e.key.keysym.unicode);
+				return 3;
 			case SDL_KEYUP:
 				lua_pushinteger(L, e.type);
 				lua_pushinteger(L, e.key.keysym.sym);

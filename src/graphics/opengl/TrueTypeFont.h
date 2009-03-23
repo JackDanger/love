@@ -56,6 +56,10 @@ namespace opengl
 	**/
 	class TrueTypeFont : public Font
 	{
+	private: 
+
+		love::filesystem::File * file;
+
 	protected:
 		
 		unsigned int * textures;

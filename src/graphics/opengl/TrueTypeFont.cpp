@@ -136,13 +136,16 @@ namespace opengl
 		FT_Done_Glyph(glyph);
 	}
 
-	TrueTypeFont::TrueTypeFont(love::filesystem::File * file, int size) : Font(file, size), textures(0), list(0)
+	TrueTypeFont::TrueTypeFont(love::filesystem::File * file, int size) 
+		: Font(size), file(file), textures(0), list(0)
 	{
+		file->retain();
 	}	
 
 	TrueTypeFont::~TrueTypeFont()
 	{
 		unload();
+		file->release();
 	}
 
 	void TrueTypeFont::print(string text, float x, float y) const
