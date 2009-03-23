@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +17,7 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 #include "Keyboard.h"
@@ -37,17 +34,17 @@ namespace sdlkeyboard
 	// Wrapper loaders.
 	extern int wrap_Keyboard_open(lua_State * L);
 
-	Keyboard * Keyboard::_instance = 0;
+	Keyboard * Keyboard::instance = 0;
 
 	Keyboard::Keyboard()
 	{
 	}
 
-	Keyboard * Keyboard::__getinstance()
+	Keyboard * Keyboard::getInstance()
 	{
-		if(_instance == 0)
-			_instance = new Keyboard();
-		return _instance;
+		if(instance == 0)
+			instance = new Keyboard();
+		return instance;
 	}
 
 	int Keyboard::__advertise(lua_State * L)
@@ -71,7 +68,7 @@ namespace sdlkeyboard
 
 	int Keyboard::__garbagecollect(lua_State * L)
 	{
-		Keyboard * m = Keyboard::__getinstance();
+		Keyboard * m = Keyboard::getInstance();
 		if(m != 0)
 			delete m;
 		return 0;

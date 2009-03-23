@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +17,7 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 // LOVE
@@ -39,7 +36,7 @@ namespace physfs
 	{
 		const char * arg = luaL_checkstring(L, 1);
 
-		if(!Filesystem::__getinstance()->setIdentity(arg))
+		if(!Filesystem::getInstance()->setIdentity(arg))
 			return luaL_error(L, "Could not set write directory.");
 
 		return 0;
@@ -49,7 +46,7 @@ namespace physfs
 	{
 		const char * arg = luaL_checkstring(L, 1);
 
-		if(!Filesystem::__getinstance()->setSource(arg))
+		if(!Filesystem::getInstance()->setSource(arg))
 			return luaL_error(L, "Could not set source.");
 
 		return 0;
@@ -60,7 +57,7 @@ namespace physfs
 		const char * filename = luaL_checkstring(L, 1);
 		int mode = luaL_optint(L, 2, FILE_READ);
 
-		File * t = Filesystem::__getinstance()->newFile(filename, mode);
+		File * t = Filesystem::getInstance()->newFile(filename, mode);
 		if(t == 0)
 			return luaL_error(L, "Could not open file %s", filename);
 		luax_newtype(L, "File", LOVE_FILESYSTEM_FILE_BITS, (void*)t);
@@ -70,60 +67,60 @@ namespace physfs
 
 	int _wrap_getWorkingDirectory(lua_State * L)
 	{
-		lua_pushstring(L, Filesystem::__getinstance()->getWorkingDirectory());
+		lua_pushstring(L, Filesystem::getInstance()->getWorkingDirectory());
 		return 1;
 	}
 
 	int _wrap_getUserDirectory(lua_State * L)
 	{
-		lua_pushstring(L, Filesystem::__getinstance()->getUserDirectory());
+		lua_pushstring(L, Filesystem::getInstance()->getUserDirectory());
 		return 1;
 	}
 
 	int _wrap_getAppdataDirectory(lua_State * L)
 	{
-		lua_pushstring(L, Filesystem::__getinstance()->getAppdataDirectory());
+		lua_pushstring(L, Filesystem::getInstance()->getAppdataDirectory());
 		return 1;
 	}
 
 	int _wrap_getSaveDirectory(lua_State * L)
 	{
-		lua_pushstring(L, Filesystem::__getinstance()->getSaveDirectory());
+		lua_pushstring(L, Filesystem::getInstance()->getSaveDirectory());
 		return 1;
 	}
 
 	int _wrap_exists(lua_State * L)
 	{
 		const char * arg = luaL_checkstring(L, 1);
-		lua_pushboolean(L, Filesystem::__getinstance()->exists(arg) ? 1 : 0);
+		lua_pushboolean(L, Filesystem::getInstance()->exists(arg) ? 1 : 0);
 		return 1;
 	}
 
 	int _wrap_isDirectory(lua_State * L)
 	{
 		const char * arg = luaL_checkstring(L, 1);
-		lua_pushboolean(L, Filesystem::__getinstance()->isDirectory(arg) ? 1 : 0);
+		lua_pushboolean(L, Filesystem::getInstance()->isDirectory(arg) ? 1 : 0);
 		return 1;
 	}
 
 	int _wrap_isFile(lua_State * L)
 	{
 		const char * arg = luaL_checkstring(L, 1);
-		lua_pushboolean(L, Filesystem::__getinstance()->isFile(arg) ? 1 : 0);
+		lua_pushboolean(L, Filesystem::getInstance()->isFile(arg) ? 1 : 0);
 		return 1;
 	}
 
 	int _wrap_mkdir(lua_State * L)
 	{
 		const char * arg = luaL_checkstring(L, 1);
-		lua_pushboolean(L, Filesystem::__getinstance()->mkdir(arg) ? 1 : 0);
+		lua_pushboolean(L, Filesystem::getInstance()->mkdir(arg) ? 1 : 0);
 		return 1;
 	}
 
 	int _wrap_remove(lua_State * L)
 	{
 		const char * arg = luaL_checkstring(L, 1);
-		lua_pushboolean(L, Filesystem::__getinstance()->remove(arg) ? 1 : 0);
+		lua_pushboolean(L, Filesystem::getInstance()->remove(arg) ? 1 : 0);
 		return 1;
 	}
 
@@ -143,12 +140,12 @@ namespace physfs
 
 	int _wrap_read(lua_State * L)
 	{
-		return Filesystem::__getinstance()->read(L);
+		return Filesystem::getInstance()->read(L);
 	}
 
 	int _wrap_write(lua_State * L)
 	{
-		return Filesystem::__getinstance()->write(L);
+		return Filesystem::getInstance()->write(L);
 	}
 
 	int _wrap_eof(lua_State * L)
@@ -175,17 +172,17 @@ namespace physfs
 
 	int _wrap_enumerate(lua_State * L)
 	{
-		return Filesystem::__getinstance()->enumerate(L);
+		return Filesystem::getInstance()->enumerate(L);
 	}
 
 	int _wrap_lines(lua_State * L)
 	{
-		return Filesystem::__getinstance()->lines(L);
+		return Filesystem::getInstance()->lines(L);
 	}
 
 	int _wrap_load(lua_State * L)
 	{
-		return Filesystem::__getinstance()->load(L);
+		return Filesystem::getInstance()->load(L);
 	}
 
 	// List of functions to wrap.

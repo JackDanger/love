@@ -200,6 +200,10 @@
 						/>
 					</FileConfiguration>
 				</File>
+				<File
+					RelativePath="..\..\src\timer\sdltimer\wrap_Timer.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -2120,6 +2124,14 @@
 		</File>
 		<File
 			RelativePath="..\..\src\Matrix.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\Module.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\Module.h"
 			>
 		</File>
 		<File

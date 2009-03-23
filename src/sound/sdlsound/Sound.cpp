@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +17,7 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 #include "Sound.h"
@@ -34,17 +31,17 @@ namespace sound
 {
 namespace sdlsound
 {
-	Sound * Sound::_instance = 0;
+	Sound * Sound::instance = 0;
 
 	Sound::Sound()
 	{
 	}
 
-	Sound * Sound::__getinstance()
+	Sound * Sound::getInstance()
 	{
-		if(_instance == 0)
-			_instance = new Sound();
-		return _instance;
+		if(instance == 0)
+			instance = new Sound();
+		return instance;
 	}
 
 	int Sound::__advertise(lua_State * L)
@@ -69,7 +66,7 @@ namespace sdlsound
 	int Sound::__garbagecollect(lua_State * L)
 	{
 		Sound_Quit();
-		Sound * m = Sound::__getinstance();
+		Sound * m = Sound::getInstance();
 		if(m != 0)
 			delete m;
 		return 0;

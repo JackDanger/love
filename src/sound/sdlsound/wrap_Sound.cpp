@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +17,7 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 #include "wrap_Sound.h"
@@ -42,7 +39,7 @@ namespace sdlsound
 			luax_strtofile(L, 1);
 
 		love::filesystem::File * file = luax_checktype<love::filesystem::File>(L, 1, "File", LOVE_FILESYSTEM_FILE_BITS);
-		SoundData * t = Sound::__getinstance()->newSoundData(file);
+		SoundData * t = Sound::getInstance()->newSoundData(file);
 		luax_newtype(L, "SoundData", LOVE_SOUND_SOUND_DATA_BITS, (void*)t);
 		return 1;
 	}

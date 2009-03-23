@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,16 +17,11 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#ifndef LOVE_SDLTIMER_WRAP_TIMER_H
-#define LOVE_SDLTIMER_WRAP_TIMER_H
-
 // LOVE
-#include "../../luax.h"
-
-// sdltimer
+#include "wrap_Timer.h"
 #include "Timer.h"
 
 namespace love
@@ -40,32 +32,32 @@ namespace sdltimer
 {
 	int _wrap_step(lua_State * L)
 	{
-		Timer::__getinstance()->step();
+		Timer::getInstance()->step();
 		return 0;
 	}
 
 	int _wrap_getDelta(lua_State * L)
 	{
-		lua_pushnumber(L, Timer::__getinstance()->getDelta());
+		lua_pushnumber(L, Timer::getInstance()->getDelta());
 		return 1;
 	}
 
 	int _wrap_getFPS(lua_State * L)
 	{
-		lua_pushnumber(L, Timer::__getinstance()->getFPS());
+		lua_pushnumber(L, Timer::getInstance()->getFPS());
 		return 1;
 	}
 
 	int _wrap_sleep(lua_State * L)
 	{
 		int ms = luaL_checkint(L, 1);
-		Timer::__getinstance()->sleep(ms);
+		Timer::getInstance()->sleep(ms);
 		return 0;
 	}
 
 	int _wrap_getTime(lua_State * L)
 	{
-		lua_pushnumber(L, Timer::__getinstance()->getTime());
+		lua_pushnumber(L, Timer::getInstance()->getTime());
 		return 1;
 	}
 	
@@ -82,11 +74,18 @@ namespace sdltimer
 	int wrap_Timer_open(lua_State * L)
 	{
 		luax_register_module(L, "timer", wrap_Timer_functions);
+		luax_register_gc(L, "sdltimer", &wrap_Timer_gc);
+		if(!Timer::getInstance()->init())
+			return luaL_error(L, "Could not init module sdltimer.");
+		return 0;
+	}
+
+	int wrap_Timer_gc(lua_State * L)
+	{
+		Timer::getInstance()->quit();
 		return 0;
 	}
 
 } // sdltimer
 } // timer
 } // love
-
-#endif // LOVE_SDLTIMER_WRAP_TIMER_H

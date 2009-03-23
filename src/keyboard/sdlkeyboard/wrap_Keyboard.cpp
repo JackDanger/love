@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +17,7 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 #ifndef LOVE_KEYBOARD_SDLKEYBOARD_WRAP_KEYBOARD_H
@@ -41,7 +38,7 @@ namespace sdlkeyboard
 	int _wrap_isDown(lua_State * L)
 	{
 		int b = luaL_checkint(L, 1);
-		luax_pushboolean(L, Keyboard::__getinstance()->isDown(b));
+		luax_pushboolean(L, Keyboard::getInstance()->isDown(b));
 		return 1;
 	}
 	

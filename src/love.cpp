@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,9 +17,8 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
-
 // STD
 
 // SDL
@@ -34,7 +30,7 @@
 #include "constants.h"
 
 // Modules
-#include "timer/sdltimer/Timer.h"
+#include "timer/sdltimer/wrap_Timer.h"
 #include "system/sdlsystem/System.h"
 #include "graphics/opengl/Graphics.h"
 #include "mouse/sdlmouse/Mouse.h"
@@ -48,6 +44,10 @@
 
 #include "luasocket/luasocket.h"
 
+int require_module(lua_State * L)
+{
+	return 0;
+}
 
 int luaopen_love(lua_State * L)
 {
@@ -91,7 +91,7 @@ int luaopen_love(lua_State * L)
 
 	// Advertise here.
 	love::filesystem::physfs::Filesystem::__advertise(L);
-	love::timer::sdltimer::Timer::__advertise(L);
+	love::timer::sdltimer::wrap_Timer_open(L);
 	love::system::sdlsystem::System::__advertise(L);
 	love::keyboard::sdlkeyboard::Keyboard::__advertise(L);
 	love::mouse::sdlmouse::Mouse::__advertise(L);

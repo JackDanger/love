@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +17,7 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 #ifndef LOVE_TIMER_SDLTIMER_TIMER_H
@@ -30,7 +27,7 @@
 #include <SDL.h>
 
 // LOVE
-#include "../../luax.h"
+#include "../../Module.h"
 
 namespace love
 {
@@ -38,12 +35,12 @@ namespace timer
 {
 namespace sdltimer
 {
-	class Timer
+	class Timer : public Module
 	{
 	private:
 
 		// The single instance of this class.
-		static Timer * _instance;
+		static Timer * instance;
 
 		// Timing vars for benchmarking.
 		Uint32 time_init;
@@ -69,10 +66,11 @@ namespace sdltimer
 		Timer();
 	public:
 
-		static Timer * __getinstance();
-		static int __advertise(lua_State * L);
-		static int __open(lua_State * L);
-		static int __garbagecollect(lua_State * L);
+		static Timer * getInstance();
+
+		// Implements Module.
+		bool init();
+		void quit();
 		
 		void step();
 		void sleep(unsigned int ms);

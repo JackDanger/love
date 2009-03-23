@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +17,7 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 #include "Mouse.h"
@@ -37,17 +34,17 @@ namespace sdlmouse
 	// Wrapper loaders.
 	extern int wrap_Mouse_open(lua_State * L);
 
-	Mouse * Mouse::_instance = 0;
+	Mouse * Mouse::instance = 0;
 
 	Mouse::Mouse()
 	{
 	}
 
-	Mouse * Mouse::__getinstance()
+	Mouse * Mouse::getInstance()
 	{
-		if(_instance == 0)
-			_instance = new Mouse();
-		return _instance;
+		if(instance == 0)
+			instance = new Mouse();
+		return instance;
 	}
 
 	int Mouse::__advertise(lua_State * L)
@@ -71,7 +68,7 @@ namespace sdlmouse
 
 	int Mouse::__garbagecollect(lua_State * L)
 	{
-		Mouse * m = Mouse::__getinstance();
+		Mouse * m = Mouse::getInstance();
 		if(m != 0)
 			delete m;
 		return 0;

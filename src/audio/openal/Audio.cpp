@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +17,7 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 #include "Audio.h"
@@ -41,18 +38,18 @@ namespace audio
 {
 namespace openal
 {
-	Audio * Audio::_instance = 0;
+	Audio * Audio::instance = 0;
 
 	Audio::Audio()
 		: quit_channel_updater(false), channels_mutex(0), channel_update_thread(0)
 	{
 	}
 
-	Audio * Audio::__getinstance()
+	Audio * Audio::getInstance()
 	{
-		if(_instance == 0)
-			_instance = new Audio();
-		return _instance;
+		if(instance == 0)
+			instance = new Audio();
+		return instance;
 	}
 
 	int Audio::__advertise(lua_State * L)
@@ -76,7 +73,7 @@ namespace openal
 
 	int Audio::__garbagecollect(lua_State * L)
 	{
-		Audio * m = Audio::__getinstance();
+		Audio * m = Audio::getInstance();
 		if(m != 0)
 			delete m;
 		return 0;
@@ -109,19 +106,19 @@ namespace openal
 
 	int Audio::channel_updater(void * unused)
 	{
-		while(!Audio::__getinstance()->quit_channel_updater)
+		while(!Audio::getInstance()->quit_channel_updater)
 		{
-			MUTEX_ASSERT(SDL_mutexP(Audio::__getinstance()->channels_mutex), 0);
+			MUTEX_ASSERT(SDL_mutexP(Audio::getInstance()->channels_mutex), 0);
 			
-			std::list<Channel *>::iterator p = Audio::__getinstance()->playing_channels.begin();
+			std::list<Channel *>::iterator p = Audio::getInstance()->playing_channels.begin();
 
 			// Update channels and remove completed ones.
-			while(p != Audio::__getinstance()->playing_channels.end())
+			while(p != Audio::getInstance()->playing_channels.end())
 			{
 				if((*p)->isDone())
 				{
 					(*p)->release();
-					Audio::__getinstance()->playing_channels.erase(p++);
+					Audio::getInstance()->playing_channels.erase(p++);
 					std::cout << " <-- Channel removed." << std::endl;
 				}
 				else
@@ -132,7 +129,7 @@ namespace openal
 			}
 		
 
-			MUTEX_ASSERT(SDL_mutexV(Audio::__getinstance()->channels_mutex), 0);
+			MUTEX_ASSERT(SDL_mutexV(Audio::getInstance()->channels_mutex), 0);
 			SDL_Delay(10);
 		}
 

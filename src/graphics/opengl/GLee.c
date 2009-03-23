@@ -130,12 +130,12 @@ GLboolean _GLEE_ARB_half_float_pixel = GL_FALSE;
 GLboolean _GLEE_ARB_texture_float = GL_FALSE;
 GLboolean _GLEE_ARB_pixel_buffer_object = GL_FALSE;
 GLboolean _GLEE_ARB_depth_buffer_float = GL_FALSE;
-GLboolean _GLEE_ARB_draw_instanced = GL_FALSE;
+GLboolean _GLEE_ARB_drawinstanced = GL_FALSE;
 GLboolean _GLEE_ARB_framebuffer_object = GL_FALSE;
 GLboolean _GLEE_ARB_framebuffer_sRGB = GL_FALSE;
 GLboolean _GLEE_ARB_geometry_shader4 = GL_FALSE;
 GLboolean _GLEE_ARB_half_float_vertex = GL_FALSE;
-GLboolean _GLEE_ARB_instanced_arrays = GL_FALSE;
+GLboolean _GLEE_ARBinstanced_arrays = GL_FALSE;
 GLboolean _GLEE_ARB_map_buffer_range = GL_FALSE;
 GLboolean _GLEE_ARB_texture_buffer_object = GL_FALSE;
 GLboolean _GLEE_ARB_texture_compression_rgtc = GL_FALSE;
@@ -371,7 +371,7 @@ GLboolean _GLEE_NV_geometry_program4 = GL_FALSE;
 GLboolean _GLEE_EXT_geometry_shader4 = GL_FALSE;
 GLboolean _GLEE_NV_vertex_program4 = GL_FALSE;
 GLboolean _GLEE_EXT_gpu_shader4 = GL_FALSE;
-GLboolean _GLEE_EXT_draw_instanced = GL_FALSE;
+GLboolean _GLEE_EXT_drawinstanced = GL_FALSE;
 GLboolean _GLEE_EXT_packed_float = GL_FALSE;
 GLboolean _GLEE_EXT_texture_array = GL_FALSE;
 GLboolean _GLEE_EXT_texture_buffer_object = GL_FALSE;
@@ -456,12 +456,12 @@ char __GLeeGLExtensionNames[322][39]={
     "GL_ARB_texture_float",
     "GL_ARB_pixel_buffer_object",
     "GL_ARB_depth_buffer_float",
-    "GL_ARB_draw_instanced",
+    "GL_ARB_drawinstanced",
     "GL_ARB_framebuffer_object",
     "GL_ARB_framebuffer_sRGB",
     "GL_ARB_geometry_shader4",
     "GL_ARB_half_float_vertex",
-    "GL_ARB_instanced_arrays",
+    "GL_ARBinstanced_arrays",
     "GL_ARB_map_buffer_range",
     "GL_ARB_texture_buffer_object",
     "GL_ARB_texture_compression_rgtc",
@@ -697,7 +697,7 @@ char __GLeeGLExtensionNames[322][39]={
     "GL_EXT_geometry_shader4",
     "GL_NV_vertex_program4",
     "GL_EXT_gpu_shader4",
-    "GL_EXT_draw_instanced",
+    "GL_EXT_drawinstanced",
     "GL_EXT_packed_float",
     "GL_EXT_texture_array",
     "GL_EXT_texture_buffer_object",
@@ -1975,9 +1975,9 @@ PFNGLCLAMPCOLORARBPROC pglClampColorARB=_Lazy_glClampColorARB;
 #ifdef __GLEE_GL_ARB_depth_buffer_float
 #endif 
 
-/* GL_ARB_draw_instanced */
+/* GL_ARB_drawinstanced */
 
-#ifdef __GLEE_GL_ARB_draw_instanced
+#ifdef __GLEE_GL_ARB_drawinstanced
 void __stdcall _Lazy_glDrawArraysInstancedARB(GLenum mode, GLint first, GLsizei count, GLsizei primcount)  {if (GLeeInit()) glDrawArraysInstancedARB(mode, first, count, primcount);}
 void __stdcall _Lazy_glDrawElementsInstancedARB(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices, GLsizei primcount)  {if (GLeeInit()) glDrawElementsInstancedARB(mode, count, type, indices, primcount);}
 PFNGLDRAWARRAYSINSTANCEDARBPROC pglDrawArraysInstancedARB=_Lazy_glDrawArraysInstancedARB;
@@ -2052,9 +2052,9 @@ PFNGLFRAMEBUFFERTEXTUREFACEARBPROC pglFramebufferTextureFaceARB=_Lazy_glFramebuf
 #ifdef __GLEE_GL_ARB_half_float_vertex
 #endif 
 
-/* GL_ARB_instanced_arrays */
+/* GL_ARBinstanced_arrays */
 
-#ifdef __GLEE_GL_ARB_instanced_arrays
+#ifdef __GLEE_GL_ARBinstanced_arrays
 void __stdcall _Lazy_glVertexAttribDivisor(GLuint index, GLuint divisor)                  {if (GLeeInit()) glVertexAttribDivisor(index, divisor);}
 PFNGLVERTEXATTRIBDIVISORPROC pglVertexAttribDivisor=_Lazy_glVertexAttribDivisor;
 #endif 
@@ -4654,9 +4654,9 @@ PFNGLUNIFORM3UIVEXTPROC pglUniform3uivEXT=_Lazy_glUniform3uivEXT;
 PFNGLUNIFORM4UIVEXTPROC pglUniform4uivEXT=_Lazy_glUniform4uivEXT;
 #endif 
 
-/* GL_EXT_draw_instanced */
+/* GL_EXT_drawinstanced */
 
-#ifdef __GLEE_GL_EXT_draw_instanced
+#ifdef __GLEE_GL_EXT_drawinstanced
 void __stdcall _Lazy_glDrawArraysInstancedEXT(GLenum mode, GLint start, GLsizei count, GLsizei primcount)  {if (GLeeInit()) glDrawArraysInstancedEXT(mode, start, count, primcount);}
 void __stdcall _Lazy_glDrawElementsInstancedEXT(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices, GLsizei primcount)  {if (GLeeInit()) glDrawElementsInstancedEXT(mode, count, type, indices, primcount);}
 PFNGLDRAWARRAYSINSTANCEDEXTPROC pglDrawArraysInstancedEXT=_Lazy_glDrawArraysInstancedEXT;
@@ -7004,10 +7004,10 @@ GLuint __GLeeLink_GL_ARB_pixel_buffer_object(void) {return GLEE_LINK_COMPLETE;}
 
 GLuint __GLeeLink_GL_ARB_depth_buffer_float(void) {return GLEE_LINK_COMPLETE;}
 
-GLuint __GLeeLink_GL_ARB_draw_instanced(void)
+GLuint __GLeeLink_GL_ARB_drawinstanced(void)
 {
     GLint nLinked=0;
-#ifdef __GLEE_GL_ARB_draw_instanced
+#ifdef __GLEE_GL_ARB_drawinstanced
     if ((pglDrawArraysInstancedARB = (PFNGLDRAWARRAYSINSTANCEDARBPROC) __GLeeGetProcAddress("glDrawArraysInstancedARB"))!=0) nLinked++;
     if ((pglDrawElementsInstancedARB = (PFNGLDRAWELEMENTSINSTANCEDARBPROC) __GLeeGetProcAddress("glDrawElementsInstancedARB"))!=0) nLinked++;
 #endif
@@ -7064,10 +7064,10 @@ GLuint __GLeeLink_GL_ARB_geometry_shader4(void)
 
 GLuint __GLeeLink_GL_ARB_half_float_vertex(void) {return GLEE_LINK_COMPLETE;}
 
-GLuint __GLeeLink_GL_ARB_instanced_arrays(void)
+GLuint __GLeeLink_GL_ARBinstanced_arrays(void)
 {
     GLint nLinked=0;
-#ifdef __GLEE_GL_ARB_instanced_arrays
+#ifdef __GLEE_GL_ARBinstanced_arrays
     if ((pglVertexAttribDivisor = (PFNGLVERTEXATTRIBDIVISORPROC) __GLeeGetProcAddress("glVertexAttribDivisor"))!=0) nLinked++;
 #endif
     if (nLinked==1) return GLEE_LINK_COMPLETE;
@@ -9119,10 +9119,10 @@ GLuint __GLeeLink_GL_EXT_gpu_shader4(void)
     return GLEE_LINK_PARTIAL;
 }
 
-GLuint __GLeeLink_GL_EXT_draw_instanced(void)
+GLuint __GLeeLink_GL_EXT_drawinstanced(void)
 {
     GLint nLinked=0;
-#ifdef __GLEE_GL_EXT_draw_instanced
+#ifdef __GLEE_GL_EXT_drawinstanced
     if ((pglDrawArraysInstancedEXT = (PFNGLDRAWARRAYSINSTANCEDEXTPROC) __GLeeGetProcAddress("glDrawArraysInstancedEXT"))!=0) nLinked++;
     if ((pglDrawElementsInstancedEXT = (PFNGLDRAWELEMENTSINSTANCEDEXTPROC) __GLeeGetProcAddress("glDrawElementsInstancedEXT"))!=0) nLinked++;
 #endif
@@ -9645,12 +9645,12 @@ void initGLLoadFunctions(void)
     __GLeeGLLoadFunction[41]=__GLeeLink_GL_ARB_texture_float;
     __GLeeGLLoadFunction[42]=__GLeeLink_GL_ARB_pixel_buffer_object;
     __GLeeGLLoadFunction[43]=__GLeeLink_GL_ARB_depth_buffer_float;
-    __GLeeGLLoadFunction[44]=__GLeeLink_GL_ARB_draw_instanced;
+    __GLeeGLLoadFunction[44]=__GLeeLink_GL_ARB_drawinstanced;
     __GLeeGLLoadFunction[45]=__GLeeLink_GL_ARB_framebuffer_object;
     __GLeeGLLoadFunction[46]=__GLeeLink_GL_ARB_framebuffer_sRGB;
     __GLeeGLLoadFunction[47]=__GLeeLink_GL_ARB_geometry_shader4;
     __GLeeGLLoadFunction[48]=__GLeeLink_GL_ARB_half_float_vertex;
-    __GLeeGLLoadFunction[49]=__GLeeLink_GL_ARB_instanced_arrays;
+    __GLeeGLLoadFunction[49]=__GLeeLink_GL_ARBinstanced_arrays;
     __GLeeGLLoadFunction[50]=__GLeeLink_GL_ARB_map_buffer_range;
     __GLeeGLLoadFunction[51]=__GLeeLink_GL_ARB_texture_buffer_object;
     __GLeeGLLoadFunction[52]=__GLeeLink_GL_ARB_texture_compression_rgtc;
@@ -9886,7 +9886,7 @@ void initGLLoadFunctions(void)
     __GLeeGLLoadFunction[282]=__GLeeLink_GL_EXT_geometry_shader4;
     __GLeeGLLoadFunction[283]=__GLeeLink_GL_NV_vertex_program4;
     __GLeeGLLoadFunction[284]=__GLeeLink_GL_EXT_gpu_shader4;
-    __GLeeGLLoadFunction[285]=__GLeeLink_GL_EXT_draw_instanced;
+    __GLeeGLLoadFunction[285]=__GLeeLink_GL_EXT_drawinstanced;
     __GLeeGLLoadFunction[286]=__GLeeLink_GL_EXT_packed_float;
     __GLeeGLLoadFunction[287]=__GLeeLink_GL_EXT_texture_array;
     __GLeeGLLoadFunction[288]=__GLeeLink_GL_EXT_texture_buffer_object;
@@ -11201,10 +11201,10 @@ GLEE_EXTERN GLboolean GLeeInit( void )
         _GLEE_ARB_depth_buffer_float = GL_TRUE;
         __GLeeLink_GL_ARB_depth_buffer_float();
     }
-    if (__GLeeCheckExtension("GL_ARB_draw_instanced", &extensionNames) )
+    if (__GLeeCheckExtension("GL_ARB_drawinstanced", &extensionNames) )
     {
-        _GLEE_ARB_draw_instanced = GL_TRUE;
-        __GLeeLink_GL_ARB_draw_instanced();
+        _GLEE_ARB_drawinstanced = GL_TRUE;
+        __GLeeLink_GL_ARB_drawinstanced();
     }
     if (__GLeeCheckExtension("GL_ARB_framebuffer_object", &extensionNames) )
     {
@@ -11226,10 +11226,10 @@ GLEE_EXTERN GLboolean GLeeInit( void )
         _GLEE_ARB_half_float_vertex = GL_TRUE;
         __GLeeLink_GL_ARB_half_float_vertex();
     }
-    if (__GLeeCheckExtension("GL_ARB_instanced_arrays", &extensionNames) )
+    if (__GLeeCheckExtension("GL_ARBinstanced_arrays", &extensionNames) )
     {
-        _GLEE_ARB_instanced_arrays = GL_TRUE;
-        __GLeeLink_GL_ARB_instanced_arrays();
+        _GLEE_ARBinstanced_arrays = GL_TRUE;
+        __GLeeLink_GL_ARBinstanced_arrays();
     }
     if (__GLeeCheckExtension("GL_ARB_map_buffer_range", &extensionNames) )
     {
@@ -12406,10 +12406,10 @@ GLEE_EXTERN GLboolean GLeeInit( void )
         _GLEE_EXT_gpu_shader4 = GL_TRUE;
         __GLeeLink_GL_EXT_gpu_shader4();
     }
-    if (__GLeeCheckExtension("GL_EXT_draw_instanced", &extensionNames) )
+    if (__GLeeCheckExtension("GL_EXT_drawinstanced", &extensionNames) )
     {
-        _GLEE_EXT_draw_instanced = GL_TRUE;
-        __GLeeLink_GL_EXT_draw_instanced();
+        _GLEE_EXT_drawinstanced = GL_TRUE;
+        __GLeeLink_GL_EXT_drawinstanced();
     }
     if (__GLeeCheckExtension("GL_EXT_packed_float", &extensionNames) )
     {

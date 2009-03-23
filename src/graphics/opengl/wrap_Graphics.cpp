@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,9 +17,8 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
-
 #include "wrap_Graphics.h"
 
 namespace love
@@ -36,7 +32,7 @@ namespace opengl
 		int w = luaL_checkint(L, 1);
 		int h = luaL_checkint(L, 2);
 		bool fs = luax_toboolean(L, 3);
-		luax_pushboolean(L, Graphics::__getinstance()->checkMode(w, h, fs));
+		luax_pushboolean(L, Graphics::getInstance()->checkMode(w, h, fs));
 		return 1;
 	}
 
@@ -47,74 +43,74 @@ namespace opengl
 		bool fs = luax_optboolean(L, 3, false);
 		bool vsync = luax_optboolean(L, 4, true);
 		int fsaa = luaL_optint(L, 5, 0);
-		luax_pushboolean(L, Graphics::__getinstance()->setMode(w, h, fs, vsync, fsaa));
+		luax_pushboolean(L, Graphics::getInstance()->setMode(w, h, fs, vsync, fsaa));
 		return 1;
 	}
 
 	int _wrap_toggleFullscreen(lua_State * L)
 	{
-		luax_pushboolean(L, Graphics::__getinstance()->toggleFullscreen());
+		luax_pushboolean(L, Graphics::getInstance()->toggleFullscreen());
 		return 1;
 	}
 
 	int _wrap_reset(lua_State * L)
 	{
-		Graphics::__getinstance()->reset();
+		Graphics::getInstance()->reset();
 		return 0;
 	}
 
 	int _wrap_clear(lua_State * L)
 	{
-		Graphics::__getinstance()->clear();
+		Graphics::getInstance()->clear();
 		return 0;
 	}
 
 	int _wrap_present(lua_State * L)
 	{
-		Graphics::__getinstance()->present();
+		Graphics::getInstance()->present();
 		return 0;
 	}
 
 	int _wrap_setCaption(lua_State * L)
 	{
 		const char * str = luaL_checkstring(L, 1);
-		Graphics::__getinstance()->setCaption(str);
+		Graphics::getInstance()->setCaption(str);
 		return 0;
 	}
 
 	int _wrap_getCaption(lua_State * L)
 	{
-		return Graphics::__getinstance()->getCaption(L);
+		return Graphics::getInstance()->getCaption(L);
 	}
 
 	int _wrap_getWidth(lua_State * L)
 	{
-		lua_pushnumber(L, Graphics::__getinstance()->getWidth());
+		lua_pushnumber(L, Graphics::getInstance()->getWidth());
 		return 1;
 	}
 
 	int _wrap_getHeight(lua_State * L)
 	{
-		lua_pushnumber(L, Graphics::__getinstance()->getHeight());
+		lua_pushnumber(L, Graphics::getInstance()->getHeight());
 		return 1;
 	}
 
 	int _wrap_isCreated(lua_State * L)
 	{
-		luax_pushboolean(L, Graphics::__getinstance()->isCreated());
+		luax_pushboolean(L, Graphics::getInstance()->isCreated());
 		return 1;
 	}
 
 	int _wrap_getModes(lua_State * L)
 	{
-		return Graphics::__getinstance()->getModes(L);
+		return Graphics::getInstance()->getModes(L);
 	}
 
 	int _wrap_setScissor(lua_State * L)
 	{
 		if(lua_gettop(L) == 0)
 		{
-			Graphics::__getinstance()->setScissor();
+			Graphics::getInstance()->setScissor();
 			return 0;
 		}
 	
@@ -123,13 +119,13 @@ namespace opengl
 		int w = luaL_checkint(L, 3);
 		int h = luaL_checkint(L, 4);
 
-		Graphics::__getinstance()->setScissor(x, y, w, h);
+		Graphics::getInstance()->setScissor(x, y, w, h);
 		return 0;
 	}
 
 	int _wrap_getScissor(lua_State * L)
 	{
-		return Graphics::__getinstance()->getScissor(L);
+		return Graphics::getInstance()->getScissor(L);
 	}
 
 	int _wrap_newColor(lua_State * L)
@@ -139,7 +135,7 @@ namespace opengl
 		int b = luaL_checkinteger(L, 3);
 		int a = luaL_optint(L, 4, 255);
 
-		Color * t = Graphics::__getinstance()->newColor(r, g, b, a);
+		Color * t = Graphics::getInstance()->newColor(r, g, b, a);
 
 		luax_newtype(L, "Color", LOVE_GRAPHICS_COLOR_BITS, (void*)t);
 
@@ -159,7 +155,7 @@ namespace opengl
 		love::image::ImageData * data = luax_checktype<love::image::ImageData>(L, 1, "ImageData", LOVE_IMAGE_IMAGE_DATA_BITS);
 
 		// Create the image.
-		Image * image = Graphics::__getinstance()->newImage(data);
+		Image * image = Graphics::getInstance()->newImage(data);
 			
 		if(image == 0)
 			return luaL_error(L, "Could not load image.");
@@ -192,7 +188,7 @@ namespace opengl
 
 		if(lua_gettop(L) == 1)
 		{
-			animation = Graphics::__getinstance()->newAnimation(image);
+			animation = Graphics::getInstance()->newAnimation(image);
 		}
 		else 
 		{
@@ -200,7 +196,7 @@ namespace opengl
 			float fh = (float)luaL_checknumber(L, 3);
 			float delay = (float)luaL_checknumber(L, 4);
 			int num = luaL_optint(L, 5, 0);
-			animation = Graphics::__getinstance()->newAnimation(image, fw, fh, delay, num);
+			animation = Graphics::getInstance()->newAnimation(image, fw, fh, delay, num);
 		}
 
 		if(animation == 0)
@@ -222,7 +218,7 @@ namespace opengl
 		// Second optional parameter can be a number:
 		int size = luaL_optint(L, 2, 12);
 
-		Font * font = Graphics::__getinstance()->newFont(file, size);
+		Font * font = Graphics::getInstance()->newFont(file, size);
 
 		if(font == 0)
 			return luaL_error(L, "Could not load the font");
@@ -247,7 +243,7 @@ namespace opengl
 
 		const char * glyphs = luaL_checkstring(L, 2);
 
-		Font * font = Graphics::__getinstance()->newImageFont(image, glyphs);
+		Font * font = Graphics::getInstance()->newImageFont(image, glyphs);
 
 		if(font == 0)
 			return luaL_error(L, "Could not load the font");
@@ -262,7 +258,7 @@ namespace opengl
 		Image * image = luax_checktype<Image>(L, 1, "Image", LOVE_GRAPHICS_IMAGE_BITS);
 		int size = luaL_optint(L, 2, 1000);
 		int usage = luaL_optint(L, 3, USAGE_ARRAY);
-		SpriteBatch * t = Graphics::__getinstance()->newSpriteBatch(image, size, usage);
+		SpriteBatch * t = Graphics::getInstance()->newSpriteBatch(image, size, usage);
 		luax_newtype(L, "SpriteBatch", LOVE_GRAPHICS_SPRITE_BATCH_BITS, (void*)t);
 		return 1;
 	}
@@ -289,7 +285,7 @@ namespace opengl
 		}
 		else return luaL_error(L, "Expected type image or number");
 
-		VertexBuffer * t = Graphics::__getinstance()->newVertexBuffer(image, size, type, usage);
+		VertexBuffer * t = Graphics::getInstance()->newVertexBuffer(image, size, type, usage);
 		luax_newtype(L, "VertexBuffer", LOVE_GRAPHICS_VERTEX_BUFFER_BITS, (void*)t);
 		return 1;
 	}
@@ -299,7 +295,7 @@ namespace opengl
 		if(luax_istype(L, 1, LOVE_GRAPHICS_COLOR_BITS))
 		{
 			Color * color = luax_checktype<Color>(L, 1, "Color", LOVE_GRAPHICS_COLOR_BITS);
-			Graphics::__getinstance()->setColor(color);
+			Graphics::getInstance()->setColor(color);
 			return 0;
 		}
 
@@ -308,14 +304,14 @@ namespace opengl
 		int b = luaL_checkint(L, 3);
 		int a = luaL_optint(L, 4, 255);
 
-		Graphics::__getinstance()->setColor(r, g, b, a);
+		Graphics::getInstance()->setColor(r, g, b, a);
 
 		return 1;
 	}
 
 	int _wrap_getColor(lua_State * L)
 	{
-		Color * color = Graphics::__getinstance()->getColor();
+		Color * color = Graphics::getInstance()->getColor();
 		luax_newtype(L, "Color", LOVE_GRAPHICS_COLOR_BITS, (void*)color);
 		return 1;
 	}
@@ -325,7 +321,7 @@ namespace opengl
 		if(luax_istype(L, 1, LOVE_GRAPHICS_COLOR_BITS))
 		{
 			Color * color = luax_checktype<Color>(L, 1, "Color", LOVE_GRAPHICS_COLOR_BITS);
-			Graphics::__getinstance()->setBackgroundColor(color);
+			Graphics::getInstance()->setBackgroundColor(color);
 			return 0;
 		}
 
@@ -333,14 +329,14 @@ namespace opengl
 		int g = luaL_checkint(L, 1);
 		int b = luaL_checkint(L, 1);
 
-		Graphics::__getinstance()->setBackgroundColor(r, g, b);
+		Graphics::getInstance()->setBackgroundColor(r, g, b);
 
 		return 1;
 	}
 
 	int _wrap_getBackgroundColor(lua_State * L)
 	{
-		Color * color = Graphics::__getinstance()->getBackgroundColor();
+		Color * color = Graphics::getInstance()->getBackgroundColor();
 		luax_newtype(L, "Color", LOVE_GRAPHICS_COLOR_BITS, (void*)color);
 		return 1;
 	}
@@ -358,18 +354,18 @@ namespace opengl
 		if(luax_istype(L, 1, LOVE_FILESYSTEM_FILE_BITS))
 		{
 			love::filesystem::File * file = luax_checktype<love::filesystem::File>(L, 1, "File", LOVE_FILESYSTEM_FILE_BITS);
-			Graphics::__getinstance()->setFont(file, size);
+			Graphics::getInstance()->setFont(file, size);
 			return 0;
 		}
 
 		Font * font = luax_checktype<Font>(L, 1, "Font", LOVE_GRAPHICS_FONT_BITS);
-		Graphics::__getinstance()->setFont(font);
+		Graphics::getInstance()->setFont(font);
 		return 0;
 	}
 
 	int _wrap_getFont(lua_State * L)
 	{
-		Font * f = Graphics::__getinstance()->getFont();
+		Font * f = Graphics::getInstance()->getFont();
 
 		if(f == 0)
 			return 0;
@@ -382,40 +378,40 @@ namespace opengl
 	int _wrap_setBlendMode(lua_State * L)
 	{
 		int mode = luaL_checkint(L, 1);
-		Graphics::__getinstance()->setBlendMode(mode);
+		Graphics::getInstance()->setBlendMode(mode);
 		return 0;
 	}
 
 	int _wrap_setColorMode(lua_State * L)
 	{
 		int mode = luaL_checkint(L, 1);
-		Graphics::__getinstance()->setColorMode(mode);
+		Graphics::getInstance()->setColorMode(mode);
 		return 0;
 	}
 
 	int _wrap_getBlendMode(lua_State * L)
 	{
-		lua_pushinteger(L, Graphics::__getinstance()->getBlendMode());
+		lua_pushinteger(L, Graphics::getInstance()->getBlendMode());
 		return 1;
 	}
 
 	int _wrap_getColorMode(lua_State * L)
 	{
-		lua_pushinteger(L, Graphics::__getinstance()->getColorMode());
+		lua_pushinteger(L, Graphics::getInstance()->getColorMode());
 		return 1;
 	}
 
 	int _wrap_setLineWidth(lua_State * L)
 	{
 		float width = (float)luaL_checknumber(L, 1);
-		Graphics::__getinstance()->setLineWidth(width);
+		Graphics::getInstance()->setLineWidth(width);
 		return 0;
 	}
 
 	int _wrap_setLineStyle(lua_State * L)
 	{
 		int style = luaL_checkint(L, 1);
-		Graphics::__getinstance()->setLineStyle(style);
+		Graphics::getInstance()->setLineStyle(style);
 		return 0;
 	}
 
@@ -423,7 +419,7 @@ namespace opengl
 	{
 		float width = (float)luaL_checknumber(L, 1);
 		int style = luaL_optint(L, 2, LINE_SMOOTH);
-		Graphics::__getinstance()->setLine(width, style);
+		Graphics::getInstance()->setLine(width, style);
 		return 0;
 	}
 
@@ -431,44 +427,44 @@ namespace opengl
 	{
 		if(lua_gettop(L) == 0)
 		{
-			Graphics::__getinstance()->setLineStipple();
+			Graphics::getInstance()->setLineStipple();
 			return 0;
 		}
 
 		unsigned short pattern = (unsigned short)luaL_checkint(L, 1);
 		int repeat = luaL_optint(L, 2, 1);
-		Graphics::__getinstance()->setLineStipple(pattern, repeat);
+		Graphics::getInstance()->setLineStipple(pattern, repeat);
 		return 0;
 	}
 
 	int _wrap_getLineWidth(lua_State * L)
 	{
-		lua_pushnumber(L, Graphics::__getinstance()->getLineWidth());
+		lua_pushnumber(L, Graphics::getInstance()->getLineWidth());
 		return 1;
 	}
 
 	int _wrap_getLineStyle(lua_State * L)
 	{
-		lua_pushinteger(L, Graphics::__getinstance()->getLineStyle());
+		lua_pushinteger(L, Graphics::getInstance()->getLineStyle());
 		return 1;
 	}
 
 	int _wrap_getLineStipple(lua_State * L)
 	{
-		return Graphics::__getinstance()->getLineStipple(L);
+		return Graphics::getInstance()->getLineStipple(L);
 	}
 
 	int _wrap_setPointSize(lua_State * L)
 	{
 		float size = (float)luaL_checknumber(L, 1);
-		Graphics::__getinstance()->setPointSize(size);
+		Graphics::getInstance()->setPointSize(size);
 		return 0;
 	}
 
 	int _wrap_setPointStyle(lua_State * L)
 	{
 		int style = luaL_checkint(L, 1);
-		Graphics::__getinstance()->setPointStyle(style);
+		Graphics::getInstance()->setPointStyle(style);
 		return 0;
 	}
 
@@ -476,25 +472,25 @@ namespace opengl
 	{
 		float size = (float)luaL_checknumber(L, 1);
 		int style = luaL_optint(L, 2, POINT_SMOOTH);
-		Graphics::__getinstance()->setPoint(size, style);
+		Graphics::getInstance()->setPoint(size, style);
 		return 0;
 	}
 
 	int _wrap_getPointSize(lua_State * L)
 	{
-		lua_pushnumber(L, Graphics::__getinstance()->getPointSize());
+		lua_pushnumber(L, Graphics::getInstance()->getPointSize());
 		return 1;
 	}
 
 	int _wrap_getPointStyle(lua_State * L)
 	{
-		lua_pushinteger(L, Graphics::__getinstance()->getPointStyle());
+		lua_pushinteger(L, Graphics::getInstance()->getPointStyle());
 		return 1;
 	}
 
 	int _wrap_getMaxPointSize(lua_State * L)
 	{
-		lua_pushnumber(L, Graphics::__getinstance()->getMaxPointSize());
+		lua_pushnumber(L, Graphics::getInstance()->getMaxPointSize());
 		return 1;
 	}
 
@@ -566,7 +562,7 @@ namespace opengl
 		float sy = (float)luaL_optnumber(L, 6, sx);
 		float ox = (float)luaL_optnumber(L, 7, 0);
 		float oy = (float)luaL_optnumber(L, 8, 0);
-		Graphics::__getinstance()->drawTest(image, x, y, angle, sx, sy, ox, oy);
+		Graphics::getInstance()->drawTest(image, x, y, angle, sx, sy, ox, oy);
 		return 0;
 	}
 
@@ -582,16 +578,16 @@ namespace opengl
 		switch(lua_gettop(L))
 		{
 		case 3:
-			Graphics::__getinstance()->print(str, x, y);
+			Graphics::getInstance()->print(str, x, y);
 			break;
 		case 4:
-			Graphics::__getinstance()->print(str, x, y, angle);
+			Graphics::getInstance()->print(str, x, y, angle);
 			break;
 		case 5:
-			Graphics::__getinstance()->print(str, x, y, angle, sx);
+			Graphics::getInstance()->print(str, x, y, angle, sx);
 			break;
 		case 6:
-			Graphics::__getinstance()->print(str, x, y, angle, sx, sy);
+			Graphics::getInstance()->print(str, x, y, angle, sx, sy);
 			break;
 		default:
 			return luaL_error(L, "Incorrect number of parameters");
@@ -606,7 +602,7 @@ namespace opengl
 		float y = (float)luaL_checknumber(L, 3);
 		float wrap = (float)luaL_checknumber(L, 4);
 		int align = luaL_optint(L, 5, 0);
-		Graphics::__getinstance()->printf(str, x, y, wrap, align);
+		Graphics::getInstance()->printf(str, x, y, wrap, align);
 		return 0;
 	}
 
@@ -614,7 +610,7 @@ namespace opengl
 	{
 		float x = (float)luaL_checknumber(L, 1);
 		float y = (float)luaL_checknumber(L, 2);
-		Graphics::__getinstance()->point(x, y);
+		Graphics::getInstance()->point(x, y);
 		return 0;
 	}
 
@@ -624,7 +620,7 @@ namespace opengl
 		float y1 = (float)luaL_checknumber(L, 2);
 		float x2 = (float)luaL_checknumber(L, 3);
 		float y2 = (float)luaL_checknumber(L, 4);
-		Graphics::__getinstance()->line(x1, y1, x2, y2);
+		Graphics::getInstance()->line(x1, y1, x2, y2);
 		return 0;
 	}
 
@@ -637,7 +633,7 @@ namespace opengl
 		float y2 = (float)luaL_checknumber(L, 5);
 		float x3 = (float)luaL_checknumber(L, 6);
 		float y3 = (float)luaL_checknumber(L, 7);
-		Graphics::__getinstance()->triangle(type, x1, y1, x2, y2, x3, y3);
+		Graphics::getInstance()->triangle(type, x1, y1, x2, y2, x3, y3);
 		return 0;
 	}
 
@@ -648,7 +644,7 @@ namespace opengl
 		float y = (float)luaL_checknumber(L, 3);
 		float w = (float)luaL_checknumber(L, 4);
 		float h = (float)luaL_checknumber(L, 5);
-		Graphics::__getinstance()->rectangle(type, x, y, w, h);
+		Graphics::getInstance()->rectangle(type, x, y, w, h);
 		return 0;
 	}
 
@@ -663,7 +659,7 @@ namespace opengl
 		float y3 = (float)luaL_checknumber(L, 7);
 		float x4 = (float)luaL_checknumber(L, 6);
 		float y4 = (float)luaL_checknumber(L, 7);
-		Graphics::__getinstance()->quad(type, x1, y1, x2, y2, x3, y3, x4, y4);
+		Graphics::getInstance()->quad(type, x1, y1, x2, y2, x3, y3, x4, y4);
 		return 0;
 	}
 
@@ -674,31 +670,31 @@ namespace opengl
 		float y = (float)luaL_checknumber(L, 3);
 		float radius = (float)luaL_checknumber(L, 4);
 		int points = luaL_optint(L, 5, 10);
-		Graphics::__getinstance()->circle(type, x, y, radius, points);
+		Graphics::getInstance()->circle(type, x, y, radius, points);
 		return 0;
 	}
 
 	int _wrap_polygon(lua_State * L)
 	{
-		return Graphics::__getinstance()->polygon(L);
+		return Graphics::getInstance()->polygon(L);
 	}
 
 	int _wrap_push(lua_State * L)
 	{
-		Graphics::__getinstance()->push();
+		Graphics::getInstance()->push();
 		return 0;
 	}
 
 	int _wrap_pop(lua_State * L)
 	{
-		Graphics::__getinstance()->pop();
+		Graphics::getInstance()->pop();
 		return 0;
 	}
 
 	int _wrap_rotate(lua_State * L)
 	{
 		float deg = (float)luaL_checknumber(L, 1);
-		Graphics::__getinstance()->rotate(deg);
+		Graphics::getInstance()->rotate(deg);
 		return 0;
 	}
 
@@ -706,7 +702,7 @@ namespace opengl
 	{
 		float sx = (float)luaL_optnumber(L, 1, 1.0f);
 		float sy = (float)luaL_optnumber(L, 2, sx);
-		Graphics::__getinstance()->scale(sx, sy);
+		Graphics::getInstance()->scale(sx, sy);
 		return 0;
 	}
 
@@ -714,7 +710,7 @@ namespace opengl
 	{
 		float x = (float)luaL_checknumber(L, 1);
 		float y = (float)luaL_checknumber(L, 2);
-		Graphics::__getinstance()->translate(x, y);
+		Graphics::getInstance()->translate(x, y);
 		return 0;
 	}
 

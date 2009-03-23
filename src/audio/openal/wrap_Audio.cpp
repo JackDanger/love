@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +17,7 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 // LOVE
@@ -34,7 +31,7 @@ namespace openal
 {
 	int _wrap_getNumChannels(lua_State * L)
 	{
-		lua_pushinteger(L, Audio::__getinstance()->getNumChannels());
+		lua_pushinteger(L, Audio::getInstance()->getNumChannels());
 		return 1;
 	}
 
@@ -49,7 +46,7 @@ namespace openal
 			luax_convobj(L, 1, "sound", "newSoundData");
 
 		love::sound::SoundData * data = luax_checktype<love::sound::SoundData>(L, 1, "SoundData", LOVE_SOUND_SOUND_DATA_BITS);
-		Sound * t = Audio::__getinstance()->newSound(data);
+		Sound * t = Audio::getInstance()->newSound(data);
 		luax_newtype(L, "Sound", LOVE_AUDIO_SOUND_BITS, (void*)t);
 		return 1;
 	}
@@ -65,14 +62,14 @@ namespace openal
 			luax_convobj(L, 1, "sound", "newSoundData");
 
 		love::sound::SoundData * data = luax_checktype<love::sound::SoundData>(L, 1, "SoundData", LOVE_SOUND_SOUND_DATA_BITS);
-		Music * t = Audio::__getinstance()->newMusic(data);
+		Music * t = Audio::getInstance()->newMusic(data);
 		luax_newtype(L, "Music", LOVE_AUDIO_MUSIC_BITS, (void*)t);
 		return 1;
 	}
 
 	int _wrap_newChannel(lua_State * L)
 	{
-		Channel * t = Audio::__getinstance()->newChannel();
+		Channel * t = Audio::getInstance()->newChannel();
 		luax_newtype(L, "Channel", LOVE_AUDIO_CHANNEL_BITS, (void*)t);
 		return 1;
 	}
@@ -85,7 +82,7 @@ namespace openal
 		if(top == 1)
 		{
 			Audible * a = luax_checkaudible(L, 1);
-			Audio::__getinstance()->play(a);
+			Audio::getInstance()->play(a);
 			return 0;
 		}
 		// play( audible, channel )
@@ -93,7 +90,7 @@ namespace openal
 		{
 			Audible * a = luax_checkaudible(L, 1);
 			Channel * c = luax_checkchannel(L, 2);
-			Audio::__getinstance()->play(a, c);
+			Audio::getInstance()->play(a, c);
 			return 0;
 		}
 
@@ -126,34 +123,34 @@ namespace openal
 	int _wrap_stop(lua_State * L)
 	{
 		Channel * c = luax_checkchannel(L, 1);
-		Audio::__getinstance()->stop(c);
+		Audio::getInstance()->stop(c);
 		return 0;
 	}
 
 	int _wrap_pause(lua_State * L)
 	{
 		Channel * c = luax_checkchannel(L, 1);
-		Audio::__getinstance()->pause(c);
+		Audio::getInstance()->pause(c);
 		return 0;
 	}
 
 	int _wrap_rewind(lua_State * L)
 	{
 		Channel * c = luax_checkchannel(L, 1);
-		Audio::__getinstance()->rewind(c);
+		Audio::getInstance()->rewind(c);
 		return 0;
 	}
 
 	int _wrap_setVolume(lua_State * L)
 	{
 		float v = (float)luaL_checknumber(L, 1);
-		Audio::__getinstance()->setVolume(v);
+		Audio::getInstance()->setVolume(v);
 		return 0;
 	}
 
 	int _wrap_getVolume(lua_State * L)
 	{
-		lua_pushnumber(L, Audio::__getinstance()->getVolume());
+		lua_pushnumber(L, Audio::getInstance()->getVolume());
 		return 1;
 	}
 

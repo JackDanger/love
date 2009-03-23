@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +17,7 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 #include "wrap_Image.h"
@@ -36,7 +33,7 @@ namespace devil
 {
 	int _wrap_getFormats(lua_State * L)
 	{
-		return Image::__getinstance()->getFormats(L);
+		return Image::getInstance()->getFormats(L);
 	}
 
 	int _wrap_newImageData(lua_State * L)
@@ -47,7 +44,7 @@ namespace devil
 		{
 			int w = luaL_checkint(L, 1);
 			int h = luaL_checkint(L, 2);
-			ImageData * t = Image::__getinstance()->newImageData(w, h);
+			ImageData * t = Image::getInstance()->newImageData(w, h);
 			luax_newtype(L, "ImageData", LOVE_IMAGE_IMAGE_DATA_BITS, (void*)t);
 			return 1;
 		}
@@ -58,7 +55,7 @@ namespace devil
 
 		// Case 2: String/File.
 		love::filesystem::File * file = luax_checktype<love::filesystem::File>(L, 1, "File", LOVE_FILESYSTEM_FILE_BITS);
-		ImageData * t = Image::__getinstance()->newImageData(file);
+		ImageData * t = Image::getInstance()->newImageData(file);
 		luax_newtype(L, "ImageData", LOVE_IMAGE_IMAGE_DATA_BITS, (void*)t);
 		return 1;
 	}

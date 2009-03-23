@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +17,7 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 #include "Timer.h"
@@ -31,10 +28,7 @@ namespace timer
 {
 namespace sdltimer
 {
-	// Wrapper loaders.
-	extern int wrap_Timer_open(lua_State * L);
-
-	Timer * Timer::_instance = 0;
+	Timer * Timer::instance = 0;
 
 	Timer::Timer()
 		: time_init(0), currTime(0), prevFpsUpdate(0), fps(0), fpsUpdateFrequency(1), 
@@ -42,45 +36,25 @@ namespace sdltimer
 	{
 	}
 
-	Timer * Timer::__getinstance()
+	Timer * Timer::getInstance()
 	{
-		if(_instance == 0)
-			_instance = new Timer();
-		return _instance;
+		if(instance == 0)
+			instance = new Timer();
+		return instance;
 	}
 
-	int Timer::__advertise(lua_State * L)
-	{
-		luax_register_info(L,
-			"sdltimer",
-			"timer",
-			"SDL Timer Module",
-			"LOVE Development Team",
-			&__open);
-		return 0;
-	}
-
-	int Timer::__open(lua_State * L)
+	bool Timer::init()
 	{
 		// Init the SDL timer system.
 		if(SDL_InitSubSystem(SDL_INIT_TIMER) < 0)
-			return luaL_error(L, SDL_GetError());
-		wrap_Timer_open(L);
-		luax_register_gc(L, "sdltimer", &__garbagecollect);
-		return 0;
+			return false;
+		return true;
 	}
 
-	int Timer::__garbagecollect(lua_State * L)
+	void Timer::quit()
 	{
 		// Quit SDL timer.
 		SDL_QuitSubSystem(SDL_INIT_TIMER);
-
-		// Delete the instance.
-		Timer * m = Timer::__getinstance();
-		if(m != 0)
-			delete m;
-
-		return 0;
 	}
 
 	void Timer::step()

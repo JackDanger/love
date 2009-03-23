@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +17,7 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 #include "Filesystem.h"
@@ -37,18 +34,18 @@ namespace physfs
 	// Wrapper loaders.
 	extern int wrap_Filesystem_open(lua_State * L);
 
-	Filesystem * Filesystem::_instance = 0;
+	Filesystem * Filesystem::instance = 0;
 
 	Filesystem::Filesystem()
 		: open_count(0), buffer(0)
 	{
 	}
 
-	Filesystem * Filesystem::__getinstance()
+	Filesystem * Filesystem::getInstance()
 	{
-		if(_instance == 0)
-			_instance = new Filesystem();
-		return _instance;
+		if(instance == 0)
+			instance = new Filesystem();
+		return instance;
 	}
 
 	int Filesystem::__advertise(lua_State * L)
@@ -86,7 +83,7 @@ namespace physfs
 	int Filesystem::__garbagecollect(lua_State * L)
 	{
 		PHYSFS_deinit();
-		Filesystem * m = Filesystem::__getinstance();
+		Filesystem * m = Filesystem::getInstance();
 		if(m != 0)
 			delete m;
 		return 0;
@@ -524,7 +521,7 @@ namespace physfs
 
 		if(close)
 		{
-			Filesystem::__getinstance()->close(file);
+			Filesystem::getInstance()->close(file);
 			delete file;
 		}
 
@@ -574,14 +571,14 @@ namespace physfs
 		const char * filename = lua_tostring(L, -1);
 
 		// Check whether file exists.
-		if(!Filesystem::__getinstance()->exists(filename))
+		if(!Filesystem::getInstance()->exists(filename))
 		{
 			lua_pushfstring(L, "\n\tno file \"%s\" in LOVE game directories.\n", filename);
 			return 1;
 		}
 	
 		// Ok, load it.
-		return Filesystem::__getinstance()->load(L);
+		return Filesystem::getInstance()->load(L);
 	}
 
 } // physfs

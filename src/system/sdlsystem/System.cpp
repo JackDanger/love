@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +17,7 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 #include "System.h"
@@ -37,17 +34,17 @@ namespace sdlsystem
 	// Wrapper loaders.
 	extern int wrap_System_open(lua_State * L);
 
-	System * System::_instance = 0;
+	System * System::instance = 0;
 
 	System::System()
 	{
 	}
 
-	System * System::__getinstance()
+	System * System::getInstance()
 	{
-		if(_instance == 0)
-			_instance = new System();
-		return _instance;
+		if(instance == 0)
+			instance = new System();
+		return instance;
 	}
 
 	int System::__advertise(lua_State * L)
@@ -71,7 +68,7 @@ namespace sdlsystem
 
 	int System::__garbagecollect(lua_State * L)
 	{
-		System * m = System::__getinstance();
+		System * m = System::getInstance();
 		if(m != 0)
 			delete m;
 		return 0;

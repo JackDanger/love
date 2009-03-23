@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,9 +17,8 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
-
 #include "wrap_Joystick.h"
 
 // LOVE
@@ -36,56 +32,56 @@ namespace sdljoystick
 {
 	int _wrap_getNumJoysticks(lua_State * L)
 	{
-		lua_pushinteger(L, Joystick::__getinstance()->getNumJoysticks());
+		lua_pushinteger(L, Joystick::getInstance()->getNumJoysticks());
 		return 1;
 	}
 
 	int _wrap_getName(lua_State * L)
 	{
 		int index = luaL_checkint(L, 1);
-		lua_pushstring(L, Joystick::__getinstance()->getName(index));
+		lua_pushstring(L, Joystick::getInstance()->getName(index));
 		return 1;
 	}
 	
 	int _wrap_open(lua_State * L)
 	{
 		int index = luaL_checkint(L, 1);
-		luax_pushboolean(L, Joystick::__getinstance()->open(index));
+		luax_pushboolean(L, Joystick::getInstance()->open(index));
 		return 1;
 	}
 
 	int _wrap_isOpen(lua_State * L)
 	{
 		int index = luaL_checkint(L, 1);
-		luax_pushboolean(L, Joystick::__getinstance()->isOpen(index));
+		luax_pushboolean(L, Joystick::getInstance()->isOpen(index));
 		return 1;
 	}
 
 	int _wrap_getNumAxes(lua_State * L)
 	{
 		int index = luaL_checkint(L, 1);
-		lua_pushinteger(L, Joystick::__getinstance()->getNumAxes(index));
+		lua_pushinteger(L, Joystick::getInstance()->getNumAxes(index));
 		return 1;
 	}
 
 	int _wrap_getNumBalls(lua_State * L)
 	{
 		int index = luaL_checkint(L, 1);
-		lua_pushinteger(L, Joystick::__getinstance()->getNumBalls(index));
+		lua_pushinteger(L, Joystick::getInstance()->getNumBalls(index));
 		return 1;
 	}
 
 	int _wrap_getNumButtons(lua_State * L)
 	{
 		int index = luaL_checkint(L, 1);
-		lua_pushinteger(L, Joystick::__getinstance()->getNumButtons(index));
+		lua_pushinteger(L, Joystick::getInstance()->getNumButtons(index));
 		return 1;
 	}
 
 	int _wrap_getNumHats(lua_State * L)
 	{
 		int index = luaL_checkint(L, 1);
-		lua_pushinteger(L, Joystick::__getinstance()->getNumHats(index));
+		lua_pushinteger(L, Joystick::getInstance()->getNumHats(index));
 		return 1;
 	}
 
@@ -93,25 +89,25 @@ namespace sdljoystick
 	{
 		int index = luaL_checkint(L, 1);
 		int axis = luaL_checkint(L, 2);
-		lua_pushnumber(L, Joystick::__getinstance()->getAxis(index, axis));
+		lua_pushnumber(L, Joystick::getInstance()->getAxis(index, axis));
 		return 1;
 	}
 
 	int _wrap_getAxes(lua_State * L)
 	{
-		return Joystick::__getinstance()->getAxes(L);
+		return Joystick::getInstance()->getAxes(L);
 	}
 
 	int _wrap_getBall(lua_State * L)
 	{
-		return Joystick::__getinstance()->getBall(L);
+		return Joystick::getInstance()->getBall(L);
 	}
 
 	int _wrap_isDown(lua_State * L)
 	{
 		int index = luaL_checkint(L, 1);
 		int button = luaL_checkint(L, 2);
-		luax_pushboolean(L, Joystick::__getinstance()->isDown(index, button));
+		luax_pushboolean(L, Joystick::getInstance()->isDown(index, button));
 		return 1;
 	}
 
@@ -119,14 +115,14 @@ namespace sdljoystick
 	{
 		int index = luaL_checkint(L, 1);
 		int hat = luaL_checkint(L, 2);
-		lua_pushinteger(L, Joystick::__getinstance()->getHat(index, hat));
+		lua_pushinteger(L, Joystick::getInstance()->getHat(index, hat));
 		return 1;
 	}
 
 	int _wrap_close(lua_State * L)
 	{
 		int index = luaL_checkint(L, 1);
-		Joystick::__getinstance()->close(index);
+		Joystick::getInstance()->close(index);
 		return 0;
 	}
 	

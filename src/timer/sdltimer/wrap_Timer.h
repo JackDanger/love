@@ -20,52 +20,29 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#include "File.h"
+#ifndef LOVE_TIMER_SDLTIMER_WRAP_TIMER_H
+#define LOVE_TIMER_SDLTIMER_WRAP_TIMER_H
+
+// LOVE
+#include "../../luax.h"
 
 namespace love
 {
-namespace filesystem
+namespace timer
 {
-	File::File()
-	{
-	}
+namespace sdltimer
+{
+	int _wrap_step(lua_State * L);
+	int _wrap_getDelta(lua_State * L);
+	int _wrap_getFPS(lua_State * L);
+	int _wrap_sleep(lua_State * L);
+	int _wrap_getTime(lua_State * L);
 
-	File::File(const std::string & filename, int mode) 
-		: filename(filename), mode(mode)
-	{
-	}
+	int wrap_Timer_open(lua_State * L);
+	int wrap_Timer_gc(lua_State * L);
 
-	File::~File()
-	{
-	}
-
-	const std::string & File::getFilename() const
-	{
-		return filename;
-	}
-
-	std::string File::getExtention() const
-	{
-		std::string::size_type idx;
-
-		idx = filename.rfind('.');
-
-		if(idx != std::string::npos)
-		{
-			std::string extension = filename.substr(idx+1);
-			return extension;
-		}
-		else
-		{
-			// Empty.
-			return std::string();
-		}		
-	}
-
-	int File::getMode() const
-	{
-		return mode;
-	}
-
-} // filesystem
+} // sdltimer
+} // timer
 } // love
+
+#endif // LOVE_TIMER_SDLTIMER_WRAP_TIMER_H

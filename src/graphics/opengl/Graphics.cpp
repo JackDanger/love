@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +17,7 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 #include "Graphics.h"
@@ -39,7 +36,7 @@ namespace opengl
 	// Wrapper loaders.
 	extern int wrap_Graphics_open(lua_State * L);
 
-	Graphics * Graphics::_instance = 0;
+	Graphics * Graphics::instance = 0;
 
 	Graphics::Graphics()
 		: currentFont(0)
@@ -56,11 +53,11 @@ namespace opengl
 			currentFont->release();
 	}
 
-	Graphics * Graphics::__getinstance()
+	Graphics * Graphics::getInstance()
 	{
-		if(_instance == 0)
-			_instance = new Graphics();
-		return _instance;
+		if(instance == 0)
+			instance = new Graphics();
+		return instance;
 	}
 
 	int Graphics::__advertise(lua_State * L)
@@ -90,7 +87,7 @@ namespace opengl
 		SDL_QuitSubSystem(SDL_INIT_VIDEO);
 
 		// Delete the instance.
-		Graphics * m = Graphics::__getinstance();
+		Graphics * m = Graphics::getInstance();
 		if(m != 0)
 			delete m;
 

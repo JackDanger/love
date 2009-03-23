@@ -37,17 +37,17 @@ namespace image
 {
 namespace devil
 {
-	Image * Image::_instance = 0;
+	Image * Image::instance = 0;
 
 	Image::Image()
 	{
 	}
 
-	Image * Image::__getinstance()
+	Image * Image::getInstance()
 	{
-		if(_instance == 0)
-			_instance = new Image();
-		return _instance;
+		if(instance == 0)
+			instance = new Image();
+		return instance;
 	}
 
 	int Image::__advertise(lua_State * L)
@@ -72,7 +72,7 @@ namespace devil
 	int Image::__garbagecollect(lua_State * L)
 	{
 		ilShutDown();
-		Image * m = Image::__getinstance();
+		Image * m = Image::getInstance();
 		if(m != 0)
 			delete m;
 		return 0;

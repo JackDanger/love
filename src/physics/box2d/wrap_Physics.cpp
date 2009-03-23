@@ -1,8 +1,5 @@
 /**
-* LOVE -- Free 2D Game Engine
-* Version $(DOC_VERSION), $(DOC_DATE)
-* 
-* Copyright (c) 2006-$(DOC_YEAR) LOVE Development Team
+* Copyright (c) 2006-2009 LOVE Development Team
 * 
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -20,7 +17,7 @@
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 * 
-* -- LOVE Development Team, http://love2d.org
+* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 // LOVE
@@ -38,7 +35,7 @@ namespace box2d
 		{
 			float x = (float)luaL_checknumber(L, 1);
 			float y = (float)luaL_checknumber(L, 2);
-			World * w = Physics::__getinstance()->newWorld(x, y);
+			World * w = Physics::getInstance()->newWorld(x, y);
 			luax_newtype(L, "World", LOVE_PHYSICS_WORLD_BITS, (void*)w);
 			return 1;
 		}
@@ -51,7 +48,7 @@ namespace box2d
 			float gx = (float)luaL_checknumber(L, 5);
 			float gy = (float)luaL_checknumber(L, 6);
 			bool sleep = luax_toboolean(L, 7);
-			World * w = Physics::__getinstance()->newWorld(lx, ly, ux, uy, gx, gy, sleep);
+			World * w = Physics::getInstance()->newWorld(lx, ly, ux, uy, gx, gy, sleep);
 			luax_newtype(L, "World", LOVE_PHYSICS_WORLD_BITS, (void*)w);
 			return 1;
 		}
@@ -65,7 +62,7 @@ namespace box2d
 		float x = (float)luaL_optnumber(L, 2, 0.0);
 		float y = (float)luaL_optnumber(L, 3, 0.0);
 		float m = (float)luaL_optnumber(L, 4, 1.0);
-		Body * body = Physics::__getinstance()->newBody(world, x, y, m);
+		Body * body = Physics::getInstance()->newBody(world, x, y, m);
 		luax_newtype(L, "Body", LOVE_PHYSICS_BODY_BITS, (void*)body);
 		return 1;
 	}
@@ -78,7 +75,7 @@ namespace box2d
 		if(top == 2)
 		{
 			float radius = (float)luaL_checknumber(L, 2);
-			CircleShape * shape = Physics::__getinstance()->newCircleShape(body, radius);
+			CircleShape * shape = Physics::getInstance()->newCircleShape(body, radius);
 			luax_newtype(L, "CircleShape", LOVE_PHYSICS_CIRCLE_SHAPE_BITS, (void*)shape);
 			return 1;
 		}
@@ -87,7 +84,7 @@ namespace box2d
 			float x = (float)luaL_checknumber(L, 2);
 			float y = (float)luaL_checknumber(L, 3);
 			float radius = (float)luaL_checknumber(L, 4);
-			CircleShape * shape = Physics::__getinstance()->newCircleShape(body, x, y, radius);
+			CircleShape * shape = Physics::getInstance()->newCircleShape(body, x, y, radius);
 			luax_newtype(L, "CircleShape", LOVE_PHYSICS_CIRCLE_SHAPE_BITS, (void*)shape);
 			return 1;
 		}
@@ -104,7 +101,7 @@ namespace box2d
 		{
 			float w = (float)luaL_checknumber(L, 2);
 			float h = (float)luaL_checknumber(L, 3);
-			PolygonShape * shape = Physics::__getinstance()->newRectangleShape(body, w, h);
+			PolygonShape * shape = Physics::getInstance()->newRectangleShape(body, w, h);
 			luax_newtype(L, "PolygonShape", LOVE_PHYSICS_POLYGON_SHAPE_BITS, (void*)shape);
 			return 1;
 		}
@@ -115,7 +112,7 @@ namespace box2d
 			float w = (float)luaL_checknumber(L, 4);
 			float h = (float)luaL_checknumber(L, 5);
 			float angle = (float)luaL_optnumber(L, 6, 0);
-			PolygonShape * shape = Physics::__getinstance()->newRectangleShape(body, x, y, w, h, 0);
+			PolygonShape * shape = Physics::getInstance()->newRectangleShape(body, x, y, w, h, 0);
 			luax_newtype(L, "PolygonShape", LOVE_PHYSICS_POLYGON_SHAPE_BITS, (void*)shape);
 			return 1;
 		}
@@ -125,7 +122,7 @@ namespace box2d
 
 	int _wrap_newPolygonShape(lua_State * L)
 	{
-		return Physics::__getinstance()->newPolygonShape(L);
+		return Physics::getInstance()->newPolygonShape(L);
 	}
 
 	int _wrap_newDistanceJoint(lua_State * L)
@@ -136,7 +133,7 @@ namespace box2d
 		float y1 = (float)luaL_checknumber(L, 4);
 		float x2 = (float)luaL_checknumber(L, 5);
 		float y2 = (float)luaL_checknumber(L, 6);
-		DistanceJoint * j = Physics::__getinstance()->newDistanceJoint(body1, body2, x1, y1, x2, y2);
+		DistanceJoint * j = Physics::getInstance()->newDistanceJoint(body1, body2, x1, y1, x2, y2);
 		luax_newtype(L, "PolygonShape", LOVE_PHYSICS_DISTANCE_JOINT_BITS, (void*)j);
 		return 1;
 	}
@@ -146,7 +143,7 @@ namespace box2d
 		Body * body = luax_checktype<Body>(L, 1, "Body", LOVE_PHYSICS_BODY_BITS);
 		float x = (float)luaL_checknumber(L, 2);
 		float y = (float)luaL_checknumber(L, 3);
-		MouseJoint * j = Physics::__getinstance()->newMouseJoint(body, x, y);
+		MouseJoint * j = Physics::getInstance()->newMouseJoint(body, x, y);
 		luax_newtype(L, "MouseJoint", LOVE_PHYSICS_MOUSE_JOINT_BITS, (void*)j);
 		return 1;
 	}
@@ -157,7 +154,7 @@ namespace box2d
 		Body * body2 = luax_checktype<Body>(L, 2, "Body", LOVE_PHYSICS_BODY_BITS);
 		float x = (float)luaL_checknumber(L, 3);
 		float y = (float)luaL_checknumber(L, 4);
-		RevoluteJoint * j = Physics::__getinstance()->newRevoluteJoint(body1, body2, x, y);
+		RevoluteJoint * j = Physics::getInstance()->newRevoluteJoint(body1, body2, x, y);
 		luax_newtype(L, "RevoluteJoint", LOVE_PHYSICS_REVOLUTE_JOINT_BITS, (void*)j);
 		return 1;
 	}
@@ -170,7 +167,7 @@ namespace box2d
 		float y = (float)luaL_checknumber(L, 4);
 		float ax = (float)luaL_checknumber(L, 5);
 		float ay = (float)luaL_checknumber(L, 6);
-		PrismaticJoint * j = Physics::__getinstance()->newPrismaticJoint(body1, body2, x, y, ax, ay);
+		PrismaticJoint * j = Physics::getInstance()->newPrismaticJoint(body1, body2, x, y, ax, ay);
 		luax_newtype(L, "PrismaticJoint", LOVE_PHYSICS_PRISMATIC_JOINT_BITS, (void*)j);
 		return 1;
 	}

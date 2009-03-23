@@ -131,12 +131,12 @@ GLEE_EXTERN GLboolean _GLEE_ARB_half_float_pixel;
 GLEE_EXTERN GLboolean _GLEE_ARB_texture_float;
 GLEE_EXTERN GLboolean _GLEE_ARB_pixel_buffer_object;
 GLEE_EXTERN GLboolean _GLEE_ARB_depth_buffer_float;
-GLEE_EXTERN GLboolean _GLEE_ARB_draw_instanced;
+GLEE_EXTERN GLboolean _GLEE_ARB_drawinstanced;
 GLEE_EXTERN GLboolean _GLEE_ARB_framebuffer_object;
 GLEE_EXTERN GLboolean _GLEE_ARB_framebuffer_sRGB;
 GLEE_EXTERN GLboolean _GLEE_ARB_geometry_shader4;
 GLEE_EXTERN GLboolean _GLEE_ARB_half_float_vertex;
-GLEE_EXTERN GLboolean _GLEE_ARB_instanced_arrays;
+GLEE_EXTERN GLboolean _GLEE_ARBinstanced_arrays;
 GLEE_EXTERN GLboolean _GLEE_ARB_map_buffer_range;
 GLEE_EXTERN GLboolean _GLEE_ARB_texture_buffer_object;
 GLEE_EXTERN GLboolean _GLEE_ARB_texture_compression_rgtc;
@@ -372,7 +372,7 @@ GLEE_EXTERN GLboolean _GLEE_NV_geometry_program4;
 GLEE_EXTERN GLboolean _GLEE_EXT_geometry_shader4;
 GLEE_EXTERN GLboolean _GLEE_NV_vertex_program4;
 GLEE_EXTERN GLboolean _GLEE_EXT_gpu_shader4;
-GLEE_EXTERN GLboolean _GLEE_EXT_draw_instanced;
+GLEE_EXTERN GLboolean _GLEE_EXT_drawinstanced;
 GLEE_EXTERN GLboolean _GLEE_EXT_packed_float;
 GLEE_EXTERN GLboolean _GLEE_EXT_texture_array;
 GLEE_EXTERN GLboolean _GLEE_EXT_texture_buffer_object;
@@ -456,12 +456,12 @@ GLEE_EXTERN GLboolean _GLEE_SGIX_texture_range;
 #define GLEE_ARB_texture_float     GLeeEnabled(&_GLEE_ARB_texture_float)
 #define GLEE_ARB_pixel_buffer_object     GLeeEnabled(&_GLEE_ARB_pixel_buffer_object)
 #define GLEE_ARB_depth_buffer_float     GLeeEnabled(&_GLEE_ARB_depth_buffer_float)
-#define GLEE_ARB_draw_instanced     GLeeEnabled(&_GLEE_ARB_draw_instanced)
+#define GLEE_ARB_drawinstanced     GLeeEnabled(&_GLEE_ARB_drawinstanced)
 #define GLEE_ARB_framebuffer_object     GLeeEnabled(&_GLEE_ARB_framebuffer_object)
 #define GLEE_ARB_framebuffer_sRGB     GLeeEnabled(&_GLEE_ARB_framebuffer_sRGB)
 #define GLEE_ARB_geometry_shader4     GLeeEnabled(&_GLEE_ARB_geometry_shader4)
 #define GLEE_ARB_half_float_vertex     GLeeEnabled(&_GLEE_ARB_half_float_vertex)
-#define GLEE_ARB_instanced_arrays     GLeeEnabled(&_GLEE_ARB_instanced_arrays)
+#define GLEE_ARBinstanced_arrays     GLeeEnabled(&_GLEE_ARBinstanced_arrays)
 #define GLEE_ARB_map_buffer_range     GLeeEnabled(&_GLEE_ARB_map_buffer_range)
 #define GLEE_ARB_texture_buffer_object     GLeeEnabled(&_GLEE_ARB_texture_buffer_object)
 #define GLEE_ARB_texture_compression_rgtc     GLeeEnabled(&_GLEE_ARB_texture_compression_rgtc)
@@ -697,7 +697,7 @@ GLEE_EXTERN GLboolean _GLEE_SGIX_texture_range;
 #define GLEE_EXT_geometry_shader4     GLeeEnabled(&_GLEE_EXT_geometry_shader4)
 #define GLEE_NV_vertex_program4     GLeeEnabled(&_GLEE_NV_vertex_program4)
 #define GLEE_EXT_gpu_shader4     GLeeEnabled(&_GLEE_EXT_gpu_shader4)
-#define GLEE_EXT_draw_instanced     GLeeEnabled(&_GLEE_EXT_draw_instanced)
+#define GLEE_EXT_drawinstanced     GLeeEnabled(&_GLEE_EXT_drawinstanced)
 #define GLEE_EXT_packed_float     GLeeEnabled(&_GLEE_EXT_packed_float)
 #define GLEE_EXT_texture_array     GLeeEnabled(&_GLEE_EXT_texture_array)
 #define GLEE_EXT_texture_buffer_object     GLeeEnabled(&_GLEE_EXT_texture_buffer_object)
@@ -3663,11 +3663,11 @@ GLEE_EXTERN PFNGLCLAMPCOLORARBPROC pglClampColorARB;
 #define GL_FLOAT_32_UNSIGNED_INT_24_8_REV                  0x8DAD
 #endif 
 
-/* GL_ARB_draw_instanced */
+/* GL_ARB_drawinstanced */
 
-#ifndef GL_ARB_draw_instanced
-#define GL_ARB_draw_instanced 1
-#define __GLEE_GL_ARB_draw_instanced 1
+#ifndef GL_ARB_drawinstanced
+#define GL_ARB_drawinstanced 1
+#define __GLEE_GL_ARB_drawinstanced 1
 /* Constants */
 typedef void (APIENTRYP PFNGLDRAWARRAYSINSTANCEDARBPROC) (GLenum mode, GLint first, GLsizei count, GLsizei primcount);
 typedef void (APIENTRYP PFNGLDRAWELEMENTSINSTANCEDARBPROC) (GLenum mode, GLsizei count, GLenum type, const GLvoid * indices, GLsizei primcount);
@@ -3873,11 +3873,11 @@ GLEE_EXTERN PFNGLFRAMEBUFFERTEXTUREFACEARBPROC pglFramebufferTextureFaceARB;
 #define GL_HALF_FLOAT                                      0x140B
 #endif 
 
-/* GL_ARB_instanced_arrays */
+/* GL_ARBinstanced_arrays */
 
-#ifndef GL_ARB_instanced_arrays
-#define GL_ARB_instanced_arrays 1
-#define __GLEE_GL_ARB_instanced_arrays 1
+#ifndef GL_ARBinstanced_arrays
+#define GL_ARBinstanced_arrays 1
+#define __GLEE_GL_ARBinstanced_arrays 1
 /* Constants */
 typedef void (APIENTRYP PFNGLVERTEXATTRIBDIVISORPROC) (GLuint index, GLuint divisor);
 GLEE_EXTERN PFNGLVERTEXATTRIBDIVISORPROC pglVertexAttribDivisor;
@@ -9452,11 +9452,11 @@ GLEE_EXTERN PFNGLUNIFORM4UIVEXTPROC pglUniform4uivEXT;
 #define glUniform4uivEXT pglUniform4uivEXT
 #endif 
 
-/* GL_EXT_draw_instanced */
+/* GL_EXT_drawinstanced */
 
-#ifndef GL_EXT_draw_instanced
-#define GL_EXT_draw_instanced 1
-#define __GLEE_GL_EXT_draw_instanced 1
+#ifndef GL_EXT_drawinstanced
+#define GL_EXT_drawinstanced 1
+#define __GLEE_GL_EXT_drawinstanced 1
 /* Constants */
 typedef void (APIENTRYP PFNGLDRAWARRAYSINSTANCEDEXTPROC) (GLenum mode, GLint start, GLsizei count, GLsizei primcount);
 typedef void (APIENTRYP PFNGLDRAWELEMENTSINSTANCEDEXTPROC) (GLenum mode, GLsizei count, GLenum type, const GLvoid * indices, GLsizei primcount);
