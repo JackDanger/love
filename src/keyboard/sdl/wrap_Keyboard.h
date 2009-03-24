@@ -20,41 +20,25 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#ifndef LOVE_KEYBOARD_SDLKEYBOARD_KEYBOARD_H
-#define LOVE_KEYBOARD_SDLKEYBOARD_KEYBOARD_H
+#ifndef LOVE_KEYBOARD_SDL_WRAP_KEYBOARD_H
+#define LOVE_KEYBOARD_SDL_WRAP_KEYBOARD_H
 
 // LOVE
 #include "../../luax.h"
+#include "Keyboard.h"
 
 namespace love
 {
 namespace keyboard
 {
-namespace sdlkeyboard
+namespace sdl
 {
-	class Keyboard
-	{
-	private:
-		static Keyboard * instance;
-	protected:
-		Keyboard();
-	public:
+	int _wrap_isDown(lua_State * L);
 
-		static Keyboard * getInstance();
-		static int __advertise(lua_State * L);
-		static int __open(lua_State * L);
-		static int __garbagecollect(lua_State * L);
-		
-		/**
-		* Checks whether a certain key is down or not.
-		* @param key A key identifier.
-		**/
-		bool isDown(int key) const;
+	int wrap_Keyboard_open(lua_State * L);
 
-	}; // Keyboard
-
-} // sdlkeyboard
+} // sdl
 } // keyboard
 } // love
 
-#endif // LOVE_KEYBOARD_SDLKEYBOARD_KEYBOARD_H
+#endif // LOVE_KEYBOARD_SDL_WRAP_KEYBOARD_H

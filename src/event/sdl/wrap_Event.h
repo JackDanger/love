@@ -20,39 +20,24 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#ifndef LOVE_WRAP_H
-#define LOVE_WRAP_H
+#ifndef LOVE_EVENT_SDL_WRAP_EVENT_H
+#define LOVE_EVENT_SDL_WRAP_EVENT_H
 
-/**
-* Contains general wrapper functions for objects. For most objects, 
-* the same values for the fields __index and __gc  can be used in the 
-* metatable. 
-**/
-
-#include "luax.h"
+// LOVE
+#include "../../luax.h"
 
 namespace love
 {
+namespace event
+{
+namespace sdl
+{
+	int _wrap_get(lua_State * L);
 
-	/**
-	* Gets a function (or some other variable) from the
-	* metatable of an object.
-	**/
-	int _wrap__index(lua_State * L);
+	int wrap_Event_open(lua_State * L);
 
-	/**
-	* Called when an object is collected. The object is released
-	* once in this function, possibly deleting it.
-	**/
-	int _wrap__gc(lua_State * L);
-
-	/**
-	* Special garbage collector for Modules. This is only used
-	* to trigger the quit() method on a module when it is garbage 
-	* collected (which is typically when the VM is destroyed).
-	**/
-	int _wrap__Module_gc(lua_State * L);
-
+} // sdl
+} // event
 } // love
 
-#endif // LOVE_WRAP_H
+#endif // LOVE_EVENT_SDL_WRAP_EVENT_H

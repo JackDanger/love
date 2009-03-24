@@ -20,39 +20,57 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#ifndef LOVE_WRAP_H
-#define LOVE_WRAP_H
+#include "Keyboard.h"
 
-/**
-* Contains general wrapper functions for objects. For most objects, 
-* the same values for the fields __index and __gc  can be used in the 
-* metatable. 
-**/
-
-#include "luax.h"
+// SDL
+#include <SDL.h>
 
 namespace love
 {
+namespace keyboard
+{
+namespace sdl
+{
 
-	/**
-	* Gets a function (or some other variable) from the
-	* metatable of an object.
-	**/
-	int _wrap__index(lua_State * L);
+	Keyboard * Keyboard::instance = 0;
 
-	/**
-	* Called when an object is collected. The object is released
-	* once in this function, possibly deleting it.
-	**/
-	int _wrap__gc(lua_State * L);
+	Keyboard::Keyboard()
+	{
+	}
 
-	/**
-	* Special garbage collector for Modules. This is only used
-	* to trigger the quit() method on a module when it is garbage 
-	* collected (which is typically when the VM is destroyed).
-	**/
-	int _wrap__Module_gc(lua_State * L);
+	Keyboard * Keyboard::getInstance()
+	{
+		if(instance == 0)
+			instance = new Keyboard();
+		return instance;
+	}
 
+	bool Keyboard::init()
+	{
+		return true;
+	}
+
+	void Keyboard::quit()
+	{
+		// Delete instance
+		if(instance != 0)
+		{
+			delete instance;
+			instance = 0;
+		}
+	}
+
+	const char * Keyboard::getName() const
+	{
+		return "love.keyboard.sdl";
+	}
+
+	bool Keyboard::isDown(int key) const
+	{
+		Uint8 * keystate = SDL_GetKeyState(0);
+		return keystate[key] == 1;		
+	}
+
+} // sdl
+} // keyboard
 } // love
-
-#endif // LOVE_WRAP_H

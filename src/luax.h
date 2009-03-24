@@ -34,6 +34,9 @@ extern "C" {
 
 namespace love
 {
+
+	class Module;
+
 	void luax_printstack(lua_State * L);
 	bool luax_toboolean(lua_State * L, int idx);
 	void luax_pushboolean(lua_State * L, bool b);
@@ -47,7 +50,10 @@ namespace love
 		lua_CFunction open);
 
 	int luax_register_module(lua_State * L, const char * mname, const luaL_Reg * fn);
+	int luax_register_module(lua_State * L, Module * module, const luaL_Reg * fn, const lua_CFunction * types);
 	int luax_register_type(lua_State * L, const char * tname, const luaL_Reg * fn);
+
+	int luax_register_searcher(lua_State * L, lua_CFunction f);
 
 	void luax_newtype(lua_State * L, const char * tname, bits flags, void * data, bool own = true);
 

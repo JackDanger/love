@@ -20,43 +20,28 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#ifndef LOVE_MOUSE_SDLMOUSE_MOUSE_H
-#define LOVE_MOUSE_SDLMOUSE_MOUSE_H
+#ifndef LOVE_TIMER_SDL_WRAP_TIMER_H
+#define LOVE_TIMER_SDL_WRAP_TIMER_H
 
 // LOVE
 #include "../../luax.h"
 
 namespace love
 {
-namespace mouse
+namespace timer
 {
-namespace sdlmouse
+namespace sdl
 {
-	class Mouse
-	{
-	private:
-		static Mouse * instance;
-	protected:
-		Mouse();
-	public:
+	int _wrap_step(lua_State * L);
+	int _wrap_getDelta(lua_State * L);
+	int _wrap_getFPS(lua_State * L);
+	int _wrap_sleep(lua_State * L);
+	int _wrap_getTime(lua_State * L);
 
-		static Mouse * getInstance();
-		static int __advertise(lua_State * L);
-		static int __open(lua_State * L);
-		static int __garbagecollect(lua_State * L);
-		
-		int getX() const;
-		int getY() const;
-		void getPosition(int * x, int * y) const;
-		void setPosition(int x, int y);
-		void setVisible(bool visible);
-		bool isDown(int button) const;
-		bool isVisible() const;
+	int wrap_Timer_open(lua_State * L);
 
-	}; // Mouse
-
-} // sdlmouse
-} // mouse
+} // sdl
+} // timer
 } // love
 
-#endif // LOVE_MOUSE_SDLMOUSE_MOUSE_H
+#endif // LOVE_TIMER_SDL_WRAP_TIMER_H

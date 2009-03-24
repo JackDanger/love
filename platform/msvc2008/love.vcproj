@@ -170,75 +170,39 @@
 			Name="timer"
 			>
 			<Filter
-				Name="sdltimer"
+				Name="sdl"
 				>
 				<File
-					RelativePath="..\..\src\timer\sdltimer\Timer.cpp"
+					RelativePath="..\..\src\timer\sdl\Timer.cpp"
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
+							ObjectFile="$(IntDir)\timer_sdl\"
 						/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\..\src\timer\sdltimer\Timer.h"
+					RelativePath="..\..\src\timer\sdl\Timer.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\timer\sdltimer\wrap_Timer.cpp"
+					RelativePath="..\..\src\timer\sdl\wrap_Timer.cpp"
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
+							ObjectFile="$(IntDir)\timer_sdl\"
 						/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\..\src\timer\sdltimer\wrap_Timer.h"
+					RelativePath="..\..\src\timer\sdl\wrap_Timer.h"
 					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="system"
-			>
-			<Filter
-				Name="sdlsystem"
-				>
-				<File
-					RelativePath="..\..\src\system\sdlsystem\System.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\system\sdlsystem\System.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\system\sdlsystem\wrap_System.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
 				</File>
 			</Filter>
 		</Filter>
@@ -246,35 +210,39 @@
 			Name="mouse"
 			>
 			<Filter
-				Name="sdlmouse"
+				Name="sdl"
 				>
 				<File
-					RelativePath="..\..\src\mouse\sdlmouse\Mouse.cpp"
+					RelativePath="..\..\src\mouse\sdl\Mouse.cpp"
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
+							ObjectFile="$(IntDir)\mouse_sdl\"
 						/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\..\src\mouse\sdlmouse\Mouse.h"
+					RelativePath="..\..\src\mouse\sdl\Mouse.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\mouse\sdlmouse\wrap_Mouse.cpp"
+					RelativePath="..\..\src\mouse\sdl\wrap_Mouse.cpp"
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
+							ObjectFile="$(IntDir)\mouse_sdl\"
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\mouse\sdl\wrap_Mouse.h"
+					>
 				</File>
 			</Filter>
 		</Filter>
@@ -282,35 +250,39 @@
 			Name="keyboard"
 			>
 			<Filter
-				Name="sdlkeyboard"
+				Name="sdl"
 				>
 				<File
-					RelativePath="..\..\src\keyboard\sdlkeyboard\Keyboard.cpp"
+					RelativePath="..\..\src\keyboard\sdl\Keyboard.cpp"
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
+							ObjectFile="$(IntDir)\keyboard_sdl\"
 						/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\..\src\keyboard\sdlkeyboard\Keyboard.h"
+					RelativePath="..\..\src\keyboard\sdl\Keyboard.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\keyboard\sdlkeyboard\wrap_Keyboard.cpp"
+					RelativePath="..\..\src\keyboard\sdl\wrap_Keyboard.cpp"
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
+							ObjectFile="$(IntDir)\keyboard_sdl\"
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\keyboard\sdl\wrap_Keyboard.h"
+					>
 				</File>
 			</Filter>
 		</Filter>
@@ -451,6 +423,14 @@
 				<File
 					RelativePath="..\..\src\graphics\opengl\ImageFont.cpp"
 					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\opengl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\graphics\opengl\ImageFont.h"
@@ -523,6 +503,14 @@
 				<File
 					RelativePath="..\..\src\graphics\opengl\wrap_Animation.cpp"
 					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\opengl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\graphics\opengl\wrap_Animation.h"
@@ -584,7 +572,7 @@
 						>
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
+							ObjectFile="$(IntDir)\opengl\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -787,6 +775,14 @@
 				<File
 					RelativePath="..\..\src\image\devil\wrap_Image.cpp"
 					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\devil\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\image\devil\wrap_Image.h"
@@ -814,22 +810,38 @@
 			Name="joystick"
 			>
 			<Filter
-				Name="sdljoystick"
+				Name="sdl"
 				>
 				<File
-					RelativePath="..\..\src\joystick\sdljoystick\Joystick.cpp"
+					RelativePath="..\..\src\joystick\sdl\Joystick.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\joystick_sdl\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\joystick\sdl\Joystick.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\src\joystick\sdljoystick\Joystick.h"
+					RelativePath="..\..\src\joystick\sdl\wrap_Joystick.cpp"
 					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\joystick_sdl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\..\src\joystick\sdljoystick\wrap_Joystick.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\joystick\sdljoystick\wrap_Joystick.h"
+					RelativePath="..\..\src\joystick\sdl\wrap_Joystick.h"
 					>
 				</File>
 			</Filter>
@@ -2054,6 +2066,46 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="event"
+			>
+			<Filter
+				Name="sdl"
+				>
+				<File
+					RelativePath="..\..\src\event\sdl\Event.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\event_sdl\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\event\sdl\Event.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\event\sdl\wrap_Event.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\event_sdl\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\event\sdl\wrap_Event.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
 		<File
 			RelativePath="..\..\src\config.h"
 			>
@@ -2129,6 +2181,14 @@
 		<File
 			RelativePath="..\..\src\Module.cpp"
 			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					ObjectFile="$(IntDir)\love\"
+				/>
+			</FileConfiguration>
 		</File>
 		<File
 			RelativePath="..\..\src\Module.h"

@@ -32,7 +32,7 @@ namespace love
 {
 namespace joystick
 {
-namespace sdljoystick
+namespace sdl
 {
 	Joystick * Joystick::instance = 0;
 
@@ -43,16 +43,6 @@ namespace sdljoystick
 
 	Joystick::~Joystick()
 	{
-		// Closes any open joysticks.
-		for(int i = 0; i != getNumJoysticks(); i++)
-		{
-			if(isOpen(i))
-				close(i);
-		}
-
-		free(joysticks);
-
-		SDL_QuitSubSystem(SDL_INIT_JOYSTICK);
 	}
 
 	Joystick * Joystick::getInstance()
@@ -62,22 +52,11 @@ namespace sdljoystick
 		return instance;
 	}
 
-	int Joystick::__advertise(lua_State * L)
-	{
-		love::luax_register_info(L,
-			"sdljoystick",
-			"joystick",
-			"SDL Joystick Module",
-			"LOVE Development Team",
-			&__open);
-		return 0;
-	}
-
-	int Joystick::__open(lua_State * L)
+	bool Joystick::init()
 	{
 		// Init the SDL joystick system.
 		if(SDL_InitSubSystem(SDL_INIT_JOYSTICK) < 0)
-			return luaL_error(L, SDL_GetError());
+			return false;
 
 		// Start joystick event watching.
 		SDL_JoystickEventState(SDL_ENABLE);
@@ -89,18 +68,33 @@ namespace sdljoystick
 		for(int i = 0;i<numjoysticks;i++)
 			Joystick::getInstance()->open(i);
 
-		// Open stuff here.
-		wrap_Joystick_open(L);
-		luax_register_gc(L, "sdljoystick", &__garbagecollect);
-		return 0;
+		return true;
 	}
 
-	int Joystick::__garbagecollect(lua_State * L)
+	void Joystick::quit()
 	{
-		Joystick * m = Joystick::getInstance();
-		if(m != 0)
-			delete m;
-		return 0;
+		// Closes any open joysticks.
+		for(int i = 0; i != getNumJoysticks(); i++)
+		{
+			if(isOpen(i))
+				close(i);
+		}
+
+		free(joysticks);
+
+		SDL_QuitSubSystem(SDL_INIT_JOYSTICK);
+
+		// Delete instance
+		if(instance != 0)
+		{
+			delete instance;
+			instance = 0;
+		}
+	}
+
+	const char * Joystick::getName() const
+	{
+		return "love.joystick.sdl";
 	}
 
 	bool Joystick::checkIndex(int index)
@@ -262,6 +256,6 @@ namespace sdljoystick
 		}
 	}
 
-} // sdljoystick
+} // sdl
 } // joystick
 } // love

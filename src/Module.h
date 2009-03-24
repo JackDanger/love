@@ -59,6 +59,14 @@ namespace love
 		**/
 		virtual void quit() = 0;
 
+		/**
+		* Gets the name of the module. This is used in case of errors
+		* and other messages.
+		* 
+		* @return The full name of the module, eg. love.graphics.opengl. 
+		**/
+		virtual const char * getName() const = 0;
+
 	}; // Module
 
 } // love

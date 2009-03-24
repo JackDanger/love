@@ -20,47 +20,61 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#ifndef LOVE_SYSTEM_SDLSYSTEM_SYSTEM_H
-#define LOVE_SYSTEM_SDLSYSTEM_SYSTEM_H
+#ifndef LOVE_JOYSTICK_SDL_JOYSTICK_H
+#define LOVE_JOYSTICK_SDL_JOYSTICK_H
+
+// SDL
+#include <SDL.h>
 
 // LOVE
+#include "../../Module.h"
 #include "../../luax.h"
 
 namespace love
 {
-namespace system
+namespace joystick
 {
-namespace sdlsystem
+namespace sdl
 {
-	class System
+	class Joystick : public Module
 	{
 	private:
-		static System * instance;
+		static Joystick * instance;
+		SDL_Joystick ** joysticks;
 	protected:
-		System();
+		Joystick();
 	public:
+		~Joystick();
 
-		static System * getInstance();
-		static int __advertise(lua_State * L);
-		static int __open(lua_State * L);
-		static int __garbagecollect(lua_State * L);
-		
-		/**
-		* Returns an iterator function for
-		* iterating over pending events.
-		**/
-		int events(lua_State * L);
+		static Joystick * getInstance();
 
-		/**
-		* The iterator function which iterates
-		* pending SDL events.
-		**/
-		static int events_i(lua_State * L);
+		// Implements Module.
+		bool init();
+		void quit();
+		const char * getName() const;
 
-	}; // System
+		bool checkIndex(int index);
+		int getNumJoysticks();
+		const char * getName(int index);
+		bool open(int index);
+		bool isOpen(int index);
+		bool verifyJoystick(int index);
+		int getNumAxes(int index);
+		int getNumBalls(int index);
+		int getNumButtons(int index);
+		int getNumHats(int index);
+		float clampval(float x);
+		float getAxis(int index, int axis);
+		int getAxes(lua_State * L);
+		int getBall(lua_State * L);
+		bool isDown(int index, int button);
+		int getHat(int index, int hat);
+		void close(int index);
 
-} // sdlsystem
-} // system
+	}; // Joystick
+
+} // sdl
+} // joystick
 } // love
 
-#endif // LOVE_SYSTEM_SDLSYSTEM_SYSTEM_H
+#endif // LOVE_JOYSTICK_SDL_JOYSTICK_H

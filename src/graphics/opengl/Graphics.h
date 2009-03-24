@@ -33,6 +33,7 @@
 #include <SDL_opengl.h>
 
 // LOVE
+#include "../../Module.h"
 #include "../../luax.h"
 #include "Image.h"
 #include "Animation.h"
@@ -108,7 +109,7 @@ namespace opengl
 
 	};
 
-	class Graphics
+	class Graphics : public Module
 	{
 	private:
 		static Graphics * instance;
@@ -120,9 +121,11 @@ namespace opengl
 		~Graphics();
 
 		static Graphics * getInstance();
-		static int __advertise(lua_State * L);
-		static int __open(lua_State * L);
-		static int __garbagecollect(lua_State * L);
+		
+		// Implements Module.
+		bool init();
+		void quit();
+		const char * getName() const;
 
 		/**
 		* Checks whether a display mode is supported or not. Note

@@ -20,68 +20,46 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#ifndef LOVE_TIMER_SDLTIMER_TIMER_H
-#define LOVE_TIMER_SDLTIMER_TIMER_H
-
-// SDL
-#include <SDL.h>
+#ifndef LOVE_MOUSE_SDL_MOUSE_H
+#define LOVE_MOUSE_SDL_MOUSE_H
 
 // LOVE
 #include "../../Module.h"
+#include "../../luax.h"
 
 namespace love
 {
-namespace timer
+namespace mouse
 {
-namespace sdltimer
+namespace sdl
 {
-	class Timer : public Module
+	class Mouse : public Module
 	{
 	private:
-
-		// The single instance of this class.
-		static Timer * instance;
-
-		// Timing vars for benchmarking.
-		Uint32 time_init;
-		
-		// Frame delta vars.
-		Uint32 currTime;
-		Uint32 prevTime;
-		Uint32 prevFpsUpdate;
-
-		// Updated with a certain frequency.
-		float fps;
-
-		// The frequency by which to update the FPS.
-		float fpsUpdateFrequency;
-
-		// Frames since last FPS update.
-		int frames;
-
-		// The current timestep.
-		float dt;
-
+		static Mouse * instance;
 	protected:
-		Timer();
+		Mouse();
 	public:
 
-		static Timer * getInstance();
+		static Mouse * getInstance();
 
 		// Implements Module.
 		bool init();
 		void quit();
+		const char * getName() const;
 		
-		void step();
-		void sleep(unsigned int ms);
-		float getDelta() const;
-		float getFPS() const;
-		float getTime() const;
+		int getX() const;
+		int getY() const;
+		void getPosition(int * x, int * y) const;
+		void setPosition(int x, int y);
+		void setVisible(bool visible);
+		bool isDown(int button) const;
+		bool isVisible() const;
 
-	}; // Timer
+	}; // Mouse
 
-} // sdltimer
-} // timer
+} // sdl
+} // mouse
 } // love
 
-#endif // LOVE_TIMER_SDLTIMER_TIMER_H
+#endif // LOVE_MOUSE_SDL_MOUSE_H

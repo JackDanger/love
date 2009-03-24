@@ -20,29 +20,36 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#ifndef LOVE_TIMER_SDLTIMER_WRAP_TIMER_H
-#define LOVE_TIMER_SDLTIMER_WRAP_TIMER_H
+#ifndef LOVE_JOYSTICK_SDL_WRAP_JOYSTICK_H
+#define LOVE_JOYSTICK_SDL_WRAP_JOYSTICK_H
 
 // LOVE
-#include "../../luax.h"
+#include "../../wrap.h"
 
 namespace love
 {
-namespace timer
+namespace joystick
 {
-namespace sdltimer
+namespace sdl
 {
-	int _wrap_step(lua_State * L);
-	int _wrap_getDelta(lua_State * L);
-	int _wrap_getFPS(lua_State * L);
-	int _wrap_sleep(lua_State * L);
-	int _wrap_getTime(lua_State * L);
+	int _wrap_getNumJoysticks(lua_State * L);
+	int _wrap_getName(lua_State * L);
+	int _wrap_open(lua_State * L);
+	int _wrap_isOpen(lua_State * L);
+	int _wrap_getNumAxes(lua_State * L);
+	int _wrap_getNumBalls(lua_State * L);
+	int _wrap_getNumButtons(lua_State * L);
+	int _wrap_getNumHats(lua_State * L);
+	int _wrap_getAxis(lua_State * L);
+	int _wrap_getAxes(lua_State * L);
+	int _wrap_getBall(lua_State * L);
+	int _wrap_isDown(lua_State * L);
+	int _wrap_getHat(lua_State * L);
+	int _wrap_close(lua_State * L);
+	int wrap_Joystick_open(lua_State * L);
 
-	int wrap_Timer_open(lua_State * L);
-	int wrap_Timer_gc(lua_State * L);
-
-} // sdltimer
-} // timer
+} // sdl
+} // joystick
 } // love
 
-#endif // LOVE_TIMER_SDLTIMER_WRAP_TIMER_H
+#endif // LOVE_JOYSTICK_SDL_WRAP_JOYSTICK_H

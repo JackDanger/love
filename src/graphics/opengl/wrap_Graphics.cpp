@@ -794,17 +794,21 @@ namespace opengl
 		{ 0, 0 }
 	};
 
+	// Types for this module.
+	const lua_CFunction wrap_Graphics_types[] = {
+		wrap_Color_open, 
+		wrap_Font_open, 
+		wrap_Image_open, 
+		wrap_Animation_open, 
+		wrap_ParticleSystem_open, 
+		wrap_SpriteBatch_open, 
+		wrap_VertexBuffer_open, 
+		0		
+	};
+
 	int wrap_Graphics_open(lua_State * L)
 	{
-		luax_register_module(L, "graphics", wrap_Graphics_functions);
-		wrap_Color_open(L);
-		wrap_Font_open(L);
-		wrap_Image_open(L);
-		wrap_Animation_open(L);
-		wrap_ParticleSystem_open(L);
-		wrap_SpriteBatch_open(L);
-		wrap_VertexBuffer_open(L);
-		return 0;
+		return luax_register_module(L, Graphics::getInstance(), wrap_Graphics_functions, wrap_Graphics_types);
 	}
 
 } // opengl

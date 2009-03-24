@@ -20,42 +20,34 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#ifndef LOVE_KEYBOARD_SDLKEYBOARD_WRAP_KEYBOARD_H
-#define LOVE_KEYBOARD_SDLKEYBOARD_WRAP_KEYBOARD_H
+#ifndef LOVE_MOUSE_SDL_WRAP_MOUSE_H
+#define LOVE_MOUSE_SDL_WRAP_MOUSE_H
 
 // LOVE
 #include "../../luax.h"
 
-// sdlkeyboard
-#include "Keyboard.h"
+// sdl
+#include "Mouse.h"
 
 namespace love
 {
-namespace keyboard
+namespace mouse
 {
-namespace sdlkeyboard
+namespace sdl
 {
-	int _wrap_isDown(lua_State * L)
-	{
-		int b = luaL_checkint(L, 1);
-		luax_pushboolean(L, Keyboard::getInstance()->isDown(b));
-		return 1;
-	}
-	
-	// List of functions to wrap.
-	static const luaL_Reg wrap_Keyboard_functions[] = {
-		{ "isDown", _wrap_isDown },
-		{ 0, 0 }
-	};
+	int _wrap_getX(lua_State * L);
+	int _wrap_getY(lua_State * L);
+	int _wrap_getPosition(lua_State * L);
+	int _wrap_setPosition(lua_State * L);
+	int _wrap_isDown(lua_State * L);
+	int _wrap_setVisible(lua_State * L);
+	int _wrap_isVisible(lua_State * L);
 
-	int wrap_Keyboard_open(lua_State * L)
-	{
-		luax_register_module(L, "keyboard", wrap_Keyboard_functions);
-		return 0;
-	}
+	int wrap_Mouse_open(lua_State * L);
+	int wrap_Mouse_gc(lua_State * L);
 
-} // sdlkeyboard
-} // keyboard
+} // sdl
+} // mouse
 } // love
 
-#endif // LOVE_KEYBOARD_SDLKEYBOARD_WRAP_KEYBOARD_H
+#endif // LOVE_MOUSE_SDL_WRAP_MOUSE_H

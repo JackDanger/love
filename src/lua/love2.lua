@@ -103,16 +103,18 @@ function love.init()
 	end
 
 	love.insmod("physfs", "filesystem")
-	love.insmod("opengl", "graphics")
 	love.insmod("devil", "image")
-	love.insmod("sdljoystick", "joystick")
-	love.insmod("sdlkeyboard", "keyboard")
 	love.insmod("sdlmouse", "mouse")
 	love.insmod("sdlsound", "sound")
-	love.insmod("sdltimer", "timer")
-	love.insmod("sdlsystem", "system")
 	love.insmod("openal", "audio")
 	love.insmod("box2d", "physics")
+	
+	love.event = require("love.event.sdl")
+	love.keyboard = require("love.keyboard.sdl")
+	love.mouse = require("love.mouse.sdl")
+	love.timer = require("love.timer.sdl")
+	love.joystick = require("love.joystick.sdl")
+	love.graphics = require("love.graphics.opengl")
 
 	if love.__args[1] and love.__args[1] ~= "" then
 		love.filesystem.setSource(love.path.getfull(love.__args[1]))
@@ -142,7 +144,7 @@ function love.run()
 		if love.draw then love.draw() end
 
 		-- Process events.
-		for e,a,b,c in love.system.events() do
+		for e,a,b,c in love.event.get() do
 			if e == love.event_quit then return end
 			love.handlers[e](a,b,c)
 		end

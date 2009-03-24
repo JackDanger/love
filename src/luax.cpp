@@ -22,6 +22,10 @@
 
 #include "luax.h"
 
+// LOVE
+#include "wrap.h"
+#include "Module.h"
+
 // STD
 #include <iostream>
 
@@ -90,7 +94,8 @@ namespace love
 
 		lua_setfield(L, -2, mname);
 
-		lua_settop(L, 0);
+		lua_pop(L, 2); // __fin, love
+
 		return 0;
 	}
 
@@ -139,11 +144,52 @@ namespace love
 		return 0;
 	}
 
+	int luax_register_module(lua_State * L, Module * module, const luaL_Reg * fn, const lua_CFunction * types)
+	{
+		// Try to init module.
+		if(!module->init())
+			return luaL_error(L, "Could not init module %s.", module->getName());
+
+		// Create new table for module.
+		lua_newtable(L);
+
+		// Register all the functions.
+		luaL_register(L, 0, fn);
+
+		// Register types.
+		if(types != 0)
+			for(const lua_CFunction * t = types; *t != 0; t++)
+				(*t)(L);
+
+		return 1;
+	}
+
 	int luax_register_type(lua_State * L, const char * tname, const luaL_Reg * fn)
 	{
 		luaL_newmetatable(L, tname);
 		luaL_register(L, 0, fn);
 		lua_pop(L, 1); // Pops metatable.
+		return 0;
+	}
+
+	int luax_register_searcher(lua_State * L, lua_CFunction f)
+	{
+		// Add the package loader to the package.loaders table.
+		lua_getglobal(L, "package");
+
+		if(lua_isnil(L, -1))
+			return luaL_error(L, "Can't register searcher: package table does not exist.");
+		
+		lua_getfield(L, -1, "loaders");
+		
+		if(lua_isnil(L, -1))
+			return luaL_error(L, "Can't register searcher: package.loaders table does not exist.");
+		
+		int len = lua_objlen(L, -1);
+		lua_pushinteger(L, len+1);
+		lua_pushcfunction(L, f);
+		lua_settable(L, -3);
+		lua_pop(L, 2);
 		return 0;
 	}
 

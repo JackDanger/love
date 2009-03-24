@@ -20,66 +20,69 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#include "Keyboard.h"
+#ifndef LOVE_TIMER_SDL_TIMER_H
+#define LOVE_TIMER_SDL_TIMER_H
 
 // SDL
 #include <SDL.h>
 
+// LOVE
+#include "../../Module.h"
+
 namespace love
 {
-namespace keyboard
+namespace timer
 {
-namespace sdlkeyboard
+namespace sdl
 {
-	// Wrapper loaders.
-	extern int wrap_Keyboard_open(lua_State * L);
-
-	Keyboard * Keyboard::instance = 0;
-
-	Keyboard::Keyboard()
+	class Timer : public Module
 	{
-	}
+	private:
 
-	Keyboard * Keyboard::getInstance()
-	{
-		if(instance == 0)
-			instance = new Keyboard();
-		return instance;
-	}
+		// The single instance of this class.
+		static Timer * instance;
 
-	int Keyboard::__advertise(lua_State * L)
-	{
-		love::luax_register_info(L,
-			"sdlkeyboard",
-			"keyboard",
-			"SDL Keyboard Module",
-			"LOVE Development Team",
-			&__open);
-		return 0;
-	}
+		// Timing vars for benchmarking.
+		Uint32 time_init;
+		
+		// Frame delta vars.
+		Uint32 currTime;
+		Uint32 prevTime;
+		Uint32 prevFpsUpdate;
 
-	int Keyboard::__open(lua_State * L)
-	{
-		// Open stuff here.
-		wrap_Keyboard_open(L);
-		luax_register_gc(L, "sdlkeyboard", &__garbagecollect);
-		return 0;
-	}
+		// Updated with a certain frequency.
+		float fps;
 
-	int Keyboard::__garbagecollect(lua_State * L)
-	{
-		Keyboard * m = Keyboard::getInstance();
-		if(m != 0)
-			delete m;
-		return 0;
-	}
+		// The frequency by which to update the FPS.
+		float fpsUpdateFrequency;
 
-	bool Keyboard::isDown(int key) const
-	{
-		Uint8 * keystate = SDL_GetKeyState(0);
-		return keystate[key] == 1;		
-	}
+		// Frames since last FPS update.
+		int frames;
 
-} // sdlkeyboard
-} // keyboard
+		// The current timestep.
+		float dt;
+
+	protected:
+		Timer();
+	public:
+
+		static Timer * getInstance();
+
+		// Implements Module.
+		bool init();
+		void quit();
+		const char * getName() const;
+		
+		void step();
+		void sleep(unsigned int ms);
+		float getDelta() const;
+		float getFPS() const;
+		float getTime() const;
+
+	}; // Timer
+
+} // sdl
+} // timer
 } // love
+
+#endif // LOVE_TIMER_SDL_TIMER_H

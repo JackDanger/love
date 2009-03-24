@@ -20,20 +20,16 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#ifndef LOVE_MOUSE_SDLMOUSE_WRAP_MOUSE_H
-#define LOVE_MOUSE_SDLMOUSE_WRAP_MOUSE_H
+#include "wrap_Mouse.h"
 
 // LOVE
 #include "../../luax.h"
-
-// sdlmouse
-#include "Mouse.h"
 
 namespace love
 {
 namespace mouse
 {
-namespace sdlmouse
+namespace sdl
 {
 	int _wrap_getX(lua_State * L)
 	{
@@ -98,12 +94,10 @@ namespace sdlmouse
 
 	int wrap_Mouse_open(lua_State * L)
 	{
-		luax_register_module(L, "mouse", wrap_Mouse_functions);
-		return 0;
+		return luax_register_module(L, Mouse::getInstance(), wrap_Mouse_functions, 0);
 	}
 
-} // sdlmouse
+
+} // sdl
 } // mouse
 } // love
-
-#endif // LOVE_MOUSE_SDLMOUSE_WRAP_MOUSE_H

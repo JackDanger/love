@@ -26,7 +26,7 @@ namespace love
 {
 namespace timer
 {
-namespace sdltimer
+namespace sdl
 {
 	Timer * Timer::instance = 0;
 
@@ -55,6 +55,18 @@ namespace sdltimer
 	{
 		// Quit SDL timer.
 		SDL_QuitSubSystem(SDL_INIT_TIMER);
+
+		// Delete instance
+		if(instance != 0)
+		{
+			delete instance;
+			instance = 0;
+		}
+	}
+
+	const char * Timer::getName() const
+	{
+		return "love.timer.sdl";
 	}
 
 	void Timer::step()
@@ -100,6 +112,6 @@ namespace sdltimer
 		return (SDL_GetTicks() - time_init)/1000.0f;
 	}
 
-} // sdltimer
+} // sdl
 } // timer
 } // love

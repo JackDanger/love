@@ -29,11 +29,8 @@ namespace love
 {
 namespace mouse
 {
-namespace sdlmouse
+namespace sdl
 {
-	// Wrapper loaders.
-	extern int wrap_Mouse_open(lua_State * L);
-
 	Mouse * Mouse::instance = 0;
 
 	Mouse::Mouse()
@@ -47,31 +44,25 @@ namespace sdlmouse
 		return instance;
 	}
 
-	int Mouse::__advertise(lua_State * L)
+	bool Mouse::init()
 	{
-		love::luax_register_info(L,
-			"sdlmouse",
-			"mouse",
-			"SDL Mouse Module",
-			"LOVE Development Team",
-			&__open);
-		return 0;
+		// Nothing to init.
+		return true;
 	}
 
-	int Mouse::__open(lua_State * L)
+	void Mouse::quit()
 	{
-		// Open stuff here.
-		wrap_Mouse_open(L);
-		luax_register_gc(L, "sdlmouse", &__garbagecollect);
-		return 0;
+		// Delete instance
+		if(instance != 0)
+		{
+			delete instance;
+			instance = 0;
+		}
 	}
 
-	int Mouse::__garbagecollect(lua_State * L)
+	const char * Mouse::getName() const
 	{
-		Mouse * m = Mouse::getInstance();
-		if(m != 0)
-			delete m;
-		return 0;
+		return "love.mouse.sdl";
 	}
 
 	int Mouse::getX() const
@@ -113,6 +104,6 @@ namespace sdlmouse
 		return (SDL_ShowCursor(SDL_QUERY) == SDL_ENABLE) ? true : false;
 	}
 
-} // sdlmouse
+} // sdl
 } // mouse
 } // love

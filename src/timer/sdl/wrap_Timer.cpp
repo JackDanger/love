@@ -28,7 +28,7 @@ namespace love
 {
 namespace timer
 {
-namespace sdltimer
+namespace sdl
 {
 	int _wrap_step(lua_State * L)
 	{
@@ -73,19 +73,9 @@ namespace sdltimer
 
 	int wrap_Timer_open(lua_State * L)
 	{
-		luax_register_module(L, "timer", wrap_Timer_functions);
-		luax_register_gc(L, "sdltimer", &wrap_Timer_gc);
-		if(!Timer::getInstance()->init())
-			return luaL_error(L, "Could not init module sdltimer.");
-		return 0;
+		return luax_register_module(L, Timer::getInstance(), wrap_Timer_functions, 0);
 	}
 
-	int wrap_Timer_gc(lua_State * L)
-	{
-		Timer::getInstance()->quit();
-		return 0;
-	}
-
-} // sdltimer
+} // sdl
 } // timer
 } // love

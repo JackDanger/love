@@ -4,11 +4,13 @@ LOVE 0.6.0
   
   * Added love.graphics.print()/printf().
   * Added unicode-translated parameter to love.keypressed().
+  * Added love.event.
 
   * Changed parameter order of draws().
   * Changed default origin for images as top-left.
 
   * Removed love.graphics.draw() for strings.
+  * Removed love.system.
 
 LOVE 0.5.0
 ----------

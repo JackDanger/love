@@ -28,7 +28,7 @@ namespace love
 {
 namespace joystick
 {
-namespace sdljoystick
+namespace sdl
 {
 	int _wrap_getNumJoysticks(lua_State * L)
 	{
@@ -149,10 +149,9 @@ namespace sdljoystick
 
 	int wrap_Joystick_open(lua_State * L)
 	{
-		luax_register_module(L, "joystick", wrap_Joystick_functions);
-		return 0;
+		return luax_register_module(L, Joystick::getInstance(), wrap_Joystick_functions, 0);
 	}
 
-} // sdljoystick
+} // sdl
 } // joystick
 } // love

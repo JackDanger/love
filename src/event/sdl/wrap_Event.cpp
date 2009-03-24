@@ -20,69 +20,36 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#ifndef LOVE_SDLSYSTEM_WRAP_SYSTEM_H
-#define LOVE_SDLSYSTEM_WRAP_SYSTEM_H
+#include "wrap_Event.h"
 
 // LOVE
-#include "../../config.h"
 #include "../../luax.h"
 
-// sdlsystem
-#include "System.h"
+// sdlevent
+#include "Event.h"
 
 namespace love
 {
-namespace system
+namespace event
 {
-namespace sdlsystem
+namespace sdl
 {
-	int _wrap_getVersion(lua_State * L)
+	int _wrap_get(lua_State * L)
 	{
-		lua_pushstring(L, LOVE_VERSION_STR.c_str());
-		return 1;
-	}
-
-	int _wrap_getCodename(lua_State * L)
-	{
-		lua_pushstring(L, LOVE_VERSION_CODENAME.c_str());
-		return 1;
-	}
-
-	int _wrap_getPlatform(lua_State * L)
-	{
-#if defined(LOVE_WINDOWS)
-		lua_pushstring(L, "Windows");
-#elif defined(LOVE_LINUX)
-		lua_pushstring(L, "Linux");
-#elif defined(LOVE_MACOSX)
-		lua_pushstring(L, "Mac OS X");
-#endif
-		return 1;
-	}
-
-	int _wrap_events(lua_State * L)
-	{
-		return System::getInstance()->events(L);
+		return Event::getInstance()->get(L);
 	}
 
 	// List of functions to wrap.
-	static const luaL_Reg wrap_System_functions[] = {
-		
-		{ "getVersion", _wrap_getVersion },
-		{ "getCodename", _wrap_getCodename },
-		{ "getPlatform", _wrap_getPlatform },
-		{ "events", _wrap_events },
+	const luaL_Reg wrap_Event_functions[] = {
+		{ "get", _wrap_get },
 		{ 0, 0 }
 	};
 
-	int wrap_System_open(lua_State * L)
+	int wrap_Event_open(lua_State * L)
 	{
-		luax_register_module(L, "system", wrap_System_functions);
-		return 0;
+		return luax_register_module(L, Event::getInstance(), wrap_Event_functions, 0);
 	}
 
-} // sdlsystem
-} // system
+} // sdl
+} // event
 } // love
-
-#endif // LOVE_SDLSYSTEM_WRAP_SYSTEM_H

@@ -20,36 +20,35 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#ifndef LOVE_JOYSTICK_SDLJOYSTICK_WRAP_JOYSTICK_H
-#define LOVE_JOYSTICK_SDLJOYSTICK_WRAP_JOYSTICK_H
+#include "wrap_Keyboard.h"
 
 // LOVE
-#include "../../wrap.h"
+#include "../../luax.h"
 
 namespace love
 {
-namespace joystick
+namespace keyboard
 {
-namespace sdljoystick
+namespace sdl
 {
-	int _wrap_getNumJoysticks(lua_State * L);
-	int _wrap_getName(lua_State * L);
-	int _wrap_open(lua_State * L);
-	int _wrap_isOpen(lua_State * L);
-	int _wrap_getNumAxes(lua_State * L);
-	int _wrap_getNumBalls(lua_State * L);
-	int _wrap_getNumButtons(lua_State * L);
-	int _wrap_getNumHats(lua_State * L);
-	int _wrap_getAxis(lua_State * L);
-	int _wrap_getAxes(lua_State * L);
-	int _wrap_getBall(lua_State * L);
-	int _wrap_isDown(lua_State * L);
-	int _wrap_getHat(lua_State * L);
-	int _wrap_close(lua_State * L);
-	int wrap_Joystick_open(lua_State * L);
+	int _wrap_isDown(lua_State * L)
+	{
+		int b = luaL_checkint(L, 1);
+		luax_pushboolean(L, Keyboard::getInstance()->isDown(b));
+		return 1;
+	}
+	
+	// List of functions to wrap.
+	static const luaL_Reg wrap_Keyboard_functions[] = {
+		{ "isDown", _wrap_isDown },
+		{ 0, 0 }
+	};
 
-} // sdljoystick
-} // joystick
+	int wrap_Keyboard_open(lua_State * L)
+	{
+		return luax_register_module(L, Keyboard::getInstance(), wrap_Keyboard_functions, 0);
+	}
+
+} // sdl
+} // keyboard
 } // love
-
-#endif // LOVE_JOYSTICK_SDLJOYSTICK_WRAP_JOYSTICK_H

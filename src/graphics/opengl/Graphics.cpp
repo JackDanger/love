@@ -33,9 +33,6 @@ namespace graphics
 namespace opengl
 {
 
-	// Wrapper loaders.
-	extern int wrap_Graphics_open(lua_State * L);
-
 	Graphics * Graphics::instance = 0;
 
 	Graphics::Graphics()
@@ -60,38 +57,29 @@ namespace opengl
 		return instance;
 	}
 
-	int Graphics::__advertise(lua_State * L)
-	{
-		luax_register_info(L,
-			"opengl",
-			"graphics",
-			"OpenGL Graphics Module",
-			"LOVE Development Team",
-			&__open);
-		return 0;
-	}
-
-	int Graphics::__open(lua_State * L)
+	bool Graphics::init()
 	{
 		// Init the SDL video system.
 		if(SDL_InitSubSystem(SDL_INIT_VIDEO) < 0)
-			return luaL_error(L, "Could not init SDL_VIDEO: %s", SDL_GetError());
-
-		wrap_Graphics_open(L);
-		luax_register_gc(L, "opengl", &__garbagecollect);
-		return 0;
+			return false;
+		return true;
 	}
 
-	int Graphics::__garbagecollect(lua_State * L)
+	void Graphics::quit()
 	{
 		SDL_QuitSubSystem(SDL_INIT_VIDEO);
 
-		// Delete the instance.
-		Graphics * m = Graphics::getInstance();
-		if(m != 0)
-			delete m;
+		// Delete instance
+		if(instance != 0)
+		{
+			delete instance;
+			instance = 0;
+		}
+	}
 
-		return 0;
+	const char * Graphics::getName() const
+	{
+		return "love.graphics.opengl";
 	}
 
 	bool Graphics::checkMode(int width, int height, bool fullscreen)

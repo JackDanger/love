@@ -20,39 +20,63 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#ifndef LOVE_WRAP_H
-#define LOVE_WRAP_H
+#ifndef LOVE_EVENT_SDL_EVENT_H
+#define LOVE_EVENT_SDL_EVENT_H
 
-/**
-* Contains general wrapper functions for objects. For most objects, 
-* the same values for the fields __index and __gc  can be used in the 
-* metatable. 
-**/
+// LOVE
+#include "../../Module.h"
+#include "../../luax.h"
 
-#include "luax.h"
+// SDL
+#include <SDL.h>
 
 namespace love
 {
+namespace event
+{
+namespace sdl
+{
+	class Event : public Module
+	{
+	private:
+		static Event * instance;
+	protected:
+		Event();
+	public:
 
-	/**
-	* Gets a function (or some other variable) from the
-	* metatable of an object.
-	**/
-	int _wrap__index(lua_State * L);
+		static Event * getInstance();
+		
+		// Implements Module.
+		bool init();
+		void quit();
+		const char * getName() const;
 
-	/**
-	* Called when an object is collected. The object is released
-	* once in this function, possibly deleting it.
-	**/
-	int _wrap__gc(lua_State * L);
+		void pump();
+		int poll(lua_State * L);
+		int wait(lua_State * L);
+		int push(lua_State * L);
 
-	/**
-	* Special garbage collector for Modules. This is only used
-	* to trigger the quit() method on a module when it is garbage 
-	* collected (which is typically when the VM is destroyed).
-	**/
-	int _wrap__Module_gc(lua_State * L);
+		void setGrab(bool grab);
+		bool getGrab() const;
 
+		/**
+		* Returns an iterator function for
+		* iterating over pending events.
+		**/
+		int get(lua_State * L);
+
+		/**
+		* The iterator function which iterates
+		* pending SDL events.
+		**/
+		static int get_i(lua_State * L);
+
+		int pushEvent(lua_State * L, SDL_Event & e);
+
+	}; // System
+
+} // sdl
+} // event
 } // love
 
-#endif // LOVE_WRAP_H
+#endif // LOVE_EVENT_SDL_EVENT_H

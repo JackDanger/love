@@ -23,6 +23,7 @@
 #include "wrap.h"
 
 // LOVE
+#include "Module.h"
 #include "Object.h"
 
 namespace love
@@ -40,6 +41,13 @@ namespace love
 		userdata * u = (userdata *)lua_touserdata(L, 1);
 		Object * t = (Object *)u->data;
 		t->release();
+		return 0;
+	}
+
+	int _wrap__Module_gc(lua_State * L)
+	{
+		Module * m = (Module *)lua_touserdata(L, 1);
+		m->quit();
 		return 0;
 	}
 

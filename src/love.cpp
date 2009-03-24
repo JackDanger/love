@@ -19,6 +19,7 @@
 * 
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
+
 // STD
 
 // SDL
@@ -30,23 +31,50 @@
 #include "constants.h"
 
 // Modules
-#include "timer/sdltimer/wrap_Timer.h"
-#include "system/sdlsystem/System.h"
-#include "graphics/opengl/Graphics.h"
-#include "mouse/sdlmouse/Mouse.h"
-#include "keyboard/sdlkeyboard/Keyboard.h"
+#include "event/sdl/wrap_Event.h"
+#include "keyboard/sdl/wrap_Keyboard.h"
+#include "mouse/sdl/wrap_Mouse.h"
+#include "timer/sdl/wrap_Timer.h"
+#include "joystick/sdl/wrap_Joystick.h"
+#include "graphics/opengl/wrap_Graphics.h"
+
 #include "image/devil/Image.h"
 #include "sound/sdlsound/Sound.h"
 #include "audio/openal/Audio.h"
 #include "physics/box2d/Physics.h"
-#include "joystick/sdljoystick/Joystick.h"
 #include "filesystem/physfs/Filesystem.h"
 
 #include "luasocket/luasocket.h"
 
-int require_module(lua_State * L)
+const luaL_reg wrappers[] = {
+	{ "love.event.sdl", love::event::sdl::wrap_Event_open },
+	{ "love.keyboard.sdl", love::keyboard::sdl::wrap_Keyboard_open },
+	{ "love.mouse.sdl", love::mouse::sdl::wrap_Mouse_open },
+	{ "love.timer.sdl", love::timer::sdl::wrap_Timer_open },
+	{ "love.joystick.sdl", love::joystick::sdl::wrap_Joystick_open },
+	{ "love.graphics.opengl", love::graphics::opengl::wrap_Graphics_open },
+	{ 0, 0 }
+};
+
+int module_searcher(lua_State * L)
 {
-	return 0;
+	// Get the module name.
+	const char * name = luaL_checkstring(L, 1);
+
+	// Try to find it.
+	for(const luaL_reg * r = wrappers; r->name != 0; r++)
+	{
+		if(strcmp(r->name, name) == 0)
+		{
+			// Found a module with that name!
+			lua_pushcfunction(L, r->func);
+			return 1;
+		}
+	}
+
+	// Found nothing ...
+	lua_pushfstring(L, "\n\tno LOVE module '%s'", name);
+	return 1;
 }
 
 int luaopen_love(lua_State * L)
@@ -91,16 +119,10 @@ int luaopen_love(lua_State * L)
 
 	// Advertise here.
 	love::filesystem::physfs::Filesystem::__advertise(L);
-	love::timer::sdltimer::wrap_Timer_open(L);
-	love::system::sdlsystem::System::__advertise(L);
-	love::keyboard::sdlkeyboard::Keyboard::__advertise(L);
-	love::mouse::sdlmouse::Mouse::__advertise(L);
-	love::graphics::opengl::Graphics::__advertise(L);
 	love::image::devil::Image::__advertise(L);
 	love::sound::sdlsound::Sound::__advertise(L);
 	love::audio::openal::Audio::__advertise(L);
 	love::physics::box2d::Physics::__advertise(L);
-	love::joystick::sdljoystick::Joystick::__advertise(L);
 
 	love::luasocket::__open(L);
 
@@ -141,12 +163,16 @@ int main(int argc, char ** argv)
 		lua_pop(L, 1);
 	}
 
+	// Add the module searcher function.
+	love::luax_register_searcher(L, module_searcher);
+
 	// This is where we should run the built-in Lua code
 	// which gets everything started.
 
 	// TODO: This is obviously test code.
 	luaL_dofile(L, "../../src/lua/love2.lua");
 	lua_close(L);
+
 	printf("(press key)\n");
 	getchar();
 	printf("Done. This was: %s (%s)\n", LOVE_VERSION_STR.c_str(), LOVE_VERSION_CODENAME.c_str());
