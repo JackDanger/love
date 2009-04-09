@@ -23,6 +23,6 @@ install_name_tool -change /Library/Frameworks/SDL.framework/Versions/A/SDL @exec
 install_name_tool -change /Library/Frameworks/SDL.framework/Versions/A/SDL @executable_path/../Frameworks/SDL.framework/Versions/A/SDL build/Release/love.app/Contents/Frameworks/SDL_mixer.framework/SDL_mixer
 
 # SDL_mixer
-install_name_tool -change /Library/Frameworks/SDL_mixer.framework/Versions/A/SDL_mixer @executable_path/../Frameworks/SDL_mixer.framework/Versions/A/SDL_mixer build/Release/love.app/Contents/MacOS/love
+#install_name_tool -change /Library/Frameworks/SDL_mixer.framework/Versions/A/SDL_mixer @executable_path/../#Frameworks/SDL_mixer.framework/Versions/A/SDL_mixer build/Release/love.app/Contents/MacOS/love
 
 exit 0
