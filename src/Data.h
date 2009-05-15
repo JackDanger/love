@@ -32,17 +32,17 @@ namespace love
 	{
 	public:
 
-		virtual ~Data();
+		virtual ~Data() {};
 
 		/**
 		* Gets a pointer to the data.
 		**/
-		virtual void * getData() = 0;
+		virtual void * getData() const = 0 ;
 
 		/**
 		* Gets the size of the data buffer.
 		**/
-		virtual int getSize() = 0;
+		virtual int getSize() const = 0;
 
 	}; // Data
 } // love

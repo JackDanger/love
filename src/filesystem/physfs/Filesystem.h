@@ -28,6 +28,7 @@
 #include <string>
 
 // LOVE
+#include "../../Module.h"
 #include "../../config.h"
 #include "../../luax.h"
 #include "../../constants.h"
@@ -63,7 +64,7 @@ namespace filesystem
 {
 namespace physfs
 {
-	class Filesystem
+	class Filesystem : public Module
 	{
 	private:
 
@@ -96,9 +97,10 @@ namespace physfs
 	public:
 
 		static Filesystem * getInstance();
-		static int __advertise(lua_State * L);
-		static int __open(lua_State * L);
-		static int __garbagecollect(lua_State * L);
+
+		int init(lua_State * L);
+		int quit(lua_State * L);
+		const char * getName() const;
 
 		/**
 		* This sets up the save directory. If the 
@@ -124,7 +126,7 @@ namespace physfs
 		/**
 		* Creates a new file.
 		**/
-		File * newFile(const char * file, int mode = FILE_READ);
+		File * newFile(const char * file);
 
 		/**
 		* Gets the current working directory.
@@ -184,8 +186,9 @@ namespace physfs
 		* Opens a file for reading or writing. (Depends
 		* on the mode chosen at the time of creation).
 		* @param file The file to open.
+		* @param mode The mode to open the file in.
 		**/
-		bool open(File * file);
+		bool open(File * file, File::Mode mode);
 
 		/**
 		* Closes a file.

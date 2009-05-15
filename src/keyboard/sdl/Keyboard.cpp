@@ -45,12 +45,12 @@ namespace sdl
 		return instance;
 	}
 
-	bool Keyboard::init()
+	int Keyboard::init(lua_State * L)
 	{
-		return true;
+		return 0;
 	}
 
-	void Keyboard::quit()
+	int Keyboard::quit(lua_State * L)
 	{
 		// Delete instance
 		if(instance != 0)
@@ -58,6 +58,8 @@ namespace sdl
 			delete instance;
 			instance = 0;
 		}
+
+		return 0;
 	}
 
 	const char * Keyboard::getName() const

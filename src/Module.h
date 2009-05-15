@@ -40,7 +40,7 @@ namespace love
 		/**
 		* Destructor.
 		**/
-		virtual ~Module() = 0;
+		virtual ~Module(){};
 
 		/**
 		* This function is called by the wrapper when the module is opened by Lua's
@@ -48,16 +48,20 @@ namespace love
 		* 
 		* Note that returning false here will cause the load of the module to fail.
 		* 
-		* @return True if all went well, false in case of error.
+		* @param L The Lua virtual machine state.
+		* @return Always returns 0, or doesn't return at all in case of errors. 
 		**/
-		virtual bool init() = 0;
+		virtual int init(lua_State * L) = 0;
 
 		/**
 		* This function is called when the Lua virtual machine is eventually
 		* destroyed, and the module is no longer needed. (In other words: this
 		* functon is called when the module is garbage collected).
+		* 
+		* @param L The Lua virtual machine state.
+		* @return Always returns 0, or doesn't return at all in case of errors. 
 		**/
-		virtual void quit() = 0;
+		virtual int quit(lua_State * L) = 0;
 
 		/**
 		* Gets the name of the module. This is used in case of errors

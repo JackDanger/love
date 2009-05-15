@@ -24,6 +24,7 @@
 #define LOVE_IMAGE_DEVIL_IMAGE_H
 
 // LOVE
+#include "../../Module.h"
 #include "../../luax.h"
 #include "ImageData.h"
 
@@ -33,7 +34,7 @@ namespace image
 {
 namespace devil
 {
-	class Image
+	class Image : public Module
 	{
 	private:
 		static Image * instance;
@@ -42,9 +43,11 @@ namespace devil
 	public:
 
 		static Image * getInstance();
-		static int __advertise(lua_State * L);
-		static int __open(lua_State * L);
-		static int __garbagecollect(lua_State * L);
+
+		// Implements Module.
+		int init(lua_State * L);
+		int quit(lua_State * L);
+		const char * getName() const;
 		
 		int getFormats(lua_State * L);
 		ImageData * newImageData(love::filesystem::File * file);

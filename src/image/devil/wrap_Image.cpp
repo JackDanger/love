@@ -61,17 +61,20 @@ namespace devil
 	}
 
 	// List of functions to wrap.
-	static const luaL_Reg wrap_Image_functions[] = {
+	const luaL_Reg wrap_Image_functions[] = {
 		{ "getFormats",  _wrap_getFormats },
 		{ "newImageData",  _wrap_newImageData },
 		{ 0, 0 }
 	};
 
+	const lua_CFunction wrap_Image_types[] = {
+		wrap_ImageData_open,
+		0
+	};
+
 	int wrap_Image_open(lua_State * L)
 	{
-		luax_register_module(L, "image", wrap_Image_functions);
-		wrap_ImageData_open(L);
-		return 0;
+		return luax_register_module(L, Image::getInstance(), wrap_Image_functions, wrap_Image_types);
 	}
 
 } // devil

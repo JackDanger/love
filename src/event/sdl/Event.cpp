@@ -42,13 +42,13 @@ namespace sdl
 	}
 
 
-	bool Event::init()
+	int Event::init(lua_State * L)
 	{
 		// Nothing to init.
-		return true;
+		return 0;
 	}
 
-	void Event::quit()
+	int Event::quit(lua_State * L)
 	{
 		// Delete instance
 		if(instance != 0)
@@ -56,6 +56,8 @@ namespace sdl
 			delete instance;
 			instance = 0;
 		}
+
+		return 0;
 	}
 
 	const char * Event::getName() const

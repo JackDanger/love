@@ -147,8 +147,7 @@ namespace love
 	int luax_register_module(lua_State * L, Module * module, const luaL_Reg * fn, const lua_CFunction * types)
 	{
 		// Try to init module.
-		if(!module->init())
-			return luaL_error(L, "Could not init module %s.", module->getName());
+		module->init(L);
 
 		// Create new table for module.
 		lua_newtable(L);

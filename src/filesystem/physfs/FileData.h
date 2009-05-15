@@ -20,15 +20,42 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
+#ifndef LOVE_PHYSFS_FILE_DATA_H
+#define LOVE_PHYSFS_FILE_DATA_H
+
 // LOVE
-#include "Module.h"
+#include "../../Data.h"
 
 namespace love
+{	
+namespace filesystem
 {
-	
-	Module::~Module()
+namespace physfs
+{
+	class FileData : public Data
 	{
-		// PURE VIRTUAL!
-	}
+	private:
 
+		// The actual data.
+		char * data;
+
+		// Size of the data.
+		int size;
+
+	public:
+
+		FileData(int size);
+
+		virtual ~FileData();
+
+		// Implements Data.
+		void * getData() const;
+		int getSize() const;
+
+	}; // FileData
+
+} // physfs
+} // filesystem
 } // love
+
+#endif // LOVE_PHYSFS_FILE_DATA_H

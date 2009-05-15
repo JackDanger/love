@@ -31,9 +31,6 @@ namespace filesystem
 {
 namespace physfs
 {
-	// Wrapper loaders.
-	extern int wrap_Filesystem_open(lua_State * L);
-
 	Filesystem * Filesystem::instance = 0;
 
 	Filesystem::Filesystem()
@@ -48,27 +45,16 @@ namespace physfs
 		return instance;
 	}
 
-	int Filesystem::__advertise(lua_State * L)
-	{
-		luax_register_info(L,
-			"physfs",
-			"filesystem",
-			"PhysicsFS Filesystem Module",
-			"LOVE Development Team",
-			&__open);
-		return 0;
-	}
-
-	int Filesystem::__open(lua_State * L)
+	int Filesystem::init(lua_State * L)
 	{
 		// TODO: love.exe << fail
 		if(!PHYSFS_init("love.exe"))
 			return luaL_error(L, PHYSFS_getLastError());
 
-		wrap_Filesystem_open(L);
-		luax_register_gc(L, "physfs", &__garbagecollect);
+		love::luax_register_searcher(L, Filesystem::loader);
 
 		// Add the package loader to the package.loaders table.
+		/*
 		lua_getglobal(L, "package");
 		lua_getfield(L, -1, "loaders");
 		int len = lua_objlen(L, -1);
@@ -76,17 +62,28 @@ namespace physfs
 		lua_pushcfunction(L, Filesystem::loader);
 		lua_settable(L, -3);
 		lua_pop(L, 2);
+		*/
 
 		return 0;
 	}
 
-	int Filesystem::__garbagecollect(lua_State * L)
+	int Filesystem::quit(lua_State * L)
 	{
 		PHYSFS_deinit();
-		Filesystem * m = Filesystem::getInstance();
-		if(m != 0)
-			delete m;
+
+		// Delete instance
+		if(instance != 0)
+		{
+			delete instance;
+			instance = 0;
+		}
+
 		return 0;
+	}
+
+	const char * Filesystem::getName() const
+	{
+		return "love.filesystem.physfs";
 	}
 
 	bool Filesystem::setIdentity( const char * ident )
@@ -167,12 +164,9 @@ namespace physfs
 		return true;
 	}
 
-	File * Filesystem::newFile(const char * file, int mode)
+	File * Filesystem::newFile(const char * file)
 	{
-		if(mode == FILE_READ && !exists(file))
-			return 0;
-
-		return new File(std::string(file), mode);
+		return new File(std::string(file));
 	}
 
 	const char * Filesystem::getWorkingDirectory()
@@ -227,6 +221,9 @@ namespace physfs
 
 	bool Filesystem::mkdir(const char * file)
 	{
+		if(PHYSFS_getWriteDir() == 0 && !setupWriteDirectory())
+			return false;		
+
 		if(!PHYSFS_mkdir(file))
 			return false;
 		return true;
@@ -234,15 +231,18 @@ namespace physfs
 
 	bool Filesystem::remove(const char * file)
 	{
+		if(PHYSFS_getWriteDir() == 0 && !setupWriteDirectory())
+			return false;	
+
 		if(!PHYSFS_delete(file))
 			return false;
 		return true;
 	}
 
-	bool Filesystem::open(File * file)
+	bool Filesystem::open(File * file, File::Mode mode)
 	{
 
-		bool success = file->open();
+		bool success = file->open(mode);
 
 		if(!success)
 		{
@@ -276,11 +276,7 @@ namespace physfs
 		else if(lua_isstring(L, 1))
 		{
 			// Create the file.
-			file = new File(lua_tostring(L, 1));
-
-			// Try to open the file.
-			if(!open(file))
-				return luaL_error(L, "Could not open file %s.", lua_tostring(L, 1));
+			file = newFile(lua_tostring(L, 1));
 		}
 		else
 			return luaL_error(L, "Expected filename or file handle.");
@@ -289,34 +285,28 @@ namespace physfs
 		// the whole file, or just a part of it.
 		int count = luaL_optint(L, 2, file->getSize());
 
-		// Allocate new memory.
-		char * buffer = new char[count];
-
-		// Read the file. 
-		int read = file->read(buffer, count);
+		// Read the data.
+		Data * data = file->read(count);
 
 		// Error check.
-		if(read < 0)
-		{
-			delete [] buffer;
-			return luaL_error(L, "File could not be read (is it open?).");
-		}
+		if(data == 0)
+			return luaL_error(L, "File could not be read.");
 
 		// Close and delete the file, if we created it. 
 		// (I.e. if the first parameter is a string).
 		if(lua_isstring(L, 1))
-		{
-			this->close(file);
-			delete file;
-		}
+			file->release();
 
 		// Push the string.
-		lua_pushlstring(L, buffer, read);
+		lua_pushlstring(L, (char*)data->getData(), data->getSize());
+
+		// Push the size.
+		lua_pushinteger(L, data->getSize());
 		
 		// Lua has a copy now, so we can free it.
-		delete [] buffer;
+		data->release();
 
-		return 1;
+		return 2;
 	}
 
 	int Filesystem::write(lua_State * L)
@@ -330,6 +320,11 @@ namespace physfs
 		if(!lua_isstring(L, 2))
 			return luaL_error(L, "Second argument must be a string.");
 
+		// The third paramter must be a number to indicate the size of
+		// the data.
+		if(!lua_isnumber(L, 3))
+			return luaL_error(L, "Third argument must be a number.");
+
 		if(luax_istype(L, 1, LOVE_FILESYSTEM_FILE_BITS))
 		{
 			// The file is passed as a parameter.
@@ -337,32 +332,41 @@ namespace physfs
 		}
 		else if(lua_isstring(L, 1))
 		{
-			// It should be possible to use append mode, but
-			// normal FILE_WRITE is the default.
-			int mode = luaL_optint(L, 3, FILE_WRITE);
-
 			// Create the file.
-			file = new File(lua_tostring(L, 1), mode);
-
-			// Open the file.
-			if(!open(file))
-				return luaL_error(L, "Could not open file.");
+			file = newFile(lua_tostring(L, 1));
 		}
 		else
 			return luaL_error(L, "Expected filename or file handle.");
 
-		// Get the data.
-		const char * data = lua_tostring(L, 2);
+		// Get the current mode of the file.
+		File::Mode mode = file->getMode();
+
+		if(mode == File::CLOSED)
+		{
+			// It should be possible to use append mode, but
+			// normal File::Mode::Write is the default.
+			int mode = luaL_optint(L, 4, File::WRITE);
+
+			// Open the file.
+			if(!file->open((File::Mode)mode))
+				return luaL_error(L, "Could not open file.");
+		}
+
+		const char * input = lua_tostring(L, 2);
+
+		// Get how much we should write.
+		int length = lua_tointeger(L, 3);
 
 		// Write the data.
-		bool success = file->write(data);
+		bool success = file->write(input, length);
 
 		// Close and delete the file, if we created 
 		// it in this function.
 		if(lua_isstring(L, 1))
 		{
-			this->close(file);
-			delete file;
+			// Kill the file if "we" created it.
+			file->close();
+			file->release();
 		}
 
 		if(!success)
@@ -430,12 +434,12 @@ namespace physfs
 		}
 		else if(lua_isstring(L, 1))
 		{
-			file = new File(lua_tostring(L, 1));
-			if(!open(file))
+			file = newFile(lua_tostring(L, 1));
+			if(!file->open(File::READ))
 				return luaL_error(L, "Could not open file %s.\n", lua_tostring(L, 1)); 
 			lua_pop(L, 1);
-			// TODO: Really need to check this.
-			luax_newtype(L, "File", LOVE_FILESYSTEM_FILE_BITS, false);
+			
+			luax_newtype(L, "File", LOVE_FILESYSTEM_FILE_BITS, file, false);
 			lua_pushboolean(L, 1); // 1 = autoclose.
 		}
 		else
@@ -522,7 +526,7 @@ namespace physfs
 		if(close)
 		{
 			Filesystem::getInstance()->close(file);
-			delete file;
+			file->release();
 		}
 
 		// else: (newline <= 0)
@@ -547,15 +551,16 @@ namespace physfs
 		// Create the file.
 		File * file = newFile(filename);
 
-		if(!file->load())
-			return luaL_error(L, "File %s could not be loaded.", filename);
-
 		// Get the data from the file.
-		const char * data = file->getData();
-		int size = file->getSize();
+		Data * data = file->read();
+
+		int status = luaL_loadbuffer(L, (const char *)data->getData(), data->getSize(), filename);
+
+		data->release();
+		file->release();
 
 		// Load the chunk, but don't run it.
-		switch (luaL_loadbuffer(L, data, size, filename))
+		switch (status)
 		{
 		case LUA_ERRMEM:
 			return luaL_error(L, "Memory allocation error: %s\n", lua_tostring(L, -1));
@@ -570,13 +575,31 @@ namespace physfs
 	{
 		const char * filename = lua_tostring(L, -1);
 
-		// Check whether file exists.
-		if(!Filesystem::getInstance()->exists(filename))
+		std::string tmp(filename);
+
+		int size = tmp.size();
+
+		if(size <= 4 || strcmp(filename + (size-4), ".lua") != 0)
+			tmp.append(".lua");
+
+		for(int i=0;i<size-4;i++)
 		{
-			lua_pushfstring(L, "\n\tno file \"%s\" in LOVE game directories.\n", filename);
+			if(tmp[i] == '.')
+			{
+				tmp[i] = '/';
+			}
+		}
+
+		// Check whether file exists.
+		if(!Filesystem::getInstance()->exists(tmp.c_str()))
+		{
+			lua_pushfstring(L, "\n\tno file \"%s\" in LOVE game directories.\n", tmp.c_str());
 			return 1;
 		}
-	
+
+		lua_pop(L, 1);
+		lua_pushstring(L, tmp.c_str());
+
 		// Ok, load it.
 		return Filesystem::getInstance()->load(L);
 	}

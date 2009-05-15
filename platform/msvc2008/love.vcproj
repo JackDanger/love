@@ -634,18 +634,6 @@
 			Name="filesystem"
 			>
 			<File
-				RelativePath="..\..\src\filesystem\File.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)\$(SafeParentName)\"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="..\..\src\filesystem\File.h"
 				>
 			</File>
@@ -666,6 +654,22 @@
 				</File>
 				<File
 					RelativePath="..\..\src\filesystem\physfs\File.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\filesystem\physfs\FileData.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\filesystem_physfs\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\filesystem\physfs\FileData.h"
 					>
 				</File>
 				<File
@@ -2069,6 +2073,10 @@
 		<Filter
 			Name="event"
 			>
+			<File
+				RelativePath="..\..\src\event\Event.h"
+				>
+			</File>
 			<Filter
 				Name="sdl"
 				>
@@ -2113,18 +2121,6 @@
 		<File
 			RelativePath="..\..\src\constants.h"
 			>
-		</File>
-		<File
-			RelativePath="..\..\src\Data.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					ObjectFile="$(IntDir)\$(SafeParentName)\"
-				/>
-			</FileConfiguration>
 		</File>
 		<File
 			RelativePath="..\..\src\Data.h"
@@ -2177,18 +2173,6 @@
 		<File
 			RelativePath="..\..\src\Matrix.h"
 			>
-		</File>
-		<File
-			RelativePath="..\..\src\Module.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					ObjectFile="$(IntDir)\love\"
-				/>
-			</FileConfiguration>
 		</File>
 		<File
 			RelativePath="..\..\src\Module.h"

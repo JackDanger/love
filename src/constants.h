@@ -23,6 +23,9 @@
 #ifndef LOVE_CONSTANTS_H
 #define LOVE_CONSTANTS_H
 
+#include "filesystem/File.h"
+#include "event/Event.h"
+
 namespace love
 {
 
@@ -48,38 +51,6 @@ namespace love
 		USAGE_STATIC,
 		USAGE_STREAM,
 		USAGE_NUM
-	};
-
-	// Events. Not all of these needs
-	// exposing.
-	enum
-	{
-       EVENT_NOEVENT = 0,
-       EVENT_ACTIVEEVENT,
-       EVENT_KEYDOWN,
-       EVENT_KEYUP,
-       EVENT_MOUSEMOTION,	
-       EVENT_MOUSEBUTTONDOWN,
-       EVENT_MOUSEBUTTONUP,
-       EVENT_JOYAXISMOTION,
-       EVENT_JOYBALLMOTION,
-       EVENT_JOYHATMOTION,
-       EVENT_JOYBUTTONDOWN,
-       EVENT_JOYBUTTONUP,
-       EVENT_QUIT,
-       EVENT_SYSWMEVENT,
-       EVENT_RESERVEDA,
-       EVENT_RESERVEDB,
-       EVENT_VIDEORESIZE,
-       EVENT_VIDEOEXPOSE,	
-       EVENT_RESERVED2,
-       EVENT_RESERVED3,	
-       EVENT_RESERVED4,
-       EVENT_RESERVED5,	
-       EVENT_RESERVED6,
-       EVENT_RESERVED7,	
-       EVENT_USEREVENT = 24,
-       EVENT_NUMEVENTS = 32
 	};
 
 	// Defaults.
@@ -168,16 +139,6 @@ namespace love
 		ALIGN_LEFT, 
 		ALIGN_RIGHT, 
 		ALIGN_CENTER
-	};
-
-	// File & directory.
-	enum 
-	{
-		FILE_WRITE,
-  		FILE_READ,
-		FILE_APPEND,
-		DIR_GAME, 
-		DIR_SAVE
 	};
 
 	// Blending modes
@@ -672,11 +633,10 @@ namespace love
 		{ "color_normal", 0 },
 		{ "color_modulate", 1 },
 
-		{ "file_write", 0 },
-		{ "file_read", 1 },
-		{ "file_append", 2 },
-		{ "dir_game", 3 },
-		{ "dir_save", 4 },
+		{ "file_closed", filesystem::File::CLOSED },
+		{ "file_read", filesystem::File::READ },
+		{ "file_write", filesystem::File::WRITE },
+		{ "file_append", filesystem::File::APPEND },
 
 		{ "draw_line", 1 },
 		{ "draw_fill", 2 },
@@ -738,13 +698,13 @@ namespace love
 		{ "joystick_hat_leftup", JOYSTICK_HAT_LEFTUP },
 		{ "joystick_hat_leftdown", JOYSTICK_HAT_LEFTDOWN },
 
-		{ "event_keypressed", EVENT_KEYDOWN },
-		{ "event_keyreleased", EVENT_KEYUP },
-		{ "event_mousepressed", EVENT_MOUSEBUTTONDOWN },
-		{ "event_mousereleased", EVENT_MOUSEBUTTONUP },
-		{ "event_joystickpressed", EVENT_JOYBUTTONDOWN },
-		{ "event_joystickreleased", EVENT_JOYBUTTONUP },
-		{ "event_quit", EVENT_QUIT },
+		{ "event_keypressed", event::Event::EVENT_KEYDOWN },
+		{ "event_keyreleased", event::Event::EVENT_KEYUP },
+		{ "event_mousepressed", event::Event::EVENT_MOUSEBUTTONDOWN },
+		{ "event_mousereleased", event::Event::EVENT_MOUSEBUTTONUP },
+		{ "event_joystickpressed", event::Event::EVENT_JOYBUTTONDOWN },
+		{ "event_joystickreleased", event::Event::EVENT_JOYBUTTONUP },
+		{ "event_quit", event::Event::EVENT_QUIT },
 
 		{ "type_points", TYPE_POINTS },
 		{ "type_lines", TYPE_LINES },

@@ -23,86 +23,142 @@
 #ifndef LOVE_FILESYSTEM_FILE_H
 #define LOVE_FILESYSTEM_FILE_H
 
-// LOVE
-#include "../Object.h"
-#include "../constants.h"
-
-// STL
+// STD
 #include <string>
+
+// LOVE
+#include "../Data.h"
+#include "../Object.h"
 
 namespace love
 {
 namespace filesystem
 {
 	/**
-	* Abstract File class. An important property of
-	* the File class is that it is able to load and unload 
-	* itself. (But of course, the methods it uses to achieve this
-	* must be specified in some non-abstract module).
-	*
-	* @author Anders Ruud
-	* @date 2007-08-05
+	* A File interface, providing generic means of reading from and 
+	* writing to files.
 	**/
 	class File : public Object
 	{
-	protected:
-
-		// filename
-		std::string filename;
-
-		// The file-open mode. (Read, ReadWrite, etc)
-		int mode;
-
 	public:
 
 		/**
-		* Constructs an empty file.
+		* File open mode.
 		**/
-		File();
+		enum Mode
+		{
+			CLOSED,
+			READ,
+			WRITE,
+			APPEND,
+		};
 
 		/**
-		* Constructs an File with the given source and filename.
-		* @param source The source from which to load the file. (Archive or directory)
-		* @param filename The relative filepath of the file to load from the source.
+		* Used to indicate ALL data in a file.
 		**/
-		File(const std::string & filename, int mode = FILE_READ);
-
-		virtual ~File();
+		static const int ALL = -1;
 
 		/**
-		* Gets the filename of the file we are loading.
+		* Destructor.
 		**/
-		const std::string & getFilename() const;
+		virtual ~File(){};
 
 		/**
-		* Gets the extention of the file.
+		* Opens the file in a certain mode.
+		* 
+		* @param mode READ, WRITE, APPEND.
+		* @return True if successful, false otherwise.
 		**/
-		std::string getExtention() const;
-			
-		/**
-		* Gets the current file mode.
-		**/
-		int getMode() const;
+		virtual bool open(Mode mode) = 0;
 
 		/**
-		* Gets the size of the loaded file.
+		* Closes the file.
+		* 
+		* @return True if successful, false otherwise.
 		**/
-		virtual int getSize() = 0;
-
-		/**
-		* Gets a pointer to the loaded data.
-		**/
-		virtual char * getData() = 0;
-
-		virtual bool load() = 0;
-		virtual void unload() = 0; 
-		virtual bool open() = 0;
 		virtual bool close() = 0;
-		virtual int read(char * dest, int count = -1) = 0;
-		virtual bool write(const char * data, int count = -1) = 0;
+
+		/**
+		* Gets the size of the file.
+		* 
+		* @return The size of the file.
+		**/
+		virtual unsigned int getSize() = 0;
+
+		/**
+		* Reads data from the file and allocates a Data object.
+		* 
+		* @param size The number of bytes to attempt reading, or -1 for EOF.
+		* @return A newly allocated Data object.
+		**/
+		virtual Data * read(int size = ALL) = 0;
+
+		/**
+		* Reads data into the destination buffer.
+		* 
+		* @param dst The destination buffer.
+		* @param size The number of bytes to attempt reading.
+		* @return The number of bytes actually read.
+		**/
+		virtual int read(void * dst, int size) = 0;
+
+		/**
+		* Writes data into the File.
+		* 
+		* @param data The source buffer.
+		* @param size The size of the buffer.
+		* @return True of success, false otherwise.
+		**/
+		virtual bool write(const void * data, int size) = 0;
+
+		/**
+		* Writes a Data object into the File.
+		* 
+		* @param data The data object to write into the file.
+		* @param size The number of bytes to attempt writing, or -1 for everything.
+		* @return True of success, false otherwise.
+		**/
+		virtual bool write(const Data * data, int size = ALL) = 0;
+
+		/**
+		* Checks whether we are currently at end-of-file.
+		* 
+		* @return True if EOF, false otherwise.
+		**/
 		virtual bool eof() = 0;
+
+		/**
+		* Gets the current position in the File.
+		* 
+		* @return The current byte position in the File.
+		**/
 		virtual int tell() = 0;
+
+		/**
+		* Seeks to a certain position in the File.
+		* 
+		* @param pos The byte position in the file.
+		* @return True on success, false otherwise.
+		**/
 		virtual bool seek(int pos) = 0;
+
+		/**
+		* Gets the current mode of the File. 
+		* @return The current mode of the File; CLOSED, READ, WRITE or APPEND.
+		**/
+		virtual Mode getMode() = 0;
+
+		/**
+		* Gets the filename for this File, or empty string if none.
+		* @return The filename for this File.
+		**/
+		virtual std::string getFilename() const = 0;
+
+		/**
+		* Gets the file extension for this File, or empty string if none.
+		* @return The file extension for this File (without the dot).
+		**/
+		virtual std::string getExtention() const = 0;
 
 	}; // File
 

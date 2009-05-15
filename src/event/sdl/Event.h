@@ -24,7 +24,7 @@
 #define LOVE_EVENT_SDL_EVENT_H
 
 // LOVE
-#include "../../Module.h"
+#include "../Event.h"
 #include "../../luax.h"
 
 // SDL
@@ -36,7 +36,7 @@ namespace event
 {
 namespace sdl
 {
-	class Event : public Module
+	class Event : public event::Event
 	{
 	private:
 		static Event * instance;
@@ -47,8 +47,8 @@ namespace sdl
 		static Event * getInstance();
 		
 		// Implements Module.
-		bool init();
-		void quit();
+		int init(lua_State * L);
+		int quit(lua_State * L);
 		const char * getName() const;
 
 		void pump();

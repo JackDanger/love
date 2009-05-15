@@ -50,32 +50,29 @@ namespace devil
 		return instance;
 	}
 
-	int Image::__advertise(lua_State * L)
-	{
-		love::luax_register_info(L,
-			"devil",
-			"image",
-			"DevIL Image Module",
-			"LOVE Development Team",
-			&__open);
-		return 0;
-	}
-
-	int Image::__open(lua_State * L)
+	int Image::init(lua_State * L)
 	{
 		ilInit();
-		wrap_Image_open(L);
-		luax_register_gc(L, "devil", &__garbagecollect);
 		return 0;
 	}
 
-	int Image::__garbagecollect(lua_State * L)
+	int Image::quit(lua_State * L)
 	{
 		ilShutDown();
-		Image * m = Image::getInstance();
-		if(m != 0)
-			delete m;
+
+		// Delete instance
+		if(instance != 0)
+		{
+			delete instance;
+			instance = 0;
+		}
+
 		return 0;
+	}
+
+	const char * Image::getName() const
+	{
+		return "love.image.devil";
 	}
 
 	int Image::getFormats(lua_State * L)

@@ -124,7 +124,7 @@ namespace opengl
 				if(width != 0) // this means we have found the end of our current character
 				{
 					if((unsigned int)glyphs[current] > MAX_CHARS)
-						printf("Error reading texture font '%s': Character '%c' is out of range.", file->getFilename().c_str(), glyphs[current]);
+						printf("Error reading texture font: Character '%c' is out of range.", glyphs[current]);
 					else
 					{
 						widths[(int)glyphs[current]] = width - 1;
@@ -141,7 +141,7 @@ namespace opengl
 				if(space != 0) // this means we have found the end of our spacing
 				{
 					if((unsigned int)spacing[current] > MAX_CHARS)
-						printf("Error reading image font '%s': Character '%c' is out of range.", file->getFilename().c_str(), glyphs[current]);
+						printf("Error reading image font: Character '%c' is out of range.", glyphs[current]);
 					else
 						spacing[(int)glyphs[current]] = space;
 

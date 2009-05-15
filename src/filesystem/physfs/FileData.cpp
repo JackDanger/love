@@ -20,52 +20,37 @@
 * --> Visit http://love2d.org for more information! (^.^)/
 **/
 
-#include "File.h"
+#include "FileData.h"
+
+// STD
+#include <iostream>
 
 namespace love
 {
 namespace filesystem
 {
-	File::File()
+namespace physfs
+{
+	FileData::FileData(int size)
+		: data(new char[size]), size(size)
 	{
 	}
 
-	File::File(const std::string & filename, int mode) 
-		: filename(filename), mode(mode)
+	FileData::~FileData()
 	{
+		delete [] data;
 	}
 
-	File::~File()
+	void * FileData::getData() const
 	{
+		return (void*)data;
 	}
 
-	const std::string & File::getFilename() const
+	int FileData::getSize() const
 	{
-		return filename;
+		return size;
 	}
 
-	std::string File::getExtention() const
-	{
-		std::string::size_type idx;
-
-		idx = filename.rfind('.');
-
-		if(idx != std::string::npos)
-		{
-			std::string extension = filename.substr(idx+1);
-			return extension;
-		}
-		else
-		{
-			// Empty.
-			return std::string();
-		}		
-	}
-
-	int File::getMode() const
-	{
-		return mode;
-	}
-
+} // physfs
 } // filesystem
 } // love

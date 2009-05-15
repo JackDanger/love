@@ -52,11 +52,11 @@ namespace sdl
 		return instance;
 	}
 
-	bool Joystick::init()
+	int Joystick::init(lua_State * L)
 	{
 		// Init the SDL joystick system.
 		if(SDL_InitSubSystem(SDL_INIT_JOYSTICK) < 0)
-			return false;
+			return luaL_error(L, SDL_GetError());
 
 		// Start joystick event watching.
 		SDL_JoystickEventState(SDL_ENABLE);
@@ -68,10 +68,10 @@ namespace sdl
 		for(int i = 0;i<numjoysticks;i++)
 			Joystick::getInstance()->open(i);
 
-		return true;
+		return 0;
 	}
 
-	void Joystick::quit()
+	int Joystick::quit(lua_State * L)
 	{
 		// Closes any open joysticks.
 		for(int i = 0; i != getNumJoysticks(); i++)
@@ -90,6 +90,8 @@ namespace sdl
 			delete instance;
 			instance = 0;
 		}
+
+		return 0;
 	}
 
 	const char * Joystick::getName() const

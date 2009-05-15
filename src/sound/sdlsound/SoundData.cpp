@@ -31,18 +31,14 @@ namespace sound
 {
 namespace sdlsound
 {
-	SoundData::SoundData(love::filesystem::File * file)
-		: file(file)
+	SoundData::SoundData(filesystem::File * file)
+		:file(file)
 	{
 		file->retain();
 
-		if(!file->load())
-		{
-			std::cerr << "Could not load file" << std::endl;
-			return;
-		}
+		data = file->read();
 
-		SDL_RWops * rwops = SDL_RWFromConstMem((const void*)file->getData(), file->getSize());
+		SDL_RWops * rwops = SDL_RWFromConstMem((const void*)data->getData(), data->getSize());
 
 		Sound_AudioInfo desired;
 		desired.channels = 2;
@@ -66,15 +62,16 @@ namespace sdlsound
 	SoundData::~SoundData()
 	{
 		file->release();
+		data->release();
 		Sound_FreeSample(sample);
 	}
 
-	void * SoundData::getData()
+	void * SoundData::getData() const
 	{
 		return sample->buffer;
 	}
 
-	int SoundData::getSize()
+	int SoundData::getSize() const
 	{
 		return (int)sample->buffer_size;
 	}

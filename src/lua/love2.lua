@@ -102,13 +102,7 @@ function love.init()
 		end
 	end
 
-	love.insmod("physfs", "filesystem")
-	love.insmod("devil", "image")
-	love.insmod("sdlmouse", "mouse")
-	love.insmod("sdlsound", "sound")
-	love.insmod("openal", "audio")
-	love.insmod("box2d", "physics")
-	
+	love.filesystem = require("love.filesystem.physfs")
 	love.event = require("love.event.sdl")
 	love.keyboard = require("love.keyboard.sdl")
 	love.mouse = require("love.mouse.sdl")
@@ -117,6 +111,7 @@ function love.init()
 	love.graphics = require("love.graphics.opengl")
 
 	if love.__args[1] and love.__args[1] ~= "" then
+		love.filesystem.setIdentity("jew2")
 		love.filesystem.setSource(love.path.getfull(love.__args[1]))
 		require("main.lua")
 	end

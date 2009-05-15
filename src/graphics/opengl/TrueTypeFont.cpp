@@ -202,8 +202,7 @@ namespace opengl
 
 	bool TrueTypeFont::loadVolatile()
 	{
-		if(!file->load())
-			return false;
+		Data * data = file->read();
 
 		trueHeight = size;
 
@@ -217,8 +216,8 @@ namespace opengl
 
 		FT_Face face;
 		if( FT_New_Memory_Face( library,
-								(const FT_Byte *)file->getData(),	/* first byte in memory */
-								file->getSize(),					/* size in bytes        */
+								(const FT_Byte *)data->getData(),	/* first byte in memory */
+								data->getSize(),					/* size in bytes        */
 								0,									/* face_index           */
 								&face ))
 			std::cerr << "TrueTypeFont Loading error: FT_New_Face failed (there is probably a problem with your font file)." << std::endl;
@@ -234,7 +233,7 @@ namespace opengl
 		FT_Done_FreeType(library); //all done
 
 		// Free data.
-		file->unload();
+		data->release();
 
 		return true;
 	}

@@ -57,15 +57,15 @@ namespace opengl
 		return instance;
 	}
 
-	bool Graphics::init()
+	int Graphics::init(lua_State * L)
 	{
 		// Init the SDL video system.
 		if(SDL_InitSubSystem(SDL_INIT_VIDEO) < 0)
-			return false;
-		return true;
+			return luaL_error(L, SDL_GetError());
+		return 0;
 	}
 
-	void Graphics::quit()
+	int Graphics::quit(lua_State * L)
 	{
 		SDL_QuitSubSystem(SDL_INIT_VIDEO);
 
@@ -75,6 +75,8 @@ namespace opengl
 			delete instance;
 			instance = 0;
 		}
+
+		return 0;
 	}
 
 	const char * Graphics::getName() const

@@ -29,6 +29,9 @@
 // PhysFS
 #include <physfs.h>
 
+// STD
+#include <string>
+
 namespace love
 {
 namespace filesystem
@@ -39,11 +42,14 @@ namespace physfs
 	{
 	private:
 
-		// Data for the file.
-		char * data;
+		// filename
+		std::string filename;
 
 		// PHYSFS File handle.
 		PHYSFS_file * file;
+
+		// The current mode of the file.
+		Mode mode;
 
 	public:
 
@@ -52,22 +58,24 @@ namespace physfs
 		* @param source The source from which to load the file. (Archive or directory)
 		* @param filename The relative filepath of the file to load from the source.
 		**/
-		File(const std::string & filename, int mode = love::FILE_READ);
+		File(const std::string & filename);
 
 		virtual ~File();
 		
-		// Implements love::File.
-		int getSize();
-		char * getData();
-		bool load();
-		void unload(); 
-		bool open();
+		// Implements love::filesystem::File.
+		bool open(Mode mode);
 		bool close();
-		int read(char * dest, int count = -1);
-		bool write(const char * data, int count = -1);
+		unsigned int getSize();
+		Data * read(int size = ALL);
+		int read(void * dst, int size);
+		bool write(const void * data, int size);
+		bool write(const Data * data, int size = ALL);
 		bool eof();
 		int tell();
 		bool seek(int pos);
+		Mode getMode();
+		std::string getFilename() const;
+		std::string getExtention() const;
 
 	}; // File
 

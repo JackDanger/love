@@ -47,7 +47,7 @@ namespace love
 	int _wrap__Module_gc(lua_State * L)
 	{
 		Module * m = (Module *)lua_touserdata(L, 1);
-		m->quit();
+		m->quit(L);
 		return 0;
 	}
 

@@ -44,15 +44,15 @@ namespace sdlsound
 
 		love::filesystem::File * file;
 
-		char * data;
+		Data * data;
 
 	public:
 		SoundData(love::filesystem::File * file);
 		virtual ~SoundData();
 
 		// Implements Data.
-		void * getData();
-		int getSize();
+		void * getData() const;
+		int getSize() const;
 
 		// Implements love::SoundData
 		love::sound::SoundData * clone();

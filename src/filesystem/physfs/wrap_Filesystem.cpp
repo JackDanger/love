@@ -55,9 +55,7 @@ namespace physfs
 	int _wrap_newFile(lua_State * L)
 	{
 		const char * filename = luaL_checkstring(L, 1);
-		int mode = luaL_optint(L, 2, FILE_READ);
-
-		File * t = Filesystem::getInstance()->newFile(filename, mode);
+		File * t = Filesystem::getInstance()->newFile(filename);
 		if(t == 0)
 			return luaL_error(L, "Could not open file %s", filename);
 		luax_newtype(L, "File", LOVE_FILESYSTEM_FILE_BITS, (void*)t);
@@ -127,7 +125,8 @@ namespace physfs
 	int _wrap_open(lua_State * L)
 	{
 		File * file = luax_checkfile(L, 1);
-		lua_pushboolean(L, file->open() ? 1 : 0);
+		int mode = luaL_optint(L, 2, File::READ);
+		lua_pushboolean(L, file->open((File::Mode)mode) ? 1 : 0);
 		return 1;
 	}
 
@@ -186,7 +185,7 @@ namespace physfs
 	}
 
 	// List of functions to wrap.
-	static const luaL_Reg wrap_Filesystem_functions[] = {
+	const luaL_Reg wrap_Filesystem_functions[] = {
 		{ "setIdentity",  _wrap_setIdentity },
 		{ "setSource",  _wrap_setSource },
 		{ "newFile",  _wrap_newFile },
@@ -212,11 +211,14 @@ namespace physfs
 		{ 0, 0 }
 	};
 
+	const lua_CFunction wrap_Filesystem_types[] = {
+		wrap_File_open,
+		0
+	};
+
 	int wrap_Filesystem_open(lua_State * L)
 	{
-		luax_register_module(L, "filesystem", wrap_Filesystem_functions);
-		wrap_File_open(L);
-		return 0;
+		return luax_register_module(L, Filesystem::getInstance(), wrap_Filesystem_functions, wrap_Filesystem_types);
 	}
 
 } // physfs

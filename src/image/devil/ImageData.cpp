@@ -31,14 +31,23 @@ namespace image
 {
 namespace devil
 {
-	ImageData::ImageData(love::filesystem::File * file)
+	ImageData::ImageData(filesystem::File * file)
 	{
-		// Load the file.
-		if(!file->load())
+
+		// Open the file.
+		if(!file->open(filesystem::File::READ))
 		{
-			std::cerr << "Could not read image." << std::endl;
+			std::cerr << "Could not open file." << std::endl;
 			return;
 		}
+
+		int size = file->getSize();
+
+		// Read the data.
+		Data * data = file->read();
+
+		// Close the file.
+		file->close();
 
 		// Generate DevIL image.
 		ilGenImages(1, &image);
@@ -47,7 +56,10 @@ namespace devil
 		ilBindImage(image);
 
 		// Try to load the image.
-		ILboolean success = ilLoadL(IL_TYPE_UNKNOWN, (void*)file->getData(), file->getSize());
+		ILboolean success = ilLoadL(IL_TYPE_UNKNOWN, (void*)data->getData(), data->getSize());
+
+		// Free local image data.
+		delete [] data;
 
 		// Check for errors
 		if(!success)
@@ -100,13 +112,13 @@ namespace devil
 		return height;
 	}
 
-	void * ImageData::getData()
+	void * ImageData::getData() const
 	{
 		ilBindImage(image);
 		return ilGetData();
 	}
 
-	int ImageData::getSize()
+	int ImageData::getSize() const
 	{
 		return width*height*bpp;
 	}

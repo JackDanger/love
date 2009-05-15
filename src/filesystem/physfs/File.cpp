@@ -27,6 +27,7 @@
 
 // LOVE
 #include "Filesystem.h"
+#include "FileData.h"
 
 namespace love
 {
@@ -34,128 +35,129 @@ namespace filesystem
 {
 namespace physfs
 {
-	File::File(const std::string & filename, int mode) 
-		: love::filesystem::File(filename, mode), data(0), file(0)
+
+	File::File(const std::string & filename) 
+		: filename(filename), file(0), mode(filesystem::File::CLOSED)
 	{
 	}
 
 	File::~File()
 	{
-		unload();
 	}
 
-	bool File::load()
+	bool File::open(Mode mode)
 	{
-		if(!open())
+		// Check whether the write directory is set.
+		if((mode == APPEND || mode == WRITE) && (PHYSFS_getWriteDir() == 0))
+			if(!Filesystem::getInstance()->setupWriteDirectory())
+				return false;
+
+		// File already open?
+		if(file != 0)
 			return false;
 
-		// If data already present, then delete.
-		if(data != 0)
+		this->mode = mode;
+
+		switch(mode)
 		{
-			delete [] data;
-			data = 0;
+		case READ:
+			file = PHYSFS_openRead(filename.c_str());
+			break;
+		case APPEND:
+			file = PHYSFS_openAppend(filename.c_str());
+			break;
+		case WRITE:
+			file = PHYSFS_openWrite(filename.c_str());
+			break;
+		case CLOSED:
+			// Heh. Case closed.
+			return true;
 		}
-		
-		// Okay, get the filesize and allocate that much memory.
-		int size = (int)PHYSFS_fileLength(file);
-		data = new char[size];
-		
-		// Read the file.
-		bool result = (PHYSFS_read(file, data, 1, size) != -1);
 
-		close();
-		return result;
+		return (file != 0);
 	}
-
-	void File::unload()
+	
+	bool File::close()
 	{
-		if(data == 0)
-			return;
-			
-		// Delete the data.
-		delete[] data;
-		data = 0;
-		
-		// CLOSE the file, if it's open.
-		if(file != 0)
-			close();
+		if(!PHYSFS_close(file))
+			return false;
+		mode = CLOSED;
+		file = 0;
+		return true;
 	}
 
-	int File::getSize()
+	unsigned int File::getSize()
 	{
 		// If the file is closed, open it to
 		// check the size.
 		if(file == 0)
 		{
-			if(!open())
+			if(!open(READ))
 				return 0;
-			int size = (int)PHYSFS_fileLength(file);
+			unsigned int size = (unsigned int)PHYSFS_fileLength(file);
 			close();
 			return size;
 		}
 
-		return (int)PHYSFS_fileLength(file);
+		return (unsigned int)PHYSFS_fileLength(file);
 	}
 
-	char * File::getData()
+
+	Data * File::read(int size)
 	{
-		return data;
+		bool isOpen = (file != 0);
+
+		if(!isOpen && !open(READ))
+			return 0;
+
+		int max = (int)PHYSFS_fileLength(file);
+		size = (size == ALL) ? max : size;
+		size = (size > max) ? max : size;
+
+		FileData * fileData = new FileData(size);
+
+		read(fileData->getData(), size);
+
+		if(!isOpen)
+			close();
+
+		return fileData;
 	}
 
-	bool File::open()
+	int File::read(void * dst, int size)
 	{
-		// Check whether the write directory is set.
-		if((mode == love::FILE_APPEND || mode == love::FILE_WRITE) && (PHYSFS_getWriteDir() == 0))
-			if(!Filesystem::getInstance()->setupWriteDirectory())
-				return false;
+		bool isOpen = (file != 0);
 
-		switch(mode)
-		{
-		case love::FILE_READ:
-			file = PHYSFS_openRead(filename.c_str());
-			break;
-		case love::FILE_APPEND:
-			file = PHYSFS_openAppend(filename.c_str());
-			break;
-		case love::FILE_WRITE:
-			file = PHYSFS_openWrite(filename.c_str());
-			break;
-		}
+		if(!isOpen && !open(READ))
+			return 0;
 
-		return (file != 0);
+		int max = (int)PHYSFS_fileLength(file);
+		size = (size == ALL) ? max : size;
+		size = (size > max) ? max : size;
+
+		int read = (int)PHYSFS_read(file, dst, 1, size);
+
+		if(!isOpen)
+			close();
+
+		return read;
 	}
 
-	bool File::close()
+	bool File::write(const void * data, int size)
 	{
-		if(!PHYSFS_close(file))
-			return false;
-		file = 0;
-		return true;
-	}
-
-	int File::read(char * dest, int count)
-	{
-		if(file == 0)
-			return -2;
-
-		if(count == -1)
-			count = (int)PHYSFS_fileLength(file);
-
-		return (int)PHYSFS_read(file, dest, 1, count);
-	}
-
-	bool File::write(const char * data, int count)
-	{
-		count = (count == -1) ? (PHYSFS_uint32)strlen(data) : count;
-
 		// Try to write.
-		int written = static_cast<int>(PHYSFS_write(file, data, 1, count));
+		int written = static_cast<int>(PHYSFS_write(file, data, 1, size));
 
 		// Check that correct amount of data was written.
-		if(written != count)
+		if(written != size)
 			return false;
 
 		return true;
+	}
+
+	bool File::write(const Data * data, int size)
+	{
+		return write(data->getData(), (size == ALL) ? data->getSize() : size);
 	}
 
 	bool File::eof()
@@ -181,6 +183,34 @@ namespace physfs
 		if(!PHYSFS_seek(file, (PHYSFS_uint64)pos))
 			return false;
 		return true;
+	}
+
+	std::string File::getFilename() const
+	{
+		return filename;
+	}
+
+	std::string File::getExtention() const
+	{
+		std::string::size_type idx;
+
+		idx = filename.rfind('.');
+
+		if(idx != std::string::npos)
+		{
+			std::string extension = filename.substr(idx+1);
+			return extension;
+		}
+		else
+		{
+			// Empty.
+			return std::string();
+		}		
+	}
+
+	filesystem::File::Mode File::getMode()
+	{
+		return mode;
 	}
 
 } // physfs

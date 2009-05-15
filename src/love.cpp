@@ -37,12 +37,12 @@
 #include "timer/sdl/wrap_Timer.h"
 #include "joystick/sdl/wrap_Joystick.h"
 #include "graphics/opengl/wrap_Graphics.h"
+#include "image/devil/wrap_Image.h"
+#include "filesystem/physfs/wrap_Filesystem.h"
 
-#include "image/devil/Image.h"
 #include "sound/sdlsound/Sound.h"
 #include "audio/openal/Audio.h"
 #include "physics/box2d/Physics.h"
-#include "filesystem/physfs/Filesystem.h"
 
 #include "luasocket/luasocket.h"
 
@@ -53,6 +53,8 @@ const luaL_reg wrappers[] = {
 	{ "love.timer.sdl", love::timer::sdl::wrap_Timer_open },
 	{ "love.joystick.sdl", love::joystick::sdl::wrap_Joystick_open },
 	{ "love.graphics.opengl", love::graphics::opengl::wrap_Graphics_open },
+	{ "love.image.devil", love::image::devil::wrap_Image_open },
+	{ "love.filesystem.physfs", love::filesystem::physfs::wrap_Filesystem_open },
 	{ 0, 0 }
 };
 
@@ -118,8 +120,6 @@ int luaopen_love(lua_State * L)
 	//  
 
 	// Advertise here.
-	love::filesystem::physfs::Filesystem::__advertise(L);
-	love::image::devil::Image::__advertise(L);
 	love::sound::sdlsound::Sound::__advertise(L);
 	love::audio::openal::Audio::__advertise(L);
 	love::physics::box2d::Physics::__advertise(L);

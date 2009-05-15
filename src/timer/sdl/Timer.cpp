@@ -43,15 +43,15 @@ namespace sdl
 		return instance;
 	}
 
-	bool Timer::init()
+	int Timer::init(lua_State * L)
 	{
 		// Init the SDL timer system.
 		if(SDL_InitSubSystem(SDL_INIT_TIMER) < 0)
-			return false;
-		return true;
+			return luaL_error(L, SDL_GetError());
+		return 0;
 	}
 
-	void Timer::quit()
+	int Timer::quit(lua_State * L)
 	{
 		// Quit SDL timer.
 		SDL_QuitSubSystem(SDL_INIT_TIMER);
@@ -62,6 +62,8 @@ namespace sdl
 			delete instance;
 			instance = 0;
 		}
+		
+		return 0;
 	}
 
 	const char * Timer::getName() const

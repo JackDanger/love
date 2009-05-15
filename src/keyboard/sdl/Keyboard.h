@@ -44,8 +44,8 @@ namespace sdl
 		static Keyboard * getInstance();
 
 		// Implements Module.
-		bool init();
-		void quit();
+		int init(lua_State * L);
+		int quit(lua_State * L);
 		const char * getName() const;
 		
 		/**
