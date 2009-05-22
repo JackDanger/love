@@ -170,11 +170,15 @@ int main(int argc, char ** argv)
 	// which gets everything started.
 
 	// TODO: This is obviously test code.
-	luaL_dofile(L, "../../src/lua/love2.lua");
+	//luaL_dofile(L, "../../src/lua/love2.lua");
+#	include "lua/love2.h"
+
 	lua_close(L);
 
+#ifdef LOVE_DEBUG
 	printf("(press key)\n");
 	getchar();
+#endif
 	printf("Done. This was: %s (%s)\n", LOVE_VERSION_STR.c_str(), LOVE_VERSION_CODENAME.c_str());
 	return 0;
 }

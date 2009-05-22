@@ -41,7 +41,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="include;include\SDL;include\AL"
-				PreprocessorDefinitions="_CRT_SECURE_NO_WARNINGS"
+				PreprocessorDefinitions="_CRT_SECURE_NO_WARNINGS;LOVE_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -132,9 +132,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="liblove.lib lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib openal32.lib alut.lib SDL_sound.lib"
+				AdditionalDependencies="lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib openal32.lib alut.lib SDL_sound.lib"
 				AdditionalLibraryDirectories="lib;Release"
-				GenerateDebugInformation="true"
+				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
@@ -183,6 +183,14 @@
 							ObjectFile="$(IntDir)\timer_sdl\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\timer\sdl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\timer\sdl\Timer.h"
@@ -197,6 +205,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\timer_sdl\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\timer\sdl\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -223,6 +239,14 @@
 							ObjectFile="$(IntDir)\mouse_sdl\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\mouse\sdl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\mouse\sdl\Mouse.h"
@@ -237,6 +261,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\mouse_sdl\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\mouse\sdl\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -263,6 +295,14 @@
 							ObjectFile="$(IntDir)\keyboard_sdl\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\keyboard\sdl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\keyboard\sdl\Keyboard.h"
@@ -277,6 +317,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\keyboard_sdl\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\keyboard\sdl\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -304,6 +352,14 @@
 						ObjectFile="$(IntDir)\$(SafeParentName)\"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\graphics\"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\src\graphics\Volatile.h"
@@ -323,6 +379,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\graphics\opengl\Animation.h"
@@ -337,6 +401,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -355,6 +427,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\graphics\opengl\Font.cpp"
@@ -365,6 +445,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -383,6 +471,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\graphics\opengl\GLee.h"
@@ -397,6 +493,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -415,6 +519,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\graphics\opengl\Image.h"
@@ -429,6 +541,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\opengl\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -447,6 +567,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\graphics\opengl\ParticleSystem.h"
@@ -461,6 +589,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -479,6 +615,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\graphics\opengl\TrueTypeFont.h"
@@ -493,6 +637,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -511,6 +663,14 @@
 							ObjectFile="$(IntDir)\opengl\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\graphics\opengl\wrap_Animation.h"
@@ -525,6 +685,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -543,6 +711,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\graphics\opengl\wrap_Font.h"
@@ -557,6 +733,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -575,6 +759,14 @@
 							ObjectFile="$(IntDir)\opengl\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\graphics\opengl\wrap_Image.h"
@@ -589,6 +781,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -607,6 +807,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\graphics\opengl\wrap_SpriteBatch.h"
@@ -621,6 +829,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\opengl\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -651,6 +867,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\filesystem\physfs\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\filesystem\physfs\File.h"
@@ -665,6 +889,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\filesystem_physfs\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\filesystem\physfs\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -683,6 +915,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\filesystem\physfs\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\filesystem\physfs\Filesystem.h"
@@ -699,6 +939,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\filesystem\physfs\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\filesystem\physfs\wrap_File.h"
@@ -713,6 +961,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\filesystem\physfs\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -736,6 +992,14 @@
 						ObjectFile="$(IntDir)\$(SafeParentName)\"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\image\"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\src\image\ImageData.h"
@@ -755,6 +1019,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\image\devil\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\image\devil\Image.h"
@@ -769,6 +1041,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\image\devil\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -787,6 +1067,14 @@
 							ObjectFile="$(IntDir)\devil\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\image\devil\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\image\devil\wrap_Image.h"
@@ -801,6 +1089,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\image\devil\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -827,6 +1123,14 @@
 							ObjectFile="$(IntDir)\joystick_sdl\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\joystick\sdl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\joystick\sdl\Joystick.h"
@@ -841,6 +1145,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\joystick_sdl\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\joystick\sdl\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -864,6 +1176,14 @@
 						ObjectFile="$(IntDir)\$(SafeParentName)\"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\sound\"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\src\sound\SoundData.h"
@@ -883,6 +1203,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\sound\sdlsound\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\sound\sdlsound\Sound.h"
@@ -897,6 +1225,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\sound\sdlsound\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -915,6 +1251,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\sound\sdlsound\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\sound\sdlsound\wrap_Sound.h"
@@ -929,6 +1273,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\sound\sdlsound\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -955,6 +1307,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\audio\openal\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\audio\openal\Audible.h"
@@ -969,6 +1329,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\audio\openal\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -987,6 +1355,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\audio\openal\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\audio\openal\Channel.h"
@@ -1001,6 +1377,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\audio\openal\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1019,6 +1403,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\audio\openal\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\audio\openal\Sound.h"
@@ -1033,6 +1425,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\audio\openal\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1051,6 +1451,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\audio\openal\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\audio\openal\wrap_Audio.h"
@@ -1065,6 +1473,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\audio\openal\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1083,6 +1499,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\audio\openal\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\audio\openal\wrap_Music.h"
@@ -1097,6 +1521,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\audio\openal\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1123,6 +1555,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\physics\box2d\Body.h"
@@ -1137,6 +1577,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1155,6 +1603,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\physics\box2d\Contact.h"
@@ -1169,6 +1625,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1187,6 +1651,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\physics\box2d\Joint.h"
@@ -1201,6 +1673,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1219,6 +1699,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\physics\box2d\Physics.h"
@@ -1233,6 +1721,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1251,6 +1747,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\physics\box2d\PrismaticJoint.h"
@@ -1265,6 +1769,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1283,6 +1795,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\physics\box2d\Shape.h"
@@ -1297,6 +1817,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1315,6 +1843,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\physics\box2d\wrap_Body.h"
@@ -1329,6 +1865,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1347,6 +1891,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\physics\box2d\wrap_Contact.h"
@@ -1361,6 +1913,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1379,6 +1939,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\physics\box2d\wrap_Joint.h"
@@ -1393,6 +1961,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1411,6 +1987,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\physics\box2d\wrap_Physics.h"
@@ -1425,6 +2009,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1443,6 +2035,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\physics\box2d\wrap_PrismaticJoint.h"
@@ -1457,6 +2057,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1475,6 +2083,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\physics\box2d\wrap_Shape.h"
@@ -1489,6 +2105,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\physics\box2d\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1510,6 +2134,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Dynamics\b2Body.cpp"
@@ -1520,6 +2152,14 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1534,6 +2174,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Contacts\b2CircleContact.cpp"
@@ -1544,6 +2192,14 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1558,6 +2214,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Collision\b2CollideCircle.cpp"
@@ -1568,6 +2232,14 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1582,6 +2254,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Collision\b2Collision.cpp"
@@ -1592,6 +2272,14 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1606,6 +2294,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Dynamics\b2ContactManager.cpp"
@@ -1616,6 +2312,14 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1630,6 +2334,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Collision\b2Distance.cpp"
@@ -1640,6 +2352,14 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1654,6 +2374,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Joints\b2GearJoint.cpp"
@@ -1664,6 +2392,14 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1678,6 +2414,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Joints\b2Joint.cpp"
@@ -1688,6 +2432,14 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1702,6 +2454,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Joints\b2MouseJoint.cpp"
@@ -1712,6 +2472,14 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1726,6 +2494,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Contacts\b2PolyAndCircleContact.cpp"
@@ -1736,6 +2512,14 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1750,6 +2534,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Collision\Shapes\b2PolygonShape.cpp"
@@ -1760,6 +2552,14 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1774,6 +2574,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Joints\b2PulleyJoint.cpp"
@@ -1784,6 +2592,14 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1798,6 +2614,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Common\b2Settings.cpp"
@@ -1808,6 +2632,14 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1822,6 +2654,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Common\b2StackAllocator.cpp"
@@ -1832,6 +2672,14 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1846,6 +2694,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Dynamics\b2World.cpp"
@@ -1858,6 +2714,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\physics\box2d\Source\Dynamics\b2WorldCallbacks.cpp"
@@ -1868,6 +2732,14 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1886,6 +2758,14 @@
 								ObjectFile="$(IntDir)\$(SafeParentName)\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\graham\"
+							/>
+						</FileConfiguration>
 					</File>
 				</Filter>
 			</Filter>
@@ -1902,6 +2782,14 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						ObjectFile="$(IntDir)\$(SafeParentName)\"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\luasocket\"
 					/>
 				</FileConfiguration>
 			</File>
@@ -1923,6 +2811,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\luasocket\libluasocket\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\luasocket\luasocket\buffer.c"
@@ -1933,6 +2829,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\luasocket\libluasocket\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1947,6 +2851,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\luasocket\libluasocket\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\luasocket\luasocket\inet.c"
@@ -1957,6 +2869,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\luasocket\libluasocket\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1971,6 +2891,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\luasocket\libluasocket\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\luasocket\luasocket\luasocket.c"
@@ -1981,6 +2909,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\luasocket\libluasocket\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -1995,6 +2931,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\luasocket\libluasocket\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\luasocket\luasocket\options.c"
@@ -2005,6 +2949,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\luasocket\libluasocket\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -2019,6 +2971,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\luasocket\libluasocket\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\luasocket\luasocket\tcp.c"
@@ -2029,6 +2989,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\luasocket\libluasocket\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -2043,6 +3011,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\luasocket\libluasocket\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\luasocket\luasocket\udp.c"
@@ -2055,6 +3031,14 @@
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\luasocket\libluasocket\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\luasocket\luasocket\wsocket.c"
@@ -2065,6 +3049,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\$(SafeParentName)\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\luasocket\libluasocket\"
 						/>
 					</FileConfiguration>
 				</File>
@@ -2091,6 +3083,14 @@
 							ObjectFile="$(IntDir)\event_sdl\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\event\sdl\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\event\sdl\Event.h"
@@ -2105,6 +3105,14 @@
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)\event_sdl\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\event\sdl\"
 						/>
 					</FileConfiguration>
 				</File>
