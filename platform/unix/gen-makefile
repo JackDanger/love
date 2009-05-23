@@ -10,7 +10,9 @@ bin_PROGRAMS = love
 #love_LDFLAGS =
 #love_LDADD =
 
-love_SOURCES = \' > Makefile.am
-find . \( \( -iname "*.c" -o -iname "*.cpp" -o -iname "*.h" \) -a ! -iname "wsocket.*" \) -exec echo '{}' \\ \; >> Makefile.am
+love_SOURCES = \' > Makefile.am.tmp
+find . \( \( -iname "*.c" -o -iname "*.cpp" -o -iname "*.h" \) -a ! -iname "wsocket.*" \) -exec echo '{}' \\ \; >> Makefile.am.tmp
+head -c -3 Makefile.am.tmp > Makefile.am
+echo >> Makefile.am
 cd ..
-echo src/Makefile.am is updated! Please remove the trailing backslash before compiling. \^.^
+echo src/Makefile.am is updated! \^.^
