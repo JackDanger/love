@@ -3,7 +3,6 @@ AC_CONFIG_AUX_DIR([platform/unix])
 AC_CONFIG_MACRO_DIR([platform/unix/m4])
 AC_CONFIG_SRCDIR([src/love.cpp])
 AM_INIT_AUTOMAKE([-Wall foreign])
-AC_SUBST([ACLOCAL_AMFLAGS], ["-I $ac_macro_dir"])
 AC_PREFIX_DEFAULT([/usr])
 AC_PROG_LIBTOOL
 AC_PROG_CC

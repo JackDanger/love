@@ -1,4 +1,7 @@
 #!/bin/bash
+echo
+echo "  * Remember to run 'sh platform/unix/gen-makefile' if you've added/removed any files under src/ before running this script"
+echo
 libtoolize --force
 aclocal
 autoconf

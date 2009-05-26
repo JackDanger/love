@@ -23,6 +23,9 @@
 #ifndef LOVE_GRAPHICS_OPENGL_SPRITE_BATCH_H
 #define LOVE_GRAPHICS_OPENGL_SPRITE_BATCH_H
 
+// C
+#include <cstring>
+
 // LOVE
 #include "../../math.h"
 #include "../../Object.h"

@@ -24,6 +24,7 @@
 #define LOVE_FILESYSTEM_PHYSFS_FILESYSTEM_H
 
 // STD
+#include <cstring>
 #include <iostream>
 #include <string>
 

@@ -1,9 +1,10 @@
 #!/bin/bash
 echo Generating src/Makefile.am ...
 cd src
-echo 'SUBDIRS =
+echo 'AM_CPPFLAGS = -I/usr/include/AL -I/usr/include/freetype2  $(INCLUDE_LUA) -I/usr/include/SDL
 AUTOMAKE_OPTIONS = subdir-objects
-AM_CPPFLAGS = -I/usr/include/freetype2  $(INCLUDE_LUA) -I/usr/include/SDL
+DEFAULT_INCLUDES =
+SUBDIRS =
 
 # LÖVE executable
 bin_PROGRAMS = love
