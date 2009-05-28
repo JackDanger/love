@@ -35,7 +35,7 @@ namespace love
 		char buffer[BUFFER_SIZE];
 	public:
 		Exception(const char * fmt, ...);
-		virtual const char * what() const;
+		virtual const char * what() const throw();
 	};
 
 }

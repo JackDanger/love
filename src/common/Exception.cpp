@@ -30,7 +30,7 @@ namespace love
 		va_end(args);
 	}
 
-	const char * Exception::what() const
+	const char * Exception::what() const throw()
 	{
 		return (const char *)buffer;
 	}
