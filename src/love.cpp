@@ -16,8 +16,6 @@
 * 2. Altered source versions must be plainly marked as such, and must not be
 *    misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
-* 
-* --> Visit http://love2d.org for more information! (^.^)/
 **/
 
 // STD
@@ -26,27 +24,29 @@
 #include <SDL.h>
 
 // LOVE
-#include "config.h"
-#include "luax.h"
-#include "constants.h"
+#include "common/config.h"
+#include "common/runtime.h"
+#include "common/constants.h"
 
 // Modules
-#include "event/sdl/wrap_Event.h"
-#include "keyboard/sdl/wrap_Keyboard.h"
-#include "mouse/sdl/wrap_Mouse.h"
-#include "timer/sdl/wrap_Timer.h"
-#include "joystick/sdl/wrap_Joystick.h"
-#include "graphics/opengl/wrap_Graphics.h"
-#include "image/devil/wrap_Image.h"
-#include "filesystem/physfs/wrap_Filesystem.h"
+#include "modules/audio/openal/wrap_Audio.h"
+#include "modules/event/sdl/wrap_Event.h"
+#include "modules/filesystem/physfs/wrap_Filesystem.h"
+#include "modules/graphics/opengl/wrap_Graphics.h"
+#include "modules/image/devil/wrap_Image.h"
+#include "modules/joystick/sdl/wrap_Joystick.h"
+#include "modules/keyboard/sdl/wrap_Keyboard.h"
+#include "modules/mouse/sdl/wrap_Mouse.h"
+#include "modules/physics/box2d/wrap_Physics.h"
+#include "modules/sound/sdlsound/wrap_Sound.h"
+#include "modules/timer/sdl/wrap_Timer.h"
 
-#include "sound/sdlsound/Sound.h"
-#include "audio/openal/Audio.h"
-#include "physics/box2d/Physics.h"
+// Libraries.
+#include "libraries/luasocket/luasocket.h"
 
-#include "luasocket/luasocket.h"
-
-const luaL_reg wrappers[] = {
+static const luaL_reg wrappers[] = {
+	{ "love.audio.openal", love::audio::openal::wrap_Audio_open },
+	{ "love.filesystem.physfs", love::filesystem::physfs::wrap_Filesystem_open },
 	{ "love.event.sdl", love::event::sdl::wrap_Event_open },
 	{ "love.keyboard.sdl", love::keyboard::sdl::wrap_Keyboard_open },
 	{ "love.mouse.sdl", love::mouse::sdl::wrap_Mouse_open },
@@ -54,11 +54,12 @@ const luaL_reg wrappers[] = {
 	{ "love.joystick.sdl", love::joystick::sdl::wrap_Joystick_open },
 	{ "love.graphics.opengl", love::graphics::opengl::wrap_Graphics_open },
 	{ "love.image.devil", love::image::devil::wrap_Image_open },
-	{ "love.filesystem.physfs", love::filesystem::physfs::wrap_Filesystem_open },
+	{ "love.physics.box2d", love::physics::box2d::wrap_Physics_open },
+	{ "love.sound.sdlsound", love::sound::sdlsound::wrap_Sound_open },
 	{ 0, 0 }
 };
 
-int module_searcher(lua_State * L)
+static int module_searcher(lua_State * L)
 {
 	// Get the module name.
 	const char * name = luaL_checkstring(L, 1);
@@ -79,7 +80,7 @@ int module_searcher(lua_State * L)
 	return 1;
 }
 
-int luaopen_love(lua_State * L)
+DECLSPEC int luaopen_love(lua_State * L)
 {
 	// Create the love table.
 	lua_newtable(L);
@@ -118,11 +119,6 @@ int luaopen_love(lua_State * L)
 	//   },
 	//   -- etc
 	//  
-
-	// Advertise here.
-	love::sound::sdlsound::Sound::__advertise(L);
-	love::audio::openal::Audio::__advertise(L);
-	love::physics::box2d::Physics::__advertise(L);
 
 	love::luasocket::__open(L);
 
@@ -170,8 +166,8 @@ int main(int argc, char ** argv)
 	// which gets everything started.
 
 	// TODO: This is obviously test code.
-	//luaL_dofile(L, "../../src/lua/love2.lua");
-#	include "lua/love2.h"
+	//luaL_dofile(L, "../../src/scripts/boot.lua");
+#	include "scripts/boot.lua.h"
 
 	lua_close(L);
 
