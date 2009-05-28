@@ -2814,6 +2814,22 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\common\Exception.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\common\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\common\Exception.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\common\math.h"
 				>
 			</File>

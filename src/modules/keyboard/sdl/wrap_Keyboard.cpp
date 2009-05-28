@@ -49,7 +49,7 @@ namespace sdl
 			{
 				instance = new Keyboard();
 			} 
-			catch(std::exception e)
+			catch(Exception & e)
 			{
 				return luaL_error(L, e.what());
 			}

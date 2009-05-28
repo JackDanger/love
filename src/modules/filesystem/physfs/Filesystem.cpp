@@ -34,7 +34,7 @@ namespace physfs
 	{
 		// TODO: love.exe << fail
 		if(!PHYSFS_init("love.exe"))
-			throw std::exception(PHYSFS_getLastError());
+			throw Exception(PHYSFS_getLastError());
 	}
 
 	Filesystem::~Filesystem()

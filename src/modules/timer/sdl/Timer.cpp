@@ -32,7 +32,7 @@ namespace sdl
 	{
 		// Init the SDL timer system.
 		if(SDL_InitSubSystem(SDL_INIT_TIMER) < 0)
-			throw std::exception(SDL_GetError());
+			throw Exception(SDL_GetError());
 	}
 
 	Timer::~Timer()

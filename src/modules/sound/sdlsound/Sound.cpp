@@ -29,7 +29,7 @@ namespace sdlsound
 	Sound::Sound()
 	{
 		if(Sound_Init() == 0)
-			throw std::exception(Sound_GetError());
+			throw Exception(Sound_GetError());
 	}
 
 	Sound::~Sound()

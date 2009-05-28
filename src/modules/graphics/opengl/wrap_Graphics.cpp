@@ -814,7 +814,7 @@ namespace opengl
 			{
 				instance = new Graphics();
 			} 
-			catch(std::exception e)
+			catch(Exception & e)
 			{
 				return luaL_error(L, e.what());
 			}

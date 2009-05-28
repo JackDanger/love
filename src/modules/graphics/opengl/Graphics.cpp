@@ -40,7 +40,7 @@ namespace opengl
 		currentMode.height = 0;
 
 		if(SDL_InitSubSystem(SDL_INIT_VIDEO) < 0)
-			throw std::exception(SDL_GetError());
+			throw Exception(SDL_GetError());
 	}
 
 	Graphics::~Graphics()

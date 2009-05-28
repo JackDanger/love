@@ -18,50 +18,26 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#include "wrap_Event.h"
+#ifndef LOVE_EXCEPTION_H
+#define LOVE_EXCEPTION_H
 
-// LOVE
-#include "../../../common/runtime.h"
-
-// sdlevent
-#include "Event.h"
+#include <exception>
+#include <string>
+#include <cstdarg>
 
 namespace love
 {
-namespace event
-{
-namespace sdl
-{
-	static Event * instance = 0;
-	
-	int _wrap_get(lua_State * L)
-	{
-		return instance->get(L);
-	}
 
-	// List of functions to wrap.
-	static const luaL_Reg wrap_Event_functions[] = {
-		{ "get", _wrap_get },
-		{ 0, 0 }
+	class Exception : public std::exception
+	{
+	private:
+		static const int BUFFER_SIZE = 256;
+		char buffer[BUFFER_SIZE];
+	public:
+		Exception(const char * fmt, ...);
+		virtual const char * what() const;
 	};
 
-	int wrap_Event_open(lua_State * L)
-	{
-		if(instance == 0)
-		{
-			try 
-			{
-				instance = new Event();
-			} 
-			catch(Exception & e)
-			{
-				return luaL_error(L, e.what());
-			}
-		}
+}
 
-		return luax_register_module(L, wrap_Event_functions, 0);
-	}
-
-} // sdl
-} // event
-} // love
+#endif // LOVE_EXCEPTION_H

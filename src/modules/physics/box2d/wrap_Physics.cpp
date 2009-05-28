@@ -209,7 +209,7 @@ namespace box2d
 			{
 				instance = new Physics();
 			}
-			catch(std::exception e)
+			catch(Exception & e)
 			{
 				return luaL_error(L, e.what());
 			}

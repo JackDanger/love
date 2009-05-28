@@ -34,7 +34,7 @@ namespace sdl
 	{
 		// Init the SDL joystick system.
 		if(SDL_InitSubSystem(SDL_INIT_JOYSTICK) < 0)
-			throw std::exception(SDL_GetError());
+			throw Exception(SDL_GetError());
 
 		// Start joystick event watching.
 		SDL_JoystickEventState(SDL_ENABLE);

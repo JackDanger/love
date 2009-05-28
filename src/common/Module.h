@@ -23,6 +23,7 @@
 
 // LOVE
 #include "runtime.h"
+#include "Exception.h"
 
 namespace love
 {
