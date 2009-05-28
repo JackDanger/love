@@ -167,1971 +167,275 @@
 	</References>
 	<Files>
 		<Filter
-			Name="timer"
+			Name="modules"
 			>
 			<Filter
-				Name="sdl"
+				Name="audio"
 				>
-				<File
-					RelativePath="..\..\src\timer\sdl\Timer.cpp"
+				<Filter
+					Name="openal"
 					>
-					<FileConfiguration
-						Name="Debug|Win32"
+					<File
+						RelativePath="..\..\src\modules\audio\openal\Audible.cpp"
 						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\timer_sdl\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\Audible.h"
 						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\timer\sdl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\timer\sdl\Timer.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\timer\sdl\wrap_Timer.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\Audio.cpp"
 						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\timer_sdl\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\Audio.h"
 						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\timer\sdl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\timer\sdl\wrap_Timer.h"
-					>
-				</File>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\Channel.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\Channel.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\Music.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\Music.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\Sound.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\Sound.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\wrap_Audible.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\wrap_Audible.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\wrap_Audio.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\wrap_Audio.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\wrap_Channel.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\wrap_Channel.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\wrap_Music.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\wrap_Music.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\wrap_Sound.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\audio\openal\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\wrap_Sound.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
-		</Filter>
-		<Filter
-			Name="mouse"
-			>
 			<Filter
-				Name="sdl"
+				Name="event"
 				>
 				<File
-					RelativePath="..\..\src\mouse\sdl\Mouse.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\mouse_sdl\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\mouse\sdl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\mouse\sdl\Mouse.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\mouse\sdl\wrap_Mouse.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\mouse_sdl\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\mouse\sdl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\mouse\sdl\wrap_Mouse.h"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="keyboard"
-			>
-			<Filter
-				Name="sdl"
-				>
-				<File
-					RelativePath="..\..\src\keyboard\sdl\Keyboard.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\keyboard_sdl\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\keyboard\sdl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\keyboard\sdl\Keyboard.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\keyboard\sdl\wrap_Keyboard.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\keyboard_sdl\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\keyboard\sdl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\keyboard\sdl\wrap_Keyboard.h"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="graphics"
-			>
-			<File
-				RelativePath="..\..\src\graphics\Drawable.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\graphics\Volatile.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)\$(SafeParentName)\"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)\graphics\"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\..\src\graphics\Volatile.h"
-				>
-			</File>
-			<Filter
-				Name="opengl"
-				>
-				<File
-					RelativePath="..\..\src\graphics\opengl\Animation.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\Animation.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\Color.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\Color.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\Drawable.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\Font.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\Font.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\GLee.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\GLee.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\Graphics.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\Graphics.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\Image.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\Image.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\ImageFont.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\opengl\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\ImageFont.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\ParticleSystem.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\ParticleSystem.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\SpriteBatch.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\SpriteBatch.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\TrueTypeFont.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\TrueTypeFont.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\VertexBuffer.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\VertexBuffer.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_Animation.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\opengl\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_Animation.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_Color.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_Color.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_Font.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_Font.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_Graphics.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_Graphics.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_Image.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\opengl\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_Image.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_ParticleSystem.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_ParticleSystem.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_SpriteBatch.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_SpriteBatch.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_VertexBuffer.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\graphics\opengl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\graphics\opengl\wrap_VertexBuffer.h"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="filesystem"
-			>
-			<File
-				RelativePath="..\..\src\filesystem\File.h"
-				>
-			</File>
-			<Filter
-				Name="physfs"
-				>
-				<File
-					RelativePath="..\..\src\filesystem\physfs\File.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\filesystem\physfs\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\filesystem\physfs\File.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\filesystem\physfs\FileData.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\filesystem_physfs\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\filesystem\physfs\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\filesystem\physfs\FileData.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\filesystem\physfs\Filesystem.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\filesystem\physfs\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\filesystem\physfs\Filesystem.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\filesystem\physfs\wrap_File.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\filesystem\physfs\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\filesystem\physfs\wrap_File.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\filesystem\physfs\wrap_Filesystem.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\filesystem\physfs\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\filesystem\physfs\wrap_Filesystem.h"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="image"
-			>
-			<File
-				RelativePath="..\..\src\image\ImageData.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)\$(SafeParentName)\"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)\image\"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\..\src\image\ImageData.h"
-				>
-			</File>
-			<Filter
-				Name="devil"
-				>
-				<File
-					RelativePath="..\..\src\image\devil\Image.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\image\devil\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\image\devil\Image.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\image\devil\ImageData.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\image\devil\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\image\devil\ImageData.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\image\devil\wrap_Image.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\devil\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\image\devil\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\image\devil\wrap_Image.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\image\devil\wrap_ImageData.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\image\devil\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\image\devil\wrap_ImageData.h"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="joystick"
-			>
-			<Filter
-				Name="sdl"
-				>
-				<File
-					RelativePath="..\..\src\joystick\sdl\Joystick.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\joystick_sdl\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\joystick\sdl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\joystick\sdl\Joystick.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\joystick\sdl\wrap_Joystick.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\joystick_sdl\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\joystick\sdl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\joystick\sdl\wrap_Joystick.h"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="sound"
-			>
-			<File
-				RelativePath="..\..\src\sound\SoundData.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)\$(SafeParentName)\"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)\sound\"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\..\src\sound\SoundData.h"
-				>
-			</File>
-			<Filter
-				Name="sdlsound"
-				>
-				<File
-					RelativePath="..\..\src\sound\sdlsound\Sound.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\sound\sdlsound\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\sound\sdlsound\Sound.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sound\sdlsound\SoundData.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\sound\sdlsound\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\sound\sdlsound\SoundData.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sound\sdlsound\wrap_Sound.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\sound\sdlsound\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\sound\sdlsound\wrap_Sound.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\sound\sdlsound\wrap_SoundData.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\sound\sdlsound\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\sound\sdlsound\wrap_SoundData.h"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="audio"
-			>
-			<Filter
-				Name="openal"
-				>
-				<File
-					RelativePath="..\..\src\audio\openal\Audible.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\audio\openal\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\Audible.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\Audio.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\audio\openal\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\Audio.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\Channel.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\audio\openal\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\Channel.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\Music.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\audio\openal\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\Music.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\Sound.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\audio\openal\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\Sound.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\wrap_Audible.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\audio\openal\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\wrap_Audible.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\wrap_Audio.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\audio\openal\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\wrap_Audio.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\wrap_Channel.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\audio\openal\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\wrap_Channel.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\wrap_Music.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\audio\openal\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\wrap_Music.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\wrap_Sound.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\audio\openal\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\audio\openal\wrap_Sound.h"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="physics"
-			>
-			<Filter
-				Name="box2d"
-				>
-				<File
-					RelativePath="..\..\src\physics\box2d\Body.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\Body.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\CircleShape.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\CircleShape.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\Contact.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\Contact.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\DistanceJoint.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\DistanceJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\Joint.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\Joint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\MouseJoint.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\MouseJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\Physics.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\Physics.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\PolygonShape.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\PolygonShape.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\PrismaticJoint.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\PrismaticJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\RevoluteJoint.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\RevoluteJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\Shape.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\Shape.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\World.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\World.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_Body.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_Body.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_CircleShape.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_CircleShape.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_Contact.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_Contact.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_DistanceJoint.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_DistanceJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_Joint.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_Joint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_MouseJoint.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_MouseJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_Physics.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_Physics.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_PolygonShape.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_PolygonShape.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_PrismaticJoint.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_PrismaticJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_RevoluteJoint.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_RevoluteJoint.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_Shape.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_Shape.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_World.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\physics\box2d\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\physics\box2d\wrap_World.h"
+					RelativePath="..\..\src\modules\event\Event.h"
 					>
 				</File>
 				<Filter
-					Name="libbox2d"
+					Name="sdl"
 					>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Common\b2BlockAllocator.cpp"
+						RelativePath="..\..\src\modules\event\sdl\Event.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\event\sdl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2139,19 +443,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\event\sdl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\b2Body.cpp"
+						RelativePath="..\..\src\modules\event\sdl\Event.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\event\sdl\wrap_Event.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\event\sdl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2159,19 +467,35 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\event\sdl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Collision\b2BroadPhase.cpp"
+						RelativePath="..\..\src\modules\event\sdl\wrap_Event.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="filesystem"
+				>
+				<File
+					RelativePath="..\..\src\modules\filesystem\File.h"
+					>
+				</File>
+				<Filter
+					Name="physfs"
+					>
+					<File
+						RelativePath="..\..\src\modules\filesystem\physfs\File.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\filesystem\physfs\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2179,19 +503,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\filesystem\physfs\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Contacts\b2CircleContact.cpp"
+						RelativePath="..\..\src\modules\filesystem\physfs\File.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\filesystem\physfs\FileData.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\filesystem\physfs\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2199,19 +527,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\filesystem\physfs\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Collision\Shapes\b2CircleShape.cpp"
+						RelativePath="..\..\src\modules\filesystem\physfs\FileData.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\filesystem\physfs\Filesystem.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\filesystem\physfs\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2219,19 +551,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\filesystem\physfs\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Collision\b2CollideCircle.cpp"
+						RelativePath="..\..\src\modules\filesystem\physfs\Filesystem.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\filesystem\physfs\wrap_File.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\filesystem\physfs\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2239,19 +575,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\filesystem\physfs\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Collision\b2CollidePoly.cpp"
+						RelativePath="..\..\src\modules\filesystem\physfs\wrap_File.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\filesystem\physfs\wrap_Filesystem.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\filesystem\physfs\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2259,19 +599,79 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\filesystem\physfs\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Collision\b2Collision.cpp"
+						RelativePath="..\..\src\modules\filesystem\physfs\wrap_Filesystem.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="graphics"
+				>
+				<File
+					RelativePath="..\..\src\modules\graphics\Drawable.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\graphics\Drawable.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\graphics\Volatile.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\graphics\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\graphics\Volatile.h"
+					>
+				</File>
+				<Filter
+					Name="opengl"
+					>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\Animation.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2279,19 +679,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Contacts\b2Contact.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\Animation.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\Color.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2299,19 +703,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\b2ContactManager.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\Color.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\Font.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2319,19 +727,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Contacts\b2ContactSolver.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\Font.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\GLee.c"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2339,19 +751,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Collision\b2Distance.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\GLee.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\Graphics.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2359,19 +775,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Joints\b2DistanceJoint.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\Graphics.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\Image.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2379,19 +799,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Joints\b2GearJoint.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\Image.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\ImageFont.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2399,19 +823,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\b2Island.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\ImageFont.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\ParticleSystem.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2419,19 +847,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Joints\b2Joint.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\ParticleSystem.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\SpriteBatch.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2439,19 +871,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Common\b2Math.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\SpriteBatch.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\TrueTypeFont.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2459,19 +895,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Joints\b2MouseJoint.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\TrueTypeFont.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\VertexBuffer.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2479,19 +919,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Collision\b2PairManager.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\VertexBuffer.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_Animation.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2499,19 +943,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Contacts\b2PolyAndCircleContact.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_Animation.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_Color.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2519,19 +967,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Contacts\b2PolyContact.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_Color.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_Font.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2539,19 +991,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Collision\Shapes\b2PolygonShape.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_Font.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_Graphics.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2559,19 +1015,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Joints\b2PrismaticJoint.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_Graphics.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_Image.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2579,19 +1039,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Joints\b2PulleyJoint.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_Image.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_ParticleSystem.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2599,19 +1063,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\Joints\b2RevoluteJoint.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_ParticleSystem.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_SpriteBatch.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2619,19 +1087,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Common\b2Settings.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_SpriteBatch.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_VertexBuffer.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2639,19 +1111,35 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\graphics\opengl\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Collision\Shapes\b2Shape.cpp"
+						RelativePath="..\..\src\modules\graphics\opengl\wrap_VertexBuffer.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="image"
+				>
+				<File
+					RelativePath="..\..\src\modules\image\ImageData.h"
+					>
+				</File>
+				<Filter
+					Name="devil"
+					>
+					<File
+						RelativePath="..\..\src\modules\image\devil\Image.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\image\devil\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2659,19 +1147,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\image\devil\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Common\b2StackAllocator.cpp"
+						RelativePath="..\..\src\modules\image\devil\Image.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\image\devil\ImageData.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\image\devil\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2679,19 +1171,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\image\devil\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Collision\b2TimeOfImpact.cpp"
+						RelativePath="..\..\src\modules\image\devil\ImageData.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\image\devil\wrap_Image.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\image\devil\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2699,19 +1195,23 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\image\devil\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\b2World.cpp"
+						RelativePath="..\..\src\modules\image\devil\wrap_Image.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\image\devil\wrap_ImageData.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\image\devil\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2719,19 +1219,31 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\image\devil\"
 							/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\src\physics\box2d\Source\Dynamics\b2WorldCallbacks.cpp"
+						RelativePath="..\..\src\modules\image\devil\wrap_ImageData.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="joystick"
+				>
+				<Filter
+					Name="sdl"
+					>
+					<File
+						RelativePath="..\..\src\modules\joystick\sdl\Joystick.cpp"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
+								ObjectFile="$(IntDir)\joystick\sdl\"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2739,519 +1251,1851 @@
 							>
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								ObjectFile="$(IntDir)\joystick\sdl\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\joystick\sdl\Joystick.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\joystick\sdl\wrap_Joystick.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\joystick\sdl\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\joystick\sdl\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\joystick\sdl\wrap_Joystick.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="keyboard"
+				>
+				<Filter
+					Name="sdl"
+					>
+					<File
+						RelativePath="..\..\src\modules\keyboard\sdl\Keyboard.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\keyboard\sdl\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\keyboard\sdl\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\keyboard\sdl\Keyboard.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\keyboard\sdl\wrap_Keyboard.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\keyboard\sdl\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\keyboard\sdl\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\keyboard\sdl\wrap_Keyboard.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="mouse"
+				>
+				<Filter
+					Name="sdl"
+					>
+					<File
+						RelativePath="..\..\src\modules\mouse\sdl\Mouse.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\mouse\sdl\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\mouse\sdl\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\mouse\sdl\Mouse.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\mouse\sdl\wrap_Mouse.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\mouse\sdl\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\mouse\sdl\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\mouse\sdl\wrap_Mouse.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="physics"
+				>
+				<Filter
+					Name="box2d"
+					>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\Body.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\Body.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\CircleShape.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\CircleShape.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\Contact.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\Contact.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\DistanceJoint.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\DistanceJoint.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\Joint.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\Joint.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\MouseJoint.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\MouseJoint.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\Physics.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\Physics.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\PolygonShape.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\PolygonShape.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\PrismaticJoint.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\PrismaticJoint.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\RevoluteJoint.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\RevoluteJoint.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\Shape.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\Shape.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\World.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\World.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_Body.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_Body.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_CircleShape.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_CircleShape.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_Contact.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_Contact.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_DistanceJoint.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_DistanceJoint.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_Joint.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_Joint.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_MouseJoint.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_MouseJoint.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_Physics.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_Physics.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_PolygonShape.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_PolygonShape.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_PrismaticJoint.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_PrismaticJoint.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_RevoluteJoint.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_RevoluteJoint.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_Shape.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_Shape.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_World.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\physics\box2d\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\physics\box2d\wrap_World.h"
+						>
+					</File>
+					<Filter
+						Name="libbox2d"
+						>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Common\b2BlockAllocator.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\b2Body.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Collision\b2BroadPhase.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\Contacts\b2CircleContact.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Collision\Shapes\b2CircleShape.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Collision\b2CollideCircle.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Collision\b2CollidePoly.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Collision\b2Collision.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\Contacts\b2Contact.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\b2ContactManager.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\Contacts\b2ContactSolver.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Collision\b2Distance.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\Joints\b2DistanceJoint.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\Joints\b2GearJoint.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\b2Island.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\Joints\b2Joint.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Common\b2Math.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\Joints\b2MouseJoint.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Collision\b2PairManager.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\Contacts\b2PolyAndCircleContact.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\Contacts\b2PolyContact.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Collision\Shapes\b2PolygonShape.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\Joints\b2PrismaticJoint.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\Joints\b2PulleyJoint.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\Joints\b2RevoluteJoint.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Common\b2Settings.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Collision\Shapes\b2Shape.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Common\b2StackAllocator.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Collision\b2TimeOfImpact.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\b2World.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\Source\Dynamics\b2WorldCallbacks.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\box2d\libbox2d\"
+								/>
+							</FileConfiguration>
+						</File>
+					</Filter>
+					<Filter
+						Name="graham"
+						>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\graham\GrahamScanConvexHull.cpp"
+							>
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\graham\"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)\physics\graham\"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\src\modules\physics\box2d\graham\GrahamScanConvexHull.h"
+							>
+						</File>
+					</Filter>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="sound"
+				>
+				<File
+					RelativePath="..\..\src\modules\sound\SoundData.h"
+					>
+				</File>
+				<Filter
+					Name="sdlsound"
+					>
+					<File
+						RelativePath="..\..\src\modules\sound\sdlsound\Sound.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\sound\sdlsound\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\$(IntDir)\sound\sdlsound\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\sound\sdlsound\Sound.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\sound\sdlsound\SoundData.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\sound\sdlsound\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\$(IntDir)\sound\sdlsound\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\sound\sdlsound\SoundData.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\sound\sdlsound\wrap_Sound.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\sound\sdlsound\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\$(IntDir)\sound\sdlsound\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\sound\sdlsound\wrap_Sound.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\sound\sdlsound\wrap_SoundData.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\sound\sdlsound\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\$(IntDir)\sound\sdlsound\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\sound\sdlsound\wrap_SoundData.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="timer"
+				>
+				<Filter
+					Name="sdl"
+					>
+					<File
+						RelativePath="..\..\src\modules\timer\sdl\Timer.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\timer\sdl\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\timer\sdl\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\timer\sdl\Timer.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\timer\sdl\wrap_Timer.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\timer\sdl\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\timer\sdl\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\timer\sdl\wrap_Timer.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="common"
+			>
+			<File
+				RelativePath="..\..\src\common\config.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\constants.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\Data.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\math.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\Matrix.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\common\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\common\Matrix.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\Module.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\Object.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\common\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\common\Object.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\Reference.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\common\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\common\Reference.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\runtime.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\common\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\common\runtime.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\types.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\Vector.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\common\"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\src\common\Vector.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="libraries"
+			>
+			<Filter
+				Name="luasocket"
+				>
+				<File
+					RelativePath="..\..\src\libraries\luasocket\luasocket.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\libraries\luasocket\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\libraries\luasocket\luasocket.h"
+					>
+				</File>
+				<Filter
+					Name="libluasocket"
+					>
+					<File
+						RelativePath="..\..\src\libraries\luasocket\libluasocket\auxiliar.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\luasocket\libluasocket\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\libraries\luasocket\libluasocket\buffer.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\luasocket\libluasocket\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\libraries\luasocket\libluasocket\except.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\luasocket\libluasocket\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\libraries\luasocket\libluasocket\inet.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\luasocket\libluasocket\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\libraries\luasocket\libluasocket\io.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\luasocket\libluasocket\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\libraries\luasocket\libluasocket\luasocket.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\luasocket\libluasocket\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\libraries\luasocket\libluasocket\mime.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\luasocket\libluasocket\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\libraries\luasocket\libluasocket\options.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\luasocket\libluasocket\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\libraries\luasocket\libluasocket\select.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\luasocket\libluasocket\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\libraries\luasocket\libluasocket\tcp.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\luasocket\libluasocket\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\libraries\luasocket\libluasocket\timeout.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\luasocket\libluasocket\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\libraries\luasocket\libluasocket\udp.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\luasocket\libluasocket\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\libraries\luasocket\libluasocket\wsocket.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\luasocket\libluasocket\"
 							/>
 						</FileConfiguration>
 					</File>
 				</Filter>
-				<Filter
-					Name="graham"
-					>
-					<File
-						RelativePath="..\..\src\physics\box2d\graham\GrahamScanConvexHull.cpp"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(SafeParentName)\"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\physics\box2d\graham\"
-							/>
-						</FileConfiguration>
-					</File>
-				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
-			Name="luasocket"
+			Name="scripts"
 			>
-			<File
-				RelativePath="..\..\src\luasocket\luasocket.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)\$(SafeParentName)\"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)\luasocket\"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\..\src\luasocket\luasocket.h"
-				>
-			</File>
-			<Filter
-				Name="libluasocket"
-				>
-				<File
-					RelativePath="..\..\src\luasocket\luasocket\auxiliar.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\luasocket\libluasocket\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\luasocket\luasocket\buffer.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\luasocket\libluasocket\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\luasocket\luasocket\except.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\luasocket\libluasocket\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\luasocket\luasocket\inet.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\luasocket\libluasocket\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\luasocket\luasocket\io.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\luasocket\libluasocket\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\luasocket\luasocket\luasocket.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\luasocket\libluasocket\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\luasocket\luasocket\mime.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\luasocket\libluasocket\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\luasocket\luasocket\options.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\luasocket\libluasocket\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\luasocket\luasocket\select.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\luasocket\libluasocket\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\luasocket\luasocket\tcp.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\luasocket\libluasocket\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\luasocket\luasocket\timeout.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\luasocket\libluasocket\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\luasocket\luasocket\udp.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\luasocket\libluasocket\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\luasocket\luasocket\wsocket.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\$(SafeParentName)\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\luasocket\libluasocket\"
-						/>
-					</FileConfiguration>
-				</File>
-			</Filter>
 		</Filter>
-		<Filter
-			Name="event"
-			>
-			<File
-				RelativePath="..\..\src\event\Event.h"
-				>
-			</File>
-			<Filter
-				Name="sdl"
-				>
-				<File
-					RelativePath="..\..\src\event\sdl\Event.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\event_sdl\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\event\sdl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\event\sdl\Event.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\event\sdl\wrap_Event.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\event_sdl\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\event\sdl\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\event\sdl\wrap_Event.h"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<File
-			RelativePath="..\..\src\config.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\constants.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\Data.h"
-			>
-		</File>
 		<File
 			RelativePath="..\..\src\love.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					ObjectFile="$(IntDir)\$(SafeParentName)\"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath="..\..\src\luax.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					ObjectFile="$(IntDir)\$(SafeParentName)\"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath="..\..\src\luax.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\math.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\Matrix.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					ObjectFile="$(IntDir)\$(SafeParentName)\"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath="..\..\src\Matrix.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\Module.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\Object.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					ObjectFile="$(IntDir)\$(SafeParentName)\"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath="..\..\src\Object.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\Reference.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					ObjectFile="$(IntDir)\$(SafeParentName)\"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath="..\..\src\Reference.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\types.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\Vector.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					ObjectFile="$(IntDir)\$(SafeParentName)\"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath="..\..\src\Vector.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\wrap.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					ObjectFile="$(IntDir)\$(SafeParentName)\"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath="..\..\src\wrap.h"
 			>
 		</File>
 	</Files>
