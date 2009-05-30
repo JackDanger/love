@@ -106,6 +106,13 @@ namespace devil
 		return 0;
 	}
 
+	int _wrap_ImageData_getString(lua_State * L)
+	{
+		ImageData * t = luax_checkimagedata(L, 1);
+		lua_pushlstring(L, (const char *)t->getData(), t->getSize());
+		return 1;
+	}
+
 	static const luaL_Reg wrap_ImageData_functions[] = {
 		{ "__index", _wrap__index },
 		{ "__gc", _wrap__gc },
@@ -114,6 +121,7 @@ namespace devil
 		{ "getPixel", _wrap_ImageData_getPixel },
 		{ "setPixel", _wrap_ImageData_setPixel },
 		{ "mapPixel", _wrap_ImageData_mapPixel },
+		{ "getString", _wrap_ImageData_getString },
 		{ 0, 0 }
 	};
 

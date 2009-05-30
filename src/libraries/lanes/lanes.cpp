@@ -18,30 +18,33 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_IMAGE_DEVIL_WRAP_IMAGE_DATA_H
-#define LOVE_IMAGE_DEVIL_WRAP_IMAGE_DATA_H
+#include "lanes.h"
 
-// LOVE
-#include "../../../common/runtime.h"
-#include "ImageData.h"
+// Lanes open function.
+extern "C"
+{
+	int luaopen_lanes( lua_State *L );
+}
 
 namespace love
 {
-namespace image
+namespace lanes
 {
-namespace devil
-{
-	ImageData * luax_checkimagedata(lua_State * L, int idx);
-	int _wrap_ImageData_getWidth(lua_State * L);
-	int _wrap_ImageData_getHeight(lua_State * L);
-	int _wrap_ImageData_getPixel(lua_State * L);
-	int _wrap_ImageData_setPixel(lua_State * L);
-	int _wrap_ImageData_mapPixel(lua_State * L);
-	int _wrap_ImageData_getString(lua_State * L);
-	int wrap_ImageData_open(lua_State * L);
 
-} // devil
-} // image
+	// Opens the lanes.lua file.
+	static int open_lanes(lua_State * L)
+	{
+		#include "lanes/lanes.lua.h"
+		lua_getglobal(L, "lanes");
+		return 1;
+	}
+
+	int open(lua_State * L)
+	{
+		luax_preload(L, open_lanes, "lanes");
+		luax_preload(L, luaopen_lanes, "lua51-lanes");
+		return 0;
+	}
+
+} // lanes
 } // love
-
-#endif // LOVE_IMAGE_DEVIL_WRAP_IMAGE_DATA_H

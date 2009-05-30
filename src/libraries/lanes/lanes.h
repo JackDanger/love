@@ -18,30 +18,19 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_IMAGE_DEVIL_WRAP_IMAGE_DATA_H
-#define LOVE_IMAGE_DEVIL_WRAP_IMAGE_DATA_H
+#ifndef LOVE_LANES_LANES_H
+#define LOVE_LANES_LANES_H
 
 // LOVE
-#include "../../../common/runtime.h"
-#include "ImageData.h"
+#include "../../common/runtime.h"
 
 namespace love
 {
-namespace image
+namespace lanes
 {
-namespace devil
-{
-	ImageData * luax_checkimagedata(lua_State * L, int idx);
-	int _wrap_ImageData_getWidth(lua_State * L);
-	int _wrap_ImageData_getHeight(lua_State * L);
-	int _wrap_ImageData_getPixel(lua_State * L);
-	int _wrap_ImageData_setPixel(lua_State * L);
-	int _wrap_ImageData_mapPixel(lua_State * L);
-	int _wrap_ImageData_getString(lua_State * L);
-	int wrap_ImageData_open(lua_State * L);
+	int open(lua_State * L);
 
-} // devil
-} // image
+} // lanes
 } // love
 
-#endif // LOVE_IMAGE_DEVIL_WRAP_IMAGE_DATA_H
+#endif // LOVE_LANES_LANES_H

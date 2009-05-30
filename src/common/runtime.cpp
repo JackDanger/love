@@ -170,6 +170,16 @@ namespace love
 		return 1;
 	}
 
+	int luax_preload(lua_State * L, lua_CFunction f, const char * name)
+	{
+		lua_getglobal(L, "package");
+		lua_getfield(L, -1, "preload");
+		lua_pushcfunction(L, f);
+		lua_setfield(L, -2, name);
+		lua_pop(L, 2);
+		return 0;
+	}
+
 	int luax_register_type(lua_State * L, const char * tname, const luaL_Reg * fn)
 	{
 		luaL_newmetatable(L, tname);

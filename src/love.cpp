@@ -43,6 +43,7 @@
 
 // Libraries.
 #include "libraries/luasocket/luasocket.h"
+#include "libraries/lanes/lanes.h"
 
 static const luaL_reg wrappers[] = {
 	{ "love.audio.openal", love::audio::openal::wrap_Audio_open },
@@ -104,23 +105,23 @@ DECLSPEC int luaopen_love(lua_State * L)
 	// Set the love table.
 	lua_setglobal(L, "love");
 
-	//
-	// This will create a table roughly
-	// equal to this: 
-	// 
-	// love.__mod = {
-	//   graphics = {
-	//      opengl = { ... },
-	//      directx = { ... }
-	//   },
-	//   timer = {
-	//      sdltimer = { ... },
-	//      wintimer = { ... },
-	//   },
-	//   -- etc
-	//  
+	// Add the module searcher function.
+	//love::luax_register_searcher(L, module_searcher);
+
+	love::luax_preload(L, love::audio::openal::wrap_Audio_open, "love.audio.openal");
+	love::luax_preload(L, love::filesystem::physfs::wrap_Filesystem_open, "love.filesystem.physfs");
+	love::luax_preload(L, love::event::sdl::wrap_Event_open, "love.event.sdl");
+	love::luax_preload(L, love::keyboard::sdl::wrap_Keyboard_open, "love.keyboard.sdl");
+	love::luax_preload(L, love::mouse::sdl::wrap_Mouse_open, "love.mouse.sdl");
+	love::luax_preload(L, love::timer::sdl::wrap_Timer_open, "love.timer.sdl");
+	love::luax_preload(L, love::joystick::sdl::wrap_Joystick_open, "love.joystick.sdl");
+	love::luax_preload(L, love::graphics::opengl::wrap_Graphics_open, "love.graphics.opengl");
+	love::luax_preload(L, love::image::devil::wrap_Image_open, "love.image.devil");
+	love::luax_preload(L, love::physics::box2d::wrap_Physics_open, "love.physics.box2d");
+	love::luax_preload(L, love::sound::sdlsound::wrap_Sound_open, "love.sound.sdlsound");
 
 	love::luasocket::__open(L);
+	love::lanes::open(L);
 
 	return 0;
 }
@@ -133,7 +134,9 @@ int main(int argc, char ** argv)
 	lua_State * L = lua_open();
 	luaL_openlibs(L);
 
-	luaopen_love(L);
+	love::luax_preload(L, luaopen_love, "love");
+
+	luaopen_love(L);	
 
 	// Add command line arguments to love.__args
 	{
@@ -158,9 +161,6 @@ int main(int argc, char ** argv)
 		lua_setfield(L, -2, "__exe");
 		lua_pop(L, 1);
 	}
-
-	// Add the module searcher function.
-	love::luax_register_searcher(L, module_searcher);
 
 	// This is where we should run the built-in Lua code
 	// which gets everything started.

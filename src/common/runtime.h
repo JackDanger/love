@@ -67,9 +67,11 @@ namespace love
 		lua_CFunction open);
 
 	int luax_register_module(lua_State * L, const luaL_Reg * fn, const lua_CFunction * types);
+	int luax_preload(lua_State * L, lua_CFunction f, const char * name);
 	int luax_register_type(lua_State * L, const char * tname, const luaL_Reg * fn);
 
 	int luax_register_searcher(lua_State * L, lua_CFunction f);
+	
 
 	void luax_newtype(lua_State * L, const char * tname, bits flags, void * data, bool own = true);
 

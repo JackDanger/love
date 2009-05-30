@@ -2824,6 +2824,14 @@
 						ObjectFile="$(IntDir)\common\"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\common\"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\src\common\Exception.h"
@@ -3252,6 +3260,66 @@
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)\libraries\luasocket\libluasocket\"
+							/>
+						</FileConfiguration>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="lanes"
+				>
+				<File
+					RelativePath="..\..\src\libraries\lanes\lanes.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\libraries\lanes\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\libraries\lanes\lanes.h"
+					>
+				</File>
+				<Filter
+					Name="lanes"
+					>
+					<File
+						RelativePath="..\..\src\libraries\lanes\lanes\lanes.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\lanes\lanes\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\libraries\lanes\lanes\threading.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\lanes\lanes\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\libraries\lanes\lanes\tools.c"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\lanes\lanes\"
 							/>
 						</FileConfiguration>
 					</File>
