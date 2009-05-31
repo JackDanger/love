@@ -5,24 +5,27 @@ LOVE 0.6.0
   * Added unicode-translated parameter to love.keypressed().
   * Added love.event.
   * Added love.filesystem.setIdentity().
+  * Added experimental support for Lua lanes.
+  * Added OpenAL dependency.
+  * Added SDL_sound dependency.
   
   * Fixed love.fileystem problems with internal \0 in strings.
   * Fixed love.filesystem.mkdir/remove not working when write directory not set.
+  * Fixed position of Window.
   
   * Changed parameter order of draws().
-  * Changed default origin for images as top-left.
+  * Changed origin for images to top-left.
   * Changed love.filesystem.open to accept mode (removed from love.filesystem.newFile).
   * Changed love.filesystem.read() which now returns two parameters (data, length).
   * Changed love.filesystem.write() which now takes up to four parameters (file, data, length, mode).
   
   * Removed love.graphics.draw() for strings.
   * Removed love.system.
+  * Removed conf files. 
+  * Removed SWIG.
+  * Removed boost.
+  * Removed SDL_mixer.
   
-  * Farewell SWIG!
-  * Sayonara boost!
-  * Good-bye SDL_mixer!
-  * Hello OpenAL!
-  * Howdy SDL_sound!
 
 LOVE 0.5.0
 ----------
