@@ -27,7 +27,6 @@ namespace graphics
 
 	Drawable::~Drawable()
 	{
-		// PURE VIRUTAL!
 	}
 
 } // graphics

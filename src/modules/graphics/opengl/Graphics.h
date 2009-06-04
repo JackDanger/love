@@ -109,7 +109,7 @@ namespace opengl
 	class Graphics : public Module
 	{
 	private:
-		static Graphics * instance;
+
 		Font * currentFont;
 		DisplayMode currentMode;
 

@@ -33,12 +33,13 @@ namespace timer
 {
 namespace sdl
 {
+	/**
+	* An SDL timer module. Can keep track of time between certain function
+	* calls, and provides access to a FPS metric which updates once each second.
+	**/
 	class Timer : public Module
 	{
 	private:
-
-		// The single instance of this class.
-		static Timer * instance;
 
 		// Timing vars for benchmarking.
 		Uint32 time_init;
@@ -62,15 +63,53 @@ namespace sdl
 
 	public:
 
+		/**
+		* Constructor. Initializes the SDL/timer subsystem.
+		**/
 		Timer();
+
+		/**
+		* Destructor.
+		**/
 		~Timer();
 
+		/**
+		* Gets the name of the module.
+		* @return Always returns "love.timer.sdl".
+		**/
 		const char * getName() const;
 		
+		/**
+		* Measures the time between this call and the previous call, 
+		* and updates internal values accordinly.
+		**/
 		void step();
+
+		/**
+		* Tries to sleep for the specified amount of time. The precision is
+		* usually 1ms.
+		* @param ms The number of milliseconds to sleep for.
+		**/
 		void sleep(unsigned int ms);
+
+		/**
+		* Gets the time between the last two frames, assuming step is called
+		* each frame.
+		**/
 		float getDelta() const;
+
+		/**
+		* Gets the average FPS over the last second. Beucase the value is only updated
+		* once per second, it does not look erratic when displayed on screen.
+		* @return The "current" FPS. 
+		**/
 		float getFPS() const;
+
+		/**
+		* Gets the amount of time since the program started. Only useful for timing
+		* code or measuring intervals.
+		* @return The time (in seconds) since the program started.
+		**/
 		float getTime() const;
 
 	}; // Timer

@@ -39,7 +39,7 @@ namespace graphics
 		/**
 		* Destructor.
 		**/
-		virtual ~Drawable() = 0;
+		virtual ~Drawable();
 
 		/**
 		* Draws the object with the specified transformation.
