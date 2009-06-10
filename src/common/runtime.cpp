@@ -260,4 +260,9 @@ namespace love
 		return luax_convobj(L, idx, "filesystem", "newFile");
 	}
 
+	int luax_filetodata(lua_State * L, int idx)
+	{
+		return luax_convobj(L, idx, "filesystem", "read");
+	}
+
 } // love

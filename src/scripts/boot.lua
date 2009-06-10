@@ -112,6 +112,7 @@ function love.init()
 	love.audio = require("love.audio.openal")
 	love.physics = require("love.physics.box2d")
 	love.sound = require("love.sound.sdlsound")
+	love.native = require("love.native.tcc")
 
 	if love.__args[1] and love.__args[1] ~= "" then
 		love.filesystem.setIdentity("love2")
