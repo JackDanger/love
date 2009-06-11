@@ -65,9 +65,6 @@ else
 	buildrev=$2
 fi
 
-# Remove previous configure (LOVE_VERSION might be changed).
-rm configure.in
-
 # Upload to the appropriate revision.
 svn up -r $buildrev
 
@@ -88,7 +85,12 @@ else
 fi
 
 # Update version in configure.
-cat configure.in | sed "s/LOVE_VERSION/$displayversion/g" > configure.in
+# cat configure.in | sed "s/LOVE_VERSION/$displayversion/g" > configure.in
+head -c 15 configure.in > configure.in.tmp
+echo " [$displayversion])" >> configure.in.tmp
+tail -n +2 configure.in >> configure.in.tmp
+cp configure.in.tmp configure.in
+rm configure.in.tmp
 
 # Build ... BUILD!
 sh platform/unix/gen-makefile
