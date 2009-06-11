@@ -21,7 +21,9 @@
 // LOVE
 #include "wrap_Native.h"
 
-#include "../../Filesystem/File.h"
+#include "../../filesystem/File.h"
+
+#include <cstring>
 
 namespace love
 {

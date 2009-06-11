@@ -14,6 +14,12 @@ love_SOURCES = \
 ./modules/keyboard/sdl/Keyboard.cpp \
 ./modules/keyboard/sdl/wrap_Keyboard.cpp \
 ./modules/keyboard/sdl/Keyboard.h \
+./modules/native/tcc/libtcc/libtcc.c \
+./modules/native/tcc/libtcc/libtcc.h \
+./modules/native/tcc/Native.cpp \
+./modules/native/tcc/wrap_Native.h \
+./modules/native/tcc/wrap_Native.cpp \
+./modules/native/tcc/Native.h \
 ./modules/physics/box2d/wrap_PrismaticJoint.cpp \
 ./modules/physics/box2d/PolygonShape.cpp \
 ./modules/physics/box2d/wrap_Joint.cpp \
@@ -235,6 +241,14 @@ love_SOURCES = \
 ./modules/joystick/sdl/Joystick.cpp \
 ./modules/joystick/sdl/wrap_Joystick.h \
 ./physics/box2d/Source/Common/b2Settings.h \
+./libraries/lanes/lanes.cpp \
+./libraries/lanes/lanes/threading.h \
+./libraries/lanes/lanes/tools.c \
+./libraries/lanes/lanes/lanes.lua.h \
+./libraries/lanes/lanes/threading.c \
+./libraries/lanes/lanes/tools.h \
+./libraries/lanes/lanes/lanes.c \
+./libraries/lanes/lanes.h \
 ./libraries/luasocket/luasocket.cpp \
 ./libraries/luasocket/luasocket.h \
 ./libraries/luasocket/libluasocket/inet.c \

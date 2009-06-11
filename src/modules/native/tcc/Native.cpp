@@ -22,6 +22,7 @@
 
 
 #include <cstring>
+#include <cstdlib>
 
 namespace love
 {
@@ -40,43 +41,43 @@ namespace tcc
 	{
 
 		// C
-		{ "strcmp", strcmp },
-		{ "strlen", strlen },
+		{ "strcmp", (void*)strcmp },
+		{ "strlen", (void*)strlen },
 
 		// Lua
-		{ "lua_isnumber", lua_isnumber },
-		{ "lua_isstring", lua_isstring },
-		{ "lua_iscfunction", lua_iscfunction },
-		{ "lua_isuserdata", lua_isuserdata },
-		{ "lua_type", lua_type },
-		{ "lua_typename", lua_typename },
+		{ "lua_isnumber", (void*)lua_isnumber },
+		{ "lua_isstring", (void*)lua_isstring },
+		{ "lua_iscfunction", (void*)lua_iscfunction },
+		{ "lua_isuserdata", (void*)lua_isuserdata },
+		{ "lua_type", (void*)lua_type },
+		{ "lua_typename", (void*)lua_typename },
 
-		{ "lua_equal", lua_equal },
-		{ "lua_rawequal", lua_rawequal },
-		{ "lua_lessthan", lua_lessthan },
+		{ "lua_equal", (void*)lua_equal },
+		{ "lua_rawequal", (void*)lua_rawequal },
+		{ "lua_lessthan", (void*)lua_lessthan },
 
-		{ "lua_tonumber", lua_tonumber },
-		{ "lua_tointeger", lua_tointeger },
-		{ "lua_toboolean", lua_toboolean },
-		{ "lua_tolstring", lua_tolstring },
-		{ "lua_objlen", lua_objlen },
-		{ "lua_tocfunction", lua_tocfunction },
-		{ "lua_touserdata", lua_touserdata },
-		{ "lua_tothread", lua_tothread },
-		{ "lua_topointer", lua_topointer },
+		{ "lua_tonumber", (void*)lua_tonumber },
+		{ "lua_tointeger", (void*)lua_tointeger },
+		{ "lua_toboolean", (void*)lua_toboolean },
+		{ "lua_tolstring", (void*)lua_tolstring },
+		{ "lua_objlen", (void*)lua_objlen },
+		{ "lua_tocfunction", (void*)lua_tocfunction },
+		{ "lua_touserdata", (void*)lua_touserdata },
+		{ "lua_tothread", (void*)lua_tothread },
+		{ "lua_topointer", (void*)lua_topointer },
 
-		{ "lua_pushnil", lua_pushnil },
-		{ "lua_pushnumber", lua_pushnumber },
-		{ "lua_pushinteger", lua_pushinteger },
-		{ "lua_pushlstring", lua_pushlstring },
-		{ "lua_pushstring", lua_pushstring },
-		{ "lua_pushvfstring", lua_pushvfstring },
+		{ "lua_pushnil", (void*)lua_pushnil },
+		{ "lua_pushnumber", (void*)lua_pushnumber },
+		{ "lua_pushinteger", (void*)lua_pushinteger },
+		{ "lua_pushlstring", (void*)lua_pushlstring },
+		{ "lua_pushstring", (void*)lua_pushstring },
+		{ "lua_pushvfstring", (void*)lua_pushvfstring },
 
-		{ "lua_pushfstring", lua_pushfstring },
-		{ "lua_pushcclosure", lua_pushcclosure },
-		{ "lua_pushboolean", lua_pushboolean },
-		{ "lua_pushlightuserdata", lua_pushlightuserdata },
-		{ "lua_pushthread", lua_pushthread },
+		{ "lua_pushfstring", (void*)lua_pushfstring },
+		{ "lua_pushcclosure", (void*)lua_pushcclosure },
+		{ "lua_pushboolean", (void*)lua_pushboolean },
+		{ "lua_pushlightuserdata", (void*)lua_pushlightuserdata },
+		{ "lua_pushthread", (void*)lua_pushthread },
 
 		// End
 		{ 0, 0 }
