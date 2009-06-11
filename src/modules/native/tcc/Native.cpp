@@ -20,9 +20,10 @@
 
 #include "Native.h"
 
-
 #include <cstring>
-#include <cstdlib>
+
+// The API which should be made available to TCC.
+#include "api.h"
 
 namespace love
 {
@@ -31,61 +32,8 @@ namespace native
 namespace tcc
 {
 
-	struct tcc_function 
-	{
-		const char * name; 
-		void * fn;
-	};
-
-	static tcc_function tcc_api[] =
-	{
-
-		// C
-		{ "strcmp", (void*)strcmp },
-		{ "strlen", (void*)strlen },
-
-		// Lua
-		{ "lua_isnumber", (void*)lua_isnumber },
-		{ "lua_isstring", (void*)lua_isstring },
-		{ "lua_iscfunction", (void*)lua_iscfunction },
-		{ "lua_isuserdata", (void*)lua_isuserdata },
-		{ "lua_type", (void*)lua_type },
-		{ "lua_typename", (void*)lua_typename },
-
-		{ "lua_equal", (void*)lua_equal },
-		{ "lua_rawequal", (void*)lua_rawequal },
-		{ "lua_lessthan", (void*)lua_lessthan },
-
-		{ "lua_tonumber", (void*)lua_tonumber },
-		{ "lua_tointeger", (void*)lua_tointeger },
-		{ "lua_toboolean", (void*)lua_toboolean },
-		{ "lua_tolstring", (void*)lua_tolstring },
-		{ "lua_objlen", (void*)lua_objlen },
-		{ "lua_tocfunction", (void*)lua_tocfunction },
-		{ "lua_touserdata", (void*)lua_touserdata },
-		{ "lua_tothread", (void*)lua_tothread },
-		{ "lua_topointer", (void*)lua_topointer },
-
-		{ "lua_pushnil", (void*)lua_pushnil },
-		{ "lua_pushnumber", (void*)lua_pushnumber },
-		{ "lua_pushinteger", (void*)lua_pushinteger },
-		{ "lua_pushlstring", (void*)lua_pushlstring },
-		{ "lua_pushstring", (void*)lua_pushstring },
-		{ "lua_pushvfstring", (void*)lua_pushvfstring },
-
-		{ "lua_pushfstring", (void*)lua_pushfstring },
-		{ "lua_pushcclosure", (void*)lua_pushcclosure },
-		{ "lua_pushboolean", (void*)lua_pushboolean },
-		{ "lua_pushlightuserdata", (void*)lua_pushlightuserdata },
-		{ "lua_pushthread", (void*)lua_pushthread },
-
-		// End
-		{ 0, 0 }
-	};
-
-
-	Native::Native()
-		: state(0)
+	Compiler::Compiler()
+		: state(0), buffer(0)
 	{
 		state = tcc_new();
 
@@ -97,46 +45,39 @@ namespace tcc
 		tcc_set_output_type(state, TCC_OUTPUT_MEMORY);
 
 		// Add APIs here.
-		for(tcc_function * f = tcc_api; (*f).name != 0; f++)
+		for(const tcc_function * f = tcc_api; (*f).name != 0; f++)
 		{
 			tcc_add_symbol(state, (*f).name, (*f).fn);
 		}
-
 	}
 
-	Native::~Native()
+	Compiler::~Compiler()
 	{
 		if(state != 0)
-		{
 			tcc_delete(state);
-		}
 
-		for(int i = 0; i<(int)buffers.size(); i++)
-		{
-			if(buffers[i] != 0)
-			{
-				free(buffers[i]);
-			}
-		}
+		if(buffer != 0)
+			free(buffer);
 	}
 
-	const char * Native::getName() const
-	{
-		return "love.native.tcc";
-	}
-
-	bool Native::compile(const char * str)
+	bool Compiler::compile(const char ** str, int size)
 	{
 		if(state == 0)
 			return false;
 
-		if (tcc_compile_string(state, str) == -1)
+		for(int i =0; i<size; i++)
+		{
+			if (tcc_compile_string(state, str[i]) == -1)
+				return false;
+		}
+
+		if(!relocate())
 			return false;
 
 		return true;
 	}
 
-	bool Native::relocate()
+	bool Compiler::relocate()
 	{
 		if(state == 0)
 			return false;
@@ -146,28 +87,73 @@ namespace tcc
 		if(size == -1)
 			return false;
 
-		void * mem = malloc(size);
+		buffer = malloc(size);
 
-		if(mem == 0)
+		if(buffer == 0)
 			return false;
 
-		if(tcc_relocate(state, mem) == -1)
+		if(tcc_relocate(state, buffer) == -1)
 		{
-			free(mem);
+			free(buffer);
+			buffer = 0;
 			return false;
 		}
 
-		buffers.push_back(mem);
+		return true;
+	}
+
+	void * Compiler::getSymbol(const char * sym)
+	{
+		if(state == 0)
+			return 0;
+
+		return tcc_get_symbol(state, sym);
+	}
+
+
+	Native::Native()
+	{
+	}
+
+	Native::~Native()
+	{
+		for(int i = 0; i<(int)compilers.size(); i++)
+			delete compilers[i];
+	}
+
+	const char * Native::getName() const
+	{
+		return "love.native.tcc";
+	}
+
+	bool Native::compile(const char ** str, int size)
+	{
+		// Create a new compiler.
+		Compiler * c = new Compiler();
+
+		// Compile the code.
+		if(!c->compile(str, size))
+		{
+			delete c;
+			return false;
+		}
+
+		compilers.push_back(c);
 
 		return true;
 	}
 
 	void * Native::getSymbol(const char * sym)
 	{
-		if(state == 0)
-			return 0;
+		for(int i = 0; i<(int)compilers.size(); i++)
+		{
+			void * s = compilers[i]->getSymbol(sym);
 
-		return tcc_get_symbol(state, sym);
+			if(s != 0)
+				return s;
+		}
+
+		return 0;
 	}
 
 } // tcc

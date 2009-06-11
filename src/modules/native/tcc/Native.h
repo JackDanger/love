@@ -37,16 +37,30 @@ namespace native
 namespace tcc
 {
 
+	class Compiler
+	{
+		friend class Native;
+	private:
+		TCCState * state;
+		void * buffer;
+	public:
+		Compiler();
+		~Compiler();
+
+
+		bool compile(const char ** str, int size);
+
+		void * getSymbol(const char * sym);
+
+	private:
+		bool relocate();
+	};
+
 	class Native : public Module
 	{
 	private:
 
-		// The tcc state.
-		TCCState * state;
-
-		// Space for relocating. Using vector to support
-		// multiple relocations.
-		std::vector<void *> buffers;		
+		std::vector<Compiler *> compilers;		
 
 	public:
 
@@ -66,12 +80,15 @@ namespace tcc
 		**/
 		const char * getName() const;
 
-		bool compile(const char * str);
-
-		bool relocate();
+		/**
+		* Compile an array of strings in order, and relocate.
+		* @param The array of strings to compile. 
+		* @param The number of strings to compile.
+		* @return True on success, false otherwise.
+		**/
+		bool compile(const char ** str, int size);
 
 		void * getSymbol(const char * sym);
-
 
 	}; // Native
 

@@ -35,31 +35,40 @@ namespace tcc
 
 	int _wrap_compile(lua_State * L)
 	{
-		// Convert to File, if necessary.
-		if(lua_isstring(L, 1))
-			luax_strtofile(L, 1);
-
-		filesystem::File * file = luax_checktype<filesystem::File>(L, 1, "File", LOVE_FILESYSTEM_FILE_BITS);
-
-		Data * data = file->read();
-		int size = data->getSize();
-
-		char * str = new char[size+1];
-		str[size] = 0;
-		memcpy(str, data->getData(), size);
-		data->release();
-
-		bool r = instance->compile((const char *)str);
+		int argn = lua_gettop(L);
 		
-		delete [] str;
+		// We need argn strings.
+		char ** strs = new char*[argn];
+
+		for(int i = 1; i<=argn; i++)
+		{
+			// Convert to File, if necessary.
+			if(lua_isstring(L, 1))
+				luax_strtofile(L, 1);
+
+			filesystem::File * file = luax_checktype<filesystem::File>(L, 1, "File", LOVE_FILESYSTEM_FILE_BITS);
+			
+			int size = file->getSize();
+
+			// Allocate some new data. Need an extra char for the
+			// trailing 0. 
+			char * str = new char[size+1];
+			str[size] = 0;
+			file->read((void*)str, size);
+
+			// Put it in the list of strings.
+			strs[i-1] = str;
+		}
+
+		bool r = instance->compile((const char **)strs, argn);
 
 		luax_pushboolean(L, r);
-		return 1;
-	}
 
-	int _wrap_relocate(lua_State * L)
-	{
-		luax_pushboolean(L, instance->relocate());
+		// Cleanup.
+		for(int i = 0; i<argn; i++)
+			free(strs[i]);
+		delete [] strs;
+
 		return 1;
 	}
 
@@ -76,11 +85,38 @@ namespace tcc
 
 		return 1;
 	}
+
+	/**
+	* Searcher function for modules compiled with love.native.
+	**/
+	static int searcher(lua_State * L)
+	{
+		const char * src = lua_tostring(L, 1);
+
+		int length = strlen(src);
+
+		// luaopen_ needs 8 chars.
+		char * dst = new char[length+8+1];
+		memcpy(dst, "luaopen_", 8); 
+
+		for(int i = 0; i<=length; i++)
+			dst[i+8] = (src[i] == '.') ? '_' : src[i];
+
+		void * sym = instance->getSymbol(dst);
+
+		if(sym == 0)
+			lua_pushfstring(L, "\tno symbol \"%s\" in love.native.\n", dst);
+		else
+			lua_pushcfunction(L, (lua_CFunction)sym);
+
+		delete [] dst;
+
+		return 1;
+	}
 	
 	// List of functions to wrap.
 	static const luaL_Reg wrap_Native_functions[] = {
 		{ "compile", _wrap_compile },
-		{ "relocate", _wrap_relocate },
 		{ "getSymbol", _wrap_getSymbol },
 		{ 0, 0 }
 	};
@@ -98,6 +134,8 @@ namespace tcc
 				return luaL_error(L, e.what());
 			}
 		}
+
+		luax_register_searcher(L, searcher);
 
 		return luax_register_module(L, wrap_Native_functions, 0);
 	}

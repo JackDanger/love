@@ -18,24 +18,23 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_NATIVE_TCC_WRAP_NATIVE_H
-#define LOVE_NATIVE_TCC_WRAP_NATIVE_H
+#ifndef LOVE_NATIVE_TCC_API_H
+#define LOVE_NATIVE_TCC_API_H
 
-// LOVE
-#include "Native.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-namespace love
+typedef struct tcc_function_
 {
-namespace native
-{
-namespace tcc
-{
-	int _wrap_compile(lua_State * L);
-	int _wrap_getSymbol(lua_State * L);
-	int wrap_Native_open(lua_State * L);
+	const char * name; 
+	void * fn;
+} tcc_function;
 
-} // tcc
-} // native
-} // love
+extern const tcc_function tcc_api[];
 
-#endif // LOVE_NATIVE_TCC_WRAP_NATIVE_H
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* LOVE_NATIVE_TCC_API_H */
