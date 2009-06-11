@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="include;include\SDL;include\AL"
+				AdditionalIncludeDirectories="include;include\SDL;include\AL;..\..\src;..\..\src\modules"
 				PreprocessorDefinitions="_CRT_SECURE_NO_WARNINGS;LOVE_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -114,7 +114,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="include;include\SDL;include\AL"
+				AdditionalIncludeDirectories="include;include\SDL;include\AL;..\..\src;..\..\src\modules"
 				PreprocessorDefinitions="_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
@@ -3376,6 +3376,14 @@
 							ObjectFile="$(IntDir)\libraries\lanes\"
 						/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\libraries\lanes\"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\libraries\lanes\lanes.h"
@@ -3395,6 +3403,14 @@
 								ObjectFile="$(IntDir)\libraries\lanes\lanes\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\lanes\lanes\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\libraries\lanes\lanes\threading.c"
@@ -3407,12 +3423,28 @@
 								ObjectFile="$(IntDir)\libraries\lanes\lanes\"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\lanes\lanes\"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\src\libraries\lanes\lanes\tools.c"
 						>
 						<FileConfiguration
 							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\libraries\lanes\lanes\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"

@@ -22,8 +22,7 @@
 #define LOVE_FILESYSTEM_PHYSFS_WRAP_FILE_H
 
 // LOVE
-#include "../../../common/runtime.h"
-#include "../../../common/runtime.h"
+#include <common/runtime.h>
 #include "File.h"
 
 namespace love

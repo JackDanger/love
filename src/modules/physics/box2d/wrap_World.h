@@ -22,7 +22,7 @@
 #define LOVE_PHYSICS_BOX2D_WRAP_WORLD_H
 
 // LOVE
-#include "../../../common/runtime.h"
+#include <common/runtime.h>
 #include "World.h"
 
 namespace love

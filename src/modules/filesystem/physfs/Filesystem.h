@@ -27,9 +27,9 @@
 #include <string>
 
 // LOVE
-#include "../../../common/Module.h"
-#include "../../../common/config.h"
-#include "../../../common/constants.h"
+#include <common/Module.h>
+#include <common/config.h>
+#include <common/constants.h>
 
 // Module
 #include "File.h"

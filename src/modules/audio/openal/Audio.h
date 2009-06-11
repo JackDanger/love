@@ -33,10 +33,11 @@
 #include <alut.h>
 
 // LOVE
-#include "../../../common/Module.h"
-#include "../../../common/config.h"
-#include "../../../common/constants.h"
-#include "../../sound/SoundData.h"
+#include <common/Module.h>
+#include <common/config.h>
+#include <common/constants.h>
+#include <sound/SoundData.h>
+
 #include "Channel.h"
 #include "Sound.h"
 //#include "Music.h"

@@ -25,7 +25,7 @@
 #include <SDL.h>
 
 // LOVE
-#include "../../../common/Module.h"
+#include <common/Module.h>
 
 namespace love
 {

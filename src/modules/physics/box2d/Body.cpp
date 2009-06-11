@@ -20,7 +20,7 @@
 
 #include "Body.h"
 
-#include "../../../common/math.h"
+#include <common/math.h>
 
 #include "World.h"
 

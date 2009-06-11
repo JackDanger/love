@@ -22,7 +22,7 @@
 #define LOVE_SOUND_SDLSOUND_SOUND_DATA_H
 
 // LOVE
-#include "../../filesystem/File.h"
+#include <filesystem/File.h>
 #include "../SoundData.h"
 
 // SDL_sound

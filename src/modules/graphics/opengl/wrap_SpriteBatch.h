@@ -21,7 +21,7 @@
 #ifndef LOVE_GRAPHICS_OPENGL_WRAP_SPRITE_BATCH_H
 #define LOVE_GRAPHICS_OPENGL_WRAP_SPRITE_BATCH_H
 
-#include "../../../common/runtime.h"
+#include <common/runtime.h>
 #include "SpriteBatch.h"
 
 namespace love

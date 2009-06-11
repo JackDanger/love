@@ -21,7 +21,7 @@
 #ifndef LOVE_AUDIO_OPENAL_WRAP_SOUND_H
 #define LOVE_AUDIO_OPENAL_WRAP_SOUND_H
 
-#include "../../../common/runtime.h"
+#include <common/runtime.h>
 #include "Sound.h"
 
 namespace love

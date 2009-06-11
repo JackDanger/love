@@ -22,7 +22,7 @@
 #define LOVE_GRAPHICS_OPENGL_WRAP_COLOR_H
 
 // LOVE
-#include "../../../common/runtime.h"
+#include <common/runtime.h>
 #include "Color.h"
 
 namespace love

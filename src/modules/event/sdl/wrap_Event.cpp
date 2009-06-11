@@ -21,7 +21,7 @@
 #include "wrap_Event.h"
 
 // LOVE
-#include "../../../common/runtime.h"
+#include <common/runtime.h>
 
 // sdlevent
 #include "Event.h"

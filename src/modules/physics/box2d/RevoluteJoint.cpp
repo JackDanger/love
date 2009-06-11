@@ -20,7 +20,7 @@
 
 #include "RevoluteJoint.h"
 
-#include "../../../common/math.h"
+#include <common/math.h>
 
 // Module
 #include "Body.h"

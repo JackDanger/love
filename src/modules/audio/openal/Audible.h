@@ -22,7 +22,7 @@
 #define LOVE_AUDIO_OPENAL_AUDIBLE_H
 
 // LOVE
-#include "../../../common/Object.h"
+#include <common/Object.h>
 
 // OpenAL
 #include <alut.h>

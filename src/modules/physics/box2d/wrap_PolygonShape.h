@@ -22,7 +22,7 @@
 #define LOVE_PHYSICS_BOX2D_WRAP_POLYGON_SHAPE_H
 
 // LOVE
-#include "../../../common/runtime.h"
+#include <common/runtime.h>
 #include "wrap_Shape.h"
 #include "PolygonShape.h"
 

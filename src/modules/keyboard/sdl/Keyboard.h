@@ -22,7 +22,7 @@
 #define LOVE_KEYBOARD_SDL_KEYBOARD_H
 
 // LOVE
-#include "../../../common/Module.h"
+#include <common/Module.h>
 
 namespace love
 {

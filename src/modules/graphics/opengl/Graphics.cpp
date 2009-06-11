@@ -21,8 +21,8 @@
 #include "Graphics.h"
 
 // LOVE
-#include "../../../common/config.h"
-#include "../../../common/constants.h"
+#include <common/config.h>
+#include <common/constants.h>
 
 namespace love
 {

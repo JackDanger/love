@@ -21,7 +21,7 @@
 #ifndef LOVE_OPENGL_IMAGE_FONT_H
 #define LOVE_OPENGL_IMAGE_FONT_H
 
-#include "../../image/ImageData.h"
+#include <image/ImageData.h>
 #include "Font.h"
 #include "Image.h"
 

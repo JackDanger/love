@@ -22,7 +22,7 @@
 #define LOVE_AUDIO_OPENAL_SOUND_H
 
 // LOVE
-#include "../../sound/SoundData.h"
+#include <sound/SoundData.h>
 #include "Audible.h"
 
 // OpenAL

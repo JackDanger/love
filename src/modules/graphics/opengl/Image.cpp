@@ -21,9 +21,9 @@
 #include "Image.h"
 
 // LOVE
-#include "../../../common/constants.h"
-#include "../../../common/Matrix.h"
-#include "../../../common/math.h"
+#include <common/constants.h>
+#include <common/Matrix.h>
+#include <common/math.h>
 
 // STD
 #include <cstring> // For memcpy

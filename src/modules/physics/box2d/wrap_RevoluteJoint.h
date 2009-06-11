@@ -22,7 +22,7 @@
 #define LOVE_PHYSICS_BOX2D_WRAP_REVOLUTE_JOINT_H
 
 // LOVE
-#include "../../../common/runtime.h"
+#include <common/runtime.h>
 #include "wrap_Joint.h"
 #include "RevoluteJoint.h"
 

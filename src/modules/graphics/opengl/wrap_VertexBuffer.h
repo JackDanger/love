@@ -21,8 +21,7 @@
 #ifndef LOVE_GRAPHICS_OPENGL_WRAP_VERTEX_BUFFER_H
 #define LOVE_GRAPHICS_OPENGL_WRAP_VERTEX_BUFFER_H 
 
-#include "../../../common/runtime.h"
-#include "../../../common/runtime.h"
+#include <common/runtime.h>
 #include "VertexBuffer.h"
 
 namespace love

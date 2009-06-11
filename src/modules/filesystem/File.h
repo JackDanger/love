@@ -25,8 +25,8 @@
 #include <string>
 
 // LOVE
-#include "../../common/Data.h"
-#include "../../common/Object.h"
+#include <common/Data.h>
+#include <common/Object.h>
 
 namespace love
 {

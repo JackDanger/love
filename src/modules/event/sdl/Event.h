@@ -22,8 +22,8 @@
 #define LOVE_EVENT_SDL_EVENT_H
 
 // LOVE
-#include "../Event.h"
-#include "../../../common/runtime.h"
+#include <event/Event.h>
+#include <common/runtime.h>
 
 // SDL
 #include <SDL.h>

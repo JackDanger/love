@@ -22,8 +22,8 @@
 #define LOVE_DEVIL_IMAGE_DATA_H
 
 // LOVE
-#include "../../filesystem/File.h"
-#include "../ImageData.h"
+#include <filesystem/File.h>
+#include <image/ImageData.h>
 
 // DevIL
 #include <IL/il.h>

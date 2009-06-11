@@ -24,7 +24,7 @@
 #include <cmath>
 
 // LOVE
-#include "../../../common/constants.h"
+#include <common/constants.h>
 
 namespace love
 {

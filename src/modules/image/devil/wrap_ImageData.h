@@ -22,7 +22,7 @@
 #define LOVE_IMAGE_DEVIL_WRAP_IMAGE_DATA_H
 
 // LOVE
-#include "../../../common/runtime.h"
+#include <common/runtime.h>
 #include "ImageData.h"
 
 namespace love

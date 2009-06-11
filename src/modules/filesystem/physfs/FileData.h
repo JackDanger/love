@@ -22,7 +22,7 @@
 #define LOVE_PHYSFS_FILE_DATA_H
 
 // LOVE
-#include "../../../common/Data.h"
+#include <common/Data.h>
 
 namespace love
 {	

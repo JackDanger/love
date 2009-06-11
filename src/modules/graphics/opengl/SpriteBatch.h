@@ -25,11 +25,11 @@
 #include <cstring>
 
 // LOVE
-#include "../../../common/math.h"
-#include "../../../common/Object.h"
-#include "../../../common/Vector.h"
-#include "../../../common/Matrix.h"
-#include "../Drawable.h"
+#include <common/math.h>
+#include <common/Object.h>
+#include <common/Vector.h>
+#include <common/Matrix.h>
+#include <graphics/Drawable.h>
 
 namespace love
 {

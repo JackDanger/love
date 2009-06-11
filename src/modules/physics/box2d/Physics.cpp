@@ -24,7 +24,7 @@
 #include "graham/GrahamScanConvexHull.h"
 
 // LOVE
-#include "../../../common/math.h"
+#include <common/math.h>
 #include "wrap_Body.h"
 
 namespace love

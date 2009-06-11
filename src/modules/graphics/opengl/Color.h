@@ -22,7 +22,7 @@
 #define LOVE_GRAPHICS_OPENGL_COLOR_H
 
 // LOVE
-#include "../../../common/Object.h"
+#include <common/Object.h>
 
 namespace love
 {

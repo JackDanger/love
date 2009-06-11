@@ -22,7 +22,7 @@
 #define LOVE_MOUSE_SDL_MOUSE_H
 
 // LOVE
-#include "../../../common/Module.h"
+#include <common/Module.h>
 
 namespace love
 {

@@ -28,7 +28,7 @@
 #include "libtcc/libtcc.h"
 
 // LOVE
-#include "../../../common/Module.h"
+#include <common/Module.h>
 
 namespace love
 {

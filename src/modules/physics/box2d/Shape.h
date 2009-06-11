@@ -22,9 +22,9 @@
 #define LOVE_PHYSICS_BOX2D_SHAPE_H
 
 // LOVE
-#include "../../../common/Object.h"
-#include "../../../common/Reference.h"
-#include "../../../common/constants.h"
+#include <common/Object.h>
+#include <common/Reference.h>
+#include <common/constants.h>
 
 // Box2D
 #include "Include/Box2D.h"

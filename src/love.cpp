@@ -24,23 +24,23 @@
 #include <SDL.h>
 
 // LOVE
-#include "common/config.h"
-#include "common/runtime.h"
-#include "common/constants.h"
+#include <common/config.h>
+#include <common/runtime.h>
+#include <common/constants.h>
 
 // Modules
-#include "modules/audio/openal/wrap_Audio.h"
-#include "modules/event/sdl/wrap_Event.h"
-#include "modules/filesystem/physfs/wrap_Filesystem.h"
-#include "modules/graphics/opengl/wrap_Graphics.h"
-#include "modules/image/devil/wrap_Image.h"
-#include "modules/joystick/sdl/wrap_Joystick.h"
-#include "modules/keyboard/sdl/wrap_Keyboard.h"
-#include "modules/mouse/sdl/wrap_Mouse.h"
-#include "modules/native/tcc/wrap_Native.h"
-#include "modules/physics/box2d/wrap_Physics.h"
-#include "modules/sound/sdlsound/wrap_Sound.h"
-#include "modules/timer/sdl/wrap_Timer.h"
+#include <audio/openal/wrap_Audio.h>
+#include <event/sdl/wrap_Event.h>
+#include <filesystem/physfs/wrap_Filesystem.h>
+#include <graphics/opengl/wrap_Graphics.h>
+#include <image/devil/wrap_Image.h>
+#include <joystick/sdl/wrap_Joystick.h>
+#include <keyboard/sdl/wrap_Keyboard.h>
+#include <mouse/sdl/wrap_Mouse.h>
+#include <native/tcc/wrap_Native.h>
+#include <physics/box2d/wrap_Physics.h>
+#include <sound/sdlsound/wrap_Sound.h>
+#include <timer/sdl/wrap_Timer.h>
 
 // Libraries.
 #include "libraries/luasocket/luasocket.h"

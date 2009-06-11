@@ -22,9 +22,9 @@
 #define LOVE_PHYSICS_BOX2D_WORLD_H
 
 // LOVE
-#include "../../../common/Object.h"
-#include "../../../common/runtime.h"
-#include "../../../common/Reference.h"
+#include <common/Object.h>
+#include <common/runtime.h>
+#include <common/Reference.h>
 
 // STD
 #include <vector>

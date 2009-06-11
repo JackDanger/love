@@ -22,8 +22,7 @@
 #define LOVE_GRAPHICS_OPENGL_WRAP_PARTICLE_SYSTEM_H
 
 // LOVE
-#include "../../../common/runtime.h"
-#include "../../../common/runtime.h"
+#include <common/runtime.h>
 #include "wrap_Image.h"
 #include "wrap_Color.h"
 #include "ParticleSystem.h"

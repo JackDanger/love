@@ -22,7 +22,7 @@
 #define LOVE_SOUND_SOUND_DATA_H
 
 // LOVE
-#include "../../common/Data.h"
+#include <common/Data.h>
 
 namespace love
 {

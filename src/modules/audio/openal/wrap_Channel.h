@@ -21,7 +21,7 @@
 #ifndef LOVE_AUDIO_OPENAL_WRAP_CHANNEL_H
 #define LOVE_AUDIO_OPENAL_WRAP_CHANNEL_H
 
-#include "../../../common/runtime.h"
+#include <common/runtime.h>
 #include "Channel.h"
 
 namespace love

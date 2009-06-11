@@ -22,7 +22,7 @@
 #define LOVE_GRAPHICS_OPENGL_WRAP_IMAGE_H
 
 // LOVE
-#include "../../../common/runtime.h"
+#include <common/runtime.h>
 #include "Image.h"
 
 namespace love

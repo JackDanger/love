@@ -22,8 +22,8 @@
 #define LOVE_PHYSICS_BOX2D_CONTACT_H
 
 // LOVE
-#include "../../../common/Object.h"
-#include "../../../common/runtime.h"
+#include <common/Object.h>
+#include <common/runtime.h>
 
 // Box2D
 #include "Include/Box2D.h"

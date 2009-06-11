@@ -22,7 +22,7 @@
 #define LOVE_IMAGE_DEVIL_IMAGE_H
 
 // LOVE
-#include "../../../common/Module.h"
+#include <common/Module.h>
 #include "ImageData.h"
 
 namespace love

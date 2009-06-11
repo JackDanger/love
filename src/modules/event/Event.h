@@ -22,7 +22,7 @@
 #define LOVE_EVENT_EVENT_H
 
 // LOVE
-#include "../../common/Module.h"
+#include <common/Module.h>
 
 namespace love
 {

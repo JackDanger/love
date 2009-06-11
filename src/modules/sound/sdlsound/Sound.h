@@ -22,7 +22,7 @@
 #define LOVE_SOUND_SDLSOUND_SOUND_H
 
 // LOVE
-#include "../../../common/Module.h"
+#include <common/Module.h>
 #include "SoundData.h"
 
 namespace love

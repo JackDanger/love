@@ -31,7 +31,7 @@
 #include <SDL_opengl.h>
 
 // LOVE
-#include "../../../common/Module.h"
+#include <common/Module.h>
 #include "Image.h"
 #include "Animation.h"
 #include "Color.h"

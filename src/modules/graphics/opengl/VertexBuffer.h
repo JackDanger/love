@@ -22,12 +22,12 @@
 #define LOVE_GRAPHICS_OPENGL_VERTEX_BUFFER_H
 
 // LOVE
-#include "../../../common/constants.h"
-#include "../../../common/math.h"
-#include "../../../common/Object.h"
-#include "../../../common/Vector.h"
-#include "../../../common/Matrix.h"
-#include "../Drawable.h"
+#include <common/constants.h>
+#include <common/math.h>
+#include <common/Object.h>
+#include <common/Vector.h>
+#include <common/Matrix.h>
+#include <graphics/Drawable.h>
 
 // Module.
 #include "Image.h"

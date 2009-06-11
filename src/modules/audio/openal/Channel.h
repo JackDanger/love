@@ -22,7 +22,7 @@
 #define LOVE_AUDIO_OPENAL_CHANNEL_H
 
 // LOVE
-#include "../../../common/Object.h"
+#include <common/Object.h>
 
 // love_openal
 #include "Audible.h"

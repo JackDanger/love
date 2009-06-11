@@ -22,7 +22,7 @@
 #define LOVE_PHYSICS_BOX2D_PHYSICS_H
 
 // LOVE
-#include "../../../common/Module.h"
+#include <common/Module.h>
 #include "World.h"
 #include "Contact.h"
 #include "Body.h"

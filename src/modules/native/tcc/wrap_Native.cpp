@@ -21,7 +21,7 @@
 // LOVE
 #include "wrap_Native.h"
 
-#include "../../filesystem/File.h"
+#include <filesystem/File.h>
 
 #include <cstring>
 

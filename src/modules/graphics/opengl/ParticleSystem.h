@@ -23,10 +23,11 @@
 
 // LOVE
 
-#include "../../../common/math.h"
-#include "../../../common/Vector.h"
-#include "../../../common/constants.h"
-#include "../Drawable.h"
+#include <common/math.h>
+#include <common/Vector.h>
+#include <common/constants.h>
+#include <graphics/Drawable.h>
+
 #include "Color.h"
 #include "Image.h"
 

@@ -22,7 +22,7 @@
 #define LOVE_PHYSICS_BOX2D_WRAP_DISTANCE_JOINT_H
 
 // LOVE
-#include "../../../common/runtime.h"
+#include <common/runtime.h>
 #include "wrap_Joint.h"
 #include "DistanceJoint.h"
 

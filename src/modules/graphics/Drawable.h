@@ -22,7 +22,7 @@
 #define LOVE_GRAPHICS_DRAWABLE_H
 
 // LOVE
-#include "../../common/Object.h"
+#include <common/Object.h>
 
 namespace love
 {

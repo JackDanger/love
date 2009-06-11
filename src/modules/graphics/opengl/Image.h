@@ -22,11 +22,11 @@
 #define LOVE_GRAPHICS_OPENGL_IMAGE_H
 
 // LOVE
-#include "../../../common/config.h"
-#include "../../image/ImageData.h"
-#include "../../../common/math.h"
-#include "../Volatile.h"
-#include "../Drawable.h"
+#include <common/config.h>
+#include <image/ImageData.h>
+#include <common/math.h>
+#include <graphics/Volatile.h>
+#include <graphics/Drawable.h>
 
 namespace love
 {
