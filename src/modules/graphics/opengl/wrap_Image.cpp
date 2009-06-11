@@ -46,11 +46,21 @@ namespace opengl
 		return 1;
 	}
 
+	int _wrap_Image_setFilter(lua_State * L)
+	{
+		Image * t = luax_checkimage(L, 1);
+		int min = luaL_checkint(L, 2);
+		int mag = luaL_checkint(L, 3);
+		t->setFilter(min, mag);
+		return 1;
+	}
+
 	static const luaL_Reg wrap_Image_functions[] = {
 		{ "__index", _wrap__index },
 		{ "__gc", _wrap__gc },
 		{ "getWidth", _wrap_Image_getWidth },
 		{ "getHeight", _wrap_Image_getHeight },
+		{ "setFilter", _wrap_Image_setFilter },
 		{ 0, 0 }
 	};
 

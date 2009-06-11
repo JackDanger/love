@@ -21,6 +21,7 @@
 #include "Image.h"
 
 // LOVE
+#include "../../../common/constants.h"
 #include "../../../common/Matrix.h"
 #include "../../../common/math.h"
 
@@ -159,6 +160,36 @@ namespace opengl
 		glDisableClientState(GL_VERTEX_ARRAY);
 
 		glPopMatrix();
+	}
+
+	void Image::setFilter(int min, int mag)
+	{
+		switch(min)
+		{
+		default:
+		case FILTER_LINEAR:
+			min = GL_LINEAR;
+			break;
+		case FILTER_NEAREST:
+			min = GL_NEAREST;
+			break;
+		}
+
+		switch(mag)
+		{
+		default:
+		case FILTER_LINEAR:
+			mag = GL_LINEAR;
+			break;
+		case FILTER_NEAREST:
+			mag = GL_NEAREST;
+			break;
+		}
+
+		bind();
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, min);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, mag);
 	}
 
 	void Image::bind() const

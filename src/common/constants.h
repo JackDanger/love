@@ -453,6 +453,13 @@ namespace love
 
 	}; // enum
 
+	// Filter modes
+	enum
+	{
+		FILTER_LINEAR = 0,
+		FILTER_NEAREST = 1
+	};
+
 
 	// Type used for storing constants
 	// in an array.
@@ -717,6 +724,9 @@ namespace love
 		{ "usage_static", USAGE_STATIC },
 		{ "usage_stream", USAGE_STREAM },
 		{ "usage_num", USAGE_NUM },
+
+		{ "filter_linear", FILTER_LINEAR },
+		{ "filter_nearest", FILTER_NEAREST },
 
 		{0, 0}, // Indicates the end
 

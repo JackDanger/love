@@ -109,6 +109,14 @@ namespace opengl
 		**/
 		void draws(float x, float y, float angle, float sx, float sy, float ox, float oy, float rx, float ry, float rw, float rh) const;
 
+		/**
+		* Sets the filter modes.
+		*
+		* @param min The minifying filter mode.
+		* @param mag The magnification filter mode.
+		**/
+		void setFilter(int min, int mag);
+
 		void bind() const;
 
 		bool load();
