@@ -14,6 +14,7 @@ AC_SEARCH_LIBS([Sound_Init], [SDL_sound], [], AC_MSG_ERROR([Can't LÖVE without 
 AC_SEARCH_LIBS([glLoadIdentity], [GL], [], AC_MSG_ERROR([Can't LÖVE without OpenGL]))
 AC_SEARCH_LIBS([gluOrtho2D], [GLU], [], AC_MSG_ERROR([Can't LÖVE without OpenGL Utility Library]))
 AC_SEARCH_LIBS([alSourcePlay], [openal], [], AC_MSG_ERROR([Can't LÖVE without OpenAL]))
+AC_SEARCH_LIBS([alutInit], [alut], [], AC_MSG_ERROR([Can't LÖVE without ALUT]))
 AC_SEARCH_LIBS(
 	[lua_pcall],
 	[lua lua5.1],
