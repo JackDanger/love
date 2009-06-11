@@ -66,7 +66,7 @@ namespace tcc
 
 		// Cleanup.
 		for(int i = 0; i<argn; i++)
-			free(strs[i]);
+			delete strs[i];
 		delete [] strs;
 
 		return 1;

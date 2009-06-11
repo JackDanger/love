@@ -21,6 +21,7 @@
 #include "Native.h"
 
 #include <cstring>
+#include <cstdlib>
 
 // The API which should be made available to TCC.
 #include "api.h"

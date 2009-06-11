@@ -20,6 +20,8 @@ love_SOURCES = \
 ./modules/native/tcc/wrap_Native.h \
 ./modules/native/tcc/wrap_Native.cpp \
 ./modules/native/tcc/Native.h \
+./modules/native/tcc/api.c \
+./modules/native/tcc/api.h \
 ./modules/physics/box2d/wrap_PrismaticJoint.cpp \
 ./modules/physics/box2d/PolygonShape.cpp \
 ./modules/physics/box2d/wrap_Joint.cpp \
