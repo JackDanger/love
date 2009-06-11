@@ -1,4 +1,4 @@
-AM_CPPFLAGS = -I/usr/include/AL -I/usr/include/freetype2  $(INCLUDE_LUA) -I/usr/include/SDL
+AM_CPPFLAGS = -I/home/rude/build/love/src -I/home/rude/build/love/src/modules -I/usr/include/AL -I/usr/include/freetype2  $(INCLUDE_LUA) -I/usr/include/SDL
 AUTOMAKE_OPTIONS = subdir-objects
 DEFAULT_INCLUDES =
 SUBDIRS =

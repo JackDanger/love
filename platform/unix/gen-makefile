@@ -1,7 +1,9 @@
 #!/bin/bash
 echo Generating src/Makefile.am ...
 cd src
-echo 'AM_CPPFLAGS = -I/usr/include/AL -I/usr/include/freetype2  $(INCLUDE_LUA) -I/usr/include/SDL
+inc_current=`pwd`
+inc_modules="$inc_current/modules"
+echo "AM_CPPFLAGS = -I$inc_current -I$inc_modules -I/usr/include/AL -I/usr/include/freetype2  \$(INCLUDE_LUA) -I/usr/include/SDL
 AUTOMAKE_OPTIONS = subdir-objects
 DEFAULT_INCLUDES =
 SUBDIRS =
@@ -11,7 +13,7 @@ bin_PROGRAMS = love
 #love_LDFLAGS =
 #love_LDADD =
 
-love_SOURCES = \' > Makefile.am.tmp
+love_SOURCES = \\" > Makefile.am.tmp
 find . \( \( -iname "*.c" -o -iname "*.cpp" -o -iname "*.h" \) \) -exec echo '{}' \\ \; >> Makefile.am.tmp
 cat Makefile.am.tmp | grep -v -f"../platform/unix/exclude" > Makefile.am.tmp
 head -c -3 Makefile.am.tmp > Makefile.am
