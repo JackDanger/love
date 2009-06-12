@@ -58,10 +58,7 @@ namespace physfs
 
 	int _wrap_newFile(lua_State * L)
 	{
-		const char * filename = luaL_checkstring(L, 1);
-		File * t = instance->newFile(filename);
-		if(t == 0)
-			return luaL_error(L, "Could not open file %s", filename);
+		File * t = instance->newFile();
 		luax_newtype(L, "File", LOVE_FILESYSTEM_FILE_BITS, (void*)t);
 
 		return 1;

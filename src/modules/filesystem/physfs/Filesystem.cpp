@@ -125,9 +125,14 @@ namespace physfs
 		return true;
 	}
 
-	File * Filesystem::newFile(const char * file)
+	File * Filesystem::newFile()
 	{
-		return new File(std::string(file));
+		return new File();
+	}
+	
+	File * Filesystem::newFile(const char *filename)
+	{
+		return new File(filename);
 	}
 
 	const char * Filesystem::getWorkingDirectory()
@@ -206,10 +211,11 @@ namespace physfs
 		// on-the-fly, or passed as a parameter.
 		File * file;
 		
-                if(lua_isstring(L, 1))
+        if(lua_isstring(L, 1))
 		{
 			// Create the file.
-			file = newFile(lua_tostring(L, 1));
+			file = newFile();
+			file->open(lua_tostring(L, 1), File::READ);
 		}
 		else
                         return luaL_error(L, "Expected filename.");
@@ -261,7 +267,7 @@ namespace physfs
                 if(lua_isstring(L, 1))
 		{
 			// Create the file.
-			file = newFile(lua_tostring(L, 1));
+			file = newFile();
 		}
 		else
                         return luaL_error(L, "Expected filename.");
@@ -276,7 +282,7 @@ namespace physfs
 			int mode = luaL_optint(L, 4, File::WRITE);
 
 			// Open the file.
-			if(!file->open((File::Mode)mode))
+			if(!file->open(lua_tostring(L, 1), (File::Mode)mode))
 				return luaL_error(L, "Could not open file.");
 		}
 
@@ -342,8 +348,8 @@ namespace physfs
 
                 if(lua_isstring(L, 1))
 		{
-			file = newFile(lua_tostring(L, 1));
-			if(!file->open(File::READ))
+			file = newFile();
+			if(!file->open(lua_tostring(L, 1), File::READ))
 				return luaL_error(L, "Could not open file %s.\n", lua_tostring(L, 1)); 
 			lua_pop(L, 1);
 			
@@ -457,7 +463,8 @@ namespace physfs
 			return luaL_error(L, "File %s does not exist.", filename);
 
 		// Create the file.
-		File * file = newFile(filename);
+		File * file = newFile();
+		file->open(filename, File::READ);
 
 		// Get the data from the file.
 		Data * data = file->read();

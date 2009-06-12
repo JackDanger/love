@@ -41,8 +41,9 @@ namespace physfs
 	int _wrap_File_open(lua_State * L)
 	{
 		File * file = luax_checkfile(L, 1);
-		int mode = luaL_optint(L, 2, File::READ);
-		lua_pushboolean(L, file->open((File::Mode)mode) ? 1 : 0);
+		const char *name = luaL_checkstring(L, 2);
+		int mode = luaL_optint(L, 3, File::READ);
+		lua_pushboolean(L, file->open(name, (File::Mode)mode) ? 1 : 0);
 		return 1;
 	}
 
@@ -68,11 +69,7 @@ namespace physfs
 		File * file = luax_checkfile(L, 1);
 		bool result;
 		if ( file->getMode() == File::CLOSED )
-		{
-			int mode = luaL_optint(L, 4, File::WRITE);
-			if(!file->open((File::Mode)mode))
-			return luaL_error(L, "Could not open file.");
-		}
+			return luaL_error(L, "File is not open.");
 		if ( lua_isstring(L, 2) )
 			result = file->write(lua_tostring(L, 2), luaL_optint(L, 3, lua_objlen(L, 2)));
 		else
@@ -128,7 +125,7 @@ namespace physfs
 	int lines_i(lua_State * L)
 	{
 		// We're using a 1k buffer.
-		const static int bufsize = 8;
+		const static int bufsize = 1024;
 		static char buf[bufsize];
 
 		File * file = luax_checktype<File>(L, lua_upvalueindex(1), "File", LOVE_FILESYSTEM_FILE_BITS);
@@ -159,7 +156,7 @@ namespace physfs
 			}
 
 			if(newline > 0)
-				reak;
+				break;
 		}
 
 		// Special case for the last "line".

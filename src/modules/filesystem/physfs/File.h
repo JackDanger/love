@@ -56,11 +56,13 @@ namespace physfs
 		* @param source The source from which to load the file. (Archive or directory)
 		* @param filename The relative filepath of the file to load from the source.
 		**/
-		File(const std::string & filename);
+		File();
+		File(std::string filename);
 
 		virtual ~File();
 		
 		// Implements love::filesystem::File.
+		bool open(std::string filename, Mode mode);
 		bool open(Mode mode);
 		bool close();
 		unsigned int getSize();
