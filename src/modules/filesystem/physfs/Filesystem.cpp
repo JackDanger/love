@@ -200,47 +200,19 @@ namespace physfs
 		return true;
 	}
 
-	bool Filesystem::open(File * file, File::Mode mode)
-	{
-
-		bool success = file->open(mode);
-
-		if(!success)
-		{
-			std::cerr << "Error, could not open file: " << PHYSFS_getLastError() << std::endl;
-			return false;
-		}
-		
-		open_count++;
-		return true;
-	}
-
-	bool Filesystem::close(File * file)
-	{
-		if(!file->close())
-			return false;
-		open_count--;
-		return true;
-	}
-
 	int Filesystem::read(lua_State * L)
 	{
 		// The file to read from. The file must either be created
 		// on-the-fly, or passed as a parameter.
 		File * file;
 		
-		if(luax_istype(L, 1, LOVE_FILESYSTEM_FILE_BITS))
-		{
-			// The file is passed as a parameter.
-			file = luax_checktype<File>(L, 1, "File", LOVE_FILESYSTEM_FILE_BITS);
-		}
-		else if(lua_isstring(L, 1))
+                if(lua_isstring(L, 1))
 		{
 			// Create the file.
 			file = newFile(lua_tostring(L, 1));
 		}
 		else
-			return luaL_error(L, "Expected filename or file handle.");
+                        return luaL_error(L, "Expected filename.");
 
 		// Optionally, the caller can specify whether to read
 		// the whole file, or just a part of it.
@@ -286,18 +258,13 @@ namespace physfs
 		if(!lua_isnumber(L, 3))
 			return luaL_error(L, "Third argument must be a number.");
 
-		if(luax_istype(L, 1, LOVE_FILESYSTEM_FILE_BITS))
-		{
-			// The file is passed as a parameter.
-			file = luax_checktype<File>(L, 1, "File", LOVE_FILESYSTEM_FILE_BITS);
-		}
-		else if(lua_isstring(L, 1))
+                if(lua_isstring(L, 1))
 		{
 			// Create the file.
 			file = newFile(lua_tostring(L, 1));
 		}
 		else
-			return luaL_error(L, "Expected filename or file handle.");
+                        return luaL_error(L, "Expected filename.");
 
 		// Get the current mode of the file.
 		File::Mode mode = file->getMode();
@@ -337,21 +304,6 @@ namespace physfs
 		return 1;
 	}
 
-	bool Filesystem::eof(File * file)
-	{
-		return file->eof();
-	}
-
-	int Filesystem::tell(File * file)
-	{
-		return file->tell();
-	}
-
-	bool Filesystem::seek(File * file, int pos)
-	{
-		return file->seek(pos);
-	}
-
 	int Filesystem::enumerate(lua_State * L)
 	{
 		int n = lua_gettop(L);
@@ -388,12 +340,7 @@ namespace physfs
 	{
 		File * file;
 
-		if(luax_istype(L, 1, LOVE_FILESYSTEM_FILE_BITS))
-		{
-			file = luax_checktype<File>(L, 1, "File", LOVE_FILESYSTEM_FILE_BITS);
-			lua_pushboolean(L, 0); // 0 = do not close.
-		}
-		else if(lua_isstring(L, 1))
+                if(lua_isstring(L, 1))
 		{
 			file = newFile(lua_tostring(L, 1));
 			if(!file->open(File::READ))
@@ -404,7 +351,7 @@ namespace physfs
 			lua_pushboolean(L, 1); // 1 = autoclose.
 		}
 		else
-			return luaL_error(L, "Expected filename or file handle.");
+                        return luaL_error(L, "Expected filename.");
 
 		// Reset the file position.
 		if(!file->seek(0))

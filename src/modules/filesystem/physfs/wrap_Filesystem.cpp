@@ -126,21 +126,6 @@ namespace physfs
 		return 1;
 	}
 
-	int _wrap_open(lua_State * L)
-	{
-		File * file = luax_checkfile(L, 1);
-		int mode = luaL_optint(L, 2, File::READ);
-		lua_pushboolean(L, file->open((File::Mode)mode) ? 1 : 0);
-		return 1;
-	}
-
-	int _wrap_close(lua_State * L)
-	{
-		File * file = luax_checkfile(L, 1);
-		lua_pushboolean(L, file->close() ? 1 : 0);
-		return 1;
-	}
-
 	int _wrap_read(lua_State * L)
 	{
 		return instance->read(L);
@@ -149,28 +134,6 @@ namespace physfs
 	int _wrap_write(lua_State * L)
 	{
 		return instance->write(L);
-	}
-
-	int _wrap_eof(lua_State * L)
-	{
-		File * file = luax_checkfile(L, 1);
-		lua_pushboolean(L, file->eof() ? 1 : 0);
-		return 1;
-	}	
-
-	int _wrap_tell(lua_State * L)
-	{
-		File * file = luax_checkfile(L, 1);
-		lua_pushinteger(L, file->tell());
-		return 1;
-	}	
-
-	int _wrap_seek(lua_State * L)
-	{
-		File * file = luax_checkfile(L, 1);
-		int pos = luaL_checkinteger(L, 2);
-		lua_pushboolean(L, file->seek(pos) ? 1 : 0);
-		return 1;
 	}	
 
 	int _wrap_enumerate(lua_State * L)
@@ -234,14 +197,9 @@ namespace physfs
 		{ "isDirectory",  _wrap_isDirectory },
 		{ "isFile",  _wrap_isFile },
 		{ "mkdir",  _wrap_mkdir },
-		{ "remove",  _wrap_remove },
-		{ "open",  _wrap_open },
-		{ "close",  _wrap_close },
-		{ "read",  _wrap_read },
+                { "remove",  _wrap_remove },
+                { "read",  _wrap_read },
 		{ "write",  _wrap_write },
-		{ "eof",  _wrap_eof },
-		{ "tell",  _wrap_tell },
-		{ "seek",  _wrap_seek },
 		{ "enumerate",  _wrap_enumerate },
 		{ "lines",  _wrap_lines },
 		{ "load",  _wrap_load },
@@ -249,7 +207,7 @@ namespace physfs
 	};
 
 	const lua_CFunction wrap_Filesystem_types[] = {
-		wrap_File_open,
+                wrap_File_open,
 		0
 	};
 
