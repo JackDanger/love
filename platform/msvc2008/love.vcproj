@@ -2637,6 +2637,10 @@
 				Name="sound"
 				>
 				<File
+					RelativePath="..\..\src\modules\sound\Decoder.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\modules\sound\SoundData.h"
 					>
 				</File>
