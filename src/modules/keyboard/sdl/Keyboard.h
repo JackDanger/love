@@ -50,12 +50,7 @@ namespace sdl
 		* @param delay The amount of delay before repeating the key (in milliseconds)
 		* @param interval Specifies the amount of time between repeats (in milliseconds)
 		**/
-		void enableKeyRepeat(int delay, int interval) const;
-
-		/**
-		* Disables key repeating.
-		**/
-		void disableKeyRepeat() const;
+		void setKeyRepeat(int delay = 0, int interval = 0) const;
 
 		/**
 		* Gets the specified delay for the key repeat.

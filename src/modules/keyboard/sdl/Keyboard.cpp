@@ -40,7 +40,7 @@ namespace sdl
 		return keystate[key] == 1;		
 	}
 
-	void Keyboard::enableKeyRepeat(int delay, int interval) const
+	void Keyboard::setKeyRepeat(int delay, int interval) const
 	{
 		if(delay == KEY_REPEAT_DELAY)
 			delay = SDL_DEFAULT_REPEAT_DELAY;
@@ -50,11 +50,6 @@ namespace sdl
 		
 		if(SDL_EnableKeyRepeat(delay, interval) == -1)
 			throw new Exception("[Keyboard::enableKeyRepeat] Unable to enable key repeat");
-	}
-
-	void Keyboard::disableKeyRepeat() const
-	{
-		SDL_EnableKeyRepeat(0, 0);
 	}
 
 	int Keyboard::getKeyRepeatDelay() const

@@ -31,8 +31,7 @@ namespace keyboard
 namespace sdl
 {
 	int _wrap_isDown(lua_State * L);
-	int _wrap_enableKeyRepeat(lua_State * L);
-	int _wrap_disableKeyRepeat(lua_State * L);
+	int _wrap_setKeyRepeat(lua_State * L);
 	int _wrap_getKeyRepeat(lua_State * L);
 
 	int wrap_Keyboard_open(lua_State * L);
