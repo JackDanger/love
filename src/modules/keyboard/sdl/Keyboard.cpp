@@ -40,6 +40,37 @@ namespace sdl
 		return keystate[key] == 1;		
 	}
 
+	void Keyboard::enableKeyRepeat(int delay, int interval) const
+	{
+		if(delay == KEY_REPEAT_DELAY)
+			delay = SDL_DEFAULT_REPEAT_DELAY;
+
+		if(interval == KEY_REPEAT_INTERVAL)
+			interval = SDL_DEFAULT_REPEAT_INTERVAL;
+		
+		if(SDL_EnableKeyRepeat(delay, interval) == -1)
+			throw new Exception("[Keyboard::enableKeyRepeat] Unable to enable key repeat");
+	}
+
+	void Keyboard::disableKeyRepeat() const
+	{
+		SDL_EnableKeyRepeat(0, 0);
+	}
+
+	int Keyboard::getKeyRepeatDelay() const
+	{
+		int delay, interval = 0;
+		SDL_GetKeyRepeat(&delay, &interval);
+		return delay;
+	}
+	
+	int Keyboard::getKeyRepeatInterval() const
+	{
+		int delay, interval = 0;
+		SDL_GetKeyRepeat(&delay, &interval);
+		return interval;
+	}
+
 } // sdl
 } // keyboard
 } // love

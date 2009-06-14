@@ -23,6 +23,7 @@
 
 // LOVE
 #include <common/Module.h>
+#include <common/constants.h>
 
 namespace love
 {
@@ -40,8 +41,33 @@ namespace sdl
 		/**
 		* Checks whether a certain key is down or not.
 		* @param key A key identifier.
+		* @return boolean
 		**/
 		bool isDown(int key) const;
+
+		/**
+		* Enables key repeating.
+		* @param delay The amount of delay before repeating the key (in milliseconds)
+		* @param interval Specifies the amount of time between repeats (in milliseconds)
+		**/
+		void enableKeyRepeat(int delay, int interval) const;
+
+		/**
+		* Disables key repeating.
+		**/
+		void disableKeyRepeat() const;
+
+		/**
+		* Gets the specified delay for the key repeat.
+		* @return int
+		**/
+		int getKeyRepeatDelay() const;
+
+		/**
+		* Gets the specified interval for the key repeat.
+		* @return int
+		**/
+		int getKeyRepeatInterval() const;
 
 	}; // Keyboard
 

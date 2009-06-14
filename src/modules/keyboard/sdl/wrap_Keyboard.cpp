@@ -34,10 +34,34 @@ namespace sdl
 		luax_pushboolean(L, instance->isDown(b));
 		return 1;
 	}
+
+	int _wrap_enableKeyRepeat(lua_State * L)
+	{
+		int a = luaL_checkint(L, 1);
+		int b = luaL_checkint(L, 2);
+		instance->enableKeyRepeat(a, b);
+		return 0;
+	}
+
+	int _wrap_disableKeyRepeat(lua_State * L)
+	{
+		instance->disableKeyRepeat();
+		return 0;
+	}
+
+	int _wrap_getKeyRepeat(lua_State * L)
+	{
+		lua_pushnumber(L, instance->getKeyRepeatDelay());
+		lua_pushnumber(L, instance->getKeyRepeatInterval());
+		return 2;
+	}
 	
 	// List of functions to wrap.
 	static const luaL_Reg wrap_Keyboard_functions[] = {
 		{ "isDown", _wrap_isDown },
+		{ "enableKeyRepeat", _wrap_enableKeyRepeat },
+		{ "disableKeyRepeat", _wrap_disableKeyRepeat },
+		{ "getKeyRepeat", _wrap_getKeyRepeat },
 		{ 0, 0 }
 	};
 

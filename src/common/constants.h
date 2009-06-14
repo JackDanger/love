@@ -449,7 +449,12 @@ namespace love
 
 		/* Add any other keys here */
 
-		KEY_LAST
+		KEY_LAST,
+
+		/* Key repeating constants */
+
+		KEY_REPEAT_DELAY = -1,
+		KEY_REPEAT_INTERVAL = -2
 
 	}; // enum
 
@@ -618,6 +623,9 @@ namespace love
 		{ "key_power", 320 },
 		{ "key_euro", 321 },
 		{ "key_undo", 322 },
+
+		{ "key_repeat_delay", KEY_REPEAT_DELAY },
+		{ "key_repeat_interval", KEY_REPEAT_INTERVAL },
 
 		{ "mouse_left", MOUSE_LEFT },
 		{ "mouse_middle", MOUSE_MIDDLE },
