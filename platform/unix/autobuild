@@ -111,11 +111,16 @@ sh make-package deb $displayversion
 deb="love-$displayversion-ubuntu-x86.deb"
 mv "love-$displayversion.deb" $deb
 
+# Copy and rename the binary.
+binary="love-$displayversion"
+cp ../../src/love $binary
+
 # Deal with uploading.
 if [ "$1" == "build" ]; then
 	pass=`cat pwtehlol`
 	ftp-upload -u tehloejc --password $pass -h tehlol.com -d public_html/love2d/builds/ $deb
 	ftp-upload -u tehloejc --password $pass -h tehlol.com -d public_html/love2d/builds/ $tar
+	ftp-upload -u tehloejc --password $pass -h tehlol.com -d public_html/love2d/builds/ $binary
 fi
 
 if [ "$1" == "release" ]; then
