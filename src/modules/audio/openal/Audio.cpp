@@ -43,9 +43,19 @@ namespace openal
 
 	Audio::~Audio()
 	{
-		alutExit();
 		SDL_KillThread(channel_update_thread);
 		SDL_DestroyMutex(channels_mutex);
+		
+		std::list<Channel *>::iterator p = playing_channels.begin();
+
+		while(p != playing_channels.end())
+		{
+			(*p)->stop();
+			(*p)->release();
+			p++;
+		}
+
+		alutExit();
 	}
 
 	const char * Audio::getName() const

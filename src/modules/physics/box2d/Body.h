@@ -52,6 +52,7 @@ namespace box2d
 		friend class MouseJoint;
 		friend class CircleShape;
 		friend class PolygonShape;
+		friend class Shape;
 
 	private:
 

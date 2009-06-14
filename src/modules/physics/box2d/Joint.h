@@ -49,13 +49,16 @@ namespace box2d
 	private:
 		
 		// A Joint must be destroyed *before* the bodies it acts upon, 
-		// and the world they reside in. We therefore need shared_ptrs
+		// and the world they reside in. We therefore need refs
 		// parents and associations to prevent wrong destruction order.
 		Body * body1, * body2;
-		World * world;
+		
 
 		// The Box2D joint object.
 		b2Joint * joint;
+
+	protected:
+		World * world;
 
 	public:
 

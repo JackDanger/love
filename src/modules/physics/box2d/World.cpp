@@ -31,17 +31,17 @@ namespace box2d
 {
 
 	World::World(b2AABB aabb)
-		: add_ref(0)
+		: add_ref(0), meter(DEFAULT_METER)
 	{
-		world = new b2World(aabb, b2Vec2(0,0), true);
+		world = new b2World(scaleDown(aabb), b2Vec2(0,0), true);
 		world->SetContactListener(this);
 		add_contacts.reserve(10);
 	}
 
 	World::World(b2AABB aabb, b2Vec2 gravity, bool sleep)
-		: add_ref(0)
+		: add_ref(0), meter(DEFAULT_METER)
 	{
-		world = new b2World(aabb, gravity, sleep);
+		world = new b2World(scaleDown(aabb), scaleDown(gravity), sleep);
 		world->SetContactListener(this);
 		add_contacts.reserve(10);
 	}
@@ -106,7 +106,7 @@ namespace box2d
 		**/
 
 		if(add_ref != 0)
-			add_contacts.push_back(new Contact(point));
+			add_contacts.push_back(new Contact(this, point));
 	}
 
 	int World::setCallback(lua_State * L)
@@ -136,12 +136,12 @@ namespace box2d
 
 	void World::setGravity(float x, float y)
 	{
-		world->SetGravity(b2Vec2(x, y));
+		world->SetGravity(scaleDown(b2Vec2(x, y)));
 	}
 
 	int World::getGravity(lua_State * L)
 	{
-		b2Vec2 v = world->m_gravity;
+		b2Vec2 v = scaleUp(world->m_gravity);
 		lua_pushnumber(L, v.x);
 		lua_pushnumber(L, v.y);
 		return 2;
@@ -165,6 +165,68 @@ namespace box2d
 	int World::getJointCount()
 	{
 		return world->GetJointCount();
+	}
+
+	void World::setMeter(int meter)
+	{
+		this->meter = meter;
+	}
+
+	int World::getMeter() const
+	{
+		return this->meter;
+	}
+
+	void World::scaleDown(float & x, float & y)
+	{
+		x /= (float)meter;
+		y /= (float)meter;
+	}
+
+	void World::scaleUp(float & x, float & y)
+	{
+		x *= (float)meter;
+		y *= (float)meter;
+	}
+
+	float World::scaleDown(float f)
+	{
+		return f/(float)meter;
+	}
+
+	float World::scaleUp(float f)
+	{
+		return f*(float)meter;
+	}
+
+	b2Vec2 World::scaleDown(const b2Vec2 & v)
+	{
+		b2Vec2 t = v;
+		scaleDown(t.x, t.y);
+		return t;
+	}
+
+	b2Vec2 World::scaleUp(const b2Vec2 & v)
+	{
+		b2Vec2 t = v;
+		scaleUp(t.x, t.y);
+		return t;
+	}
+
+	b2AABB World::scaleDown(const b2AABB & aabb)
+	{
+		b2AABB t;
+		t.lowerBound = scaleDown(aabb.lowerBound);
+		t.upperBound = scaleDown(aabb.upperBound);
+		return t;
+	}
+
+	b2AABB World::scaleUp(const b2AABB & aabb)
+	{
+		b2AABB t;
+		t.lowerBound = scaleUp(aabb.lowerBound);
+		t.upperBound = scaleUp(aabb.upperBound);
+		return t;
 	}
 
 } // box2d

@@ -22,6 +22,7 @@
 
 // Module
 #include "Body.h"
+#include "World.h"
 
 namespace love
 {
@@ -32,6 +33,9 @@ namespace box2d
 	PolygonShape::PolygonShape(Body * body, b2PolygonDef * def)
 		: Shape(body)
 	{
+		for(int i = 0; i<def->vertexCount; i++)
+			def->vertices[i] = body->world->scaleDown(def->vertices[i]);
+
 		shape = body->body->CreateShape(def);
 		shape->SetUserData((void*)data);
 	}
@@ -50,7 +54,7 @@ namespace box2d
 		int count = p->GetVertexCount();
 		for(int i = 0;i<count; i++)
 		{
-			b2Vec2 v = body->body->GetWorldPoint(vertices[i]);
+			b2Vec2 v = body->world->scaleUp(body->body->GetWorldPoint(vertices[i]));
 			lua_pushnumber(L, v.x);
 			lua_pushnumber(L, v.y);
 		}

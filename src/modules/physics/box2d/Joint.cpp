@@ -79,10 +79,10 @@ namespace box2d
 
 	int Joint::getAnchors(lua_State * L)
 	{
-		lua_pushnumber(L, joint->GetAnchor1().x);
-		lua_pushnumber(L, joint->GetAnchor1().y);
-		lua_pushnumber(L, joint->GetAnchor2().x);
-		lua_pushnumber(L, joint->GetAnchor2().y);
+		lua_pushnumber(L, world->scaleUp(joint->GetAnchor1().x));
+		lua_pushnumber(L, world->scaleUp(joint->GetAnchor1().y));
+		lua_pushnumber(L, world->scaleUp(joint->GetAnchor2().x));
+		lua_pushnumber(L, world->scaleUp(joint->GetAnchor2().y));
 		return 4;
 	}
 

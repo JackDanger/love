@@ -99,7 +99,7 @@ namespace box2d
 		def.friction = 0.5f;
 		def.restitution = 0.1f;
 		def.density = 1.0f;
-		def.SetAsBox(w/2.0f, h/2.0f, b2Vec2(x, y), LOVE_TORAD(angle));
+		def.SetAsBox(w/2.0f, h/2.0f, b2Vec2(x, y), angle);
 		return new PolygonShape(body, &def);
 	}
 

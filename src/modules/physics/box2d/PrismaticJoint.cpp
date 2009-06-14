@@ -22,6 +22,7 @@
 
 // Module
 #include "Body.h"
+#include "World.h"
 
 namespace love
 {
@@ -32,7 +33,7 @@ namespace box2d
 	PrismaticJoint::PrismaticJoint(Body * body1, Body * body2, b2PrismaticJointDef * def)
 		: Joint(body1, body2)
 	{
-		def->Initialize(body1->body, body2->body, def->localAnchor2, def->localAxis1);
+		def->Initialize(body1->body, body2->body, world->scaleDown(def->localAnchor2), world->scaleDown(def->localAxis1));
 		def->lowerTranslation = 0.0f;
 		def->upperTranslation = 100.0f;
 		def->enableLimit = true;
@@ -47,12 +48,12 @@ namespace box2d
 
 	float PrismaticJoint::getTranslation() const
 	{
-		return joint->GetJointTranslation();
+		return world->scaleDown(joint->GetJointTranslation());
 	}
 
 	float PrismaticJoint::getSpeed() const
 	{
-		return joint->GetJointSpeed();
+		return world->scaleDown(joint->GetJointSpeed());
 	}
 
 	void PrismaticJoint::setMotorEnabled(bool motor)
@@ -102,33 +103,33 @@ namespace box2d
 
 	void PrismaticJoint::setUpperLimit(float limit)
 	{
-		joint->SetLimits(joint->GetLowerLimit(), limit);
+		joint->SetLimits(joint->GetLowerLimit(), world->scaleDown(limit));
 	}
 
 	void PrismaticJoint::setLowerLimit(float limit)
 	{
-		joint->SetLimits(limit, joint->GetUpperLimit());
+		joint->SetLimits(world->scaleDown(limit), joint->GetUpperLimit());
 	}
 
 	void PrismaticJoint::setLimits(float lower, float upper)
 	{
-		joint->SetLimits(lower, upper);
+		joint->SetLimits(world->scaleDown(lower), world->scaleDown(upper));
 	}
 
 	float PrismaticJoint::getLowerLimit() const
 	{
-		return joint->GetLowerLimit();
+		return world->scaleUp(joint->GetLowerLimit());
 	}
 
 	float PrismaticJoint::getUpperLimit() const
 	{
-		return joint->GetUpperLimit();
+		return world->scaleUp(joint->GetUpperLimit());
 	}
 
 	int PrismaticJoint::getLimits(lua_State * L)
 	{
-		lua_pushnumber(L, joint->GetLowerLimit());
-		lua_pushnumber(L, joint->GetUpperLimit());
+		lua_pushnumber(L, world->scaleUp(joint->GetLowerLimit()));
+		lua_pushnumber(L, world->scaleUp(joint->GetUpperLimit()));
 		return 2;
 	}
 

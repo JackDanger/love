@@ -71,7 +71,15 @@ namespace box2d
 		// Contacts buffers.
 		std::vector<Contact *> add_contacts;
 
+		// The length of one meter in pixels.
+		int meter;
+
 	public:
+
+		/**
+		* 30 pixels in one meter by default.
+		**/
+		static const int DEFAULT_METER = 30;
 
 		/**
 		* Creates a new world with the given bounding box.
@@ -151,6 +159,74 @@ namespace box2d
 		* @return The number of joints.
 		**/
 		int getJointCount();
+
+		/**
+		* Sets the number of pixels in one meter. 
+		* @param pixels The number of pixels in one meter. (1m ~= 3.3ft).
+		**/
+		void setMeter(int meter);
+
+		/**
+		* Gets the number of pixels in one meter.
+		* @param pixels The number of pixels in one meter. (1m ~= 3.3ft).
+		**/
+		int getMeter() const;
+
+		/**
+		* Scales a value down according to the current meter in pixels.
+		* @param f The unscaled input value.
+		**/
+		float scaleDown(float f);
+
+		/**
+		* Scales a value up according to the current meter in pixels.
+		* @param f The unscaled input value.
+		**/
+		float scaleUp(float f);
+
+		/**
+		* Scales a point down according to the current meter
+		* in pixels, for instance x = x0/meter, y = x0/meter.
+		* @param x The x-coordinate of the point to scale.
+		* @param y The y-coordinate of the point to scale.
+		**/
+		void scaleDown(float & x, float & y);
+
+		/**
+		* Scales a point up according to the current meter
+		* in pixels, for instance x = x0/meter, y = x0/meter.
+		* @param x The x-coordinate of the point to scale.
+		* @param y The y-coordinate of the point to scale.
+		**/
+		void scaleUp(float & x, float & y);
+
+		/**
+		* Scales a b2Vec2 down according to the current meter in pixels.
+		* @param v The unscaled input vector.
+		* @return The scaled vector.
+		**/
+		b2Vec2 scaleDown(const b2Vec2 & v);
+
+		/**
+		* Scales a b2Vec up according to the current meter in pixels.
+		* @param v The unscaled input vector.
+		* @return The scaled vector.
+		**/
+		b2Vec2 scaleUp(const b2Vec2 & v);
+
+		/**
+		* Scales a b2AABB down according to the current meter in pixels.
+		* @param v The unscaled input AABB.
+		* @return The scaled AABB.
+		**/
+		b2AABB scaleDown(const b2AABB & aabb);
+
+		/**
+		* Scales a b2AABB up according to the current meter in pixels.
+		* @param v The unscaled input AABB.
+		* @return The scaled AABB.
+		**/
+		b2AABB scaleUp(const b2AABB & aabb);
 
 	};
 

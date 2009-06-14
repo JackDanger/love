@@ -22,6 +22,7 @@
 
 // Module
 #include "Body.h"
+#include "World.h"
 
 // STD
 #include <bitset>
@@ -109,7 +110,7 @@ namespace box2d
 
 	bool Shape::testPoint(float x, float y) const
 	{
-		return shape->TestPoint(shape->GetBody()->GetXForm(), b2Vec2(x, y));
+		return shape->TestPoint(shape->GetBody()->GetXForm(), body->world->scaleDown(b2Vec2(x, y)));
 	}
 
 	int Shape::testSegment(lua_State * L)
@@ -123,12 +124,16 @@ namespace box2d
 		s.p2.x = (float)lua_tonumber(L, 3);
 		s.p2.y = (float)lua_tonumber(L, 4);
 
+		s.p1 = body->world->scaleDown(s.p1);
+		s.p2 = body->world->scaleDown(s.p2);
+
 		float lambda;
 		b2Vec2 normal;
 		
 		if(shape->TestSegment(shape->GetBody()->GetXForm(), &lambda, &normal, s, 1.0f))
 		{
 			lua_pushnumber(L, lambda);
+			normal = body->world->scaleUp(normal);
 			lua_pushnumber(L, normal.x);
 			lua_pushnumber(L, normal.y);
 			return 3;
@@ -215,6 +220,7 @@ namespace box2d
 		love::luax_assert_argc(L, 0, 0);
 		b2AABB bb;
 		shape->ComputeAABB(&bb, shape->GetBody()->GetXForm());
+		bb = body->world->scaleUp(bb);
 
 		// Top left.
 		lua_pushnumber(L, bb.lowerBound.x);

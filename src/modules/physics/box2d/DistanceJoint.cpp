@@ -22,6 +22,7 @@
 
 // Module
 #include "Body.h"
+#include "World.h"
 
 namespace love
 {
@@ -32,7 +33,7 @@ namespace box2d
 	DistanceJoint::DistanceJoint(Body * body1, Body * body2, b2DistanceJointDef * def)
 		: Joint(body1, body2)
 	{
-		def->Initialize(body1->body, body2->body, def->localAnchor1, def->localAnchor2);
+		def->Initialize(body1->body, body2->body, world->scaleDown(def->localAnchor1), world->scaleDown(def->localAnchor2));
 		joint = (b2DistanceJoint*)createJoint(def);
 	}
 
@@ -44,12 +45,12 @@ namespace box2d
 
 	void DistanceJoint::setLength(float length)
 	{
-		joint->m_length = length;
+		joint->m_length = world->scaleDown(length);
 	}
 
 	float DistanceJoint::getLength() const
 	{
-		return joint->m_length;
+		return world->scaleUp(joint->m_length);
 	}
 
 	void DistanceJoint::setFrequency(float hz)

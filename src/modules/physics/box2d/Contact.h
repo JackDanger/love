@@ -34,6 +34,8 @@ namespace physics
 {
 namespace box2d
 {
+	class World;
+
 	/**
 	* A Contact represents a collision point between
 	* two shapes.
@@ -48,6 +50,9 @@ namespace box2d
 		// The Box2D contact point.
 		b2ContactPoint point;
 
+		// The parent world. Needed for scaling.
+		World * world;
+
 	public:
 
 		/**
@@ -56,7 +61,7 @@ namespace box2d
 		* data pointed to.
 		* @param point Pointer to the Box2D contact.
 		**/
-		Contact(const b2ContactPoint * point);
+		Contact(World * world, const b2ContactPoint * point);
 
 		~Contact();
 

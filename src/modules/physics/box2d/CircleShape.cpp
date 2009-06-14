@@ -22,6 +22,7 @@
 
 // Module
 #include "Body.h"
+#include "World.h"
 
 namespace love
 {
@@ -32,6 +33,8 @@ namespace box2d
 	CircleShape::CircleShape(Body * body, b2CircleDef * def)
 		: Shape(body), radius(def->radius)
 	{
+		def->localPosition = body->world->scaleDown(def->localPosition);
+		def->radius = body->world->scaleDown(def->radius);
 		shape = body->body->CreateShape(def);
 		shape->SetUserData((void*)data);
 	}
@@ -44,7 +47,7 @@ namespace box2d
 
 	float CircleShape::getRadius() const
 	{
-		return radius;
+		return body->world->scaleUp(radius);
 	}
 
 } // box2d

@@ -24,6 +24,7 @@
 
 // Module
 #include "Body.h"
+#include "World.h"
 
 namespace love
 {
@@ -34,8 +35,8 @@ namespace box2d
 	RevoluteJoint::RevoluteJoint(Body * body1, Body * body2, b2RevoluteJointDef * def)
 		: Joint(body1, body2)
 	{
-		def->localAnchor2 = body2->body->GetLocalPoint(def->localAnchor1);
-		def->localAnchor1 = body1->body->GetLocalPoint(def->localAnchor1);
+		def->localAnchor2 = world->scaleDown(body2->body->GetLocalPoint(def->localAnchor1));
+		def->localAnchor1 = world->scaleDown(body1->body->GetLocalPoint(def->localAnchor1));
 		def->body1 = body1->body;
 		def->body2 = body2->body;
 		joint = (b2RevoluteJoint*)createJoint(def);
@@ -49,12 +50,12 @@ namespace box2d
 
 	float RevoluteJoint::getAngle() const
 	{
-		return LOVE_TODEG(joint->GetJointAngle());
+		return joint->GetJointAngle();
 	}
 
 	float RevoluteJoint::getSpeed() const
 	{
-		return LOVE_TODEG(joint->GetJointSpeed());
+		return joint->GetJointSpeed();
 	}
 
 	void RevoluteJoint::setMotorEnabled(bool motor)
@@ -79,12 +80,12 @@ namespace box2d
 
 	void RevoluteJoint::setMotorSpeed(float speed)
 	{
-		joint->SetMotorSpeed(LOVE_TORAD(speed));
+		joint->SetMotorSpeed(speed);
 	}
 
 	float RevoluteJoint::getMotorSpeed() const
 	{
-		return LOVE_TODEG(joint->GetMotorSpeed());
+		return joint->GetMotorSpeed();
 	}
 
 	float RevoluteJoint::getMotorTorque() const
@@ -104,33 +105,33 @@ namespace box2d
 
 	void RevoluteJoint::setUpperLimit(float limit)
 	{
-		joint->SetLimits(joint->GetLowerLimit(), LOVE_TORAD(limit));
+		joint->SetLimits(joint->GetLowerLimit(), limit);
 	}
 
 	void RevoluteJoint::setLowerLimit(float limit)
 	{
-		joint->SetLimits(LOVE_TORAD(limit), joint->GetUpperLimit());
+		joint->SetLimits(limit, joint->GetUpperLimit());
 	}
 
 	void RevoluteJoint::setLimits(float lower, float upper)
 	{
-		joint->SetLimits(LOVE_TORAD(lower), LOVE_TORAD(upper));
+		joint->SetLimits(lower, upper);
 	}
 
 	float RevoluteJoint::getLowerLimit() const
 	{
-		return LOVE_TODEG(joint->GetLowerLimit());
+		return joint->GetLowerLimit();
 	}
 
 	float RevoluteJoint::getUpperLimit() const
 	{
-		return LOVE_TODEG(joint->GetUpperLimit());
+		return joint->GetUpperLimit();
 	}
 
 	int RevoluteJoint::getLimits(lua_State * L)
 	{
-		lua_pushnumber(L, LOVE_TODEG(joint->GetLowerLimit()));
-		lua_pushnumber(L, LOVE_TODEG(joint->GetUpperLimit()));
+		lua_pushnumber(L, joint->GetLowerLimit());
+		lua_pushnumber(L, joint->GetUpperLimit());
 		return 2;
 	}
 
