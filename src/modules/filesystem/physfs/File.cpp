@@ -35,11 +35,6 @@ namespace physfs
 {
 	extern bool hack_setupWriteDirectory();
 
-	File::File() 
-		: file(0), mode(filesystem::File::CLOSED)
-	{
-	}
-	
 	File::File(std::string filename) 
 		: filename(filename), file(0), mode(filesystem::File::CLOSED)
 	{
@@ -47,39 +42,6 @@ namespace physfs
 
 	File::~File()
 	{
-	}
-
-	bool File::open(std::string name, Mode mode)
-	{
-		// Check whether the write directory is set.
-		if((mode == APPEND || mode == WRITE) && (PHYSFS_getWriteDir() == 0))
-			if(!hack_setupWriteDirectory())
-				return false;
-
-		// File already open?
-		if(file != 0)
-			return false;
-		filename = name;
-
-		this->mode = mode;
-
-		switch(mode)
-		{
-		case READ:
-			file = PHYSFS_openRead(filename.c_str());
-			break;
-		case APPEND:
-			file = PHYSFS_openAppend(filename.c_str());
-			break;
-		case WRITE:
-			file = PHYSFS_openWrite(filename.c_str());
-			break;
-		case CLOSED:
-			// Heh. Case closed.
-			return true;
-		}
-
-		return (file != 0);
 	}
 	
 	bool File::open(Mode mode)
@@ -129,8 +91,7 @@ namespace physfs
 		// check the size.
 		if(file == 0)
 		{
-			if(file == 0)
-				return 0;
+			open(READ);
 			unsigned int size = (unsigned int)PHYSFS_fileLength(file);
 			close();
 			return size;
@@ -145,7 +106,7 @@ namespace physfs
 		bool isOpen = (file != 0);
 
 		if(!isOpen)
-			return 0;
+			open(READ);
 
 		int max = (int)PHYSFS_fileLength(file);
 		size = (size == ALL) ? max : size;
@@ -155,6 +116,9 @@ namespace physfs
 
 		read(fileData->getData(), size);
 
+		if(!isOpen)
+			close();
+
 		return fileData;
 	}
 
@@ -163,13 +127,16 @@ namespace physfs
 		bool isOpen = (file != 0);
 
 		if(!isOpen)
-			return 0;
+			open(READ);
 
 		int max = (int)PHYSFS_fileLength(file);
 		size = (size == ALL) ? max : size;
 		size = (size > max) ? max : size;
 
 		int read = (int)PHYSFS_read(file, dst, 1, size);
+
+		if(!isOpen)
+			close();
 
 		return read;
 	}

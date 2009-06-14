@@ -67,7 +67,6 @@ namespace filesystem
 		* @param mode READ, WRITE, APPEND.
 		* @return True if successful, false otherwise.
 		**/
-		virtual bool open(std::string filename, Mode mode) = 0;
 		virtual bool open(Mode mode) = 0;
 
 		/**

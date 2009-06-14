@@ -40,7 +40,7 @@
 
 #include "Channel.h"
 #include "Sound.h"
-//#include "Music.h"
+#include "Music.h"
 
 namespace love
 {
@@ -93,9 +93,9 @@ namespace openal
 
 		/**
 		* Creates a new Music (stream) using the specified SoundData.
-		* @param data The SoundData from which to create the music stream.
+		* @param decoder The object to use to decode the sound stream.
 		**/
-		//Music * newMusic(love::sound::SoundData * data);
+		Music * newMusic(love::sound::Decoder * decoder);
 
 		/**
 		* Creates a new Channel.
@@ -104,17 +104,31 @@ namespace openal
 		Channel * newChannel();
 
 		/**
-		* Plays one Sound on the specified Channel.
-		* @param sound The Sound to play.
+		* Play one Audible on a given channel.
+		* @param audible The Audible to play.
 		* @param channel The Channel on which to play the Audible.
 		**/
-		void play(Sound * sound, Channel * channel);
+		void play(Audible * audible, Channel * channel);
 
 		/**
-		* Plays the Sound on a on-the-fly-created Channel.
+		* Plays one Sound on the specified Channel. We need separate
+		* Sound and Music play functions because Music must be cloned, 
+		* whereas Sound needs not be.
+		* 
 		* @param sound The Sound to play.
+		* @param channel The Channel on which to play the Sound.
 		**/
-		void play(Sound * sound);
+		void play(Sound * sound, Channel * channel = 0);
+
+		/**
+		* Plays one Music on the specified Channel. We need separate
+		* Sound and Music play functions because Music must be cloned, 
+		* whereas Sound needs not be.
+		* 
+		* @param music The Music to play.
+		* @param channel The Channel on which to play the Music.
+		**/
+		void play(Music * music, Channel * channel = 0);
 
 		/**
 		* Stops playback on the specified channel.

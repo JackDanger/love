@@ -124,11 +124,6 @@ namespace physfs
 
 		return true;
 	}
-
-	File * Filesystem::newFile()
-	{
-		return new File();
-	}
 	
 	File * Filesystem::newFile(const char *filename)
 	{
@@ -214,8 +209,8 @@ namespace physfs
         if(lua_isstring(L, 1))
 		{
 			// Create the file.
-			file = newFile();
-			file->open(lua_tostring(L, 1), File::READ);
+			file = newFile(lua_tostring(L, 1));
+			file->open(File::READ);
 		}
 		else
                         return luaL_error(L, "Expected filename.");
@@ -264,13 +259,13 @@ namespace physfs
 		if(!lua_isnumber(L, 3))
 			return luaL_error(L, "Third argument must be a number.");
 
-                if(lua_isstring(L, 1))
+		if(lua_isstring(L, 1))
 		{
 			// Create the file.
-			file = newFile();
+			file = newFile(lua_tostring(L, 1));
 		}
 		else
-                        return luaL_error(L, "Expected filename.");
+			return luaL_error(L, "Expected filename.");
 
 		// Get the current mode of the file.
 		File::Mode mode = file->getMode();
@@ -282,7 +277,7 @@ namespace physfs
 			int mode = luaL_optint(L, 4, File::WRITE);
 
 			// Open the file.
-			if(!file->open(lua_tostring(L, 1), (File::Mode)mode))
+			if(!file->open((File::Mode)mode))
 				return luaL_error(L, "Could not open file.");
 		}
 
@@ -346,10 +341,10 @@ namespace physfs
 	{
 		File * file;
 
-                if(lua_isstring(L, 1))
+		if(lua_isstring(L, 1))
 		{
-			file = newFile();
-			if(!file->open(lua_tostring(L, 1), File::READ))
+			file = newFile(lua_tostring(L, 1));
+			if(!file->open(File::READ))
 				return luaL_error(L, "Could not open file %s.\n", lua_tostring(L, 1)); 
 			lua_pop(L, 1);
 			
@@ -357,7 +352,7 @@ namespace physfs
 			lua_pushboolean(L, 1); // 1 = autoclose.
 		}
 		else
-                        return luaL_error(L, "Expected filename.");
+			return luaL_error(L, "Expected filename.");
 
 		// Reset the file position.
 		if(!file->seek(0))
@@ -463,8 +458,8 @@ namespace physfs
 			return luaL_error(L, "File %s does not exist.", filename);
 
 		// Create the file.
-		File * file = newFile();
-		file->open(filename, File::READ);
+		File * file = newFile(filename);
+		file->open(File::READ);
 
 		// Get the data from the file.
 		Data * data = file->read();

@@ -120,7 +120,6 @@ namespace physfs
 		/**
 		* Creates a new file.
 		**/
-		File * newFile();
 		File * newFile(const char* filename);
 
 		/**

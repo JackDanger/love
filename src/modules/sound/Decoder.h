@@ -42,11 +42,19 @@ namespace sound
 		**/
 		enum Format
 		{
-			UNSUPPORTED,
-			MONO8,
-			MONO16,
-			STEREO8,
-			STEREO16,
+			UNSUPPORTED = 0,
+		
+			// Flags.
+			SUPPORTED = 1,
+			MONO = 2,
+			STEREO = 4,
+			BIT8 = 8,
+			BIT16 = 16,
+
+			MONO8 = SUPPORTED | MONO | BIT8,
+			MONO16 = SUPPORTED | MONO | BIT16, 
+			STEREO8 = SUPPORTED | STEREO | BIT8, 
+			STEREO16 = SUPPORTED | STEREO | BIT16, 
 		};
 
 		/**
@@ -61,12 +69,11 @@ namespace sound
 		static const int DEFAULT_SAMPLE_RATE = 44100;
 
 		/**
-		* Example of subclass constructor:
-		* 
-		* Creates a new Decoder, or throws a love::Exception if the file format
-		* is unrecognized, or any other error occors.
+		* Creates a deep of itself. The sound stream can (and should) be 
+		* rewound, and does not have to be at the same place.
+		* @return A new Decoder object. 
 		**/
-		//Decoder(filesystem::File * file, int bufferSize, int sampleRate);
+		Decoder * clone();
 
 		/**
 		* Destructor. Should free internal buffer. 
@@ -103,15 +110,16 @@ namespace sound
 
 		/**
 		* Seeks to the specified position, if possible.
-		* @param pos The position in the stream (millisecond precision).  
+		* @param ms The position in the stream in milliseconds.
 		* @return True if success, false on fail/unsupported.
 		**/
-		virtual bool seek(float pos) = 0;
+		virtual bool seek(int ms) = 0;
 
 		/**
 		* Rewinds the stream to the start.
+		* @return True if success, false on fail/unsupported.
 		**/
-		virtual void rewind() = 0;
+		virtual bool rewind() = 0;
 
 		/**
 		* Checks whether a stream is seekable.
@@ -130,11 +138,17 @@ namespace sound
 		* Gets the format for the stream.
 		* @return A format identifier, or UNSUPPORTED if conversion is impossible.
 		**/
-		virtual Format getFormat() = 0;
+		virtual Format getFormat() const = 0;
+
+		/**
+		* Gets the sample rate for the Decoder, that is, samples per second.
+		* @return The sample rate, eg. 44100. 
+		**/
+		virtual int getSampleRate() const = 0;
 
 	}; // Decoder
 
 } // sound
 } // love
 
-#endif // LOVE_SOUND_SOUND_STREAM_H
+#endif // LOVE_SOUND_DECODER_H

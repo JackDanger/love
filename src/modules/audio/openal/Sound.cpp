@@ -20,6 +20,8 @@
 
 #include "Sound.h"
 
+#include <common/Exception.h>
+
 namespace love
 {
 namespace audio
@@ -32,8 +34,27 @@ namespace openal
 		// Generate the buffer.
 		alGenBuffers(1, &buffer);
 
-		alBufferData(buffer, AL_FORMAT_STEREO16, data->getData(), 
-			data->getSize(), 44100);
+		int fmt =  0;
+
+		switch(data->getFormat())
+		{
+		case love::sound::Decoder::MONO8:
+			fmt = AL_FORMAT_MONO8;
+			break;
+		case love::sound::Decoder::MONO16:
+			fmt = AL_FORMAT_MONO16;
+			break;
+		case love::sound::Decoder::STEREO8:
+			fmt = AL_FORMAT_STEREO8;
+			break;
+		case love::sound::Decoder::STEREO16:
+			fmt = AL_FORMAT_STEREO16;
+			break;
+		default:
+			throw love::Exception("Unsopported audio format.");
+		}
+
+		alBufferData(buffer, fmt, data->getData(), data->getSize(), data->getSampleRate());
 
 		// Note: we're done with the sound data
 		// at this point.

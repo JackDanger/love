@@ -18,24 +18,24 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_SOUND_SDLSOUND_WRAP_SOUND_H
-#define LOVE_SOUND_SDLSOUND_WRAP_SOUND_H
+#ifndef LOVE_SOUND_WRAP_SOUND_DATA_H
+#define LOVE_SOUND_WRAP_SOUND_DATA_H
 
 // LOVE
-#include "Sound.h"
-#include "wrap_SoundData.h"
+#include <common/runtime.h>
+#include "SoundData.h"
 
 namespace love
 {
 namespace sound
 {
-namespace sdlsound
-{
-	int _wrap_newSoundData(lua_State * L);
-	int wrap_Sound_open(lua_State * L);
+	SoundData * luax_checksounddata(lua_State * L, int idx);
+	int _wrap_getSize(lua_State * L);
+	int _wrap_setSample(lua_State * L);
+	int _wrap_getSample(lua_State * L);
+	int wrap_SoundData_open(lua_State * L);
 
-} // sdlsound
 } // sound
 } // love
 
-#endif // LOVE_SOUND_SDLSOUND_WRAP_SOUND_H
+#endif // LOVE_SOUND_WRAP_SOUND_DATA_H

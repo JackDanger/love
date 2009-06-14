@@ -22,18 +22,39 @@
 #define LOVE_SOUND_SOUND_DATA_H
 
 // LOVE
-#include <common/Data.h>
+#include <filesystem/File.h>
+
+#include "Decoder.h"
 
 namespace love
-{
+{	
 namespace sound
 {
-	class SoundData : public Data
+	class SoundData : public love::Data
 	{
+	private:
+
+		char * data;
+		int size;
+
+		Decoder::Format format;
+		int sampleRate;
+
 	public:
-		virtual ~SoundData(){};
-		virtual void setSample(int i, float sample) = 0;
-		virtual float getSample(int i) const = 0;
+
+		SoundData(Decoder * decoder);
+		virtual ~SoundData();
+
+		// Implements Data.
+		void * getData() const;
+		int getSize() const;
+	
+		Decoder::Format getFormat() const;
+		int getSampleRate() const;
+
+		void setSample(int i, float sample);
+		float getSample(int i) const;
+
 	}; // SoundData
 
 } // sound

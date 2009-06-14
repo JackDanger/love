@@ -18,37 +18,21 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_SOUND_SDLSOUND_SOUND_H
-#define LOVE_SOUND_SDLSOUND_SOUND_H
-
-// LOVE
-#include <sound/Sound.h>
-
-#include "Decoder.h"
+#include "Sound.h"
 
 namespace love
 {
 namespace sound
 {
-namespace sdlsound
-{
-	class Sound : public love::sound::Sound
+
+	Sound::~Sound()
 	{
-		
-	public:
+	}
 
-		Sound();
-		virtual ~Sound();
+	SoundData * Sound::newSoundData(Decoder * decoder)
+	{
+		return new SoundData(decoder);
+	}
 
-		// Implements Module.
-		const char * getName() const;
-		
-		Decoder * newDecoder(love::filesystem::File * file, int bufferSize, int sampleRate);
-
-	}; // Sound
-
-} // sdlsound
 } // sound
 } // love
-
-#endif // LOVE_SOUND_SDLSOUND_SOUND_H

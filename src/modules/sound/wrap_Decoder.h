@@ -18,37 +18,21 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_SOUND_SDLSOUND_SOUND_H
-#define LOVE_SOUND_SDLSOUND_SOUND_H
+#ifndef LOVE_SOUND_WRAP_DECODER_H
+#define LOVE_SOUND_WRAP_DECODER_H
 
 // LOVE
-#include <sound/Sound.h>
-
+#include <common/runtime.h>
 #include "Decoder.h"
 
 namespace love
 {
 namespace sound
 {
-namespace sdlsound
-{
-	class Sound : public love::sound::Sound
-	{
-		
-	public:
+	Decoder * luax_checkdecoder(lua_State * L, int idx);
+	int wrap_Decoder_open(lua_State * L);
 
-		Sound();
-		virtual ~Sound();
-
-		// Implements Module.
-		const char * getName() const;
-		
-		Decoder * newDecoder(love::filesystem::File * file, int bufferSize, int sampleRate);
-
-	}; // Sound
-
-} // sdlsound
 } // sound
 } // love
 
-#endif // LOVE_SOUND_SDLSOUND_SOUND_H
+#endif // LOVE_SOUND_WRAP_DECODER_H

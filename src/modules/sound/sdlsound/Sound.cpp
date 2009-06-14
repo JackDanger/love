@@ -42,9 +42,9 @@ namespace sdlsound
 		return "love.sound.sdlsound";
 	}
 
-	SoundData * Sound::newSoundData(love::filesystem::File * file)
+	Decoder * Sound::newDecoder(love::filesystem::File * file, int bufferSize, int sampleRate)
 	{
-		return new SoundData(file);
+		return new Decoder(file, bufferSize, sampleRate);
 	}
 
 } // sdlsound

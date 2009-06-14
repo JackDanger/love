@@ -41,9 +41,8 @@ namespace physfs
 	int _wrap_File_open(lua_State * L)
 	{
 		File * file = luax_checkfile(L, 1);
-		const char *name = luaL_checkstring(L, 2);
-		int mode = luaL_optint(L, 3, File::READ);
-		lua_pushboolean(L, file->open(name, (File::Mode)mode) ? 1 : 0);
+		int mode = luaL_optint(L, 2, File::READ);
+		lua_pushboolean(L, file->open((File::Mode)mode) ? 1 : 0);
 		return 1;
 	}
 

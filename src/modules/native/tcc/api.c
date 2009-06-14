@@ -33,9 +33,9 @@ extern "C" {
 #include <lauxlib.h>
 
 /* 
-*	MSVC did not require that every funtion be
-*	cast to (void*), but gcc did. Ah well, this
-*	is shorter than {"funcname", funcname} anyway.
+* MSVC did not require that every funtion be
+* cast to (void*), but gcc did. Ah well, this
+* is shorter than {"funcname", funcname} anyway.
 */
 #define FVOID(f) { #f, (void*)f }
 
@@ -66,7 +66,7 @@ const tcc_function tcc_api[] =
 	FVOID(strerror),
 	FVOID(strlen),
 
-	// Lua
+	// Lua (some of it)
 	FVOID(lua_isnumber),
 	FVOID(lua_isstring),
 	FVOID(lua_iscfunction),

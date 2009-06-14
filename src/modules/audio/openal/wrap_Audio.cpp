@@ -21,6 +21,8 @@
 // LOVE
 #include "wrap_Audio.h"
 
+#include <sound/wrap_Decoder.h>
+
 namespace love
 {
 namespace audio
@@ -51,23 +53,18 @@ namespace openal
 		return 1;
 	}
 
-	/*
+
 	int _wrap_newMusic(lua_State * L)
 	{
-		// Convert to File, if necessary.
-		if(lua_isstring(L, 1))
-			luax_strtofile(L, 1);
+		// Convert to Decoder, if necessary.
+		if(!luax_istype(L, 1, LOVE_SOUND_DECODER_BITS))
+			luax_convobj(L, 1, "sound", "newDecoder");
 
-		// Convert to SoundData, if necessary.
-		if(luax_istype(L, 1, LOVE_FILESYSTEM_FILE_BITS))
-			luax_convobj(L, 1, "sound", "newSoundData");
-
-		love::sound::SoundData * data = luax_checktype<love::sound::SoundData>(L, 1, "SoundData", LOVE_SOUND_SOUND_DATA_BITS);
-		Music * t = instance->newMusic(data);
+		love::sound::Decoder * decoder = love::sound::luax_checkdecoder(L, 1);
+		Music * t = instance->newMusic(decoder);
 		luax_newtype(L, "Music", LOVE_AUDIO_MUSIC_BITS, (void*)t);
 		return 1;
 	}
-	*/
 
 	int _wrap_newChannel(lua_State * L)
 	{
@@ -76,51 +73,22 @@ namespace openal
 		return 1;
 	}
 
-	/*
-
-	int _internal_play_audible(lua_State * L)
-	{
-		int top = lua_gettop(L);
-
-		// play( audible )
-		if(top == 1)
-		{
-			Audible * a = luax_checkaudible(L, 1);
-			instance->play(a);
-			return 0;
-		}
-		// play( audible, channel )
-		else if(top == 2)
-		{
-			Audible * a = luax_checkaudible(L, 1);
-			Channel * c = luax_checkchannel(L, 2);
-			instance->play(a, c);
-			return 0;
-		}
-
-		return luaL_error(L, "No matching overload");
-	}
-
-	*/
-
 	int _wrap_play(lua_State * L)
 	{
-		int top = lua_gettop(L);
+		int argn = lua_gettop(L);
 
-		// play( audible )
-		if(top == 1 && luax_istype(L, 1, LOVE_AUDIO_SOUND_BITS))
+		if(luax_istype(L, 1, LOVE_AUDIO_SOUND_BITS))
 		{
 			Sound * s = luax_checksound(L, 1);
-			instance->play(s);
-			return 0;
-		}
-
-		// play( audible, channel )
-		else if(top == 2 && luax_istype(L, 1, LOVE_AUDIO_SOUND_BITS))
-		{
-			Sound * s = luax_checksound(L, 1);
-			Channel * c = luax_checkchannel(L, 2);
+			Channel * c = (argn >= 2) ? luax_checkchannel(L, 2) : 0;
 			instance->play(s, c);
+			return 0;
+		} 
+		else if(luax_istype(L, 1, LOVE_AUDIO_MUSIC_BITS))
+		{
+			Music * m = luax_checkmusic(L, 1);
+			Channel * c = (argn >= 2) ? luax_checkchannel(L, 2) : 0;
+			instance->play(m, c);
 			return 0;
 		}
 
@@ -165,7 +133,7 @@ namespace openal
 	static const luaL_Reg wrap_Audio_functions[] = {
 		{ "getNumChannels", _wrap_getNumChannels },
 		{ "newSound",  _wrap_newSound },
-		//{ "newMusic",  _wrap_newMusic },
+		{ "newMusic",  _wrap_newMusic },
 		{ "newChannel",  _wrap_newChannel },
 		{ "play",  _wrap_play },
 		{ "stop",  _wrap_stop },
@@ -179,7 +147,7 @@ namespace openal
 	static const lua_CFunction wrap_Audio_types[] = {
 		wrap_Channel_open,
 		wrap_Audible_open,
-		//wrap_Music_open,
+		wrap_Music_open,
 		wrap_Sound_open,
 		0
 	};

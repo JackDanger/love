@@ -28,14 +28,22 @@ namespace audio
 {
 namespace openal
 {
-	Music::Music()
+	Music::Music(love::sound::Decoder * decoder)
+		: decoder(decoder)
 	{
+		decoder->retain();
 		alGenBuffers(NUM_BUFFERS, buffers);
 	}
 
 	Music::~Music()
 	{
+		decoder->release();
 		alDeleteBuffers(NUM_BUFFERS, buffers);
+	}
+
+	Music * Music::clone()
+	{
+		return new Music(decoder);
 	}
 
 	void Music::init(ALuint source)
@@ -84,7 +92,7 @@ namespace openal
 		quit(source);
 
 		// Rewind data pointer.
-		//data->rewind();
+		decoder->rewind();
 
 		// Requeue buffers.
 		init(source);
@@ -93,17 +101,35 @@ namespace openal
 	bool Music::stream(ALuint buffer)
 	{
 		// Get more sound data.
-		/*
-		unsigned int decoded = data->decode();
+		int decoded = decoder->decode();
+
+		int fmt =  0;
+
+		switch(decoder->getFormat())
+		{
+		case love::sound::Decoder::MONO8:
+			fmt = AL_FORMAT_MONO8;
+			break;
+		case love::sound::Decoder::MONO16:
+			fmt = AL_FORMAT_MONO16;
+			break;
+		case love::sound::Decoder::STEREO8:
+			fmt = AL_FORMAT_STEREO8;
+			break;
+		case love::sound::Decoder::STEREO16:
+			fmt = AL_FORMAT_STEREO16;
+			break;
+		default:
+			return false;
+		}
 
 		if(decoded > 0)
 		{
-			alBufferData(buffer, AL_FORMAT_STEREO16, 
-				data->getData(), data->getSize(), 44100);
+			alBufferData(buffer, fmt, decoder->getBuffer(), 
+				decoder->getSize(), decoder->getSampleRate());
 			return true;
 
 		}
-		*/
 		return false;
 	}
 

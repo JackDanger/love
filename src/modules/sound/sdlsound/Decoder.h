@@ -18,46 +18,54 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_SOUND_SDLSOUND_SOUND_DATA_H
-#define LOVE_SOUND_SDLSOUND_SOUND_DATA_H
+#ifndef LOVE_SOUND_SDLSOUND_DECODER_H
+#define LOVE_SOUND_SDLSOUND_DECODER_H
 
 // LOVE
+#include <sound/Decoder.h>
 #include <filesystem/File.h>
-#include "../SoundData.h"
 
 // SDL_sound
 #include <SDL_sound.h>
 
 namespace love
-{	
+{
 namespace sound
 {
 namespace sdlsound
 {
-	class SoundData : public love::sound::SoundData
+	class Decoder : public love::sound::Decoder
 	{
 	private:
 
-		short * data;
-		int size;
+		Sound_Sample * sample;
+		Data * data;
+		std::string ext;
 
 	public:
-		SoundData(love::filesystem::File * file);
-		SoundData(int size);
-		virtual ~SoundData();
 
-		// Implements Data.
-		void * getData() const;
+		Decoder(filesystem::File * file, int bufferSize, int sampleRate);
+		Decoder(Data * data, int bufferSize, int sampleRate, const std::string & ext);
+		~Decoder();
+		Decoder * clone();
+		int decode();
+		int decodeAll();
 		int getSize() const;
+		void * getBuffer() const;
+		bool seek(int ms);
+		bool rewind();
+		bool isSeekable();
+		bool isFinished();
+		Format getFormat() const;
+		int getSampleRate() const;
 
-		// Implements love::SoundData
-		void setSample(int i, float sample);
-		float getSample(int i) const;
+	private:
+		void init(Data * data, int bufferSize, int sampleRate, const std::string & ext);
 
-	}; // SoundData
+	}; // Decoder
 
 } // sdlsound
 } // sound
 } // love
 
-#endif // LOVE_SOUND_SDLSOUND_SOUND_DATA_H
+#endif // LOVE_SOUND_SDLSOUND_DECODER_H

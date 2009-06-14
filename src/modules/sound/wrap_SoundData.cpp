@@ -24,8 +24,6 @@ namespace love
 {
 namespace sound
 {
-namespace sdlsound
-{
 	SoundData * luax_checksounddata(lua_State * L, int idx)
 	{
 		return luax_checktype<SoundData>(L, idx, "SoundData", LOVE_SOUND_SOUND_DATA_BITS);
@@ -70,6 +68,5 @@ namespace sdlsound
 		return 0;
 	}
 
-} // sdlsound
 } // sound
 } // love

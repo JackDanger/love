@@ -2641,12 +2641,104 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\modules\sound\Sound.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\sound\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\sound\Sound.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\sound\SoundData.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\sound\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
 					RelativePath="..\..\src\modules\sound\SoundData.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\sound\wrap_Decoder.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\sound\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\sound\wrap_Decoder.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\sound\wrap_Sound.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\sound\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\sound\wrap_Sound.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\sound\wrap_SoundData.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\sound\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\sound\wrap_SoundData.h"
 					>
 				</File>
 				<Filter
 					Name="sdlsound"
 					>
+					<File
+						RelativePath="..\..\src\modules\sound\sdlsound\Decoder.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\sound\sdlsound\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\sound\sdlsound\Decoder.h"
+						>
+					</File>
 					<File
 						RelativePath="..\..\src\modules\sound\sdlsound\Sound.cpp"
 						>
@@ -2669,78 +2761,6 @@
 					</File>
 					<File
 						RelativePath="..\..\src\modules\sound\sdlsound\Sound.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\sound\sdlsound\SoundData.cpp"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\sound\sdlsound\"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(IntDir)\sound\sdlsound\"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\sound\sdlsound\SoundData.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\sound\sdlsound\wrap_Sound.cpp"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\sound\sdlsound\"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(IntDir)\sound\sdlsound\"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\sound\sdlsound\wrap_Sound.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\sound\sdlsound\wrap_SoundData.cpp"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\sound\sdlsound\"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\$(IntDir)\sound\sdlsound\"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\sound\sdlsound\wrap_SoundData.h"
 						>
 					</File>
 				</Filter>
@@ -2892,6 +2912,7 @@
 								<Tool
 									Name="VCCLCompilerTool"
 									ObjectFile="$(IntDir)\native\tcc\libtcc\"
+									WarningLevel="0"
 								/>
 							</FileConfiguration>
 						</File>

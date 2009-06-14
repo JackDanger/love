@@ -24,6 +24,8 @@
 // LOVE
 #include "Audible.h"
 
+#include <sound/Decoder.h>
+
 namespace love
 {
 namespace audio
@@ -33,11 +35,13 @@ namespace openal
 	class Music : public Audible
 	{
 	private:
-		static const unsigned int NUM_BUFFERS = 4;
+		static const unsigned int NUM_BUFFERS = 32;
 		ALuint buffers[NUM_BUFFERS];
+		love::sound::Decoder * decoder;
 	public:
-		Music();
+		Music(love::sound::Decoder * decoder);
 		virtual ~Music();
+		Music * clone();
 		void init(ALuint source);
 		void update(ALuint source);
 		void quit(ALuint source);

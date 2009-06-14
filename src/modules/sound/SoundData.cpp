@@ -28,48 +28,20 @@ namespace love
 {
 namespace sound
 {
-namespace sdlsound
-{
-	SoundData::SoundData(filesystem::File * file)
-		: data(0), size(0)
+	SoundData::SoundData(Decoder * decoder)
+		: data(0), size(0), format(Decoder::UNSUPPORTED), sampleRate(Decoder::DEFAULT_SAMPLE_RATE)
 	{
-		// Read the raw data from the file.
-		Data * raw = file->read();
 
-		SDL_RWops * rwops = SDL_RWFromConstMem((const void*)raw->getData(), raw->getSize());
+		decoder->decodeAll();
 
-		Sound_AudioInfo desired;
-		desired.channels = 2;
-		desired.format = AUDIO_S16SYS;
-		desired.rate = 44100;
-
-		// Get the extention of the file. Note: this is required for 
-		// module-files such as XM!
-		std::string ext = file->getExtention();
-
-		// Create the SDL_sound sample.
-		Sound_Sample * sample = Sound_NewSample(rwops, (ext.empty() ? 0 : ext.c_str()), &desired, 1024);
-
-		if(sample == 0)
-		{
-			raw->release();
-			std::cerr << Sound_GetError() << std::endl;
-			return;
-		}
-
-		Sound_DecodeAll(sample);
-
-		raw->release();
+		format = decoder->getFormat();
+		sampleRate = decoder->getSampleRate();
 
 		// Copy memory.
-		size = sample->buffer_size;
-		data = new short[size];
+		size = decoder->getSize();
+		data = new char[size];
 
-		memcpy(data, sample->buffer, size);
-
-		// Cleanup sample.
-		Sound_FreeSample(sample);
-		
+		memcpy(data, decoder->getBuffer(), size);		
 	}
 
 	SoundData::~SoundData()
@@ -88,20 +60,24 @@ namespace sdlsound
 		return (int)size;
 	}
 
+	Decoder::Format SoundData::getFormat() const
+	{
+		return format;
+	}
+
+	int SoundData::getSampleRate() const
+	{
+		return sampleRate;
+	}
+
 	void SoundData::setSample(int i, float sample)
 	{
-		if(data != 0 && i >= 0 && i < size)
-			data[i] = (short)(sample*(float)SHRT_MAX);
 	}
 
 	float SoundData::getSample(int i) const
 	{
-		if(data != 0 && i >= 0 && i < size)
-			return ((float)data[i])/(float)SHRT_MAX;
 		return 0;
 	}
 
-
-} // sdlsound
 } // sound
 } // love

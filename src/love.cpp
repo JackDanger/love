@@ -39,7 +39,7 @@
 #include <mouse/sdl/wrap_Mouse.h>
 #include <native/tcc/wrap_Native.h>
 #include <physics/box2d/wrap_Physics.h>
-#include <sound/sdlsound/wrap_Sound.h>
+#include <sound/wrap_Sound.h>
 #include <timer/sdl/wrap_Timer.h>
 
 // Libraries.
@@ -81,7 +81,7 @@ DECLSPEC int luaopen_love(lua_State * L)
 	love::luax_preload(L, love::graphics::opengl::wrap_Graphics_open, "love.graphics.opengl");
 	love::luax_preload(L, love::image::devil::wrap_Image_open, "love.image.devil");
 	love::luax_preload(L, love::physics::box2d::wrap_Physics_open, "love.physics.box2d");
-	love::luax_preload(L, love::sound::sdlsound::wrap_Sound_open, "love.sound.sdlsound");
+	love::luax_preload(L, love::sound::wrap_Sound_open, "love.sound.sdlsound");
 
 	love::luasocket::__open(L);
 	love::lanes::open(L);

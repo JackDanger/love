@@ -20,34 +20,57 @@
 
 #include "wrap_Sound.h"
 
+// Implementations.
+#include "sdlsound/Sound.h"
+
 namespace love
 {
 namespace sound
 {
-namespace sdlsound
-{
 	static Sound * instance = 0;
 
 	int _wrap_newSoundData(lua_State * L)
+	{
+		// Convert to Decoder, if necessary.
+		if(!luax_istype(L, 1, LOVE_SOUND_DECODER_BITS))
+		{
+			_wrap_newDecoder(L);
+			lua_replace(L, 1);
+		}
+
+		Decoder * decoder = luax_checkdecoder(L, 1);
+
+		SoundData * t = instance->newSoundData(decoder);
+		luax_newtype(L, "SoundData", LOVE_SOUND_SOUND_DATA_BITS, (void*)t);
+
+		return 1;
+	}
+
+	int _wrap_newDecoder(lua_State * L)
 	{
 		// Convert to File, if necessary.
 		if(lua_isstring(L, 1))
 			luax_strtofile(L, 1);
 
 		love::filesystem::File * file = luax_checktype<love::filesystem::File>(L, 1, "File", LOVE_FILESYSTEM_FILE_BITS);
-		SoundData * t = instance->newSoundData(file);
-		luax_newtype(L, "SoundData", LOVE_SOUND_SOUND_DATA_BITS, (void*)t);
+		int bufferSize = luaL_optint(L, 2, Decoder::DEFAULT_BUFFER_SIZE);
+		int sampleRate = luaL_optint(L, 3, Decoder::DEFAULT_SAMPLE_RATE);
+
+		Decoder * t = instance->newDecoder(file, bufferSize, sampleRate);
+		luax_newtype(L, "Decoder", LOVE_SOUND_DECODER_BITS, (void*)t);
 		return 1;
 	}
 
 	// List of functions to wrap.
 	static const luaL_Reg wrap_Sound_functions[] = {
 		{ "newSoundData",  _wrap_newSoundData },
+		{ "newDecoder",  _wrap_newDecoder },
 		{ 0, 0 }
 	};
 
 	static const lua_CFunction wrap_Sound_types[] = {
 		wrap_SoundData_open,
+		wrap_Decoder_open,
 		0
 	};
 
@@ -57,7 +80,7 @@ namespace sdlsound
 		{
 			try
 			{
-				instance = new Sound();
+				instance = new sdlsound::Sound();
 			}
 			catch(Exception & e)
 			{
@@ -68,6 +91,5 @@ namespace sdlsound
 		return luax_register_module(L, wrap_Sound_functions, wrap_Sound_types);
 	}
 
-} // sdlsound
 } // sound
 } // love

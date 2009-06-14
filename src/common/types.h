@@ -56,6 +56,7 @@ namespace love
 
 		// Sound
 		LOVE_SOUND_SOUND_DATA_ID,
+		LOVE_SOUND_DECODER_ID,
 
 		// Physics
 		LOVE_PHYSICS_WORLD_ID,
@@ -112,6 +113,7 @@ namespace love
 
 	// Sound.
 	const bits LOVE_SOUND_SOUND_DATA_BITS = (bits(1) << LOVE_SOUND_SOUND_DATA_ID) | LOVE_DATA_BITS;
+	const bits LOVE_SOUND_DECODER_BITS = bits(1) << LOVE_SOUND_DECODER_ID;
 
 	// Physics.
 	const bits LOVE_PHYSICS_WORLD_BITS = (bits(1) << LOVE_PHYSICS_WORLD_ID) | LOVE_OBJECT_BITS;

@@ -122,37 +122,48 @@ namespace openal
 		return new Sound(data);
 	}
 
-	/*
-	Music * Audio::newMusic(love::sound::SoundData * data)
+
+	Music * Audio::newMusic(love::sound::Decoder * decoder)
 	{
-		return new Music(data);
+		return new Music(decoder);
 	}
 
-	*/
 	Channel * Audio::newChannel()
 	{
 		return new Channel();
 	}
 	
+	void Audio::play(Audible * audible, Channel * channel)
+	{
+		Channel * c = channel;
+
+		if(channel == 0)
+			c = new Channel();
+
+		// Set the audible, overwrite if necessary.
+		c->setAudible(audible);
+		
+		// Play the channel.
+		c->play();
+
+		// Insert only if not already playing.	
+		if(!channel_playing(c))
+			channel_insert(c);
+
+		if(channel == 0)
+			c->release();
+	}
 
 	void Audio::play(Sound * sound, Channel * channel)
 	{
-		// Set the audible, overwrite if necessary.
-		channel->setAudible(sound);
-		
-		// Play the channel.
-		channel->play();
-
-		// Insert only if not already playing.	
-		if(!channel_playing(channel))
-			channel_insert(channel);
+		play((Audible*)sound, channel);
 	}
 
-	void Audio::play(Sound * sound)
+	void Audio::play(Music * music, Channel * channel)
 	{
-		Channel * c = new Channel();
-		play(sound, c);
-		c->release();
+		Music * m = music->clone();
+		play((Audible*)m, channel);
+		m->release();
 	}
 
 	void Audio::stop(Channel * channel)
