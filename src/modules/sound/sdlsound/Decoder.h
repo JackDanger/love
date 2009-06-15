@@ -49,7 +49,6 @@ namespace sdlsound
 		~Decoder();
 		Decoder * clone();
 		int decode();
-		int decodeAll();
 		int getSize() const;
 		void * getBuffer() const;
 		bool seek(int ms);

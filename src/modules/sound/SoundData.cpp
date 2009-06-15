@@ -20,9 +20,14 @@
 
 #include "SoundData.h"
 
-// STD
-#include <iostream>
+// C
 #include <climits>
+#include <cstdlib>
+#include <cstring>
+
+// STL
+#include <iostream>
+#include <vector>
 
 namespace love
 {
@@ -32,22 +37,34 @@ namespace sound
 		: data(0), size(0), format(Decoder::UNSUPPORTED), sampleRate(Decoder::DEFAULT_SAMPLE_RATE)
 	{
 
-		decoder->decodeAll();
+		// Decode all data here.
+		while(!decoder->isFinished())
+		{
+			int decoded = decoder->decode();
+
+			// If this returns 0, then we're probably at EOF.
+			if(decoded <= 0)
+				break;
+
+			// Expand or allocate buffer. Note that realloc may move
+			// memory to other locations.
+			data = (char*)realloc(data, size + decoder->getSize());
+
+			// Copy memory into new part of memory.
+			memcpy(data + size, decoder->getBuffer(), decoded);
+
+			// Keep this up to date.
+			size += decoded;
+		}
 
 		format = decoder->getFormat();
 		sampleRate = decoder->getSampleRate();
-
-		// Copy memory.
-		size = decoder->getSize();
-		data = new char[size];
-
-		memcpy(data, decoder->getBuffer(), size);		
 	}
 
 	SoundData::~SoundData()
 	{
 		if(data != 0)
-			delete [] data;
+			free(data);
 	}
 
 	void * SoundData::getData() const

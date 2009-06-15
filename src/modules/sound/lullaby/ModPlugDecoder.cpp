@@ -20,6 +20,7 @@
 
 #include "ModPlugDecoder.h"
 
+#include <set>
 #include <common/Exception.h>
 
 namespace love
@@ -28,31 +29,50 @@ namespace sound
 {
 namespace lullaby
 {
-	ModPlugDecoder::ModPlugDecoder(filesystem::File * file, int bufferSize, int sampleRate)
-		: plug(0), data(0), bufferSize(bufferSize), actualSize(bufferSize), eof(false), buffer(0)
+	ModPlugDecoder::ModPlugDecoder(Data * data, const std::string & ext, int bufferSize, int sampleRate)
+		: Decoder(data, ext, bufferSize, sampleRate), plug(0)
 	{
-		init(file->read(), bufferSize, sampleRate, file->getExtention());
-	}
 
-	ModPlugDecoder::ModPlugDecoder(Data * data, int bufferSize, int sampleRate, const std::string & ext)
-		: plug(0), data(0), bufferSize(bufferSize), actualSize(bufferSize), eof(false), buffer(0)
-	{
-		init(data, bufferSize, sampleRate, ext);
+		// Set some ModPlug settings.
+		settings.mFlags = MODPLUG_ENABLE_OVERSAMPLING | MODPLUG_ENABLE_NOISE_REDUCTION;
+		settings.mChannels = 2;
+		settings.mBits = 16;
+		settings.mFrequency = sampleRate;
+		settings.mResamplingMode = MODPLUG_RESAMPLE_LINEAR;
+		settings.mLoopCount = 0;
+		ModPlug_SetSettings(&settings);
+
+		// Load the module.
+		plug = ModPlug_Load(data->getData(), data->getSize());
+
+		if(plug == 0)
+			throw love::Exception("Could not load file with ModPlug.");
 	}
 
 	ModPlugDecoder::~ModPlugDecoder()
 	{
 		if(plug != 0)
 			ModPlug_Unload(plug);
-		if(data != 0)
-			data->release();
-		if(buffer != 0)
-			delete [] buffer;
 	}
 
-	Decoder * ModPlugDecoder::clone()
+	bool ModPlugDecoder::accepts(const std::string & ext)
 	{
-		return new ModPlugDecoder(data, bufferSize, settings.mFrequency, ext);
+		static const std::string supported[] = {
+			"it", "xm", "mod", "wav", ""
+		};
+
+		for(int i = 0; !(supported[i].empty()); i++)
+		{
+			if(supported[i].compare(ext) == 0)
+				return true;
+		}
+
+		return false;
+	}
+
+	love::sound::Decoder * ModPlugDecoder::clone()
+	{
+		return new ModPlugDecoder(data, ext, bufferSize, settings.mFrequency);
 	}
 
 	int ModPlugDecoder::decode()
@@ -63,21 +83,6 @@ namespace lullaby
 			eof = true;
 
 		return r;
-	}
-
-	int ModPlugDecoder::decodeAll()
-	{
-		return 0;
-	}
-
-	int ModPlugDecoder::getSize() const
-	{
-		return actualSize;
-	}
-
-	void * ModPlugDecoder::getBuffer() const
-	{
-		return buffer;
 	}
 
 	bool ModPlugDecoder::seek(int ms)
@@ -97,42 +102,9 @@ namespace lullaby
 		return true;
 	}
 
-	bool ModPlugDecoder::isFinished()
-	{
-		return eof;
-	}
-
-	sound::Decoder::Format ModPlugDecoder::getFormat()  const 
+	sound::Decoder::Format ModPlugDecoder::getFormat() const 
 	{
 		return STEREO16;
-	}
-
-	int ModPlugDecoder::getSampleRate() const
-	{
-		return settings.mFrequency;
-	}
-
-	void ModPlugDecoder::init(Data * data, int bufferSize, int sampleRate, const std::string & ext)
-	{
-		this->ext = ext;
-		this->data = data;
-		data->retain();
-
-		buffer = (void*)(new char[bufferSize]);
-
-		settings.mFlags = MODPLUG_ENABLE_OVERSAMPLING | MODPLUG_ENABLE_NOISE_REDUCTION;
-		settings.mChannels = 2;
-		settings.mBits = 16;
-		settings.mFrequency = sampleRate;
-		settings.mResamplingMode = MODPLUG_RESAMPLE_LINEAR;
-		settings.mLoopCount = 0;
-
-		ModPlug_SetSettings(&settings);
-
-		plug = ModPlug_Load(data->getData(), data->getSize());
-
-		if(plug == 0)
-			throw love::Exception("Could not load file with ModPlug.");
 	}
 
 } // lullaby

@@ -58,11 +58,6 @@ namespace sdlsound
 		return Sound_Decode(sample);
 	}
 
-	int Decoder::decodeAll()
-	{
-		return Sound_DecodeAll(sample);
-	}
-
 	int Decoder::getSize() const
 	{
 		return sample->buffer_size;

@@ -58,7 +58,7 @@ namespace lullaby
 		const char * getName() const;
 		
 		/// @copydoc love::sound::Sound::newDecoder
-		Decoder * newDecoder(love::filesystem::File * file, int bufferSize, int sampleRate);
+		sound::Decoder * newDecoder(love::filesystem::File * file, int bufferSize, int sampleRate);
 
 	}; // Sound
 

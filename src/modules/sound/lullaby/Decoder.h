@@ -18,15 +18,14 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_SOUND_LULLABY_MODPLUG_DECODER_H
-#define LOVE_SOUND_LULLABY_MODPLUG_DECODER_H
+#ifndef LOVE_SOUND_LULLABY_DECODER_H
+#define LOVE_SOUND_LULLABY_DECODER_H
 
 // LOVE
-#include <common/Data.h>
-#include "Decoder.h"
+#include <sound/Decoder.h>
+#include <filesystem/File.h>
 
-// SDL_sound
-#include <modplug.h>
+#include <string>
 
 namespace love
 {
@@ -34,26 +33,42 @@ namespace sound
 {
 namespace lullaby
 {
-	class ModPlugDecoder : public Decoder
+	class Decoder : public love::sound::Decoder
 	{
-	private:
+	protected:
 
-		ModPlugFile * plug;
-		ModPlug_Settings settings;
+		// The encoded data. This should be replaced with buffered file
+		// reads in the future. 
+		Data * data;
+
+		// File extension.
+		std::string ext;
+
+		// When the decoder decodes data incrementally, it writes
+		// this many bytes at a time (at most).
+		int bufferSize;
+
+		// The desired frequency of the samples. 44100, 22050, or 11025.
+		int sampleRate;
+
+		// Holds internal memory.
+		void * buffer;
+
+		// Set this to true when eof has been reached.
+		bool eof;
 
 	public:
 
-		ModPlugDecoder(Data * data, const std::string & ext, int bufferSize, int sampleRate);
-		~ModPlugDecoder();
+		Decoder(Data * data, const std::string & ext, int bufferSize, int sampleRate);
 
-		static bool accepts(const std::string & ext);
+		virtual ~Decoder();
 
-		love::sound::Decoder * clone();
-		int decode();
-		bool seek(int ms);
-		bool rewind();
-		bool isSeekable();
-		Format getFormat() const;
+		// Implement some of love::sound::Decoder, but allow subclasses
+		// to override them.
+		virtual void * getBuffer() const;
+		virtual int getSize() const;
+		virtual int getSampleRate() const;
+		virtual bool isFinished();
 
 	}; // Decoder
 
@@ -61,4 +76,4 @@ namespace lullaby
 } // sound
 } // love
 
-#endif // LOVE_SOUND_LULLABY_MODPLUG_DECODER_H
+#endif // LOVE_SOUND_LULLABY_DECODER_H

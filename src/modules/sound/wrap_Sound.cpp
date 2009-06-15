@@ -58,6 +58,10 @@ namespace sound
 		int sampleRate = luaL_optint(L, 3, Decoder::DEFAULT_SAMPLE_RATE);
 
 		Decoder * t = instance->newDecoder(file, bufferSize, sampleRate);
+
+		if(t == 0)
+			return luaL_error(L, "Extension \"%s\" not supported.", file->getExtention().c_str());
+
 		luax_newtype(L, "Decoder", LOVE_SOUND_DECODER_BITS, (void*)t);
 		return 1;
 	}

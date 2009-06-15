@@ -82,22 +82,15 @@ namespace sound
 
 		/**
 		* Decodes the next chunk of the music stream, this will usually be
-		* bufferSize amount of bytes, unless EOF occurs. A negative value on 
-		* errors.
+		* bufferSize amount of bytes, unless EOF occurs. Zero or negative values
+		* indicate EOF or errors.
 		* @return The number of bytes actually decoded.
 		**/
 		virtual int decode() = 0;
 
 		/**
-		* Decodes all data in the file. This also changes the size of the
-		* buffer as needed.
-		* @return The number of bytes decoded.
-		**/
-		virtual int decodeAll() = 0;
-
-		/**
 		* Gets the size of the buffer (NOT the size of the entire stream).
-		* @return The size of the buffer. May vary on EOF.
+		* @return The size of the buffer. 
 		**/
 		virtual int getSize() const = 0;
 

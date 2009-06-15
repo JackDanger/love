@@ -18,15 +18,9 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_SOUND_LULLABY_MODPLUG_DECODER_H
-#define LOVE_SOUND_LULLABY_MODPLUG_DECODER_H
-
-// LOVE
-#include <common/Data.h>
 #include "Decoder.h"
 
-// SDL_sound
-#include <modplug.h>
+#include <common/Exception.h>
 
 namespace love
 {
@@ -34,31 +28,42 @@ namespace sound
 {
 namespace lullaby
 {
-	class ModPlugDecoder : public Decoder
+	Decoder::Decoder(Data * data, const std::string & ext, int bufferSize, int sampleRate)
+		:data(data), ext(ext), bufferSize(bufferSize), sampleRate(sampleRate), buffer(0), eof(false)
 	{
-	private:
+		data->retain();
+		buffer = new char[bufferSize];
+	}
 
-		ModPlugFile * plug;
-		ModPlug_Settings settings;
+	Decoder::~Decoder()
+	{
+		if(buffer != 0)
+			delete [] buffer;
+		if(data != 0)
+			data->release();
+	}
 
-	public:
+	void * Decoder::getBuffer() const
+	{
+		return buffer;
+	}
 
-		ModPlugDecoder(Data * data, const std::string & ext, int bufferSize, int sampleRate);
-		~ModPlugDecoder();
+	int Decoder::getSize() const
+	{
+		return bufferSize;
+	}
 
-		static bool accepts(const std::string & ext);
+	int Decoder::getSampleRate() const
+	{
+		return sampleRate;
+	}
 
-		love::sound::Decoder * clone();
-		int decode();
-		bool seek(int ms);
-		bool rewind();
-		bool isSeekable();
-		Format getFormat() const;
+	bool Decoder::isFinished()
+	{
+		return eof;
+	}
 
-	}; // Decoder
 
 } // lullaby
 } // sound
 } // love
-
-#endif // LOVE_SOUND_LULLABY_MODPLUG_DECODER_H

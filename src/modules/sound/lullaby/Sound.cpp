@@ -30,7 +30,6 @@ namespace lullaby
 {
 	Sound::Sound()
 	{
-		//throw Exception(Sound_GetError());
 	}
 
 	Sound::~Sound()
@@ -42,11 +41,22 @@ namespace lullaby
 		return "love.sound.lullaby";
 	}
 
-	Decoder * Sound::newDecoder(love::filesystem::File * file, int bufferSize, int sampleRate)
+	sound::Decoder * Sound::newDecoder(love::filesystem::File * file, int bufferSize, int sampleRate)
 	{
-		// Should find a suitable decoder here, and return it.
+		Data * data = file->read();
+		std::string ext = file->getExtention();
+		
+		sound::Decoder * decoder = 0;
 
-		return new ModPlugDecoder(file, bufferSize, sampleRate);
+		//Find a suitable decoder here, and return it.
+		if(ModPlugDecoder::accepts(ext))
+			decoder = new ModPlugDecoder(data, ext, bufferSize, sampleRate);
+
+		// else if(OtherDecoder::accept(ext))
+
+		data->release();
+
+		return decoder;
 	}
 
 } // lullaby
