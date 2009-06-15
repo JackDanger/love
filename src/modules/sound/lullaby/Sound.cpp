@@ -21,6 +21,7 @@
 #include "Sound.h"
 
 #include "ModPlugDecoder.h"
+#include "Mpg123Decoder.h"
 
 namespace love
 {
@@ -51,6 +52,8 @@ namespace lullaby
 		//Find a suitable decoder here, and return it.
 		if(ModPlugDecoder::accepts(ext))
 			decoder = new ModPlugDecoder(data, ext, bufferSize, sampleRate);
+		else if (Mpg123Decoder::accepts(ext))
+			decoder = new Mpg123Decoder(data, ext, bufferSize, sampleRate);
 
 		// else if(OtherDecoder::accept(ext))
 

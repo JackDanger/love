@@ -111,6 +111,8 @@ love_SOURCES = \
 ./modules/sound/lullaby/Sound.h \
 ./modules/sound/lullaby/Sound.cpp \
 ./modules/sound/lullaby/ModPlugDecoder.cpp \
+./modules/sound/lullaby/Mpg123Decode.cpp \
+./modules/sound/lullaby/Mpg123Decoder.h \
 ./modules/sound/lullaby/Decoder.h \
 ./modules/sound/lullaby/Decoder.cpp \
 ./modules/sound/lullaby/ModPlugDecoder.h \

@@ -30,17 +30,18 @@ namespace sound
 namespace lullaby
 {
 	Mpg123Decoder::Mpg123Decoder(Data * data, const std::string & ext, int bufferSize, int sampleRate)
-		: Decoder(data, ext, bufferSize, sampleRate), plug(0)
+		: Decoder(data, ext, bufferSize, sampleRate), handle(0), data(data)
 	{
-		
+		int ret = mpg123_init();
+		if (ret != MPG123_OK)
+			throw love::Exception("Could not initialize mpg123.");
 		//Intialize the handle
-		int ret = mpg123_open_feed(handle);
-		if (ret != MPG123_DONE )
-			throw love::Exception("Could not open a mpg123 file handle.");
-		
-		int ret = mpg123_feed(handle, data->getData(), data->getSize());
-		if (ret != MPG123_DONE )
-			throw love::Exception("Could not feed data into mpg123.");
+		handle = mpg123_new(NULL, &ret);
+		if (handle == NULL)
+			throw love::Exception("Could not create handle.");
+		ret = mpg123_open_feed(handle);
+		if (ret != MPG123_OK)
+			throw love::Exception("Could not open feed.");
 	}
 
 	Mpg123Decoder::~Mpg123Decoder()
@@ -70,11 +71,11 @@ namespace lullaby
 
 	int Mpg123Decoder::decode()
 	{
-		int numbytes;
-		int r =  mpg123_read(handle, buffer, bufferSize, &numbytes);
+		size_t numbytes;
+		int r =  mpg123_decode(handle, (unsigned char*) data->getData(), data->getSize(), (unsigned char*) buffer, bufferSize, &numbytes);
 
-		if (r != MPG123_DONE)
-			throw love::Exception("Could not decode file.");
+//		if (r != MPG123_DONE && r != MPG123_OK)
+			//throw love::Exception("Could not decode data.");
 		if (numbytes == 0)
 			eof = true;
 

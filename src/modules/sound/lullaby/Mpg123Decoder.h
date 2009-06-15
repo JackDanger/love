@@ -39,6 +39,7 @@ namespace lullaby
 	private:
 
 		mpg123_handle * handle;
+		Data * data;
 
 	public:
 
