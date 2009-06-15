@@ -59,6 +59,11 @@ namespace openal
 		audible->retain();
 	}
 
+	Audible * Channel::getAudible() const
+	{
+		return audible;
+	}
+
 	void Channel::play()
 	{
 		if(audible != 0)

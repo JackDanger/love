@@ -73,7 +73,7 @@ namespace sound
 		* rewound, and does not have to be at the same place.
 		* @return A new Decoder object. 
 		**/
-		Decoder * clone();
+		virtual Decoder * clone() = 0;
 
 		/**
 		* Destructor. Should free internal buffer. 

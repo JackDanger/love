@@ -67,9 +67,10 @@ namespace openal
 		SDL_mutex * channels_mutex;
 		SDL_Thread * channel_update_thread;
 
-		bool channel_playing(Channel * c);
-		void channel_insert(Channel * c);
-		static int channel_updater(void * unused);
+		bool isChannelPlaying(Channel * c);
+		bool isAudiblePlaying(Audible * a);
+		void insertChannel(Channel * c);
+		static int channelUpdater(void * unused);
 
 	public:
 

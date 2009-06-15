@@ -38,7 +38,7 @@ namespace openal
 	{
 		alutInit(0, 0);
 		channels_mutex = SDL_CreateMutex();
-		channel_update_thread = SDL_CreateThread(Audio::channel_updater, (void*)this);
+		channel_update_thread = SDL_CreateThread(Audio::channelUpdater, (void*)this);
 	}
 
 	Audio::~Audio()
@@ -63,7 +63,7 @@ namespace openal
 		return "love.audio.openal";
 	}
 
-	bool Audio::channel_playing(Channel * c)
+	bool Audio::isChannelPlaying(Channel * c)
 	{
 		std::list<Channel *>::iterator p = playing_channels.begin();
 
@@ -76,7 +76,20 @@ namespace openal
 		return false;
 	}
 
-	void Audio::channel_insert(Channel * c)
+	bool Audio::isAudiblePlaying(Audible * a)
+	{
+		std::list<Channel *>::iterator p = playing_channels.begin();
+
+		while(p != playing_channels.end())
+		{
+			if((*p)->getAudible() == a)
+				return true;
+			p++;
+		}
+		return false;
+	}
+
+	void Audio::insertChannel(Channel * c)
 	{
 		c->retain();
 
@@ -88,7 +101,7 @@ namespace openal
 
 	}
 
-	int Audio::channel_updater(void * audio)
+	int Audio::channelUpdater(void * audio)
 	{
 		Audio * instance = (Audio*)audio;
 
@@ -157,8 +170,8 @@ namespace openal
 		c->play();
 
 		// Insert only if not already playing.	
-		if(!channel_playing(c))
-			channel_insert(c);
+		if(!isChannelPlaying(c))
+			insertChannel(c);
 
 		if(channel == 0)
 			c->release();
@@ -171,9 +184,18 @@ namespace openal
 
 	void Audio::play(Music * music, Channel * channel)
 	{
-		Music * m = music->clone();
+
+		Music * m = music;
+
+		// Clone it if this music is already playing.
+		if(isAudiblePlaying(m))
+			m = music->clone();
+
 		play((Audible*)m, channel);
-		m->release();
+
+		// If we cloned the music, release the clone.
+		if(music != m)
+			m->release();
 	}
 
 	void Audio::stop(Channel * channel)

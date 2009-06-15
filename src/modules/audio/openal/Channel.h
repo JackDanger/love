@@ -45,6 +45,7 @@ namespace openal
 		Channel();
 		virtual ~Channel();
 		void setAudible(Audible * audible);
+		Audible * getAudible() const;
 		void play();
 		void stop();
 		void pause();

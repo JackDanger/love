@@ -43,7 +43,7 @@ namespace openal
 
 	Music * Music::clone()
 	{
-		return new Music(decoder);
+		return new Music(decoder->clone());
 	}
 
 	void Music::init(ALuint source)
