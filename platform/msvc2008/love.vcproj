@@ -59,7 +59,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib openal32.lib alut.lib SDL_sound.lib"
+				AdditionalDependencies="lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib openal32.lib alut.lib SDL_sound.lib libmodplug.lib"
 				AdditionalLibraryDirectories="lib;Debug"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -132,7 +132,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib openal32.lib alut.lib SDL_sound.lib"
+				AdditionalDependencies="lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib openal32.lib alut.lib SDL_sound.lib libmodplug.lib"
 				AdditionalLibraryDirectories="lib;Release"
 				GenerateDebugInformation="false"
 				SubSystem="2"
@@ -2809,6 +2809,58 @@
 					</File>
 					<File
 						RelativePath="..\..\src\modules\sound\sdlsound\Sound.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="lullaby"
+					>
+					<File
+						RelativePath="..\..\src\modules\sound\lullaby\ModPlugDecoder.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\sound\lullaby\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\sound\lullaby\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\sound\lullaby\ModPlugDecoder.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\sound\lullaby\Sound.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\sound\lullaby\"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)\sound\lullaby\"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\sound\lullaby\Sound.h"
 						>
 					</File>
 				</Filter>

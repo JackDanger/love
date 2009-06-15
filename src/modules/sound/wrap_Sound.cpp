@@ -22,6 +22,7 @@
 
 // Implementations.
 #include "sdlsound/Sound.h"
+#include "lullaby/Sound.h"
 
 namespace love
 {
@@ -80,7 +81,7 @@ namespace sound
 		{
 			try
 			{
-				instance = new sdlsound::Sound();
+				instance = new lullaby::Sound();
 			}
 			catch(Exception & e)
 			{
