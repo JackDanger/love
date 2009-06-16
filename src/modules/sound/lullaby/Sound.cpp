@@ -35,6 +35,7 @@ namespace lullaby
 
 	Sound::~Sound()
 	{
+		Mpg123Decoder::quit();
 	}
 
 	const char * Sound::getName() const
@@ -49,7 +50,7 @@ namespace lullaby
 		
 		sound::Decoder * decoder = 0;
 
-		//Find a suitable decoder here, and return it.
+		// Find a suitable decoder here, and return it.
 		if(ModPlugDecoder::accepts(ext))
 			decoder = new ModPlugDecoder(data, ext, bufferSize, sampleRate);
 		else if (Mpg123Decoder::accepts(ext))

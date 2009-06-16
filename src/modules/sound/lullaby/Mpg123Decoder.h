@@ -25,7 +25,7 @@
 #include <common/Data.h>
 #include "Decoder.h"
 
-// SDL_sound
+// libmpg123
 #include <mpg123.h>
 
 namespace love
@@ -40,12 +40,15 @@ namespace lullaby
 
 		mpg123_handle * handle;
 
+		static bool inited;
+
 	public:
 
 		Mpg123Decoder(Data * data, const std::string & ext, int bufferSize, int sampleRate);
 		~Mpg123Decoder();
-
+		
 		static bool accepts(const std::string & ext);
+		static void quit();
 
 		love::sound::Decoder * clone();
 		int decode();

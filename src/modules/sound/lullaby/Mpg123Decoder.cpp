@@ -20,7 +20,6 @@
 
 #include "Mpg123Decoder.h"
 
-#include <set>
 #include <common/Exception.h>
 
 namespace love
@@ -29,12 +28,23 @@ namespace sound
 {
 namespace lullaby
 {
+
+	bool Mpg123Decoder::inited = false;
+
 	Mpg123Decoder::Mpg123Decoder(Data * data, const std::string & ext, int bufferSize, int sampleRate)
 		: Decoder(data, ext, bufferSize, sampleRate), handle(0)
 	{
-		int ret = mpg123_init();
-		if (ret != MPG123_OK)
-			throw love::Exception("Could not initialize mpg123.");
+
+		int ret;
+
+		if(!inited)
+		{
+			ret = mpg123_init();
+			if (ret != MPG123_OK)
+				throw love::Exception("Could not initialize mpg123.");
+			inited = (ret == MPG123_OK);
+		}
+
 		//Intialize the handle
 		handle = mpg123_new(NULL, &ret);
 		if (handle == NULL)
@@ -51,7 +61,7 @@ namespace lullaby
 	Mpg123Decoder::~Mpg123Decoder()
 	{
 		mpg123_close(handle);
-		mpg123_exit();
+		
 	}
 
 	bool Mpg123Decoder::accepts(const std::string & ext)
@@ -69,6 +79,12 @@ namespace lullaby
 		return false;
 	}
 
+	void Mpg123Decoder::quit()
+	{
+		if(inited)
+			mpg123_exit();
+	}
+
 	love::sound::Decoder * Mpg123Decoder::clone()
 	{
 		return new Mpg123Decoder(data, ext, bufferSize, sampleRate);
@@ -81,7 +97,7 @@ namespace lullaby
 
 		if (r != MPG123_DONE && r != MPG123_OK)
 			throw love::Exception("Could not read decoded data.");
-		else if (r == MPG123_DONE)
+		if (numbytes == 0)
 			eof = true;
 
 		return numbytes;
