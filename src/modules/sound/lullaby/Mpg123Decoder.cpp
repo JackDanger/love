@@ -95,10 +95,12 @@ namespace lullaby
 		size_t numbytes;
 		int r =  mpg123_read(handle, (unsigned char*) buffer, bufferSize, &numbytes);
 
-		if (r != MPG123_DONE && r != MPG123_OK)
-			throw love::Exception("Could not read decoded data.");
-		if (numbytes == 0)
+		// If we're done, then EOF. If some error occurred, pretend we EOF'd.
+		if (r == MPG123_DONE || r != MPG123_OK)
+		{
 			eof = true;
+			numbytes = 0;
+		}
 
 		return numbytes;
 	}
