@@ -81,7 +81,7 @@ namespace lullaby
 
 		if (r != MPG123_DONE && r != MPG123_OK)
 			throw love::Exception("Could not read decoded data.");
-		if (numbytes == 0)
+		else if (r == MPG123_DONE)
 			eof = true;
 
 		return numbytes;
