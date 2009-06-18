@@ -36,7 +36,11 @@ namespace openal
 	Audio::Audio()
 		: quit_channel_updater(false)
 	{
-		alutInit(0, 0);
+		// Passing zero for default device.
+		device = alcOpenDevice(0);
+		context = alcCreateContext(device, 0);
+		alcMakeContextCurrent(context);
+		
 		channels_mutex = SDL_CreateMutex();
 		channel_update_thread = SDL_CreateThread(Audio::channelUpdater, (void*)this);
 	}
@@ -55,7 +59,9 @@ namespace openal
 			p++;
 		}
 
-		alutExit();
+		alcMakeContextCurrent(0);
+		alcDestroyContext(context);
+		alcCloseDevice(device);
 	}
 
 	const char * Audio::getName() const

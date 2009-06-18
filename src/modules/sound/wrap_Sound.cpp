@@ -21,7 +21,6 @@
 #include "wrap_Sound.h"
 
 // Implementations.
-#include "sdlsound/Sound.h"
 #include "lullaby/Sound.h"
 
 namespace love

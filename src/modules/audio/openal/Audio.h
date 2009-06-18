@@ -30,7 +30,8 @@
 #include <SDL.h>
 
 // OpenAL
-#include <alut.h>
+#include <AL/alc.h>
+#include <AL/al.h>
 
 // LOVE
 #include <common/Module.h>
@@ -56,6 +57,12 @@ namespace openal
 	class Audio : public Module
 	{
 	private:
+
+		// The OpenAL device.
+		ALCdevice * device;
+
+		// The OpenAL context.
+		ALCcontext * context;
 
 		// List of playing channels.
 		std::list<Channel *> playing_channels;

@@ -45,6 +45,7 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
+				RuntimeTypeInfo="false"
 				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
@@ -59,7 +60,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib openal32.lib alut.lib SDL_sound.lib libmodplug.lib libmpg123.lib libogg.lib libvorbis.lib"
+				AdditionalDependencies="lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib openal32.lib libmodplug.lib libmpg123.lib libogg.lib libvorbis.lib"
 				AdditionalLibraryDirectories="lib;Debug"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -132,7 +133,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib openal32.lib alut.lib SDL_sound.lib libmodplug.lib libmpg123.lib libogg.lib libvorbis.lib"
+				AdditionalDependencies="lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib openal32.lib libmodplug.lib libmpg123.lib libogg.lib libvorbis.lib"
 				AdditionalLibraryDirectories="lib;Release"
 				GenerateDebugInformation="false"
 				SubSystem="2"
@@ -2760,58 +2761,6 @@
 					RelativePath="..\..\src\modules\sound\wrap_SoundData.h"
 					>
 				</File>
-				<Filter
-					Name="sdlsound"
-					>
-					<File
-						RelativePath="..\..\src\modules\sound\sdlsound\Decoder.cpp"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\sound\sdlsound\"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\sound\sdlsound\"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\sound\sdlsound\Decoder.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\sound\sdlsound\Sound.cpp"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\sound\sdlsound\"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\sound\sdlsound\"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\sound\sdlsound\Sound.h"
-						>
-					</File>
-				</Filter>
 				<Filter
 					Name="lullaby"
 					>

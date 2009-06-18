@@ -51,21 +51,12 @@ DECLSPEC int luaopen_love(lua_State * L)
 	// Create the love table.
 	lua_newtable(L);
 
-	// TODO:
 	// Install constants.
 	for(int i = 0; love::lua_constants[i].name != 0; i++)
 	{
 		lua_pushinteger(L, love::lua_constants[i].value);
 		lua_setfield(L, -2, love::lua_constants[i].name);
 	}
-
-	// __mod table.
-	lua_newtable(L);
-	lua_setfield(L, -2, "__mod");
-
-	// __fin table.
-	lua_newtable(L);
-	lua_setfield(L, -2, "__fin");
 
 	// Set the love table.
 	lua_setglobal(L, "love");
