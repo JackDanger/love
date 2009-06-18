@@ -114,8 +114,6 @@ namespace devil
 	}
 
 	static const luaL_Reg wrap_ImageData_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "getWidth", _wrap_ImageData_getWidth },
 		{ "getHeight", _wrap_ImageData_getHeight },
 		{ "getPixel", _wrap_ImageData_getPixel },

@@ -76,6 +76,19 @@ namespace sdl
 		luax_pushboolean(L, instance->isVisible());
 		return 1;
 	}
+
+	int _wrap_setGrap(lua_State * L)
+	{
+		bool b = luax_toboolean(L, 1);
+		instance->setGrab(b);
+		return 0;
+	}
+
+	int _wrap_isGrabbed(lua_State * L)
+	{
+		luax_pushboolean(L, instance->isGrabbed());
+		return 1;
+	}
 	
 	// List of functions to wrap.
 	static const luaL_Reg wrap_Mouse_functions[] = {
@@ -86,6 +99,8 @@ namespace sdl
 		{ "setVisible", _wrap_setVisible },
 		{ "isVisible", _wrap_isVisible },
 		{ "getPosition", _wrap_getPosition },
+		{ "setGrab", _wrap_setGrap },
+		{ "isGrabbed", _wrap_isGrabbed },
 		{ 0, 0 }
 	};
 

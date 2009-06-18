@@ -57,25 +57,14 @@ namespace sound
 		SoundData * newSoundData(Decoder * decoder);
 
 		/**
-		* Creates a new SoundData with the specified duration and format. The appropriate 
-		* number of samples will be calculated based on the duration, sample rate and number
-		* of channels.
+		* Creates a new SoundData with the specified number of samples and format.
 		* @param duration In seconds.
 		* @param sampleRate Number of samples per second. 
 		* @param bits Bits per sample (8 or 16). 
 		* @param channels Either 1 for mono, or 2 for stereo.
 		* @return A new SoundData object, or zero in case of errors.
 		**/
-		SoundData * newSoundData(int duration, int sampleRate, int bits, int channels);
-
-		/**
-		* Creates a new SoundData with the specified number of samples. Note that the
-		* number of samples will not be doubled if stereo is chosen.
-		* @param samples The number of samples to allocate.
-		* @param bits Bits per sample (8 or 16). 
-		* @param channels Channels Either 1 for mono, or 2 for stereo.
-		**/
-		SoundData * newSoundData(int samples, int bits, int channels);
+		SoundData * newSoundData(int samples, int sampleRate, int bits, int channels);
 
 		/**
 		* Attempts to find a decoder for the encoded sound data in the

@@ -34,15 +34,11 @@ namespace sound
 		return new SoundData(decoder);
 	}
 
-	SoundData * Sound::newSoundData(int duration, int sampleRate, int bits, int channels)
+	SoundData * Sound::newSoundData(int samples, int sampleRate, int bits, int channels)
 	{
-		return newSoundData(duration*sampleRate*channels, bits, channels);
+		return new SoundData(samples, sampleRate, bits, channels);
 	}
 
-	SoundData * Sound::newSoundData(int samples, int bits, int channels)
-	{
-		return new SoundData(samples, bits, channels);
-	}
 
 } // sound
 } // love

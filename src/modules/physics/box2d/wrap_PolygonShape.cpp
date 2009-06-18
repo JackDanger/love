@@ -39,8 +39,6 @@ namespace box2d
 	}
 
 	static const luaL_Reg wrap_PolygonShape_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "getPoints", _wrap_PolygonShape_getPoints },
 		// From Shape.
 		{ "getType", _wrap_Shape_getType },

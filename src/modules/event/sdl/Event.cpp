@@ -50,14 +50,11 @@ namespace sdl
 		return pushEvent(L, e); 
 	}
 
-	void Event::setGrab(bool grab)
+	void Event::quit()
 	{
-		SDL_WM_GrabInput(grab ? SDL_GRAB_ON : SDL_GRAB_OFF);
-	}
-
-	bool Event::getGrab() const
-	{
-		return (SDL_WM_GrabInput(SDL_GRAB_QUERY) ==  SDL_GRAB_ON ? true : false);
+		SDL_Event e;
+		e.type = Event::EVENT_QUIT;
+		SDL_PushEvent(&e);
 	}
 
 	int Event::get(lua_State * L)

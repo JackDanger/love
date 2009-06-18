@@ -35,25 +35,6 @@ namespace love
 
 	class Module;
 
-	/**
-	* Gets a function (or some other variable) from the
-	* metatable of an object.
-	**/
-	int _wrap__index(lua_State * L);
-
-	/**
-	* Called when an object is collected. The object is released
-	* once in this function, possibly deleting it.
-	**/
-	int _wrap__gc(lua_State * L);
-
-	/**
-	* Special garbage collector for Modules. This is only used
-	* to trigger the quit() method on a module when it is garbage 
-	* collected (which is typically when the VM is destroyed).
-	**/
-	int _wrap__Module_gc(lua_State * L);
-
 	void luax_printstack(lua_State * L);
 	bool luax_toboolean(lua_State * L, int idx);
 	void luax_pushboolean(lua_State * L, bool b);

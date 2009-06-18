@@ -64,8 +64,6 @@ namespace opengl
 	}
 
 	static const luaL_Reg wrap_Font_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "getHeight", _wrap_Font_getHeight },
 		{ "getWidth", _wrap_Font_getWidth },
 		{ "setLineHeight", _wrap_Font_setLineHeight },

@@ -202,8 +202,6 @@ namespace physfs
 	}
 
 	const luaL_Reg wrap_File_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "getSize", _wrap_File_getSize },
 		{ "open", _wrap_File_open },
 		{ "close", _wrap_File_close },

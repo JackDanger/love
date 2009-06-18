@@ -100,8 +100,6 @@ namespace box2d
 	}
 
 	static const luaL_Reg wrap_World_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "update", _wrap_World_update },
 		{ "setCallback", _wrap_World_setCallback },
 		{ "getCallback", _wrap_World_getCallback },

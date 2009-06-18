@@ -321,8 +321,6 @@ namespace box2d
 	}
 
 	static const luaL_Reg wrap_Body_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "getX", _wrap_Body_getX },
 		{ "getY", _wrap_Body_getY },
 		{ "getAngle", _wrap_Body_getAngle },

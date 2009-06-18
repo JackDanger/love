@@ -69,6 +69,16 @@ namespace sound
 		static const int DEFAULT_SAMPLE_RATE = 44100;
 
 		/**
+		* Default is stereo.
+		**/
+		static const int DEFAULT_CHANNELS = 2;
+
+		/**
+		* 16 bit audio is the default.
+		**/
+		static const int DEFAULT_BITS = 16;
+
+		/**
 		* Creates a deep of itself. The sound stream can (and should) be 
 		* rewound, and does not have to be at the same place.
 		* @return A new Decoder object. 

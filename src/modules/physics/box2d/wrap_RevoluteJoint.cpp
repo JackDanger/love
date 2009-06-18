@@ -159,8 +159,6 @@ namespace box2d
 	}
 
 	static const luaL_Reg wrap_RevoluteJoint_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "getAngle", _wrap_RevoluteJoint_getAngle },
 		{ "getSpeed", _wrap_RevoluteJoint_getSpeed },
 		{ "setMotorEnabled", _wrap_RevoluteJoint_setMotorEnabled },

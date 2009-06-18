@@ -39,8 +39,6 @@ namespace box2d
 	}
 
 	static const luaL_Reg wrap_CircleShape_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "getRadius", _wrap_CircleShape_getRadius },
 		// From Shape.
 		{ "getType", _wrap_Shape_getType },

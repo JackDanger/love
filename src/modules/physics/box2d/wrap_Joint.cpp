@@ -76,8 +76,6 @@ namespace box2d
 	}
 
 	static const luaL_Reg wrap_Joint_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "getType", _wrap_Joint_getType },
 		{ "getAnchors", _wrap_Joint_getAnchors },
 		{ "getReactionForce", _wrap_Joint_getReactionForce },

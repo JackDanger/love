@@ -82,8 +82,6 @@ namespace sound
 	}
 
 	static const luaL_Reg wrap_SoundData_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "getPointer", _wrap_SoundData_getPointer },
 		{ "getSize", _wrap_SoundData_getSize },
 		{ "getChannels", _wrap_SoundData_getChannels },

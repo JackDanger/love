@@ -72,8 +72,6 @@ namespace box2d
 	}
 
 	static const luaL_Reg wrap_Contact_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "getPosition", _wrap_Contact_getPosition },
 		{ "getVelocity", _wrap_Contact_getVelocity },
 		{ "getNormal", _wrap_Contact_getNormal },

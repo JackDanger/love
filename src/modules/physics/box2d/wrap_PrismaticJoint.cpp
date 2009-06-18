@@ -159,8 +159,6 @@ namespace box2d
 	}
 
 	static const luaL_Reg wrap_PrismaticJoint_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "getTranslation", _wrap_PrismaticJoint_getTranslation },
 		{ "getSpeed", _wrap_PrismaticJoint_getSpeed },
 		{ "setMotorEnabled", _wrap_PrismaticJoint_setMotorEnabled },

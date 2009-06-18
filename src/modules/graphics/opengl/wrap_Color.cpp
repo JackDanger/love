@@ -94,8 +94,6 @@ namespace opengl
 	}
 
 	static const luaL_Reg wrap_Color_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "setRed", _wrap_Color_setRed },
 		{ "setGreen", _wrap_Color_setGreen },
 		{ "setBlue", _wrap_Color_setBlue },

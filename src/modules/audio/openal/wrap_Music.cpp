@@ -32,8 +32,6 @@ namespace openal
 	}
 
 	static const luaL_Reg wrap_Music_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ 0, 0 }
 	};
 

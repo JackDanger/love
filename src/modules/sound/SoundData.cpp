@@ -62,8 +62,8 @@ namespace sound
 		sampleRate = decoder->getSampleRate();
 	}
 
-	SoundData::SoundData(int samples, int bits, int channels)
-		: data(0), size(samples*(bits<<2)), bits(bits), channels(channels)
+	SoundData::SoundData(int samples, int sampleRate, int bits, int channels)
+		: data(0), size(samples*(bits/8)), sampleRate(sampleRate), bits(bits), channels(channels)
 	{
 		data = (char*)malloc(size);
 	}

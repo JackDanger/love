@@ -32,16 +32,46 @@ namespace sound
 
 	int _wrap_newSoundData(lua_State * L)
 	{
-		// Convert to Decoder, if necessary.
-		if(!luax_istype(L, 1, LOVE_SOUND_DECODER_BITS))
+		SoundData * t = 0;
+
+		if(lua_isnumber(L, 1))
 		{
-			_wrap_newDecoder(L);
-			lua_replace(L, 1);
+			int samples = luaL_checkint(L, 1);
+			int sampleRate = luaL_optint(L, 2, Decoder::DEFAULT_SAMPLE_RATE);
+			int bits = luaL_optint(L, 3, Decoder::DEFAULT_BITS);
+			int channels = luaL_optint(L, 4, Decoder::DEFAULT_CHANNELS);
+
+			try
+			{
+				t = instance->newSoundData(samples, sampleRate, bits, channels);
+			}
+			catch(love::Exception & e)
+			{
+				return luaL_error(L, e.what());
+			}
+
+		}
+		// Must be string or decoder.
+		else
+		{
+
+			// Convert to Decoder, if necessary.
+			if(!luax_istype(L, 1, LOVE_SOUND_DECODER_BITS))
+			{
+				_wrap_newDecoder(L);
+				lua_replace(L, 1);
+			}
+
+			try
+			{
+				t = instance->newSoundData(luax_checkdecoder(L, 1));
+			}
+			catch(love::Exception & e)
+			{
+				return luaL_error(L, e.what());
+			}
 		}
 
-		Decoder * decoder = luax_checkdecoder(L, 1);
-
-		SoundData * t = instance->newSoundData(decoder);
 		luax_newtype(L, "SoundData", LOVE_SOUND_SOUND_DATA_BITS, (void*)t);
 
 		return 1;

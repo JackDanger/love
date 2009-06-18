@@ -134,8 +134,6 @@ namespace opengl
 	}
 
 	static const luaL_Reg wrap_Animation_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "addFrame", _wrap_Animation_addFrame },
 		{ "play", _wrap_Animation_play },
 		{ "stop", _wrap_Animation_stop },

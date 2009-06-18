@@ -44,6 +44,8 @@ namespace sdl
 		void setVisible(bool visible);
 		bool isDown(int button) const;
 		bool isVisible() const;
+		void setGrab(bool grab);
+		bool isGrabbed() const;
 
 	}; // Mouse
 

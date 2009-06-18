@@ -63,8 +63,6 @@ namespace box2d
 	}
 
 	static const luaL_Reg wrap_MouseJoint_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "setTarget", _wrap_MouseJoint_setTarget },
 		{ "getTarget", _wrap_MouseJoint_getTarget },
 		{ "setMaxForce", _wrap_MouseJoint_setMaxForce },

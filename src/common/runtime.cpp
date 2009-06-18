@@ -30,15 +30,11 @@
 namespace love
 {
 
-	int _wrap__index(lua_State * L)
-	{
-		lua_getmetatable(L, 1);
-		lua_pushvalue(L, 2);
-		lua_rawget(L, -2);
-		return 1;
-	}
-
-	int _wrap__gc(lua_State * L)
+	/**
+	* Called when an object is collected. The object is released
+	* once in this function, possibly deleting it.
+	**/
+	static int _wrap__gc(lua_State * L)
 	{
 		userdata * u = (userdata *)lua_touserdata(L, 1);
 		Object * t = (Object *)u->data;
@@ -46,7 +42,12 @@ namespace love
 		return 0;
 	}
 
-	int _wrap__Module_gc(lua_State * L)
+	/**
+	* Special garbage collector for Modules. This is only used
+	* to trigger the quit() method on a module when it is garbage 
+	* collected (which is typically when the VM is destroyed).
+	**/
+	static int _wrap__Module_gc(lua_State * L)
 	{
 		Module * m = (Module *)lua_touserdata(L, 1);
 		delete m;
@@ -183,6 +184,15 @@ namespace love
 	int luax_register_type(lua_State * L, const char * tname, const luaL_Reg * fn)
 	{
 		luaL_newmetatable(L, tname);
+
+		// m.__index = m
+		lua_pushvalue(L, -1);
+		lua_setfield(L, -2, "__index");
+
+		// setup gc
+		lua_pushcfunction(L, _wrap__gc);
+		lua_setfield(L, -2, "__gc");
+
 		luaL_register(L, 0, fn);
 		lua_pop(L, 1); // Pops metatable.
 		return 0;

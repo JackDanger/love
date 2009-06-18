@@ -203,8 +203,6 @@ namespace box2d
 	}
 
 	static const luaL_Reg wrap_Shape_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "getType", _wrap_Shape_getType },
 		{ "setFriction", _wrap_Shape_setFriction },
 		{ "setRestitution", _wrap_Shape_setRestitution },

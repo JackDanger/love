@@ -77,8 +77,6 @@ namespace box2d
 	}
 
 	static const luaL_Reg wrap_DistanceJoint_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "setLength", _wrap_DistanceJoint_setLength },
 		{ "getLength", _wrap_DistanceJoint_getLength },
 		{ "setFrequency", _wrap_DistanceJoint_setFrequency },

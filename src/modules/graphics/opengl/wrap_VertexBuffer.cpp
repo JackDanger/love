@@ -69,8 +69,6 @@ namespace opengl
 	}
 
 	const luaL_Reg wrap_VertexBuffer_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "setType", _wrap_VertexBuffer_setType },
 		{ "getType", _wrap_VertexBuffer_getType },
 		{ "add", _wrap_VertexBuffer_add },

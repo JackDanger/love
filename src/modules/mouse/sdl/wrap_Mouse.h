@@ -37,6 +37,8 @@ namespace sdl
 	int _wrap_isDown(lua_State * L);
 	int _wrap_setVisible(lua_State * L);
 	int _wrap_isVisible(lua_State * L);
+	int _wrap_setGrap(lua_State * L);
+	int _wrap_isGrabbed(lua_State * L);
 	int wrap_Mouse_open(lua_State * L);
 
 } // sdl

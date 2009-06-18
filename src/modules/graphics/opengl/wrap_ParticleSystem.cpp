@@ -288,9 +288,6 @@ namespace opengl
 	}
 
 	static const luaL_Reg wrap_ParticleSystem_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
-
 		{ "setSprite", _wrap_ParticleSystem_setSprite },
 		{ "setBufferSize", _wrap_ParticleSystem_setBufferSize },
 		{ "setEmissionRate", _wrap_ParticleSystem_setEmissionRate },

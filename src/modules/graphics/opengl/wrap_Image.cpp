@@ -56,8 +56,6 @@ namespace opengl
 	}
 
 	static const luaL_Reg wrap_Image_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "getWidth", _wrap_Image_getWidth },
 		{ "getHeight", _wrap_Image_getHeight },
 		{ "setFilter", _wrap_Image_setFilter },

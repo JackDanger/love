@@ -51,8 +51,6 @@ namespace sound
 	}
 
 	static const luaL_Reg wrap_Decoder_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "getChannels", _wrap_Decoder_getChannels },
 		{ "getBits", _wrap_Decoder_getBits },
 		{ "getSampleRate", _wrap_Decoder_getSampleRate },

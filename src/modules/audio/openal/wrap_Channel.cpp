@@ -62,8 +62,6 @@ namespace openal
 	}
 
 	static const luaL_Reg wrap_Channel_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "setPitch", _wrap_Channel_setPitch },
 		{ "getPitch", _wrap_Channel_getPitch },
 		{ "setVolume", _wrap_Channel_setVolume },

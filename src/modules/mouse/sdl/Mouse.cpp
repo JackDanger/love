@@ -73,6 +73,16 @@ namespace sdl
 		return (SDL_ShowCursor(SDL_QUERY) == SDL_ENABLE) ? true : false;
 	}
 
+	void Mouse::setGrab(bool grab)
+	{
+		SDL_WM_GrabInput(grab ? SDL_GRAB_ON : SDL_GRAB_OFF);
+	}
+
+	bool Mouse::isGrabbed() const
+	{
+		return (SDL_WM_GrabInput(SDL_GRAB_QUERY) ==  SDL_GRAB_ON ? true : false);
+	}
+
 } // sdl
 } // mouse
 } // love

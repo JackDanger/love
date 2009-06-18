@@ -39,9 +39,16 @@ namespace sdl
 		return instance->get(L);
 	}
 
+	int _wrap_quit(lua_State * L)
+	{
+		instance->quit();
+		return 0;
+	}
+
 	// List of functions to wrap.
 	static const luaL_Reg wrap_Event_functions[] = {
 		{ "get", _wrap_get },
+		{ "quit", _wrap_quit },
 		{ 0, 0 }
 	};
 

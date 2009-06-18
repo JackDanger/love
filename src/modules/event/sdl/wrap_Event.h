@@ -31,6 +31,7 @@ namespace event
 namespace sdl
 {
 	int _wrap_get(lua_State * L);
+	int _wrap_quit(lua_State * L);
 
 	int wrap_Event_open(lua_State * L);
 

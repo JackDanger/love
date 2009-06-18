@@ -44,10 +44,12 @@ namespace sdl
 		void pump();
 		int poll(lua_State * L);
 		int wait(lua_State * L);
-		int push(lua_State * L);
 
-		void setGrab(bool grab);
-		bool getGrab() const;
+		/**
+		* Push a quit event. Calling this does not mean the application
+		* will exist immediately. 
+		**/
+		void quit();
 
 		/**
 		* Returns an iterator function for

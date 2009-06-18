@@ -53,8 +53,6 @@ namespace opengl
 	}
 
 	static const luaL_Reg wrap_SpriteBatch_functions[] = {
-		{ "__index", _wrap__index },
-		{ "__gc", _wrap__gc },
 		{ "add", _wrap_SpriteBatch_add },
 		{ "clear", _wrap_SpriteBatch_clear },
 		{ 0, 0 }

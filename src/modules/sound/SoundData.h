@@ -44,7 +44,7 @@ namespace sound
 	public:
 
 		SoundData(Decoder * decoder);
-		SoundData(int samples, int bits, int channels);
+		SoundData(int samples, int sampleRate, int bits, int channels);
 
 		virtual ~SoundData();
 
