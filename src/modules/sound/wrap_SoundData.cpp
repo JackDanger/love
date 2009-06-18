@@ -29,14 +29,42 @@ namespace sound
 		return luax_checktype<SoundData>(L, idx, "SoundData", LOVE_SOUND_SOUND_DATA_BITS);
 	}
 
-	int _wrap_getSize(lua_State * L)
+	int _wrap_SoundData_getPointer(lua_State * L)
+	{
+		SoundData * t = luax_checksounddata(L, 1);
+		lua_pushlightuserdata(L, t->getData());
+		return 1;
+	}
+
+	int _wrap_SoundData_getSize(lua_State * L)
 	{
 		SoundData * sd = luax_checksounddata(L, 1);
 		lua_pushinteger(L, sd->getSize());
 		return 1;
 	}
 
-	int _wrap_setSample(lua_State * L)
+	int _wrap_SoundData_getChannels(lua_State * L)
+	{
+		SoundData * t = luax_checksounddata(L, 1);
+		lua_pushinteger(L, t->getChannels());
+		return 1;
+	}
+
+	int _wrap_SoundData_getBits(lua_State * L)
+	{
+		SoundData * t = luax_checksounddata(L, 1);
+		lua_pushinteger(L, t->getBits());
+		return 1;
+	}
+
+	int _wrap_SoundData_getSampleRate(lua_State * L)
+	{
+		SoundData * t = luax_checksounddata(L, 1);
+		lua_pushinteger(L, t->getSampleRate());
+		return 1;
+	}
+
+	int _wrap_SoundData_setSample(lua_State * L)
 	{
 		SoundData * sd = luax_checksounddata(L, 1);
 		int i = (int)lua_tointeger(L, 2);
@@ -45,7 +73,7 @@ namespace sound
 		return 0;
 	}
 
-	int _wrap_getSample(lua_State * L)
+	int _wrap_SoundData_getSample(lua_State * L)
 	{
 		SoundData * sd = luax_checksounddata(L, 1);
 		int i = (int)lua_tointeger(L, 2);
@@ -56,9 +84,13 @@ namespace sound
 	static const luaL_Reg wrap_SoundData_functions[] = {
 		{ "__index", _wrap__index },
 		{ "__gc", _wrap__gc },
-		{ "getSize", _wrap_getSize },
-		{ "setSample", _wrap_setSample },
-		{ "getSample", _wrap_getSample },
+		{ "getPointer", _wrap_SoundData_getPointer },
+		{ "getSize", _wrap_SoundData_getSize },
+		{ "getChannels", _wrap_SoundData_getChannels },
+		{ "getBits", _wrap_SoundData_getBits },
+		{ "getSampleRate", _wrap_SoundData_getSampleRate },
+		{ "setSample", _wrap_SoundData_setSample },
+		{ "getSample", _wrap_SoundData_getSample },
 		{ 0, 0 }
 	};
 	

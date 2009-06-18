@@ -102,9 +102,14 @@ namespace lullaby
 		return true;
 	}
 
-	sound::Decoder::Format ModPlugDecoder::getFormat() const 
+	int ModPlugDecoder::getChannels() const
 	{
-		return STEREO16;
+		return 2;
+	}
+
+	int ModPlugDecoder::getBits() const
+	{
+		return 16;
 	}
 
 } // lullaby

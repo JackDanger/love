@@ -122,10 +122,16 @@ namespace lullaby
 		return true;
 	}
 
-	sound::Decoder::Format Mpg123Decoder::getFormat() const 
+	int Mpg123Decoder::getChannels() const
 	{
-		return STEREO16;
+		return 2;
 	}
+
+	int Mpg123Decoder::getBits() const
+	{
+		return 16;
+	}
+
 
 } // lullaby
 } // sound

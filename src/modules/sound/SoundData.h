@@ -37,19 +37,23 @@ namespace sound
 		char * data;
 		int size;
 
-		Decoder::Format format;
 		int sampleRate;
+		int bits;
+		int channels;
 
 	public:
 
 		SoundData(Decoder * decoder);
+		SoundData(int samples, int bits, int channels);
+
 		virtual ~SoundData();
 
 		// Implements Data.
 		void * getData() const;
 		int getSize() const;
 	
-		Decoder::Format getFormat() const;
+		int getChannels() const;
+		int getBits() const;
 		int getSampleRate() const;
 
 		void setSample(int i, float sample);

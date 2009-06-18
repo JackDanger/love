@@ -29,9 +29,33 @@ namespace sound
 		return luax_checktype<Decoder>(L, idx, "Decoder", LOVE_SOUND_DECODER_BITS);
 	}
 
+	int _wrap_Decoder_getChannels(lua_State * L)
+	{
+		Decoder * t = luax_checkdecoder(L, 1);
+		lua_pushinteger(L, t->getChannels());
+		return 1;
+	}
+
+	int _wrap_Decoder_getBits(lua_State * L)
+	{
+		Decoder * t = luax_checkdecoder(L, 1);
+		lua_pushinteger(L, t->getBits());
+		return 1;
+	}
+
+	int _wrap_Decoder_getSampleRate(lua_State * L)
+	{
+		Decoder * t = luax_checkdecoder(L, 1);
+		lua_pushinteger(L, t->getSampleRate());
+		return 1;
+	}
+
 	static const luaL_Reg wrap_Decoder_functions[] = {
 		{ "__index", _wrap__index },
 		{ "__gc", _wrap__gc },
+		{ "getChannels", _wrap_Decoder_getChannels },
+		{ "getBits", _wrap_Decoder_getBits },
+		{ "getSampleRate", _wrap_Decoder_getSampleRate },
 		{ 0, 0 }
 	};
 	

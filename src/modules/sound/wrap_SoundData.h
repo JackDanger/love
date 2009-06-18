@@ -30,7 +30,11 @@ namespace love
 namespace sound
 {
 	SoundData * luax_checksounddata(lua_State * L, int idx);
+	int _wrap_getPointer(lua_State * L);
 	int _wrap_getSize(lua_State * L);
+	int _wrap_getChannels(lua_State * L);
+	int _wrap_getBits(lua_State * L);
+	int _wrap_getSampleRate(lua_State * L);
 	int _wrap_setSample(lua_State * L);
 	int _wrap_getSample(lua_State * L);
 	int wrap_SoundData_open(lua_State * L);

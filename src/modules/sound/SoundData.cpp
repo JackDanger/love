@@ -34,7 +34,7 @@ namespace love
 namespace sound
 {
 	SoundData::SoundData(Decoder * decoder)
-		: data(0), size(0), format(Decoder::UNSUPPORTED), sampleRate(Decoder::DEFAULT_SAMPLE_RATE)
+		: data(0), size(0), sampleRate(Decoder::DEFAULT_SAMPLE_RATE), bits(0), channels(0)
 	{
 
 		// Decode all data here.
@@ -57,8 +57,15 @@ namespace sound
 			size += decoded;
 		}
 
-		format = decoder->getFormat();
+		channels = decoder->getChannels();
+		bits = decoder->getBits();
 		sampleRate = decoder->getSampleRate();
+	}
+
+	SoundData::SoundData(int samples, int bits, int channels)
+		: data(0), size(samples*(bits<<2)), bits(bits), channels(channels)
+	{
+		data = (char*)malloc(size);
 	}
 
 	SoundData::~SoundData()
@@ -77,9 +84,14 @@ namespace sound
 		return (int)size;
 	}
 
-	Decoder::Format SoundData::getFormat() const
+	int SoundData::getChannels() const
 	{
-		return format;
+		return channels;
+	}
+
+	int SoundData::getBits() const
+	{
+		return bits;
 	}
 
 	int SoundData::getSampleRate() const
@@ -89,11 +101,30 @@ namespace sound
 
 	void SoundData::setSample(int i, float sample)
 	{
+		if(bits == 16)
+		{
+			short * s = (short *)data;
+			s[i] = (short)(sample*(float)SHRT_MAX);
+			return;
+		}
+		else
+		{
+			data[i] = (char)(sample*(float)CHAR_MAX);
+			return;
+		}
 	}
 
 	float SoundData::getSample(int i) const
 	{
-		return 0;
+		if(bits == 16)
+		{
+			short * s = (short *)data;
+			return (float)s[i]/(float)SHRT_MAX;
+		}
+		else
+		{
+			return (float)data[i]/(float)CHAR_MAX;
+		}
 	}
 
 } // sound

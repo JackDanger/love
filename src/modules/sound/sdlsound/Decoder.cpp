@@ -88,23 +88,29 @@ namespace sdlsound
 		return (sample->flags & SOUND_SAMPLEFLAG_EOF) != 0;
 	}
 
-	sound::Decoder::Format Decoder::getFormat()  const 
+	int Decoder::getChannels() const
 	{
+		switch(sample->desired.channels)
+		{
+		case 1:
+			return 1;
+		case 2:
+			return 2;
+		default: 
+			return 0;
+		}
+	}
 
-		// Channels.
-		int c = sample->desired.channels;
-
-		if(c < 1 && c > 2)
-			return UNSUPPORTED;
-
+	int Decoder::getBits() const
+	{
 		switch(sample->desired.format)
 		{
 		case AUDIO_S16SYS:
-			return (c == 2) ? STEREO16 : MONO16;
+			return 16;
 		case AUDIO_S8:
-			return (c == 2) ? STEREO8 : MONO8;
+			return 8;
 		default:
-			return UNSUPPORTED;
+			return 0;
 		}
 	}
 

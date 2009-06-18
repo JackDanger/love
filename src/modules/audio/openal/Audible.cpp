@@ -31,6 +31,20 @@ namespace openal
 	{
 	}
 
+	int Audible::getFormat(int channels, int bits) const
+	{
+		if(channels == 1 && bits == 8)
+			return AL_FORMAT_MONO8;
+		else if(channels == 1 && bits == 16)
+			return AL_FORMAT_MONO16;
+		else if(channels == 2 && bits == 8)
+			return AL_FORMAT_STEREO8;
+		else if(channels == 2 && bits == 16)
+			return AL_FORMAT_STEREO16;
+		else
+			return 0;
+	}
+
 } // openal
 } // audio
 } // love

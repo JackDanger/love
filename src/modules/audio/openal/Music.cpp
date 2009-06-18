@@ -103,25 +103,10 @@ namespace openal
 		// Get more sound data.
 		int decoded = decoder->decode();
 
-		int fmt =  0;
+		int fmt = getFormat(decoder->getChannels(), decoder->getBits());
 
-		switch(decoder->getFormat())
-		{
-		case love::sound::Decoder::MONO8:
-			fmt = AL_FORMAT_MONO8;
-			break;
-		case love::sound::Decoder::MONO16:
-			fmt = AL_FORMAT_MONO16;
-			break;
-		case love::sound::Decoder::STEREO8:
-			fmt = AL_FORMAT_STEREO8;
-			break;
-		case love::sound::Decoder::STEREO16:
-			fmt = AL_FORMAT_STEREO16;
-			break;
-		default:
+		if(fmt == 0)
 			return false;
-		}
 
 		if(decoded > 0)
 		{

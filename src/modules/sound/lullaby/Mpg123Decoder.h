@@ -55,7 +55,8 @@ namespace lullaby
 		bool seek(int ms);
 		bool rewind();
 		bool isSeekable();
-		Format getFormat() const;
+		int getChannels() const;
+		int getBits() const;
 
 	}; // Decoder
 

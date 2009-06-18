@@ -55,7 +55,8 @@ namespace sdlsound
 		bool rewind();
 		bool isSeekable();
 		bool isFinished();
-		Format getFormat() const;
+		int getChannels() const;
+		int getBits() const;
 		int getSampleRate() const;
 
 	private:

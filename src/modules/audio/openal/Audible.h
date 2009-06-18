@@ -41,6 +41,7 @@ namespace openal
 		virtual void update(ALuint source) = 0;
 		virtual void quit(ALuint source) = 0;
 		virtual void rewind(ALuint source) = 0;
+		int getFormat(int channels, int bits) const;
 	}; // Audible
 
 } // openal

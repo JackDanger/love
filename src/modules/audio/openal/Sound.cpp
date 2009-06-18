@@ -34,25 +34,10 @@ namespace openal
 		// Generate the buffer.
 		alGenBuffers(1, &buffer);
 
-		int fmt =  0;
+		int fmt = getFormat(data->getChannels(), data->getBits());
 
-		switch(data->getFormat())
-		{
-		case love::sound::Decoder::MONO8:
-			fmt = AL_FORMAT_MONO8;
-			break;
-		case love::sound::Decoder::MONO16:
-			fmt = AL_FORMAT_MONO16;
-			break;
-		case love::sound::Decoder::STEREO8:
-			fmt = AL_FORMAT_STEREO8;
-			break;
-		case love::sound::Decoder::STEREO16:
-			fmt = AL_FORMAT_STEREO16;
-			break;
-		default:
+		if(fmt == 0)
 			throw love::Exception("Unsopported audio format.");
-		}
 
 		alBufferData(buffer, fmt, data->getData(), data->getSize(), data->getSampleRate());
 

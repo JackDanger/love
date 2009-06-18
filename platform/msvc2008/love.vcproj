@@ -59,7 +59,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib openal32.lib alut.lib SDL_sound.lib libmodplug.lib libmpg123.lib"
+				AdditionalDependencies="lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib openal32.lib alut.lib SDL_sound.lib libmodplug.lib libmpg123.lib libogg.lib libvorbis.lib"
 				AdditionalLibraryDirectories="lib;Debug"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -132,7 +132,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib openal32.lib alut.lib SDL_sound.lib libmodplug.lib libmpg123.lib"
+				AdditionalDependencies="lua.lib SDLmain.lib SDL.lib opengl32.lib glu32.lib DevIL.lib freetype.lib physfs.lib ws2_32.lib openal32.lib alut.lib SDL_sound.lib libmodplug.lib libmpg123.lib libogg.lib libvorbis.lib"
 				AdditionalLibraryDirectories="lib;Release"
 				GenerateDebugInformation="false"
 				SubSystem="2"
