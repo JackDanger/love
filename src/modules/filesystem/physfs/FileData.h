@@ -18,11 +18,11 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_PHYSFS_FILE_DATA_H
-#define LOVE_PHYSFS_FILE_DATA_H
+#ifndef LOVE_FILESYSTEM_PHYSFS_FILE_DATA_H
+#define LOVE_FILESYSTEM_PHYSFS_FILE_DATA_H
 
 // LOVE
-#include <common/Data.h>
+#include <filesystem/FileData.h>
 
 namespace love
 {	
@@ -30,7 +30,7 @@ namespace filesystem
 {
 namespace physfs
 {
-	class FileData : public Data
+	class FileData : public love::filesystem::FileData
 	{
 	private:
 
@@ -40,9 +40,15 @@ namespace physfs
 		// Size of the data.
 		int size;
 
+		// The filename used for error purposes.
+		std::string filename;
+
+		// The extension (without dot). Used to identify file type.
+		std::string extension;
+
 	public:
 
-		FileData(int size);
+		FileData(int size, const std::string & filename);
 
 		virtual ~FileData();
 
@@ -50,10 +56,13 @@ namespace physfs
 		void * getData() const;
 		int getSize() const;
 
+		const std::string & getFilename() const;
+		const std::string & getExtension() const;
+
 	}; // FileData
 
 } // physfs
 } // filesystem
 } // love
 
-#endif // LOVE_PHYSFS_FILE_DATA_H
+#endif // LOVE_FILESYSTEM_PHYSFS_FILE_DATA_H

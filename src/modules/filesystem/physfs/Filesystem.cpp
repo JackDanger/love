@@ -130,6 +130,16 @@ namespace physfs
 		return new File(filename);
 	}
 
+	FileData * Filesystem::newFileData(void * data, int size, const char * filename)
+	{
+		FileData * fd = new FileData(size, std::string(filename));
+
+		// Copy the data into
+		memcpy(fd->getData(), data, size);
+
+		return fd;
+	}
+
 	const char * Filesystem::getWorkingDirectory()
 	{
 		#ifdef LOVE_WINDOWS
@@ -281,10 +291,11 @@ namespace physfs
 				return luaL_error(L, "Could not open file.");
 		}
 
-		const char * input = lua_tostring(L, 2);
+		size_t length = 0;
+		const char * input = lua_tolstring(L, 2, &length);
 
-		// Get how much we should write.
-		int length = lua_tointeger(L, 3);
+		// Get how much we should write. Length of string default.
+		length = luaL_optint(L, 3, length);
 
 		// Write the data.
 		bool success = file->write(input, length);

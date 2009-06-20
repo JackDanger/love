@@ -31,21 +31,8 @@ namespace devil
 {
 	ImageData::ImageData(filesystem::File * file)
 	{
-
-		// Open the file.
-		if(!file->open(filesystem::File::READ))
-		{
-			std::cerr << "Could not open file." << std::endl;
-			return;
-		}
-
-		int size = file->getSize();
-
 		// Read the data.
 		Data * data = file->read();
-
-		// Close the file.
-		file->close();
 
 		// Generate DevIL image.
 		ilGenImages(1, &image);

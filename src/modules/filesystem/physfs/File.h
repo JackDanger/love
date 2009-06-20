@@ -22,7 +22,7 @@
 #define LOVE_FILESYSTEM_PHYSFS_FILE_H
 
 // LOVE
-#include "../File.h"
+#include <filesystem/File.h>
 
 // PhysFS
 #include <physfs.h>
@@ -73,7 +73,7 @@ namespace physfs
 		bool seek(int pos);
 		Mode getMode();
 		std::string getFilename() const;
-		std::string getExtention() const;
+		std::string getExtension() const;
 
 	}; // File
 

@@ -485,6 +485,10 @@
 					RelativePath="..\..\src\modules\filesystem\File.h"
 					>
 				</File>
+				<File
+					RelativePath="..\..\src\modules\filesystem\FileData.h"
+					>
+				</File>
 				<Filter
 					Name="physfs"
 					>
@@ -582,6 +586,14 @@
 					</File>
 					<File
 						RelativePath="..\..\src\modules\filesystem\physfs\wrap_File.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\filesystem\physfs\wrap_FileData.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\filesystem\physfs\wrap_FileData.h"
 						>
 					</File>
 					<File
@@ -1125,10 +1137,6 @@
 			<Filter
 				Name="image"
 				>
-				<File
-					RelativePath="..\..\src\modules\image\ImageData.h"
-					>
-				</File>
 				<Filter
 					Name="devil"
 					>
@@ -1178,6 +1186,10 @@
 					</File>
 					<File
 						RelativePath="..\..\src\modules\image\devil\ImageData.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\image\ImageData.h"
 						>
 					</File>
 					<File
@@ -3186,6 +3198,14 @@
 			</File>
 			<File
 				RelativePath="..\..\src\common\Vector.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\wrap_Data.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\common\wrap_Data.h"
 				>
 			</File>
 		</Filter>

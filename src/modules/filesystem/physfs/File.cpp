@@ -112,7 +112,7 @@ namespace physfs
 		size = (size == ALL) ? max : size;
 		size = (size > max) ? max : size;
 
-		FileData * fileData = new FileData(size);
+		FileData * fileData = new FileData(size, getFilename());
 
 		read(fileData->getData(), size);
 
@@ -188,22 +188,14 @@ namespace physfs
 		return filename;
 	}
 
-	std::string File::getExtention() const
+	std::string File::getExtension() const
 	{
-		std::string::size_type idx;
-
-		idx = filename.rfind('.');
+		std::string::size_type idx = filename.rfind('.');
 
 		if(idx != std::string::npos)
-		{
-			std::string extension = filename.substr(idx+1);
-			return extension;
-		}
+			return filename.substr(idx+1);
 		else
-		{
-			// Empty.
 			return std::string();
-		}		
 	}
 
 	filesystem::File::Mode File::getMode()

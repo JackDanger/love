@@ -46,7 +46,7 @@ namespace lullaby
 	sound::Decoder * Sound::newDecoder(love::filesystem::File * file, int bufferSize, int sampleRate)
 	{
 		Data * data = file->read();
-		std::string ext = file->getExtention();
+		std::string ext = file->getExtension();
 		
 		sound::Decoder * decoder = 0;
 

@@ -18,10 +18,9 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#include "FileData.h"
+#include "wrap_FileData.h"
 
-// STD
-#include <iostream>
+#include <common/wrap_Data.h>
 
 namespace love
 {
@@ -29,38 +28,43 @@ namespace filesystem
 {
 namespace physfs
 {
-	FileData::FileData(int size, const std::string & filename)
-		: data(new char[size]), size(size), filename(filename)
+	FileData * luax_checkfiledata(lua_State * L, int idx)
 	{
-		if(filename.rfind('.') != std::string::npos)
-			extension = filename.substr(filename.rfind('.')+1);
+		return luax_checktype<FileData>(L, idx, "FileData", LOVE_FILESYSTEM_FILE_DATA_BITS);
 	}
 
-	FileData::~FileData()
+	int _wrap_FileData_getFilename(lua_State * L)
 	{
-		delete [] data;
+		FileData * t = luax_checkfiledata(L, 1);
+		lua_pushstring(L, t->getFilename().c_str());
+		return 1;
 	}
 
-	void * FileData::getData() const
+	int _wrap_FileData_getExtension(lua_State * L)
 	{
-		return (void*)data;
+		FileData * t = luax_checkfiledata(L, 1);
+		lua_pushstring(L, t->getExtension().c_str());
+		return 1;
 	}
 
-	int FileData::getSize() const
-	{
-		return size;
-	}
+	const luaL_Reg wrap_FileData_functions[] = {
 
-	const std::string & FileData::getFilename() const
-	{
-		return filename;
-	}
+		// Data
+		{ "getPointer", _wrap_Data_getPointer },
+		{ "getSize", _wrap_Data_getSize },
 
-	const std::string & FileData::getExtension() const
-	{
-		return extension;
-	}
+		{ "getFilename", _wrap_FileData_getFilename },
+		{ "getExtension", _wrap_FileData_getExtension },
 
+		{ 0, 0 }
+	};
+
+	int wrap_FileData_open(lua_State * L)
+	{
+		luax_register_type(L, "FileData", wrap_FileData_functions);
+		return 0;
+	}
+	
 } // physfs
 } // filesystem
 } // love

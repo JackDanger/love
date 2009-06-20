@@ -20,6 +20,8 @@
 
 #include "wrap_ImageData.h"
 
+#include <common/wrap_Data.h>
+
 namespace love
 {
 namespace image
@@ -114,6 +116,11 @@ namespace devil
 	}
 
 	static const luaL_Reg wrap_ImageData_functions[] = {
+
+		// Data
+		{ "getPointer", _wrap_Data_getPointer },
+		{ "getSize", _wrap_Data_getSize },
+
 		{ "getWidth", _wrap_ImageData_getWidth },
 		{ "getHeight", _wrap_ImageData_getHeight },
 		{ "getPixel", _wrap_ImageData_getPixel },

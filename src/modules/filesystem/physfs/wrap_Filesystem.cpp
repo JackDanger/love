@@ -64,6 +64,23 @@ namespace physfs
 		return 1;
 	}
 
+	int _wrap_newFileData(lua_State * L)
+	{
+		if(!lua_isstring(L, 1))
+			return luaL_error(L, "String expected.");
+		if(!lua_isstring(L, 2))
+			return luaL_error(L, "String expected.");
+
+		size_t length = 0;
+		const char * str = lua_tolstring(L, 1, &length);
+		const char * filename = lua_tostring(L, 2);
+
+		FileData * t = instance->newFileData((void*)str, (int)length, filename);
+
+		luax_newtype(L, "FileData", LOVE_FILESYSTEM_FILE_DATA_BITS, (void*)t);
+		return 1;
+	}
+
 	int _wrap_getWorkingDirectory(lua_State * L)
 	{
 		lua_pushstring(L, instance->getWorkingDirectory());
@@ -194,8 +211,8 @@ namespace physfs
 		{ "isDirectory",  _wrap_isDirectory },
 		{ "isFile",  _wrap_isFile },
 		{ "mkdir",  _wrap_mkdir },
-                { "remove",  _wrap_remove },
-                { "read",  _wrap_read },
+		{ "remove",  _wrap_remove },
+		{ "read",  _wrap_read },
 		{ "write",  _wrap_write },
 		{ "enumerate",  _wrap_enumerate },
 		{ "lines",  _wrap_lines },
@@ -204,7 +221,8 @@ namespace physfs
 	};
 
 	const lua_CFunction wrap_Filesystem_types[] = {
-                wrap_File_open,
+		wrap_File_open,
+		wrap_FileData_open,
 		0
 	};
 

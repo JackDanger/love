@@ -20,6 +20,8 @@
 
 #include "wrap_SoundData.h"
 
+#include <common/wrap_Data.h>
+
 namespace love
 {
 namespace sound
@@ -27,20 +29,6 @@ namespace sound
 	SoundData * luax_checksounddata(lua_State * L, int idx)
 	{
 		return luax_checktype<SoundData>(L, idx, "SoundData", LOVE_SOUND_SOUND_DATA_BITS);
-	}
-
-	int _wrap_SoundData_getPointer(lua_State * L)
-	{
-		SoundData * t = luax_checksounddata(L, 1);
-		lua_pushlightuserdata(L, t->getData());
-		return 1;
-	}
-
-	int _wrap_SoundData_getSize(lua_State * L)
-	{
-		SoundData * sd = luax_checksounddata(L, 1);
-		lua_pushinteger(L, sd->getSize());
-		return 1;
 	}
 
 	int _wrap_SoundData_getChannels(lua_State * L)
@@ -82,8 +70,11 @@ namespace sound
 	}
 
 	static const luaL_Reg wrap_SoundData_functions[] = {
-		{ "getPointer", _wrap_SoundData_getPointer },
-		{ "getSize", _wrap_SoundData_getSize },
+
+		// Data
+		{ "getPointer", _wrap_Data_getPointer },
+		{ "getSize", _wrap_Data_getSize },
+
 		{ "getChannels", _wrap_SoundData_getChannels },
 		{ "getBits", _wrap_SoundData_getBits },
 		{ "getSampleRate", _wrap_SoundData_getSampleRate },

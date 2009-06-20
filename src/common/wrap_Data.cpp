@@ -18,34 +18,39 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_IMAGE_IMAGE_DATA_H
-#define LOVE_IMAGE_IMAGE_DATA_H
-
-// LOVE
-#include <common/Data.h>
+#include "wrap_Data.h"
 
 namespace love
-{	
-namespace image
 {
-	// Pixel format structures. Luminance-Alpha and RGB(A).
-	struct la { unsigned char l, a; };
-	struct rgb { unsigned char r, g, b; };
-	struct rgba { unsigned char r, g, b, a; };
-
-	class ImageData : public Data
+	Data * luax_checkdata(lua_State * L, int idx)
 	{
-	public:
+		return luax_checktype<Data>(L, idx, "Data", LOVE_DATA_BITS);
+	}
 
-		virtual ~ImageData(){};
-		virtual int getWidth() = 0;
-		virtual int getHeight() = 0;
-		virtual void setPixel(int x, int y, rgba c) = 0;
-		virtual rgba getPixel(int x, int y) const = 0;
+	int _wrap_Data_getPointer(lua_State * L)
+	{
+		Data * t = luax_checkdata(L, 1);
+		lua_pushlightuserdata(L, t->getData());
+		return 1;
+	}
 
-	}; // ImageData
+	int _wrap_Data_getSize(lua_State * L)
+	{
+		Data * t = luax_checkdata(L, 1);
+		lua_pushinteger(L, t->getSize());
+		return 1;
+	}
 
-} // image
+	const luaL_Reg wrap_Data_functions[] = {
+		{ "getPointer", _wrap_Data_getPointer },
+		{ "getSize", _wrap_Data_getSize },
+		{ 0, 0 }
+	};
+
+	int wrap_Data_open(lua_State * L)
+	{
+		luax_register_type(L, "Data", wrap_Data_functions);
+		return 0;
+	}
+	
 } // love
-
-#endif // LOVE_IMAGE_IMAGE_DATA_H

@@ -156,7 +156,7 @@ namespace filesystem
 		* Gets the file extension for this File, or empty string if none.
 		* @return The file extension for this File (without the dot).
 		**/
-		virtual std::string getExtention() const = 0;
+		virtual std::string getExtension() const = 0;
 
 	}; // File
 

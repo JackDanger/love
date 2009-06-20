@@ -24,6 +24,7 @@
 // LOVE
 #include "Filesystem.h"
 #include "wrap_File.h"
+#include "wrap_FileData.h"
 
 namespace love
 {
@@ -35,6 +36,7 @@ namespace physfs
 	int _wrap_setIdentity(lua_State * L);
 	int _wrap_setSource(lua_State * L);
 	int _wrap_newFile(lua_State * L);
+	int _wrap_newFileData(lua_State * L);
 	int _wrap_getWorkingDirectory(lua_State * L);
 	int _wrap_getUserDirectory(lua_State * L);
 	int _wrap_getAppdataDirectory(lua_State * L);

@@ -90,7 +90,7 @@ namespace sound
 		{
 			Decoder * t = instance->newDecoder(file, bufferSize, sampleRate);
 			if(t == 0)
-				return luaL_error(L, "Extension \"%s\" not supported.", file->getExtention().c_str());
+				return luaL_error(L, "Extension \"%s\" not supported.", file->getExtension().c_str());
 			luax_newtype(L, "Decoder", LOVE_SOUND_DECODER_BITS, (void*)t);
 		}
 		catch(love::Exception & e)

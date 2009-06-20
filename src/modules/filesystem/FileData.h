@@ -18,34 +18,44 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_IMAGE_IMAGE_DATA_H
-#define LOVE_IMAGE_IMAGE_DATA_H
+#ifndef LOVE_FILESYSTEM_FILE_DATA_H
+#define LOVE_FILESYSTEM_FILE_DATA_H
 
 // LOVE
 #include <common/Data.h>
 
+// STD
+#include <string>
+
 namespace love
 {	
-namespace image
+namespace filesystem
 {
-	// Pixel format structures. Luminance-Alpha and RGB(A).
-	struct la { unsigned char l, a; };
-	struct rgb { unsigned char r, g, b; };
-	struct rgba { unsigned char r, g, b, a; };
-
-	class ImageData : public Data
+	class FileData : public Data
 	{
+	private:
 	public:
 
-		virtual ~ImageData(){};
-		virtual int getWidth() = 0;
-		virtual int getHeight() = 0;
-		virtual void setPixel(int x, int y, rgba c) = 0;
-		virtual rgba getPixel(int x, int y) const = 0;
+		/**
+		* Destructor.
+		**/
+		virtual ~FileData(){};
 
-	}; // ImageData
+		/**
+		* Gets a filename for this FileData. 
+		* @return The filename for this FileData, with extension.
+		**/
+		virtual const std::string & getFilename() const = 0;
 
-} // image
+		/**
+		* Gets the file extension for this FileData, or empty string if none.
+		* @return The file extension for this FileData (without the dot).
+		**/
+		virtual const std::string & getExtension() const = 0;
+
+	}; // FileData
+
+} // filesystem
 } // love
 
-#endif // LOVE_IMAGE_IMAGE_DATA_H
+#endif // LOVE_FILESYSTEM_FILE_DATA_H

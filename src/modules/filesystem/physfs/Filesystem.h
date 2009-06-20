@@ -33,6 +33,7 @@
 
 // Module
 #include "File.h"
+#include "FileData.h"
 
 // For great CWD. (Current Working Directory)
 // Using this instead of boost::filesystem which totally
@@ -121,6 +122,14 @@ namespace physfs
 		* Creates a new file.
 		**/
 		File * newFile(const char* filename);
+
+		/**
+		* Creates a new FileData object. Data will be copied.
+		* @param data Pointer to the data.
+		* @param size The size of the data.
+		* @param filename The full filename used to file type identification.
+		**/
+		FileData * newFileData(void * data, int size, const char * filename);
 
 		/**
 		* Gets the current working directory.
