@@ -87,12 +87,12 @@ namespace devil
 		ilDeleteImages(1, &image);
 	}
 
-	int ImageData::getWidth()
+	int ImageData::getWidth() const 
 	{
 		return width;
 	}
 
-	int ImageData::getHeight()
+	int ImageData::getHeight() const 
 	{
 		return height;
 	}
@@ -122,6 +122,28 @@ namespace devil
 		int ty = y > height-1 ? height-1 : y;
 		rgba * pixels = (rgba *)getData();
 		return pixels[y*width+x];
+	}
+
+	void ImageData::paste(love::image::ImageData * src, int dx, int dy, int sx, int sy, int sw, int sh)
+	{
+		rgba * s = (rgba *)src->getData();
+		rgba * d = (rgba *)getData();
+
+		for(int i = 0; i < sh; i++)
+		{
+			for(int j = 0; j < sw; j++)
+			{
+				if(inside(dx+j, dy+i) && src->inside(sx+j, sy+i))
+				{
+					d[(dy+i)*getWidth() + (dx+j)] = s[(sy+i)*src->getWidth() + (sx+j)];
+				}
+			}
+		}
+	}
+
+	bool ImageData::inside(int x, int y) const
+	{
+		return (x >= 0 && x < getWidth() && y >= 0 && y < getHeight());
 	}
 
 } // devil

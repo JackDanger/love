@@ -38,6 +38,7 @@ namespace devil
 	int _wrap_ImageData_setPixel(lua_State * L);
 	int _wrap_ImageData_mapPixel(lua_State * L);
 	int _wrap_ImageData_getString(lua_State * L);
+	int _wrap_ImageData_paste(lua_State * L);
 	int wrap_ImageData_open(lua_State * L);
 
 } // devil

@@ -1137,6 +1137,10 @@
 			<Filter
 				Name="image"
 				>
+				<File
+					RelativePath="..\..\src\modules\image\ImageData.h"
+					>
+				</File>
 				<Filter
 					Name="devil"
 					>
@@ -1186,10 +1190,6 @@
 					</File>
 					<File
 						RelativePath="..\..\src\modules\image\devil\ImageData.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\image\ImageData.h"
 						>
 					</File>
 					<File

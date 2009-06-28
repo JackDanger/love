@@ -115,6 +115,20 @@ namespace devil
 		return 1;
 	}
 
+	int _wrap_ImageData_paste(lua_State * L)
+	{
+		ImageData * t = luax_checkimagedata(L, 1);
+		ImageData * src = luax_checkimagedata(L, 2);
+		int dx = luaL_checkint(L, 3);
+		int dy = luaL_checkint(L, 4);
+		int sx = luaL_optint(L, 5, 0);
+		int sy = luaL_optint(L, 6, 0);
+		int sw = luaL_optint(L, 7, src->getWidth());
+		int sh = luaL_optint(L, 8, src->getHeight());
+		t->paste((love::image::ImageData *)src, dx, dy, sx, sy, sw, sh);
+		return 0;
+	}
+
 	static const luaL_Reg wrap_ImageData_functions[] = {
 
 		// Data
@@ -127,6 +141,7 @@ namespace devil
 		{ "setPixel", _wrap_ImageData_setPixel },
 		{ "mapPixel", _wrap_ImageData_mapPixel },
 		{ "getString", _wrap_ImageData_getString },
+		{ "paste", _wrap_ImageData_paste },
 		{ 0, 0 }
 	};
 

@@ -64,10 +64,12 @@ namespace devil
 		int getSize() const;
 
 		// Implements ImageData.
-		int getWidth();
-		int getHeight();
+		int getWidth() const ;
+		int getHeight() const ;
 		void setPixel(int x, int y, rgba c);
 		rgba getPixel(int x, int y) const;
+		void paste(love::image::ImageData * src, int dx, int dy, int sx, int sy, int sw, int sh);
+		bool inside(int x, int y) const;
 
 	}; // ImageData
 

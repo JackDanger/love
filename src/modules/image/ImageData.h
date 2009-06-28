@@ -38,10 +38,13 @@ namespace image
 	public:
 
 		virtual ~ImageData(){};
-		virtual int getWidth() = 0;
-		virtual int getHeight() = 0;
+		virtual int getWidth() const = 0;
+		virtual int getHeight() const  = 0;
 		virtual void setPixel(int x, int y, rgba c) = 0;
 		virtual rgba getPixel(int x, int y) const = 0;
+		virtual void paste(ImageData * src, int dx, int dy, int sx, int sy, int sw, int sh) = 0;
+		virtual bool inside(int x, int y) const = 0;
+
 
 	}; // ImageData
 
