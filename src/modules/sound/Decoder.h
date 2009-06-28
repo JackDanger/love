@@ -37,27 +37,6 @@ namespace sound
 	public:
 
 		/**
-		* Supported formats are signed 8/16 bit samples, either mono
-		* or stereo.
-		**/
-		enum Format
-		{
-			UNSUPPORTED = 0,
-		
-			// Flags.
-			SUPPORTED = 1,
-			MONO = 2,
-			STEREO = 4,
-			BIT8 = 8,
-			BIT16 = 16,
-
-			MONO8 = SUPPORTED | MONO | BIT8,
-			MONO16 = SUPPORTED | MONO | BIT16, 
-			STEREO8 = SUPPORTED | STEREO | BIT8, 
-			STEREO16 = SUPPORTED | STEREO | BIT16, 
-		};
-
-		/**
 		* Indicates how many bytes of raw data should be generated at each
 		* call to Decode.
 		**/
