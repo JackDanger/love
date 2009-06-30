@@ -112,7 +112,7 @@ namespace sound
 		/**
 		* Checks whether a stream has more data to decode or not. Use
 		* rewind to start the stream again.
-		* @return True if there is more data, false on EOF.
+		* @return False if there is more data, true on EOF.
 		**/
 		virtual bool isFinished() = 0;
 

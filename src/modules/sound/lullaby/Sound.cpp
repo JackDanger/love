@@ -22,6 +22,7 @@
 
 #include "ModPlugDecoder.h"
 #include "Mpg123Decoder.h"
+#include "VorbisDecoder.h"
 
 namespace love
 {
@@ -55,6 +56,8 @@ namespace lullaby
 			decoder = new ModPlugDecoder(data, ext, bufferSize, sampleRate);
 		else if (Mpg123Decoder::accepts(ext))
 			decoder = new Mpg123Decoder(data, ext, bufferSize, sampleRate);
+		else if (VorbisDecoder::accepts(ext))
+			decoder = new VorbisDecoder(data, ext, bufferSize, sampleRate);
 
 		// else if(OtherDecoder::accept(ext))
 

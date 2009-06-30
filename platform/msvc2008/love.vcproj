@@ -2872,6 +2872,14 @@
 						RelativePath="..\..\src\modules\sound\lullaby\Sound.h"
 						>
 					</File>
+					<File
+						RelativePath="..\..\src\modules\sound\lullaby\VorbisDecoder.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\sound\lullaby\VorbisDecoder.h"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
