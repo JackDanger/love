@@ -17,6 +17,7 @@ love_SOURCES = \
 ./common/Object.h \
 ./common/Vector.h \
 ./common/Data.h \
+./common/wrap_Data.cpp \
 ./common/Reference.cpp \
 ./common/Matrix.h \
 ./common/Exception.h \
@@ -26,6 +27,7 @@ love_SOURCES = \
 ./common/runtime.h \
 ./common/Exception.cpp \
 ./common/constants.h \
+./common/wrap_Data.h \
 ./common/types.h \
 ./love.cpp \
 ./libraries/lanes/lanes/threading.h \
@@ -99,10 +101,6 @@ love_SOURCES = \
 ./modules/sound/Sound.h \
 ./modules/sound/Sound.cpp \
 ./modules/sound/wrap_Decoder.cpp \
-./modules/sound/sdlsound/Sound.h \
-./modules/sound/sdlsound/Sound.cpp \
-./modules/sound/sdlsound/Decoder.h \
-./modules/sound/sdlsound/Decoder.cpp \
 ./modules/sound/wrap_Decoder.h \
 ./modules/sound/SoundData.cpp \
 ./modules/sound/wrap_Sound.h \
@@ -110,8 +108,10 @@ love_SOURCES = \
 ./modules/sound/Decoder.h \
 ./modules/sound/lullaby/Sound.h \
 ./modules/sound/lullaby/Sound.cpp \
+./modules/sound/lullaby/VorbisDecoder.cpp \
+./modules/sound/lullaby/Mpg123Decoder.cpp \
+./modules/sound/lullaby/VorbisDecoder.h \
 ./modules/sound/lullaby/ModPlugDecoder.cpp \
-./modules/sound/lullaby/Mpg123Decode.cpp \
 ./modules/sound/lullaby/Mpg123Decoder.h \
 ./modules/sound/lullaby/Decoder.h \
 ./modules/sound/lullaby/Decoder.cpp \
@@ -257,14 +257,17 @@ love_SOURCES = \
 ./modules/physics/box2d/Shape.h \
 ./modules/filesystem/physfs/File.cpp \
 ./modules/filesystem/physfs/wrap_Filesystem.cpp \
+./modules/filesystem/physfs/wrap_FileData.cpp \
 ./modules/filesystem/physfs/wrap_Filesystem.h \
 ./modules/filesystem/physfs/FileData.cpp \
 ./modules/filesystem/physfs/Filesystem.h \
 ./modules/filesystem/physfs/wrap_File.cpp \
 ./modules/filesystem/physfs/Filesystem.cpp \
 ./modules/filesystem/physfs/FileData.h \
+./modules/filesystem/physfs/wrap_FileData.h \
 ./modules/filesystem/physfs/File.h \
 ./modules/filesystem/physfs/wrap_File.h \
+./modules/filesystem/FileData.h \
 ./modules/filesystem/File.h \
 ./modules/mouse/sdl/wrap_Mouse.h \
 ./modules/mouse/sdl/Mouse.cpp \

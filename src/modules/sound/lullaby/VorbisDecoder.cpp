@@ -20,6 +20,7 @@
 
 #include "VorbisDecoder.h"
 
+#include <string.h>
 #include <common/Exception.h>
 
 namespace love
