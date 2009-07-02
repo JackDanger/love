@@ -73,8 +73,9 @@ namespace box2d
 		* @param x The position along the x-axis.
 		* @param x The position along the y-axis.
 		* @param m The mass.
+		* @param i The rotational inertia.
 		**/
-		Body * newBody(World * world, float x, float y, float m);
+		Body * newBody(World * world, float x, float y, float m, float i);
 
 		/**
 		* Creates a new Body at the specified position.

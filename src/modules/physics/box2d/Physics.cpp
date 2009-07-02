@@ -52,19 +52,19 @@ namespace box2d
 		return newWorld(-w, -h, w, h, 0, 0, true);
 	}
 
-	Body * Physics::newBody(World * world, float x, float y, float mass)
+	Body * Physics::newBody(World * world, float x, float y, float mass, float i)
 	{
-		return new Body(world, b2Vec2(x, y), mass);
+		return new Body(world, b2Vec2(x, y), mass, i);
 	}
 
 	Body * Physics::newBody(World * world, float x, float y)
 	{
-		return new Body(world, b2Vec2(x, y), 1);
+		return new Body(world, b2Vec2(x, y), 1, 1);
 	}
 
 	Body * Physics::newBody(World * world)
 	{
-		return new Body(world, b2Vec2(0, 0), 1);
+		return new Body(world, b2Vec2(0, 0), 1, 1);
 	}
 
 	CircleShape * Physics::newCircleShape(Body * body, float radius)

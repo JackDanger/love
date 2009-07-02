@@ -173,49 +173,17 @@
 			<Filter
 				Name="audio"
 				>
-				<File
-					RelativePath="..\..\src\modules\audio\Audible.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\modules\audio\Audio.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\modules\audio\Music.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\modules\audio\Sound.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\modules\audio\Source.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\audio\"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)\audio\"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\..\src\modules\audio\Source.h"
-					>
-				</File>
 				<Filter
 					Name="openal"
 					>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\Audible.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\Audible.h"
+						>
+					</File>
 					<File
 						RelativePath="..\..\src\modules\audio\openal\Audio.cpp"
 						>
@@ -238,6 +206,14 @@
 					</File>
 					<File
 						RelativePath="..\..\src\modules\audio\openal\Audio.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\Channel.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\src\modules\audio\openal\Channel.h"
 						>
 					</File>
 					<File
@@ -286,30 +262,6 @@
 					</File>
 					<File
 						RelativePath="..\..\src\modules\audio\openal\Sound.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\audio\openal\Source.cpp"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\audio\openal\"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\audio\openal\"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\audio\openal\Source.h"
 						>
 					</File>
 					<File
