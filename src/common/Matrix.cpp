@@ -126,7 +126,7 @@ namespace love
 		translate(x, y);
 		rotate(angle);
 		scale(sx, sy);
-		translate(ox, oy);
+		translate(-ox, -oy);
 	}
 
 	void Matrix::translate(float x, float y)

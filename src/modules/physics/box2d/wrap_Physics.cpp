@@ -62,7 +62,8 @@ namespace box2d
 		float x = (float)luaL_optnumber(L, 2, 0.0);
 		float y = (float)luaL_optnumber(L, 3, 0.0);
 		float m = (float)luaL_optnumber(L, 4, 1.0);
-		Body * body = instance->newBody(world, x, y, m);
+		float i = (float)luaL_optnumber(L, 5, 1.0);
+		Body * body = instance->newBody(world, x, y, m, i);
 		luax_newtype(L, "Body", LOVE_PHYSICS_BODY_BITS, (void*)body);
 		return 1;
 	}
@@ -112,7 +113,7 @@ namespace box2d
 			float w = (float)luaL_checknumber(L, 4);
 			float h = (float)luaL_checknumber(L, 5);
 			float angle = (float)luaL_optnumber(L, 6, 0);
-			PolygonShape * shape = instance->newRectangleShape(body, x, y, w, h, 0);
+			PolygonShape * shape = instance->newRectangleShape(body, x, y, w, h, angle);
 			luax_newtype(L, "PolygonShape", LOVE_PHYSICS_POLYGON_SHAPE_BITS, (void*)shape);
 			return 1;
 		}
@@ -134,7 +135,7 @@ namespace box2d
 		float x2 = (float)luaL_checknumber(L, 5);
 		float y2 = (float)luaL_checknumber(L, 6);
 		DistanceJoint * j = instance->newDistanceJoint(body1, body2, x1, y1, x2, y2);
-		luax_newtype(L, "PolygonShape", LOVE_PHYSICS_DISTANCE_JOINT_BITS, (void*)j);
+		luax_newtype(L, "DistanceJoint", LOVE_PHYSICS_DISTANCE_JOINT_BITS, (void*)j);
 		return 1;
 	}
 

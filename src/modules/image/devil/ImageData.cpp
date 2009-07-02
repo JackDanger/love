@@ -44,12 +44,12 @@ namespace devil
 		ILboolean success = ilLoadL(IL_TYPE_UNKNOWN, (void*)data->getData(), data->getSize());
 
 		// Free local image data.
-		delete [] data;
+		data->release();
 
 		// Check for errors
 		if(!success)
 		{
-			std::cerr << "Could decode image." << std::endl;
+			std::cerr << "Could not decode image." << std::endl;
 			return;
 		}
 

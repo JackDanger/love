@@ -48,8 +48,8 @@ namespace box2d
 		/**
 		* Creates a MouseJoint which connects body1 to the target point.
 		**/
-		MouseJoint(Body * body1, b2MouseJointDef * def);
-
+		MouseJoint(Body * body1, float x, float y);
+		
 		virtual ~MouseJoint();
 
 		/**

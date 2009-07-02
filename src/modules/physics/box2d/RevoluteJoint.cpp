@@ -32,14 +32,12 @@ namespace physics
 {
 namespace box2d
 {
-	RevoluteJoint::RevoluteJoint(Body * body1, Body * body2, b2RevoluteJointDef * def)
+	RevoluteJoint::RevoluteJoint(Body * body1, Body * body2, float x, float y)
 		: Joint(body1, body2)
-	{
-		def->localAnchor2 = world->scaleDown(body2->body->GetLocalPoint(def->localAnchor1));
-		def->localAnchor1 = world->scaleDown(body1->body->GetLocalPoint(def->localAnchor1));
-		def->body1 = body1->body;
-		def->body2 = body2->body;
-		joint = (b2RevoluteJoint*)createJoint(def);
+	{	
+		b2RevoluteJointDef def;
+		def.Initialize(body1->body, body2->body, world->scaleDown(b2Vec2(x,y)));
+		joint = (b2RevoluteJoint*)createJoint(&def);
 	}
 
 	RevoluteJoint::~RevoluteJoint()

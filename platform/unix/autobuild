@@ -56,7 +56,7 @@ cd ../..
 sudo apt-get -y install subversion build-essential liblua5.1-dev \
 libopenal-dev libsdl1.2-dev libsdl-sound1.2-dev libfreetype6-dev \
 libphysfs-dev libdevil-dev libtiff4-dev libalut-dev libmng-dev \
-liblcms1-dev ftp-upload
+liblcms1-dev ftp-upload libmpg123-dev libmodplug-dev libpng12-dev
 
 # Check which revision to build.
 if [ -z $2 ]; then

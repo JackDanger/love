@@ -149,35 +149,22 @@ namespace box2d
 
 	DistanceJoint * Physics::newDistanceJoint(Body * body1, Body * body2, float x1, float y1, float x2, float y2)
 	{
-		b2DistanceJointDef def;
-		def.localAnchor1.Set(x1, y1);
-		def.localAnchor2.Set(x2, y2);
-		return new DistanceJoint(body1, body2, &def);
+		return new DistanceJoint(body1, body2, x1, y1, x2, y2);
 	}
 
 	MouseJoint * Physics::newMouseJoint(Body * body, float x, float y)
 	{
-		b2MouseJointDef def;
-		def.target.Set(x, y);
-		return new MouseJoint(body, &def);
+		return new MouseJoint(body, x, y);
 	}
 
 	RevoluteJoint * Physics::newRevoluteJoint(Body * body1, Body * body2, float x, float y)
 	{
-		b2RevoluteJointDef def;
-		def.localAnchor1.Set(x, y);
-		return new RevoluteJoint(body1, body2, &def);
+		return new RevoluteJoint(body1, body2, x, y);
 	}
 
 	PrismaticJoint * Physics::newPrismaticJoint(Body * body1, Body * body2, float x, float y, float ax, float ay)
 	{
-		b2PrismaticJointDef def;
-		
-		// Using these as temporal storage.
-		def.localAnchor2.Set(x, y);
-		def.localAxis1.Set(ax, ay);
-
-		return new PrismaticJoint(body1, body2, &def);
+		return new PrismaticJoint(body1, body2, x, y, ax, ay);
 	}
 
 } // box2d

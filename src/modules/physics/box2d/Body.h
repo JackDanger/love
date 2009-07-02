@@ -70,9 +70,9 @@ namespace box2d
 		b2Body * body;
 
 		/**
-		* Create a Body at posiion p.
+		* Create a Body at position p.
 		**/ 
-		Body(World * world, b2Vec2 p, float m);
+		Body(World * world, b2Vec2 p, float m, float i);
 
 		~Body();
 

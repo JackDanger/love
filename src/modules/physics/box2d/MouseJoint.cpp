@@ -30,14 +30,16 @@ namespace physics
 {
 namespace box2d
 {
-	MouseJoint::MouseJoint(Body * body1, b2MouseJointDef * def)
+	MouseJoint::MouseJoint(Body * body1, float x, float y)
 		: Joint(body1)
 	{
-		def->body1 = body1->world->world->GetGroundBody();
-		def->body2 = body1->body;
-		def->maxForce = 1000.0f * body1->body->GetMass();
-		def->target = body1->world->scaleDown(def->target);
-		joint = (b2MouseJoint*)createJoint(def);
+		b2MouseJointDef def;
+		
+		def.body1 = body1->world->world->GetGroundBody();
+		def.body2 = body1->body;
+		def.maxForce = 1000.0f * body1->body->GetMass();
+		def.target = body1->world->scaleDown(b2Vec2(x,y));
+		joint = (b2MouseJoint*)createJoint(&def);
 	}
 
 	MouseJoint::~MouseJoint()
