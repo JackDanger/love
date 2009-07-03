@@ -52,6 +52,9 @@ namespace lullaby
 		ret = mpg123_open_feed(handle);
 		if (ret != MPG123_OK)
 			throw love::Exception("Could not open feed.");
+		ret = mpg123_format(handle, sampleRate, MPG123_STEREO, MPG123_ENC_SIGNED_16);
+		if (ret != MPG123_OK)
+			throw love::Exception("Could not set output format.");
 		size_t numbytes = 0;
 		ret = mpg123_decode(handle, (unsigned char*) data->getData(), data->getSize(), NULL, 0, &numbytes);
 		if (ret != MPG123_DONE && ret != MPG123_NEW_FORMAT)
