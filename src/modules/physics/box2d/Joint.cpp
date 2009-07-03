@@ -61,7 +61,7 @@ namespace box2d
 		switch(joint->GetType())
 		{
 		case e_revoluteJoint: 
-			return love::JOINT_DISTANCE;
+			return love::JOINT_REVOLUTE;
 		case e_prismaticJoint: 
 			return love::JOINT_PRISMATIC;
 		case e_distanceJoint: 

@@ -166,6 +166,11 @@ namespace box2d
 	{
 		return new PrismaticJoint(body1, body2, x, y, ax, ay);
 	}
+	
+	PulleyJoint * Physics::newPulleyJoint(Body * body1, Body * body2, b2Vec2 groundAnchor1, b2Vec2 groundAnchor2, b2Vec2 anchor1, b2Vec2 anchor2, float ratio)
+	{
+		return new PulleyJoint(body1, body2, groundAnchor1, groundAnchor2, anchor1, anchor2, ratio);
+	}
 
 } // box2d
 } // physics

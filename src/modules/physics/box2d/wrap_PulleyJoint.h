@@ -18,23 +18,13 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_PHYSICS_BOX2D_WRAP_PHYSICS_H
-#define LOVE_PHYSICS_BOX2D_WRAP_PHYSICS_H
+#ifndef LOVE_PHYSICS_BOX2D_WRAP_PULLEY_JOINT_H
+#define LOVE_PHYSICS_BOX2D_WRAP_PULLEY_JOINT_H
 
 // LOVE
-#include "Physics.h"
-#include "wrap_World.h"
-#include "wrap_Contact.h"
-#include "wrap_Body.h"
-#include "wrap_Shape.h"
-#include "wrap_CircleShape.h"
-#include "wrap_PolygonShape.h"
+#include <common/runtime.h>
 #include "wrap_Joint.h"
-#include "wrap_MouseJoint.h"
-#include "wrap_DistanceJoint.h"
-#include "wrap_PrismaticJoint.h"
-#include "wrap_RevoluteJoint.h"
-#include "wrap_PulleyJoint.h"
+#include "PulleyJoint.h"
 
 namespace love
 {
@@ -42,20 +32,20 @@ namespace physics
 {
 namespace box2d
 {
-	int _wrap_newWorld(lua_State * L);
-	int _wrap_newBody(lua_State * L);
-	int _wrap_newCircleShape(lua_State * L);
-	int _wrap_newRectangleShape(lua_State * L);
-	int _wrap_newPolygonShape(lua_State * L);;
-	int _wrap_newDistanceJoint(lua_State * L);
-	int _wrap_newMouseJoint(lua_State * L);
-	int _wrap_newRevoluteJoint(lua_State * L);
-	int _wrap_newPrismaticJoint(lua_State * L);
-	int _wrap_newPulleyJoint(lua_State * L);
-	int wrap_Physics_open(lua_State * L);
+	PulleyJoint * luax_checkpulleyjoint(lua_State * L, int idx);
+	int _wrap_PulleyJoint_getGroundAnchors(lua_State * L);
+	int _wrap_PulleyJoint_setMaxLengths(lua_State * L);
+	int _wrap_PulleyJoint_getMaxLengths(lua_State * L);
+	int _wrap_PulleyJoint_setConstant(lua_State * L);
+	int _wrap_PulleyJoint_getConstant(lua_State * L);
+	int _wrap_PulleyJoint_getLength1(lua_State * L);
+	int _wrap_PulleyJoint_getLength2(lua_State * L);
+	int _wrap_PulleyJoint_setRatio(lua_State * L);
+	int _wrap_PulleyJoint_getRatio(lua_State * L);
+	int wrap_PulleyJoint_open(lua_State * L);
 
 } // box2d
 } // physics
 } // love
 
-#endif // LOVE_PHYSICS_BOX2D_WRAP_PHYSICS_H
+#endif // LOVE_PHYSICS_BOX2D_WRAP_PULLEY_JOINT_H

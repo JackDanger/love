@@ -34,6 +34,7 @@
 #include "DistanceJoint.h"
 #include "PrismaticJoint.h"
 #include "RevoluteJoint.h"
+#include "PulleyJoint.h"
 
 namespace love
 {
@@ -174,6 +175,16 @@ namespace box2d
 		* @param ay The y-component of the world-axis.
 		**/
 		PrismaticJoint * newPrismaticJoint(Body * body1, Body * body2, float x, float y, float ax, float ay);
+		
+		/**
+		* Creates a new PulleyJoint connecting body1 with body2.
+		* @param groundAnchor1 World ground-anchor for body1.
+		* @param groundAnchor2 World ground-anchor for body2.
+		* @param anchor1 World anchor on body1.
+		* @param anchor2 World anchor on body2.
+		* @param ratio The pulley ratio.
+		**/
+		PulleyJoint * newPulleyJoint(Body * body1, Body * body2, b2Vec2 groundAnchor1, b2Vec2 groundAnchor2, b2Vec2 anchor1, b2Vec2 anchor2, float ratio);
 
 
 	}; // Physics
