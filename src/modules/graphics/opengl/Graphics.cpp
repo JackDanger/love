@@ -72,12 +72,70 @@ namespace opengl
 	DisplayState Graphics::saveState()
 	{
 		DisplayState s;
-		s.backgroundColor[0] = 0;
+		//create a table in which to store the color data in float format, before converting it
+		float color[4];
+		//get the color
+		glGetFloatv(GL_CURRENT_COLOR, color);
+		s.color[0] = color[0]*255;
+		s.color[1] = color[1]*255;
+		s.color[2] = color[2]*255;
+		s.color[3] = color[3]*255;
+		//get the background color
+		glGetFloatv(GL_COLOR_CLEAR_VALUE, color);
+		s.backgroundColor[0] = color[0]*255;
+		s.backgroundColor[1] = color[1]*255;
+		s.backgroundColor[2] = color[2]*255;
+		s.backgroundColor[3] = color[3]*255;
+		//store modes here
+		int mode;
+		//get blend mode
+		glGetIntegerv(GL_BLEND_DST, &mode);
+		//following syntax seems better than if-else every time
+		s.blendMode = (mode == GL_ONE) ? BLEND_ADDITIVE : BLEND_NORMAL;
+		//get color mode
+		glGetTexEnviv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, &mode);
+		s.colorMode = (mode == GL_MODULATE) ? COLOR_MODULATE : COLOR_NORMAL;
+		//get the line width (directly to corresponding variable)
+		glGetFloatv(GL_LINE_WIDTH, &s.lineWidth);
+		//get line style
+		s.lineStyle = (glIsEnabled(GL_LINE_SMOOTH) == GL_TRUE) ? LINE_SMOOTH : LINE_ROUGH;
+		//get line stipple
+		s.stipple = (glIsEnabled(GL_LINE_SMOOTH) == GL_TRUE) ? true : false;
+		if (s.stipple)
+		{
+			//get the stipple repeat
+			glGetIntegerv(GL_LINE_STIPPLE_REPEAT, &s.stippleRepeat);
+			//get the stipple pattern
+			glGetIntegerv(GL_LINE_STIPPLE_PATTERN, &s.stipplePattern);
+		}
+		//get the point size
+		glGetFloatv(GL_POINT_SIZE, &s.pointSize);
+		//get point style
+		s.pointStyle = (glIsEnabled(GL_POINT_SMOOTH) == GL_TRUE) ? POINT_SMOOTH : POINT_ROUGH;
+		//get scissor status
+		s.scissor = (glIsEnabled(GL_SCISSOR_TEST) == GL_TRUE) ? true : false;
+		//do we have scissor, if so, store the box
+		if (s.scissor)
+			glGetIntegerv(GL_SCISSOR_BOX, s.scissorBox);
 		return s;
 	}
 
 	void Graphics::restoreState(const DisplayState & s)
 	{
+		setColor(s.color[0], s.color[1], s.color[2], s.color[3]);
+		setBackgroundColor(s.color[0], s.color[1], s.color[2]);
+		setBlendMode(s.blendMode);
+		setColorMode(s.colorMode);
+		setLine(s.lineWidth, s.lineStyle);
+		if (s.stipple)
+			setLineStipple(s.stipplePattern, s.stippleRepeat);
+		else
+			setLineStipple();
+		setPoint(s.pointSize, s.pointStyle);
+		if (s.scissor)
+			setScissor(s.scissorBox[0], s.scissorBox[1], s.scissorBox[2], s.scissorBox[3]);
+		else
+			setScissor();
 	}
 
 	bool Graphics::setMode(int width, int height, bool fullscreen, bool vsync, int fsaa)

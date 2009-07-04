@@ -264,7 +264,8 @@ namespace lullaby
 
 	int VorbisDecoder::getBits() const
 	{
-		return vorbisInfo->bitrate_nominal / 10000;
+		//return vorbisInfo->bitrate_nominal / 10000;
+		return 16;
 	}
 
 	int VorbisDecoder::getSampleRate() const
