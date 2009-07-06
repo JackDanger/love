@@ -155,7 +155,7 @@ namespace lullaby
 	bool VorbisDecoder::accepts(const std::string & ext)
 	{
 		static const std::string supported[] = {
-			"ogg", "oga"
+			"ogg", "oga", ""
 		};
 
 		for(int i = 0; !(supported[i].empty()); i++)
