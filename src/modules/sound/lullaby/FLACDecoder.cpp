@@ -32,7 +32,9 @@ namespace lullaby
 	FLACDecoder::FLACDecoder(Data * data, const std::string & ext, int bufferSize, int sampleRate)
 		: Decoder(data, ext, bufferSize, sampleRate), pos(0)
 	{
+		init();
 		init_ogg();
+		process_until_end_of_metadata();
 	}
 	
 	FLACDecoder::~FLACDecoder()
@@ -62,9 +64,9 @@ namespace lullaby
 
 	int FLACDecoder::decode()
 	{
-		//process_single();
-		process_until_end_of_stream();
-		return 16;
+		process_single();
+		//process_until_end_of_stream();
+		return bufferSize;
 	}
 
 	bool FLACDecoder::seek(int ms)
@@ -137,14 +139,18 @@ namespace lullaby
 	
 	FLAC__StreamDecoderWriteStatus FLACDecoder::write_callback(const FLAC__Frame *frame, const FLAC__int32 *const fbuffer[])
 	{
-		printf("FLAC: %d\n", frame->header.blocksize);
-		memcpy(buffer, fbuffer, frame->header.blocksize);
+		int channel = 0;
+		for (int i = 0; i < bufferSize; i++)
+		{
+			((char *)buffer)[i] = fbuffer[channel][i] << 8;
+			channel = !channel;
+		}
+		//memcpy(buffer, fbuffer[0], bufferSize);//frame->header.blocksize);
 		return FLAC__STREAM_DECODER_WRITE_STATUS_CONTINUE;
 	}
 	
 	void FLACDecoder::metadata_callback(const FLAC__StreamMetadata *metadata)
 	{
-		printf("Metadata\n");
 		//we do nothing with metadata...
 		return;
 	}
