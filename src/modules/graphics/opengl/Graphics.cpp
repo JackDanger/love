@@ -142,7 +142,9 @@ namespace opengl
 	{
 		// This operation destroys the OpenGL context, so
 		// we must save the state.
-		DisplayState tempState = saveState();
+		DisplayState tempState;
+		if (isCreated())
+			tempState = saveState();
 
 		// Unlad all volatile objects. These must be reloaded after
 		// the display mode change.
