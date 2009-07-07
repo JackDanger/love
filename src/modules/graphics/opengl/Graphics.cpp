@@ -40,7 +40,7 @@ namespace opengl
 		currentMode.height = 0;
 
 		// Windows should be centered.
-		SDL_putenv("SDL_VIDEO_CENTERED=center");
+		SDL_putenv(std::string("SDL_VIDEO_CENTERED=center"));
 
 		if(SDL_InitSubSystem(SDL_INIT_VIDEO) < 0)
 			throw Exception(SDL_GetError());

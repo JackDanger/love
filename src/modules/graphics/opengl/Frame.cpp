@@ -87,19 +87,18 @@ namespace opengl
 		if (x)
 		{
 			memcpy(temp, vertices, sizeof(vertex)*4);
-			vertices[0].x = temp[2].x; vertices[0].y = temp[2].y;
-			vertices[1].x = temp[3].x; vertices[1].y = temp[3].y;
-			vertices[2].x = temp[0].x; vertices[2].y = temp[0].y;
-			vertices[3].x = temp[1].x; vertices[3].y = temp[1].y;
+			vertices[0].s = temp[3].s; vertices[0].t = temp[3].t;
+			vertices[1].s = temp[2].s; vertices[1].t = temp[2].t;
+			vertices[2].s = temp[1].s; vertices[2].t = temp[1].t;
+			vertices[3].s = temp[0].s; vertices[3].t = temp[0].t;
 		}
 		if (y)
 		{
-			vertex temp[4];
 			memcpy(temp, vertices, sizeof(vertex)*4);
-			vertices[0].x = temp[1].x; vertices[0].y = temp[1].y;
-			vertices[1].x = temp[0].x; vertices[1].y = temp[0].y;
-			vertices[2].x = temp[3].x; vertices[2].y = temp[3].y;
-			vertices[3].x = temp[2].x; vertices[3].y = temp[2].y;
+			vertices[0].s = temp[1].s; vertices[0].t = temp[1].t;
+			vertices[1].s = temp[0].s; vertices[1].t = temp[0].t;
+			vertices[2].s = temp[3].s; vertices[2].t = temp[3].t;
+			vertices[3].s = temp[2].s; vertices[3].t = temp[2].t;
 		}
 	}
 } // opengl
