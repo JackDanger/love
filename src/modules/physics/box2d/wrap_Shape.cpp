@@ -123,36 +123,6 @@ namespace box2d
 		return t->testSegment(L);
 	}
 
-	int _wrap_Shape_setCategoryBits(lua_State * L)
-	{
-		Shape * t = luax_checkshape(L, 1);
-		int arg1 = luaL_checkint(L, 2);
-		t->setCategoryBits(arg1);
-		return 0;
-	}
-
-	int _wrap_Shape_getCategoryBits(lua_State * L)
-	{
-		Shape * t = luax_checkshape(L, 1);
-		lua_pushinteger(L, t->getCategoryBits());
-		return 1;
-	}
-
-	int _wrap_Shape_setMaskBits(lua_State * L)
-	{
-		Shape * t = luax_checkshape(L, 1);
-		int arg1 = luaL_checkint(L, 2);
-		t->setMaskBits(arg1);
-		return 0;
-	}
-
-	int _wrap_Shape_getMaskBits(lua_State * L)
-	{
-		Shape * t = luax_checkshape(L, 1);
-		lua_pushinteger(L, t->getMaskBits());
-		return 1;
-	}
-
 	int _wrap_Shape_setCategory(lua_State * L)
 	{
 		Shape * t = luax_checkshape(L, 1);
@@ -214,12 +184,10 @@ namespace box2d
 		{ "isSensor", _wrap_Shape_isSensor },
 		{ "testPoint", _wrap_Shape_testPoint },
 		{ "testSegment", _wrap_Shape_testSegment },
-		{ "setCategoryBits", _wrap_Shape_setCategoryBits },
-		{ "getCategoryBits", _wrap_Shape_getCategoryBits },
-		{ "setMaskBits", _wrap_Shape_setMaskBits },
-		{ "getMaskBits", _wrap_Shape_getMaskBits },
 		{ "setCategory", _wrap_Shape_setCategory },
 		{ "getCategory", _wrap_Shape_getCategory },
+		{ "setMask", _wrap_Shape_setMask },
+		{ "getMask", _wrap_Shape_getMask },
 		{ "setData", _wrap_Shape_setData },
 		{ "getData", _wrap_Shape_getData },
 		{ "getBoundingBox", _wrap_Shape_getBoundingBox },

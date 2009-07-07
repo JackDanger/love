@@ -142,47 +142,27 @@ namespace box2d
 		return 0;
 	}
 
-	void Shape::setCategoryBits(int bits)
-	{
-		b2FilterData f = shape->GetFilterData();
-		f.categoryBits = (uint16)bits;
-		shape->SetFilterData(f);
-		shape->GetBody()->GetWorld()->Refilter(shape);
-	}
-
-	int Shape::getCategoryBits() const
-	{
-		return shape->GetFilterData().categoryBits;
-	}
-
-	void Shape::setMaskBits(int bits)
-	{
-		b2FilterData f = shape->GetFilterData();
-		f.maskBits = (uint16)bits;
-		shape->SetFilterData(f);
-		shape->GetBody()->GetWorld()->Refilter(shape);
-	}
-
-	int Shape::getMaskBits() const
-	{
-		return shape->GetFilterData().maskBits;
-	}
-
 	int Shape::setCategory(lua_State * L)
 	{
-		setCategoryBits(getBits(L));
+		b2FilterData f = shape->GetFilterData();
+		f.categoryBits = (uint16)getBits(L);
+		shape->SetFilterData(f);
+		shape->GetBody()->GetWorld()->Refilter(shape);
+		return 0;
+	}
+
+	int Shape::setMask(lua_State * L)
+	{
+		b2FilterData f = shape->GetFilterData();
+		f.maskBits = ~(uint16)getBits(L);
+		shape->SetFilterData(f);
+		shape->GetBody()->GetWorld()->Refilter(shape);
 		return 0;
 	}
 
 	int Shape::getCategory(lua_State * L)
 	{
 		return pushBits(L, shape->GetFilterData().categoryBits);
-	}
-
-	int Shape::setMask(lua_State * L)
-	{
-		setMaskBits(~getBits(L));
-		return 0;
 	}
 
 	int Shape::getMask(lua_State * L)
@@ -253,7 +233,7 @@ namespace box2d
 		{
 			size_t bpos = (size_t)(lua_tointeger(L, i)-1);
 			if(bpos < 0 || bpos > 16) 
-				return luaL_error(L, "Values must be in rage 1-16.");
+				return luaL_error(L, "Values must be in range 1-16.");
 			b.set(bpos, true);
 		}
 		

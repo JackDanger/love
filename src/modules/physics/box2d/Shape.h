@@ -156,33 +156,6 @@ namespace box2d
 		int testSegment(lua_State * L);
 
 		/**
-		* Sets the category bits of a Shape. This is
-		* way faster than setCategory.
-		* @param bits A 16-bits integer representing the categories.
-		**/
-		void setCategoryBits(int bits);
-
-		/**
-		* Gets the category bits of the Shape.
-		* @return A 16-bits integer representing the categories.
-		**/
-		int getCategoryBits() const;
-
-		/**
-		* Set the mask bits of the Shape.
-		* @param bits A 16-bits integer representing
-		* the categories that should be masked.
-		**/
-		void setMaskBits(int bits);
-
-		/**
-		* Gets the current mask bits.
-		* @return A 16-bit integer representing the current
-		* masks categories.
-		**/
-		int getMaskBits() const;
-
-		/**
 		* With this function, you can easily set the categories
 		* a Shape is a member of.
 		* 
