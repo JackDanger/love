@@ -31,12 +31,12 @@ namespace openal
 {
 
 	Source::Source(Pool * pool)
-		: pool(pool), source(0)
+		: pool(pool), source(0), pitch(1.0f), volume(1.0f)
 	{
 	}
 
 	Source::Source(Pool * pool, Audible * audible)
-		: pool(pool), source(0)
+		: pool(pool), source(0), pitch(1.0f), volume(1.0f)
 	{
 		setAudible(audible);
 	}
