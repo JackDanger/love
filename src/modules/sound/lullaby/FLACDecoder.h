@@ -51,6 +51,7 @@ namespace lullaby
 			bool isSeekable();
 			int getChannels() const;
 			int getBits() const;
+			int getSampleRate() const;
 		
 			//needed for FLAC
 			FLAC__StreamDecoderReadStatus read_callback(FLAC__byte buffer[], size_t *bytes);

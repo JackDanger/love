@@ -29,12 +29,17 @@ namespace sound
 {
 namespace lullaby
 {
-	FLACDecoder::FLACDecoder(Data * data, const std::string & ext, int bufferSize, int sampleRate)
-		: Decoder(data, ext, bufferSize, sampleRate), pos(0)
+	FLACDecoder::FLACDecoder(Data * data, const std::string & ext, int nbufferSize, int sampleRate)
+		: Decoder(data, ext, nbufferSize, sampleRate), pos(0)
 	{
 		init();
 		init_ogg();
 		process_until_end_of_metadata();
+		process_single();
+		seek(0);
+		bufferSize = 256 * getBits() * getChannels() * 2;
+		delete[] buffer;
+		buffer = new char[bufferSize];
 	}
 	
 	FLACDecoder::~FLACDecoder()
@@ -65,7 +70,6 @@ namespace lullaby
 	int FLACDecoder::decode()
 	{
 		process_single();
-		//process_until_end_of_stream();
 		return bufferSize;
 	}
 
@@ -86,12 +90,17 @@ namespace lullaby
 
 	int FLACDecoder::getChannels() const
 	{
-		return 2;
+		return get_channels();
 	}
 
 	int FLACDecoder::getBits() const
 	{
-		return 16;
+		return get_bits_per_sample();
+	}
+	
+	int FLACDecoder::getSampleRate() const
+	{
+		return get_sample_rate();
 	}
 	
 	FLAC__StreamDecoderReadStatus FLACDecoder::read_callback(FLAC__byte buffer[], size_t *bytes)
@@ -99,7 +108,10 @@ namespace lullaby
 		int size = data->getSize();
 		char *d = (char *) data->getData() + pos;
 		if (pos >= size)
+		{
+			eof = true;
 			return FLAC__STREAM_DECODER_READ_STATUS_END_OF_STREAM;
+		}
 		if (pos+*bytes <= size)
 		{
 			memcpy(buffer, d, *bytes);
@@ -134,18 +146,20 @@ namespace lullaby
 	
 	bool FLACDecoder::eof_callback()
 	{
-		return (pos >= data->getSize());
+		eof = (pos >= data->getSize());
+		return eof;
 	}
 	
 	FLAC__StreamDecoderWriteStatus FLACDecoder::write_callback(const FLAC__Frame *frame, const FLAC__int32 *const fbuffer[])
 	{
-		int channel = 0;
-		for (int i = 0; i < bufferSize; i++)
+		int i, j;
+		for (i = 0, j = 0; i < bufferSize; i += 4, j++)
 		{
-			((char *)buffer)[i] = fbuffer[channel][i] << 8;
-			channel = !channel;
+			((char *)buffer)[i] = fbuffer[0][j];
+			((char *)buffer)[i+1] = fbuffer[0][j] >> 8;
+			((char *)buffer)[i+2] = fbuffer[1][j];
+			((char *)buffer)[i+3] = fbuffer[1][j] >> 8;
 		}
-		//memcpy(buffer, fbuffer[0], bufferSize);//frame->header.blocksize);
 		return FLAC__STREAM_DECODER_WRITE_STATUS_CONTINUE;
 	}
 	
