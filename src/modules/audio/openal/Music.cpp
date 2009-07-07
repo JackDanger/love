@@ -20,6 +20,7 @@
 
 #include "Music.h"
 
+// STD
 #include <iostream>
 
 namespace love
@@ -28,8 +29,8 @@ namespace audio
 {
 namespace openal
 {
-	Music::Music(love::sound::Decoder * decoder)
-		: decoder(decoder)
+	Music::Music(Pool * pool, love::sound::Decoder * decoder)
+		: pool(pool), decoder(decoder), source(0)
 	{
 		decoder->retain();
 		alGenBuffers(NUM_BUFFERS, buffers);
@@ -41,61 +42,73 @@ namespace openal
 		alDeleteBuffers(NUM_BUFFERS, buffers);
 	}
 
-	Music * Music::clone()
+	love::audio::Music * Music::clone()
 	{
-		return new Music(decoder->clone());
+		return new Music(pool, decoder->clone());
 	}
 
-	void Music::init(ALuint source)
+	void Music::play(love::audio::Source * s)
 	{
-		for(int i = 0; i < NUM_BUFFERS; i++)
+		source = pool->find(s);
+
+		if(source)
 		{
-			if(!stream(buffers[i]))
+			for(int i = 0; i < NUM_BUFFERS; i++)
 			{
-				std::cout << "Could not stream music." << std::endl;
-				return;
+				if(!stream(buffers[i]))
+				{
+					std::cout << "Could not stream music." << std::endl;
+					return;
+				}
+			}
+
+			alSourceQueueBuffers(source, NUM_BUFFERS, buffers);
+		}
+	}
+
+	void Music::update(love::audio::Source * s)
+	{
+		if(source)
+		{
+			// Number of processed buffers.
+			ALint processed;
+
+			alGetSourcei(source, AL_BUFFERS_PROCESSED, &processed);
+
+			while(processed--)
+			{
+				ALuint buffer;
+
+				// Get a free buffer.
+				alSourceUnqueueBuffers(source, 1, &buffer);
+
+				if(stream(buffer))
+					alSourceQueueBuffers(source, 1, &buffer);
 			}
 		}
-
-		alSourceQueueBuffers(source, NUM_BUFFERS, buffers);
 	}
 
-	void Music::update(ALuint source)
+	void Music::stop(love::audio::Source * s)
 	{
-		// Number of processed buffers.
-		ALint processed;
-
-		alGetSourcei(source, AL_BUFFERS_PROCESSED, &processed);
-
-		while(processed--)
+		if(source)
 		{
-			ALuint buffer;
-
-			// Get a free buffer.
-			alSourceUnqueueBuffers(source, 1, &buffer);
-
-			if(stream(buffer))
-				alSourceQueueBuffers(source, 1, &buffer);
+			ALuint bufs[NUM_BUFFERS];
+			alSourceStop(source);
+			alSourceUnqueueBuffers(source, NUM_BUFFERS, bufs);
+			source = 0;
 		}
 	}
 
-	void Music::quit(ALuint source)
-	{
-		ALuint bufs[NUM_BUFFERS];
-		alSourceStop(source);
-		alSourceUnqueueBuffers(source, NUM_BUFFERS, bufs);
-	}
-
-	void Music::rewind(ALuint source)
+	void Music::rewind(love::audio::Source * s)
 	{
 		// Stop source, unqueue buffers.
-		quit(source);
+		stop(s);
 
 		// Rewind data pointer.
 		decoder->rewind();
 
 		// Requeue buffers.
-		init(source);
+		play(s);
 	}
 
 	bool Music::stream(ALuint buffer)
@@ -103,7 +116,7 @@ namespace openal
 		// Get more sound data.
 		int decoded = decoder->decode();
 
-		int fmt = getFormat(decoder->getChannels(), decoder->getBits());
+		int fmt = pool->getFormat(decoder->getChannels(), decoder->getBits());
 
 		if(fmt == 0)
 			return false;

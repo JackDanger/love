@@ -42,9 +42,9 @@ namespace opengl
 		float ih = image->getHeight();
 		
 		vertices[0].x = 0; vertices[0].y = 0;
-		vertices[1].x = 0; vertices[1].y = h;
-		vertices[2].x = w; vertices[2].y = h;
-		vertices[3].x = w; vertices[3].y = 0;
+		vertices[1].x = 0; vertices[1].y = (float)h;
+		vertices[2].x = (float)w; vertices[2].y = (float)h;
+		vertices[3].x = (float)w; vertices[3].y = 0;
 		
 		vertices[0].s = x/iw; vertices[0].t = y/ih;
 		vertices[1].s = x/iw; vertices[1].t = (y+h)/ih;

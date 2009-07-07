@@ -18,27 +18,31 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_AUDIO_OPENAL_WRAP_CHANNEL_H
-#define LOVE_AUDIO_OPENAL_WRAP_CHANNEL_H
+#ifndef LOVE_AUDIO_AUDIBLE_H
+#define LOVE_AUDIO_AUDIBLE_H
 
-#include <common/runtime.h>
-#include "Channel.h"
+// LOVE
+#include <common/Object.h>
 
 namespace love
 {
 namespace audio
 {
-namespace openal
-{
-	Channel * luax_checkchannel(lua_State * L, int idx);
-	int _wrap_Channel_setPitch(lua_State * L);
-	int _wrap_Channel_getPitch(lua_State * L);
-	int _wrap_Channel_setVolume(lua_State * L);
-	int _wrap_Channel_getVolume(lua_State * L);
-	int wrap_Channel_open(lua_State * L);
+	class Source;
 
-} // openal
+	class Audible : public Object
+	{
+	public:
+
+		virtual ~Audible(){};
+		virtual void play(Source * source) = 0;
+		virtual void update(Source * source) = 0;
+		virtual void stop(Source * source) = 0;
+		virtual void rewind(Source * source) = 0;
+		
+	}; // Audible
+
 } // audio
 } // love
 
-#endif // LOVE_AUDIO_OPENAL_WRAP_CHANNEL_H
+#endif // LOVE_AUDIO_AUDIBLE_H

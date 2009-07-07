@@ -24,157 +24,104 @@ namespace love
 {
 namespace audio
 {
-namespace openal
+namespace null
 {
 	Audio::Audio()
 	{
-		// Passing zero for default device.
-		device = alcOpenDevice(0);
-
-		if(device == 0)
-			throw love::Exception("Could not open device.");
-
-		context = alcCreateContext(device, 0);
-
-		if(context == 0)
-			throw love::Exception("Could not create context.");
-
-		alcMakeContextCurrent(context);
-
-		if(alcGetError(device) != ALC_NO_ERROR)
-			throw love::Exception("Could not make context current.");
-
-		// pool must be allocated after AL context.
-		pool = new Pool();
-
-		thread = SDL_CreateThread(Audio::run, (void*)this);
 	}
 
 	Audio::~Audio()
 	{
-		SDL_KillThread(thread);
-
-		delete pool;
-		
-		alcMakeContextCurrent(0);
-		alcDestroyContext(context);
-		alcCloseDevice(device);
-	}
-
-	int Audio::run(void * d)
-	{
-		Audio * instance = (Audio*)d;
-		
-		while(true)
-		{
-			instance->pool->update();
-			SDL_Delay(10);
-		}
-
-		return 0;
 	}
 
 	const char * Audio::getName() const
 	{
-		return "love.audio.openal";
+		return "love.audio.null";
 	}
 
 	love::audio::Sound * Audio::newSound(love::sound::SoundData * data)
 	{
-		return new Sound(pool, data);
+		return new Sound(data);
 	}
 
 	love::audio::Music * Audio::newMusic(love::sound::Decoder * decoder)
 	{
-		return new Music(pool, decoder);
+		return new Music(decoder);
 	}
 
 	love::audio::Source * Audio::newSource()
 	{
-		return new Source(pool);
+		return new Source();
 	}
 
 	int Audio::getNumSources() const
 	{
-		return pool->getNumSources();
+		return 0;
 	}
 
 	int Audio::getMaxSources() const
 	{
-		return pool->getMaxSources();
+		return 0;
 	}
 
 	void Audio::play(love::audio::Source * source)
 	{
-		source->play();
 	}
 
 	void Audio::play(love::audio::Sound * sound)
 	{
-		Source * source = new Source(pool, sound);
-		play(source);
-		source->release();
 	}
 
 	void Audio::play(love::audio::Music * music)
 	{
-		Source * source = new Source(pool, music->clone());
-		play(source);
-		source->release();
+	}
+
+	void Audio::play()
+	{
 	}
 
 	void Audio::stop(love::audio::Source * source)
 	{
-		source->stop();
 	}
 
 	void Audio::stop()
 	{
-		pool->stop();
 	}
 
 	void Audio::pause(love::audio::Source * source)
 	{
-		source->pause();
 	}
 
 	void Audio::pause()
 	{
-		pool->pause();
 	}
 
 	void Audio::resume(love::audio::Source * source)
 	{
-		source->resume();
 	}
-	
+
 	void Audio::resume()
 	{
-		pool->resume();
 	}
 
 	void Audio::rewind(love::audio::Source * source)
 	{
-		source->rewind();
 	}
 
 	void Audio::rewind()
 	{
-		pool->rewind();
 	}
 
 	void Audio::setVolume(float volume)
 	{
-		alListenerf(AL_GAIN, volume);
+		this->volume = volume;
 	}
 
 	float Audio::getVolume() const
 	{
-		ALfloat volume;
-		alGetListenerf(AL_GAIN, &volume);
 		return volume;
 	}
 
-} // openal
+} // null
 } // audio
 } // love

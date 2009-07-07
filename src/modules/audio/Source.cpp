@@ -18,29 +18,43 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#include "wrap_Sound.h"
+#include "Source.h"
 
 namespace love
 {
 namespace audio
 {
-namespace openal
-{
-	Sound * luax_checksound(lua_State * L, int idx)
+	Source::Source()
+		: audible(0)
 	{
-		return luax_checktype<Sound>(L, idx, "Sound", LOVE_AUDIO_SOUND_BITS);
 	}
 
-	static const luaL_Reg wrap_Sound_functions[] = {
-		{ 0, 0 }
-	};
-
-	int wrap_Sound_open(lua_State * L)
+	Source::~Source()
 	{
-		luax_register_type(L, "Sound", wrap_Sound_functions);
-		return 0;
+		if(audible != 0)
+		{
+			audible->stop(this);
+			audible->release();
+		}
 	}
 
-} // openal
+	void Source::setAudible(Audible * audible)
+	{
+		// If this source already has an audible, remove it.
+		if(this->audible != 0)
+		{
+			this->audible->stop(this);
+			this->audible->release();
+		}
+
+		this->audible = audible;
+		audible->retain();
+	}
+
+	Audible * Source::getAudible() const
+	{
+		return audible;
+	}
+
 } // audio
 } // love

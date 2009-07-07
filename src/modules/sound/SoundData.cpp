@@ -101,6 +101,10 @@ namespace sound
 
 	void SoundData::setSample(int i, float sample)
 	{
+		// Check range.
+		if(i < 0 || i >= size/(bits/8))
+			return;
+
 		if(bits == 16)
 		{
 			short * s = (short *)data;
@@ -116,6 +120,10 @@ namespace sound
 
 	float SoundData::getSample(int i) const
 	{
+		// Check range.
+		if(i < 0 || i >= size/(bits/8))
+			return 0;
+
 		if(bits == 16)
 		{
 			short * s = (short *)data;

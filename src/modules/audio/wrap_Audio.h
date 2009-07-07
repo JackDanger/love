@@ -18,52 +18,33 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_AUDIO_OPENAL_SOUND_H
-#define LOVE_AUDIO_OPENAL_SOUND_H
+#ifndef LOVE_AUDIO_WRAP_AUDIO_H
+#define LOVE_AUDIO_WRAP_AUDIO_H
 
 // LOVE
-#include <sound/SoundData.h>
-#include <audio/Sound.h>
-#include "Pool.h"
-
-// OpenAL
-#include <AL/alc.h>
-#include <AL/al.h>
+#include "Audio.h"
+#include "wrap_Sound.h"
+#include "wrap_Music.h"
+#include "wrap_Source.h"
 
 namespace love
 {
 namespace audio
 {
-namespace openal
-{
-	// Forward declarations.
-	class Audio;
+	int _wrap_getNumSources(lua_State * L);
+	int _wrap_newSound(lua_State * L);
+	int _wrap_newMusic(lua_State * L);
+	int _wrap_newSource(lua_State * L);
+	int _wrap_play(lua_State * L);
+	int _wrap_stop(lua_State * L);
+	int _wrap_pause(lua_State * L);
+	int _wrap_rewind(lua_State * L);
+	int _wrap_setVolume(lua_State * L);
+	int _wrap_getVolume(lua_State * L);
+	int wrap_Audio_open(lua_State * L);
 
-	class Sound : public love::audio::Sound
-	{
-	private:
-	
-		Pool * pool;
-
-		// Sounds only need one buffer.
-		ALuint buffer;
-
-		ALuint source;
-
-	public:
-		Sound(Pool * pool, love::sound::SoundData * data);
-		virtual ~Sound();
-
-		// Implements Audible.
-		void play(love::audio::Source * s);
-		void update(love::audio::Source * s);
-		void stop(love::audio::Source * s);
-		void rewind(love::audio::Source * s);
-
-	}; // Sound
-
-} // openal
 } // audio
 } // love
 
-#endif // LOVE_AUDIO_OPENAL_SOUND_H
+
+#endif // LOVE_AUDIO_WRAP_AUDIO_H

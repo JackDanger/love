@@ -18,56 +18,26 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_AUDIO_OPENAL_AUDIO_H
-#define LOVE_AUDIO_OPENAL_AUDIO_H
-
-// STD
-#include <queue>
-#include <map>
-#include <iostream>
-#include <cmath>
-
-// SDL
-#include <SDL.h>
-
-// OpenAL
-#include <AL/alc.h>
-#include <AL/al.h>
+#ifndef LOVE_AUDIO_NULL_AUDIO_H
+#define LOVE_AUDIO_NULL_AUDIO_H
 
 // LOVE
 #include <audio/Audio.h>
-#include <common/config.h>
-#include <common/constants.h>
-#include <sound/SoundData.h>
 
 #include "Sound.h"
 #include "Music.h"
 #include "Source.h"
-#include "Pool.h"
 
 namespace love
 {
 namespace audio
 {
-namespace openal
+namespace null
 {
 	class Audio : public love::audio::Audio
 	{
 	private:
-
-		// The OpenAL device.
-		ALCdevice * device;
-
-		// The OpenAL context.
-		ALCcontext * context;
-
-		SDL_Thread * thread;
-
-		// The Pool.
-		Pool * pool;
-
-		static int run(void * unused);
-
+		float volume;
 	public:
 
 		Audio();
@@ -99,8 +69,8 @@ namespace openal
 
 	}; // Audio
 
-} // openal
+} // null
 } // audio
 } // love
 
-#endif // LOVE_AUDIO_OPENAL_AUDIO_H
+#endif // LOVE_AUDIO_NULL_AUDIO_H

@@ -35,7 +35,7 @@ namespace opengl
 	int _wrap_Frame_flip(lua_State *L)
 	{
 		Frame *frame = luax_checktype<Frame>(L, 1, "Frame", LOVE_GRAPHICS_FRAME_BITS);
-		frame->flip(lua_toboolean(L, 2), lua_toboolean(L, 3));
+		frame->flip(luax_toboolean(L, 2), luax_toboolean(L, 3));
 		return 0;
 	}
 

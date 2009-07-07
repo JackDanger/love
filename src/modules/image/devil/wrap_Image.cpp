@@ -84,6 +84,8 @@ namespace devil
 			}
 		}
 
+		luax_register_gc(L, "love.image", instance);
+
 		return luax_register_module(L, wrap_Image_functions, wrap_Image_types);
 	}
 

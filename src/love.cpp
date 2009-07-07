@@ -29,7 +29,11 @@
 #include <common/constants.h>
 
 // Modules
-#include <audio/openal/wrap_Audio.h>
+
+#include <audio/wrap_Audio.h>
+#include <audio/openal/Audio.h>
+#include <audio/null/Audio.h>
+
 #include <event/sdl/wrap_Event.h>
 #include <filesystem/physfs/wrap_Filesystem.h>
 #include <graphics/opengl/wrap_Graphics.h>
@@ -58,21 +62,25 @@ DECLSPEC int luaopen_love(lua_State * L)
 		lua_setfield(L, -2, love::lua_constants[i].name);
 	}
 
+	// Create the __fin table.
+	lua_newtable(L);
+	lua_setfield(L, -2, "__fin");
+
 	// Set the love table.
 	lua_setglobal(L, "love");
 
-	love::luax_preload(L, love::audio::openal::wrap_Audio_open, "love.audio.openal");
-	love::luax_preload(L, love::filesystem::physfs::wrap_Filesystem_open, "love.filesystem.physfs");
-	love::luax_preload(L, love::event::sdl::wrap_Event_open, "love.event.sdl");
-	love::luax_preload(L, love::keyboard::sdl::wrap_Keyboard_open, "love.keyboard.sdl");
-	love::luax_preload(L, love::mouse::sdl::wrap_Mouse_open, "love.mouse.sdl");
-	love::luax_preload(L, love::native::tcc::wrap_Native_open, "love.native.tcc");
-	love::luax_preload(L, love::timer::sdl::wrap_Timer_open, "love.timer.sdl");
-	love::luax_preload(L, love::joystick::sdl::wrap_Joystick_open, "love.joystick.sdl");
-	love::luax_preload(L, love::graphics::opengl::wrap_Graphics_open, "love.graphics.opengl");
-	love::luax_preload(L, love::image::devil::wrap_Image_open, "love.image.devil");
-	love::luax_preload(L, love::physics::box2d::wrap_Physics_open, "love.physics.box2d");
-	love::luax_preload(L, love::sound::wrap_Sound_open, "love.sound.sdlsound");
+	love::luax_preload(L, love::audio::wrap_Audio_open, "love.audio");
+	love::luax_preload(L, love::filesystem::physfs::wrap_Filesystem_open, "love.filesystem");
+	love::luax_preload(L, love::event::sdl::wrap_Event_open, "love.event");
+	love::luax_preload(L, love::keyboard::sdl::wrap_Keyboard_open, "love.keyboard");
+	love::luax_preload(L, love::mouse::sdl::wrap_Mouse_open, "love.mouse");
+	love::luax_preload(L, love::native::tcc::wrap_Native_open, "love.native");
+	love::luax_preload(L, love::timer::sdl::wrap_Timer_open, "love.timer");
+	love::luax_preload(L, love::joystick::sdl::wrap_Joystick_open, "love.joystick");
+	love::luax_preload(L, love::graphics::opengl::wrap_Graphics_open, "love.graphics");
+	love::luax_preload(L, love::image::devil::wrap_Image_open, "love.image");
+	love::luax_preload(L, love::physics::box2d::wrap_Physics_open, "love.physics");
+	love::luax_preload(L, love::sound::wrap_Sound_open, "love.sound");
 
 	love::luasocket::__open(L);
 	love::lanes::open(L);
@@ -125,7 +133,7 @@ int main(int argc, char ** argv)
 
 	lua_close(L);
 
-#ifdef LOVE_DEBUG
+#if defined(LOVE_DEBUG) && defined(LOVE_WINDOWS)
 	printf("(press key)\n");
 	getchar();
 #endif

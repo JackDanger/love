@@ -18,52 +18,46 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_AUDIO_OPENAL_SOUND_H
-#define LOVE_AUDIO_OPENAL_SOUND_H
+#ifndef LOVE_AUDIO_MUSIC_H
+#define LOVE_AUDIO_MUSIC_H
 
 // LOVE
-#include <sound/SoundData.h>
-#include <audio/Sound.h>
-#include "Pool.h"
-
-// OpenAL
-#include <AL/alc.h>
-#include <AL/al.h>
+#include "Audible.h"
+#include <sound/Decoder.h>
 
 namespace love
 {
 namespace audio
 {
-namespace openal
-{
-	// Forward declarations.
-	class Audio;
-
-	class Sound : public love::audio::Sound
+	/**
+	* A Music object represents a stream of sound samples which are gradually
+	* acquired somehow. Compare with Sounds, which have all the needed sound
+	* samples pre-decoded.
+	* 
+	* Typically, you would want to use love::sound::Decoder to decode samples
+	* from some encoded format, like OGG or MP3, however, Music can come from 
+	* other sources as well. 
+	**/
+	class Music : public Audible
 	{
-	private:
-	
-		Pool * pool;
-
-		// Sounds only need one buffer.
-		ALuint buffer;
-
-		ALuint source;
-
 	public:
-		Sound(Pool * pool, love::sound::SoundData * data);
-		virtual ~Sound();
 
-		// Implements Audible.
-		void play(love::audio::Source * s);
-		void update(love::audio::Source * s);
-		void stop(love::audio::Source * s);
-		void rewind(love::audio::Source * s);
+		/**
+		* Destructor.
+		**/
+		virtual ~Music(){};
+		
+		/**
+		* Creates a clone of the music stream. Music objects are gradually
+		* decoded, so if the client wants to play the same Music object, we can't
+		* use the same object. We must clone the entire stream.
+		* @return A clone of this object, but rewound to the start.
+		**/
+		virtual Music * clone() = 0;
 
-	}; // Sound
+	}; // Music
 
-} // openal
 } // audio
 } // love
 
-#endif // LOVE_AUDIO_OPENAL_SOUND_H
+#endif // LOVE_AUDIO_MUSIC_H

@@ -76,16 +76,16 @@ namespace opengl
 		float color[4];
 		//get the color
 		glGetFloatv(GL_CURRENT_COLOR, color);
-		s.color[0] = color[0]*255;
-		s.color[1] = color[1]*255;
-		s.color[2] = color[2]*255;
-		s.color[3] = color[3]*255;
+		s.color[0] = (GLubyte)(color[0]*255.0f);
+		s.color[1] = (GLubyte)(color[1]*255.0f);
+		s.color[2] = (GLubyte)(color[2]*255.0f);
+		s.color[3] = (GLubyte)(color[3]*255.0f);
 		//get the background color
 		glGetFloatv(GL_COLOR_CLEAR_VALUE, color);
-		s.backgroundColor[0] = color[0]*255;
-		s.backgroundColor[1] = color[1]*255;
-		s.backgroundColor[2] = color[2]*255;
-		s.backgroundColor[3] = color[3]*255;
+		s.backgroundColor[0] = (GLubyte)(color[0]*255.0f);
+		s.backgroundColor[1] = (GLubyte)(color[1]*255.0f);
+		s.backgroundColor[2] = (GLubyte)(color[2]*255.0f);
+		s.backgroundColor[3] = (GLubyte)(color[3]*255.0f);
 		//store modes here
 		int mode;
 		//get blend mode

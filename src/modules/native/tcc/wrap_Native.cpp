@@ -137,6 +137,8 @@ namespace tcc
 
 		luax_register_searcher(L, searcher);
 
+		luax_register_gc(L, "love.native", instance);
+
 		return luax_register_module(L, wrap_Native_functions, 0);
 	}
 

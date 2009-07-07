@@ -28,13 +28,14 @@ namespace audio
 {
 namespace openal
 {
-	Sound::Sound(love::sound::SoundData * data)
+	Sound::Sound(Pool * pool, love::sound::SoundData * data)
+		: pool(pool), buffer(0), source(source)
 	{
 		
 		// Generate the buffer.
 		alGenBuffers(1, &buffer);
 
-		int fmt = getFormat(data->getChannels(), data->getBits());
+		int fmt = pool->getFormat(data->getChannels(), data->getBits());
 
 		if(fmt == 0)
 			throw love::Exception("Unsopported audio format.");
@@ -42,33 +43,38 @@ namespace openal
 		alBufferData(buffer, fmt, data->getData(), data->getSize(), data->getSampleRate());
 
 		// Note: we're done with the sound data
-		// at this point.
+		// at this point. No need to retain.
 	}
 
 	Sound::~Sound()
 	{
-		alDeleteBuffers(1, &buffer);
+		if(buffer)
+			alDeleteBuffers(1, &buffer);
 	}
 
-	void Sound::init(ALuint source)
+	void Sound::play(love::audio::Source * s)
 	{
 		// Set the buffer for the sound.
-		alSourcei(source, AL_BUFFER, buffer);
+		source = pool->find(s);
+
+		if(source)
+			alSourcei(source, AL_BUFFER, buffer);
 	}
 
-	void Sound::update(ALuint source)
+	void Sound::update(love::audio::Source * s)
 	{
 		// No need.
 	}
 
-	void Sound::quit(ALuint source)
+	void Sound::stop(love::audio::Source * s)
 	{
 		// Also no need.
 	}
 
-	void Sound::rewind(ALuint source)
+	void Sound::rewind(love::audio::Source * s)
 	{
-		alSourceRewind(source);
+		if(source)
+			alSourceRewind(source);
 	}
 
 } // openal

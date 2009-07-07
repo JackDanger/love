@@ -43,14 +43,13 @@ namespace love
 	}
 
 	/**
-	* Special garbage collector for Modules. This is only used
-	* to trigger the quit() method on a module when it is garbage 
-	* collected (which is typically when the VM is destroyed).
+	* Special garbage collector for Modules.
 	**/
 	static int _wrap__Module_gc(lua_State * L)
 	{
-		Module * m = (Module *)lua_touserdata(L, 1);
-		delete m;
+		userdata * u = (userdata *)lua_touserdata(L, 1);
+		Module * t = (Module *)u->data;
+		delete t;
 		return 0;
 	}
 
@@ -102,16 +101,17 @@ namespace love
 		return 0;
 	}
 
-	int luax_register_gc(lua_State * L, const char * mname, lua_CFunction f)
+	int luax_register_gc(lua_State * L, const char * mname, Module * m)
 	{
-
 		lua_getglobal(L, "love");
 		lua_getfield(L, -1, "__fin");
 
-		lua_newuserdata(L, 0); 
+		userdata * u = (userdata *)lua_newuserdata(L, sizeof(userdata));
+		u->own = true;
+		u->data = m;
 
 		luaL_newmetatable(L, mname);
-		lua_pushcfunction(L, f);
+		lua_pushcfunction(L, _wrap__Module_gc);
 		lua_setfield(L, -2, "__gc");
 		lua_setmetatable(L, -2);
 

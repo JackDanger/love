@@ -18,52 +18,38 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_AUDIO_OPENAL_SOUND_H
-#define LOVE_AUDIO_OPENAL_SOUND_H
-
-// LOVE
-#include <sound/SoundData.h>
-#include <audio/Sound.h>
-#include "Pool.h"
-
-// OpenAL
-#include <AL/alc.h>
-#include <AL/al.h>
+#include "Sound.h"
 
 namespace love
 {
 namespace audio
 {
-namespace openal
+namespace null
 {
-	// Forward declarations.
-	class Audio;
-
-	class Sound : public love::audio::Sound
+	Sound::Sound(love::sound::SoundData * data)
 	{
-	private:
-	
-		Pool * pool;
+	}
 
-		// Sounds only need one buffer.
-		ALuint buffer;
+	Sound::~Sound()
+	{
+	}
 
-		ALuint source;
+	void Sound::play(love::audio::Source * s)
+	{
+	}
 
-	public:
-		Sound(Pool * pool, love::sound::SoundData * data);
-		virtual ~Sound();
+	void Sound::update(love::audio::Source * s)
+	{
+	}
 
-		// Implements Audible.
-		void play(love::audio::Source * s);
-		void update(love::audio::Source * s);
-		void stop(love::audio::Source * s);
-		void rewind(love::audio::Source * s);
+	void Sound::stop(love::audio::Source * s)
+	{
+	}
 
-	}; // Sound
+	void Sound::rewind(love::audio::Source * s)
+	{
+	}
 
-} // openal
+} // null
 } // audio
 } // love
-
-#endif // LOVE_AUDIO_OPENAL_SOUND_H

@@ -75,12 +75,12 @@ namespace lullaby
 
 	bool FLACDecoder::seek(int ms)
 	{
-		seek_absolute(ms);
+		return seek_absolute(ms);
 	}
 
 	bool FLACDecoder::rewind()
 	{
-		seek_absolute(0);
+		return seek_absolute(0);
 	}
 
 	bool FLACDecoder::isSeekable()
@@ -112,7 +112,7 @@ namespace lullaby
 			eof = true;
 			return FLAC__STREAM_DECODER_READ_STATUS_END_OF_STREAM;
 		}
-		if (pos+*bytes <= size)
+		if (pos+*bytes <= (unsigned int)size)
 		{
 			memcpy(buffer, d, *bytes);
 			pos = pos+*bytes;
@@ -128,7 +128,7 @@ namespace lullaby
 	
 	FLAC__StreamDecoderSeekStatus FLACDecoder::seek_callback(FLAC__uint64 offset)
 	{
-		pos = offset;
+		pos = (int)offset;
 		return FLAC__STREAM_DECODER_SEEK_STATUS_OK;
 	}
 	

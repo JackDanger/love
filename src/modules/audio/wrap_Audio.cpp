@@ -21,19 +21,20 @@
 // LOVE
 #include "wrap_Audio.h"
 
+#include "openal/Audio.h"
+#include "null/Audio.h"
+
 #include <sound/wrap_Decoder.h>
 
 namespace love
 {
 namespace audio
 {
-namespace openal
-{
 	static Audio * instance = 0;
 
-	int _wrap_getNumChannels(lua_State * L)
+	int _wrap_getNumSources(lua_State * L)
 	{
-		lua_pushinteger(L, instance->getNumChannels());
+		lua_pushinteger(L, instance->getNumSources());
 		return 1;
 	}
 
@@ -66,10 +67,10 @@ namespace openal
 		return 1;
 	}
 
-	int _wrap_newChannel(lua_State * L)
+	int _wrap_newSource(lua_State * L)
 	{
-		Channel * t = instance->newChannel();
-		luax_newtype(L, "Channel", LOVE_AUDIO_CHANNEL_BITS, (void*)t);
+		Source * t = instance->newSource();
+		luax_newtype(L, "Source", LOVE_AUDIO_SOURCE_BITS, (void*)t);
 		return 1;
 	}
 
@@ -80,15 +81,19 @@ namespace openal
 		if(luax_istype(L, 1, LOVE_AUDIO_SOUND_BITS))
 		{
 			Sound * s = luax_checksound(L, 1);
-			Channel * c = (argn >= 2) ? luax_checkchannel(L, 2) : 0;
-			instance->play(s, c);
+			instance->play(s);
 			return 0;
 		} 
 		else if(luax_istype(L, 1, LOVE_AUDIO_MUSIC_BITS))
 		{
 			Music * m = luax_checkmusic(L, 1);
-			Channel * c = (argn >= 2) ? luax_checkchannel(L, 2) : 0;
-			instance->play(m, c);
+			instance->play(m);
+			return 0;
+		}
+		else if(luax_istype(L, 1, LOVE_AUDIO_SOURCE_BITS))
+		{
+			Source * s = luax_checksource(L, 1);
+			instance->play(s);
 			return 0;
 		}
 
@@ -97,21 +102,21 @@ namespace openal
 
 	int _wrap_stop(lua_State * L)
 	{
-		Channel * c = luax_checkchannel(L, 1);
+		Source * c = luax_checksource(L, 1);
 		instance->stop(c);
 		return 0;
 	}
 
 	int _wrap_pause(lua_State * L)
 	{
-		Channel * c = luax_checkchannel(L, 1);
+		Source * c = luax_checksource(L, 1);
 		instance->pause(c);
 		return 0;
 	}
 
 	int _wrap_rewind(lua_State * L)
 	{
-		Channel * c = luax_checkchannel(L, 1);
+		Source * c = luax_checksource(L, 1);
 		instance->rewind(c);
 		return 0;
 	}
@@ -131,10 +136,10 @@ namespace openal
 
 	// List of functions to wrap.
 	static const luaL_Reg wrap_Audio_functions[] = {
-		{ "getNumChannels", _wrap_getNumChannels },
+		{ "getNumSources", _wrap_getNumSources },
 		{ "newSound",  _wrap_newSound },
 		{ "newMusic",  _wrap_newMusic },
-		{ "newChannel",  _wrap_newChannel },
+		{ "newSource",  _wrap_newSource },
 		{ "play",  _wrap_play },
 		{ "stop",  _wrap_stop },
 		{ "pause",  _wrap_pause },
@@ -145,8 +150,7 @@ namespace openal
 	};
 
 	static const lua_CFunction wrap_Audio_types[] = {
-		wrap_Channel_open,
-		wrap_Audible_open,
+		wrap_Source_open,
 		wrap_Music_open,
 		wrap_Sound_open,
 		0
@@ -156,19 +160,37 @@ namespace openal
 	{
 		if(instance == 0)
 		{
+			// Try OpenAL first.
 			try 
 			{
-				instance = new Audio();
-			} 
-			catch(Exception & e)
+				instance = new love::audio::openal::Audio();
+			}
+			catch(love::Exception & e)
 			{
-				return luaL_error(L, e.what());
+				std::cout << e.what() << std::endl;
 			}
 		}
+
+		if(instance == 0)
+		{
+			// Fall back to nullaudio.
+			try
+			{
+				instance = new love::audio::null::Audio();
+			}
+			catch(love::Exception & e)
+			{
+				std::cout << e.what() << std::endl;
+			}
+		}
+
+		if(instance == 0)
+			return luaL_error(L, "Could not open any audio module.");
+
+		luax_register_gc(L, "love.audio", instance);
 
 		return luax_register_module(L, wrap_Audio_functions, wrap_Audio_types);
 	}
 
-} // openal
 } // audio
 } // love

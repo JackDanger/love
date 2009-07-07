@@ -31,7 +31,7 @@ namespace event
 	class Event : public Module
 	{
 	protected:
-		Event(){};
+		virtual ~Event(){};
 	public:
 
 		enum

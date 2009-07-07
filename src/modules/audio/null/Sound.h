@@ -18,23 +18,37 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_AUDIO_OPENAL_WRAP_SOUND_H
-#define LOVE_AUDIO_OPENAL_WRAP_SOUND_H
+#ifndef LOVE_AUDIO_NULL_SOUND_H
+#define LOVE_AUDIO_NULL_SOUND_H
 
-#include <common/runtime.h>
-#include "Sound.h"
+// LOVE
+#include <sound/SoundData.h>
+#include <audio/Sound.h>
 
 namespace love
 {
 namespace audio
 {
-namespace openal
+namespace null
 {
-	Sound * luax_checksound(lua_State * L, int idx);
-	int wrap_Sound_open(lua_State * L);
+	class Sound : public love::audio::Sound
+	{
+	private:
 
-} // openal
+	public:
+		Sound(love::sound::SoundData * data);
+		virtual ~Sound();
+
+		// Implements Audible.
+		void play(love::audio::Source * s);
+		void update(love::audio::Source * s);
+		void stop(love::audio::Source * s);
+		void rewind(love::audio::Source * s);
+
+	}; // Sound
+
+} // null
 } // audio
 } // love
 
-#endif // LOVE_AUDIO_OPENAL_WRAP_SOUND_H
+#endif // LOVE_AUDIO_NULL_SOUND_H

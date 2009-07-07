@@ -18,37 +18,44 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_AUDIO_OPENAL_WRAP_AUDIO_H
-#define LOVE_AUDIO_OPENAL_WRAP_AUDIO_H
+#ifndef LOVE_AUDIO_SOURCE_H
+#define LOVE_AUDIO_SOURCE_H
 
 // LOVE
-#include "Audio.h"
-#include "wrap_Audible.h"
-#include "wrap_Sound.h"
-#include "wrap_Music.h"
-#include "wrap_Channel.h"
+#include <common/Object.h>
+#include "Audible.h"
 
 namespace love
 {
 namespace audio
 {
-namespace openal
-{
-	int _wrap_getNumChannels(lua_State * L);
-	int _wrap_newSound(lua_State * L);
-	int _wrap_newMusic(lua_State * L);
-	int _wrap_newChannel(lua_State * L);
-	int _wrap_play(lua_State * L);
-	int _wrap_stop(lua_State * L);
-	int _wrap_pause(lua_State * L);
-	int _wrap_rewind(lua_State * L);
-	int _wrap_setVolume(lua_State * L);
-	int _wrap_getVolume(lua_State * L);
-	int wrap_Audio_open(lua_State * L);
+	class Source : public Object
+	{
+	protected:
+		Audible * audible;
+	public:
+		Source();
+		virtual ~Source();
+		void setAudible(Audible * audible);
+		Audible * getAudible() const;
+		
+		virtual void play() = 0;
+		virtual void stop() = 0;
+		virtual void pause() = 0;
+		virtual void resume() = 0;
+		virtual void rewind() = 0;
+		virtual bool isFinished() const = 0;
+		virtual void update() = 0;
 
-} // openal
+		virtual void setPitch(float pitch) = 0;
+		virtual float getPitch() const = 0;
+
+		virtual void setVolume(float volume) = 0;
+		virtual float getVolume() const = 0;
+
+	}; // Source
+
 } // audio
 } // love
 
-
-#endif // LOVE_AUDIO_OPENAL_WRAP_AUDIO_H
+#endif // LOVE_AUDIO_SOURCE_H

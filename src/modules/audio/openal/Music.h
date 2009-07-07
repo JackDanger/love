@@ -22,9 +22,13 @@
 #define LOVE_AUDIO_OPENAL_MUSIC_H
 
 // LOVE
-#include "Audible.h"
-
+#include <audio/Music.h>
 #include <sound/Decoder.h>
+#include "Pool.h"
+
+// OpenAL
+#include <AL/alc.h>
+#include <AL/al.h>
 
 namespace love
 {
@@ -32,20 +36,32 @@ namespace audio
 {
 namespace openal
 {
-	class Music : public Audible
+
+	// Forward declarations.
+	class Audio;
+
+	class Music : public love::audio::Music
 	{
 	private:
 		static const unsigned int NUM_BUFFERS = 32;
 		ALuint buffers[NUM_BUFFERS];
+		Pool * pool;
 		love::sound::Decoder * decoder;
+		ALuint source;
 	public:
-		Music(love::sound::Decoder * decoder);
+		Music(Pool * pool, love::sound::Decoder * decoder);
 		virtual ~Music();
-		Music * clone();
-		void init(ALuint source);
-		void update(ALuint source);
-		void quit(ALuint source);
-		void rewind(ALuint source);
+		
+
+		// Implements Audible.
+		void play(love::audio::Source * source);
+		void update(love::audio::Source * source);
+		void stop(love::audio::Source * source);
+		void rewind(love::audio::Source * source);
+
+		// Implements Music.
+		love::audio::Music * clone();
+
 	private:
 		bool stream(ALuint buffer);
 	}; // Sound

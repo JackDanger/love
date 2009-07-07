@@ -18,33 +18,20 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#include "Audible.h"
+#ifndef LOVE_AUDIO_WRAP_MUSIC_H
+#define LOVE_AUDIO_WRAP_MUSIC_H
+
+#include <common/runtime.h>
+#include "Music.h"
 
 namespace love
 {
 namespace audio
 {
-namespace openal
-{
+	Music * luax_checkmusic(lua_State * L, int idx);
+	int wrap_Music_open(lua_State * L);
 
-	Audible::~Audible()
-	{
-	}
-
-	int Audible::getFormat(int channels, int bits) const
-	{
-		if(channels == 1 && bits == 8)
-			return AL_FORMAT_MONO8;
-		else if(channels == 1 && bits == 16)
-			return AL_FORMAT_MONO16;
-		else if(channels == 2 && bits == 8)
-			return AL_FORMAT_STEREO8;
-		else if(channels == 2 && bits == 16)
-			return AL_FORMAT_STEREO16;
-		else
-			return 0;
-	}
-
-} // openal
 } // audio
 } // love
+
+#endif // LOVE_AUDIO_WRAP_MUSIC_H

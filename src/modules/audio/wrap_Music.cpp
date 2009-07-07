@@ -18,34 +18,26 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_AUDIO_OPENAL_AUDIBLE_H
-#define LOVE_AUDIO_OPENAL_AUDIBLE_H
-
-// LOVE
-#include <common/Object.h>
-
-// OpenAL
-#include <alut.h>
+#include "wrap_Music.h"
 
 namespace love
 {
 namespace audio
 {
-namespace openal
-{
-	class Audible : public Object
+	Music * luax_checkmusic(lua_State * L, int idx)
 	{
-	public:
-		virtual ~Audible();
-		virtual void init(ALuint source) = 0;
-		virtual void update(ALuint source) = 0;
-		virtual void quit(ALuint source) = 0;
-		virtual void rewind(ALuint source) = 0;
-		int getFormat(int channels, int bits) const;
-	}; // Audible
+		return luax_checktype<Music>(L, idx, "Music", LOVE_AUDIO_MUSIC_BITS);
+	}
 
-} // openal
+	static const luaL_Reg wrap_Music_functions[] = {
+		{ 0, 0 }
+	};
+
+	int wrap_Music_open(lua_State * L)
+	{
+		luax_register_type(L, "Music", wrap_Music_functions);
+		return 0;
+	}
+
 } // audio
 } // love
-
-#endif // LOVE_AUDIO_OPENAL_AUDIBLE_H

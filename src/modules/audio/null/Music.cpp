@@ -18,29 +18,46 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#include "wrap_Audible.h"
+#include "Music.h"
 
 namespace love
 {
 namespace audio
 {
-namespace openal
+namespace null
 {
-	Audible * luax_checkaudible(lua_State * L, int idx)
+	Music::Music(love::sound::Decoder * decoder)
+		: decoder(decoder)
 	{
-		return luax_checktype<Audible>(L, idx, "Audible", LOVE_AUDIO_AUDIBLE_BITS);
+		decoder->retain();
 	}
 
-	static const luaL_Reg wrap_Audible_functions[] = {
-		{ 0, 0 }
-	};
-
-	int wrap_Audible_open(lua_State * L)
+	Music::~Music()
 	{
-		luax_register_type(L, "Audible", wrap_Audible_functions);
-		return 0;
+		decoder->release();
 	}
 
-} // openal
+	love::audio::Music * Music::clone()
+	{
+		return new Music(decoder->clone());
+	}
+
+	void Music::play(love::audio::Source * s)
+	{
+	}
+
+	void Music::update(love::audio::Source * s)
+	{
+	}
+
+	void Music::stop(love::audio::Source * s)
+	{
+	}
+
+	void Music::rewind(love::audio::Source * s)
+	{
+	}
+
+} // null
 } // audio
 } // love

@@ -241,6 +241,8 @@ namespace physfs
 			}
 		}
 
+		luax_register_gc(L, "love.filesystem", instance);
+
 		return luax_register_module(L, wrap_Filesystem_functions, wrap_Filesystem_types);
 	}
 

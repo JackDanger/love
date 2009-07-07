@@ -22,6 +22,7 @@
 #define LOVE_RUNTIME_H
 
 #include "types.h"
+#include "Module.h"
 
 // Lua
 extern "C" {
@@ -42,7 +43,9 @@ namespace love
 	int luax_assert_argc(lua_State * L, int lower);
 	int luax_assert_argc(lua_State * L, int lower, int upper);
 	int luax_assert_function(lua_State * L, int n);
-	int luax_register_gc(lua_State * L, const char * mname, lua_CFunction f);
+
+	int luax_register_gc(lua_State * L, const char * mname, Module * module);
+
 	int luax_register_info(lua_State * L, const char * name, 
 		const char * provides, const char * desc, const char * author,
 		lua_CFunction open);

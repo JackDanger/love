@@ -18,52 +18,24 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_AUDIO_OPENAL_SOUND_H
-#define LOVE_AUDIO_OPENAL_SOUND_H
+#ifndef LOVE_AUDIO_WRAP_SOURCE_H
+#define LOVE_AUDIO_WRAP_SOURCE_H
 
-// LOVE
-#include <sound/SoundData.h>
-#include <audio/Sound.h>
-#include "Pool.h"
-
-// OpenAL
-#include <AL/alc.h>
-#include <AL/al.h>
+#include <common/runtime.h>
+#include "Source.h"
 
 namespace love
 {
 namespace audio
 {
-namespace openal
-{
-	// Forward declarations.
-	class Audio;
+	Source * luax_checksource(lua_State * L, int idx);
+	int _wrap_Source_setPitch(lua_State * L);
+	int _wrap_Source_getPitch(lua_State * L);
+	int _wrap_Source_setVolume(lua_State * L);
+	int _wrap_Source_getVolume(lua_State * L);
+	int wrap_Source_open(lua_State * L);
 
-	class Sound : public love::audio::Sound
-	{
-	private:
-	
-		Pool * pool;
-
-		// Sounds only need one buffer.
-		ALuint buffer;
-
-		ALuint source;
-
-	public:
-		Sound(Pool * pool, love::sound::SoundData * data);
-		virtual ~Sound();
-
-		// Implements Audible.
-		void play(love::audio::Source * s);
-		void update(love::audio::Source * s);
-		void stop(love::audio::Source * s);
-		void rewind(love::audio::Source * s);
-
-	}; // Sound
-
-} // openal
 } // audio
 } // love
 
-#endif // LOVE_AUDIO_OPENAL_SOUND_H
+#endif // LOVE_AUDIO_WRAP_SOURCE_H

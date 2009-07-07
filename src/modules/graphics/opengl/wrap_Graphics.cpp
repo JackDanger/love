@@ -170,7 +170,7 @@ namespace opengl
 	int _wrap_newFrame(lua_State * L)
 	{
 		Image *image = luax_checktype<Image>(L, 1, "Image", LOVE_GRAPHICS_IMAGE_BITS);
-		Frame *frame = instance->newFrame(image, luaL_optint(L, 2, 0), luaL_optint(L, 3, 0), luaL_optint(L, 4, image->getWidth()), luaL_optint(L, 5, image->getHeight()));
+		Frame *frame = instance->newFrame(image, luaL_optint(L, 2, 0), luaL_optint(L, 3, 0), luaL_optint(L, 4, (int)image->getWidth()), luaL_optint(L, 5, (int)image->getHeight()));
 		if (frame == 0)
 			return luaL_error(L, "Could not create frame.");
 		
@@ -832,6 +832,8 @@ namespace opengl
 				return luaL_error(L, e.what());
 			}
 		}
+
+		luax_register_gc(L, "love.graphics", instance);
 
 		return luax_register_module(L, wrap_Graphics_functions, wrap_Graphics_types);
 	}

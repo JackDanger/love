@@ -18,23 +18,77 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_AUDIO_OPENAL_WRAP_MUSIC_H
-#define LOVE_AUDIO_OPENAL_WRAP_MUSIC_H
-
-#include <common/runtime.h>
-#include "Music.h"
+#include "Source.h"
 
 namespace love
 {
 namespace audio
 {
-namespace openal
+namespace null
 {
-	Music * luax_checkmusic(lua_State * L, int idx);
-	int wrap_Music_open(lua_State * L);
 
-} // openal
+	Source::Source()
+	{
+	}
+
+	Source::Source(Audible * audible)
+	{
+		setAudible(audible);
+	}
+
+	Source::~Source()
+	{
+	}
+
+	void Source::play()
+	{
+	}
+
+	void Source::stop()
+	{
+	}
+
+	void Source::pause()
+	{
+	}
+
+	void Source::resume()
+	{
+	}
+
+	void Source::rewind()
+	{
+	}
+
+	bool Source::isFinished() const
+	{
+		return true;		
+	}
+
+	void Source::update()
+	{
+	}
+
+	void Source::setPitch(float pitch)
+	{
+		this->pitch = pitch;
+	}
+
+	float Source::getPitch() const
+	{
+		return pitch;
+	}
+
+	void Source::setVolume(float volume)
+	{
+		this->volume = volume;
+	}
+
+	float Source::getVolume() const
+	{
+		return volume;
+	}
+
+} // null
 } // audio
 } // love
-
-#endif // LOVE_AUDIO_OPENAL_WRAP_MUSIC_H
