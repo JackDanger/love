@@ -29,6 +29,7 @@
 #include "wrap_ParticleSystem.h"
 #include "wrap_SpriteBatch.h"
 #include "wrap_VertexBuffer.h"
+#include "wrap_Frame.h"
 #include "Graphics.h"
 
 namespace love
@@ -52,6 +53,7 @@ namespace opengl
 	int _wrap_getScissor(lua_State * L);
 	int _wrap_newColor(lua_State * L);
 	int _wrap_newImage(lua_State * L);
+	int _wrap_newFrame(lua_State * L);
 	int _wrap_newAnimation(lua_State * L);
 	int _wrap_newFont(lua_State * L);
 	int _wrap_newImageFont(lua_State * L);

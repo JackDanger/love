@@ -395,6 +395,11 @@ namespace opengl
 
 		return image;
 	}
+	
+	Frame * Graphics::newFrame(Image *image, int x, int y, int w, int h)
+	{
+		return new Frame(image, x, y, w, h);
+	}
 
 	Color * Graphics::newColor(int r, int g, int b, int a)
 	{

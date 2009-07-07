@@ -166,6 +166,17 @@ namespace opengl
 
 		return 1;
 	}
+	
+	int _wrap_newFrame(lua_State * L)
+	{
+		Image *image = luax_checktype<Image>(L, 1, "Image", LOVE_GRAPHICS_IMAGE_BITS);
+		Frame *frame = instance->newFrame(image, luaL_optint(L, 2, 0), luaL_optint(L, 3, 0), luaL_optint(L, 4, image->getWidth()), luaL_optint(L, 5, image->getHeight()));
+		if (frame == 0)
+			return luaL_error(L, "Could not create frame.");
+		
+		luax_newtype(L, "Frame", LOVE_GRAPHICS_FRAME_BITS, (void*)frame);
+		return 1;
+	}
 
 	int _wrap_newAnimation(lua_State * L)
 	{
@@ -725,6 +736,7 @@ namespace opengl
 
 		{ "newColor", _wrap_newColor },
 		{ "newImage", _wrap_newImage },
+		{ "newFrame", _wrap_newFrame },
 		{ "newAnimation", _wrap_newAnimation },
 		{ "newFont", _wrap_newFont },
 		{ "newImageFont", _wrap_newImageFont },
@@ -799,6 +811,7 @@ namespace opengl
 		wrap_Color_open, 
 		wrap_Font_open, 
 		wrap_Image_open, 
+		wrap_Frame_open, 
 		wrap_Animation_open, 
 		wrap_ParticleSystem_open, 
 		wrap_SpriteBatch_open, 

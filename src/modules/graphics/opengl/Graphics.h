@@ -40,6 +40,7 @@
 #include "ParticleSystem.h"
 #include "SpriteBatch.h"
 #include "VertexBuffer.h"
+#include "Frame.h"
 
 namespace love
 {
@@ -236,6 +237,11 @@ namespace opengl
 		**/
 		Image * newImage(love::filesystem::File * file);
 		Image * newImage(love::image::ImageData * data);
+		
+		/**
+		* Creates a Frame
+		**/
+		Frame * newFrame(Image *image, int x, int y, int w, int h);
 
 		/**
 		* Creates a Font object.
