@@ -123,7 +123,7 @@ namespace opengl
 	void Graphics::restoreState(const DisplayState & s)
 	{
 		setColor(s.color[0], s.color[1], s.color[2], s.color[3]);
-		setBackgroundColor(s.color[0], s.color[1], s.color[2]);
+		setBackgroundColor(s.backgroundColor[0], s.backgroundColor[1], s.backgroundColor[2]);
 		setBlendMode(s.blendMode);
 		setColorMode(s.colorMode);
 		setLine(s.lineWidth, s.lineStyle);
