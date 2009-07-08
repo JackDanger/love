@@ -187,7 +187,7 @@ namespace physfs
 
 	bool Filesystem::isFile(const char * file)
 	{
-		return !isDirectory(file);
+		return exists(file) && !isDirectory(file);
 	}
 
 	bool Filesystem::mkdir(const char * file)
