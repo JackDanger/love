@@ -38,9 +38,8 @@ namespace sdl
 
 	int Event::poll(lua_State * L)
 	{
-		static SDL_Event e;
-		SDL_PollEvent(&e);
-		return pushEvent(L, e); 
+		lua_pushcclosure(L, &poll_i, 0);
+		return 1;
 	}
 
 	int Event::wait(lua_State * L)
@@ -57,13 +56,15 @@ namespace sdl
 		SDL_PushEvent(&e);
 	}
 
-	int Event::get(lua_State * L)
+	int Event::push(lua_State * L)
 	{
-		lua_pushcclosure(L, &get_i, 0);
-		return 1;
+		SDL_Event e;
+		getEvent(L, e);
+		SDL_PushEvent(&e);
+		return 0;
 	}
 
-	int Event::get_i(lua_State * L)
+	int Event::poll_i(lua_State * L)
 	{
 		SDL_EnableUNICODE(1);
 
@@ -112,6 +113,45 @@ namespace sdl
 			lua_pushinteger(L, e.type);
 			return 1;
 		default:
+			break;
+		}
+
+		return 0;
+	}
+
+	int Event::getEvent(lua_State * L, SDL_Event & e)
+	{
+		int type = luaL_checkint(L, 1);
+
+		switch(type)
+		{
+		case EVENT_KEYDOWN:
+			e.type = type;
+			e.key.keysym.sym = (SDLKey)luaL_checkint(L, 2);
+			e.key.keysym.unicode = luaL_checkint(L, 3);
+			return 3;
+		case EVENT_KEYUP:
+			e.type = type;
+			e.key.keysym.sym = (SDLKey)luaL_checkint(L, 2);
+			return 2;
+		case EVENT_MOUSEBUTTONDOWN:
+		case EVENT_MOUSEBUTTONUP:
+			e.type = type;
+			e.button.x = luaL_checkint(L, 2);
+			e.button.y = luaL_checkint(L, 3);
+			e.button.button = luaL_checkint(L, 4);
+			return 4;
+		case EVENT_JOYBUTTONDOWN:
+		case EVENT_JOYBUTTONUP:
+			e.type = type;
+			e.jbutton.which = luaL_checkint(L, 2);
+			e.jbutton.button = luaL_checkint(L, 3);
+			return 3;
+		case EVENT_QUIT:
+			e.type = type;
+			return 1;
+		default:
+			e.type = EVENT_NOEVENT;
 			break;
 		}
 

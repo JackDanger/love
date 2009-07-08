@@ -144,7 +144,7 @@ function love.run()
 		if love.draw then love.draw() end
 
 		-- Process events.
-		for e,a,b,c in love.event.get() do
+		for e,a,b,c in love.event.poll() do
 			if e == love.event_quit then return end
 			love.handlers[e](a,b,c)
 		end

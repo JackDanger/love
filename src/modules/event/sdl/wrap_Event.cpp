@@ -34,9 +34,20 @@ namespace sdl
 {
 	static Event * instance = 0;
 	
-	int _wrap_get(lua_State * L)
+	int _wrap_pump(lua_State * L)
 	{
-		return instance->get(L);
+		instance->pump();
+		return 0;
+	}
+
+	int _wrap_poll(lua_State * L)
+	{
+		return instance->poll(L);
+	}
+
+	int _wrap_wait(lua_State * L)
+	{
+		return instance->wait(L);
 	}
 
 	int _wrap_quit(lua_State * L)
@@ -45,10 +56,18 @@ namespace sdl
 		return 0;
 	}
 
+	int _wrap_push(lua_State * L)
+	{
+		return instance->push(L);
+	}
+
 	// List of functions to wrap.
 	static const luaL_Reg wrap_Event_functions[] = {
-		{ "get", _wrap_get },
-		{ "quit", _wrap_quit },
+		{ "pump", _wrap_pump }, 
+		{ "poll", _wrap_poll }, 
+		{ "wait", _wrap_wait }, 
+		{ "quit", _wrap_quit }, 
+		{ "push", _wrap_push }, 
 		{ 0, 0 }
 	};
 

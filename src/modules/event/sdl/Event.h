@@ -41,29 +41,46 @@ namespace sdl
 		// Implements Module.
 		const char * getName() const;
 
+		/**
+		* Pumps the event queue. This function gathers all the pending input information 
+		* from devices and places it on the event queue. Normally not needed if you poll
+		* for events.
+		**/ 
 		void pump();
+
+		/**
+		* Returns an iterator function for iterating over pending events.
+		**/
 		int poll(lua_State * L);
+		
+		/**
+		* Waits for the next event (indefinitely). Useful for creating games where
+		* the screen and game state only needs updating when the user interacts with
+		* the window.
+		**/
 		int wait(lua_State * L);
 
 		/**
 		* Push a quit event. Calling this does not mean the application
-		* will exist immediately. 
+		* will exit immediately, it just means an quit event will be issued. 
+		* How to respond to the quit event is up the application. 
 		**/
 		void quit();
 
 		/**
-		* Returns an iterator function for
-		* iterating over pending events.
+		* Pushes an event into the queue.
 		**/
-		int get(lua_State * L);
+		int push(lua_State * L);
 
 		/**
-		* The iterator function which iterates
-		* pending SDL events.
+		* The iterator function.
 		**/
-		static int get_i(lua_State * L);
+		static int poll_i(lua_State * L);
+
+	private:
 
 		static int pushEvent(lua_State * L, SDL_Event & e);
+		static int getEvent(lua_State * L, SDL_Event & e);
 
 	}; // System
 
