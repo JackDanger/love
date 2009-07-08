@@ -26,8 +26,6 @@ namespace love
 {
 namespace image
 {
-namespace devil
-{
 	ImageData * luax_checkimagedata(lua_State * L, int idx)
 	{
 		return luax_checktype<ImageData>(L, idx, "ImageData", LOVE_IMAGE_IMAGE_DATA_BITS);
@@ -52,7 +50,7 @@ namespace devil
 		ImageData * t = luax_checkimagedata(L, 1);
 		int x = luaL_checkint(L, 2);
 		int y = luaL_checkint(L, 3);
-		rgba c = t->getPixel(x, y);
+		pixel c = t->getPixel(x, y);
 		lua_pushnumber(L, c.r);
 		lua_pushnumber(L, c.g);
 		lua_pushnumber(L, c.b);
@@ -65,7 +63,7 @@ namespace devil
 		ImageData * t = luax_checkimagedata(L, 1);
 		int x = luaL_checkint(L, 2);
 		int y = luaL_checkint(L, 3);
-		rgba c;
+		pixel c;
 		c.r = luaL_checkint(L, 4);
 		c.g = luaL_checkint(L, 5);
 		c.b = luaL_checkint(L, 6);
@@ -91,7 +89,7 @@ namespace devil
 				lua_pushvalue(L, 2);
 				lua_pushnumber(L, i);
 				lua_pushnumber(L, j);
-				rgba c = t->getPixel(i, j);
+				pixel c = t->getPixel(i, j);
 				lua_pushnumber(L, c.r);
 				lua_pushnumber(L, c.g);
 				lua_pushnumber(L, c.b);
@@ -151,6 +149,5 @@ namespace devil
 		return 0;
 	}
 
-} // devil
 } // image
 } // love

@@ -1319,7 +1319,79 @@
 				Name="image"
 				>
 				<File
+					RelativePath="..\..\src\modules\image\Image.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\image\ImageData.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\image\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\image\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
 					RelativePath="..\..\src\modules\image\ImageData.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\image\wrap_Image.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\image\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\image\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\image\wrap_Image.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\image\wrap_ImageData.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\image\"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\image\"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\modules\image\wrap_ImageData.h"
 					>
 				</File>
 				<Filter
@@ -1371,54 +1443,6 @@
 					</File>
 					<File
 						RelativePath="..\..\src\modules\image\devil\ImageData.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\image\devil\wrap_Image.cpp"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\image\devil\"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\image\devil\"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\image\devil\wrap_Image.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\image\devil\wrap_ImageData.cpp"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\image\devil\"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)\image\devil\"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\src\modules\image\devil\wrap_ImageData.h"
 						>
 					</File>
 				</Filter>

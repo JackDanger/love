@@ -90,14 +90,14 @@ namespace opengl
 	
 	bool ImageFont::loadVolatile()
 	{
-		love::image::rgba * pixels = (love::image::rgba *)(image->getData()->getData());
+		love::image::pixel * pixels = (love::image::pixel *)(image->getData()->getData());
 		
 		// Reading texture data begins
 		size = (int)image->getHeight();
 		
 		for(unsigned int i = 0; i < MAX_CHARS; i++) positions[i] = -1;
 		
-		love::image::rgba spacer = pixels[0];
+		love::image::pixel spacer = pixels[0];
 		unsigned int current = 0;
 		int width = 0;
 		int space = 0;

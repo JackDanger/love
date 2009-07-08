@@ -18,25 +18,33 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_IMAGE_DEVIL_WRAP_IMAGE_H
-#define LOVE_IMAGE_DEVIL_WRAP_IMAGE_H
-
-// LOVE
-#include "Image.h"
-#include "wrap_ImageData.h"
+#include "ImageData.h"
 
 namespace love
 {
 namespace image
 {
-namespace devil
-{
-	int _wrap_getFormats(lua_State * L);
-	int _wrap_newImageData(lua_State * L);
-	int wrap_Image_open(lua_State * L);
+	void ImageData::paste(ImageData * src, int dx, int dy, int sx, int sy, int sw, int sh)
+	{
+		pixel * s = (pixel *)src->getData();
+		pixel * d = (pixel *)getData();
 
-} // devil
+		for(int i = 0; i < sh; i++)
+		{
+			for(int j = 0; j < sw; j++)
+			{
+				if(inside(dx+j, dy+i) && src->inside(sx+j, sy+i))
+				{
+					d[(dy+i)*getWidth() + (dx+j)] = s[(sy+i)*src->getWidth() + (sx+j)];
+				}
+			}
+		}
+	}
+
+	bool ImageData::inside(int x, int y) const
+	{
+		return (x >= 0 && x < getWidth() && y >= 0 && y < getHeight());
+	}
+
 } // image
 } // love
-
-#endif // LOVE_IMAGE_DEVIL_WRAP_IMAGE_H

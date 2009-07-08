@@ -18,31 +18,22 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_IMAGE_DEVIL_WRAP_IMAGE_DATA_H
-#define LOVE_IMAGE_DEVIL_WRAP_IMAGE_DATA_H
+#ifndef LOVE_IMAGE_WRAP_IMAGE_H
+#define LOVE_IMAGE_WRAP_IMAGE_H
 
 // LOVE
-#include <common/runtime.h>
-#include "ImageData.h"
+#include "Image.h"
+#include "wrap_ImageData.h"
 
 namespace love
 {
 namespace image
 {
-namespace devil
-{
-	ImageData * luax_checkimagedata(lua_State * L, int idx);
-	int _wrap_ImageData_getWidth(lua_State * L);
-	int _wrap_ImageData_getHeight(lua_State * L);
-	int _wrap_ImageData_getPixel(lua_State * L);
-	int _wrap_ImageData_setPixel(lua_State * L);
-	int _wrap_ImageData_mapPixel(lua_State * L);
-	int _wrap_ImageData_getString(lua_State * L);
-	int _wrap_ImageData_paste(lua_State * L);
-	int wrap_ImageData_open(lua_State * L);
+	int _wrap_getFormats(lua_State * L);
+	int _wrap_newImageData(lua_State * L);
+	int wrap_Image_open(lua_State * L);
 
-} // devil
 } // image
 } // love
 
-#endif // LOVE_IMAGE_DEVIL_WRAP_IMAGE_DATA_H
+#endif // LOVE_IMAGE_WRAP_IMAGE_H

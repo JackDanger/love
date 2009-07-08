@@ -18,61 +18,28 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_DEVIL_IMAGE_DATA_H
-#define LOVE_DEVIL_IMAGE_DATA_H
+#ifndef LOVE_IMAGE_WRAP_IMAGE_DATA_H
+#define LOVE_IMAGE_WRAP_IMAGE_DATA_H
 
 // LOVE
-#include <filesystem/File.h>
-#include <image/ImageData.h>
-
-// DevIL
-#include <IL/il.h>
+#include <common/runtime.h>
+#include "ImageData.h"
 
 namespace love
-{	
+{
 namespace image
 {
-namespace devil
-{
-	class ImageData : public love::image::ImageData
-	{
-	private:
+	ImageData * luax_checkimagedata(lua_State * L, int idx);
+	int _wrap_ImageData_getWidth(lua_State * L);
+	int _wrap_ImageData_getHeight(lua_State * L);
+	int _wrap_ImageData_getPixel(lua_State * L);
+	int _wrap_ImageData_setPixel(lua_State * L);
+	int _wrap_ImageData_mapPixel(lua_State * L);
+	int _wrap_ImageData_getString(lua_State * L);
+	int _wrap_ImageData_paste(lua_State * L);
+	int wrap_ImageData_open(lua_State * L);
 
-		// The width of the image data.
-		int width;
-
-		// The height of the image data.
-		int height;
-
-		// The origin of the image.
-		int origin;
-
-		// The bits per pixel.
-		int bpp;
-
-		// DevIL image identifier.
-		ILuint image;
-
-	public:
-
-		ImageData(love::filesystem::File * file);
-		ImageData(int width, int height);
-		virtual ~ImageData();
-
-		// Implements Data.
-		void * getData() const;
-		int getSize() const;
-
-		// Implements ImageData.
-		int getWidth() const ;
-		int getHeight() const ;
-		void setPixel(int x, int y, pixel c);
-		pixel getPixel(int x, int y) const;
-
-	}; // ImageData
-
-} // devil
 } // image
 } // love
 
-#endif // LOVE_DEVIL_IMAGE_DATA_H
+#endif // LOVE_IMAGE_WRAP_IMAGE_DATA_H

@@ -18,36 +18,50 @@
 * 3. This notice may not be removed or altered from any source distribution.
 **/
 
-#ifndef LOVE_IMAGE_DEVIL_IMAGE_H
-#define LOVE_IMAGE_DEVIL_IMAGE_H
+#ifndef LOVE_IMAGE_IMAGE_H
+#define LOVE_IMAGE_IMAGE_H
 
 // LOVE
-#include <image/Image.h>
+#include <common/Module.h>
+#include <filesystem/File.h>
 #include "ImageData.h"
 
 namespace love
 {
 namespace image
 {
-namespace devil
-{
-	class Image : public love::image::Image
+	/**
+	* This module is responsible for decoding files such as PNG, GIF, JPEG
+	* into raw pixel data. This module does not know how to draw images on
+	* screen; only love.graphics knows that. 
+	**/
+	class Image : public Module
 	{
 	public:
 
-		Image();
-		 ~Image();
+		/**
+		* Destructor.
+		**/
+		virtual ~Image(){};
 
-		// Implements Module.
-		const char * getName() const;
-		
-		love::image::ImageData * newImageData(love::filesystem::File * file);
-		love::image::ImageData * newImageData(int width, int height);
+		/**
+		* Creates new ImageData from a file. 
+		* @param file The file containing the encoded image data.
+		* @return The new ImageData.
+		**/
+		virtual ImageData * newImageData(love::filesystem::File * file) = 0;
+
+		/**
+		* Creates empty ImageData with the given size.
+		* @param The width of the ImageData.
+		* @param The height of the ImageData.
+		* @return The new ImageData.
+		**/
+		virtual ImageData * newImageData(int width, int height) = 0;
 
 	}; // Image
 
-} // devil
 } // image
 } // love
 
-#endif // LOVE_IMAGE_DEVIL_IMAGE_H
+#endif // LOVE_IMAGE_IMAGE_H

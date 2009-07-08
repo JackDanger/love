@@ -37,7 +37,7 @@
 #include <event/sdl/wrap_Event.h>
 #include <filesystem/physfs/wrap_Filesystem.h>
 #include <graphics/opengl/wrap_Graphics.h>
-#include <image/devil/wrap_Image.h>
+#include <image/wrap_Image.h>
 #include <joystick/sdl/wrap_Joystick.h>
 #include <keyboard/sdl/wrap_Keyboard.h>
 #include <mouse/sdl/wrap_Mouse.h>
@@ -78,7 +78,7 @@ DECLSPEC int luaopen_love(lua_State * L)
 	love::luax_preload(L, love::timer::sdl::wrap_Timer_open, "love.timer");
 	love::luax_preload(L, love::joystick::sdl::wrap_Joystick_open, "love.joystick");
 	love::luax_preload(L, love::graphics::opengl::wrap_Graphics_open, "love.graphics");
-	love::luax_preload(L, love::image::devil::wrap_Image_open, "love.image");
+	love::luax_preload(L, love::image::wrap_Image_open, "love.image");
 	love::luax_preload(L, love::physics::box2d::wrap_Physics_open, "love.physics");
 	love::luax_preload(L, love::sound::wrap_Sound_open, "love.sound");
 

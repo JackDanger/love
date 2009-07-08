@@ -28,22 +28,72 @@ namespace love
 {	
 namespace image
 {
-	// Pixel format structures. Luminance-Alpha and RGB(A).
-	struct la { unsigned char l, a; };
-	struct rgb { unsigned char r, g, b; };
-	struct rgba { unsigned char r, g, b, a; };
+	// Pixel format structure. 
+	struct pixel 
+	{
+		// Red, green, blue, alpha.
+		unsigned char r, g, b, a; 
+	};
 
+	/**
+	* Represents raw pixel data. 
+	**/
 	class ImageData : public Data
 	{
 	public:
 
+		/**
+		* Destructor.
+		**/
 		virtual ~ImageData(){};
+
+		/**
+		* Paste part of one ImageData onto another. The subregion defined by the top-left
+		* corner (sx, sy) and the size (sw,sh) will be pasted to (dx,dy) in this ImageData.
+		* @param dx The destination x-coordinate.
+		* @param dy The destination y-coordinate.
+		* @param sx The source x-coordinate.
+		* @param sy The source y-coordinate.
+		* @param sw The source width.
+		* @param sh The source height.
+		**/
+		void paste(ImageData * src, int dx, int dy, int sx, int sy, int sw, int sh);
+
+		/**
+		* Checks whether a position is inside this ImageData. Useful for checking bounds.
+		* @param x The position along the x-axis. 
+		* @param y The position along the y-axis.
+		**/
+		bool inside(int x, int y) const;
+
+		/**
+		* Gets the width of this ImageData.
+		* @return The width of this ImageData.
+		**/
 		virtual int getWidth() const = 0;
+
+		/**
+		* Gets the height of this ImageData.
+		* @return The height of this ImageData.
+		**/
 		virtual int getHeight() const  = 0;
-		virtual void setPixel(int x, int y, rgba c) = 0;
-		virtual rgba getPixel(int x, int y) const = 0;
-		virtual void paste(ImageData * src, int dx, int dy, int sx, int sy, int sw, int sh) = 0;
-		virtual bool inside(int x, int y) const = 0;
+
+		/**
+		* Sets the pixel at location (x,y). No effect if out of bounds.
+		* @param x The location along the x-axis. 
+		* @param y The location along the y-axis.
+		* @param p The color to use for the given location.
+		**/
+		virtual void setPixel(int x, int y, pixel p) = 0;
+
+		/**
+		* Gets the pixel at location (x,y). Returns black (0,0,0,0) if out
+		* out of bounds.
+		* @param x The location along the x-axis. 
+		* @param y The location along the y-axis.
+		* @return The color for the given location.
+		**/
+		virtual pixel getPixel(int x, int y) const = 0;
 
 
 	}; // ImageData

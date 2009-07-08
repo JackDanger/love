@@ -44,20 +44,12 @@ namespace devil
 		return "love.image.devil";
 	}
 
-	int Image::getFormats(lua_State * L)
-	{
-		lua_pushstring(L, "bmp cut dcx dds exr ico icns gif jpg jp2 "
-			"lbm lif mdl pcd pcx pic png pnm psd psp raw sgi tga "
-			"tif wal act pal hdr");
-		return 1;
-	}
-
-	ImageData * Image::newImageData(love::filesystem::File * file)
+	love::image::ImageData * Image::newImageData(love::filesystem::File * file)
 	{
 		return new ImageData(file);
 	}
 
-	ImageData * Image::newImageData(int width, int height)
+	love::image::ImageData * Image::newImageData(int width, int height)
 	{
 		return new ImageData(width, height);
 	}

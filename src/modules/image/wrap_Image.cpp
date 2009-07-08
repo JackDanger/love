@@ -20,18 +20,13 @@
 
 #include "wrap_Image.h"
 
+#include "devil/Image.h"
+
 namespace love
 {
 namespace image
 {
-namespace devil
-{
 	static Image * instance = 0;
-
-	int _wrap_getFormats(lua_State * L)
-	{
-		return instance->getFormats(L);
-	}
 
 	int _wrap_newImageData(lua_State * L)
 	{
@@ -59,7 +54,6 @@ namespace devil
 
 	// List of functions to wrap.
 	const luaL_Reg wrap_Image_functions[] = {
-		{ "getFormats",  _wrap_getFormats },
 		{ "newImageData",  _wrap_newImageData },
 		{ 0, 0 }
 	};
@@ -76,7 +70,7 @@ namespace devil
 		{
 			try 
 			{
-				instance = new Image();
+				instance = new love::image::devil::Image();
 			} 
 			catch(Exception & e)
 			{
@@ -89,6 +83,5 @@ namespace devil
 		return luax_register_module(L, wrap_Image_functions, wrap_Image_types);
 	}
 
-} // devil
 } // image
 } // love
