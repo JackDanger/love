@@ -28,6 +28,7 @@ namespace love
 	}
 
 	Reference::Reference(lua_State * L)
+		: L(0), idx(LUA_REFNIL)
 	{
 		ref(L);
 	}

@@ -35,6 +35,7 @@
 #include <audio/null/Audio.h>
 
 #include <event/sdl/wrap_Event.h>
+#include <event/signal/wrap_Event.h>
 #include <filesystem/physfs/wrap_Filesystem.h>
 #include <graphics/opengl/wrap_Graphics.h>
 #include <image/wrap_Image.h>
@@ -81,6 +82,7 @@ DECLSPEC int luaopen_love(lua_State * L)
 	love::luax_preload(L, love::image::wrap_Image_open, "love.image");
 	love::luax_preload(L, love::physics::box2d::wrap_Physics_open, "love.physics");
 	love::luax_preload(L, love::sound::wrap_Sound_open, "love.sound");
+	love::luax_preload(L, love::event::signal::wrap_Event_signal_open, "love.event.signal");
 
 	love::luasocket::__open(L);
 	love::lanes::open(L);
