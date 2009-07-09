@@ -44,6 +44,7 @@ namespace signal
 	{
 		luaL_argcheck(L, lua_isfunction(L, 1), 1, "Expected function");
 		instance->setCallback(L);
+		return 0;
 	}
 
 	// List of functions to wrap.

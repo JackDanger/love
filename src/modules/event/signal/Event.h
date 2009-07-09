@@ -26,7 +26,7 @@
 #include <common/runtime.h>
 #include <common/Reference.h>
 
-#include <csignal>
+#include <signal.h>
 
 namespace love
 {

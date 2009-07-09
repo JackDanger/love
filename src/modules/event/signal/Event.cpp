@@ -41,7 +41,7 @@ namespace signal
 	bool Event::registerSignal(int sgn)
 	{
 		signals |= sgn;
-		::signal(sgn, (void (*)(int)) &handler);
+		return ::signal(sgn, (void (*)(int)) &handler) != SIG_ERR;
 	}
 	
 	void Event::setCallback(lua_State *L)
