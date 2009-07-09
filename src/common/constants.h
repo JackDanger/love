@@ -23,6 +23,7 @@
 
 #include "../modules/filesystem/File.h"
 #include "../modules/event/Event.h"
+#include "../modules/event/signal/Event.h"
 
 namespace love
 {
@@ -735,6 +736,35 @@ namespace love
 
 		{ "filter_linear", FILTER_LINEAR },
 		{ "filter_nearest", FILTER_NEAREST },
+		
+		{ "signal_sigabrt", SIGABRT },
+		{ "signal_sigalrm", SIGALRM },
+		{ "signal_sigbus", SIGBUS },
+		{ "signal_sigchld", SIGCHLD },
+		{ "signal_sigcont", SIGCONT },
+		{ "signal_sigfpe", SIGFPE },
+		{ "signal_sighup", SIGHUP },
+		{ "signal_sigill", SIGILL },
+		{ "signal_sigint", SIGINT },
+		{ "signal_sigkill", SIGKILL },
+		{ "signal_sigpipe", SIGPIPE },
+		{ "signal_sigquit", SIGQUIT },
+		{ "signal_sigsegv", SIGSEGV },
+		{ "signal_sigstop", SIGSTOP },
+		{ "signal_sigterm", SIGTERM },
+		{ "signal_sigtstp", SIGTSTP },
+		{ "signal_sigttin", SIGTTIN },
+		{ "signal_sigttou", SIGTTOU },
+		{ "signal_sigusr1", SIGUSR1 },
+		{ "signal_sigusr2", SIGUSR2 },
+		{ "signal_sigpoll", SIGPOLL },
+		{ "signal_sigprof", SIGPROF },
+		{ "signal_sigsys", SIGSYS },
+		{ "signal_sigtrap", SIGTRAP },
+		{ "signal_sigurg", SIGURG },
+		{ "signal_sigvtalrm", SIGVTALRM },
+		{ "signal_sigxcpu", SIGXCPU },
+		{ "signal_sigxfsz", SIGXFSZ },
 
 		{0, 0}, // Indicates the end
 
