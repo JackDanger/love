@@ -41,6 +41,8 @@ namespace box2d
 	int _wrap_World_isAllowSleep(lua_State * L);
 	int _wrap_World_getBodyCount(lua_State * L);
 	int _wrap_World_getJointCount(lua_State * L);
+	int _wrap_World_setMeter(lua_State * L);
+	int _wrap_World_getMeter(lua_State * L);
 	int wrap_World_open(lua_State * L);
 
 } // box2d
