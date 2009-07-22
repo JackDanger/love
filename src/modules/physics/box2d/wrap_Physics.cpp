@@ -191,6 +191,17 @@ namespace box2d
 		luax_newtype(L, "PulleyJoint", LOVE_PHYSICS_PULLEY_JOINT_BITS, (void*)j);
 		return 1;
 	}
+	
+	int _wrap_newGearJoint(lua_State * L)
+	{
+		Joint * joint1 = luax_checktype<Joint>(L, 1, "Joint", LOVE_PHYSICS_JOINT_BITS);
+		Joint * joint2 = luax_checktype<Joint>(L, 2, "Joint", LOVE_PHYSICS_JOINT_BITS);
+		float ratio = (float)luaL_optnumber(L, 3, 1.0);
+
+		GearJoint * j = instance->newGearJoint(joint1, joint2, ratio);
+		luax_newtype(L, "GearJoint", LOVE_PHYSICS_GEAR_JOINT_BITS, (void*)j);
+		return 1;
+	}
 
 	// List of functions to wrap.
 	static const luaL_Reg wrap_Physics_functions[] = {
@@ -204,6 +215,7 @@ namespace box2d
 		{ "newRevoluteJoint", _wrap_newRevoluteJoint },
 		{ "newPrismaticJoint", _wrap_newPrismaticJoint },
 		{ "newPulleyJoint", _wrap_newPulleyJoint },
+		{ "newGearJoint", _wrap_newGearJoint },
 		{ 0, 0 },
 	};
 
@@ -220,6 +232,7 @@ namespace box2d
 		wrap_PrismaticJoint_open,
 		wrap_RevoluteJoint_open,
 		wrap_PulleyJoint_open,
+		wrap_GearJoint_open,
 		0
 	};
 

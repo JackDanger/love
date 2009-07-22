@@ -35,6 +35,7 @@
 #include "PrismaticJoint.h"
 #include "RevoluteJoint.h"
 #include "PulleyJoint.h"
+#include "GearJoint.h"
 
 namespace love
 {
@@ -185,6 +186,14 @@ namespace box2d
 		* @param ratio The pulley ratio.
 		**/
 		PulleyJoint * newPulleyJoint(Body * body1, Body * body2, b2Vec2 groundAnchor1, b2Vec2 groundAnchor2, b2Vec2 anchor1, b2Vec2 anchor2, float ratio);
+
+		/**
+		* Creates a new GearJoint connecting joint1 with joint2.
+		* @param joint1 The first joint.
+		* @param joint2 The second joint.
+		* @param ratio The gear ratio.
+		**/
+		GearJoint * newGearJoint(Joint * joint1, Joint * joint2, float ratio);
 
 
 	}; // Physics

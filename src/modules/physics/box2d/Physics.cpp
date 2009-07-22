@@ -172,6 +172,11 @@ namespace box2d
 		return new PulleyJoint(body1, body2, groundAnchor1, groundAnchor2, anchor1, anchor2, ratio);
 	}
 
+	GearJoint * Physics::newGearJoint(Joint * joint1, Joint * joint2, float ratio)
+	{
+		return new GearJoint(joint1, joint2, ratio);
+	}
+
 } // box2d
 } // physics
 } // love

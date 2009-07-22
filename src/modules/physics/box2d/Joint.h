@@ -46,6 +46,8 @@ namespace box2d
 	**/
 	class Joint : public Object
 	{
+		friend class GearJoint;
+		
 	private:
 		
 		// A Joint must be destroyed *before* the bodies it acts upon, 
