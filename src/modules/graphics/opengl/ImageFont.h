@@ -27,6 +27,7 @@
 
 // STD
 #include <string>
+#include <cstdio>
 
 namespace love
 {
